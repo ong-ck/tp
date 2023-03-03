@@ -1,4 +1,4 @@
-# John Doe - Project Portfolio Page
+# Ong Chuan Kai - Project Portfolio Page
 
 ## Overview
 
