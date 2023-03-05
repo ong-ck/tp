@@ -1,5 +1,8 @@
 package seedu.duke;
 
+/**
+ * The <code>AddCommand</code> objects represents the user command to add new notes into CLIAlgo.
+ */
 public class AddCommand extends Command {
 
     public String name;
@@ -16,6 +19,13 @@ public class AddCommand extends Command {
         this.path = path;
     }
 
+    /**
+     * An overridden method to execute the user command to add new notes into CLIAlgo.
+     *
+     * @param topic The <code>Topic</code> object.
+     * @param ui The <code>Ui</code> object.
+     * @param storage The <code>Storage</code> object.
+     */
     @Override
     public void execute(Topic topic, Ui ui, Storage storage) {
         boolean isAdded = topic.addNote(name, path);
@@ -25,5 +35,19 @@ public class AddCommand extends Command {
         // Save list into Storage
 
         // Ui for successful adding
+    }
+
+    /**
+     * An overridden method that checks for equality of <code>AddCommand</code> objects.
+     *
+     * @param otherCommand The other <code>AddCommand</code> object to be checked against.
+     * @return A boolean value to determine whether the <code>AddCommand</code> objects are equal.
+     */
+    @Override
+    public boolean equals(Command otherCommand) {
+        AddCommand otherAddCommand = (AddCommand) otherCommand;
+
+        return this.name == otherAddCommand.name &&
+                this.path == otherAddCommand.path;
     }
 }
