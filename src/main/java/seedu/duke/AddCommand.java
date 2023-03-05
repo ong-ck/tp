@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import java.util.Objects;
+
 /**
  * The <code>AddCommand</code> objects represents the user command to add new notes into CLIAlgo.
  */
@@ -47,7 +49,7 @@ public class AddCommand extends Command {
     public boolean equals(Command otherCommand) {
         AddCommand otherAddCommand = (AddCommand) otherCommand;
 
-        return this.name == otherAddCommand.name &&
-                this.path == otherAddCommand.path;
+        return Objects.equals(this.name, otherAddCommand.name) &&
+                Objects.equals(this.path, otherAddCommand.path);
     }
 }

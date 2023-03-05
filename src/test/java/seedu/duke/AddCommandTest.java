@@ -2,7 +2,8 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * JUnit test for the <code>AddCommand</code> class methods.
@@ -21,7 +22,7 @@ class AddCommandTest {
         String secondPath = "dummyPath";
         AddCommand firstAddCommand = new AddCommand(firstName, firstPath);
         AddCommand secondAddCommand = new AddCommand(secondName, secondPath);
-        assertEquals(firstAddCommand.equals(secondAddCommand), true);
+        assertTrue(firstAddCommand.equals(secondAddCommand));
     }
 
     /**
@@ -36,6 +37,6 @@ class AddCommandTest {
         String secondPath = "dummyPath2";
         AddCommand firstAddCommand = new AddCommand(firstName, firstPath);
         AddCommand secondAddCommand = new AddCommand(secondName, secondPath);
-        assertEquals(firstAddCommand.equals(secondAddCommand), false);
+        assertFalse(firstAddCommand.equals(secondAddCommand));
     }
 }
