@@ -93,17 +93,34 @@ public class Parser implements StringManipulation {
         if (description == null) {
             return new InvalidCommand();
         }
-        String noteName, topicName;
+        String noteName;
         try {
-            noteName = StringManipulation.getFirstWord(description, TOPIC_MARKER);
-            topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (!topics.isValidTopic(topicName)) {
-                return new InvalidTopicCommand();
+            if (!isCorrectMarker(description, NAME_MARKER)) {
+                return new InvalidCommand();
             }
-        } catch (NullInputException e) {
+            noteName = StringManipulation.removeMarker(description, NAME_MARKER);
+        } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
-        return new AddCommand(noteName, topicName);
+        return new RemoveCommand(noteName);
+    }
+
+    private Command prepareFilterCommand(String description, TopicManager topics) {
+        if (description == null) {
+            return new InvalidCommand();
+        }
+        String keyWord, topicName;
+        try {
+            String fullKeyWord = StringManipulation.getFirstWord(description, TOPIC_MARKER);
+            topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
+            if (!isCorrectMarker(fullKeyWord, KEYWORD_MARKER)) {
+                return new InvalidCommand();
+            }
+            keyWord = StringManipulation.removeMarker(fullKeyWord, KEYWORD_MARKER);
+        } catch (NullInputException | EmptyFieldException e) {
+            return new InvalidCommand();
+        }
+        return new FilterCommand(keyWord, topicName);
     }
 
     /**
@@ -165,7 +182,4 @@ public class Parser implements StringManipulation {
             return new InvalidCommand();
         }
         return prepareCommand(command, description, topics);
-    }
-
-}
-
+    }}
