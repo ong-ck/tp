@@ -12,7 +12,6 @@ class StringManipulationTest {
     public static final String TOPIC_MARKER = "t/";
     public static final String KEYWORD_MARKER = "k/";
     public static final String WHITE_SPACE = " ";
-    public static final int MARKER_LENGTH = 2;
 
     /** Test getFirstWord */
     @Test

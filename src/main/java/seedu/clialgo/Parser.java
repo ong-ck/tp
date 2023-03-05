@@ -25,7 +25,7 @@ public class Parser implements StringManipulation {
      * @param keyWord The input string.
      * @return True if the input string is a valid keyword, False otherwise.
      */
-    private boolean isValidCommand(String keyWord) {
+    public boolean isValidCommand(String keyWord) {
         return COMMANDS.contains(keyWord);
     }
 
@@ -37,9 +37,9 @@ public class Parser implements StringManipulation {
      * @return True if the marker used by the user matches correctMarker. False otherwise.
      * @throws IndexOutOfBoundsException If length of userInput < length of correctMarker.
      */
-    private boolean isCorrectMarker(String userInput, String correctMarker) throws IndexOutOfBoundsException {
+    public boolean isCorrectMarker(String userInput, String correctMarker) throws IndexOutOfBoundsException {
         String markerPresent = userInput.substring(0, correctMarker.length());
-        return !markerPresent.equals(correctMarker);
+        return markerPresent.equals(correctMarker);
     }
 
     /**
