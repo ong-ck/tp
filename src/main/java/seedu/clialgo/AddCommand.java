@@ -1,4 +1,10 @@
-package seedu.clialgo.exceptions.parser;
+package seedu.clialgo;
 
-import seedu.clialgo.CLIAlgo;public class AddCommand extends CLIAlgo.Command {
+public class AddCommand extends Command {
+    String noteName;
+    String topicName;
+    public AddCommand(String noteName, String topicName) {
+        this.noteName = noteName;
+        this.topicName = topicName;
+    }
 }

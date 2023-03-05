@@ -76,20 +76,41 @@ public class Parser implements StringManipulation {
         if (description == null) {
             return new InvalidCommand();
         }
-        String noteName;
-
+        String noteName, topicName;
         try {
             noteName = StringManipulation.getFirstWord(description, TOPIC_MARKER);
+            topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
+            if (!topics.isValidTopic(topicName)) {
+                return new InvalidTopicCommand();
+            }
         } catch (NullInputException e) {
             return new InvalidCommand();
         }
+        return new AddCommand(noteName, topicName);
+    }
 
-        //Check if the task type entered by the user is valid
-        if (!tasks.isTaskType(taskType)) {
+    private Command prepareRemoveCommand(String description, TopicManager topics) {
+        if (description == null) {
             return new InvalidCommand();
         }
+        String noteName, topicName;
+        try {
+            noteName = StringManipulation.getFirstWord(description, TOPIC_MARKER);
+            topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
+            if (!topics.isValidTopic(topicName)) {
+                return new InvalidTopicCommand();
+            }
+        } catch (NullInputException e) {
+            return new InvalidCommand();
+        }
+        return new AddCommand(noteName, topicName);
+    }
 
-        return new AddCommand(taskType, taskName, taskDates);
+    /**
+     * @return A <code>Command</code> object that list out the notes stored in CLIAlgo.
+     */
+    private Command prepareListCommand() {
+        return new ListCommand();
     }
 
     /**
@@ -105,11 +126,13 @@ public class Parser implements StringManipulation {
         case "help":
             return prepareHelpCommand(description);
         case "add":
-            return prepareAddCommand();
+            return prepareAddCommand(description, topics);
         case "remove":
             return prepareRemoveCommand(description, topics);
         case "filter":
             return prepareFilterCommand(description, topics);
+        case "list":
+            return prepareListCommand();
         default:
             return prepareExitCommand();
         }

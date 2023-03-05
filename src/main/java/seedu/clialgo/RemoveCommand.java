@@ -1,4 +1,4 @@
-package seedu.clialgo.exceptions.parser;
+package seedu.clialgo;
 
-import seedu.clialgo.CLIAlgo;public class RemoveCommand extends CLIAlgo.Command {
+public class RemoveCommand extends Command {
 }
