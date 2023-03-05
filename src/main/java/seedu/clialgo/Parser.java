@@ -114,6 +114,13 @@ public class Parser implements StringManipulation {
     }
 
     /**
+     * @return A <code>Command</code> object that exits CLIAlgo.
+     */
+    private Command prepareExitCommand() {
+        return new ExitCommand();
+    }
+
+    /**
      * This function takes in the command keyword and description and executes the specified command.
      *
      * @param command The command keyword indicating the type of command to execute.
