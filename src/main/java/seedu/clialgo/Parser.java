@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Parser implements StringManipulation {
-    /** List of valid commands */
-    private static final ArrayList<String> COMMANDS = new ArrayList<String>(
-            Arrays.asList("help", "add", "remove", "filter", "exit")
-    );
-
     /** Delimiters use to separate inputs in commands */
     public static final String NAME_MARKER = "n/";
     public static final String COMMAND_MARKER = "c/";
     public static final String TOPIC_MARKER = "t/";
     public static final String KEYWORD_MARKER = "k/";
     public static final String WHITE_SPACE = " ";
+
+    /** List of valid commands */
+    private static final ArrayList<String> COMMANDS = new ArrayList<String>(
+            Arrays.asList("help", "add", "remove", "filter", "exit")
+    );
 
     /**
      * Checks if the input string is a valid command.
@@ -84,7 +84,8 @@ public class Parser implements StringManipulation {
         if (description == null) {
             return new InvalidCommand();
         }
-        String noteName, topicName;
+        String noteName;
+        String topicName;
         try {
             noteName = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
@@ -133,7 +134,8 @@ public class Parser implements StringManipulation {
         if (description == null) {
             return new InvalidCommand();
         }
-        String keyWord, topicName;
+        String keyWord;
+        String topicName;
         try {
             String fullKeyWord = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
@@ -194,7 +196,8 @@ public class Parser implements StringManipulation {
      * @return A Command objects that suits the user input.
      */
     public Command parse(String fullCommand, TopicManager topics) {
-        String command, description;
+        String command;
+        String description;
         try {
             command = StringManipulation.getFirstWord(fullCommand, WHITE_SPACE);
             if (!isValidCommand(command)) {
@@ -206,4 +209,5 @@ public class Parser implements StringManipulation {
             return new InvalidCommand();
         }
         return prepareCommand(command, description, topics);
-    }}
+    }
+}

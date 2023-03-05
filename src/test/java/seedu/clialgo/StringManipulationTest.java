@@ -1,10 +1,13 @@
 package seedu.clialgo;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class StringManipulationTest {
     public static final String NAME_MARKER = "n/";
@@ -163,5 +166,4 @@ class StringManipulationTest {
                 () -> StringManipulation.removeMarker(nullInput, NAME_MARKER)
         );
     }
-
 }

@@ -1,12 +1,12 @@
 package seedu.clialgo;
 
 import org.junit.jupiter.api.Test;
-import seedu.clialgo.exceptions.parser.EmptyFieldException;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ParserTest {
     /** Test isValidCommand */
