@@ -1,7 +1,8 @@
 package seedu.duke;
 
 /**
- * Represents an executable command. A <code>ExitCommand</code> object is created whenever the user decides to exit the program.
+ * Represents an executable command. A <code>ExitCommand</code> object is created whenever the
+ * user decides to exit the program.
  */
 public class ExitCommand extends Command {
     /**
