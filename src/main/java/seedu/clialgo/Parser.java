@@ -1,5 +1,8 @@
 package seedu.clialgo;
 
+import seedu.clialgo.exceptions.parser.EmptyFieldException;
+import seedu.clialgo.exceptions.parser.NullInputException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -8,11 +11,13 @@ public class Parser implements StringManipulation {
     private static final ArrayList<String> COMMANDS = new ArrayList<String>(
             Arrays.asList("help", "add", "remove", "filter", "exit")
     );
+
     /** Delimiters use to separate inputs in commands */
-    private static final String NAME_MARKER = "n/";
-    private static final String COMMAND_MARKER = "c/";
-    private static final String TOPIC_MARKER = "t/";
-    private static final String KEYWORD_MARKER = "k/";
+    public static final String NAME_MARKER = "n/";
+    public static final String COMMAND_MARKER = "c/";
+    public static final String TOPIC_MARKER = "t/";
+    public static final String KEYWORD_MARKER = "k/";
+    public static final String WHITE_SPACE = " ";
 
     /**
      * Checks if the input string is a valid command.
@@ -25,19 +30,111 @@ public class Parser implements StringManipulation {
     }
 
     /**
+     * Checks if the correct marker is used by the user.
+     *
+     * @param userInput The input string by the user.
+     * @param correctMarker The correct marker that is supposed to be used.
+     * @return True if the marker used by the user matches correctMarker. False otherwise.
+     * @throws IndexOutOfBoundsException If length of userInput < length of correctMarker.
+     */
+    private boolean isCorrectMarker(String userInput, String correctMarker) throws IndexOutOfBoundsException {
+        String markerPresent = userInput.substring(0, correctMarker.length());
+        return !markerPresent.equals(correctMarker);
+    }
+
+    /**
+     * Returns a <code>HelpCommand</code> object that teaches the user how to use CLIAlgo when executed.
+     * Returns a <code>HelpCommand</code> using the default constructor if description is empty.
+     * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
+     *
+     * @param description A string indicating the command the user need help with.
+     * @return A Command object that teaches the user how to use CLIAlgo when executed.
+     */
+    private Command prepareHelpCommand(String description) {
+        // No description provided, show generic help message.
+        if (description == null || description.equals("")) {
+            return new HelpCommand();
+        }
+        String command;
+        try {
+            if (!isCorrectMarker(description, COMMAND_MARKER)) {
+                return new InvalidCommand();
+            }
+
+            command = StringManipulation.removeMarker(description, COMMAND_MARKER);
+
+            if (!isValidCommand(command)) {
+                return new InvalidCommand();
+            }
+        } catch (IndexOutOfBoundsException | EmptyFieldException | NullInputException e) {
+            return new InvalidCommand();
+        }
+        return new HelpCommand(command);
+    }
+
+    private Command prepareAddCommand(String description, TopicManager topics) {
+        if (description == null) {
+            return new InvalidCommand();
+        }
+        String noteName;
+
+        try {
+            noteName = StringManipulation.getFirstWord(description, TOPIC_MARKER);
+        } catch (NullInputException e) {
+            return new InvalidCommand();
+        }
+
+        //Check if the task type entered by the user is valid
+        if (!tasks.isTaskType(taskType)) {
+            return new InvalidCommand();
+        }
+
+        return new AddCommand(taskType, taskName, taskDates);
+    }
+
+    /**
+     * This function takes in the command keyword and description and executes the specified command.
+     *
+     * @param command The command keyword indicating the type of command to execute.
+     * @param description The string specifying the details of the command.
+     * @param topics The topic manager class containing all topics in CLIAlgo.
+     * @return A Command object that executes the command corresponding to the command keyword keyed in by the user.
+     */
+    private Command prepareCommand(String command, String description, TopicManager topics) {
+        switch (command) {
+        case "help":
+            return prepareHelpCommand(description);
+        case "add":
+            return prepareAddCommand();
+        case "remove":
+            return prepareRemoveCommand(description, topics);
+        case "filter":
+            return prepareFilterCommand(description, topics);
+        default:
+            return prepareExitCommand();
+        }
+    }
+
+    /**
      * Returns the appropriate Command object based on the user input.
      *
      * @param fullCommand The full user input.
-     * @param tasks The taskList containing all the tasks in Luke.
+     * @param topics The topic manager class containing all topics in CLIAlgo.
      * @return A Command objects that suits the user input.
      */
-    public Command parse(String fullCommand, TaskList tasks) {
-        String command = StringManipulation.getFirstWord(fullCommand);
-        if (!isCommand(firstWord)) {
-            return new EchoCommand(fullCommand);
+    public Command parse(String fullCommand, TopicManager topics) {
+        String command, description;
+        try {
+            command = StringManipulation.getFirstWord(fullCommand, WHITE_SPACE);
+            if (!isValidCommand(command)) {
+                return new InvalidCommand();
+            }
+            description = StringManipulation.removeFirstWord(fullCommand, WHITE_SPACE);
+
+        } catch (NullInputException e) {
+            return new InvalidCommand();
         }
-        String description = StringManipulation.removeFirstWord(fullCommand);
-        return prepareCommand(firstWord, description, tasks);
+        return prepareCommand(command, description, topics);
     }
 
 }

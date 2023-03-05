@@ -7,23 +7,49 @@ import seedu.clialgo.exceptions.parser.NullInputException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringManipulationTest {
+    public static final String NAME_MARKER = "n/";
+    public static final String COMMAND_MARKER = "c/";
+    public static final String TOPIC_MARKER = "t/";
+    public static final String KEYWORD_MARKER = "k/";
+    public static final String WHITE_SPACE = " ";
+    public static final int MARKER_LENGTH = 2;
+
     /** Test getFirstWord */
     @Test
-    void getFirstWord_normalInput_expectFirstWord() throws NullInputException {
+    void getFirstWord_normalInputWhiteSpace_expectFirstWord() throws NullInputException {
         String twoWordsInput = "first word";
         String singleLetterFirstWordInput = "a word";
         String oneWordInput = "a";
         assertEquals(
                 "first",
-                StringManipulation.getFirstWord(twoWordsInput)
+                StringManipulation.getFirstWord(twoWordsInput, WHITE_SPACE)
         );
         assertEquals(
                 "a",
-                StringManipulation.getFirstWord(singleLetterFirstWordInput)
+                StringManipulation.getFirstWord(singleLetterFirstWordInput, WHITE_SPACE)
         );
         assertEquals(
                 "a",
-                StringManipulation.getFirstWord(oneWordInput)
+                StringManipulation.getFirstWord(oneWordInput, WHITE_SPACE)
+        );
+    }
+
+    @Test
+    void getFirstWord_normalInputMarker_expectFirstWord() throws NullInputException {
+        String commandMarkerInput = "help c/add";
+        String topicMarkerInput = "name of file t/TOPIC_NAME";
+        String keywordMarkerInput = "filter k/topic";
+        assertEquals(
+                "help",
+                StringManipulation.getFirstWord(commandMarkerInput, COMMAND_MARKER)
+        );
+        assertEquals(
+                "name of file",
+                StringManipulation.getFirstWord(topicMarkerInput, TOPIC_MARKER)
+        );
+        assertEquals(
+                "filter",
+                StringManipulation.getFirstWord(keywordMarkerInput, KEYWORD_MARKER)
         );
     }
 
@@ -33,29 +59,48 @@ class StringManipulationTest {
         String nullInput = null;
         assertThrows(
                 NullInputException.class,
-                () -> StringManipulation.getFirstWord(noInput)
+                () -> StringManipulation.getFirstWord(noInput, WHITE_SPACE)
         );
         assertThrows(
                 NullInputException.class,
-                () -> StringManipulation.getFirstWord(nullInput)
+                () -> StringManipulation.getFirstWord(nullInput, WHITE_SPACE)
         );
     }
 
     /** Test removeFirstWord */
     @Test
-    void removeFirstWord_normalInput_expectSecondWord() throws NullInputException {
+    void removeFirstWord_normalInputWhiteSpace_expectSecondWord() throws NullInputException {
         String twoWordsInput = "first word";
         String singleLetterFirstWordInput = "a word";
         String oneWordInput = "a";
         assertEquals(
                 "word",
-                StringManipulation.removeFirstWord(twoWordsInput)
+                StringManipulation.removeFirstWord(twoWordsInput, WHITE_SPACE)
         );
         assertEquals(
                 "word",
-                StringManipulation.removeFirstWord(singleLetterFirstWordInput)
+                StringManipulation.removeFirstWord(singleLetterFirstWordInput, WHITE_SPACE)
         );
-        assertNull(StringManipulation.removeFirstWord(oneWordInput));
+        assertNull(StringManipulation.removeFirstWord(oneWordInput, WHITE_SPACE));
+    }
+
+    @Test
+    void removeFirstWord_normalInputMarker_expectSecondWord() throws NullInputException {
+        String commandMarkerInput = "help c/add";
+        String topicMarkerInput = "name of file t/TOPIC_NAME";
+        String keywordMarkerInput = "filter k/topic";
+        assertEquals(
+                "add",
+                StringManipulation.removeFirstWord(commandMarkerInput, COMMAND_MARKER)
+        );
+        assertEquals(
+                "TOPIC_NAME",
+                StringManipulation.removeFirstWord(topicMarkerInput, TOPIC_MARKER)
+        );
+        assertEquals(
+                "topic",
+                StringManipulation.removeFirstWord(keywordMarkerInput, KEYWORD_MARKER)
+        );
     }
 
     @Test
@@ -64,11 +109,11 @@ class StringManipulationTest {
         String nullInput = null;
         assertThrows(
                 NullInputException.class,
-                () -> StringManipulation.removeFirstWord(noInput)
+                () -> StringManipulation.removeFirstWord(noInput, WHITE_SPACE)
         );
         assertThrows(
                 NullInputException.class,
-                () -> StringManipulation.removeFirstWord(nullInput)
+                () -> StringManipulation.removeFirstWord(nullInput, WHITE_SPACE)
         );
     }
 
@@ -81,19 +126,19 @@ class StringManipulationTest {
         String keywordMarkerInput = "k/KEYWORD";
         assertEquals(
                 "NAME",
-                StringManipulation.removeMarker(nameMarkerInput, StringManipulation.MARKER_LENGTH)
+                StringManipulation.removeMarker(nameMarkerInput, NAME_MARKER)
         );
         assertEquals(
                 "COMMAND",
-                StringManipulation.removeMarker(commandMarkerInput, StringManipulation.MARKER_LENGTH)
+                StringManipulation.removeMarker(commandMarkerInput, COMMAND_MARKER)
         );
         assertEquals(
                 "TOPIC",
-                StringManipulation.removeMarker(topicMarkerInput, StringManipulation.MARKER_LENGTH)
+                StringManipulation.removeMarker(topicMarkerInput, TOPIC_MARKER)
         );
         assertEquals(
                 "KEYWORD",
-                StringManipulation.removeMarker(keywordMarkerInput, StringManipulation.MARKER_LENGTH)
+                StringManipulation.removeMarker(keywordMarkerInput, KEYWORD_MARKER)
         );
     }
 
@@ -102,7 +147,7 @@ class StringManipulationTest {
         String emptyFieldInput = "n/";
         assertThrows(
                 EmptyFieldException.class,
-                () -> StringManipulation.removeMarker(emptyFieldInput, StringManipulation.MARKER_LENGTH)
+                () -> StringManipulation.removeMarker(emptyFieldInput, NAME_MARKER)
         );
     }
 
@@ -112,11 +157,11 @@ class StringManipulationTest {
         String nullInput = null;
         assertThrows(
                 NullInputException.class,
-                () -> StringManipulation.removeMarker(noInput, StringManipulation.MARKER_LENGTH)
+                () -> StringManipulation.removeMarker(noInput, NAME_MARKER)
         );
         assertThrows(
                 NullInputException.class,
-                () -> StringManipulation.removeMarker(nullInput, StringManipulation.MARKER_LENGTH)
+                () -> StringManipulation.removeMarker(nullInput, NAME_MARKER)
         );
     }
 
