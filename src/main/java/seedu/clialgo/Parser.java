@@ -72,6 +72,14 @@ public class Parser implements StringManipulation {
         return new HelpCommand(command);
     }
 
+    /**
+     * Returns a <code>AddCommand</code> object that adds a note to CLIAlgo when executed.
+     * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
+     *
+     * @param description String containing the information on the note to be added.
+     * @param topics The topic manager class containing all topics in CLIAlgo.
+     * @return a Command object that adds a note to CLIAlgo when executed.
+     */
     private Command prepareAddCommand(String description, TopicManager topics) {
         if (description == null) {
             return new InvalidCommand();
@@ -89,6 +97,14 @@ public class Parser implements StringManipulation {
         return new AddCommand(noteName, topicName);
     }
 
+    /**
+     * Returns a <code>RemoveCommand</code> object that deletes a note from CLIAlgo when executed.
+     * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
+     *
+     * @param description String containing the information on the note to be removed.
+     * @param topics The topic manager class containing all topics in CLIAlgo.
+     * @return a Command object that deletes a note from CLIAlgo when executed.
+     */
     private Command prepareRemoveCommand(String description, TopicManager topics) {
         if (description == null) {
             return new InvalidCommand();
@@ -105,6 +121,14 @@ public class Parser implements StringManipulation {
         return new RemoveCommand(noteName);
     }
 
+    /**
+     * Returns a <code>FilterCommand</code> object that lists notes according a certain criteria.
+     * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
+     *
+     * @param description String containing criteria to filter the notes by.
+     * @param topics The topic manager class containing all topics in CLIAlgo.
+     * @return a Command object that lists notes according a certain criteria.
+     */
     private Command prepareFilterCommand(String description, TopicManager topics) {
         if (description == null) {
             return new InvalidCommand();
