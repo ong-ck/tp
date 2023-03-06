@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import java.util.Objects;
 
 /**
  * Represents an executable command. A <code>ExitCommand</code> object is created whenever the
