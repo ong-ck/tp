@@ -85,4 +85,6 @@ class ParserTest {
                 () -> parser.isCorrectMarker(emptyString, Parser.COMMAND_MARKER)
         );
     }
+
+
 }
