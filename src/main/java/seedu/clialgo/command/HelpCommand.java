@@ -9,10 +9,14 @@ import java.util.Objects;
 public class HelpCommand extends Command {
     private String command;
     public HelpCommand() {
-
+        command = null;
     }
     public HelpCommand(String command) {
         this.command = command;
+    }
+
+    public String getCommand() {
+        return this.command;
     }
 
     @Override
@@ -23,6 +27,6 @@ public class HelpCommand extends Command {
     public boolean equals(Command otherCommand) {
         HelpCommand otherHelpCommand = (HelpCommand) otherCommand;
 
-        return Objects.equals(this.command, otherHelpCommand.command);
+        return Objects.equals(this.getCommand(), otherHelpCommand.getCommand());
     }
 }

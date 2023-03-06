@@ -25,7 +25,7 @@ public class Parser implements StringManipulation {
 
     /** List of valid commands */
     private static final ArrayList<String> COMMANDS = new ArrayList<>(
-            Arrays.asList("help", "add", "remove", "filter", "exit")
+            Arrays.asList("help", "add", "remove", "filter", "exit", "list")
     );
 
     /**
@@ -96,12 +96,16 @@ public class Parser implements StringManipulation {
         String noteName;
         String topicName;
         try {
-            noteName = StringManipulation.getFirstWord(description, TOPIC_MARKER);
+            String noteNameWithMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
+            if (topicName == null || !isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
+                return new InvalidCommand();
+            }
             if (!topics.isValidTopic(topicName)) {
                 return new InvalidTopicCommand();
             }
-        } catch (NullInputException e) {
+            noteName = StringManipulation.removeMarker(noteNameWithMarker, NAME_MARKER);
+        } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
         return new AddCommand(noteName, topicName);
@@ -148,7 +152,7 @@ public class Parser implements StringManipulation {
         try {
             String fullKeyWord = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (!isCorrectMarker(fullKeyWord, KEYWORD_MARKER)) {
+            if (fullKeyWord.equals("") || !isCorrectMarker(fullKeyWord, KEYWORD_MARKER)) {
                 return new InvalidCommand();
             }
             keyWord = StringManipulation.removeMarker(fullKeyWord, KEYWORD_MARKER);

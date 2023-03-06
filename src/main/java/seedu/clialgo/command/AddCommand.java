@@ -12,18 +12,29 @@ import seedu.clialgo.Ui;
  */
 public class AddCommand extends Command {
 
-    public String name;
+    private String name;
     public String path;
+
+    private String tag;
 
     /**
      * Constructor for command to add note to topic list.
      *
      * @param name Name of the note file.
-     * @param path Path of the note file.
+     * @param tag The topic that this file is tagged to.
      */
-    public AddCommand(String name, String path) {
+    public AddCommand(String name, String tag) {
         this.name = name;
-        this.path = path;
+        this.path = name;
+        this.tag = tag;
+    }
+
+    String getName() {
+        return this.name;
+    }
+
+    String getTag() {
+        return this.tag;
     }
 
     /**
@@ -54,7 +65,7 @@ public class AddCommand extends Command {
     public boolean equals(Command otherCommand) {
         AddCommand otherAddCommand = (AddCommand) otherCommand;
 
-        return Objects.equals(this.name, otherAddCommand.name) &&
-                Objects.equals(this.path, otherAddCommand.path);
+        return Objects.equals(this.getName(), otherAddCommand.getName()) &&
+                Objects.equals(this.getTag(), otherAddCommand.getTag());
     }
 }
