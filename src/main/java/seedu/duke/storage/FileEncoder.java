@@ -10,7 +10,7 @@ public class FileEncoder {
     protected final String separator;
 
     /**
-     * Constructor for the fileEncoder object
+     * Constructor for the fileEncoder object.
      *
      * @param file The file object referring to the .txt file with the raw data.
      * @param separator The <code>String</code> which separates each form of data stored in each <code>Note</code>.
@@ -21,6 +21,7 @@ public class FileEncoder {
     }
 
     /**
+     * Encodes a note into an encoded <code>String</code>.
      *
      * @param name The name of the <code>Note</code>.
      * @param note The <code>Note</code> object processed.

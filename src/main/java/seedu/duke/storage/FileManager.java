@@ -117,6 +117,7 @@ public class FileManager {
 
     /**
      * Writes a single <code>Note</code> encoded as a <code>String</code> to the .txt file.
+     *
      * @param encodedString The <code>Note</code> encoded as a <code>String</code>.
      * @throws IOException Throws an exception if the file write fails.
      */
@@ -128,6 +129,7 @@ public class FileManager {
 
     /**
      * Writes all the stored raw data into the .txt file, overwriting all the existing data stored in the .txt file.
+     *
      * @throws IOException Throws an exception if the file write fails.
      */
     public void writeAllToFile () throws IOException {
