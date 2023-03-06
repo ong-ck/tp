@@ -2,6 +2,8 @@ package seedu.duke.storage;
 
 import java.io.File;
 
+import seedu.duke.Note;
+
 public class FileDecoder {
 
     protected File file;

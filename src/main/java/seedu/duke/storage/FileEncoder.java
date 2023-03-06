@@ -2,6 +2,8 @@ package seedu.duke.storage;
 
 import java.io.File;
 
+import seedu.duke.Note;
+
 public class FileEncoder {
 
     protected File file;
@@ -25,7 +27,7 @@ public class FileEncoder {
      * @return Returns a processed string.
      */
     public String encodeNote (String name, Note note) {
-        return name + separator + note.getPath + separator + note.getTag;
+        return name + separator + note.getPath() + separator + note.getTag();
     }
 
 }

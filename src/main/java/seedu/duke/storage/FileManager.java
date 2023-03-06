@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.Scanner;
 
+import seedu.duke.Note;
+
 public class FileManager {
 
     private File file;
@@ -143,7 +145,7 @@ public class FileManager {
      * @return Returns the initialized <code>Hashtable</code> of <code>Notes</code>.
      */
     public Hashtable<String, Note> decodeAll() {
-        Hashtable<String, Note> decodedNotes = new Hashtable<String, Note>();
+        Hashtable<String, Note> decodedNotes = new Hashtable<>();
         for (String s : storedRawData.keySet()) {
             decoder.decodeString(storedRawData.get(s));
             decodedNotes.put(decoder.decodedName(), decoder.processedNote());
