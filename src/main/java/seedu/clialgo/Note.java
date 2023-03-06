@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.clialgo;
 
 /**
  * The <code>Note</code> object represents each note file that the user can add into CLIAlgo.

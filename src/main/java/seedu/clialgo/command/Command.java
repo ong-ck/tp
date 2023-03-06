@@ -1,4 +1,8 @@
-package seedu.duke;
+package seedu.clialgo.command;
+
+import seedu.clialgo.storage.FileManager;
+import seedu.clialgo.Topic;
+import seedu.clialgo.Ui;
 
 /**
  * Represents an executable command from the user. A <code>Command</code> object contains the details needed to execute
@@ -12,9 +16,9 @@ public abstract class Command {
      *
      * @param topic The <code>Topic</code> object.
      * @param ui The <code>Ui</code> object.
-     * @param storage The <code>Storage</code> object.
+     * @param fileManager The <code>FileManager</code> object.
      */
-    public abstract void execute(Topic topic, Ui ui, Storage storage);
+    public abstract void execute(Topic topic, Ui ui, FileManager fileManager);
 
     /**
      * A method to be overridden by the subclasses to check for equality of the instantiated objects.

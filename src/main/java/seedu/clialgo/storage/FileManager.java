@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package seedu.clialgo.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.Scanner;
 
-import seedu.duke.Note;
+import seedu.clialgo.Note;
 
 public class FileManager {
 

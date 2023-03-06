@@ -1,4 +1,4 @@
-package Ui;
+package seedu.clialgo;
 
 import java.util.Scanner;
 

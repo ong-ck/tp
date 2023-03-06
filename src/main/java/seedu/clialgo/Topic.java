@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.clialgo;
 
 // Placeholder class
 public class Topic {
