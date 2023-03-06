@@ -14,4 +14,12 @@ public abstract class Command {
      * @param storage An object responsible for saving information.
      */
     public abstract void execute(Topic topic, Ui ui, Storage storage);
+
+    /**
+     * A method to be overridden by the subclasses to check for equality of the instantiated objects.
+     *
+     * @param otherCommand The other object to be checked against.
+     * @return A boolean value to determine whether the commands are equal.
+     */
+    public abstract boolean equals(Command otherCommand);
 }

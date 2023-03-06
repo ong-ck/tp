@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import java.util.Objects;
+
 /**
  * Represents an executable command from the user. A <code>RemoveCommand</code> object contains the name of
  * the note to be deleted. This object removes the note corresponding to the name of the note from the list when the
@@ -28,5 +30,18 @@ public class RemoveCommand extends Command {
     @Override
     public void execute(Topic topic, Ui ui, Storage storage) {
         //topic.removeNote(name);
+    }
+
+    /**
+     * An overridden method that checks for equality of <code>RemoveCommand</code> objects.
+     *
+     * @param otherCommand The other <code>RemoveCommand</code> object to be checked against.
+     * @return A boolean value to determine whether the <code>RemoveCommand</code> objects are equal.
+     */
+    @Override
+    public boolean equals(Command otherCommand) {
+        RemoveCommand otherRemoveCommand = (RemoveCommand) otherCommand;
+
+        return Objects.equals(this.name, otherRemoveCommand.name);
     }
 }

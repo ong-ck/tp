@@ -12,4 +12,15 @@ public class InvalidCommand extends Command {
     public void execute(Topic topic, Ui ui, Storage storage) {
         //ui.printInvalidCommand();
     }
+
+    /**
+     * An overridden method that checks for equality of <code>InvalidCommand</code> objects.
+     *
+     * @param otherCommand The other <code>InvalidCommand</code> object to be checked against.
+     * @return A boolean value to determine whether the <code>InvalidCommand</code> objects are equal.
+     */
+    @Override
+    public boolean equals(Command otherCommand) {
+        return otherCommand instanceof InvalidCommand;
+    }
 }
