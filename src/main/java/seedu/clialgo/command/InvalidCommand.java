@@ -1,4 +1,9 @@
-package seedu.duke;
+package seedu.clialgo.command;
+
+import seedu.clialgo.storage.FileManager;
+import seedu.clialgo.Topic;
+import seedu.clialgo.Ui;
+
 
 /**
  * Represents an executable command. A <code>InvalidCommand</code> object is created whenever the user enters an invalid
@@ -9,7 +14,7 @@ public class InvalidCommand extends Command {
     /**
      * This method informs the user that they have keyed in an invalid command.
      */
-    public void execute(Topic topic, Ui ui, Storage storage) {
+    public void execute(Topic topic, Ui ui, FileManager fileManager) {
         //ui.printInvalidCommand();
     }
 

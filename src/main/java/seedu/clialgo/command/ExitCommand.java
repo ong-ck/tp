@@ -1,5 +1,8 @@
-package seedu.duke;
+package seedu.clialgo.command;
 
+import seedu.clialgo.storage.FileManager;
+import seedu.clialgo.Topic;
+import seedu.clialgo.Ui;
 
 /**
  * Represents an executable command. A <code>ExitCommand</code> object is created whenever the
@@ -10,10 +13,10 @@ public class ExitCommand extends Command {
      * This method closes the scanner and exits from the program
      * @param topic
      * @param ui
-     * @param storage
+     * @param fileManager
      */
     @Override
-    public void execute (Topic topic, Ui ui, Storage storage) {
+    public void execute (Topic topic, Ui ui, FileManager fileManager) {
         //ui.closeScanner();
         //ui.exitProgram();
     }

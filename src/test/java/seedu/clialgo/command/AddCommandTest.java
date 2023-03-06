@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.clialgo.command;
 
 import org.junit.jupiter.api.Test;
 

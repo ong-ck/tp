@@ -1,8 +1,8 @@
-package seedu.duke.storage;
+package seedu.clialgo.storage;
 
 import java.io.File;
 
-import seedu.duke.Note;
+import seedu.clialgo.Note;
 
 public class FileEncoder {
 

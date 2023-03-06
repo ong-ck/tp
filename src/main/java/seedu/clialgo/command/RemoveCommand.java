@@ -1,6 +1,11 @@
-package seedu.duke;
+package seedu.clialgo.command;
 
 import java.util.Objects;
+
+import seedu.clialgo.storage.FileManager;
+import seedu.clialgo.Topic;
+import seedu.clialgo.Ui;
+
 
 /**
  * Represents an executable command from the user. A <code>RemoveCommand</code> object contains the name of
@@ -25,10 +30,10 @@ public class RemoveCommand extends Command {
      * updated list.
      * @param topic A Topic object containing all the different topics available.
      * @param ui A Ui object which handles outputs to the user.
-     * @param storage An object responsible for saving information.
+     * @param fileManager An object responsible for saving information.
      */
     @Override
-    public void execute(Topic topic, Ui ui, Storage storage) {
+    public void execute(Topic topic, Ui ui, FileManager fileManager) {
         //topic.removeNote(name);
     }
 

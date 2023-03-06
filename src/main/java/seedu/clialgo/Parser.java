@@ -1,5 +1,14 @@
 package seedu.clialgo;
 
+import seedu.clialgo.command.AddCommand;
+import seedu.clialgo.command.Command;
+import seedu.clialgo.command.ExitCommand;
+import seedu.clialgo.command.FilterCommand;
+import seedu.clialgo.command.HelpCommand;
+import seedu.clialgo.command.InvalidCommand;
+import seedu.clialgo.command.InvalidTopicCommand;
+import seedu.clialgo.command.ListCommand;
+import seedu.clialgo.command.RemoveCommand;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
 
@@ -15,7 +24,7 @@ public class Parser implements StringManipulation {
     public static final String WHITE_SPACE = " ";
 
     /** List of valid commands */
-    private static final ArrayList<String> COMMANDS = new ArrayList<String>(
+    private static final ArrayList<String> COMMANDS = new ArrayList<>(
             Arrays.asList("help", "add", "remove", "filter", "exit")
     );
 
