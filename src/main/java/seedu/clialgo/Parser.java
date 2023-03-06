@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Parser implements StringManipulation {
-    /** Delimiters use to separate inputs in commands */
+    /** Delimiters use to separate inputs within commands */
     public static final String NAME_MARKER = "n/";
     public static final String COMMAND_MARKER = "c/";
     public static final String TOPIC_MARKER = "t/";
