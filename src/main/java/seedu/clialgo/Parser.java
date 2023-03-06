@@ -155,6 +155,9 @@ public class Parser implements StringManipulation {
             if (fullKeyWord.equals("") || !isCorrectMarker(fullKeyWord, KEYWORD_MARKER)) {
                 return new InvalidCommand();
             }
+            if (topicName != null && !topics.isValidTopic(topicName)) {
+                return new InvalidTopicCommand();
+            }
             keyWord = StringManipulation.removeMarker(fullKeyWord, KEYWORD_MARKER);
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();

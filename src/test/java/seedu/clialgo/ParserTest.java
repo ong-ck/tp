@@ -7,10 +7,10 @@ import seedu.clialgo.command.ExitCommand;
 import seedu.clialgo.command.FilterCommand;
 import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
+import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.ListCommand;
 import seedu.clialgo.command.RemoveCommand;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -157,7 +157,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_wrongMarkerInput_expectInvalidCommandException() {
+    void parse_wrongMarkerInput_expectInvalidCommandObject() {
         Parser parser = new Parser();
         TopicManager topics = new TopicManager();
         String wrongFirstMarkerInput = "add c/Name of File t/LINKED_LIST";
@@ -186,4 +186,23 @@ class ParserTest {
         assertTrue(correctWrongOptionalMarkerOutput.equals(actualWrongOptionalMarkerOutput));
     }
 
+    @Test
+    void parse_wrongTopicInput_expectInvalidTopicObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+        String wrongSpellingInput = "add n/Name of File t/LINKED LIST";
+        InvalidTopicCommand correctWrongSpellingOutput = new InvalidTopicCommand();
+        Command actualWrongSpellingOutput = parser.parse(wrongSpellingInput, topics);
+        assertTrue(correctWrongSpellingOutput.equals(actualWrongSpellingOutput));
+
+        String lowerCaseTopicInput = "add n/Name of File t/sorting";
+        InvalidTopicCommand correctLowerCaseTopicOutput = new InvalidTopicCommand();
+        Command actualLowerCaseTopicOutput = parser.parse(lowerCaseTopicInput, topics);
+        assertTrue(correctLowerCaseTopicOutput.equals(actualLowerCaseTopicOutput));
+
+        String outOfSyllabusInput = "filter k/keyword t/FENWICK_TREE";
+        InvalidTopicCommand correctOutOfSyllabusOutput = new InvalidTopicCommand();
+        Command actualOutOfSyllabusOutput = parser.parse(outOfSyllabusInput, topics);
+        assertTrue(correctOutOfSyllabusOutput.equals(actualOutOfSyllabusOutput));
+    }
 }
