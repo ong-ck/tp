@@ -1,9 +1,9 @@
 package seedu.duke;
 
 /**
- * A <code>Command</code> object represents any command made by the user.
- * This is an abstract class that will be inherited by its subclasses to
- * execute specific commands by the user.
+ * Represents an executable command from the user. A <code>Command</code> object contains the details needed to execute
+ * the command. Each subclass of <code>Command</code> will have an overridden method <code>execute</code> which has its
+ * own implementation.
  */
 public abstract class Command {
 
