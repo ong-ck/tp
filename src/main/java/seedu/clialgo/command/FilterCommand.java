@@ -1,9 +1,12 @@
 package seedu.clialgo.command;
 
-import seedu.clialgo.Topic;
+import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class FilterCommand extends Command {
@@ -16,7 +19,31 @@ public class FilterCommand extends Command {
     }
 
     @Override
-    public void execute (Topic topic, Ui ui, FileManager fileManager) {
+    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
+        if (topicManager.isEmpty()) {
+            ui.printFilterFail();
+            return;
+        }
+        if (this.topic == null) {
+
+        }
+        if (!topicManager.isValidTopic(this.topic)) {
+            new InvalidTopicCommand().execute(topicManager, ui, fileManager);
+            return;
+        }
+        HashMap<String, ArrayList<String>> notes = topicManager.getNotesByTopic(this.topic);
+        ui.printFilterSuccess();
+        for (Map.Entry<String, ArrayList<String>> entry : notes.entrySet()) {
+            ArrayList<String> currentTopicNotes = entry.getValue();
+            String topicName = entry.getKey();
+            int serialNumber = 1;
+            System.out.println("[" + topicName + "]");
+            for (String note : currentTopicNotes) {
+                System.out.println(serialNumber + ". " + note);
+                serialNumber++;
+            }
+        }
+        ui.printDivider();
     }
 
     @Override

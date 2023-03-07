@@ -30,7 +30,7 @@ public class Ui {
     /**
      * Prints a divider
      */
-    private void printDivider() {
+    public void printDivider() {
         System.out.println(DIVIDER);
     }
 

@@ -1,6 +1,6 @@
 package seedu.clialgo.command;
 
-import seedu.clialgo.Topic;
+import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 
@@ -20,7 +20,7 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void execute (Topic topic, Ui ui, FileManager fileManager) {
+    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
     }
 
     @Override
