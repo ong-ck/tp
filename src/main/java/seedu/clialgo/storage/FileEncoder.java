@@ -1,22 +1,17 @@
 package seedu.clialgo.storage;
 
-import java.io.File;
-
 import seedu.clialgo.Note;
 
 public class FileEncoder {
 
-    protected File file;
     protected final String separator;
 
     /**
      * Constructor for the fileEncoder object.
      *
-     * @param file The file object referring to the .txt file with the raw data.
      * @param separator The <code>String</code> which separates each form of data stored in each <code>Note</code>.
      */
-    public FileEncoder (File file, String separator) {
-        this.file = file;
+    public FileEncoder (String separator) {
         this.separator = separator;
     }
 

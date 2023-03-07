@@ -1,157 +1,128 @@
 package seedu.clialgo.storage;
 
+import seedu.clialgo.Note;
+import seedu.clialgo.Topic;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Hashtable;
-import java.util.Scanner;
-
-import seedu.clialgo.Note;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FileManager {
 
-    private File file;
     private final FileEncoder encoder;
     private final FileDecoder decoder;
     private final String path;
-    private final String folder;
-    private final Hashtable<String, String> storedRawData = new Hashtable<>();
+    private final ArrayList<String> TOPIC_NAMES;
+    private final HashMap<String, SingleFile> topicRawData;
+
 
     /**
      * Constructor for class containing <code>codeDecoder</code>, <code>codeEncoder</code> and raw data from the
      * .txt file stored as strings.
      */
-    public FileManager() {
-        this.path = ".\\data\\data.txt";
-        this.folder = ".\\data";
+    public FileManager(ArrayList<String> TOPIC_NAMES) {
+        this.path= ".\\data";
         String separator = "&@*";
-        this.file = new File(path);
-        this.encoder = new FileEncoder(file, separator);
-        this.decoder = new FileDecoder(file, separator);
-        try {
-            readFile();
-        } catch (FileNotFoundException e) {
-            createFile();
-        }
+        this.topicRawData = new HashMap<>();
+        this.TOPIC_NAMES = TOPIC_NAMES;
+        this.encoder = new FileEncoder(separator);
+        this.decoder = new FileDecoder(separator);
     }
 
     /**
-     * Reads data from the .txt file and stores it in this object.
+     * Creates a <code>SingleFile</code> object and creates a .txt file if the .txt does not exist.
      *
-     * @throws FileNotFoundException Thrown when the .txt file does not exist.
+     * @param name Name of the .txt file.
+     * @return The SingleFile object created.
      */
-    public void readFile() throws FileNotFoundException {
-        Scanner s = new Scanner(file);
-        while (s.hasNext()) {
-            String rawData = s.nextLine();
-            decoder.decodeString(rawData);
-            storedRawData.put(decoder.decodedName(), rawData);
-        }
-        s.close();
-    }
-
-    /**
-     * Creates a folder <code>.\\data</code> if it does not exist. Then, creates a file <code>data.txt</code> in the
-     * folder if it does not exist.
-     */
-    public void createFile() {
+    public SingleFile createSingleFile(String name) {
+        SingleFile newFile = new SingleFile(null, name,decoder);
         try {
-            Path dir = Paths.get(folder);
-            Files.createDirectories(dir);
-            this.file = new File(path);
+            File file = new File(path + "//" + name + ".txt");
             if (file.createNewFile()) {
-                System.out.println("File created");
-            } else {
-                System.out.println("File already exists");
+                System.out.println(file + "created");
             }
+            newFile.setFile(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return newFile;
     }
 
     /**
-     * Process a <code>Note</code> and add it to the stored data in this object and append the processed
-     * <code>Note</code> as a <code>String</code> to the .txt file.
+     * Creates all the <code>SingleFiles</code> corresponding to each valid <code>Topic</code>. If the .txt file does
+     * not exist, it creates a blank .txt file with <code>TOPIC_NAMES</code>.txt. For all the <code>SingleFiles</code>,
+     * reads the <code>File</code> corresponding to it.
+     */
+    public void initialize() {
+        for (String s : TOPIC_NAMES) {
+            topicRawData.put(s, createSingleFile(s));
+        }
+        for (SingleFile singleFile : topicRawData.values()) {
+            try {
+                Path dir = Paths.get(path);
+                Files.createDirectories(dir);
+                singleFile.readFile();
+            } catch (FileNotFoundException e) {
+                System.out.println("File write error");
+            } catch (IOException e) {
+                System.out.println("Folder not created");
+            }
+        }
+    }
+
+    /**
+     * Process a <code>Note</code> and add it to the stored data in the <code>SingleFile</code> object and append the
+     * processed <code>Note</code> as a <code>String</code> to the .txt file.
      *
-     * @param name The name of the <code>Note</code>.
+     * @param name The name of the note.
      * @param note The <code>Note</code> being added.
      */
     public void addEntry (String name, Note note) {
-        storedRawData.put(name, encoder.encodeNote(name, note));
+        SingleFile singleFile = topicRawData.get(note.getTag());
         try {
-            writeNoteToFile(storedRawData.get(name));
+            singleFile.writeNoteToFile(encoder.encodeNote(name ,note));
         } catch (IOException e) {
-            System.out.println("File write failed");
+            System.out.println("File write error");
         }
     }
 
     /**
-     * Deletes entry with <code>key name</code> and rewrite the .txt file.
+     * Deletes <code>Note</code> with <code>noteName</code> in <code>topicName</code>.txt and rewrite the .txt file.
      *
-     * @param name The <code>key</code> of the entry being deleted.
+     * @param topicName The name of the <code>Topic</code> which stores the <code>Note</code> involved.
+     * @param noteName The name of the <code>Note</code> being deleted.
      */
-    public void deleteEntry (String name) {
-        storedRawData.remove(name);
-        try {
-            writeAllToFile();
-        } catch (IOException e) {
-            System.out.println("File write failed");
-        }
+    public void deleteEntry (String topicName, String noteName) {
+        SingleFile singleFile = topicRawData.get(topicName);
+        singleFile.deleteEntry(noteName);
     }
 
     /**
-     * Deletes all stored raw data in this object and in the .txt file.
-     */
-    public void deleteAllEntry () {
-        storedRawData.clear();
-        try {
-            writeAllToFile();
-        } catch (IOException e) {
-            System.out.println("File write failed");
-        }
-    }
-
-    /**
-     * Writes a single <code>Note</code> encoded as a <code>String</code> to the .txt file.
+     * Deletes all stored raw data in <code>topicName</code>.txt.
      *
-     * @param encodedString The <code>Note</code> encoded as a <code>String</code>.
-     * @throws IOException Throws an exception if the file write fails.
+     * @param topicName The name of the .txt file being emptied.
      */
-    public void writeNoteToFile (String encodedString) throws IOException {
-        FileWriter fw = new FileWriter(path, true);
-        fw.write(encodedString);
-        fw.close();
+    public void deleteAllEntry (String topicName) {
+        topicRawData.get(topicName).clearFile();
     }
 
     /**
-     * Writes all the stored raw data into the .txt file, overwriting all the existing data stored in the .txt file.
-     *
-     * @throws IOException Throws an exception if the file write fails.
-     */
-    public void writeAllToFile () throws IOException {
-        FileWriter fw = new FileWriter(path, false);
-        for (String s : storedRawData.values()) {
-            fw.write(s);
-        }
-        fw.close();
-    }
-
-    /**
-     * Reads all the raw data stored in this object and returns a <code>Hashtable</code> of <code>Notes</code> that is
+     * Reads all the raw data stored in this object and returns a <code>HashMap</code> of <code>Topics</code> that is
      * processed.
      *
-     * @return Returns the initialized <code>Hashtable</code> of <code>Notes</code>.
+     * @return Returns the initialized <code>HashMap</code> of <code>Notes</code>.
      */
-    public Hashtable<String, Note> decodeAll() {
-        Hashtable<String, Note> decodedNotes = new Hashtable<>();
-        for (String s : storedRawData.keySet()) {
-            decoder.decodeString(storedRawData.get(s));
-            decodedNotes.put(decoder.decodedName(), decoder.processedNote());
+    public HashMap<String, Topic> decodeAll() {
+        HashMap<String, Topic> topics = new HashMap<>();
+        for (String s: topicRawData.keySet()) {
+            topics.put(s, topicRawData.get(s).convertFileToTopic());
         }
-        return decodedNotes;
+        return topics;
     }
 }
