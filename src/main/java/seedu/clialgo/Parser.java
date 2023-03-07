@@ -96,12 +96,16 @@ public class Parser implements StringManipulation {
         String noteName;
         String topicName;
         try {
-            noteName = StringManipulation.getFirstWord(description, TOPIC_MARKER);
+            String noteNameWithMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
+            if (!isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
+                return new InvalidCommand();
+            }
             if (!topics.isValidTopic(topicName)) {
                 return new InvalidTopicCommand();
             }
-        } catch (NullInputException e) {
+            noteName = StringManipulation.removeMarker(noteNameWithMarker, NAME_MARKER);
+        } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
         return new AddCommand(noteName, topicName);

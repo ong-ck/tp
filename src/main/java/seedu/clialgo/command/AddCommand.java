@@ -2,8 +2,8 @@ package seedu.clialgo.command;
 
 import java.util.Objects;
 
+import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
-import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
 
 
@@ -12,30 +12,30 @@ import seedu.clialgo.Ui;
  */
 public class AddCommand extends Command {
 
-    public String name;
-    public String path;
+    private String name;
+    private String topic;
 
     /**
      * Constructor for command to add note to topic list.
      *
      * @param name Name of the note file.
-     * @param path Path of the note file.
+     * @param topic Topic linked to the note file.
      */
-    public AddCommand(String name, String path) {
+    public AddCommand(String name, String topic) {
         this.name = name;
-        this.path = path;
+        this.topic = topic;
     }
 
     /**
      * An overridden method to execute the user command to add new notes into CLIAlgo.
      *
-     * @param topic The <code>Topic</code> object.
+     * @param topicManager The <code>Topic</code> object.
      * @param ui The <code>Ui</code> object.
      * @param fileManager The <code>Storage</code> object.
      */
     @Override
-    public void execute(Topic topic, Ui ui, FileManager fileManager) {
-        boolean isAdded = topic.addNote(name, path);
+    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
+        boolean isAdded = topicManager.addNote(name, topic);
 
         // Check if added -> execute invalid command if note added
 
@@ -55,6 +55,6 @@ public class AddCommand extends Command {
         AddCommand otherAddCommand = (AddCommand) otherCommand;
 
         return Objects.equals(this.name, otherAddCommand.name) &&
-                Objects.equals(this.path, otherAddCommand.path);
+                Objects.equals(this.topic, otherAddCommand.topic);
     }
 }

@@ -10,6 +10,10 @@ public class TopicManager {
                     "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS", "MINIMUM_SPANNING_TREE")
     );
 
+    public boolean addNote(String name, String topic) {
+        return true;
+    }
+
     /**
      * Checks if the input string is a valid topic.
      *

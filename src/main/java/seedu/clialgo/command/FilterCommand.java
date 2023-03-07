@@ -1,14 +1,14 @@
 package seedu.clialgo.command;
 
-import seedu.clialgo.Topic;
+import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 
 import java.util.Objects;
 
 public class FilterCommand extends Command {
-    String keyWord;
-    String topic;
+    private String keyWord;
+    private String topic;
 
     public FilterCommand(String keyWord, String topic) {
         this.keyWord = keyWord;
@@ -16,7 +16,7 @@ public class FilterCommand extends Command {
     }
 
     @Override
-    public void execute (Topic topic, Ui ui, FileManager fileManager) {
+    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
     }
 
     @Override

@@ -2,8 +2,8 @@ package seedu.clialgo.command;
 
 import java.util.Objects;
 
+import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
-import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
 
 
@@ -14,7 +14,11 @@ import seedu.clialgo.Ui;
  */
 public class RemoveCommand extends Command {
 
-    public String name;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
 
     /**
      * Constructor for command to remove note from topic list.
@@ -28,12 +32,12 @@ public class RemoveCommand extends Command {
     /**
      * This method removes a note corresponding to <code>name</code> from the list. It then saves the
      * updated list.
-     * @param topic A Topic object containing all the different topics available.
+     * @param topicManager A Topic object containing all the different topics available.
      * @param ui A Ui object which handles outputs to the user.
      * @param fileManager An object responsible for saving information.
      */
     @Override
-    public void execute(Topic topic, Ui ui, FileManager fileManager) {
+    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         //topic.removeNote(name);
     }
 

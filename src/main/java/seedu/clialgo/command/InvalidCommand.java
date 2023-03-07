@@ -1,7 +1,7 @@
 package seedu.clialgo.command;
 
+import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
-import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
 
 
@@ -14,7 +14,7 @@ public class InvalidCommand extends Command {
     /**
      * This method informs the user that they have keyed in an invalid command.
      */
-    public void execute(Topic topic, Ui ui, FileManager fileManager) {
+    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         //ui.printInvalidCommand();
     }
 
