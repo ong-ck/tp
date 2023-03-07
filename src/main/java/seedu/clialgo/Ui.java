@@ -64,7 +64,7 @@ public class Ui {
                         "[list]: displays all notes\n" +
                         "[filter]: filters notes by topic\n" +
                         "[exit]: close the application\n" +
-                        "For more help on a specific command, type `help c/COMMAND_TYPE`");
+                        "For more help on a specific command, type `help c/COMMAND_TYPE`\n");
         printDivider();
     }
 
@@ -129,7 +129,6 @@ public class Ui {
         printDivider();
         System.out.println("Unsuccessful!\n" +
                         "Type 'help c/remove' for assistance.");
-        printDivider();
     }
 
     /**
