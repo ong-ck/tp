@@ -98,7 +98,7 @@ public class Parser implements StringManipulation {
         try {
             String noteNameWithMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (topicName == null || !isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
+            if (topicName == null || topicName.equals("") || !isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
                 return new InvalidCommand();
             }
             if (!topics.isValidTopic(topicName)) {
@@ -152,7 +152,7 @@ public class Parser implements StringManipulation {
         try {
             String fullKeyWord = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (fullKeyWord.equals("") || !isCorrectMarker(fullKeyWord, KEYWORD_MARKER)) {
+            if (fullKeyWord.equals("") || !isCorrectMarker(fullKeyWord, KEYWORD_MARKER) || topicName == null) {
                 return new InvalidCommand();
             }
             if (topicName != null && !topics.isValidTopic(topicName)) {

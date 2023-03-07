@@ -205,4 +205,29 @@ class ParserTest {
         Command actualOutOfSyllabusOutput = parser.parse(outOfSyllabusInput, topics);
         assertTrue(correctOutOfSyllabusOutput.equals(actualOutOfSyllabusOutput));
     }
+
+    @Test
+    void parse_emptyFieldInput_expectInvalidCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+        String emptyFirstFieldInput = "add n/ t/LINKED_LIST";
+        InvalidCommand correctEmptyFirstFieldOutput = new InvalidCommand();
+        Command actualEmptyFirstFieldOutput = parser.parse(emptyFirstFieldInput, topics);
+        assertTrue(correctEmptyFirstFieldOutput.equals(actualEmptyFirstFieldOutput));
+
+        String emptySecondFieldInput = "add n/Name of File t/";
+        InvalidCommand correctEmptySecondFieldOutput = new InvalidCommand();
+        Command actualEmptySecondFieldOutput = parser.parse(emptySecondFieldInput, topics);
+        assertTrue(correctEmptySecondFieldOutput.equals(actualEmptySecondFieldOutput));
+
+        String emptySingleFieldInput = "help c/";
+        InvalidCommand correctEmptySingleFieldOutput = new InvalidCommand();
+        Command actualEmptySingleFieldOutput = parser.parse(emptySingleFieldInput, topics);
+        assertTrue(correctEmptySingleFieldOutput.equals(actualEmptySingleFieldOutput));
+
+        String emptyOptionalFieldInput = "filter k/keyword t/BINARY_SEARCH_TREE";
+        FilterCommand correctEmptyOptionalFieldOutput = new FilterCommand("keyword", "BINARY_SEARCH_TREE");
+        Command actualEmptyOptionalFieldOutput = parser.parse(emptyOptionalFieldInput, topics);
+        assertTrue(correctEmptyOptionalFieldOutput.equals(actualEmptyOptionalFieldOutput));
+    }
 }
