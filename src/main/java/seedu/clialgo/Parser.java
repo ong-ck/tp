@@ -61,7 +61,7 @@ public class Parser implements StringManipulation {
      */
     private Command prepareHelpCommand(String description) {
         // No description provided, show generic help message.
-        if (description == null || description.equals("")) {
+        if (description == null) {
             return new HelpCommand();
         }
         String command;
@@ -152,10 +152,10 @@ public class Parser implements StringManipulation {
         try {
             String fullKeyWord = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (fullKeyWord.equals("") || !isCorrectMarker(fullKeyWord, KEYWORD_MARKER) || topicName == null) {
+            if (fullKeyWord.equals("") || !isCorrectMarker(fullKeyWord, KEYWORD_MARKER)) {
                 return new InvalidCommand();
             }
-            if (topicName != null && !topics.isValidTopic(topicName)) {
+            if (topicName!= null && !topics.isValidTopic(topicName)) {
                 return new InvalidTopicCommand();
             }
             keyWord = StringManipulation.removeMarker(fullKeyWord, KEYWORD_MARKER);

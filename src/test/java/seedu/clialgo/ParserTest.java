@@ -225,9 +225,31 @@ class ParserTest {
         Command actualEmptySingleFieldOutput = parser.parse(emptySingleFieldInput, topics);
         assertTrue(correctEmptySingleFieldOutput.equals(actualEmptySingleFieldOutput));
 
-        String emptyOptionalFieldInput = "filter k/keyword t/BINARY_SEARCH_TREE";
-        FilterCommand correctEmptyOptionalFieldOutput = new FilterCommand("keyword", "BINARY_SEARCH_TREE");
+        String emptyOptionalFieldInput = "filter k/keyword t/";
+        FilterCommand correctEmptyOptionalFieldOutput = new FilterCommand("keyword", null);
         Command actualEmptyOptionalFieldOutput = parser.parse(emptyOptionalFieldInput, topics);
         assertTrue(correctEmptyOptionalFieldOutput.equals(actualEmptyOptionalFieldOutput));
+    }
+
+    @Test
+    void parse_nullInput_expectInvalidCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        ArrayList<String> commands = new ArrayList<>(
+                Arrays.asList("add", "remove", "filter")
+        );
+
+        for (String command : commands) {
+            String noSpaceInput = command;
+            InvalidCommand correctNoSpaceOutput = new InvalidCommand();
+            Command actualNoSpaceOutput = parser.parse(noSpaceInput, topics);
+            assertTrue(correctNoSpaceOutput.equals(actualNoSpaceOutput));
+
+            String withSpaceInput = command + "        ";
+            InvalidCommand correctWithSpaceOutput = new InvalidCommand();
+            Command actualWithSpaceOutput = parser.parse(withSpaceInput, topics);
+            assertTrue(correctWithSpaceOutput.equals(actualWithSpaceOutput));
+        }
     }
 }
