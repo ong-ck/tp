@@ -18,20 +18,8 @@ public class FilterCommand extends Command {
         this.topic = topic;
     }
 
-    @Override
-    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
-        if (topicManager.isEmpty()) {
-            ui.printFilterFail();
-            return;
-        }
-        if (this.topic == null) {
-
-        }
-        if (!topicManager.isValidTopic(this.topic)) {
-            new InvalidTopicCommand().execute(topicManager, ui, fileManager);
-            return;
-        }
-        HashMap<String, ArrayList<String>> notes = topicManager.getNotesByTopic(this.topic);
+    public void printAllTopics(TopicManager topicManager, Ui ui) {
+        HashMap<String, ArrayList<String>> notes = topicManager.getAllNotesByTopic();
         ui.printFilterSuccess();
         for (Map.Entry<String, ArrayList<String>> entry : notes.entrySet()) {
             ArrayList<String> currentTopicNotes = entry.getValue();
@@ -44,6 +32,38 @@ public class FilterCommand extends Command {
             }
         }
         ui.printDivider();
+    }
+
+    public void printSingleTopic(TopicManager topicManager, Ui ui) {
+        ArrayList<String> notes = topicManager.getNotesByTopic(this.topic);
+        ui.printFilterSuccess();
+        int serialNumber = 1;
+        System.out.println("[" + this.topic + "]");
+        for (String note : notes) {
+            System.out.println(serialNumber + ". " + note);
+            serialNumber++;
+        }
+        ui.printDivider();
+    }
+
+    @Override
+    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
+        if (topicManager.isEmpty()) {
+            ui.printFilterFail();
+            return;
+        }
+        if (this.topic == null) {
+            printAllTopics(topicManager, ui);
+        }
+        if (!topicManager.isValidTopic(this.topic)) {
+            new InvalidTopicCommand().execute(topicManager, ui, fileManager);
+            return;
+        }
+        if (topicManager.isTopicEmpty(this.topic)) {
+            ui.printFilterFail();
+            return;
+        }
+        printSingleTopic(topicManager, ui);
     }
 
     @Override

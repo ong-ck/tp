@@ -14,6 +14,11 @@ public class Topic {
         notes = new HashMap<>();
     }
 
+    public Topic(String topicName, HashMap<String, Note> notes) {
+        this.topicName = topicName;
+        this.notes = notes;
+    }
+
     public boolean isEmpty() {
         return this.notes.isEmpty();
     }
@@ -24,10 +29,6 @@ public class Topic {
 
     // Placeholder method
     public void removeNote(String name) {
-
-    }
-
-    public void printSortedOrder() {
 
     }
 

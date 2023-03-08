@@ -26,6 +26,12 @@ public class TopicManager {
             topics.put(topicName, new Topic(topicName));
         }
     }
+
+    public TopicManager(HashSet<String> allNotes, HashMap<String, Topic> topics) {
+        this.allNotes = allNotes;
+        this.topics = topics;
+    }
+
     /**
      * Checks if the input string is a valid topic.
      *
@@ -38,6 +44,14 @@ public class TopicManager {
 
     public boolean isEmpty() {
         return allNotes.isEmpty();
+    }
+
+    public boolean isTopicEmpty(String topic) {
+        return topics.get(topic).isEmpty();
+    }
+
+    public boolean isRepeatedNote(String noteName) {
+        return this.allNotes.contains(noteName);
     }
     /**
      * Gets all notes stored in CLIAlgo and stores it in an ArrayList.
@@ -53,7 +67,11 @@ public class TopicManager {
         return toPrintNotes;
     }
 
-    public HashMap<String, ArrayList<String>> getNotesByTopic(String topic) {
+    public ArrayList<String> getNotesByTopic(String topic) {
+        return topics.get(topic).getAllNotesInTopic();
+    }
+
+    public HashMap<String, ArrayList<String>> getAllNotesByTopic() {
         HashMap<String, ArrayList<String>> toPrintNotes = new HashMap<>();
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic currentTopic = entry.getValue();
