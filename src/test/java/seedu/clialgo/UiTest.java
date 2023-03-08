@@ -79,10 +79,6 @@ class UiTest {
                     "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n";
         }
-
-//        String expectedOutput = "======================================================\n" +
-//                "Successfully added queue into LINKED_LIST.\n" +
-//                "======================================================\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
