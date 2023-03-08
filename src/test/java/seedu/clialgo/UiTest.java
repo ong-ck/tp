@@ -228,10 +228,10 @@ class UiTest {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+            expectedOutput = "======================================================" +  WINDOWS_WHITESPACE +
                     "Unsuccessful!" + WINDOWS_WHITESPACE +
                     "Type 'help c/remove' for assistance." + WINDOWS_WHITESPACE +
-                    "======================================================" +  WINDOWS_WHITESPACE;
+                    "======================================================" + WINDOWS_WHITESPACE;
         } else {
             expectedOutput = "======================================================" +  MAC_WHITESPACE +
                     "Unsuccessful!" + MAC_WHITESPACE +
@@ -279,7 +279,7 @@ class UiTest {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
                     "Unsuccessful!" + WINDOWS_WHITESPACE +
                     "Type 'help c/filter' for assistance." + WINDOWS_WHITESPACE +
-                    "======================================================" +  WINDOWS_WHITESPACE;
+                    "======================================================" + WINDOWS_WHITESPACE;
         } else {
             expectedOutput = "======================================================" + MAC_WHITESPACE +
                     "Unsuccessful!" + MAC_WHITESPACE +
