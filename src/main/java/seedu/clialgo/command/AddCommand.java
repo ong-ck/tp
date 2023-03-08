@@ -40,10 +40,12 @@ public class AddCommand extends Command {
 
         // Save note in FileManager first -> if failed, will not be added to internal hashmap
         // Commented as fileManager methods are not fully developed yet
-//        if (!fileManager.addEntry(name, newNote)) {
-//            ui.printSaveUnsuccessful();
-//            return;
-//        }
+        /*
+        if (!fileManager.addEntry(name, newNote)) {
+                    ui.printSaveUnsuccessful();
+                    return;
+                }
+         */
 
         // Check if topicName is valid
         if (!topicManager.isValidTopic(topic)) {
