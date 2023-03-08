@@ -18,7 +18,7 @@ public class Note {
      */
     public Note(String name, String path, String tag) {
         this.name = name;
-        this.path = name + ".txt";
+        this.path = path;
         this.tag = tag;
     }
 

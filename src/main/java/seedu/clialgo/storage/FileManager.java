@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -19,7 +20,8 @@ public class FileManager {
     private final FileDecoder decoder;
     private final String path;
     private final String folder;
-    private final Hashtable<String, String> storedRawData = new Hashtable<>();
+    private final Hashtable<String, String> storedRawData = new Hashtable<>(); // outdated
+    private final HashMap<String, SingleFile> topicRawData = new HashMap<>();
 
     /**
      * Constructor for class containing <code>codeDecoder</code>, <code>codeEncoder</code> and raw data from the
@@ -80,12 +82,14 @@ public class FileManager {
      * @param name The name of the <code>Note</code>.
      * @param note The <code>Note</code> being added.
      */
-    public void addEntry (String name, Note note) {
-        storedRawData.put(name, encoder.encodeNote(name, note));
+    public boolean addEntry (String name, Note note) {
+        SingleFile singleFile = topicRawData.get(note.getTag());
         try {
-            writeNoteToFile(storedRawData.get(name));
+            singleFile.writeNoteToFile(encoder.encodeNote(name, note));
+            return true;
         } catch (IOException e) {
-            System.out.println("File write failed");
+            System.out.println("File write error");
+            return false;
         }
     }
 

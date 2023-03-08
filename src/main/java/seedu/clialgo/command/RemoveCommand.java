@@ -16,10 +16,6 @@ public class RemoveCommand extends Command {
 
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
     /**
      * Constructor for command to remove note from topic list.
      *
@@ -39,6 +35,15 @@ public class RemoveCommand extends Command {
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         //topic.removeNote(name);
+    }
+
+    /**
+     * Gets the name of the note to be removed.
+     *
+     * @return Name of the note.
+     */
+    public String getName() {
+        return name;
     }
 
     /**
