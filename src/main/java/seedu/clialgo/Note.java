@@ -5,9 +5,9 @@ package seedu.clialgo;
  */
 public class Note {
 
-    public String name;
-    public String path;
-    public String tag;
+    private String name;
+    private String path;
+    private String tag;
 
     /**
      * Constructor for <code>Note</code> object.

@@ -8,6 +8,7 @@ import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
 import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.ListCommand;
+import seedu.clialgo.command.NameNotFoundCommand;
 import seedu.clialgo.command.RemoveCommand;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
@@ -109,6 +110,7 @@ public class Parser implements StringManipulation {
 
     /**
      * Returns a <code>RemoveCommand</code> object that deletes a note from CLIAlgo when executed.
+     * Returns <code>NameNotFoundCommand</code> when the user does not key in an existing note name.
      * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
      *
      * @param description String containing the information on the note to be removed.
@@ -125,6 +127,9 @@ public class Parser implements StringManipulation {
                 return new InvalidCommand();
             }
             noteName = StringManipulation.removeMarker(description, NAME_MARKER);
+            if (!topics.noteExist(noteName)) {
+                return new NameNotFoundCommand();
+            }
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }

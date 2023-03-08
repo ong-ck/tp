@@ -2,8 +2,8 @@ package seedu.clialgo.command;
 
 import java.util.Objects;
 
+import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
-import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
 
 
@@ -29,13 +29,13 @@ public class AddCommand extends Command {
     /**
      * An overridden method to execute the user command to add new notes into CLIAlgo.
      *
-     * @param topic The <code>Topic</code> object.
+     * @param topicManager The <code>Topic</code> object.
      * @param ui The <code>Ui</code> object.
      * @param fileManager The <code>Storage</code> object.
      */
     @Override
-    public void execute(Topic topic, Ui ui, FileManager fileManager) {
-        boolean isAdded = topic.addNote(name, path);
+    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
+        //boolean isAdded = topicManager.addNote(name, path);
 
         // Check if added -> execute invalid command if note added
 

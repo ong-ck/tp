@@ -1,7 +1,8 @@
 package seedu.clialgo.command;
 
+import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
-import seedu.clialgo.Topic;
+
 import seedu.clialgo.Ui;
 
 /**
@@ -11,14 +12,15 @@ import seedu.clialgo.Ui;
 public class ExitCommand extends Command {
     /**
      * This method closes the scanner and exits from the program
-     * @param topic
+     * @param topicManager
      * @param ui
      * @param fileManager
      */
     @Override
-    public void execute (Topic topic, Ui ui, FileManager fileManager) {
-        //ui.closeScanner();
-        //ui.exitProgram();
+    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
+        ui.printHelpExit();
+        ui.closeScanner();
+        System.exit(0);
     }
 
     /**

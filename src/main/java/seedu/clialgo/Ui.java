@@ -217,4 +217,20 @@ public class Ui {
                         "Command should only contain one word (i.e. no extensions).");
         printDivider();
     }
+
+    public void printInvalidCommand() {
+        printDivider();
+        System.out.println("This is an invalid command, please ensure all your fields are correct");
+        printDivider();
+    }
+
+    public void closeScanner() {
+        this.in.close();
+    }
+
+    public void printNameNotFoundCommand() {
+        printDivider();
+        System.out.println("Cannot remove a note which does not exist, check spelling or case sensitivity");
+        printDivider();
+    }
 }
