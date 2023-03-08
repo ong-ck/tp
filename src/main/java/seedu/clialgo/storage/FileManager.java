@@ -25,8 +25,8 @@ public class FileManager {
      * Constructor for class containing <code>codeDecoder</code>, <code>codeEncoder</code> and raw data from the
      * .txt file stored as strings.
      */
-    public FileManager(ArrayList<String> topicNames) {
-        this.path= ".\\data";
+    public FileManager(String path, ArrayList<String> topicNames) {
+        this.path = path;
         String separator = "&@*";
         this.topicRawData = new HashMap<>();
         this.topicNames = topicNames;
@@ -41,11 +41,13 @@ public class FileManager {
      * @return The SingleFile object created.
      */
     public SingleFile createSingleFile(String name) {
-        SingleFile newFile = new SingleFile(null, name,decoder);
+        SingleFile newFile = new SingleFile(null, name, decoder);
         try {
-            File file = new File(path + "//" + name + ".txt");
+            File file = new File(path + "\\" + name + ".txt");
             if (file.createNewFile()) {
-                System.out.println(file + "created");
+                System.out.println(file + " created");
+            } else {
+                System.out.println(file + " not created");
             }
             newFile.setFile(file);
         } catch (IOException e) {
@@ -60,19 +62,28 @@ public class FileManager {
      * reads the <code>File</code> corresponding to it.
      */
     public void initialize() {
+        createFolder();
         for (String s : topicNames) {
             topicRawData.put(s, createSingleFile(s));
         }
         for (SingleFile singleFile : topicRawData.values()) {
             try {
-                Path dir = Paths.get(path);
-                Files.createDirectories(dir);
                 singleFile.readFile();
             } catch (FileNotFoundException e) {
                 System.out.println("File write error");
-            } catch (IOException e) {
-                System.out.println("Folder not created");
             }
+        }
+    }
+
+    /**
+     * Creates a foler at <code>path</code>.
+     */
+    public void createFolder() {
+        try {
+            Path dir = Paths.get(path);
+            Files.createDirectories(dir);
+        } catch (IOException e) {
+            System.out.println("Folder not created");
         }
     }
 
