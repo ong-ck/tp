@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UiTest {
 
+    public static final String WINDOWS_WHITESPACE = "\r\n";
+    public static final String MAC_WHITESPACE = "\n";
+
     @Test
     void testPrintWelcomeMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -71,13 +74,13 @@ class UiTest {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-            expectedOutput = "======================================================\r\n" +
-                    "Successfully added queue into LINKED_LIST.\r\n" +
-                    "======================================================\r\n";
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Successfully added queue into LINKED_LIST." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
         } else {
-            expectedOutput = "======================================================\n" +
-                    "Successfully added queue into LINKED_LIST.\n" +
-                    "======================================================\n";
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Successfully added queue into LINKED_LIST." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
         }
         assertEquals(expectedOutput, outContent.toString());
     }
