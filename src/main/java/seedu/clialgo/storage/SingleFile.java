@@ -15,7 +15,7 @@ public class SingleFile {
     private File file;
     private final String name;
     private final HashMap<String, String> storedRawData = new HashMap<>();
-    private HashMap<String, Note> notes = new HashMap<>();
+    private final HashMap<String, Note> notes = new HashMap<>();
     private final FileDecoder decoder;
 
 
