@@ -61,16 +61,12 @@ class InvalidTopicCommandTest {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-            // This expected output has "File Created" due to the first
-            // initialisation of the FileManager in InvalidTopicCommandTest.
-            expectedOutput = "File created\r\n" +
-                    "======================================================\r\n" +
+            expectedOutput = "======================================================\r\n" +
                     "Unsuccessful! invalidTopic is not a topic in CS2040C.\r\n" +
                     "Type 'help c/add' for assistance.\r\n" +
                     "======================================================\r\n";
         } else {
-            expectedOutput = "File created\n" +
-                    "======================================================\n" +
+            expectedOutput = "======================================================\n" +
                     "Unsuccessful! invalidTopic is not a topic in CS2040C.\n" +
                     "Type 'help c/add' for assistance.\n" +
                     "======================================================\n";

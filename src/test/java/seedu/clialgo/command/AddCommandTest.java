@@ -69,11 +69,15 @@ class AddCommandTest {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-            expectedOutput = "======================================================\r\n" +
+            // This expected output has "File Created" due to the first
+            // initialisation of the FileManager in AddCommandTest.
+            expectedOutput = "File created\r\n" +
+                    "======================================================\r\n" +
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n";
         } else {
-            expectedOutput = "======================================================\n" +
+            expectedOutput = "File created\n" +
+                    "======================================================\n" +
                     "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n";
         }
@@ -144,18 +148,14 @@ class AddCommandTest {
 
         if (os.contains("Windows")) {
 
-            // This expected output has "File Created" due to the first
-            // initialisation of the FileManager in AddCommandTest.
-            expectedOutput = "File created\r\n" +
-                    "======================================================\r\n" +
+            expectedOutput = "======================================================\r\n" +
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n" +
                     "======================================================\r\n" +
                     "This is the printInvalidCommand method\r\n" +
                     "======================================================\r\n";
         } else {
-            expectedOutput = "File created\n" +
-                    "======================================================\n" +
+            expectedOutput = "======================================================\n" +
                     "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n" +
                     "======================================================\n" +
