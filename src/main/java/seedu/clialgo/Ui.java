@@ -158,7 +158,7 @@ public class Ui {
     public void printHelpAdd() {
         printDivider();
         System.out.println("This function adds a note and tags it to a topic.\n" +
-                        "The syntax for the 'add' command is: add n/NAME t/TOPIC. \n" +
+                        "The syntax for the 'add' command is: add n/NAME t/TOPIC.\n" +
                         "NAME refers to the notes' file name.\n" +
                         "TOPIC refers to the topic that NAME will be tagged to.\n" +
                         "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
