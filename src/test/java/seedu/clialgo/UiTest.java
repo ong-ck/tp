@@ -67,9 +67,22 @@ class UiTest {
         String topic = "LINKED_LIST";
         ui.printAddSuccess(name, topic);
 
-        String expectedOutput = "======================================================\n" +
-                "Successfully added queue into LINKED_LIST.\n" +
-                "======================================================\n";
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Successfully added queue into LINKED_LIST.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Successfully added queue into LINKED_LIST.\n" +
+                    "======================================================\n";
+        }
+
+//        String expectedOutput = "======================================================\n" +
+//                "Successfully added queue into LINKED_LIST.\n" +
+//                "======================================================\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 
