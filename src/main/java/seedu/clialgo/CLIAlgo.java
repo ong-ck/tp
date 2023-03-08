@@ -16,6 +16,7 @@ public class CLIAlgo {
         ui.printWelcomeMessage();
     }
 
+    /** Continuously reads in the user input until the exit command is executed */
     private void run() {
         while (true) {
             String fullCommand = ui.getUserInput();

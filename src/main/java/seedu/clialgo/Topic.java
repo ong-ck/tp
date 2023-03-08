@@ -19,6 +19,7 @@ public class Topic {
         this.notes = notes;
     }
 
+    /** Checks if the topic have not notes inside */
     public boolean isEmpty() {
         return this.notes.isEmpty();
     }

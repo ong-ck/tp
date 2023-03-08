@@ -18,6 +18,12 @@ public class FilterCommand extends Command {
         this.topic = topic;
     }
 
+    /**
+     * This method prints all the notes stored across all non-empty topics in CLIAlgo.
+     *
+     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param ui The <code>Ui</code> object which handles outputs to the user.
+     */
     public void printAllTopics(TopicManager topicManager, Ui ui) {
         HashMap<String, ArrayList<String>> notes = topicManager.getAllNotesByTopic();
         ui.printFilterSuccess();
@@ -34,6 +40,12 @@ public class FilterCommand extends Command {
         ui.printDivider();
     }
 
+    /**
+     * This method prints all the note stored in a single specified topic.
+     *
+     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param ui The <code>Ui</code> object which handles outputs to the user.
+     */
     public void printSingleTopic(TopicManager topicManager, Ui ui) {
         ArrayList<String> notes = topicManager.getNotesByTopic(this.topic);
         ui.printFilterSuccess();
@@ -46,6 +58,15 @@ public class FilterCommand extends Command {
         ui.printDivider();
     }
 
+    /**
+     * Prints the note stored in all topics or just a single topics depending on the topic.
+     * If there are no notes stored in CLIAlgo or in the given topic, it prints a string to inform the user.
+     * If an invalid topic is given, it prints a string to inform the reader.
+     *
+     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param ui The <code>Ui</code> object which handles outputs to the user.
+     * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
+     */
     @Override
     public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
         if (topicManager.isEmpty()) {
