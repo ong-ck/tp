@@ -17,7 +17,7 @@ public class FileManager {
     private final FileEncoder encoder;
     private final FileDecoder decoder;
     private final String path;
-    private final ArrayList<String> TOPIC_NAMES;
+    private final ArrayList<String> topicNames;
     private final HashMap<String, SingleFile> topicRawData;
 
 
@@ -25,11 +25,11 @@ public class FileManager {
      * Constructor for class containing <code>codeDecoder</code>, <code>codeEncoder</code> and raw data from the
      * .txt file stored as strings.
      */
-    public FileManager(ArrayList<String> TOPIC_NAMES) {
+    public FileManager(ArrayList<String> topicNames) {
         this.path= ".\\data";
         String separator = "&@*";
         this.topicRawData = new HashMap<>();
-        this.TOPIC_NAMES = TOPIC_NAMES;
+        this.topicNames = topicNames;
         this.encoder = new FileEncoder(separator);
         this.decoder = new FileDecoder(separator);
     }
@@ -56,11 +56,11 @@ public class FileManager {
 
     /**
      * Creates all the <code>SingleFiles</code> corresponding to each valid <code>Topic</code>. If the .txt file does
-     * not exist, it creates a blank .txt file with <code>TOPIC_NAMES</code>.txt. For all the <code>SingleFiles</code>,
+     * not exist, it creates a blank .txt file with <code>topicNames</code>.txt. For all the <code>SingleFiles</code>,
      * reads the <code>File</code> corresponding to it.
      */
     public void initialize() {
-        for (String s : TOPIC_NAMES) {
+        for (String s : topicNames) {
             topicRawData.put(s, createSingleFile(s));
         }
         for (SingleFile singleFile : topicRawData.values()) {
