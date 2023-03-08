@@ -39,8 +39,15 @@ public class AddCommand extends Command {
         Note newNote = new Note(name, notePath, topic);
 
         // Save note in FileManager first -> if failed, will not be added to internal hashmap
-        if (!fileManager.addEntry(name, newNote)) {
-            ui.printSaveUnsuccessful();
+        // Commented as fileManager methods are not fully developed yet
+//        if (!fileManager.addEntry(name, newNote)) {
+//            ui.printSaveUnsuccessful();
+//            return;
+//        }
+
+        // Check if topicName is valid
+        if (!topicManager.isValidTopic(topic)) {
+            new InvalidTopicCommand(topic).execute(topicManager, ui, fileManager);
             return;
         }
 
@@ -48,13 +55,7 @@ public class AddCommand extends Command {
 
         // Check if added -> execute invalid command if note is not added
         if (!isAdded) {
-            new InvalidCommand();
-            return;
-        }
-
-        // Check if topicName is valid
-        if (!topicManager.isValidTopic(topic)) {
-            ui.printAddFail(topic);
+            new InvalidCommand().execute(topicManager, ui, fileManager);
             return;
         }
 

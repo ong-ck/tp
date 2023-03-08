@@ -226,4 +226,11 @@ public class Ui {
         System.out.println("Saving data was unsuccessful. Please try again.");
         printDivider();
     }
+
+    // Placeholder method
+    public void printInvalidCommand() {
+        printDivider();
+        System.out.println("This is the printInvalidCommand method");
+        printDivider();
+    }
 }
