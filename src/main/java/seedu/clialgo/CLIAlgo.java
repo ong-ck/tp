@@ -3,6 +3,8 @@ package seedu.clialgo;
 import seedu.clialgo.command.Command;
 import seedu.clialgo.storage.FileManager;
 
+import java.util.Scanner;
+
 public class CLIAlgo {
     private Ui ui;
     private TopicManager topicManager;
@@ -26,7 +28,15 @@ public class CLIAlgo {
     }
 
     public static void main(String[] args) {
-        CLIAlgo cliAlgo = new CLIAlgo();
-        cliAlgo.run();
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+        System.out.println("What is your name?");
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Hello " + in.nextLine());
     }
 }
