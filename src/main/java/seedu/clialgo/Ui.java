@@ -173,7 +173,7 @@ public class Ui {
     public void printHelpRemove() {
         printDivider();
         System.out.println("This function removes a note from the tagged topic.\n" +
-                        "The syntax for the 'remove' command is: remove n/NAME. \n" +
+                        "The syntax for the 'remove' command is: remove n/NAME.\n" +
                         "NAME refers to the notes' file name.\n" +
                         "'n/' must be included else NAME will not be read.\n" +
                         "Invalid NAME will cause an error.");
