@@ -4,6 +4,8 @@ import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 
+import java.util.Objects;
+
 public class InvalidTopicCommand extends Command {
 
     private String topic;
@@ -38,6 +40,8 @@ public class InvalidTopicCommand extends Command {
      */
     @Override
     public boolean equals(Command otherCommand) {
-        return otherCommand instanceof InvalidTopicCommand;
+        InvalidTopicCommand otherInvalidTopicCommand = (InvalidTopicCommand) otherCommand;
+
+        return Objects.equals(this.topic, otherInvalidTopicCommand.topic);
     }
 }

@@ -87,7 +87,7 @@ class AddCommandTest {
      * to print message for unsuccessful adding of note due to invalid topic.
      */
     @Test
-    void execute_properInput_expectAddUnsuccessfulDueToInvalidTopicMessage() {
+    void execute_invalidTopicInput_expectAddUnsuccessfulDueToInvalidTopicMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -124,7 +124,7 @@ class AddCommandTest {
      * to print message for unsuccessful adding of note due to invalid command.
      */
     @Test
-    void execute_properInput_expectAddUnsuccessfulDueToInvalidCommandMessage() {
+    void execute_repeatedInput_expectAddUnsuccessfulDueToInvalidCommandMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
