@@ -157,6 +157,12 @@ public class TopicManager {
         return toPrintNotes;
     }
 
+    /**
+     * Initializes the <code>topics</code> and <code>allNote</code> of this object by taking in input from the
+     * <code>FileManager</code> object.
+     *
+     * @param topics The output obtained from the <code>FileManager</code> by calling <code>decodeAll</code>.
+     */
     public void initialize(HashMap<String, Topic> topics) {
         this.topics = topics;
         for (Topic topic: topics.values()) {

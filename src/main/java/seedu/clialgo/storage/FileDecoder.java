@@ -2,6 +2,10 @@ package seedu.clialgo.storage;
 
 import seedu.clialgo.Note;
 
+/**
+ * Object that processes a <code>String</code> passed to it and returns a <code>Note</code> representing the
+ * information in the <code>String</code>.
+ */
 public class FileDecoder {
 
     protected Note currentNote;
