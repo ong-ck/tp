@@ -242,4 +242,15 @@ public class Ui {
         System.out.println("Saving data was unsuccessful. Please try again.");
         printDivider();
     }
+
+    public void printTestModeStart() {
+        printDivider();
+        System.out.println("Starting test mode.");
+        printDivider();
+    }
+
+    public void printTestModeEnd() {
+        printDivider();
+        System.out.println("Ending test mode.");
+    }
 }

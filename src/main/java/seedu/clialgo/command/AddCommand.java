@@ -12,8 +12,8 @@ import seedu.clialgo.Ui;
  */
 public class AddCommand extends Command {
 
-    private String name;
-    private String topic;
+    private final String name;
+    private final String topic;
 
     /**
      * Constructor for command to add note to topic list.

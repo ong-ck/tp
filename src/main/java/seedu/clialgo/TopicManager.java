@@ -18,10 +18,13 @@ public class TopicManager {
     );
 
     /** General HashSet to check for duplicate names. */
-    private final HashSet<String> allNotes;
+    private HashSet<String> allNotes;
 
     /** Data Structure to hold all the topics */
     private HashMap<String, Topic> topics;
+
+    private HashSet<String> allNotesOutsideTestMode;
+    private HashMap<String, Topic> topicsOutsideTestMode;
 
     public TopicManager() {
         allNotes = new HashSet<>();
@@ -170,5 +173,28 @@ public class TopicManager {
                 allNotes.addAll(topic.getAllNotesInTopic());
             }
         }
+    }
+
+    /**
+     * Resets <code>topics</code> and <code>allNotes</code> when test mode starts. Stores the data outside of test mode
+     * separately.
+     */
+    public void testModeStart() {
+        this.topicsOutsideTestMode = topics;
+        this.allNotesOutsideTestMode = allNotes;
+        allNotes = new HashSet<>();
+        topics = new HashMap<>();
+        for (String topicName : TOPIC_NAMES) {
+            topics.put(topicName, new Topic(topicName));
+        }
+    }
+
+    /**
+     * Retrieves the <code>topics</code> and <code>allNotes</code> data from before the start of test mode when test
+     * mode ends such that the state before the start of test mode is restored.
+     */
+    public void testModeEnd() {
+        this.allNotes = allNotesOutsideTestMode;
+        this.topics = topicsOutsideTestMode;
     }
 }

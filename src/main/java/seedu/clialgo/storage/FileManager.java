@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Object containing all the raw data for the application, able to update each .txt file which stores the information
@@ -21,9 +22,12 @@ public class FileManager {
 
     private final FileEncoder encoder;
     private final FileDecoder decoder;
-    private final String path;
+    private final String initialPath;
+    private final String testModePath = ".\\testdata";
     private final ArrayList<String> topicNames;
-    private final HashMap<String, SingleFile> topicRawData;
+    private HashMap<String, SingleFile> topicRawData;
+    private HashMap<String, SingleFile> topicRawDataOutsideTestMode;
+    private String path;
 
     /**
      * Constructor for class containing <code>codeDecoder</code>, <code>codeEncoder</code> and raw data from the
@@ -31,6 +35,7 @@ public class FileManager {
      */
     public FileManager(String path, ArrayList<String> topicNames) {
         this.path = path;
+        this.initialPath = path;
         String separator = "&@*";
         this.topicRawData = new HashMap<>();
         this.topicNames = topicNames;
@@ -136,5 +141,43 @@ public class FileManager {
             topics.put(s, topicRawData.get(s).convertFileToTopic());
         }
         return topics;
+    }
+
+    /**
+     * Changes the folder location to a new folder meant to store testdata. Remembers state of
+     * <code>topicRawData</code> before start of test mode.
+     */
+    public void testMode() {
+        this.path = testModePath;
+        this.topicRawDataOutsideTestMode = this.topicRawData;
+        this.topicRawData = new HashMap<>();
+        initialize();
+    }
+
+    /**
+     * Exits test mode and deletes all the files in the folder storing testdata. Retrieves and restores state of object
+     * to before test mode start.
+     */
+    public void exitTestMode() {
+        this.path = initialPath;
+        this.topicRawData = topicRawDataOutsideTestMode;
+        deleteTestData();
+    }
+
+    /**
+     * Deletes folder at <code>.\\testdata</code> and all the files within.
+     */
+    public void deleteTestData() {
+        File pathToFolder = new File(testModePath);
+        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
+            if (!f.delete()) {
+                System.out.println("Delete failed");
+            }
+        }
+        if (!pathToFolder.delete()) {
+            System.out.println("Delete failed");
+        } else {
+            System.out.println("Delete successful");
+        }
     }
 }
