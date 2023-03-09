@@ -92,16 +92,4 @@ public class FileManagerTest {
         }
         deleteAll(new File(path));
     }
-
-//    @Test
-//    void isNoteCorrectlyAdded() {
-//        ArrayList<String> test = new ArrayList<>();
-//        test.add("test");
-//        String path = ".\\testdata";
-//        FileManager fm = new FileManager(path, test);
-//        fm.initialize();
-//        File file = new File(path + "\\test.txt");
-//        assertTrue(file.exists());
-//        deleteAll(new File(path));
-//    }
 }
