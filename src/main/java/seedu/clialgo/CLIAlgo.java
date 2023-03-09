@@ -6,20 +6,23 @@ import seedu.clialgo.storage.FileManager;
 import java.util.Scanner;
 
 public class CLIAlgo {
-    private Ui ui;
-    private TopicManager topicManager;
-    private FileManager fileManager;
-    private Parser parser;
+    private final Ui ui;
+    private final TopicManager topicManager;
+    private final FileManager fileManager;
+    private final Parser parser;
+
     public CLIAlgo() {
+        String dataPath = ".\\data";
         ui = new Ui();
         topicManager = new TopicManager();
-        fileManager = new FileManager();
+        fileManager = new FileManager(dataPath, topicManager.getTopicNames());
         parser = new Parser();
         ui.printWelcomeMessage();
     }
 
     /** Continuously reads in the user input until the exit command is executed */
     private void run() {
+        fileManager.initialize();
         while (true) {
             String fullCommand = ui.getUserInput();
             Command command = parser.parse(fullCommand, topicManager);

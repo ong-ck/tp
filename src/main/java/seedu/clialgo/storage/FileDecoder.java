@@ -1,12 +1,9 @@
 package seedu.clialgo.storage;
 
-import java.io.File;
-
 import seedu.clialgo.Note;
 
 public class FileDecoder {
 
-    protected File file;
     protected Note currentNote;
     protected String currentName;
     protected final String separator;
@@ -14,11 +11,9 @@ public class FileDecoder {
     /**
      * Constructor for the fileDecoder object
      *
-     * @param file The file object referring to the .txt file with the raw data.
      * @param separator The <code>String</code> which separates each form of data stored in each <code>Note</code>.
      */
-    public FileDecoder (File file, String separator) {
-        this.file = file;
+    public FileDecoder (String separator) {
         this.separator = separator;
     }
 
