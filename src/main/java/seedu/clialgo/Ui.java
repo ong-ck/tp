@@ -64,7 +64,7 @@ public class Ui {
                         "[list]: displays all notes\n" +
                         "[filter]: filters notes by topic\n" +
                         "[exit]: close the application\n" +
-                        "For more help on a specific command, type `help c/COMMAND_TYPE`\n");
+                        "For more help on a specific command, type `help c/COMMAND_TYPE`");
         printDivider();
     }
 
@@ -129,6 +129,7 @@ public class Ui {
         printDivider();
         System.out.println("Unsuccessful!\n" +
                         "Type 'help c/remove' for assistance.");
+        printDivider();
     }
 
     /**
@@ -157,7 +158,7 @@ public class Ui {
     public void printHelpAdd() {
         printDivider();
         System.out.println("This function adds a note and tags it to a topic.\n" +
-                        "The syntax for the 'add' command is: add n/NAME t/TOPIC. \n" +
+                        "The syntax for the 'add' command is: add n/NAME t/TOPIC.\n" +
                         "NAME refers to the notes' file name.\n" +
                         "TOPIC refers to the topic that NAME will be tagged to.\n" +
                         "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
@@ -172,7 +173,7 @@ public class Ui {
     public void printHelpRemove() {
         printDivider();
         System.out.println("This function removes a note from the tagged topic.\n" +
-                        "The syntax for the 'remove' command is: remove n/NAME. \n" +
+                        "The syntax for the 'remove' command is: remove n/NAME.\n" +
                         "NAME refers to the notes' file name.\n" +
                         "'n/' must be included else NAME will not be read.\n" +
                         "Invalid NAME will cause an error.");
