@@ -31,14 +31,14 @@ public class SingleFile {
      * @throws FileNotFoundException Thrown when the .txt file does not exist.
      */
     public void readFile() throws FileNotFoundException {
-        Scanner s = new Scanner(file);
-        while (s.hasNext()) {
-            String rawData = s.nextLine();
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNext()) {
+            String rawData = scanner.nextLine();
             decoder.decodeString(rawData);
             storedRawData.put(decoder.decodedName(), rawData);
             notes.put(decoder.decodedName(), decoder.processedNote());
         }
-        s.close();
+        scanner.close();
     }
 
     /**
@@ -49,9 +49,9 @@ public class SingleFile {
      */
     public void writeNoteToFile(String encodedNote) throws IOException {
         try {
-            FileWriter fw = new FileWriter(file, true);
-            fw.write(encodedNote);
-            fw.close();
+            FileWriter fileWriter = new FileWriter(file, true);
+            fileWriter.write(encodedNote);
+            fileWriter.close();
         } catch (IOException e) {
             throw new IOException();
         }
@@ -64,11 +64,11 @@ public class SingleFile {
      */
     public void overwriteFile() throws IOException {
         try {
-            FileWriter fw = new FileWriter(file, false);
+            FileWriter fileWriter = new FileWriter(file, false);
             for (String s : storedRawData.values()) {
-                fw.write(s);
+                fileWriter.write(s);
             }
-            fw.close();
+            fileWriter.close();
         } catch (IOException e) {
             throw new IOException();
         }

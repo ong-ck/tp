@@ -12,6 +12,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Object containing all the raw data for the application, able to update each .txt file which stores the information
+ * of the <code>Notes</code> in each <code>Topic</code>, where the .txt files are named in the convention of
+ * <code>topicName</code>.txt.
+ */
 public class FileManager {
 
     private final FileEncoder encoder;
@@ -59,8 +64,8 @@ public class FileManager {
      */
     public void initialize() {
         createFolder();
-        for (String s : topicNames) {
-            topicRawData.put(s, createSingleFile(s));
+        for (String string : topicNames) {
+            topicRawData.put(string, createSingleFile(string));
         }
         for (SingleFile singleFile : topicRawData.values()) {
             try {
@@ -76,8 +81,8 @@ public class FileManager {
      */
     public void createFolder() {
         try {
-            Path dir = Paths.get(path);
-            Files.createDirectories(dir);
+            Path directory = Paths.get(path);
+            Files.createDirectories(directory);
         } catch (IOException e) {
             System.out.println("Folder not created");
         }
@@ -105,8 +110,8 @@ public class FileManager {
      * @param noteName The name of the <code>Note</code> being deleted.
      */
     public void deleteEntry (String noteName) {
-        for (SingleFile sf : topicRawData.values()) {
-            sf.deleteEntry(noteName);
+        for (SingleFile singleFile : topicRawData.values()) {
+            singleFile.deleteEntry(noteName);
         }
     }
 

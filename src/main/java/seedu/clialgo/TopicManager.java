@@ -21,7 +21,7 @@ public class TopicManager {
     private final HashSet<String> allNotes;
 
     /** Data Structure to hold all the topics */
-    private final HashMap<String, Topic> topics;
+    private HashMap<String, Topic> topics;
 
     public TopicManager() {
         allNotes = new HashSet<>();
@@ -155,5 +155,20 @@ public class TopicManager {
             toPrintNotes.put(entry.getKey(), currentTopic.getAllNotesInTopic());
         }
         return toPrintNotes;
+    }
+
+    /**
+     * Initializes the <code>topics</code> and <code>allNote</code> of this object by taking in input from the
+     * <code>FileManager</code> object.
+     *
+     * @param topics The output obtained from the <code>FileManager</code> by calling <code>decodeAll</code>.
+     */
+    public void initialize(HashMap<String, Topic> topics) {
+        this.topics = topics;
+        for (Topic topic: topics.values()) {
+            if (topic != null) {
+                allNotes.addAll(topic.getAllNotesInTopic());
+            }
+        }
     }
 }
