@@ -11,8 +11,8 @@ import java.util.Map;
  * The <code>Topic</code> object handles the operations of the notes within a specific topic.
  */
 public class Topic {
-    private String topicName;
-    private HashMap<String, Note> notes;
+    private final String topicName;
+    private final HashMap<String, Note> notes;
 
     /**
      * Constructor for <code>Topic</code> object.
@@ -55,12 +55,6 @@ public class Topic {
     public boolean removeNote(String name) {
         notes.remove(name);
 
-        /*
-        if (!fileManager.deleteEntry(topicName, name)) {
-                    ui.printRemoveFail();
-                    return false;
-         }
-         */
         return true;
     }
 

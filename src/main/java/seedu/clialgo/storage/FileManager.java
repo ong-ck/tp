@@ -43,9 +43,7 @@ public class FileManager {
         SingleFile newFile = new SingleFile(null, name, decoder);
         try {
             File file = new File(path + "\\" + name + ".txt");
-            if (file.createNewFile()) {
-                System.out.println(file + " created");
-            } else {
+            if (!file.createNewFile()) {
                 System.out.println(file + " not created");
             }
             newFile.setFile(file);

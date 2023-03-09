@@ -2,7 +2,10 @@ package seedu.clialgo.command;
 
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
+import java.util.Objects;
+
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
@@ -15,6 +18,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  * JUnit test for the <code>AddCommand</code> class methods.
  */
 class AddCommandTest {
+
+    /**
+     * Deletes folder at <code>pathToFolder</code> and all the files within.
+     * @param pathToFolder The <code>File</code> representing the folder to delete.
+     */
+    public void deleteAll(File pathToFolder) {
+        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
+            if (!f.delete()) {
+                System.out.println("Delete failed");
+            }
+        }
+        if (!pathToFolder.delete()) {
+            System.out.println("Delete failed");
+        } else {
+            System.out.println("Delete successful");
+        }
+    }
 
     /**
      * Checks the <code>equals</code> method of the <code>AddCommand</code> class.
@@ -56,9 +76,11 @@ class AddCommandTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
+        String testDataPath = ".\\testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
-        FileManager fileManager = new FileManager();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
 
         String noteName = "queue";
         String noteTopic = "LINKED_LIST";
@@ -71,18 +93,17 @@ class AddCommandTest {
         if (os.contains("Windows")) {
             // This expected output has "File Created" due to the first
             // initialisation of the FileManager in AddCommandTest.
-            expectedOutput = "File created\r\n" +
-                    "======================================================\r\n" +
+            expectedOutput = "======================================================\r\n" +
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n";
         } else {
-            expectedOutput = "File created\n" +
-                    "======================================================\n" +
+            expectedOutput = "======================================================\n" +
                     "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n";
         }
 
         assertEquals(expectedOutput, outContent.toString());
+        deleteAll(new File(testDataPath));
     }
 
     /**
@@ -95,9 +116,11 @@ class AddCommandTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
+        String testDataPath = ".\\testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
-        FileManager fileManager = new FileManager();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
 
         String noteName = "queue";
         String noteTopic = "invalidTopic";
@@ -120,6 +143,7 @@ class AddCommandTest {
         }
 
         assertEquals(expectedOutput, outContent.toString());
+        deleteAll(new File(testDataPath));
     }
 
     /**
@@ -132,9 +156,11 @@ class AddCommandTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
+        String testDataPath = ".\\testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
-        FileManager fileManager = new FileManager();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
 
         String noteName = "queue";
         String noteTopic = "LINKED_LIST";
@@ -164,5 +190,6 @@ class AddCommandTest {
         }
 
         assertEquals(expectedOutput, outContent.toString());
+        deleteAll(new File(testDataPath));
     }
 }
