@@ -84,8 +84,7 @@ public class SingleFile {
     }
 
     public Topic convertFileToTopic () {
-        Topic topic = new Topic(name);
-
+        Topic topic = new Topic(name, notes);
         return topic;
     }
 
