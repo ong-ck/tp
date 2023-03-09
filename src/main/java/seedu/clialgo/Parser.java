@@ -3,6 +3,7 @@ package seedu.clialgo;
 import seedu.clialgo.command.AddCommand;
 import seedu.clialgo.command.Command;
 import seedu.clialgo.command.ExitCommand;
+import seedu.clialgo.command.ExitTestModeCommand;
 import seedu.clialgo.command.FilterCommand;
 import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
@@ -10,6 +11,7 @@ import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.ListCommand;
 import seedu.clialgo.command.NameNotFoundCommand;
 import seedu.clialgo.command.RemoveCommand;
+import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
 
@@ -26,7 +28,7 @@ public class Parser implements StringManipulation {
 
     /** List of valid commands */
     private static final ArrayList<String> COMMANDS = new ArrayList<>(
-            Arrays.asList("help", "add", "remove", "filter", "exit", "list")
+            Arrays.asList("help", "add", "remove", "filter", "exit", "list", "start-test-mode", "exit-test-mode")
     );
 
     /** List of valid keywords */
@@ -210,6 +212,17 @@ public class Parser implements StringManipulation {
     }
 
     /**
+     * @return A <code>Command</code> object that starts test mode.
+     */
+    private Command prepareTestModeCommand() {
+        return new TestModeCommand();
+    }
+
+    private Command prepareExitTestModeCommand() {
+        return new ExitTestModeCommand();
+    }
+
+    /**
      * This function takes in the command keyword and description and executes the specified command.
      *
      * @param command The command keyword indicating the type of command to execute.
@@ -229,6 +242,10 @@ public class Parser implements StringManipulation {
             return prepareFilterCommand(description, topics);
         case "list":
             return prepareListCommand();
+        case "start-test-mode":
+            return prepareTestModeCommand();
+        case "exit-test-mode":
+            return prepareExitTestModeCommand();
         default:
             return prepareExitCommand();
         }
