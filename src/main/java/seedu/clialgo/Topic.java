@@ -7,9 +7,9 @@ public class Topic {
     private String topicName;
     private HashMap<String, Note> notes;
 
-    public Topic(String topicName, HashMap<String, Note> notes) {
+    public Topic(String topicName) {
         this.topicName = topicName;
-        this.notes = notes;
+        notes = new HashMap<>();
     }
 
     public boolean addNote(String name, String path) {
