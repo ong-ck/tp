@@ -14,9 +14,9 @@ public abstract class Command {
     /**
      * A method to be overridden by the subclasses to execute specific commands by the user.
      *
-     * @param topicManager The <code>Topic</code> object.
-     * @param ui The <code>Ui</code> object.
-     * @param fileManager The <code>FileManager</code> object.
+     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param ui The <code>Ui</code> object which handles outputs to the user.
+     * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
      */
     public abstract void execute(TopicManager topicManager, Ui ui, FileManager fileManager);
 

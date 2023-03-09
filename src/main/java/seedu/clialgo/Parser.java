@@ -25,7 +25,7 @@ public class Parser implements StringManipulation {
 
     /** List of valid commands */
     private static final ArrayList<String> COMMANDS = new ArrayList<>(
-            Arrays.asList("help", "add", "remove", "filter", "exit")
+            Arrays.asList("help", "add", "remove", "filter", "exit", "list")
     );
 
     /**
@@ -61,7 +61,7 @@ public class Parser implements StringManipulation {
      */
     private Command prepareHelpCommand(String description) {
         // No description provided, show generic help message.
-        if (description == null || description.equals("")) {
+        if (description == null) {
             return new HelpCommand();
         }
         String command;
@@ -98,7 +98,7 @@ public class Parser implements StringManipulation {
         try {
             String noteNameWithMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (!isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
+            if (topicName == null || topicName.equals("") || !isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
                 return new InvalidCommand();
             }
             if (!topics.isValidTopic(topicName)) {
@@ -152,8 +152,11 @@ public class Parser implements StringManipulation {
         try {
             String fullKeyWord = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (!isCorrectMarker(fullKeyWord, KEYWORD_MARKER)) {
+            if (fullKeyWord.equals("") || !isCorrectMarker(fullKeyWord, KEYWORD_MARKER)) {
                 return new InvalidCommand();
+            }
+            if (topicName!= null && !topics.isValidTopic(topicName)) {
+                return new InvalidTopicCommand();
             }
             keyWord = StringManipulation.removeMarker(fullKeyWord, KEYWORD_MARKER);
         } catch (NullInputException | EmptyFieldException e) {
