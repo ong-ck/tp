@@ -19,19 +19,27 @@ public class AddCommand extends Command {
      * Constructor for command to add note to topic list.
      *
      * @param name Name of the note file.
-     * @param topic Topic linked to the note file.
+     * @param topic The topic that this file is tagged to.
      */
     public AddCommand(String name, String topic) {
         this.name = name;
         this.topic = topic;
     }
 
+    String getName() {
+        return this.name;
+    }
+
+    String getTag() {
+        return this.topic;
+    }
+
     /**
      * An overridden method to execute the user command to add new notes into CLIAlgo.
      *
-     * @param topicManager The <code>TopicManager</code> object.
-     * @param ui The <code>Ui</code> object.
-     * @param fileManager The <code>Storage</code> object.
+     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param ui The <code>Ui</code> object which handles outputs to the user.
+     * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
@@ -75,7 +83,7 @@ public class AddCommand extends Command {
     public boolean equals(Command otherCommand) {
         AddCommand otherAddCommand = (AddCommand) otherCommand;
 
-        return Objects.equals(this.name, otherAddCommand.name) &&
-                Objects.equals(this.topic, otherAddCommand.topic);
+        return Objects.equals(this.getName(), otherAddCommand.getName()) &&
+                Objects.equals(this.getTag(), otherAddCommand.getTag());
     }
 }

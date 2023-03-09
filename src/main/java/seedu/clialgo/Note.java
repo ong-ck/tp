@@ -64,4 +64,8 @@ public class Note {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
+    public String getName() {
+        return this.name;
+    }
 }
