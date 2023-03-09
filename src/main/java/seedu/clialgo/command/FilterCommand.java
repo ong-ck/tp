@@ -77,7 +77,7 @@ public class FilterCommand extends Command {
             printAllTopics(topicManager, ui);
         }
         if (!topicManager.isValidTopic(this.topic)) {
-            new InvalidTopicCommand().execute(topicManager, ui, fileManager);
+            new InvalidTopicCommand(this.topic).execute(topicManager, ui, fileManager);
             return;
         }
         if (topicManager.isTopicEmpty(this.topic)) {
