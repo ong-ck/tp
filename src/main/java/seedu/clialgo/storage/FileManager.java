@@ -20,7 +20,6 @@ public class FileManager {
     private final ArrayList<String> topicNames;
     private final HashMap<String, SingleFile> topicRawData;
 
-
     /**
      * Constructor for class containing <code>codeDecoder</code>, <code>codeEncoder</code> and raw data from the
      * .txt file stored as strings.
@@ -76,7 +75,7 @@ public class FileManager {
     }
 
     /**
-     * Creates a foler at <code>path</code>.
+     * Creates a folder at <code>path</code>.
      */
     public void createFolder() {
         try {

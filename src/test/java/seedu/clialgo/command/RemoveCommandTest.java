@@ -8,6 +8,8 @@ public class RemoveCommandTest {
     @Test
     public void testRemoveCommandConstructor() {
         RemoveCommand myObj = new RemoveCommand("queue notes");
-        assertEquals("queue notes", myObj.name);
+        assertEquals("queue notes", myObj.getName());
     }
+
+
 }
