@@ -24,9 +24,13 @@ public class FileDecoder {
      * @param encodedNote The encoded <code>String</code> that represents a <code>Note</code>.
      */
     public void decodeString (String encodedNote) {
-        String[] temp = encodedNote.split(separator);
-        temp[0] = currentName;
-        currentNote = new Note(currentName, temp[1], temp[2]);
+        try {
+            String[] splitNote = encodedNote.split(separator);
+            this.currentName = splitNote[0];
+            currentNote = new Note(this.currentName, splitNote[1], splitNote[2]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid note");
+        }
     }
 
     public String decodedName () {

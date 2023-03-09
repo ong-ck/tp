@@ -21,6 +21,7 @@ public class CLIAlgo {
     /** Continuously reads in the user input until the exit command is executed */
     private void run() {
         fileManager.initialize();
+        topicManager.initialize(fileManager.decodeAll());
         while (true) {
             String fullCommand = ui.getUserInput();
             Command command = parser.parse(fullCommand, topicManager);
