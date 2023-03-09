@@ -30,7 +30,7 @@ public class Ui {
     /**
      * Prints a divider
      */
-    private void printDivider() {
+    public void printDivider() {
         System.out.println(DIVIDER);
     }
 
@@ -215,6 +215,30 @@ public class Ui {
         System.out.println("This function exits the application.\n" +
                         "The syntax for the 'exit' command is: exit.\n" +
                         "Command should only contain one word (i.e. no extensions).");
+        printDivider();
+    }
+
+    public void printInvalidCommand() {
+        printDivider();
+        System.out.println("This is an invalid command, please ensure all your fields are correct");
+        printDivider();
+    }
+
+    public void closeScanner() {
+        this.in.close();
+    }
+
+    public void printNameNotFoundCommand() {
+        printDivider();
+        System.out.println("Cannot remove a note which does not exist, check spelling or case sensitivity");
+    }
+
+    /**
+     * Prints an error message when saving data is unsuccessful.
+     */
+    public void printSaveUnsuccessful() {
+        printDivider();
+        System.out.println("Saving data was unsuccessful. Please try again.");
         printDivider();
     }
 }

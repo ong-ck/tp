@@ -32,7 +32,7 @@ public interface StringManipulation {
             throw new NullInputException();
         }
         String[] processedInputs = userInput.split(regex, 2);
-        if (processedInputs.length == 1) {
+        if (processedInputs.length <= 1 || processedInputs[1].trim().equals("")) {
             return null;
         }
         return processedInputs[1].trim();
