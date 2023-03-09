@@ -29,7 +29,7 @@ public class TopicManager {
             topics.put(topicName, new Topic(topicName));
         }
     }
-
+    
     public TopicManager(HashSet<String> allNotes, HashMap<String, Topic> topics) {
         this.allNotes = allNotes;
         this.topics = topics;
