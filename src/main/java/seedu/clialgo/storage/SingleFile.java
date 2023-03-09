@@ -75,11 +75,13 @@ public class SingleFile {
     }
 
     public void deleteEntry(String name) {
-        storedRawData.remove(name);
-        try {
-            overwriteFile();
-        } catch (IOException e) {
-            System.out.println("File write fail");
+        if (storedRawData.remove(name) != null) {
+            try {
+                overwriteFile();
+            } catch (IOException e) {
+                System.out.println("File write fail");
+            }
+            notes.remove(name);
         }
     }
 

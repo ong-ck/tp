@@ -31,8 +31,6 @@ class AddCommandTest {
         }
         if (!pathToFolder.delete()) {
             System.out.println("Delete failed");
-        } else {
-            System.out.println("Delete successful");
         }
     }
 

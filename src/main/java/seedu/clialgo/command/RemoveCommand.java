@@ -36,7 +36,7 @@ public class RemoveCommand extends Command {
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         boolean isSuccessfullyRemoved = topicManager.removeNote(name);
         if (isSuccessfullyRemoved) {
-            topicManager.removeNote(name);
+            fileManager.deleteEntry(name);
             ui.printRemoveSuccess(name);
         }
     }

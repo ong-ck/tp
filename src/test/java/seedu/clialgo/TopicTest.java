@@ -47,7 +47,7 @@ class TopicTest {
 
         Note testNote = new Note(testNoteName, testNoteName + ".txt", testTopicName);
 
-        HashMap testNotesHashmap = new HashMap<>();
+        HashMap<String, Note> testNotesHashmap = new HashMap<>();
         testNotesHashmap.put(testNoteName, testNote);
 
         Topic testTopic = new Topic(testTopicName);

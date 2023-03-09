@@ -40,13 +40,12 @@ public class FileManager {
      * @return The SingleFile object created.
      */
     public SingleFile createSingleFile(String name) {
-        SingleFile newFile = new SingleFile(null, name, decoder);
+        File file = new File(path + "\\" + name + ".txt");
+        SingleFile newFile = new SingleFile(file, name, decoder);
         try {
-            File file = new File(path + "\\" + name + ".txt");
-            if (!file.createNewFile()) {
-                System.out.println(file + " not created");
+            if (file.createNewFile()) {
+                newFile.setFile(file);
             }
-            newFile.setFile(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,12 +102,12 @@ public class FileManager {
     /**
      * Deletes <code>Note</code> with <code>noteName</code> in <code>topicName</code>.txt and rewrite the .txt file.
      *
-     * @param topicName The name of the <code>Topic</code> which stores the <code>Note</code> involved.
      * @param noteName The name of the <code>Note</code> being deleted.
      */
-    public void deleteEntry (String topicName, String noteName) {
-        SingleFile singleFile = topicRawData.get(topicName);
-        singleFile.deleteEntry(noteName);
+    public void deleteEntry (String noteName) {
+        for (SingleFile sf : topicRawData.values()) {
+            sf.deleteEntry(noteName);
+        }
     }
 
     /**
