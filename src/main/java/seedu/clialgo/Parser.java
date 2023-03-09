@@ -156,7 +156,7 @@ public class Parser implements StringManipulation {
                 return new InvalidCommand();
             }
             if (topicName!= null && !topics.isValidTopic(topicName)) {
-                return new InvalidTopicCommand();
+                return new InvalidTopicCommand(topicName);
             }
             keyWord = StringManipulation.removeMarker(fullKeyWord, KEYWORD_MARKER);
         } catch (NullInputException | EmptyFieldException e) {
