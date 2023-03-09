@@ -21,6 +21,26 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
+        if (command == null) {
+            ui.printHelpPage();
+            return;
+        }
+        switch (command) {
+        case "add":
+            ui.printHelpAdd();
+            return;
+        case "remove":
+            ui.printHelpRemove();
+            return;
+        case "filter":
+            ui.printHelpFilter();
+            return;
+        case "list":
+            ui.printHelpList();
+            return;
+        default:
+            ui.printHelpExit();
+        }
     }
 
     @Override

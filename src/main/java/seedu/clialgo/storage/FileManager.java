@@ -91,7 +91,7 @@ public class FileManager {
      * @param note The <code>Note</code> being added.
      */
     public void addEntry (String name, Note note) {
-        SingleFile singleFile = topicRawData.get(note.getTag());
+        SingleFile singleFile = topicRawData.get(note.getTopic());
         try {
             singleFile.writeNoteToFile(encoder.encodeNote(name ,note));
         } catch (IOException e) {

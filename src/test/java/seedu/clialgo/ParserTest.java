@@ -134,13 +134,13 @@ class ParserTest {
         Command actualListOutput = parser.parse(listInput, topics);
         assertTrue(correctListOutput.equals(actualListOutput));
 
-        String filterNoTopicInput = "filter k/keyword";
-        FilterCommand correctFilterNoTopicOutput = new FilterCommand("keyword", null);
+        String filterNoTopicInput = "filter k/topic";
+        FilterCommand correctFilterNoTopicOutput = new FilterCommand("topic", null);
         Command actualFilterNoTopicOutput = parser.parse(filterNoTopicInput, topics);
         assertTrue(correctFilterNoTopicOutput.equals(actualFilterNoTopicOutput));
 
-        String filterTopicInput = "filter k/keyword t/BINARY_SEARCH_TREE";
-        FilterCommand correctFilterTopicOutput = new FilterCommand("keyword", "BINARY_SEARCH_TREE");
+        String filterTopicInput = "filter k/topic t/BINARY_SEARCH_TREE";
+        FilterCommand correctFilterTopicOutput = new FilterCommand("topic", "BINARY_SEARCH_TREE");
         Command actualFilterTopicOutput = parser.parse(filterTopicInput, topics);
         assertTrue(correctFilterTopicOutput.equals(actualFilterTopicOutput));
 
@@ -174,8 +174,8 @@ class ParserTest {
         Command actualOptionalFieldOutput = parser.parse(optionalFieldInput, topics);
         assertTrue(correctOptionalFieldOutput.equals(actualOptionalFieldOutput));
 
-        String wrongOptionalMarker = "filter k/keyword t/BINARY_SEARCH_TREE";
-        FilterCommand correctWrongOptionalMarkerOutput = new FilterCommand("keyword", "BINARY_SEARCH_TREE");
+        String wrongOptionalMarker = "filter k/topic t/BINARY_SEARCH_TREE";
+        FilterCommand correctWrongOptionalMarkerOutput = new FilterCommand("topic", "BINARY_SEARCH_TREE");
         Command actualWrongOptionalMarkerOutput = parser.parse(wrongOptionalMarker, topics);
         assertTrue(correctWrongOptionalMarkerOutput.equals(actualWrongOptionalMarkerOutput));
     }
@@ -219,8 +219,8 @@ class ParserTest {
         Command actualEmptySingleFieldOutput = parser.parse(emptySingleFieldInput, topics);
         assertTrue(correctEmptySingleFieldOutput.equals(actualEmptySingleFieldOutput));
 
-        String emptyOptionalFieldInput = "filter k/keyword t/";
-        FilterCommand correctEmptyOptionalFieldOutput = new FilterCommand("keyword", null);
+        String emptyOptionalFieldInput = "filter k/topic t/";
+        FilterCommand correctEmptyOptionalFieldOutput = new FilterCommand("topic", null);
         Command actualEmptyOptionalFieldOutput = parser.parse(emptyOptionalFieldInput, topics);
         assertTrue(correctEmptyOptionalFieldOutput.equals(actualEmptyOptionalFieldOutput));
     }

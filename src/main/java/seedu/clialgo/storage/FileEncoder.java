@@ -23,7 +23,7 @@ public class FileEncoder {
      * @return Returns a processed string.
      */
     public String encodeNote (String name, Note note) {
-        return name + separator + note.getPath() + separator + note.getTag();
+        return name + separator + note.getPath() + separator + note.getTopic();
     }
 
 }

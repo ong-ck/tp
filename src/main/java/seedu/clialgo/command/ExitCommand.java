@@ -19,7 +19,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
-        ui.printHelpExit();
+        ui.printExitMessage();
         ui.closeScanner();
         System.exit(0);
     }
