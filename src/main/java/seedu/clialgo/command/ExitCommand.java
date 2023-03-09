@@ -2,6 +2,7 @@ package seedu.clialgo.command;
 
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
+
 import seedu.clialgo.Ui;
 
 /**
@@ -10,7 +11,7 @@ import seedu.clialgo.Ui;
  */
 public class ExitCommand extends Command {
     /**
-     * This method closes the scanner and exits from the program
+     * This method closes the scanner and exits from the program.
      *
      * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
@@ -18,8 +19,9 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
-        //ui.closeScanner();
-        //ui.exitProgram();
+        ui.printHelpExit();
+        ui.closeScanner();
+        System.exit(0);
     }
 
     /**

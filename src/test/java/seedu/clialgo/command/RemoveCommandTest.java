@@ -10,4 +10,6 @@ public class RemoveCommandTest {
         RemoveCommand myObj = new RemoveCommand("queue notes");
         assertEquals("queue notes", myObj.getName());
     }
+
+
 }

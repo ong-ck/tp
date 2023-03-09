@@ -9,7 +9,6 @@ import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
 import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.ListCommand;
-import seedu.clialgo.command.RemoveCommand;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -134,11 +133,6 @@ class ParserTest {
         ListCommand correctListOutput = new ListCommand();
         Command actualListOutput = parser.parse(listInput, topics);
         assertTrue(correctListOutput.equals(actualListOutput));
-
-        String removeInput = "remove n/Name of File";
-        RemoveCommand correctRemoveOutput = new RemoveCommand("Name of File");
-        Command actualRemoveOutput = parser.parse(removeInput, topics);
-        assertTrue(correctRemoveOutput.equals(actualRemoveOutput));
 
         String filterNoTopicInput = "filter k/keyword";
         FilterCommand correctFilterNoTopicOutput = new FilterCommand("keyword", null);

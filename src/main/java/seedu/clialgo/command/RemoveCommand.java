@@ -26,7 +26,7 @@ public class RemoveCommand extends Command {
     }
 
     /**
-     * This method removes a note corresponding to <code>name</code> from the list. It then saves the
+     * Overridden method that removes a note corresponding to <code>name</code> from the list. It then saves the
      * updated list.
      * @param topicManager A Topic object containing all the different topics available.
      * @param ui A Ui object which handles outputs to the user.
@@ -34,7 +34,11 @@ public class RemoveCommand extends Command {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
-        //topic.removeNote(name);
+        boolean isSuccessfullyRemoved = topicManager.removeNote(name);
+        if (isSuccessfullyRemoved) {
+            ui.printRemoveSuccess(name);
+        }
+
     }
 
     /**
@@ -55,7 +59,6 @@ public class RemoveCommand extends Command {
     @Override
     public boolean equals(Command otherCommand) {
         RemoveCommand otherRemoveCommand = (RemoveCommand) otherCommand;
-
         return Objects.equals(this.name, otherRemoveCommand.name);
     }
 }

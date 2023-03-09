@@ -1,9 +1,11 @@
 package seedu.clialgo;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Map;
+
 
 /**
  * The <code>Topic</code> object handles the operations of the notes within a specific topic.
@@ -46,9 +48,20 @@ public class Topic {
         return this.notes.isEmpty();
     }
 
-    // Placeholder method
-    public void removeNote(String name) {
+    /**
+     * Removes a note based on its name
+     * @param name Name of the note file
+     */
+    public boolean removeNote(String name) {
+        notes.remove(name);
 
+        /*
+        if (!fileManager.deleteEntry(topicName, name)) {
+                    ui.printRemoveFail();
+                    return false;
+         }
+         */
+        return true;
     }
 
     /**

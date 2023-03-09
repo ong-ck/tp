@@ -69,6 +69,7 @@ public class FilterCommand extends Command {
      */
     @Override
     public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
+
         if (topicManager.isEmpty()) {
             ui.printFilterFail();
             return;
@@ -85,6 +86,7 @@ public class FilterCommand extends Command {
             return;
         }
         printSingleTopic(topicManager, ui);
+
     }
 
     @Override
