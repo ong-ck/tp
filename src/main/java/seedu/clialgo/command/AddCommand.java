@@ -2,10 +2,10 @@ package seedu.clialgo.command;
 
 import java.util.Objects;
 
+import seedu.clialgo.Note;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.Ui;
-
 
 /**
  * The <code>AddCommand</code> objects represents the user command to add new notes into CLIAlgo.
@@ -13,20 +13,17 @@ import seedu.clialgo.Ui;
 public class AddCommand extends Command {
 
     private String name;
-    private String path;
-
-    private String tag;
+    private String topic;
 
     /**
      * Constructor for command to add note to topic list.
      *
      * @param name Name of the note file.
-     * @param tag The topic that this file is tagged to.
+     * @param topic The topic that this file is tagged to.
      */
-    public AddCommand(String name, String tag) {
+    public AddCommand(String name, String topic) {
         this.name = name;
-        this.path = name;
-        this.tag = tag;
+        this.topic = topic;
     }
 
     String getName() {
@@ -34,7 +31,7 @@ public class AddCommand extends Command {
     }
 
     String getTag() {
-        return this.tag;
+        return this.topic;
     }
 
     /**
@@ -46,12 +43,34 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
+        String notePath = name + ".txt";
+        Note newNote = new Note(name, notePath, topic);
 
-        // Check if added -> execute invalid command if note added
+        // Save note in FileManager first -> if failed, will not be added to internal hashmap
+        // Commented as fileManager methods are not fully developed yet
+        /*
+        if (!fileManager.addEntry(name, newNote)) {
+                    ui.printSaveUnsuccessful();
+                    return;
+                }
+         */
 
-        // Save list into Storage
+        // Check if topicName is valid
+        if (!topicManager.isValidTopic(topic)) {
+            new InvalidTopicCommand(topic).execute(topicManager, ui, fileManager);
+            return;
+        }
+
+        boolean isAdded = topicManager.addNote(name, topic, newNote);
+
+        // Check if added -> execute invalid command if note is not added
+        if (!isAdded) {
+            new InvalidCommand().execute(topicManager, ui, fileManager);
+            return;
+        }
 
         // Ui for successful adding
+        ui.printAddSuccess(name, topic);
     }
 
     /**

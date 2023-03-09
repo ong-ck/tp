@@ -217,4 +217,20 @@ public class Ui {
                         "Command should only contain one word (i.e. no extensions).");
         printDivider();
     }
+
+    /**
+     * Prints an error message when saving data is unsuccessful.
+     */
+    public void printSaveUnsuccessful() {
+        printDivider();
+        System.out.println("Saving data was unsuccessful. Please try again.");
+        printDivider();
+    }
+
+    // Placeholder method
+    public void printInvalidCommand() {
+        printDivider();
+        System.out.println("This is the printInvalidCommand method");
+        printDivider();
+    }
 }

@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+/**
+ * The <code>TopicManager</code> object handles the
+ */
 public class TopicManager {
     /** List of valid topics */
     private static final ArrayList<String> TOPIC_NAMES = new ArrayList<>(
@@ -26,10 +29,35 @@ public class TopicManager {
             topics.put(topicName, new Topic(topicName));
         }
     }
-
+    
     public TopicManager(HashSet<String> allNotes, HashMap<String, Topic> topics) {
         this.allNotes = allNotes;
         this.topics = topics;
+    }
+
+    /**
+     * Adds a new note into the specific <code>Topic</code> object
+     * while keeping track of the names of all notes added.
+     * Name of the note to be added cannot be the same as a previously added note.
+     *
+     * @param noteName Name of the note file.
+     * @param topicName Name of the topic the note is added to.
+     * @param note The <code>Note</code> object representing the note file.
+     * @return True if note is successfully added and False otherwise.
+     */
+    public boolean addNote(String noteName, String topicName, Note note) {
+        // Check if note name has been taken
+        if (allNotes.contains(noteName)) {
+            return false;
+        }
+
+        // Adds note into topic hashmap
+        topics.get(topicName).addNote(noteName, note);
+
+        // Keep track of name of note added
+        allNotes.add(noteName);
+
+        return true;
     }
 
     /**

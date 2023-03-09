@@ -102,7 +102,7 @@ public class Parser implements StringManipulation {
                 return new InvalidCommand();
             }
             if (!topics.isValidTopic(topicName)) {
-                return new InvalidTopicCommand();
+                return new InvalidTopicCommand(topicName);
             }
             noteName = StringManipulation.removeMarker(noteNameWithMarker, NAME_MARKER);
         } catch (NullInputException | EmptyFieldException e) {

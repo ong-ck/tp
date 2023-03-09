@@ -10,8 +10,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class FilterCommand extends Command {
-    String keyWord;
-    String topic;
+    private String keyWord;
+    private String topic;
 
     public FilterCommand(String keyWord, String topic) {
         this.keyWord = keyWord;

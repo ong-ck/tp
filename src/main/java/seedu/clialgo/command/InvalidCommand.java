@@ -15,7 +15,7 @@ public class InvalidCommand extends Command {
      * This method informs the user that they have keyed in an invalid command.
      */
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
-        //ui.printInvalidCommand();
+        ui.printInvalidCommand();
     }
 
     /**

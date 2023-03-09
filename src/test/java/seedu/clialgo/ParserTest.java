@@ -191,17 +191,17 @@ class ParserTest {
         Parser parser = new Parser();
         TopicManager topics = new TopicManager();
         String wrongSpellingInput = "add n/Name of File t/LINKED LIST";
-        InvalidTopicCommand correctWrongSpellingOutput = new InvalidTopicCommand();
+        InvalidTopicCommand correctWrongSpellingOutput = new InvalidTopicCommand("LINKED LIST");
         Command actualWrongSpellingOutput = parser.parse(wrongSpellingInput, topics);
         assertTrue(correctWrongSpellingOutput.equals(actualWrongSpellingOutput));
 
         String lowerCaseTopicInput = "add n/Name of File t/sorting";
-        InvalidTopicCommand correctLowerCaseTopicOutput = new InvalidTopicCommand();
+        InvalidTopicCommand correctLowerCaseTopicOutput = new InvalidTopicCommand("sorting");
         Command actualLowerCaseTopicOutput = parser.parse(lowerCaseTopicInput, topics);
         assertTrue(correctLowerCaseTopicOutput.equals(actualLowerCaseTopicOutput));
 
         String outOfSyllabusInput = "filter k/keyword t/FENWICK_TREE";
-        InvalidTopicCommand correctOutOfSyllabusOutput = new InvalidTopicCommand();
+        InvalidTopicCommand correctOutOfSyllabusOutput = new InvalidTopicCommand("FENWICK_TREE");
         Command actualOutOfSyllabusOutput = parser.parse(outOfSyllabusInput, topics);
         assertTrue(correctOutOfSyllabusOutput.equals(actualOutOfSyllabusOutput));
     }
