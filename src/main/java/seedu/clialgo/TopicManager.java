@@ -20,10 +20,10 @@ public class TopicManager {
 
 
     /** General HashSet to check for duplicate names. */
-    private HashSet<String> allNotes;
+    private final HashSet<String> allNotes;
 
     /** Data Structure to hold all the topics */
-    private HashMap<String, Topic> topics;
+    private final HashMap<String, Topic> topics;
 
     public TopicManager() {
         allNotes = new HashSet<>();
@@ -40,6 +40,10 @@ public class TopicManager {
 
     public HashMap<String, Topic> getTopics() {
         return this.topics;
+    }
+
+    public ArrayList<String> getTopicNames() {
+        return TOPIC_NAMES;
     }
 
     /**

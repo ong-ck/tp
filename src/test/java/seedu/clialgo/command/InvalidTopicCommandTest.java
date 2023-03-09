@@ -6,13 +6,32 @@ import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class InvalidTopicCommandTest {
+
+    /**
+     * Deletes folder at <code>pathToFolder</code> and all the files within.
+     * @param pathToFolder The <code>File</code> representing the folder to delete.
+     */
+    public void deleteAll(File pathToFolder) {
+        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
+            if (!f.delete()) {
+                System.out.println("Delete failed");
+            }
+        }
+        if (!pathToFolder.delete()) {
+            System.out.println("Delete failed");
+        } else {
+            System.out.println("Delete successful");
+        }
+    }
 
     /**
      * Checks the <code>equals</code> method of the <code>InvalidTopicCommand</code> class.
@@ -50,9 +69,11 @@ class InvalidTopicCommandTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
+        String testDataPath = ".\\testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
-        FileManager fileManager = new FileManager();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
 
         String topicName = "invalidTopic";
         new InvalidTopicCommand(topicName).execute(topicManager, ui, fileManager);
@@ -73,5 +94,6 @@ class InvalidTopicCommandTest {
         }
 
         assertEquals(expectedOutput, outContent.toString());
+        deleteAll(new File(testDataPath));
     }
 }
