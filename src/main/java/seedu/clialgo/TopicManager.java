@@ -17,8 +17,6 @@ public class TopicManager {
                     "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS", "MINIMUM_SPANNING_TREE")
     );
 
-
-
     /** General HashSet to check for duplicate names. */
     private final HashSet<String> allNotes;
 
@@ -44,6 +42,21 @@ public class TopicManager {
 
     public ArrayList<String> getTopicNames() {
         return TOPIC_NAMES;
+    }
+
+    /** Checks if there are any notes stored in CLIAlgo. */
+    public boolean isEmpty() {
+        return allNotes.isEmpty();
+    }
+
+    /** Checks if a specified topic has no notes stored in it. */
+    public boolean isTopicEmpty(String topic) {
+        return topics.get(topic).isEmpty();
+    }
+
+    /** Checks if a given note name have been used before. */
+    public boolean isRepeatedNote(String noteName) {
+        return this.allNotes.contains(noteName);
     }
 
     /**
@@ -91,7 +104,7 @@ public class TopicManager {
         for (String topicName : TOPIC_NAMES) {
 
             // check which topic contains that particular note
-            if ((topics.get(topicName).getNotes()).containsKey(noteName)) {
+            if ((topics.get(topicName).isInsideTopic(noteName))) {
 
                 // remove name of note from the allNotes set to keep track of names
                 allNotes.remove(noteName);
@@ -101,33 +114,6 @@ public class TopicManager {
             }
         }
         return false;
-    }
-
-    /**
-     * Checks if the name of a note exists.
-     * @param noteName Name of the note file
-     * @return Returns true if name of note file exists, false if otherwise.
-     */
-    public boolean noteExist (String noteName) {
-        for (String topicName : TOPIC_NAMES) {
-            return (topics.get(topicName).getNotes()).containsKey(noteName);
-        }
-        return false;
-    }
-
-    /** Checks if there are any notes stored in CLIAlgo. */
-    public boolean isEmpty() {
-        return allNotes.isEmpty();
-    }
-
-    /** Checks if a specified topic has no notes stored in it. */
-    public boolean isTopicEmpty(String topic) {
-        return topics.get(topic).isEmpty();
-    }
-
-    /** Checks if a given note name have been used before. */
-    public boolean isRepeatedNote(String noteName) {
-        return this.allNotes.contains(noteName);
     }
 
     /**

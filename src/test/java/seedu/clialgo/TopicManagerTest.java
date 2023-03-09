@@ -31,7 +31,7 @@ class TopicManagerTest {
     @Test
     void noteExist_checkForNoteThatDoesNotExist_expectFalse() {
         String noteName = "thisNoteNameDoesNotExist";
-        assertFalse(new TopicManager().noteExist(noteName));
+        assertFalse(new TopicManager().isRepeatedNote(noteName));
     }
 
     /**

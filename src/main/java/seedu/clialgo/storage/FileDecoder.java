@@ -36,5 +36,4 @@ public class FileDecoder {
     public Note processedNote () {
         return currentNote;
     }
-
 }

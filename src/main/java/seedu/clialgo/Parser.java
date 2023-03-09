@@ -29,14 +29,29 @@ public class Parser implements StringManipulation {
             Arrays.asList("help", "add", "remove", "filter", "exit", "list")
     );
 
+    /** List of valid keywords */
+    private static final ArrayList<String> KEYWORDS = new ArrayList<>(
+            Arrays.asList("topic")
+    );
+
+    /**
+     * Checks if the input string is a valid command.
+     *
+     * @param keyWord The input string.
+     * @return True if the input string is a valid command, False otherwise.
+     */
+    public boolean isValidCommand(String keyWord) {
+        return COMMANDS.contains(keyWord);
+    }
+
     /**
      * Checks if the input string is a valid command.
      *
      * @param keyWord The input string.
      * @return True if the input string is a valid keyword, False otherwise.
      */
-    public boolean isValidCommand(String keyWord) {
-        return COMMANDS.contains(keyWord);
+    public boolean isValidKeyword(String keyWord) {
+        return KEYWORDS.contains(keyWord);
     }
 
     /**
@@ -99,14 +114,17 @@ public class Parser implements StringManipulation {
         try {
             String noteNameWithMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (topicName == null || topicName.equals("") || !isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
+            if (topicName == null || !isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
                 return new InvalidCommand();
             }
+
             if (!topics.isValidTopic(topicName)) {
                 return new InvalidTopicCommand(topicName);
             }
+
             noteName = StringManipulation.removeMarker(noteNameWithMarker, NAME_MARKER);
-        } catch (NullInputException | EmptyFieldException e) {
+
+        } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException e) {
             return new InvalidCommand();
         }
         return new AddCommand(noteName, topicName);
@@ -130,8 +148,10 @@ public class Parser implements StringManipulation {
             if (!isCorrectMarker(description, NAME_MARKER)) {
                 return new InvalidCommand();
             }
+
             noteName = StringManipulation.removeMarker(description, NAME_MARKER);
-            if (!topics.noteExist(noteName)) {
+
+            if (!topics.isRepeatedNote(noteName)) {
                 return new NameNotFoundCommand();
             }
         } catch (NullInputException | EmptyFieldException e) {
@@ -163,7 +183,12 @@ public class Parser implements StringManipulation {
             if (topicName!= null && !topics.isValidTopic(topicName)) {
                 return new InvalidTopicCommand(topicName);
             }
+
             keyWord = StringManipulation.removeMarker(fullKeyWord, KEYWORD_MARKER);
+
+            if (!isValidKeyword(keyWord)) {
+                return new InvalidCommand();
+            }
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }

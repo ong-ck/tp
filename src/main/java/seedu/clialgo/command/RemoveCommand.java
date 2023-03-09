@@ -34,11 +34,19 @@ public class RemoveCommand extends Command {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
-        boolean isSuccessfullyRemoved = topicManager.removeNote(name);
-        if (isSuccessfullyRemoved) {
-            fileManager.deleteEntry(name);
-            ui.printRemoveSuccess(name);
+        if (topicManager.isEmpty()) {
+            ui.printRemoveFail();
+            return;
         }
+
+        boolean isSuccessfullyRemoved = topicManager.removeNote(name);
+
+        if (!isSuccessfullyRemoved) {
+            ui.printRemoveFail();
+        }
+
+        fileManager.deleteEntry(name);
+        ui.printRemoveSuccess(name);
     }
 
     /**
