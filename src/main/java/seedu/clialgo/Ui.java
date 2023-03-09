@@ -30,7 +30,7 @@ public class Ui {
     /**
      * Prints a divider
      */
-    private void printDivider() {
+    public void printDivider() {
         System.out.println(DIVIDER);
     }
 
@@ -231,6 +231,14 @@ public class Ui {
     public void printNameNotFoundCommand() {
         printDivider();
         System.out.println("Cannot remove a note which does not exist, check spelling or case sensitivity");
+    }
+
+    /**
+     * Prints an error message when saving data is unsuccessful.
+     */
+    public void printSaveUnsuccessful() {
+        printDivider();
+        System.out.println("Saving data was unsuccessful. Please try again.");
         printDivider();
     }
 }
