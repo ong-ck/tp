@@ -1,21 +1,19 @@
 package seedu.clialgo;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Map;
 
-
 /**
  * The <code>Topic</code> object handles the operations of the notes within a specific topic.
  */
 public class Topic {
-    private String topicName;
-    private HashMap<String, Note> notes;
+    private final String topicName;
+    private final HashMap<String, Note> notes;
 
     /**
-     * Constructor for <code>Topic</code> object.
+     * Constructor that initializes an empty <code>Topic</code> object.
      *
      * @param topicName The name of the topic.
      */
@@ -24,6 +22,12 @@ public class Topic {
         notes = new HashMap<>();
     }
 
+    /**
+     * Constructor that initializes a <code>Topic</code> object with notes stored in it.
+     *
+     * @param topicName The name of the topic.
+     * @param notes A HashMap containing the notes stored in the <code>Topic</code> object.
+     */
     public Topic(String topicName, HashMap<String, Note> notes) {
         this.topicName = topicName;
         this.notes = notes;
@@ -31,6 +35,15 @@ public class Topic {
 
     public HashMap<String, Note> getNotes() {
         return notes;
+    }
+
+    /** Checks if the topic have not notes inside */
+    public boolean isEmpty() {
+        return this.notes.isEmpty();
+    }
+
+    public boolean isInsideTopic(String noteName) {
+        return this.notes.containsKey(noteName);
     }
 
     /**
@@ -43,11 +56,6 @@ public class Topic {
         notes.put(name, note);
     }
 
-    /** Checks if the topic have not notes inside */
-    public boolean isEmpty() {
-        return this.notes.isEmpty();
-    }
-
     /**
      * Removes a note based on its name
      * @param name Name of the note file
@@ -55,12 +63,6 @@ public class Topic {
     public boolean removeNote(String name) {
         notes.remove(name);
 
-        /*
-        if (!fileManager.deleteEntry(topicName, name)) {
-                    ui.printRemoveFail();
-                    return false;
-         }
-         */
         return true;
     }
 

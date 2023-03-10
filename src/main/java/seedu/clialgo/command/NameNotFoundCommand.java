@@ -18,6 +18,7 @@ public class NameNotFoundCommand extends Command {
      */
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         ui.printNameNotFoundCommand();
+        ui.printDivider();
     }
 
     /**

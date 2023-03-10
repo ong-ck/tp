@@ -1,12 +1,13 @@
 package seedu.clialgo.storage;
 
-import java.io.File;
-
 import seedu.clialgo.Note;
 
+/**
+ * Object that processes a <code>String</code> passed to it and returns a <code>Note</code> representing the
+ * information in the <code>String</code>.
+ */
 public class FileDecoder {
 
-    protected File file;
     protected Note currentNote;
     protected String currentName;
     protected final String separator;
@@ -14,11 +15,9 @@ public class FileDecoder {
     /**
      * Constructor for the fileDecoder object
      *
-     * @param file The file object referring to the .txt file with the raw data.
      * @param separator The <code>String</code> which separates each form of data stored in each <code>Note</code>.
      */
-    public FileDecoder (File file, String separator) {
-        this.file = file;
+    public FileDecoder (String separator) {
         this.separator = separator;
     }
 
@@ -29,9 +28,13 @@ public class FileDecoder {
      * @param encodedNote The encoded <code>String</code> that represents a <code>Note</code>.
      */
     public void decodeString (String encodedNote) {
-        String[] temp = encodedNote.split(separator);
-        temp[0] = currentName;
-        currentNote = new Note(currentName, temp[1], temp[2]);
+        try {
+            String[] splitNote = encodedNote.split(separator);
+            this.currentName = splitNote[0];
+            currentNote = new Note(this.currentName, splitNote[1], splitNote[2]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid note");
+        }
     }
 
     public String decodedName () {
@@ -41,5 +44,4 @@ public class FileDecoder {
     public Note processedNote () {
         return currentNote;
     }
-
 }

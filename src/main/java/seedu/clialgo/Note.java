@@ -4,22 +4,21 @@ package seedu.clialgo;
  * The <code>Note</code> object represents each note file that the user can add into CLIAlgo.
  */
 public class Note {
-
     private String name;
     private String path;
-    private String tag;
+    private String topic;
 
     /**
      * Constructor for <code>Note</code> object.
      *
      * @param name Name of the note file.
      * @param path Path to the note file.
-     * @param tag Topic that note file should be tagged.
+     * @param topic Topic that note file should be tagged.
      */
-    public Note(String name, String path, String tag) {
+    public Note(String name, String path, String topic) {
         this.name = name;
         this.path = path;
-        this.tag = tag;
+        this.topic = topic;
     }
 
     /**
@@ -27,6 +26,10 @@ public class Note {
      */
     public void printNoteName() {
         System.out.println(name);
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -52,20 +55,16 @@ public class Note {
      *
      * @return The tag of the note file.
      */
-    public String getTag() {
-        return tag;
+    public String getTopic() {
+        return this.topic;
     }
 
     /**
      * Sets the tag of the note file.
      *
-     * @param tag The new tag for the note file.
+     * @param topic The new tag for the note file.
      */
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public String getName() {
-        return this.name;
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 }

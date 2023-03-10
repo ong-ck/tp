@@ -14,7 +14,7 @@ import seedu.clialgo.Ui;
  */
 public class RemoveCommand extends Command {
 
-    private String name;
+    private final String name;
 
     /**
      * Constructor for command to remove note from topic list.
@@ -34,11 +34,19 @@ public class RemoveCommand extends Command {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
-        boolean isSuccessfullyRemoved = topicManager.removeNote(name);
-        if (isSuccessfullyRemoved) {
-            ui.printRemoveSuccess(name);
+        if (topicManager.isEmpty()) {
+            ui.printRemoveFail();
+            return;
         }
 
+        boolean isSuccessfullyRemoved = topicManager.removeNote(name);
+
+        if (!isSuccessfullyRemoved) {
+            ui.printRemoveFail();
+        }
+
+        fileManager.deleteEntry(name);
+        ui.printRemoveSuccess(name);
     }
 
     /**

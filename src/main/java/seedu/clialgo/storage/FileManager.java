@@ -1,161 +1,183 @@
 package seedu.clialgo.storage;
 
+import seedu.clialgo.Note;
+import seedu.clialgo.Topic;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Scanner;
+import java.util.Objects;
 
-import seedu.clialgo.Note;
-
+/**
+ * Object containing all the raw data for the application, able to update each .txt file which stores the information
+ * of the <code>Notes</code> in each <code>Topic</code>, where the .txt files are named in the convention of
+ * <code>topicName</code>.txt.
+ */
 public class FileManager {
 
-    private File file;
     private final FileEncoder encoder;
     private final FileDecoder decoder;
-    private final String path;
-    private final String folder;
-    private final Hashtable<String, String> storedRawData = new Hashtable<>(); // outdated
-    private final HashMap<String, SingleFile> topicRawData = new HashMap<>();
+    private final String initialPath;
+    private final String testModePath = ".\\testdata";
+    private final ArrayList<String> topicNames;
+    private HashMap<String, SingleFile> topicRawData;
+    private HashMap<String, SingleFile> topicRawDataOutsideTestMode;
+    private String path;
 
     /**
      * Constructor for class containing <code>codeDecoder</code>, <code>codeEncoder</code> and raw data from the
      * .txt file stored as strings.
      */
-    public FileManager() {
-        this.path = ".\\data\\data.txt";
-        this.folder = ".\\data";
+    public FileManager(String path, ArrayList<String> topicNames) {
+        this.path = path;
+        this.initialPath = path;
         String separator = "&@*";
-        this.file = new File(path);
-        this.encoder = new FileEncoder(file, separator);
-        this.decoder = new FileDecoder(file, separator);
-        try {
-            readFile();
-        } catch (FileNotFoundException e) {
-            createFile();
-        }
+        this.topicRawData = new HashMap<>();
+        this.topicNames = topicNames;
+        this.encoder = new FileEncoder(separator);
+        this.decoder = new FileDecoder(separator);
     }
 
     /**
-     * Reads data from the .txt file and stores it in this object.
+     * Creates a <code>SingleFile</code> object and creates a .txt file if the .txt does not exist.
      *
-     * @throws FileNotFoundException Thrown when the .txt file does not exist.
+     * @param name Name of the .txt file.
+     * @return The SingleFile object created.
      */
-    public void readFile() throws FileNotFoundException {
-        Scanner s = new Scanner(file);
-        while (s.hasNext()) {
-            String rawData = s.nextLine();
-            decoder.decodeString(rawData);
-            storedRawData.put(decoder.decodedName(), rawData);
-        }
-        s.close();
-    }
-
-    /**
-     * Creates a folder <code>.\\data</code> if it does not exist. Then, creates a file <code>data.txt</code> in the
-     * folder if it does not exist.
-     */
-    public void createFile() {
+    public SingleFile createSingleFile(String name) {
+        File file = new File(path + "\\" + name + ".txt");
+        SingleFile newFile = new SingleFile(file, name, decoder);
         try {
-            Path dir = Paths.get(folder);
-            Files.createDirectories(dir);
-            this.file = new File(path);
             if (file.createNewFile()) {
-                System.out.println("File created");
-            } else {
-                System.out.println("File already exists");
+                newFile.setFile(file);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return newFile;
     }
 
     /**
-     * Process a <code>Note</code> and add it to the stored data in this object and append the processed
-     * <code>Note</code> as a <code>String</code> to the .txt file.
+     * Creates all the <code>SingleFiles</code> corresponding to each valid <code>Topic</code>. If the .txt file does
+     * not exist, it creates a blank .txt file with <code>topicNames</code>.txt. For all the <code>SingleFiles</code>,
+     * reads the <code>File</code> corresponding to it.
+     */
+    public void initialize() {
+        createFolder();
+        for (String string : topicNames) {
+            topicRawData.put(string, createSingleFile(string));
+        }
+        for (SingleFile singleFile : topicRawData.values()) {
+            try {
+                singleFile.readFile();
+            } catch (FileNotFoundException e) {
+                System.out.println("File write error");
+            }
+        }
+    }
+
+    /**
+     * Creates a folder at <code>path</code>.
+     */
+    public void createFolder() {
+        try {
+            Path directory = Paths.get(path);
+            Files.createDirectories(directory);
+        } catch (IOException e) {
+            System.out.println("Folder not created");
+        }
+    }
+
+    /**
+     * Process a <code>Note</code> and add it to the stored data in the <code>SingleFile</code> object and append the
+     * processed <code>Note</code> as a <code>String</code> to the .txt file.
      *
-     * @param name The name of the <code>Note</code>.
+     * @param name The name of the note.
      * @param note The <code>Note</code> being added.
      */
-    public boolean addEntry (String name, Note note) {
-        SingleFile singleFile = topicRawData.get(note.getTag());
+    public void addEntry (String name, Note note) {
+        SingleFile singleFile = topicRawData.get(note.getTopic());
         try {
-            singleFile.writeNoteToFile(encoder.encodeNote(name, note));
-            return true;
+            singleFile.writeNoteToFile(encoder.encodeNote(name ,note));
         } catch (IOException e) {
             System.out.println("File write error");
-            return false;
         }
     }
 
     /**
-     * Deletes entry with <code>key name</code> and rewrite the .txt file.
+     * Deletes <code>Note</code> with <code>noteName</code> in <code>topicName</code>.txt and rewrite the .txt file.
      *
-     * @param name The <code>key</code> of the entry being deleted.
+     * @param noteName The name of the <code>Note</code> being deleted.
      */
-    public void deleteEntry (String name) {
-        storedRawData.remove(name);
-        try {
-            writeAllToFile();
-        } catch (IOException e) {
-            System.out.println("File write failed");
+    public void deleteEntry (String noteName) {
+        for (SingleFile singleFile : topicRawData.values()) {
+            singleFile.deleteEntry(noteName);
         }
     }
 
     /**
-     * Deletes all stored raw data in this object and in the .txt file.
-     */
-    public void deleteAllEntry () {
-        storedRawData.clear();
-        try {
-            writeAllToFile();
-        } catch (IOException e) {
-            System.out.println("File write failed");
-        }
-    }
-
-    /**
-     * Writes a single <code>Note</code> encoded as a <code>String</code> to the .txt file.
+     * Deletes all stored raw data in <code>topicName</code>.txt.
      *
-     * @param encodedString The <code>Note</code> encoded as a <code>String</code>.
-     * @throws IOException Throws an exception if the file write fails.
+     * @param topicName The name of the .txt file being emptied.
      */
-    public void writeNoteToFile (String encodedString) throws IOException {
-        FileWriter fw = new FileWriter(path, true);
-        fw.write(encodedString);
-        fw.close();
+    public void deleteAllEntry (String topicName) {
+        topicRawData.get(topicName).clearFile();
     }
 
     /**
-     * Writes all the stored raw data into the .txt file, overwriting all the existing data stored in the .txt file.
-     *
-     * @throws IOException Throws an exception if the file write fails.
-     */
-    public void writeAllToFile () throws IOException {
-        FileWriter fw = new FileWriter(path, false);
-        for (String s : storedRawData.values()) {
-            fw.write(s);
-        }
-        fw.close();
-    }
-
-    /**
-     * Reads all the raw data stored in this object and returns a <code>Hashtable</code> of <code>Notes</code> that is
+     * Reads all the raw data stored in this object and returns a <code>HashMap</code> of <code>Topics</code> that is
      * processed.
      *
-     * @return Returns the initialized <code>Hashtable</code> of <code>Notes</code>.
+     * @return Returns the initialized <code>HashMap</code> of <code>Notes</code>.
      */
-    public Hashtable<String, Note> decodeAll() {
-        Hashtable<String, Note> decodedNotes = new Hashtable<>();
-        for (String s : storedRawData.keySet()) {
-            decoder.decodeString(storedRawData.get(s));
-            decodedNotes.put(decoder.decodedName(), decoder.processedNote());
+    public HashMap<String, Topic> decodeAll() {
+        HashMap<String, Topic> topics = new HashMap<>();
+        for (String s: topicRawData.keySet()) {
+            topics.put(s, topicRawData.get(s).convertFileToTopic());
         }
-        return decodedNotes;
+        return topics;
+    }
+
+    /**
+     * Changes the folder location to a new folder meant to store testdata. Remembers state of
+     * <code>topicRawData</code> before start of test mode.
+     */
+    public void testMode() {
+        this.path = testModePath;
+        this.topicRawDataOutsideTestMode = this.topicRawData;
+        this.topicRawData = new HashMap<>();
+        initialize();
+    }
+
+    /**
+     * Exits test mode and deletes all the files in the folder storing testdata. Retrieves and restores state of object
+     * to before test mode start.
+     */
+    public void exitTestMode() {
+        this.path = initialPath;
+        this.topicRawData = topicRawDataOutsideTestMode;
+        deleteTestData();
+    }
+
+    /**
+     * Deletes folder at <code>.\\testdata</code> and all the files within.
+     */
+    public void deleteTestData() {
+        File pathToFolder = new File(testModePath);
+        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
+            if (!f.delete()) {
+                System.out.println("Delete failed");
+            }
+        }
+        if (!pathToFolder.delete()) {
+            System.out.println("Delete failed");
+        } else {
+            System.out.println("Delete successful");
+        }
     }
 }

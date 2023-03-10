@@ -3,6 +3,7 @@ package seedu.clialgo;
 import seedu.clialgo.command.AddCommand;
 import seedu.clialgo.command.Command;
 import seedu.clialgo.command.ExitCommand;
+import seedu.clialgo.command.ExitTestModeCommand;
 import seedu.clialgo.command.FilterCommand;
 import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
@@ -10,6 +11,7 @@ import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.ListCommand;
 import seedu.clialgo.command.NameNotFoundCommand;
 import seedu.clialgo.command.RemoveCommand;
+import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
 
@@ -26,8 +28,23 @@ public class Parser implements StringManipulation {
 
     /** List of valid commands */
     private static final ArrayList<String> COMMANDS = new ArrayList<>(
-            Arrays.asList("help", "add", "remove", "filter", "exit", "list")
+            Arrays.asList("help", "add", "remove", "filter", "exit", "list", "start-test-mode", "exit-test-mode")
     );
+
+    /** List of valid keywords */
+    private static final ArrayList<String> KEYWORDS = new ArrayList<>(
+            Arrays.asList("topic")
+    );
+
+    /**
+     * Checks if the input string is a valid command.
+     *
+     * @param keyWord The input string.
+     * @return True if the input string is a valid command, False otherwise.
+     */
+    public boolean isValidCommand(String keyWord) {
+        return COMMANDS.contains(keyWord);
+    }
 
     /**
      * Checks if the input string is a valid command.
@@ -35,8 +52,8 @@ public class Parser implements StringManipulation {
      * @param keyWord The input string.
      * @return True if the input string is a valid keyword, False otherwise.
      */
-    public boolean isValidCommand(String keyWord) {
-        return COMMANDS.contains(keyWord);
+    public boolean isValidKeyword(String keyWord) {
+        return KEYWORDS.contains(keyWord);
     }
 
     /**
@@ -99,14 +116,17 @@ public class Parser implements StringManipulation {
         try {
             String noteNameWithMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (topicName == null || topicName.equals("") || !isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
+            if (topicName == null || !isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
                 return new InvalidCommand();
             }
+
             if (!topics.isValidTopic(topicName)) {
                 return new InvalidTopicCommand(topicName);
             }
+
             noteName = StringManipulation.removeMarker(noteNameWithMarker, NAME_MARKER);
-        } catch (NullInputException | EmptyFieldException e) {
+
+        } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException e) {
             return new InvalidCommand();
         }
         return new AddCommand(noteName, topicName);
@@ -130,8 +150,10 @@ public class Parser implements StringManipulation {
             if (!isCorrectMarker(description, NAME_MARKER)) {
                 return new InvalidCommand();
             }
+
             noteName = StringManipulation.removeMarker(description, NAME_MARKER);
-            if (!topics.noteExist(noteName)) {
+
+            if (!topics.isRepeatedNote(noteName)) {
                 return new NameNotFoundCommand();
             }
         } catch (NullInputException | EmptyFieldException e) {
@@ -163,7 +185,12 @@ public class Parser implements StringManipulation {
             if (topicName!= null && !topics.isValidTopic(topicName)) {
                 return new InvalidTopicCommand(topicName);
             }
+
             keyWord = StringManipulation.removeMarker(fullKeyWord, KEYWORD_MARKER);
+
+            if (!isValidKeyword(keyWord)) {
+                return new InvalidCommand();
+            }
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
@@ -182,6 +209,17 @@ public class Parser implements StringManipulation {
      */
     private Command prepareExitCommand() {
         return new ExitCommand();
+    }
+
+    /**
+     * @return A <code>Command</code> object that starts test mode.
+     */
+    private Command prepareTestModeCommand() {
+        return new TestModeCommand();
+    }
+
+    private Command prepareExitTestModeCommand() {
+        return new ExitTestModeCommand();
     }
 
     /**
@@ -204,6 +242,10 @@ public class Parser implements StringManipulation {
             return prepareFilterCommand(description, topics);
         case "list":
             return prepareListCommand();
+        case "start-test-mode":
+            return prepareTestModeCommand();
+        case "exit-test-mode":
+            return prepareExitTestModeCommand();
         default:
             return prepareExitCommand();
         }
