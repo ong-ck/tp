@@ -2,6 +2,10 @@ package seedu.clialgo.storage;
 
 import seedu.clialgo.Note;
 
+/**
+ * Object that takes in a <code>Note</code> object and converts it into a <code>String</code> which is then written
+ * to the .txt file which the <code>Note</code> has the <code>Note.tag</code> of.
+ */
 public class FileEncoder {
 
     protected final String separator;
@@ -23,7 +27,7 @@ public class FileEncoder {
      * @return Returns a processed string.
      */
     public String encodeNote (String name, Note note) {
-        return name + separator + note.getPath() + separator + note.getTag();
+        return name + separator + note.getPath() + separator + note.getTopic();
     }
 
 }

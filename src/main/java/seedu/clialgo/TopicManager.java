@@ -17,13 +17,14 @@ public class TopicManager {
                     "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS", "MINIMUM_SPANNING_TREE")
     );
 
-
-
     /** General HashSet to check for duplicate names. */
-    private final HashSet<String> allNotes;
+    private HashSet<String> allNotes;
 
     /** Data Structure to hold all the topics */
-    private final HashMap<String, Topic> topics;
+    private HashMap<String, Topic> topics;
+
+    private HashSet<String> allNotesOutsideTestMode;
+    private HashMap<String, Topic> topicsOutsideTestMode;
 
     public TopicManager() {
         allNotes = new HashSet<>();
@@ -44,6 +45,21 @@ public class TopicManager {
 
     public ArrayList<String> getTopicNames() {
         return TOPIC_NAMES;
+    }
+
+    /** Checks if there are any notes stored in CLIAlgo. */
+    public boolean isEmpty() {
+        return allNotes.isEmpty();
+    }
+
+    /** Checks if a specified topic has no notes stored in it. */
+    public boolean isTopicEmpty(String topic) {
+        return topics.get(topic).isEmpty();
+    }
+
+    /** Checks if a given note name have been used before. */
+    public boolean isRepeatedNote(String noteName) {
+        return this.allNotes.contains(noteName);
     }
 
     /**
@@ -91,7 +107,7 @@ public class TopicManager {
         for (String topicName : TOPIC_NAMES) {
 
             // check which topic contains that particular note
-            if ((topics.get(topicName).getNotes()).containsKey(noteName)) {
+            if ((topics.get(topicName).isInsideTopic(noteName))) {
 
                 // remove name of note from the allNotes set to keep track of names
                 allNotes.remove(noteName);
@@ -101,33 +117,6 @@ public class TopicManager {
             }
         }
         return false;
-    }
-
-    /**
-     * Checks if the name of a note exists.
-     * @param noteName Name of the note file
-     * @return Returns true if name of note file exists, false if otherwise.
-     */
-    public boolean noteExist (String noteName) {
-        for (String topicName : TOPIC_NAMES) {
-            return (topics.get(topicName).getNotes()).containsKey(noteName);
-        }
-        return false;
-    }
-
-    /** Checks if there are any notes stored in CLIAlgo. */
-    public boolean isEmpty() {
-        return allNotes.isEmpty();
-    }
-
-    /** Checks if a specified topic has no notes stored in it. */
-    public boolean isTopicEmpty(String topic) {
-        return topics.get(topic).isEmpty();
-    }
-
-    /** Checks if a given note name have been used before. */
-    public boolean isRepeatedNote(String noteName) {
-        return this.allNotes.contains(noteName);
     }
 
     /**
@@ -169,5 +158,43 @@ public class TopicManager {
             toPrintNotes.put(entry.getKey(), currentTopic.getAllNotesInTopic());
         }
         return toPrintNotes;
+    }
+
+    /**
+     * Initializes the <code>topics</code> and <code>allNote</code> of this object by taking in input from the
+     * <code>FileManager</code> object.
+     *
+     * @param topics The output obtained from the <code>FileManager</code> by calling <code>decodeAll</code>.
+     */
+    public void initialize(HashMap<String, Topic> topics) {
+        this.topics = topics;
+        for (Topic topic: topics.values()) {
+            if (topic != null) {
+                allNotes.addAll(topic.getAllNotesInTopic());
+            }
+        }
+    }
+
+    /**
+     * Resets <code>topics</code> and <code>allNotes</code> when test mode starts. Stores the data outside of test mode
+     * separately.
+     */
+    public void testModeStart() {
+        this.topicsOutsideTestMode = topics;
+        this.allNotesOutsideTestMode = allNotes;
+        allNotes = new HashSet<>();
+        topics = new HashMap<>();
+        for (String topicName : TOPIC_NAMES) {
+            topics.put(topicName, new Topic(topicName));
+        }
+    }
+
+    /**
+     * Retrieves the <code>topics</code> and <code>allNotes</code> data from before the start of test mode when test
+     * mode ends such that the state before the start of test mode is restored.
+     */
+    public void testModeEnd() {
+        this.allNotes = allNotesOutsideTestMode;
+        this.topics = topicsOutsideTestMode;
     }
 }
