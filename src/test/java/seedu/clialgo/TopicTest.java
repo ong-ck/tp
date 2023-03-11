@@ -55,4 +55,14 @@ class TopicTest {
 
         assertEquals(testTopic.getNotes(), testNotesHashmap);
     }
+
+    @Test
+    void isEmpty_checkIsEmpty_expectTrue() {
+        
+    }
+
+    @Test
+    void isEmpty_checkIsNotEmpty_expectFalse() {
+
+    }
 }

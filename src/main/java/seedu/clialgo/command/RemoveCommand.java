@@ -28,6 +28,7 @@ public class RemoveCommand extends Command {
     /**
      * Overridden method that removes a note corresponding to <code>name</code> from the list. It then saves the
      * updated list.
+     *
      * @param topicManager A Topic object containing all the different topics available.
      * @param ui A Ui object which handles outputs to the user.
      * @param fileManager An object responsible for saving information.
