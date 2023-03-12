@@ -252,5 +252,30 @@ public class Ui {
     public void printTestModeEnd() {
         printDivider();
         System.out.println("Ending test mode.");
+        printDivider();
+    }
+
+    public void printFileWriteError() {
+        printDivider();
+        System.out.println("File write error.");
+        printDivider();
+    }
+
+    public void printFolderCreateError() {
+        printDivider();
+        System.out.println("Folder not created.");
+        printDivider();
+    }
+
+    public void printFileDeleteSuccess() {
+        printDivider();
+        System.out.println("Successfully deleted file.");
+        printDivider();
+    }
+
+    public void printFileDeleteFail() {
+        printDivider();
+        System.out.println("Delete failed.");
+        printDivider();
     }
 }
