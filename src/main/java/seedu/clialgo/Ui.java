@@ -221,7 +221,8 @@ public class Ui {
 
     public void printInvalidCommand() {
         printDivider();
-        System.out.println("This is an invalid command, please ensure all your fields are correct");
+        System.out.println("This is an invalid command, please ensure all your fields are correct.\n" +
+                        "Use the 'help' command for assistance.");
         printDivider();
     }
 
@@ -231,7 +232,7 @@ public class Ui {
 
     public void printNameNotFoundCommand() {
         printDivider();
-        System.out.println("Cannot remove a note which does not exist, check spelling or case sensitivity");
+        System.out.println("Cannot remove a note which does not exist, check spelling or case sensitivity.");
     }
 
     /**

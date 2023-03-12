@@ -58,5 +58,20 @@ NAME refers to the notes' file name.
 Invalid NAME will cause an error.
 ======================================================
 ======================================================
+Unsuccessful!
+Type 'help c/filter' for assistance.
+======================================================
+======================================================
+This function filters by topic/importance and topic name.
+The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME
+KEYWORD has to be either 'topic' or 'importance'.
+TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.
+Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.
+Invalid KEYWORD and/or TOPIC_NAME will cause an error.
+======================================================
+======================================================
+Cannot remove a note which does not exist, check spelling or case sensitivity.
+======================================================
+======================================================
 Thank you for using CLIAlgo! Study hard!
 ======================================================

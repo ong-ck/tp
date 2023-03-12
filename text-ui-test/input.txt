@@ -7,4 +7,7 @@ filter k/Topic
 filter k/topic t/LINKED_LIST
 filter k/topic t/LINKED LIST
 help c/remove
+filter k/topic t/SORTING
+help c/filter
+remove n/graph notes
 exit
