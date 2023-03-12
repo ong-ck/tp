@@ -1,10 +1,10 @@
-add n/note name 1 t/SORTING
-add n/note name 2 t/LINKED_LIST
-add n/incorrect topic note t/sorting
-add n/note name 3 t/HASH_TABLE
-list
-remove n/note name 3
 list
 filter k/topic
-filter k/topic t/SORTING
+help
+add n/incorrect topic note t/sorting
+help c/add
+filter k/Topic
+filter k/topic t/LINKED_LIST
+filter k/topic t/LINKED LIST
+help c/remove
 exit

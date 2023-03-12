@@ -2,47 +2,60 @@
 Hello! Welcome to CLIAlgo Notes!
 ======================================================
 ======================================================
-Successfully added note name 1 into SORTING.
+Here are all your notes:
+======================================================
+1. graph traversal notes
+2. linked list notes
 ======================================================
 ======================================================
-Successfully added note name 2 into LINKED_LIST.
+Here are the filtered notes:
+======================================================
+[GRAPH_TRAVERSAL]
+1. graph traversal notes
+[LINKED_LIST]
+1. linked list notes
+======================================================
+======================================================
+The available COMMAND_TYPE(s) are:
+[add]: add note
+[remove]: remove note
+[list]: displays all notes
+[filter]: filters notes by topic
+[exit]: close the application
+For more help on a specific command, type `help c/COMMAND_TYPE`
 ======================================================
 ======================================================
 Unsuccessful! sorting is not a topic in CS2040C.
 Type 'help c/add' for assistance.
 ======================================================
 ======================================================
-Successfully added note name 3 into HASH_TABLE.
+This function adds a note and tags it to a topic.
+The syntax for the 'add' command is: add n/NAME t/TOPIC.
+NAME refers to the notes' file name.
+TOPIC refers to the topic that NAME will be tagged to.
+Case sensitive. NAME and TOPIC fields must be non-empty.
+Invalid NAME or TOPIC will cause an error.
 ======================================================
 ======================================================
-Here are all your notes:
-======================================================
-1. note name 3
-2. note name 1
-3. note name 2
-======================================================
-======================================================
-Successfully removed note name 3.
-======================================================
-======================================================
-Here are all your notes:
-======================================================
-1. note name 1
-2. note name 2
+This is an invalid command, please ensure all your fields are correct.
+Use the 'help' command for assistance.
 ======================================================
 ======================================================
 Here are the filtered notes:
 ======================================================
-[SORTING]
-1. note name 1
 [LINKED_LIST]
-1. note name 2
+1. linked list notes
 ======================================================
 ======================================================
-Here are the filtered notes:
+Unsuccessful! LINKED LIST is not a topic in CS2040C.
+Type 'help c/add' for assistance.
 ======================================================
-[SORTING]
-1. note name 1
+======================================================
+This function removes a note from the tagged topic.
+The syntax for the 'remove' command is: remove n/NAME.
+NAME refers to the notes' file name.
+'n/' must be included else NAME will not be read.
+Invalid NAME will cause an error.
 ======================================================
 ======================================================
 Thank you for using CLIAlgo! Study hard!
