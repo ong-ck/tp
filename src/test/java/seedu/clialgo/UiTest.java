@@ -574,4 +574,96 @@ class UiTest {
         }
         assertEquals(expectedOutput, outContent.toString());
     }
+
+    @Test
+    void testFileWriteError() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printFileWriteError();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "File write error." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "File write error." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testFolderCreateError() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printFolderCreateError();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Folder not created." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Folder not created." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testFileDeleteSuccess() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printFileDeleteSuccess();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Successfully deleted file." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Successfully deleted file." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testFileDeleteFail() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printFileDeleteFail();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Delete failed." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Delete failed." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
 }
