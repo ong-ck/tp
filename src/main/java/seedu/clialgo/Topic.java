@@ -33,37 +33,32 @@ public class Topic {
         this.notes = notes;
     }
 
-    public HashMap<String, Note> getNotes() {
-        return notes;
-    }
-
-    /** Checks if the topic have not notes inside */
+    /**
+     * Checks if the <code>Topic</code> object has any notes inside.
+     *
+     * @return Returns true if the topic has no notes inside, false otherwise.
+     */
     public boolean isEmpty() {
         return this.notes.isEmpty();
     }
 
+    /**
+     * Checks if the <code>Topic</code> object has a specified note inside.
+     *
+     * @param noteName Name of note.
+     * @return Returns true if the topic contains the note that is specified by noteName, false otherwise.
+     */
     public boolean isInsideTopic(String noteName) {
         return this.notes.containsKey(noteName);
     }
 
     /**
-     * Adds a note linked to a specific topic.
+     * Obtains all the notes inside the <code>Topic</code> object.
      *
-     * @param name Name of the note file.
-     * @param note A <code>Note</code> object representing the note file.
+     * @return A HashMap of all the notes inside this <code>Topic</code> object.
      */
-    public void addNote(String name, Note note) {
-        notes.put(name, note);
-    }
-
-    /**
-     * Removes a note based on its name
-     * @param name Name of the note file
-     */
-    public boolean removeNote(String name) {
-        notes.remove(name);
-
-        return true;
+    public HashMap<String, Note> getNotes() {
+        return notes;
     }
 
     /**
@@ -78,6 +73,27 @@ public class Topic {
             topicNotes.add(noteName);
         }
         return topicNotes;
+    }
+
+    /**
+     * Adds a note linked to a specific topic.
+     *
+     * @param name Name of the note file.
+     * @param note A <code>Note</code> object representing the note file.
+     */
+    public void addNote(String name, Note note) {
+        notes.put(name, note);
+    }
+
+    /**
+     * Removes a note based on its name.
+     *
+     * @param name Name of the note file.
+     */
+    public boolean removeNote(String name) {
+        notes.remove(name);
+
+        return true;
     }
 
     /**

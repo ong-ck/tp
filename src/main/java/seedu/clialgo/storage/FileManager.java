@@ -2,6 +2,7 @@ package seedu.clialgo.storage;
 
 import seedu.clialgo.Note;
 import seedu.clialgo.Topic;
+import seedu.clialgo.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +26,7 @@ public class FileManager {
     private final String initialPath;
     private final String testModePath = ".\\testdata";
     private final ArrayList<String> topicNames;
+    private final Ui ui;
     private HashMap<String, SingleFile> topicRawData;
     private HashMap<String, SingleFile> topicRawDataOutsideTestMode;
     private String path;
@@ -36,6 +38,7 @@ public class FileManager {
     public FileManager(String path, ArrayList<String> topicNames) {
         this.path = path;
         this.initialPath = path;
+        this.ui = new Ui();
         String separator = "&@*";
         this.topicRawData = new HashMap<>();
         this.topicNames = topicNames;
@@ -76,7 +79,7 @@ public class FileManager {
             try {
                 singleFile.readFile();
             } catch (FileNotFoundException e) {
-                System.out.println("File write error");
+                ui.printFileWriteError();
             }
         }
     }
@@ -89,7 +92,7 @@ public class FileManager {
             Path directory = Paths.get(path);
             Files.createDirectories(directory);
         } catch (IOException e) {
-            System.out.println("Folder not created");
+            ui.printFolderCreateError();
         }
     }
 
@@ -105,7 +108,7 @@ public class FileManager {
         try {
             singleFile.writeNoteToFile(encoder.encodeNote(name ,note));
         } catch (IOException e) {
-            System.out.println("File write error");
+            ui.printFileWriteError();
         }
     }
 
@@ -171,13 +174,13 @@ public class FileManager {
         File pathToFolder = new File(testModePath);
         for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
             if (!f.delete()) {
-                System.out.println("Delete failed");
+                ui.printFileDeleteFail();
             }
         }
         if (!pathToFolder.delete()) {
-            System.out.println("Delete failed");
+            ui.printFileDeleteFail();
         } else {
-            System.out.println("Delete successful");
+            ui.printFileDeleteSuccess();
         }
     }
 }

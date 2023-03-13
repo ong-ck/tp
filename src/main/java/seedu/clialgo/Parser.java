@@ -224,6 +224,9 @@ public class Parser implements StringManipulation {
         return new TestModeCommand();
     }
 
+    /**
+     * @return A <code>Command</code> object that ends test mode.
+     */
     private Command prepareExitTestModeCommand() {
         return new ExitTestModeCommand();
     }

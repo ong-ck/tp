@@ -237,20 +237,63 @@ public class Ui {
     /**
      * Prints an error message when saving data is unsuccessful.
      */
-    public void printSaveUnsuccessful() {
+    public void printSaveFail() {
         printDivider();
         System.out.println("Saving data was unsuccessful. Please try again.");
         printDivider();
     }
 
+    /**
+     * Prints a message indicating the start of test mode.
+     */
     public void printTestModeStart() {
         printDivider();
         System.out.println("Starting test mode.");
         printDivider();
     }
 
+    /**
+     * Prints a message indicating the end of test mode.
+     */
     public void printTestModeEnd() {
         printDivider();
         System.out.println("Ending test mode.");
+        printDivider();
+    }
+
+    /**
+     * Prints an error message indicating failure to write to file.
+     */
+    public void printFileWriteError() {
+        printDivider();
+        System.out.println("File write error.");
+        printDivider();
+    }
+
+    /**
+     * Prints an error message indicating failure to create folder.
+     */
+    public void printFolderCreateError() {
+        printDivider();
+        System.out.println("Folder not created.");
+        printDivider();
+    }
+
+    /**
+     * Prints an error message indicating file delete success.
+     */
+    public void printFileDeleteSuccess() {
+        printDivider();
+        System.out.println("Successfully deleted file.");
+        printDivider();
+    }
+
+    /**
+     * Prints an error message indicating failure to delete the file.
+     */
+    public void printFileDeleteFail() {
+        printDivider();
+        System.out.println("Delete failed.");
+        printDivider();
     }
 }
