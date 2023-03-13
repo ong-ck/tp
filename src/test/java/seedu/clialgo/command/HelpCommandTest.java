@@ -69,7 +69,6 @@ class HelpCommandTest {
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 
-        // Generate the expected output
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
                     "This function adds a note and tags it to a topic.\n" +
@@ -90,7 +89,6 @@ class HelpCommandTest {
                     "======================================================\n";
         }
 
-        // Generate the actual output
         new HelpCommand("add").execute(topicManager, ui, fileManager);
         assertEquals(expectedOutput, outContent.toString());
         FileManager.deleteAll(new File(testDataPath));
