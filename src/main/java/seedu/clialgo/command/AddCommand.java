@@ -55,6 +55,7 @@ public class AddCommand extends Command {
         }
         // Check if the note is repeated
         if (topicManager.isRepeatedNote(name)) {
+            assert topicManager.isRepeatedNote(name);
             ui.printNoteExists();
             return;
         }
