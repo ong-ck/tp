@@ -81,8 +81,10 @@ class InvalidTopicCommandTest {
                         "graph_traversal", "binary_search_tree", "ss_shortest_path", "union_find_ds",
                         "minimum_spanning_tree", "Sorting", "Linked_list", "Graph_structures", "Binary_heap",
                         "Hash_table", "Graph_traversal", "Binary_search_tree", "Ss_shortest_path", "Union_find_ds",
-                        "Minimum_spanning_tree", "LINKED LIST", "GRAPH STRUCTURES", "BINARY HEAP", "HASH TABLE", "GRAPH TRAVERSAL",
-                        "BINARY SEARCH TREE", "SS SHORTEST PATH", "UNION FIND DS", "MINIMUM SPANNING TREE")
+                        "Minimum_spanning_tree", "LINKED LIST", "GRAPH STRUCTURES", "BINARY HEAP", "HASH TABLE",
+                        "GRAPH TRAVERSAL", "BINARY SEARCH TREE", "SS SHORTEST PATH", "UNION FIND DS",
+                        "MINIMUM SPANNING TREE", "BITMASK", "SEGMENT_TREE", "SUFFIX_TREE", "CONVEX_HULL",
+                        "NETWORK_FLOW", "MIN_VERTEX_COVER")
         );
 
         String os = System.getProperty("os.name");
