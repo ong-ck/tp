@@ -8,11 +8,10 @@ import seedu.clialgo.Ui;
  * information in the <code>String</code>.
  */
 public class FileDecoder {
-
-    private final Ui ui;
     protected Note currentNote;
     protected String currentName;
     protected final String separator;
+    private final Ui ui;
 
     /**
      * Constructor for the fileDecoder object
