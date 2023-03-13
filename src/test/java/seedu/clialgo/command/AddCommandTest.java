@@ -176,14 +176,14 @@ class AddCommandTest {
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n" +
                     "======================================================\r\n" +
-                    "This is an invalid command, please ensure all your fields are correct\r\n" +
+                    "This is an invalid command, please ensure all your fields are correct.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n" +
                     "======================================================\n" +
-                    "This is an invalid command, please ensure all your fields are correct\n" +
+                    "This is an invalid command, please ensure all your fields are correct.\n" +
                     "======================================================\n";
         }
 
