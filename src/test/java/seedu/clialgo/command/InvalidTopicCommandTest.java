@@ -19,23 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class InvalidTopicCommandTest {
 
     /**
-     * Deletes folder at <code>pathToFolder</code> and all the files within.
-     * @param pathToFolder The <code>File</code> representing the folder to delete.
-     */
-    public void deleteAll(File pathToFolder) {
-        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
-            if (!f.delete()) {
-                System.out.println("Delete failed");
-            }
-        }
-        if (!pathToFolder.delete()) {
-            System.out.println("Delete failed");
-        } else {
-            System.out.println("Delete successful");
-        }
-    }
-
-    /**
      * Checks the <code>equals</code> method of the <code>InvalidTopicCommand</code> class.
      * Inputs two equal <code>InvalidTopicCommand</code> objects and expects the method to return true.
      */
@@ -91,7 +74,7 @@ class InvalidTopicCommandTest {
         String expectedOutput = "";
 
         for (String invalidTopic : invalidTopics) {
-            // Generate the exected output
+            // Generate the expected output
             if (os.contains("Windows")) {
                 expectedOutput = String.format("======================================================\r\n" +
                         "Unsuccessful! " + invalidTopic + " is not a topic in CS2040C.\r\n" +
@@ -110,7 +93,6 @@ class InvalidTopicCommandTest {
             outContent.reset();
         }
 
-        deleteAll(new File(testDataPath));
+        FileManager.deleteAll(new File(testDataPath));
     }
-
 }
