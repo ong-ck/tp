@@ -26,6 +26,11 @@ public class TopicManager {
     private HashSet<String> allNotesOutsideTestMode;
     private HashMap<String, Topic> topicsOutsideTestMode;
 
+    /**
+     * Constructor that initializes a <code>TopicManager</code> object that contains a HashMap of all the names of the
+     * topics in CLIAlgo as keys, with a corresponding <code>Topic</code> object as value. Also initializes a HashSet
+     * that will be used to store the names of all notes that will be added.
+     */
     public TopicManager() {
         allNotes = new HashSet<>();
         topics = new HashMap<>();
@@ -34,18 +39,18 @@ public class TopicManager {
         }
     }
 
+    /**
+     * Constructor that initialises a <code>TopicManager</code> object that contains a HashSet of the current names of
+     * the notes present as well as a HashMap of all the topics.
+     *
+     * @param allNotes A HashSet of the names of all the notes present.
+     * @param topics A HashMap of all the topics in CLIAlgo.
+     */
     public TopicManager(HashSet<String> allNotes, HashMap<String, Topic> topics) {
         this.allNotes = allNotes;
         this.topics = topics;
     }
 
-    public HashMap<String, Topic> getTopics() {
-        return this.topics;
-    }
-
-    public ArrayList<String> getTopicNames() {
-        return TOPIC_NAMES;
-    }
 
     /** Checks if there are any notes stored in CLIAlgo. */
     public boolean isEmpty() {
@@ -57,66 +62,37 @@ public class TopicManager {
         return topics.get(topic).isEmpty();
     }
 
-    /** Checks if a given note name have been used before. */
+    /** Checks if a given note name has been used before. */
     public boolean isRepeatedNote(String noteName) {
         return this.allNotes.contains(noteName);
-    }
-
-    /**
-     * Adds a new note into the specific <code>Topic</code> object
-     * while keeping track of the names of all notes added.
-     * Name of the note to be added cannot be the same as a previously added note.
-     *
-     * @param noteName Name of the note file.
-     * @param topicName Name of the topic the note is added to.
-     * @param note The <code>Note</code> object representing the note file.
-     * @return True if note is successfully added and False otherwise.
-     */
-    public boolean addNote(String noteName, String topicName, Note note) {
-        // Check if note name has been taken
-        if (allNotes.contains(noteName)) {
-            return false;
-        }
-
-        // Adds note into topic hashmap
-        topics.get(topicName).addNote(noteName, note);
-
-        // Keep track of name of note added
-        allNotes.add(noteName);
-
-        return true;
     }
 
     /**
      * Checks if the input string is a valid topic.
      *
      * @param topic The input string.
-     * @return True if the input string is a valid topic, False otherwise.
+     * @return True if the input string is a valid topic, false otherwise.
      */
     public boolean isValidTopic(String topic) {
         return TOPIC_NAMES.contains(topic);
     }
 
     /**
-     * Removes a note from the specific <code>Topic</code> object
-     * while keeping track of the names of all notes remaining.
-     * Name of the note to be removed must be currently in the <code>Topic</code> object .
-     * @param noteName Name of the note file
+     * Obtains all the topics in CLIAlgo.
+     *
+     * @return A HashMap containing all the topics in CLIAlgo.
      */
-    public boolean removeNote(String noteName) {
-        for (String topicName : TOPIC_NAMES) {
+    public HashMap<String, Topic> getTopics() {
+        return this.topics;
+    }
 
-            // check which topic contains that particular note
-            if ((topics.get(topicName).isInsideTopic(noteName))) {
-
-                // remove name of note from the allNotes set to keep track of names
-                allNotes.remove(noteName);
-
-                // remove the note from that particular topic
-                return topics.get(topicName).removeNote(noteName);
-            }
-        }
-        return false;
+    /**
+     * Obtains all the names of the topics in CLIAlgo.
+     *
+     * @return An ArrayList containing all the names of the topics in CLIAlgo.
+     */
+    public ArrayList<String> getTopicNames() {
+        return TOPIC_NAMES;
     }
 
     /**
@@ -158,6 +134,54 @@ public class TopicManager {
             toPrintNotes.put(entry.getKey(), currentTopic.getAllNotesInTopic());
         }
         return toPrintNotes;
+    }
+
+    /**
+     * Adds a new note into the specific <code>Topic</code> object
+     * while keeping track of the names of all notes added.
+     * Name of the note to be added cannot be the same as a previously added note.
+     *
+     * @param noteName Name of the note file.
+     * @param topicName Name of the topic the note is added to.
+     * @param note The <code>Note</code> object representing the note file.
+     * @return True if note is successfully added and False otherwise.
+     */
+    public boolean addNote(String noteName, String topicName, Note note) {
+        // Check if note name has been taken
+        if (allNotes.contains(noteName)) {
+            return false;
+        }
+
+        // Adds note into topic hashmap
+        topics.get(topicName).addNote(noteName, note);
+
+        // Keep track of name of note added
+        allNotes.add(noteName);
+
+        return true;
+    }
+
+    /**
+     * Removes a note from the specific <code>Topic</code> object while keeping track of the names of all notes
+     * remaining.
+     *
+     * @param noteName Name of the note file.
+     * @return Returns true if the name of the note file is inside a any topic, false otherwise
+     */
+    public boolean removeNote(String noteName) {
+        for (String topicName : TOPIC_NAMES) {
+
+            // check which topic contains that particular note
+            if ((topics.get(topicName).isInsideTopic(noteName))) {
+
+                // remove name of note from the allNotes set to keep track of names
+                allNotes.remove(noteName);
+
+                // remove the note from that particular topic
+                return topics.get(topicName).removeNote(noteName);
+            }
+        }
+        return false;
     }
 
     /**
