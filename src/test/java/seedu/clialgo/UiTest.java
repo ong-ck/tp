@@ -495,7 +495,8 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "Cannot remove a note which does not exist, check spelling or case sensitivity." + WINDOWS_WHITESPACE +
+                    "Cannot remove a note which does not exist, check spelling or case sensitivity."
+                    + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
             expectedOutput = "======================================================" + MAC_WHITESPACE +
