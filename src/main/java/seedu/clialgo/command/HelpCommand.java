@@ -8,9 +8,11 @@ import java.util.Objects;
 
 public class HelpCommand extends Command {
     private String command;
+
     public HelpCommand() {
         command = null;
     }
+
     public HelpCommand(String command) {
         this.command = command;
     }

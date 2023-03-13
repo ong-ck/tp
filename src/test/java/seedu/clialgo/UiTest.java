@@ -507,12 +507,12 @@ class UiTest {
     }
 
     @Test
-    void testPrintSaveUnsuccessful() {
+    void testPrintSaveFail() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
         Ui ui = new Ui();
-        ui.printSaveUnsuccessful();
+        ui.printSaveFail();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
