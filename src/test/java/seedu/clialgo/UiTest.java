@@ -13,6 +13,25 @@ class UiTest {
     public static final String MAC_WHITESPACE = "\n";
 
     @Test
+    void testPrintDivider() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printDivider();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
     void testPrintWelcomeMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -435,6 +454,121 @@ class UiTest {
                     "This function exits the application." + MAC_WHITESPACE +
                     "The syntax for the 'exit' command is: exit." + MAC_WHITESPACE +
                     "Command should only contain one word (i.e. no extensions)." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintInvalidCommand() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printInvalidCommand();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "This is an invalid command, please ensure all your fields are correct." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "This is an invalid command, please ensure all your fields are correct." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintNameNotFoundCommand() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printNameNotFoundCommand();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Cannot remove a note which does not exist, check spelling or case sensitivity." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Cannot remove a note which does not exist, check spelling or case sensitivity." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintSaveUnsuccessful() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printSaveUnsuccessful();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Saving data was unsuccessful. Please try again." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Saving data was unsuccessful. Please try again." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintTestModeStart() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printTestModeStart();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Starting test mode." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Starting test mode." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintTestModeEnd() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printTestModeEnd();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Ending test mode." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Ending test mode." + MAC_WHITESPACE +
                     "======================================================" + MAC_WHITESPACE;
         }
         assertEquals(expectedOutput, outContent.toString());
