@@ -2,47 +2,93 @@
 Hello! Welcome to CLIAlgo Notes!
 ======================================================
 ======================================================
-Successfully added note name 1 into SORTING.
+You have no notes!
+Type 'help c/add' for assistance on how to add a note.
 ======================================================
 ======================================================
-Successfully added note name 2 into LINKED_LIST.
+Successfully added sorting notes into SORTING.
+======================================================
+======================================================
+Successfully added linked list notes into LINKED_LIST.
 ======================================================
 ======================================================
 Unsuccessful! sorting is not a topic in CS2040C.
 Type 'help c/add' for assistance.
 ======================================================
 ======================================================
-Successfully added note name 3 into HASH_TABLE.
+Successfully added hash table notes into HASH_TABLE.
 ======================================================
 ======================================================
 Here are all your notes:
 ======================================================
-1. note name 3
-2. note name 1
-3. note name 2
+1. hash table notes
+2. sorting notes
+3. linked list notes
 ======================================================
 ======================================================
-Successfully removed note name 3.
+Unsuccessful! A note of that name does not exist.
+Only notes in your list can be removed.
+Type 'list' to see notes you can remove.
+======================================================
+======================================================
+Successfully removed linked list notes.
 ======================================================
 ======================================================
 Here are all your notes:
 ======================================================
-1. note name 1
-2. note name 2
+1. hash table notes
+2. sorting notes
+======================================================
+======================================================
+Here are the filtered notes:
+======================================================
+[HASH_TABLE]
+1. hash table notes
+[SORTING]
+1. sorting notes
 ======================================================
 ======================================================
 Here are the filtered notes:
 ======================================================
 [SORTING]
-1. note name 1
-[LINKED_LIST]
-1. note name 2
+1. sorting notes
+======================================================
+======================================================
+Successfully removed hash table notes.
+======================================================
+======================================================
+Here are all your notes:
+======================================================
+1. sorting notes
+======================================================
+======================================================
+Unsuccessful! A note with that name already exists.
+Type 'list' to view the list of notes.
+======================================================
+======================================================
+This function adds a note and tags it to a topic.
+The syntax for the 'add' command is: add n/NAME t/TOPIC.
+NAME refers to the notes' file name.
+TOPIC refers to the topic that NAME will be tagged to.
+Case sensitive. NAME and TOPIC fields must be non-empty.
+Invalid NAME or TOPIC will cause an error.
+Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
+'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
+'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
 ======================================================
 ======================================================
 Here are the filtered notes:
 ======================================================
 [SORTING]
-1. note name 1
+1. sorting notes
+======================================================
+======================================================
+Unsuccessful! MST is not a topic in CS2040C.
+Type 'help c/add' for assistance.
+======================================================
+======================================================
+Unsuccessful!
+Type 'help c/filter' for assistance.
 ======================================================
 ======================================================
 Thank you for using CLIAlgo! Study hard!
