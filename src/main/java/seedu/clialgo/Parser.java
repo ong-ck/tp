@@ -43,6 +43,7 @@ public class Parser implements StringManipulation {
      * @return True if the input string is a valid command, False otherwise.
      */
     public boolean isValidCommand(String keyWord) {
+        assert keyWord != null;
         return COMMANDS.contains(keyWord);
     }
 
@@ -53,6 +54,7 @@ public class Parser implements StringManipulation {
      * @return True if the input string is a valid keyword, False otherwise.
      */
     public boolean isValidKeyword(String keyWord) {
+        assert keyWord != null;
         return KEYWORDS.contains(keyWord);
     }
 
@@ -96,6 +98,7 @@ public class Parser implements StringManipulation {
         } catch (IndexOutOfBoundsException | EmptyFieldException | NullInputException e) {
             return new InvalidCommand();
         }
+        assert command.length() > 0;
         return new HelpCommand(command);
     }
 
@@ -129,6 +132,8 @@ public class Parser implements StringManipulation {
         } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException e) {
             return new InvalidCommand();
         }
+        assert noteName.length() > 0;
+        assert topicName.length() > 0;
         return new AddCommand(noteName, topicName);
     }
 
@@ -159,6 +164,7 @@ public class Parser implements StringManipulation {
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
+        assert noteName.length() > 0;
         return new RemoveCommand(noteName);
     }
 
@@ -234,6 +240,7 @@ public class Parser implements StringManipulation {
      * @return A Command object that executes the command corresponding to the command keyword keyed in by the user.
      */
     private Command prepareCommand(String command, String description, TopicManager topics) {
+        assert command != null;
         switch (command) {
         case "help":
             return prepareHelpCommand(description);
@@ -274,6 +281,7 @@ public class Parser implements StringManipulation {
         } catch (NullInputException e) {
             return new InvalidCommand();
         }
+        assert command.length() > 0;
         return prepareCommand(command, description, topics);
     }
 }
