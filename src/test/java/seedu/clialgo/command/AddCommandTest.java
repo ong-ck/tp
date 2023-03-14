@@ -176,7 +176,7 @@ class AddCommandTest {
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n" +
                     "======================================================\r\n" +
-                    "Unsuccessful! A note with that name already exists.\n" +
+                    "Unsuccessful! A note with that name already exists.\r\n" +
                     "Type 'list' to view the list of notes.\r\n" +
                     "======================================================\r\n";
         } else {

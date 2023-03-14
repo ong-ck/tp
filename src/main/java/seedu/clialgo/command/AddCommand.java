@@ -68,7 +68,9 @@ public class AddCommand extends Command {
             new InvalidCommand().execute(topicManager, ui, fileManager);
             return;
         }
-
+        assert this.name != null;
+        assert this.topic != null;
+        assert topicManager.isValidTopic(topic);
         // Ui for successful adding
         ui.printAddSuccess(name, topic);
     }
