@@ -19,6 +19,7 @@ public class ListCommand extends Command {
     public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
         if (topicManager.isEmpty()) {
             ui.printListFail();
+            return;
         }
         ui.printListSuccess();
         ArrayList<String> printedNotes = topicManager.getAllNotes();

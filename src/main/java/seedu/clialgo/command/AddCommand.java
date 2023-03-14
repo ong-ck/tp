@@ -13,6 +13,7 @@ import seedu.clialgo.Ui;
 public class AddCommand extends Command {
 
     private final String name;
+    private final Ui ui;
     private final String topic;
 
     /**
@@ -24,6 +25,7 @@ public class AddCommand extends Command {
     public AddCommand(String name, String topic) {
         this.name = name;
         this.topic = topic;
+        this.ui = new Ui();
     }
 
     String getName() {
@@ -49,6 +51,12 @@ public class AddCommand extends Command {
         // Check if topicName is valid
         if (!topicManager.isValidTopic(topic)) {
             new InvalidTopicCommand(topic).execute(topicManager, ui, fileManager);
+            return;
+        }
+        // Check if the note is repeated
+        if (topicManager.isRepeatedNote(name)) {
+            assert topicManager.isRepeatedNote(name);
+            ui.printNoteExists();
             return;
         }
 

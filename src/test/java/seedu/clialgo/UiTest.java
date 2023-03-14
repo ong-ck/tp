@@ -181,12 +181,12 @@ class UiTest {
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
                     "You have no notes!\n" +
-                    "Type 'help c/list' for assistance." + WINDOWS_WHITESPACE +
+                    "Type 'help c/add' for assistance on how to add a note." + WINDOWS_WHITESPACE +
                     "======================================================" +  WINDOWS_WHITESPACE;
         } else {
             expectedOutput =  "======================================================" + MAC_WHITESPACE +
                     "You have no notes!" + MAC_WHITESPACE +
-                    "Type 'help c/list' for assistance." + MAC_WHITESPACE +
+                    "Type 'help c/add' for assistance on how to add a note." + MAC_WHITESPACE +
                     "======================================================" +  MAC_WHITESPACE;
         }
         assertEquals(expectedOutput, outContent.toString());
@@ -230,12 +230,12 @@ class UiTest {
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" +  WINDOWS_WHITESPACE +
                     "Unsuccessful!\n" +
-                    "Type 'help c/remove' for assistance." + WINDOWS_WHITESPACE +
+                    "Type 'help c/remove' for assistance on how to remove a note." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
             expectedOutput = "======================================================" +  MAC_WHITESPACE +
                     "Unsuccessful!" + MAC_WHITESPACE +
-                    "Type 'help c/remove' for assistance." + MAC_WHITESPACE +
+                    "Type 'help c/remove' for assistance on how to remove a note." + MAC_WHITESPACE +
                     "======================================================" + MAC_WHITESPACE;
         }
         assertEquals(expectedOutput, outContent.toString());
@@ -307,7 +307,10 @@ class UiTest {
                     "NAME refers to the notes' file name.\n" +
                     "TOPIC refers to the topic that NAME will be tagged to.\n" +
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
-                    "Invalid NAME or TOPIC will cause an error." + WINDOWS_WHITESPACE +
+                    "Invalid NAME or TOPIC will cause an error.\n" +
+                    "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\n" +
+                    "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\n" +
+                    "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
             expectedOutput = "======================================================" + MAC_WHITESPACE +
@@ -317,6 +320,9 @@ class UiTest {
                     "TOPIC refers to the topic that NAME will be tagged to." + MAC_WHITESPACE +
                     "Case sensitive. NAME and TOPIC fields must be non-empty." + MAC_WHITESPACE +
                     "Invalid NAME or TOPIC will cause an error." + MAC_WHITESPACE +
+                    "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES'," + MAC_WHITESPACE +
+                    "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE'," + MAC_WHITESPACE +
+                    "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'." + MAC_WHITESPACE +
                     "======================================================" + MAC_WHITESPACE;
         }
         assertEquals(expectedOutput, outContent.toString());
@@ -435,6 +441,221 @@ class UiTest {
                     "This function exits the application." + MAC_WHITESPACE +
                     "The syntax for the 'exit' command is: exit." + MAC_WHITESPACE +
                     "Command should only contain one word (i.e. no extensions)." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintInvalidCommand() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printInvalidCommand();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "This is an invalid command, please ensure all your fields are correct.\n" +
+                    "Type 'help' for additional assistance." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "This is an invalid command, please ensure all your fields are correct." + MAC_WHITESPACE +
+                    "Type 'help' for additional assistance." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintNameNotFoundCommand() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printNameNotFoundCommand();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Unsuccessful! A note of that name does not exist.\n" +
+                    "Only notes in your list can be removed.\n" +
+                    "Type 'list' to see notes you can remove." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Unsuccessful! A note of that name does not exist." + MAC_WHITESPACE +
+                    "Only notes in your list can be removed." + MAC_WHITESPACE +
+                    "Type 'list' to see notes you can remove." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintTestModeStart() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printTestModeStart();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Starting test mode." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Starting test mode." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintTestModeEnd() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printTestModeEnd();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Ending test mode." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Ending test mode." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintFileWriteError() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printFileWriteError();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "File write error." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "File write error." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintFolderCreateError() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printFolderCreateError();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Folder not created." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Folder not created." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintFileDeleteSuccess() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printFileDeleteSuccess();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Successfully deleted file." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Successfully deleted file." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintFileDeleteFail() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printFileDeleteFail();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Unsuccessful! Delete failed." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Unsuccessful! Delete failed." + MAC_WHITESPACE +
+                    "======================================================" + MAC_WHITESPACE;
+        }
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    void testPrintInvalidNote() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Ui ui = new Ui();
+        ui.printInvalidNote();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+                    "Invalid note.\n" +
+                    "Type 'help c/add' for how to add a note." + WINDOWS_WHITESPACE +
+                    "======================================================" + WINDOWS_WHITESPACE;
+        } else {
+            expectedOutput = "======================================================" + MAC_WHITESPACE +
+                    "Invalid note." + MAC_WHITESPACE +
+                    "Type 'help c/add' for how to add a note." + MAC_WHITESPACE +
                     "======================================================" + MAC_WHITESPACE;
         }
         assertEquals(expectedOutput, outContent.toString());
