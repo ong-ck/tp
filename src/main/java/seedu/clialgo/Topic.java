@@ -61,6 +61,10 @@ public class Topic {
         return notes;
     }
 
+    public String getTopicName() {
+        return this.topicName;
+    }
+
     /**
      * Gets all notes stored in this specific topic and stores them in an ArrayList.
      *
