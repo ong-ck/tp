@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class NameNotFoundCommandTest {
 
-    private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private Ui ui;
     private TopicManager topicManager;
@@ -49,7 +48,7 @@ public class NameNotFoundCommandTest {
         command.execute(topicManager, ui, fileManager);
 
         String os = System.getProperty("os.name");
-        String expectedOutput = "";
+        String expectedOutput;
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
