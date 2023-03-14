@@ -51,6 +51,7 @@ public class SingleFile {
      * @throws IOException Throws an exception if the file write fails.
      */
     public void writeNoteToFile(String encodedNote) throws IOException {
+        assert encodedNote != null : "Empty string";
         try {
             FileWriter fileWriter = new FileWriter(file, true);
             fileWriter.write(encodedNote);
