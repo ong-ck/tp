@@ -52,8 +52,8 @@ public class NameNotFoundCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Unsuccessful! A note of that name does not exist.\n" +
-                    "Only notes in your list can be removed.\n" +
+                    "Unsuccessful! A note of that name does not exist.\r\n" +
+                    "Only notes in your list can be removed.\r\n" +
                     "Type 'list' to see notes you can remove.\r\n" +
                     "======================================================\r\n";
         } else {

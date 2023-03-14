@@ -49,7 +49,7 @@ public class FilterCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Unsuccessful!\n" +
+                    "Unsuccessful!\r\n" +
                     "Type 'help c/filter' for assistance.\r\n" +
                     "======================================================\r\n";
         } else {

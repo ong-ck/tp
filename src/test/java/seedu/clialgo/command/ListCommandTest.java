@@ -48,7 +48,7 @@ public class ListCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "You have no notes!\n" +
+                    "You have no notes!\r\n" +
                     "Type 'help c/add' for assistance on how to add a note.\r\n" +
                     "======================================================\r\n";
         } else {
