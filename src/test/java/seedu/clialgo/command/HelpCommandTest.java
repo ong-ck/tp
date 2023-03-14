@@ -29,12 +29,12 @@ class HelpCommandTest {
         // Generate the expected output
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "The available COMMAND_TYPE(s) are:\n" +
-                    "[add]: add note\n" +
-                    "[remove]: remove note\n" +
-                    "[list]: displays all notes\n" +
-                    "[filter]: filters notes by topic\n" +
-                    "[exit]: close the application\n" +
+                    "The available COMMAND_TYPE(s) are:\r\n" +
+                    "[add]: add note\r\n" +
+                    "[remove]: remove note\r\n" +
+                    "[list]: displays all notes\r\n" +
+                    "[filter]: filters notes by topic\r\n" +
+                    "[exit]: close the application\r\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`\r\n" +
                     "======================================================\r\n";
         } else {
@@ -71,11 +71,11 @@ class HelpCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function adds a note and tags it to a topic.\n" +
-                    "The syntax for the 'add' command is: add n/NAME t/TOPIC.\n" +
-                    "NAME refers to the notes' file name.\n" +
-                    "TOPIC refers to the topic that NAME will be tagged to.\n" +
-                    "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
+                    "This function adds a note and tags it to a topic.\r\n" +
+                    "The syntax for the 'add' command is: add n/NAME t/TOPIC.\r\n" +
+                    "NAME refers to the notes' file name.\r\n" +
+                    "TOPIC refers to the topic that NAME will be tagged to.\r\n" +
+                    "Case sensitive. NAME and TOPIC fields must be non-empty.\r\n" +
                     "Invalid NAME or TOPIC will cause an error.\r\n" +
                     "======================================================\r\n";
         } else {

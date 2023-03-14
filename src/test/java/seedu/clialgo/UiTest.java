@@ -71,12 +71,12 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "The available COMMAND_TYPE(s) are:\n" +
-                    "[add]: add note\n" +
-                    "[remove]: remove note\n" +
-                    "[list]: displays all notes\n" +
-                    "[filter]: filters notes by topic\n" +
-                    "[exit]: close the application\n" +
+                    "The available COMMAND_TYPE(s) are:\r\n" +
+                    "[add]: add note\r\n" +
+                    "[remove]: remove note\r\n" +
+                    "[list]: displays all notes\r\n" +
+                    "[filter]: filters notes by topic\r\n" +
+                    "[exit]: close the application\r\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`" + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
@@ -179,15 +179,15 @@ class UiTest {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "You have no notes!\n" +
-                    "Type 'help c/add' for assistance on how to add a note." + WINDOWS_WHITESPACE +
-                    "======================================================" +  WINDOWS_WHITESPACE;
+            expectedOutput = "======================================================\r\n" +
+                    "You have no notes!\r\n" +
+                    "Type 'help c/add' for assistance on how to add a note.\r\n" +
+                    "======================================================\r\n";
         } else {
-            expectedOutput =  "======================================================" + MAC_WHITESPACE +
-                    "You have no notes!" + MAC_WHITESPACE +
-                    "Type 'help c/add' for assistance on how to add a note." + MAC_WHITESPACE +
-                    "======================================================" +  MAC_WHITESPACE;
+            expectedOutput =  "======================================================\n" +
+                    "You have no notes!\n" +
+                    "Type 'help c/add' for assistance on how to add a note.\n" +
+                    "======================================================\n";
         }
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -228,15 +228,15 @@ class UiTest {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-            expectedOutput = "======================================================" +  WINDOWS_WHITESPACE +
-                    "Unsuccessful!\n" +
-                    "Type 'help c/remove' for assistance on how to remove a note." + WINDOWS_WHITESPACE +
-                    "======================================================" + WINDOWS_WHITESPACE;
+            expectedOutput = "======================================================\r\n" +
+                    "Unsuccessful!\r\n" +
+                    "Type 'help c/remove' for assistance on how to remove a note.\r\n" +
+                    "======================================================\r\n";
         } else {
-            expectedOutput = "======================================================" +  MAC_WHITESPACE +
-                    "Unsuccessful!" + MAC_WHITESPACE +
-                    "Type 'help c/remove' for assistance on how to remove a note." + MAC_WHITESPACE +
-                    "======================================================" + MAC_WHITESPACE;
+            expectedOutput = "======================================================\n" +
+                    "Unsuccessful!\n" + MAC_WHITESPACE +
+                    "Type 'help c/remove' for assistance on how to remove a note.\n" +
+                    "======================================================\n";
         }
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -277,7 +277,7 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "Unsuccessful!\n" +
+                    "Unsuccessful!" + WINDOWS_WHITESPACE +
                     "Type 'help c/filter' for assistance." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
@@ -301,7 +301,19 @@ class UiTest {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-            expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
+            expectedOutput = "======================================================\r\n" +
+                    "This function adds a note and tags it to a topic.\r\n" +
+                    "The syntax for the 'add' command is: add n/NAME t/TOPIC.\r\n" +
+                    "NAME refers to the notes' file name.\r\n" +
+                    "TOPIC refers to the topic that NAME will be tagged to.\r\n" +
+                    "Case sensitive. NAME and TOPIC fields must be non-empty.\r\n" +
+                    "Invalid NAME or TOPIC will cause an error.\r\n" +
+                    "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\r\n" +
+                    "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE'\r\n" +
+                    "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\r\n" +
                     "This function adds a note and tags it to a topic.\n" +
                     "The syntax for the 'add' command is: add n/NAME t/TOPIC.\n" +
                     "NAME refers to the notes' file name.\n" +
@@ -309,21 +321,9 @@ class UiTest {
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
                     "Invalid NAME or TOPIC will cause an error.\n" +
                     "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\n" +
-                    "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\n" +
-                    "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'." + WINDOWS_WHITESPACE +
-                    "======================================================" + WINDOWS_WHITESPACE;
-        } else {
-            expectedOutput = "======================================================" + MAC_WHITESPACE +
-                    "This function adds a note and tags it to a topic." + MAC_WHITESPACE +
-                    "The syntax for the 'add' command is: add n/NAME t/TOPIC." + MAC_WHITESPACE +
-                    "NAME refers to the notes' file name." + MAC_WHITESPACE +
-                    "TOPIC refers to the topic that NAME will be tagged to." + MAC_WHITESPACE +
-                    "Case sensitive. NAME and TOPIC fields must be non-empty." + MAC_WHITESPACE +
-                    "Invalid NAME or TOPIC will cause an error." + MAC_WHITESPACE +
-                    "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES'," + MAC_WHITESPACE +
-                    "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE'," + MAC_WHITESPACE +
-                    "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'." + MAC_WHITESPACE +
-                    "======================================================" + MAC_WHITESPACE;
+                    "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE'\n" +
+                    "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\n" +
+                    "======================================================\r\n";
         }
         assertEquals(expectedOutput, outContent.toString());
     }
@@ -341,10 +341,10 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "This function removes a note from the tagged topic.\n" +
-                    "The syntax for the 'remove' command is: remove n/NAME.\n" +
-                    "NAME refers to the notes' file name.\n" +
-                    "'n/' must be included else NAME will not be read.\n" +
+                    "This function removes a note from the tagged topic." + WINDOWS_WHITESPACE +
+                    "The syntax for the 'remove' command is: remove n/NAME." + WINDOWS_WHITESPACE +
+                    "NAME refers to the notes' file name." + WINDOWS_WHITESPACE +
+                    "'n/' must be included else NAME will not be read." + WINDOWS_WHITESPACE +
                     "Invalid NAME will cause an error." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
@@ -372,8 +372,8 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "This function lists all stored notes.\n" +
-                    "The syntax for the 'list' command is: list.\n" +
+                    "This function lists all stored notes." + WINDOWS_WHITESPACE +
+                    "The syntax for the 'list' command is: list." + WINDOWS_WHITESPACE +
                     "Command should only contain one word (i.e. no extensions)." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
@@ -399,11 +399,11 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "This function filters by topic/importance and topic name.\n" +
-                    "The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME\n" +
-                    "KEYWORD has to be either 'topic' or 'importance'.\n" +
-                    "TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.\n" +
-                    "Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.\n" +
+                    "This function filters by topic/importance and topic name." + WINDOWS_WHITESPACE +
+                    "The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME" + WINDOWS_WHITESPACE +
+                    "KEYWORD has to be either 'topic' or 'importance'." + WINDOWS_WHITESPACE +
+                    "TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C." + WINDOWS_WHITESPACE +
+                    "Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty." + WINDOWS_WHITESPACE +
                     "Invalid KEYWORD and/or TOPIC_NAME will cause an error." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
@@ -432,8 +432,8 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "This function exits the application.\n" +
-                    "The syntax for the 'exit' command is: exit.\n" +
+                    "This function exits the application." + WINDOWS_WHITESPACE +
+                    "The syntax for the 'exit' command is: exit." + WINDOWS_WHITESPACE +
                     "Command should only contain one word (i.e. no extensions)." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
@@ -459,7 +459,7 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "This is an invalid command, please ensure all your fields are correct.\n" +
+                    "This is an invalid command, please ensure all your fields are correct." + WINDOWS_WHITESPACE +
                     "Type 'help' for additional assistance." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
@@ -484,8 +484,8 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "Unsuccessful! A note of that name does not exist.\n" +
-                    "Only notes in your list can be removed.\n" +
+                    "Unsuccessful! A note of that name does not exist." + WINDOWS_WHITESPACE +
+                    "Only notes in your list can be removed." + WINDOWS_WHITESPACE +
                     "Type 'list' to see notes you can remove." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
@@ -649,7 +649,7 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================" + WINDOWS_WHITESPACE +
-                    "Invalid note.\n" +
+                    "Invalid note." + WINDOWS_WHITESPACE +
                     "Type 'help c/add' for how to add a note." + WINDOWS_WHITESPACE +
                     "======================================================" + WINDOWS_WHITESPACE;
         } else {
