@@ -132,6 +132,7 @@ public class TopicManager {
                 continue;
             }
             toPrintNotes.put(entry.getKey(), currentTopic.getAllNotesInTopic());
+            assert toPrintNotes.containsKey(currentTopic.getTopicName());
         }
         return toPrintNotes;
     }
@@ -155,6 +156,8 @@ public class TopicManager {
         // Adds note into topic hashmap
         topics.get(topicName).addNote(noteName, note);
 
+        assert topics.get(topicName).isInsideTopic(noteName);
+
         // Keep track of name of note added
         allNotes.add(noteName);
 
@@ -176,6 +179,8 @@ public class TopicManager {
 
                 // remove name of note from the allNotes set to keep track of names
                 allNotes.remove(noteName);
+
+                assert !allNotes.contains(noteName);
 
                 // remove the note from that particular topic
                 return topics.get(topicName).removeNote(noteName);

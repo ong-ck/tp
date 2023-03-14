@@ -26,7 +26,7 @@ public class Topic {
      * Constructor that initializes a <code>Topic</code> object with notes stored in it.
      *
      * @param topicName The name of the topic.
-     * @param notes A HashMap containing the notes stored in the <code>Topic</code> object.
+     * @param notes     A HashMap containing the notes stored in the <code>Topic</code> object.
      */
     public Topic(String topicName, HashMap<String, Note> notes) {
         this.topicName = topicName;
@@ -59,6 +59,10 @@ public class Topic {
      */
     public HashMap<String, Note> getNotes() {
         return notes;
+    }
+
+    public String getTopicName() {
+        return topicName;
     }
 
     /**

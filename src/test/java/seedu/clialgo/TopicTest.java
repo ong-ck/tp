@@ -57,12 +57,8 @@ class TopicTest {
     }
 
     @Test
-    void isEmpty_checkIsEmpty_expectTrue() {
-        
-    }
-
-    @Test
-    void isEmpty_checkIsNotEmpty_expectFalse() {
-
+    void isEmpty_topicIsEmpty_expectTrue() {
+        Topic topic = new Topic("LINKED_LIST");
+        assertTrue(topic.isEmpty());
     }
 }
