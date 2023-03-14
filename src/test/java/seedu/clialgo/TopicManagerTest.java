@@ -3,7 +3,6 @@ package seedu.clialgo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -177,11 +176,12 @@ class TopicManagerTest {
         HashMap<String, Topic> actualTopics = topicManager.getTopics();
 
         HashMap<String, Topic> expectedTopics = new HashMap<>();
-        ArrayList<String> TOPIC_NAMES = new ArrayList<>(
-                Arrays.asList("SORTING", "LINKED_LIST", "GRAPH_STRUCTURES", "BINARY_HEAP", "HASH_TABLE", "GRAPH_TRAVERSAL",
-                        "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS", "MINIMUM_SPANNING_TREE")
+        ArrayList<String> topicNames = new ArrayList<>(
+                Arrays.asList("SORTING", "LINKED_LIST", "GRAPH_STRUCTURES", "BINARY_HEAP", "HASH_TABLE",
+                        "GRAPH_TRAVERSAL", "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS",
+                        "MINIMUM_SPANNING_TREE")
         );
-        for (String topicName : TOPIC_NAMES) {
+        for (String topicName : topicNames) {
             expectedTopics.put(topicName, new Topic(topicName));
         }
 
@@ -197,8 +197,9 @@ class TopicManagerTest {
         ArrayList<String> actualTopicsNames = topicManager.getTopicNames();
 
         ArrayList<String> expectedTopicsNames = new ArrayList<>(
-                Arrays.asList("SORTING", "LINKED_LIST", "GRAPH_STRUCTURES", "BINARY_HEAP", "HASH_TABLE", "GRAPH_TRAVERSAL",
-                        "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS", "MINIMUM_SPANNING_TREE")
+                Arrays.asList("SORTING", "LINKED_LIST", "GRAPH_STRUCTURES", "BINARY_HEAP", "HASH_TABLE",
+                        "GRAPH_TRAVERSAL", "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS",
+                        "MINIMUM_SPANNING_TREE")
         );
         assertEquals(expectedTopicsNames, actualTopicsNames);
     }
@@ -217,7 +218,7 @@ class TopicManagerTest {
     }
 
     @Test
-    void getNotesByTopic_InputNotesByTopic_expectCorrectNotesByTopic() {
+    void getNotesByTopic_inputNotesByTopic_expectCorrectNotesByTopic() {
         TopicManager topicManager = new TopicManager();
         String noteName1 = "queue";
         String topicName1 = "LINKED_LIST";
