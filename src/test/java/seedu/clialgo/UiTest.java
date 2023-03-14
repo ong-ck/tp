@@ -8,12 +8,8 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UiTest {
-
-    public static final String WINDOWS_WHITESPACE = "\r\n";
-    public static final String MAC_WHITESPACE = "\n";
-
     @Test
-    void testPrintWelcomeMessage() {
+    void printWelcomeMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -36,7 +32,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintExitMessage() {
+    void printExitMessage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -59,7 +55,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintHelpPage() {
+    void printHelpPage() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -94,7 +90,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintAddSuccess() {
+    void printAddSuccess() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -119,7 +115,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintAddFail() {
+    void printAddFail() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -145,7 +141,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintListSuccess() {
+    void printListSuccess() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -168,7 +164,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintListFail() {
+    void printListFail() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -193,7 +189,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintRemoveSuccess() {
+    void printRemoveSuccess() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -217,7 +213,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintRemoveFail() {
+    void printRemoveFail() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -242,7 +238,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintFilterSuccess() {
+    void printFilterSuccess() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -265,7 +261,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintFilterFail() {
+    void printFilterFail() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -290,7 +286,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintHelpAdd() {
+    void printHelpAdd() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -329,7 +325,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintHelpRemove() {
+    void printHelpRemove() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -360,7 +356,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintHelpList() {
+    void printHelpList() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -387,7 +383,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintHelpFilter() {
+    void printHelpFilter() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -420,7 +416,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintHelpExit() {
+    void printHelpExit() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -447,7 +443,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintInvalidCommand() {
+    void printInvalidCommand() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -472,7 +468,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintNameNotFoundCommand() {
+    void printNameNotFoundCommand() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -499,7 +495,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintTestModeStart() {
+    void printTestModeStart() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -522,7 +518,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintTestModeEnd() {
+    void printTestModeEnd() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -545,7 +541,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintFileWriteError() {
+    void printFileWriteError() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -568,7 +564,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintFolderCreateError() {
+    void printFolderCreateError() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -591,7 +587,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintFileDeleteSuccess() {
+    void printFileDeleteSuccess() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -614,7 +610,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintFileDeleteFail() {
+    void printFileDeleteFail() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -637,7 +633,7 @@ class UiTest {
     }
 
     @Test
-    void testPrintInvalidNote() {
+    void printInvalidNote() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
