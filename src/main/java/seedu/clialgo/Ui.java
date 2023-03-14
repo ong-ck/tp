@@ -92,6 +92,13 @@ public class Ui {
         printDivider();
     }
 
+    public void printNoteExists() {
+        printDivider();
+        System.out.println("Unsuccessful! A note with that name already exists.\n" +
+                        "Type 'list' to view the list of notes.");
+        printDivider();
+    }
+
     /**
      * Prints the list of notes saved by the user
      */
@@ -107,7 +114,7 @@ public class Ui {
     public void printListFail() {
         printDivider();
         System.out.println("You have no notes!\n" +
-                        "Type 'help c/list' for assistance.");
+                        "Type 'help c/add' for assistance on how to add a note.");
         printDivider();
     }
 
@@ -128,7 +135,7 @@ public class Ui {
     public void printRemoveFail() {
         printDivider();
         System.out.println("Unsuccessful!\n" +
-                        "Type 'help c/remove' for assistance.");
+                        "Type 'help c/remove' for assistance on how to remove a note.");
         printDivider();
     }
 
@@ -162,7 +169,10 @@ public class Ui {
                         "NAME refers to the notes' file name.\n" +
                         "TOPIC refers to the topic that NAME will be tagged to.\n" +
                         "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
-                        "Invalid NAME or TOPIC will cause an error.");
+                        "Invalid NAME or TOPIC will cause an error.\n" +
+                        "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\n" +
+                        "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\n" +
+                        "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.");
         printDivider();
     }
 
@@ -219,19 +229,31 @@ public class Ui {
         printDivider();
     }
 
+    /**
+     * Prints an error message indicating invalid user-input
+     */
     public void printInvalidCommand() {
         printDivider();
         System.out.println("This is an invalid command, please ensure all your fields are correct.");
+        System.out.println("Type 'help' for additional assistance.");
         printDivider();
     }
 
+    /**
+     * Close the System.in scanner
+     */
     public void closeScanner() {
         this.in.close();
     }
 
+    /**
+     * Prints an error message when the user tries to remove a file whose name does not exist
+     */
     public void printNameNotFoundCommand() {
         printDivider();
-        System.out.println("Cannot remove a note which does not exist, check spelling or case sensitivity.");
+        System.out.println("Unsuccessful! A note of that name does not exist.\n" +
+                        "Only notes in your list can be removed.\n" +
+                        "Type 'list' to see notes you can remove.");
         printDivider();
     }
 
@@ -294,7 +316,17 @@ public class Ui {
      */
     public void printFileDeleteFail() {
         printDivider();
-        System.out.println("Delete failed.");
+        System.out.println("Unsuccessful! Delete failed.");
+        printDivider();
+    }
+
+    /**
+     * Prints an error message indicating that note is invalid.
+     */
+    public void printInvalidNote() {
+        printDivider();
+        System.out.println("Invalid note.\n" +
+                        "Type 'help c/add' for how to add a note.");
         printDivider();
     }
 }

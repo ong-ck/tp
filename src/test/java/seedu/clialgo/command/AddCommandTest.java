@@ -177,6 +177,8 @@ class AddCommandTest {
                     "======================================================\r\n" +
                     "======================================================\r\n" +
                     "This is an invalid command, please ensure all your fields are correct.\r\n" +
+                    "Unsuccessful! A note with that name already exists.\n" +
+                    "Type 'list' to view the list of notes.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
@@ -184,6 +186,8 @@ class AddCommandTest {
                     "======================================================\n" +
                     "======================================================\n" +
                     "This is an invalid command, please ensure all your fields are correct.\n" +
+                    "Unsuccessful! A note with that name already exists.\n" +
+                    "Type 'list' to view the list of notes.\n" +
                     "======================================================\n";
         }
 
