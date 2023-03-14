@@ -136,4 +136,76 @@ class HelpCommandTest {
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
+
+    @Test
+    void execute_filterCommandInput_expectFilterHelpMessage() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "This function filters by topic/importance and topic name.\r\n" +
+                    "The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME\r\n" +
+                    "KEYWORD has to be either 'topic' or 'importance'.\r\n" +
+                    "TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.\r\n" +
+                    "Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.\r\n" +
+                    "Invalid KEYWORD and/or TOPIC_NAME will cause an error.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "This function filters by topic/importance and topic name.\n" +
+                    "The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME\n" +
+                    "KEYWORD has to be either 'topic' or 'importance'.\n" +
+                    "TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.\n" +
+                    "Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.\n" +
+                    "Invalid KEYWORD and/or TOPIC_NAME will cause an error.\n" +
+                    "======================================================\n";
+        }
+
+        new HelpCommand("filter").execute(topicManager, ui, fileManager);
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
+    }
+
+    @Test
+    void execute_listCommandInput_expectListHelpMessage() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "This function lists all stored notes.\r\n" +
+                    "The syntax for the 'list' command is: list.\r\n" +
+                    "Command should only contain one word (i.e. no extensions).\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "This function lists all stored notes.\n" +
+                    "The syntax for the 'list' command is: list.\n" +
+                    "Command should only contain one word (i.e. no extensions).\n" +
+                    "======================================================\n";
+        }
+
+        new HelpCommand("list").execute(topicManager, ui, fileManager);
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
+    }
 }
