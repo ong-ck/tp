@@ -160,6 +160,31 @@ class UiTest {
     }
 
     @Test
+    public void printNoteExists() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printNoteExists();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Unsuccessful! A note with that name already exists.\r\n" +
+                    "Type 'list' to view the list of notes.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Unsuccessful! A note with that name already exists.\n" +
+                    "Type 'list' to view the list of notes.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
     void printListSuccess() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
