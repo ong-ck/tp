@@ -208,4 +208,37 @@ class HelpCommandTest {
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
+
+    @Test
+    void execute_exitCommandInput_expectExitHelpMessage() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "This function exits the application.\r\n" +
+                    "The syntax for the 'exit' command is: exit.\r\n" +
+                    "Command should only contain one word (i.e. no extensions).\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "This function exits the application.\n" +
+                    "The syntax for the 'exit' command is: exit.\n" +
+                    "Command should only contain one word (i.e. no extensions).\n" +
+                    "======================================================\n";
+        }
+
+        new HelpCommand("exit").execute(topicManager, ui, fileManager);
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
+    }
 }
