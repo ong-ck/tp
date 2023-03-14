@@ -176,7 +176,6 @@ class AddCommandTest {
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n" +
                     "======================================================\r\n" +
-                    "This is an invalid command, please ensure all your fields are correct.\r\n" +
                     "Unsuccessful! A note with that name already exists.\n" +
                     "Type 'list' to view the list of notes.\r\n" +
                     "======================================================\r\n";
@@ -185,7 +184,6 @@ class AddCommandTest {
                     "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n" +
                     "======================================================\n" +
-                    "This is an invalid command, please ensure all your fields are correct.\n" +
                     "Unsuccessful! A note with that name already exists.\n" +
                     "Type 'list' to view the list of notes.\n" +
                     "======================================================\n";
