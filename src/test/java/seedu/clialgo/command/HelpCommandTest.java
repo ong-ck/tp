@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class HelpCommandTest {
     @Test
     void execute_noCommandInput_expectGenericHelpMessage() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         String testDataPath = ".\\testdata";
         TopicManager topicManager = new TopicManager();
@@ -51,14 +51,14 @@ class HelpCommandTest {
 
         // Generate the actual output
         new HelpCommand().execute(topicManager, ui, fileManager);
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
 
     @Test
     void execute_addCommandInput_expectAddHelpMessage() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         String testDataPath = ".\\testdata";
         TopicManager topicManager = new TopicManager();
@@ -96,7 +96,44 @@ class HelpCommandTest {
         }
 
         new HelpCommand("add").execute(topicManager, ui, fileManager);
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
+    }
+
+    @Test
+    void execute_removeCommandInput_expectRemoveHelpMessage() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "This function removes a note from the tagged topic.\r\n" +
+                    "The syntax for the 'remove' command is: remove n/NAME.\r\n" +
+                    "NAME refers to the notes' file name.\r\n" +
+                    "'n/' must be included else NAME will not be read.\r\n" +
+                    "Invalid NAME will cause an error.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "This function removes a note from the tagged topic.\n" +
+                    "The syntax for the 'remove' command is: remove n/NAME.\n" +
+                    "NAME refers to the notes' file name.\n" +
+                    "'n/' must be included else NAME will not be read.\n" +
+                    "Invalid NAME will cause an error.\n" +
+                    "======================================================\n";
+        }
+
+        new HelpCommand("remove").execute(topicManager, ui, fileManager);
+        assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
 }
