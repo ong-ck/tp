@@ -12,13 +12,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * JUnit test for <code>NameNotFoundCommand</code> object.
- */
-public class NameNotFoundCommandTest {
-
+public class FilterCommandTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private Ui ui;
     private TopicManager topicManager;
@@ -39,43 +34,37 @@ public class NameNotFoundCommandTest {
     }
 
     /**
-     * Checks if the <code>execute</code> method of a <code>NameNotFoundCommand<</code> object works as expected.
+     * Checks correct execution of <code>execute</code> method when printing empty <code>allNotes</code>.
      */
     @Test
-    void isExecutedCorrectly_inputWithNonExistentName_expectTrue() {
-        String input = "remove n/nothing";
+    void isEmptyCheck_expectTrue() {
+        String input = "filter k/topic";
         Command command = parser.parse(input, topicManager);
         command.execute(topicManager, ui, fileManager);
+
+        input = "filter k/topic t/";
 
         String os = System.getProperty("os.name");
         String expectedOutput;
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Unsuccessful! A note of that name does not exist.\n" +
-                    "Only notes in your list can be removed.\n" +
-                    "Type 'list' to see notes you can remove.\r\n" +
+                    "Unsuccessful!\n" +
+                    "Type 'help c/filter' for assistance.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "Unsuccessful! A note of that name does not exist.\n" +
-                    "Only notes in your list can be removed.\n" +
-                    "Type 'list' to see notes you can remove.\n" +
+                    "Unsuccessful!\n" +
+                    "Type 'help c/filter' for assistance.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outputStream.toString());
+        String newExpectedOutput = expectedOutput;
+        for (String string : topicManager.getTopicNames()) {
+            String newInput = input + string;
+            command = parser.parse(newInput, topicManager);
+            command.execute(topicManager, ui, fileManager);
+            newExpectedOutput += expectedOutput;
+        }
+        assertEquals(newExpectedOutput, outputStream.toString());
     }
-
-    /**
-     * Checks if the <code>equals</code> method of a <code>NameNotFoundCommand<</code> object works as expected.
-     */
-    @Test
-    void isEqualsMethodWorking_expectTrue() {
-        String input = "remove n/nothing";
-        Command command = parser.parse(input, topicManager);
-        Command testCommand = new NameNotFoundCommand();
-        assertTrue(testCommand.equals(command));
-    }
-
 }
-
