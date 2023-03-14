@@ -171,7 +171,7 @@ public class Ui {
         System.out.println("Case sensitive. NAME and TOPIC fields must be non-empty.");
         System.out.println("Invalid NAME or TOPIC will cause an error.");
         System.out.println("Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',");
-        System.out.println("'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE'");
+        System.out.println("'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',");
         System.out.println("'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.");
         printDivider();
     }
