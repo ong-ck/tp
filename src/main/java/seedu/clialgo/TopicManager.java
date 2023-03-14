@@ -174,15 +174,15 @@ public class TopicManager {
     public boolean removeNote(String noteName) {
         for (String topicName : TOPIC_NAMES) {
 
-            // check which topic contains that particular note
+            // Check which topic contains that particular note
             if ((topics.get(topicName).isInsideTopic(noteName))) {
 
-                // remove name of note from the allNotes set to keep track of names
+                // Remove name of note from the allNotes set to keep track of names
                 allNotes.remove(noteName);
 
                 assert !allNotes.contains(noteName);
 
-                // remove the note from that particular topic
+                // Remove the note from that particular topic
                 return topics.get(topicName).removeNote(noteName);
             }
         }
