@@ -309,7 +309,7 @@ class UiTest {
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\r\n" +
                     "======================================================\r\n";
         } else {
-            expectedOutput = "======================================================\r\n" +
+            expectedOutput = "======================================================\n" +
                     "This function adds a note and tags it to a topic.\n" +
                     "The syntax for the 'add' command is: add n/NAME t/TOPIC.\n" +
                     "NAME refers to the notes' file name.\n" +
@@ -319,7 +319,7 @@ class UiTest {
                     "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\n" +
                     "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE'\n" +
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\n" +
-                    "======================================================\r\n";
+                    "======================================================\n";
         }
         assertEquals(expectedOutput, outContent.toString());
     }
