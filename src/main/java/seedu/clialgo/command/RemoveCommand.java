@@ -44,6 +44,7 @@ public class RemoveCommand extends Command {
 
         if (!isSuccessfullyRemoved) {
             ui.printRemoveFail();
+            return;
         }
 
         fileManager.deleteEntry(name);
