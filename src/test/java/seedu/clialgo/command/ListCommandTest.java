@@ -55,7 +55,7 @@ public class ListCommandTest {
             expectedOutput = "======================================================\n" +
                     "You have no notes!\n" +
                     "Type 'help c/add' for assistance on how to add a note.\n" +
-            "======================================================\n";
+                "======================================================\n";
         }
         assertEquals(expectedOutput, outputStream.toString());
     }
