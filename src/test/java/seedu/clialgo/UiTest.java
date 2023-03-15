@@ -330,6 +330,29 @@ class UiTest {
     }
 
     @Test
+    void printFilterEmpty() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printFilterEmpty();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "The filtered list is empty!\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "The filtered list is empty!\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
     void printHelpAdd() {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));

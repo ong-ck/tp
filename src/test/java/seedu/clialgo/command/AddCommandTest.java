@@ -24,13 +24,13 @@ class AddCommandTest {
      */
     @Test
     void equals_checkEqualAddCommand_expectTrue() {
-        String firstName = "dummyName";
-        String secondName = "dummyName";
-        String firstPath = "dummyPath";
-        String secondPath = "dummyPath";
-        AddCommand firstAddCommand = new AddCommand(firstName, firstPath);
-        AddCommand secondAddCommand = new AddCommand(secondName, secondPath);
-        assertTrue(firstAddCommand.equals(secondAddCommand));
+        String actualName = "dummyName";
+        String expectedName = "dummyName";
+        String actualTopic = "dummyTopic";
+        String expectedTopic = "dummyTopic";
+        AddCommand actualAddCommand = new AddCommand(actualName, actualTopic);
+        AddCommand expectedAddCommand = new AddCommand(expectedName, expectedTopic);
+        assertTrue(actualAddCommand.equals(expectedAddCommand));
     }
 
     /**
@@ -39,13 +39,13 @@ class AddCommandTest {
      */
     @Test
     void equals_checkUnequalAddCommand_expectFalse() {
-        String firstName = "dummyName1";
-        String secondName = "dummyName2";
-        String firstPath = "dummyPath1";
-        String secondPath = "dummyPath2";
-        AddCommand firstAddCommand = new AddCommand(firstName, firstPath);
-        AddCommand secondAddCommand = new AddCommand(secondName, secondPath);
-        assertFalse(firstAddCommand.equals(secondAddCommand));
+        String actualName = "actualName";
+        String expectedName = "expectedName";
+        String actualTopic = "actualTopic";
+        String expectedTopic = "expectedTopic";
+        AddCommand actualAddCommand = new AddCommand(actualName, actualTopic);
+        AddCommand expectedAddCommand = new AddCommand(expectedName, expectedTopic);
+        assertFalse(actualAddCommand.equals(expectedAddCommand));
     }
 
     /**
@@ -55,8 +55,8 @@ class AddCommandTest {
      */
     @Test
     void execute_properInput_expectAddSuccessfulMessage() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         String testDataPath = ".\\testdata";
         TopicManager topicManager = new TopicManager();
@@ -64,17 +64,15 @@ class AddCommandTest {
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
 
-        String noteName = "queue";
-        String noteTopic = "LINKED_LIST";
+        String actualNoteName = "queue";
+        String actualNoteTopic = "LINKED_LIST";
 
-        new AddCommand(noteName, noteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-            // This expected output has "File Created" due to the first
-            // initialisation of the FileManager in AddCommandTest.
             expectedOutput = "======================================================\r\n" +
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n";
@@ -84,7 +82,7 @@ class AddCommandTest {
                     "======================================================\n";
         }
 
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
 
@@ -95,8 +93,8 @@ class AddCommandTest {
      */
     @Test
     void execute_invalidTopicInput_expectAddUnsuccessfulDueToInvalidTopicMessage() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         String testDataPath = ".\\testdata";
         TopicManager topicManager = new TopicManager();
@@ -104,10 +102,10 @@ class AddCommandTest {
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
 
-        String noteName = "queue";
-        String noteTopic = "invalidTopic";
+        String actualNoteName = "queue";
+        String actualNoteTopic = "invalidTopic";
 
-        new AddCommand(noteName, noteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -124,7 +122,7 @@ class AddCommandTest {
                     "======================================================\n";
         }
 
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
 
@@ -135,8 +133,8 @@ class AddCommandTest {
      */
     @Test
     void execute_repeatedInput_expectAddUnsuccessfulDueToInvalidCommandMessage() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         String testDataPath = ".\\testdata";
         TopicManager topicManager = new TopicManager();
@@ -144,12 +142,12 @@ class AddCommandTest {
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
 
-        String noteName = "queue";
-        String noteTopic = "LINKED_LIST";
+        String actualNoteName = "queue";
+        String actualNoteTopic = "LINKED_LIST";
 
         // Adding the note with same name twice into same topic
-        new AddCommand(noteName, noteTopic).execute(topicManager, ui, fileManager);
-        new AddCommand(noteName, noteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -173,7 +171,7 @@ class AddCommandTest {
                     "======================================================\n";
         }
 
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
 }

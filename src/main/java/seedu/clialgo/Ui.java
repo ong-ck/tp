@@ -163,6 +163,15 @@ public class Ui {
     }
 
     /**
+     * Prints feedback to user that filtered list is empty.
+     */
+    public void printFilterEmpty() {
+        printDivider();
+        System.out.println("The filtered list is empty!");
+        printDivider();
+    }
+
+    /**
      * Prints the requirements for using the 'add' command
      * To be called when userInput.equals("help c/add")
      */
