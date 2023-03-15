@@ -9,9 +9,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UiTest {
     @Test
+    void printDivider() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printDivider();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
     void printWelcomeMessage() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printWelcomeMessage();
@@ -28,13 +47,13 @@ class UiTest {
                     "Hello! Welcome to CLIAlgo Notes!\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printExitMessage() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printExitMessage();
@@ -51,13 +70,13 @@ class UiTest {
                     "Thank you for using CLIAlgo! Study hard!\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printHelpPage() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printHelpPage();
@@ -86,18 +105,18 @@ class UiTest {
                     "For more help on a specific command, type `help c/COMMAND_TYPE`\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printAddSuccess() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
-        String name = "queue";
-        String topic = "LINKED_LIST";
-        ui.printAddSuccess(name, topic);
+        String actualName = "queue";
+        String actualTopic = "LINKED_LIST";
+        ui.printAddSuccess(actualName, actualTopic);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -111,17 +130,17 @@ class UiTest {
                     "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printAddFail() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
-        String topic = "FENWICK_TREE";
-        ui.printAddFail(topic);
+        String actualTopic = "FENWICK_TREE";
+        ui.printAddFail(actualTopic);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -137,13 +156,38 @@ class UiTest {
                     "Type 'help c/add' for assistance.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    public void printNoteExists() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printNoteExists();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Unsuccessful! A note with that name already exists.\r\n" +
+                    "Type 'list' to view the list of notes.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Unsuccessful! A note with that name already exists.\n" +
+                    "Type 'list' to view the list of notes.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printListSuccess() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printListSuccess();
@@ -160,13 +204,13 @@ class UiTest {
                     "Here are all your notes:\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printListFail() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printListFail();
@@ -185,17 +229,17 @@ class UiTest {
                     "Type 'help c/add' for assistance on how to add a note.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printRemoveSuccess() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
-        String name = "queue";
-        ui.printRemoveSuccess(name);
+        String actualName = "queue";
+        ui.printRemoveSuccess(actualName);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -209,13 +253,13 @@ class UiTest {
                     "Successfully removed queue.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printRemoveFail() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printRemoveFail();
@@ -234,13 +278,13 @@ class UiTest {
                     "Type 'help c/remove' for assistance on how to remove a note.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printFilterSuccess() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printFilterSuccess();
@@ -257,13 +301,13 @@ class UiTest {
                     "Here are the filtered notes:\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printFilterFail() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printFilterFail();
@@ -282,13 +326,13 @@ class UiTest {
                     "Type 'help c/filter' for assistance.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printHelpAdd() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printHelpAdd();
@@ -321,13 +365,13 @@ class UiTest {
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printHelpRemove() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printHelpRemove();
@@ -352,13 +396,13 @@ class UiTest {
                     "Invalid NAME will cause an error.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printHelpList() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printHelpList();
@@ -379,13 +423,13 @@ class UiTest {
                     "Command should only contain one word (i.e. no extensions).\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printHelpFilter() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printHelpFilter();
@@ -412,13 +456,13 @@ class UiTest {
                     "Invalid KEYWORD and/or TOPIC_NAME will cause an error.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printHelpExit() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printHelpExit();
@@ -439,13 +483,13 @@ class UiTest {
                     "Command should only contain one word (i.e. no extensions).\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printInvalidCommand() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printInvalidCommand();
@@ -464,13 +508,13 @@ class UiTest {
                     "Type 'help' for additional assistance.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printNameNotFoundCommand() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printNameNotFoundCommand();
@@ -491,13 +535,36 @@ class UiTest {
                     "Type 'list' to see notes you can remove.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printSaveFail() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printSaveFail();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Saving data was unsuccessful. Please try again.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Saving data was unsuccessful. Please try again.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printTestModeStart() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printTestModeStart();
@@ -514,13 +581,13 @@ class UiTest {
                     "Starting test mode.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printTestModeEnd() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printTestModeEnd();
@@ -537,13 +604,13 @@ class UiTest {
                     "Ending test mode.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printFileWriteError() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printFileWriteError();
@@ -560,13 +627,13 @@ class UiTest {
                     "File write error.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printFolderCreateError() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printFolderCreateError();
@@ -583,13 +650,13 @@ class UiTest {
                     "Folder not created.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printFileDeleteSuccess() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printFileDeleteSuccess();
@@ -606,13 +673,13 @@ class UiTest {
                     "Successfully deleted file.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printFileDeleteFail() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printFileDeleteFail();
@@ -629,13 +696,13 @@ class UiTest {
                     "Unsuccessful! Delete failed.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     @Test
     void printInvalidNote() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
         ui.printInvalidNote();
@@ -654,6 +721,6 @@ class UiTest {
                     "Type 'help c/add' for how to add a note.\n" +
                     "======================================================\n";
         }
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 }
