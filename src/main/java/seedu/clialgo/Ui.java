@@ -75,6 +75,8 @@ public class Ui {
      * @param topic the CS2040C topic
      */
     public void printAddSuccess(String name, String topic) {
+        assert name != null;
+        assert topic != null;
         printDivider();
         System.out.println("Successfully added " + name + " into " + topic + ".");
         printDivider();
@@ -86,6 +88,7 @@ public class Ui {
      * @param topic the CS2040C topic
      */
     public void printAddFail(String topic) {
+        assert topic != null;
         printDivider();
         System.out.println("Unsuccessful! " + topic + " is not a topic in CS2040C.");
         System.out.println("Type 'help c/add' for assistance.");
@@ -124,6 +127,7 @@ public class Ui {
      * @param name the name of the notes defined by the user
      */
     public void printRemoveSuccess(String name) {
+        assert name != null;
         printDivider();
         System.out.println("Successfully removed " + name + ".");
         printDivider();
