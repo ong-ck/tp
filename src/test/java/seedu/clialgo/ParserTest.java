@@ -36,6 +36,24 @@ class ParserTest {
         }
     }
 
+    /** Test isValidKeyword */
+    @Test
+    void isValidKeyword() {
+        Parser parser = new Parser();
+        ArrayList<String> correctKeywords = new ArrayList<>(
+                Arrays.asList("topic")
+        );
+        ArrayList<String> wrongKeywords = new ArrayList<String>(
+                Arrays.asList("topiC", "toic", "")
+        );
+        for (String correctKeyword : correctKeywords) {
+            assertTrue(parser.isValidKeyword(correctKeyword));
+        }
+        for (String wrongKeyword : wrongKeywords) {
+            assertFalse(parser.isValidKeyword(wrongKeyword));
+        }
+    }
+
     /** Test isCorrectMarker */
     @Test
     void isCorrectMarker_correctInput_expectTrue() {
