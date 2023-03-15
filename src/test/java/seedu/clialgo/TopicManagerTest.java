@@ -250,7 +250,7 @@ class TopicManagerTest {
     }
 
     @Test
-    void initialize_xx() {
+    void initialize_initializeTopicManagerTestObjectWithTopics_expectNotesToBeInside() {
         TopicManager topicManager = new TopicManager();
 
         ArrayList<String> expectedAllNotes = new ArrayList<>();
@@ -271,6 +271,6 @@ class TopicManagerTest {
         TopicManager topicManagerTest = new TopicManager();
         topicManagerTest.initialize(topicManager.getTopics());
 
-        assertEquals(expectedAllNotes, topicManager.getAllNotes());
+        assertEquals(expectedAllNotes, topicManagerTest.getAllNotes());
     }
 }
