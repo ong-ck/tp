@@ -77,4 +77,41 @@ public class RemoveCommandTest {
         FileManager.deleteAll(new File(testDataPath));
     }
 
+    @Test
+    void execute_emptyTopicManagerInput_expectRemoveFailMessage() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
+
+        actualOutput.reset();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        String noteName = "queue";
+
+        new RemoveCommand(noteName).execute(topicManager, ui, fileManager);
+
+        if (os.contains("Windows")) {
+            // This expected output has "File Created" due to the first
+            // initialisation of the FileManager in AddCommandTest.
+            expectedOutput = "======================================================\r\n" +
+                    "Unsuccessful!\r\n" +
+                    "Type 'help c/remove' for assistance on how to remove a note.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Unsuccessful!\n" +
+                    "Type 'help c/remove' for assistance on how to remove a note.\n" +
+                    "======================================================\n";
+        }
+
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
+    }
 }

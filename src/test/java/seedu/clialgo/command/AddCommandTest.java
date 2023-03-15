@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
-import java.util.Objects;
 
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;

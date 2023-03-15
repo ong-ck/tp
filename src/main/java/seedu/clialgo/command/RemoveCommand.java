@@ -39,7 +39,7 @@ public class RemoveCommand extends Command {
             ui.printRemoveFail();
             return;
         }
-
+        assert topicManager.isRepeatedNote(this.name);
         boolean isSuccessfullyRemoved = topicManager.removeNote(name);
 
         if (!isSuccessfullyRemoved) {
