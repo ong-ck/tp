@@ -55,4 +55,10 @@ class TopicTest {
 
         assertEquals(testTopic.getNotes(), testNotesHashmap);
     }
+
+    @Test
+    void isEmpty_topicIsEmpty_expectTrue() {
+        Topic topic = new Topic("LINKED_LIST");
+        assertTrue(topic.isEmpty());
+    }
 }

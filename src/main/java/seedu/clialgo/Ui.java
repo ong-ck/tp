@@ -58,13 +58,13 @@ public class Ui {
      */
     public void printHelpPage() {
         printDivider();
-        System.out.println("The available COMMAND_TYPE(s) are:\n" +
-                        "[add]: add note\n" +
-                        "[remove]: remove note\n" +
-                        "[list]: displays all notes\n" +
-                        "[filter]: filters notes by topic\n" +
-                        "[exit]: close the application\n" +
-                        "For more help on a specific command, type `help c/COMMAND_TYPE`");
+        System.out.println("The available COMMAND_TYPE(s) are:");
+        System.out.println("[add]: add note");
+        System.out.println("[remove]: remove note");
+        System.out.println("[list]: displays all notes");
+        System.out.println("[filter]: filters notes by topic");
+        System.out.println("[exit]: close the application");
+        System.out.println("For more help on a specific command, type `help c/COMMAND_TYPE`");
         printDivider();
     }
 
@@ -75,8 +75,10 @@ public class Ui {
      * @param topic the CS2040C topic
      */
     public void printAddSuccess(String name, String topic) {
+        assert name != null;
+        assert topic != null;
         printDivider();
-        System.out.printf("Successfully added %s into %s.%n", name, topic);
+        System.out.println("Successfully added " + name + " into " + topic + ".");
         printDivider();
     }
 
@@ -86,9 +88,17 @@ public class Ui {
      * @param topic the CS2040C topic
      */
     public void printAddFail(String topic) {
+        assert topic != null;
         printDivider();
-        System.out.printf("Unsuccessful! %s is not a topic in CS2040C.%n", topic);
+        System.out.println("Unsuccessful! " + topic + " is not a topic in CS2040C.");
         System.out.println("Type 'help c/add' for assistance.");
+        printDivider();
+    }
+
+    public void printNoteExists() {
+        printDivider();
+        System.out.println("Unsuccessful! A note with that name already exists.");
+        System.out.println("Type 'list' to view the list of notes.");
         printDivider();
     }
 
@@ -106,8 +116,8 @@ public class Ui {
      */
     public void printListFail() {
         printDivider();
-        System.out.println("You have no notes!\n" +
-                        "Type 'help c/list' for assistance.");
+        System.out.println("You have no notes!");
+        System.out.println("Type 'help c/add' for assistance on how to add a note.");
         printDivider();
     }
 
@@ -117,8 +127,9 @@ public class Ui {
      * @param name the name of the notes defined by the user
      */
     public void printRemoveSuccess(String name) {
+        assert name != null;
         printDivider();
-        System.out.printf("Successfully removed %s.%n", name);
+        System.out.println("Successfully removed " + name + ".");
         printDivider();
     }
 
@@ -127,8 +138,8 @@ public class Ui {
      */
     public void printRemoveFail() {
         printDivider();
-        System.out.println("Unsuccessful!\n" +
-                        "Type 'help c/remove' for assistance.");
+        System.out.println("Unsuccessful!");
+        System.out.println("Type 'help c/remove' for assistance on how to remove a note.");
         printDivider();
     }
 
@@ -146,8 +157,8 @@ public class Ui {
      */
     public void printFilterFail() {
         printDivider();
-        System.out.println("Unsuccessful!\n" +
-                        "Type 'help c/filter' for assistance.");
+        System.out.println("Unsuccessful!");
+        System.out.println("Type 'help c/filter' for assistance.");
         printDivider();
     }
 
@@ -157,12 +168,15 @@ public class Ui {
      */
     public void printHelpAdd() {
         printDivider();
-        System.out.println("This function adds a note and tags it to a topic.\n" +
-                        "The syntax for the 'add' command is: add n/NAME t/TOPIC.\n" +
-                        "NAME refers to the notes' file name.\n" +
-                        "TOPIC refers to the topic that NAME will be tagged to.\n" +
-                        "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
-                        "Invalid NAME or TOPIC will cause an error.");
+        System.out.println("This function adds a note and tags it to a topic.");
+        System.out.println("The syntax for the 'add' command is: add n/NAME t/TOPIC.");
+        System.out.println("NAME refers to the notes' file name.");
+        System.out.println("TOPIC refers to the topic that NAME will be tagged to.");
+        System.out.println("Case sensitive. NAME and TOPIC fields must be non-empty.");
+        System.out.println("Invalid NAME or TOPIC will cause an error.");
+        System.out.println("Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',");
+        System.out.println("'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',");
+        System.out.println("'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.");
         printDivider();
     }
 
@@ -172,11 +186,11 @@ public class Ui {
      */
     public void printHelpRemove() {
         printDivider();
-        System.out.println("This function removes a note from the tagged topic.\n" +
-                        "The syntax for the 'remove' command is: remove n/NAME.\n" +
-                        "NAME refers to the notes' file name.\n" +
-                        "'n/' must be included else NAME will not be read.\n" +
-                        "Invalid NAME will cause an error.");
+        System.out.println("This function removes a note from the tagged topic.");
+        System.out.println("The syntax for the 'remove' command is: remove n/NAME.");
+        System.out.println("NAME refers to the notes' file name.");
+        System.out.println("'n/' must be included else NAME will not be read.");
+        System.out.println("Invalid NAME will cause an error.");
         printDivider();
     }
 
@@ -186,9 +200,9 @@ public class Ui {
      */
     public void printHelpList() {
         printDivider();
-        System.out.println("This function lists all stored notes.\n" +
-                        "The syntax for the 'list' command is: list.\n" +
-                        "Command should only contain one word (i.e. no extensions).");
+        System.out.println("This function lists all stored notes.");
+        System.out.println("The syntax for the 'list' command is: list.");
+        System.out.println("Command should only contain one word (i.e. no extensions).");
         printDivider();
     }
 
@@ -198,12 +212,12 @@ public class Ui {
      */
     public void printHelpFilter() {
         printDivider();
-        System.out.println("This function filters by topic/importance and topic name.\n" +
-                        "The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME\n" +
-                        "KEYWORD has to be either 'topic' or 'importance'.\n" +
-                        "TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.\n" +
-                        "Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.\n" +
-                        "Invalid KEYWORD and/or TOPIC_NAME will cause an error.");
+        System.out.println("This function filters by topic/importance and topic name.");
+        System.out.println("The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME");
+        System.out.println("KEYWORD has to be either 'topic' or 'importance'.");
+        System.out.println("TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.");
+        System.out.println("Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.");
+        System.out.println("Invalid KEYWORD and/or TOPIC_NAME will cause an error.");
         printDivider();
     }
 
@@ -213,26 +227,38 @@ public class Ui {
      */
     public void printHelpExit() {
         printDivider();
-        System.out.println("This function exits the application.\n" +
-                        "The syntax for the 'exit' command is: exit.\n" +
-                        "Command should only contain one word (i.e. no extensions).");
+        System.out.println("This function exits the application.");
+        System.out.println("The syntax for the 'exit' command is: exit.");
+        System.out.println("Command should only contain one word (i.e. no extensions).");
         printDivider();
     }
 
+    /**
+     * Prints an error message indicating invalid user-input
+     */
     public void printInvalidCommand() {
         printDivider();
-        System.out.println("This is an invalid command, please ensure all your fields are correct.\n" +
-                        "Use the 'help' command for assistance.");
+        System.out.println("This is an invalid command, please ensure all your fields are correct.");
+        System.out.println("Type 'help' for additional assistance.");
         printDivider();
     }
 
+    /**
+     * Close the System.in scanner
+     */
     public void closeScanner() {
         this.in.close();
     }
 
+    /**
+     * Prints an error message when the user tries to remove a file whose name does not exist
+     */
     public void printNameNotFoundCommand() {
         printDivider();
-        System.out.println("Cannot remove a note which does not exist, check spelling or case sensitivity.");
+        System.out.println("Unsuccessful! A note of that name does not exist.");
+        System.out.println("Only notes in your list can be removed.");
+        System.out.println("Type 'list' to see notes you can remove.");
+        printDivider();
     }
 
     /**
@@ -294,7 +320,17 @@ public class Ui {
      */
     public void printFileDeleteFail() {
         printDivider();
-        System.out.println("Delete failed.");
+        System.out.println("Unsuccessful! Delete failed.");
+        printDivider();
+    }
+
+    /**
+     * Prints an error message indicating that note is invalid.
+     */
+    public void printInvalidNote() {
+        printDivider();
+        System.out.println("Invalid note.");
+        System.out.println("Type 'help c/add' for how to add a note.");
         printDivider();
     }
 }

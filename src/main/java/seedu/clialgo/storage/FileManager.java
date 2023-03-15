@@ -85,6 +85,23 @@ public class FileManager {
     }
 
     /**
+     * Deletes folder at <code>pathToFolder</code> and all the files within.
+     * @param pathToFolder The <code>File</code> representing the folder to delete.
+     */
+    public static void deleteAll(File pathToFolder) {
+        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
+            if (!f.delete()) {
+                System.out.println("Delete failed");
+            }
+        }
+        if (!pathToFolder.delete()) {
+            System.out.println("Delete failed");
+        } else {
+            System.out.println("Delete successful");
+        }
+    }
+
+    /**
      * Creates a folder at <code>path</code>.
      */
     public void createFolder() {

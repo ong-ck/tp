@@ -2,6 +2,7 @@ package seedu.clialgo.storage;
 
 import seedu.clialgo.Note;
 import seedu.clialgo.Topic;
+import seedu.clialgo.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +15,7 @@ public class SingleFile {
 
     private File file;
     private final String name;
+    private final Ui ui;
     private final HashMap<String, String> storedRawData = new HashMap<>();
     private final HashMap<String, Note> notes = new HashMap<>();
     private final FileDecoder decoder;
@@ -22,6 +24,7 @@ public class SingleFile {
     public SingleFile (File file, String name, FileDecoder decoder) {
         this.file = file;
         this.name = name;
+        this.ui = new Ui();
         this.decoder = decoder;
     }
 
@@ -48,6 +51,7 @@ public class SingleFile {
      * @throws IOException Throws an exception if the file write fails.
      */
     public void writeNoteToFile(String encodedNote) throws IOException {
+        assert encodedNote != null : "Empty string";
         try {
             FileWriter fileWriter = new FileWriter(file, true);
             fileWriter.write(encodedNote);
@@ -79,7 +83,7 @@ public class SingleFile {
             try {
                 overwriteFile();
             } catch (IOException e) {
-                System.out.println("File write fail");
+                ui.printFileWriteError();
             }
             notes.remove(name);
         }

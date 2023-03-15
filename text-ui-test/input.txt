@@ -8,6 +8,11 @@ filter k/topic t/LINKED_LIST
 filter k/topic t/LINKED LIST
 help c/remove
 filter k/topic t/SORTING
-help c/filter
-remove n/graph notes
+remove n/    hash table notes
+list
+add n/sorting notes t/SORTING
+help c/add
+filter k/ topic
+filter k/topic t/MST
+filter k/topic t/MINIMUM_SPANNING_TREE
 exit

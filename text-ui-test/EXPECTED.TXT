@@ -5,13 +5,16 @@ Hello! Welcome to CLIAlgo Notes!
 Here are all your notes:
 ======================================================
 1. graph traversal notes
-2. linked list notes
+2. sorting notes
+3. linked list notes
 ======================================================
 ======================================================
 Here are the filtered notes:
 ======================================================
 [GRAPH_TRAVERSAL]
 1. graph traversal notes
+[SORTING]
+1. sorting notes
 [LINKED_LIST]
 1. linked list notes
 ======================================================
@@ -35,10 +38,13 @@ NAME refers to the notes' file name.
 TOPIC refers to the topic that NAME will be tagged to.
 Case sensitive. NAME and TOPIC fields must be non-empty.
 Invalid NAME or TOPIC will cause an error.
+Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
+'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
+'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
 ======================================================
 ======================================================
 This is an invalid command, please ensure all your fields are correct.
-Use the 'help' command for assistance.
+Type 'help' for additional assistance.
 ======================================================
 ======================================================
 Here are the filtered notes:
@@ -58,19 +64,55 @@ NAME refers to the notes' file name.
 Invalid NAME will cause an error.
 ======================================================
 ======================================================
+Here are the filtered notes:
+======================================================
+[SORTING]
+1. sorting notes
+======================================================
+======================================================
+Unsuccessful! A note of that name does not exist.
+Only notes in your list can be removed.
+Type 'list' to see notes you can remove.
+======================================================
+======================================================
+Here are all your notes:
+======================================================
+1. graph traversal notes
+2. sorting notes
+3. linked list notes
+======================================================
+======================================================
+Unsuccessful! A note with that name already exists.
+Type 'list' to view the list of notes.
+======================================================
+======================================================
+This function adds a note and tags it to a topic.
+The syntax for the 'add' command is: add n/NAME t/TOPIC.
+NAME refers to the notes' file name.
+TOPIC refers to the topic that NAME will be tagged to.
+Case sensitive. NAME and TOPIC fields must be non-empty.
+Invalid NAME or TOPIC will cause an error.
+Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
+'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
+'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
+======================================================
+======================================================
+Here are the filtered notes:
+======================================================
+[GRAPH_TRAVERSAL]
+1. graph traversal notes
+[SORTING]
+1. sorting notes
+[LINKED_LIST]
+1. linked list notes
+======================================================
+======================================================
+Unsuccessful! MST is not a topic in CS2040C.
+Type 'help c/add' for assistance.
+======================================================
+======================================================
 Unsuccessful!
 Type 'help c/filter' for assistance.
-======================================================
-======================================================
-This function filters by topic/importance and topic name.
-The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME
-KEYWORD has to be either 'topic' or 'importance'.
-TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.
-Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.
-Invalid KEYWORD and/or TOPIC_NAME will cause an error.
-======================================================
-======================================================
-Cannot remove a note which does not exist, check spelling or case sensitivity.
 ======================================================
 ======================================================
 Thank you for using CLIAlgo! Study hard!

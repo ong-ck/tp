@@ -11,5 +11,4 @@ public class RemoveCommandTest {
         assertEquals("queue notes", myObj.getName());
     }
 
-
 }

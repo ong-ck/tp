@@ -1,16 +1,17 @@
 package seedu.clialgo.storage;
 
 import seedu.clialgo.Note;
+import seedu.clialgo.Ui;
 
 /**
  * Object that processes a <code>String</code> passed to it and returns a <code>Note</code> representing the
  * information in the <code>String</code>.
  */
 public class FileDecoder {
-
     protected Note currentNote;
     protected String currentName;
     protected final String separator;
+    private final Ui ui;
 
     /**
      * Constructor for the fileDecoder object
@@ -19,6 +20,7 @@ public class FileDecoder {
      */
     public FileDecoder (String separator) {
         this.separator = separator;
+        this.ui = new Ui();
     }
 
     /**
@@ -33,7 +35,7 @@ public class FileDecoder {
             this.currentName = splitNote[0];
             currentNote = new Note(this.currentName, splitNote[1], splitNote[2]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Invalid note");
+            ui.printInvalidNote();
         }
     }
 
