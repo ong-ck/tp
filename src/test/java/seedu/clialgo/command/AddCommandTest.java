@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
-import java.util.Objects;
 
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
@@ -18,21 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  * JUnit test for the <code>AddCommand</code> class methods.
  */
 class AddCommandTest {
-
-    /**
-     * Deletes folder at <code>pathToFolder</code> and all the files within.
-     * @param pathToFolder The <code>File</code> representing the folder to delete.
-     */
-    public void deleteAll(File pathToFolder) {
-        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
-            if (!f.delete()) {
-                System.out.println("Delete failed");
-            }
-        }
-        if (!pathToFolder.delete()) {
-            System.out.println("Delete failed");
-        }
-    }
 
     /**
      * Checks the <code>equals</code> method of the <code>AddCommand</code> class.
@@ -99,7 +83,7 @@ class AddCommandTest {
         }
 
         assertEquals(expectedOutput, actualOutput.toString());
-        deleteAll(new File(testDataPath));
+        FileManager.deleteAll(new File(testDataPath));
     }
 
     /**
@@ -139,7 +123,7 @@ class AddCommandTest {
         }
 
         assertEquals(expectedOutput, actualOutput.toString());
-        deleteAll(new File(testDataPath));
+        FileManager.deleteAll(new File(testDataPath));
     }
 
     /**
@@ -188,6 +172,6 @@ class AddCommandTest {
         }
 
         assertEquals(expectedOutput, actualOutput.toString());
-        deleteAll(new File(testDataPath));
+        FileManager.deleteAll(new File(testDataPath));
     }
 }
