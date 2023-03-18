@@ -1,12 +1,13 @@
-package seedu.clialgo;
+package seedu.clialgo.file;
 
 /**
  * The <code>Note</code> object represents each note file that the user can add into CLIAlgo.
  */
-public class Note {
+public class Note extends File {
     private String name;
     private String path;
     private String topic;
+    private int importance;
 
     /**
      * Constructor for <code>Note</code> object.

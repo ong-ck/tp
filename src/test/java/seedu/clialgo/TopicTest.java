@@ -1,6 +1,7 @@
 package seedu.clialgo;
 
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.file.Note;
 
 import java.util.ArrayList;
 import java.util.Arrays;

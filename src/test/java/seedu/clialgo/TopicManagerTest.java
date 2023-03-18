@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.file.Note;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
