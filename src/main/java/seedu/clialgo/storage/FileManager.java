@@ -39,7 +39,7 @@ public class FileManager {
         this.path = path;
         this.initialPath = path;
         this.ui = new Ui();
-        String separator = "&@*";
+        String separator = "&@";
         this.topicRawData = new HashMap<>();
         this.topicNames = topicNames;
         this.encoder = new FileEncoder(separator);

@@ -35,13 +35,25 @@ public class SingleFile {
      */
     public void readFile() throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
+        boolean isFileCorrupted = false;
         while (scanner.hasNext()) {
             String rawData = scanner.nextLine();
-            decoder.decodeString(rawData);
-            storedRawData.put(decoder.decodedName(), rawData);
-            notes.put(decoder.decodedName(), decoder.processedNote());
+            boolean isCorrupted = decoder.decodeString(rawData, name);
+            if (!isCorrupted) {
+                storedRawData.put(decoder.decodedName(), rawData);
+                notes.put(decoder.decodedName(), decoder.processedNote());
+            } else {
+                isFileCorrupted = true;
+            }
         }
         scanner.close();
+        if (isFileCorrupted) {
+            try {
+                overwriteFile();
+            } catch (IOException e) {
+                ui.printFileWriteError();
+            }
+        }
     }
 
     /**
@@ -54,7 +66,7 @@ public class SingleFile {
         assert encodedNote != null : "Empty string";
         try {
             FileWriter fileWriter = new FileWriter(file, true);
-            fileWriter.write(encodedNote);
+            fileWriter.write(encodedNote + "\n");
             fileWriter.close();
         } catch (IOException e) {
             throw new IOException();
