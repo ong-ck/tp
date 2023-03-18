@@ -29,7 +29,8 @@ public class SingleFile {
     }
 
     /**
-     * Reads data from the .txt file and stores it in this object.
+     * Reads data from the .txt file and stores it in this object. If the file is corrupted, after reading in the
+     * non-corrupted data, overwrites the data file with the non-corrupted data while purging the corrupted data.
      *
      * @throws FileNotFoundException Thrown when the .txt file does not exist.
      */
@@ -57,7 +58,8 @@ public class SingleFile {
     }
 
     /**
-     * Writes a single <code>Note</code> encoded as a <code>String</code> to the .txt file.
+     * Writes a single <code>Note</code> encoded as a <code>String</code> to the .txt file. If the file does not exist
+     * during method call, recreate the file with <code>recreateFile</code>.
      *
      * @param encodedNote The <code>Note</code> encoded as a <code>String</code>.
      * @throws IOException Throws an exception if the file write fails.
@@ -65,6 +67,10 @@ public class SingleFile {
     public void writeNoteToFile(String encodedNote) throws IOException {
         assert encodedNote != null : "Empty string";
         try {
+            if (!file.exists()) {
+                recreateFile();
+                overwriteFile();
+            }
             FileWriter fileWriter = new FileWriter(file, true);
             fileWriter.write(encodedNote + "\n");
             fileWriter.close();
@@ -90,14 +96,38 @@ public class SingleFile {
         }
     }
 
-    public void deleteEntry(String name) {
+    /**
+     * Deletes a single <code>Note</code> and updates the .txt file. If the file does not exist
+     * during method call, recreate the file with <code>recreateFile</code>.
+     *
+     * @param name The name of the <code>Note</code> being deleted.
+     * @throws IOException Throws an exception if the file write fails.
+     */
+    public void deleteEntry(String name) throws IOException{
         if (storedRawData.remove(name) != null) {
             try {
+                if (!file.exists()) {
+                    recreateFile();
+                }
                 overwriteFile();
             } catch (IOException e) {
-                ui.printFileWriteError();
+                throw new IOException();
             }
             notes.remove(name);
+        }
+    }
+
+    /**
+     * Recreates the data file with all the entries reset based on the current data stored in this object.
+     */
+    public void recreateFile() {
+        try {
+            if (file.createNewFile()) {
+                overwriteFile();
+                ui.printFileRecreatedSuccess();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

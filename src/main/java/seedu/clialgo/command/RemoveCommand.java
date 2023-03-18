@@ -39,7 +39,13 @@ public class RemoveCommand extends Command {
             ui.printRemoveFail();
             return;
         }
-        
+
+        boolean isDeletedInFile = fileManager.deleteEntry(name);
+
+        if (!isDeletedInFile) {
+            return;
+        }
+
         assert topicManager.isRepeatedNote(this.name);
         boolean isSuccessfullyRemoved = topicManager.removeNote(name);
 
@@ -48,7 +54,7 @@ public class RemoveCommand extends Command {
             return;
         }
 
-        fileManager.deleteEntry(name);
+
         ui.printRemoveSuccess(name);
     }
 

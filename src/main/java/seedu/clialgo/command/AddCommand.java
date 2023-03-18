@@ -60,7 +60,13 @@ public class AddCommand extends Command {
             return;
         }
 
-        fileManager.addEntry(name, newNote);
+        boolean isAddedToFile = fileManager.addEntry(name, newNote);
+
+        //  Check if note is successfully added to data file
+        if (!isAddedToFile) {
+            return;
+        }
+
         boolean isAdded = topicManager.addNote(name, topic, newNote);
 
         // Check if added -> execute invalid command if note is not added
