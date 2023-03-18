@@ -2,7 +2,7 @@ package seedu.clialgo.command;
 
 import java.util.Objects;
 
-import seedu.clialgo.Note;
+import seedu.clialgo.file.Note;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.Ui;

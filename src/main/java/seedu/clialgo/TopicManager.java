@@ -1,5 +1,7 @@
 package seedu.clialgo;
 
+import seedu.clialgo.file.Note;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
 package seedu.clialgo.storage;
 
-import seedu.clialgo.Note;
+import seedu.clialgo.file.Note;
 
 /**
  * Object that takes in a <code>Note</code> object and converts it into a <code>String</code> which is then written
