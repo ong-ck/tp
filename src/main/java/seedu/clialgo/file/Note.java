@@ -7,7 +7,7 @@ public class Note extends File {
     private String name;
     private String path;
     private String topic;
-    private int importance;
+//    private int importance;
 
     /**
      * Constructor for <code>Note</code> object.
@@ -16,11 +16,10 @@ public class Note extends File {
      * @param path Path to the note file.
      * @param topic Topic that note file should be tagged.
      */
-    public Note(String name, String path, String topic, int importance) {
+    public Note(String name, String path, String topic) {
         this.name = name;
         this.path = path;
         this.topic = topic;
-        this.importance = importance;
     }
 
     /**
@@ -70,21 +69,21 @@ public class Note extends File {
         this.topic = topic;
     }
 
-    /**
-     * Gets the importance of the note file.
-     *
-     * @return The importance of the note file.
-     */
-    public int getImportance() {
-        return this.importance;
-    }
-
-    /**
-     * Sets the importance of the note file.
-     *
-     * @param importance The importance for the note file.
-     */
-    public int setImportance(int importance) {
-        return this.importance = importance;
-    }
+//    /**
+//     * Gets the importance of the note file.
+//     *
+//     * @return The importance of the note file.
+//     */
+//    public int getImportance() {
+//        return this.importance;
+//    }
+//
+//    /**
+//     * Sets the importance of the note file.
+//     *
+//     * @param importance The importance for the note file.
+//     */
+//    public int setImportance(int importance) {
+//        return this.importance = importance;
+//    }
 }
