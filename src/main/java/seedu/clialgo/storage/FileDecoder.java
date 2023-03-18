@@ -1,7 +1,6 @@
 package seedu.clialgo.storage;
 
 import seedu.clialgo.file.Note;
-import seedu.clialgo.Ui;
 
 /**
  * Object that processes a <code>String</code> passed to it and returns a <code>Note</code> representing the
