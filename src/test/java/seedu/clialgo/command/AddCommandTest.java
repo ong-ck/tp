@@ -58,7 +58,7 @@ class AddCommandTest {
     @Test
     void execute_properInput_expectAddSuccessfulMessage() {
         try {
-            File testFile = new File("queue.txt");
+            File testFile = new File(".\\queue.txt");
             if (testFile.createNewFile()) {
                 System.out.println("File created: " + testFile.getName());
             } else {
@@ -107,7 +107,7 @@ class AddCommandTest {
     @Test
     void execute_invalidTopicInput_expectAddUnsuccessfulDueToInvalidTopicMessage() {
         try {
-            File testFile = new File("queue.txt");
+            File testFile = new File(".\\queue.txt");
             if (testFile.createNewFile()) {
                 System.out.println("File created: " + testFile.getName());
             } else {
@@ -158,7 +158,7 @@ class AddCommandTest {
     @Test
     void execute_repeatedInput_expectAddUnsuccessfulDueToInvalidCommandMessage() {
         try {
-            File testFile = new File("queue.txt");
+            File testFile = new File(".\\queue.txt");
             if (testFile.createNewFile()) {
                 System.out.println("File created: " + testFile.getName());
             } else {

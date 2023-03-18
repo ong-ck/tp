@@ -42,13 +42,12 @@ public class RemoveCommandTest {
     @Test
     void execute_properInput_expectRemoveSuccessfulMessage() {
         try {
-            File testFile = new File("queue.txt");
+            File testFile = new File(".\\queue.txt");
             if (testFile.createNewFile()) {
                 System.out.println("File created: " + testFile.getName());
             } else {
                 System.out.println("File already exists.");
             }
-
 
             ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
             System.setOut(new PrintStream(actualOutput));
