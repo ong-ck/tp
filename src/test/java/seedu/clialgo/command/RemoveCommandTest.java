@@ -7,6 +7,7 @@ import seedu.clialgo.storage.FileManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,43 +39,57 @@ public class RemoveCommandTest {
         assertFalse(firstRemoveCommand.equals(secondRemoveCommand));
     }
 
+    //@@author nicholas132000
     @Test
     void execute_properInput_expectRemoveSuccessfulMessage() {
-        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(actualOutput));
+        try {
+            File testFile = new File("queue.txt");
+            if (testFile.createNewFile()) {
+                System.out.println("File created: " + testFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
 
-        String testDataPath = ".\\testdata";
-        TopicManager topicManager = new TopicManager();
-        Ui ui = new Ui();
-        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
-        fileManager.initialize();
 
-        String dummyNoteName = "queue";
-        String dummyNoteTopic = "LINKED_LIST";
+            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(actualOutput));
 
-        new AddCommand(dummyNoteName, dummyNoteTopic).execute(topicManager, ui, fileManager);
+            String testDataPath = ".\\testdata";
+            TopicManager topicManager = new TopicManager();
+            Ui ui = new Ui();
+            FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+            fileManager.initialize();
 
-        String os = System.getProperty("os.name");
-        String expectedOutput = "";
+            String dummyNoteName = "queue";
+            String dummyNoteTopic = "LINKED_LIST";
 
-        actualOutput.reset();
+            new AddCommand(dummyNoteName, dummyNoteTopic).execute(topicManager, ui, fileManager);
 
-        new RemoveCommand(dummyNoteName).execute(topicManager, ui, fileManager);
+            String os = System.getProperty("os.name");
+            String expectedOutput = "";
 
-        if (os.contains("Windows")) {
-            // This expected output has "File Created" due to the first
-            // initialisation of the FileManager in AddCommandTest.
-            expectedOutput = "======================================================\r\n" +
-                    "Successfully removed queue.\r\n" +
-                    "======================================================\r\n";
-        } else {
-            expectedOutput = "======================================================\n" +
-                    "Successfully removed queue.\n" +
-                    "======================================================\n";
+            actualOutput.reset();
+
+            new RemoveCommand(dummyNoteName).execute(topicManager, ui, fileManager);
+
+            if (os.contains("Windows")) {
+                // This expected output has "File Created" due to the first
+                // initialisation of the FileManager in AddCommandTest.
+                expectedOutput = "======================================================\r\n" +
+                        "Successfully removed queue.\r\n" +
+                        "======================================================\r\n";
+            } else {
+                expectedOutput = "======================================================\n" +
+                        "Successfully removed queue.\n" +
+                        "======================================================\n";
+            }
+
+            assertEquals(expectedOutput, actualOutput.toString());
+            FileManager.deleteAll(new File(testDataPath));
+            testFile.delete();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
         }
-
-        assertEquals(expectedOutput, actualOutput.toString());
-        FileManager.deleteAll(new File(testDataPath));
     }
 
     @Test
