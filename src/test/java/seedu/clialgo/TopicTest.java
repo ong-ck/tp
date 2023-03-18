@@ -2,6 +2,8 @@ package seedu.clialgo;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,5 +62,108 @@ class TopicTest {
     void isEmpty_topicIsEmpty_expectTrue() {
         Topic topic = new Topic("LINKED_LIST");
         assertTrue(topic.isEmpty());
+    }
+
+    @Test
+    void isEmpty_topicIsNotEmpty_expectFalse() {
+        Topic topic = new Topic("LINKED_LIST");
+        String noteName = "queue";
+        String topicName = "LINKED_LIST";
+        String path = "dummy";
+        Note note = new Note(noteName, path, topicName);
+        topic.getNotes().put(noteName, note);
+        assertFalse(topic.isEmpty());
+    }
+
+    @Test
+    void isInsideTopic_noteIsInsideTopic_expectTrue() {
+        Topic topic = new Topic("LINKED_LIST");
+        String noteName = "queue";
+        String topicName = "LINKED_LIST";
+        String path = "dummy";
+        Note note = new Note(noteName, path, topicName);
+        topic.getNotes().put(noteName, note);
+        assertTrue(topic.isInsideTopic(noteName));
+    }
+
+    @Test
+    void isInsideTopic_noteIsNotInsideTopic_expectFalse() {
+        Topic topic = new Topic("LINKED_LIST");
+        String noteNameThatIsNotInside = "dummy";
+        assertFalse(topic.isInsideTopic(noteNameThatIsNotInside));
+    }
+
+    @Test
+    void getNotes_addNotes_expectAddedNotesToBeReturnInHashMap() {
+        Topic topic = new Topic("LINKED_LIST");
+        String noteName1 = "queue";
+        String noteName2 = "deque";
+        String path1 = "dummy1";
+        String path2 = "dummy2";
+        String topicName = "LINKED_LIST";
+        Note note1 = new Note(noteName1, path1, topicName);
+        Note note2 = new Note(noteName2, path2, topicName);
+        topic.getNotes().put(noteName1, note1);
+        topic.getNotes().put(noteName2, note2);
+
+        HashMap<String, Note> expectedOutcome = new HashMap<>();
+        expectedOutcome.put(noteName1, note1);
+        expectedOutcome.put(noteName2, note2);
+
+        assertEquals(expectedOutcome, topic.getNotes());
+    }
+
+    @Test
+    void getTopicName_inputTopicName_expectCorrectTopicName() {
+        Topic topic = new Topic("LINKED_LIST");
+        String topicName = "LINKED_LIST";
+        assertEquals(topicName, topic.getTopicName());
+    }
+
+    @Test
+    void getAllNotesInTopic_addNotes_expectAddedNotesToBeReturnInArrayList() {
+        String topicName = "LINKED_LIST";
+        Topic topic = new Topic(topicName);
+        String noteName1 = "queue";
+        String noteName2 = "deque";
+        String noteName3 = "stack";
+        String noteName4 = "dll";
+        String path1 = "dummy1";
+        String path2 = "dummy2";
+        String path3 = "dummy3";
+        String path4 = "dummy4";
+        Note note1 = new Note(noteName1, path1, topicName);
+        Note note2 = new Note(noteName2, path2, topicName);
+        Note note3 = new Note(noteName3, path3, topicName);
+        Note note4 = new Note(noteName4, path4, topicName);
+        topic.getNotes().put(noteName1, note1);
+        topic.getNotes().put(noteName2, note2);
+        topic.getNotes().put(noteName3, note3);
+        topic.getNotes().put(noteName4, note4);
+
+        ArrayList<String> expectedOutcome = new ArrayList<>(Arrays.asList(noteName2, noteName3, noteName4, noteName1));
+
+        assertEquals(expectedOutcome, topic.getAllNotesInTopic());
+    }
+
+    @Test
+    void removeNote_inputValidNoteName_expectTrue() {
+        String topicName = "LINKED_LIST";
+        Topic topic = new Topic(topicName);
+        String noteName1 = "queue";
+        String noteName2 = "deque";
+        String noteName3 = "stack";
+        String path1 = "dummy1";
+        String path2 = "dummy2";
+        String path3 = "dummy3";
+        Note note1 = new Note(noteName1, path1, topicName);
+        Note note2 = new Note(noteName2, path2, topicName);
+        Note note3 = new Note(noteName3, path3, topicName);
+        topic.getNotes().put(noteName1, note1);
+        topic.getNotes().put(noteName2, note2);
+        topic.getNotes().put(noteName3, note3);
+        assertTrue(topic.removeNote(noteName1));
+        assertTrue(topic.removeNote(noteName2));
+        assertTrue(topic.removeNote(noteName3));
     }
 }

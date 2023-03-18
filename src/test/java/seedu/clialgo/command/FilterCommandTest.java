@@ -49,13 +49,11 @@ public class FilterCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Unsuccessful!\r\n" +
-                    "Type 'help c/filter' for assistance.\r\n" +
+                    "The filtered list is empty!\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "Unsuccessful!\n" +
-                    "Type 'help c/filter' for assistance.\n" +
+                    "The filtered list is empty!\n" +
                     "======================================================\n";
         }
         String newExpectedOutput = expectedOutput;

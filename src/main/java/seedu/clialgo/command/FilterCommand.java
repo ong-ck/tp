@@ -70,7 +70,7 @@ public class FilterCommand extends Command {
     @Override
     public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
         if (topicManager.isEmpty()) {
-            ui.printFilterFail();
+            ui.printFilterEmpty();
             return;
         }
         if (this.topic == null) {
