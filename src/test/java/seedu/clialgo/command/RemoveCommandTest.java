@@ -39,7 +39,6 @@ public class RemoveCommandTest {
         assertFalse(firstRemoveCommand.equals(secondRemoveCommand));
     }
 
-    //@@author nicholas132000
     @Test
     void execute_properInput_expectRemoveSuccessfulMessage() {
         try {
