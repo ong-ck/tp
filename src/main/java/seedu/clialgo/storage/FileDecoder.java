@@ -1,6 +1,6 @@
 package seedu.clialgo.storage;
 
-import seedu.clialgo.Note;
+import seedu.clialgo.file.Note;
 import seedu.clialgo.Ui;
 
 /**
