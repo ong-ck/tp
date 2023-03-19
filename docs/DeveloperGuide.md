@@ -143,3 +143,58 @@ after opening the application.
 > Example :
 >
 > remove note
+
+### Filtering `Notes`
+1. Type the command: `filter k/[KEYWORDS] t/[TOPIC NAME]`.
+   1. `[KEYWORD]` would be `topic` representing filtering by `Topic`
+   2. `[TOPIC NAME]` would represent the `Topic` the note is tagged to.
+      1. **CASE 1 :** The `[TOPIC NAME]` is valid.
+      > Example :
+      >
+      > filter k/topic t/LINKED_LIST
+      2. **CASE 2 :** The `[TOPIC NAME]` is invalid.
+      > Example :
+      >
+      > filter k/topic t/linkedlist
+      >
+      > filter k/topic t/SOMETHING
+2. Leaving `k/` blank would cause an error message to be printed.
+> Example :
+>
+> filter k/
+3. Leaving out `t/` is valid
+> Example :
+>
+> filter k/topic
+
+### Saving data
+1. Notes are represented as : 
+`[NOTE NAME]&@[PATH TO NOTE]&@[TOPIC NAME]`
+2. The application checks for invalid `[TOPIC NAME]` only
+3. The application checks that there are three fields separated by `&@`
+4. Corrupted lines of files are ignored by the application and removed 
+subsequently
+> Example:
+> 
+> Initial .txt file:
+> 
+> TEST1&@test1.txt&@wrr
+> 
+> TEST2&@test2.txt&@SORTING
+> 
+> After running application:
+> 
+> TEST2&@test2.txt&@SORTING
+
+> Example:
+>
+> Initial .txt file:
+>
+> TEST1&@
+>
+> TEST2test2.txtSORTING
+>
+> After running application:
+5. If a file is deleted in the middle of the application running somehow the 
+application would recreate the file in its last state when running `add` or 
+`remove` 
