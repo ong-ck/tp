@@ -1,3 +1,4 @@
+start-test-mode
 list
 filter k/topic
 help
@@ -15,4 +16,7 @@ help c/add
 filter k/ topic
 filter k/topic t/MST
 filter k/topic t/MINIMUM_SPANNING_TREE
+remove n/sorting notes
+remove n/sorting notes
+exit-test-mode
 exit

@@ -2,18 +2,14 @@
 Hello! Welcome to CLIAlgo Notes!
 ======================================================
 ======================================================
-Here are all your notes:
-======================================================
-1. graph traversal notes
-2. sorting notes
+Starting test mode.
 ======================================================
 ======================================================
-Here are the filtered notes:
+You have no notes!
+Type 'help c/add' for assistance on how to add a note.
 ======================================================
-[GRAPH_TRAVERSAL]
-1. graph traversal notes
-[SORTING]
-1. sorting notes
+======================================================
+The filtered list is empty!
 ======================================================
 ======================================================
 The available COMMAND_TYPE(s) are:
@@ -44,8 +40,7 @@ This is an invalid command, please ensure all your fields are correct.
 Type 'help' for additional assistance.
 ======================================================
 ======================================================
-Unsuccessful!
-Type 'help c/filter' for assistance.
+The filtered list is empty!
 ======================================================
 ======================================================
 Unsuccessful! LINKED LIST is not a topic in CS2040C.
@@ -59,10 +54,7 @@ NAME refers to the notes' file name.
 Invalid NAME will cause an error.
 ======================================================
 ======================================================
-Here are the filtered notes:
-======================================================
-[SORTING]
-1. sorting notes
+The filtered list is empty!
 ======================================================
 ======================================================
 Unsuccessful! A note of that name does not exist.
@@ -70,14 +62,11 @@ Only notes in your list can be removed.
 Type 'list' to see notes you can remove.
 ======================================================
 ======================================================
-Here are all your notes:
-======================================================
-1. graph traversal notes
-2. sorting notes
+You have no notes!
+Type 'help c/add' for assistance on how to add a note.
 ======================================================
 ======================================================
-Unsuccessful! A note with that name already exists.
-Type 'list' to view the list of notes.
+Successfully added sorting notes into SORTING.
 ======================================================
 ======================================================
 This function adds a note and tags it to a topic.
@@ -93,8 +82,6 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 ======================================================
 Here are the filtered notes:
 ======================================================
-[GRAPH_TRAVERSAL]
-1. graph traversal notes
 [SORTING]
 1. sorting notes
 ======================================================
@@ -105,6 +92,21 @@ Type 'help c/add' for assistance.
 ======================================================
 Unsuccessful!
 Type 'help c/filter' for assistance.
+======================================================
+======================================================
+Successfully removed sorting notes.
+======================================================
+======================================================
+Unsuccessful! A note of that name does not exist.
+Only notes in your list can be removed.
+Type 'list' to see notes you can remove.
+======================================================
+======================================================
+Ending test mode.
+======================================================
+======================================================
+Successfully deleted file.
+======================================================
 ======================================================
 ======================================================
 Thank you for using CLIAlgo! Study hard!
