@@ -1,3 +1,4 @@
+start-test-mode
 list
 add n/sorting notes t/SORTING
 add n/linked list notes t/LINKED_LIST
@@ -16,4 +17,5 @@ help c/add
 filter k/ topic
 filter k/topic t/MST
 filter k/topic t/MINIMUM_SPANNING_TREE
+exit-test-mode
 exit
