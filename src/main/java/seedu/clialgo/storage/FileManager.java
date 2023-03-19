@@ -39,7 +39,7 @@ public class FileManager {
         this.path = path;
         this.initialPath = path;
         this.ui = new Ui();
-        String separator = "&@*";
+        String separator = "&@";
         this.topicRawData = new HashMap<>();
         this.topicNames = topicNames;
         this.encoder = new FileEncoder(separator);
@@ -80,6 +80,7 @@ public class FileManager {
                 singleFile.readFile();
             } catch (FileNotFoundException e) {
                 ui.printFileWriteError();
+                singleFile.recreateFile();
             }
         }
     }
@@ -115,29 +116,43 @@ public class FileManager {
 
     /**
      * Process a <code>Note</code> and add it to the stored data in the <code>SingleFile</code> object and append the
-     * processed <code>Note</code> as a <code>String</code> to the .txt file.
+     * processed <code>Note</code> as a <code>String</code> to the .txt file. If the file does not exist,
+     * <code>IOException</code> is caught and the file would be recreated from the existing data .
      *
      * @param name The name of the note.
      * @param note The <code>Note</code> being added.
+     * @return true if executed successfully and false if execution failed.
      */
-    public void addEntry (String name, Note note) {
+    public boolean addEntry (String name, Note note) {
         SingleFile singleFile = topicRawData.get(note.getTopic());
         try {
             singleFile.writeNoteToFile(encoder.encodeNote(name ,note));
         } catch (IOException e) {
             ui.printFileWriteError();
+            singleFile.recreateFile();
+            return false;
         }
+        return true;
     }
 
     /**
-     * Deletes <code>Note</code> with <code>noteName</code> in <code>topicName</code>.txt and rewrite the .txt file.
+     * Deletes <code>Note</code> with <code>noteName</code> in <code>topicName</code>.txt and rewrite the .txt file. If
+     * the file does not exist, <code>IOException</code> is caught and the file would be recreated.
      *
      * @param noteName The name of the <code>Note</code> being deleted.
+     * @return true if executed successfully and false if execution failed.
      */
-    public void deleteEntry (String noteName) {
+    public boolean deleteEntry (String noteName) {
         for (SingleFile singleFile : topicRawData.values()) {
-            singleFile.deleteEntry(noteName);
+            try {
+                singleFile.deleteEntry(noteName);
+            } catch (IOException e) {
+                ui.printFileWriteError();
+                singleFile.recreateFile();
+                return false;
+            }
         }
+        return true;
     }
 
     /**

@@ -302,7 +302,14 @@ public class Ui {
      */
     public void printFileWriteError() {
         printDivider();
-        System.out.println("File write error.");
+        System.out.println("File not found.");
+        printDivider();
+    }
+
+    public void printFileRecreatedSuccess() {
+        printDivider();
+        System.out.println("File recreated.");
+        System.out.println("Try again.");
         printDivider();
     }
 

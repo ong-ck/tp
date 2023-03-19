@@ -643,11 +643,11 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "File write error.\r\n" +
+                    "File not found.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "File write error.\n" +
+                    "File not found.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
