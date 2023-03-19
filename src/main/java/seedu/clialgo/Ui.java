@@ -297,6 +297,12 @@ public class Ui {
         printDivider();
     }
 
+    public void printTestModeEndFail() {
+        printDivider();
+        System.out.println("Unsuccessful, test mode has not been started.");
+        printDivider();
+    }
+
     /**
      * Prints an error message indicating failure to write to file.
      */

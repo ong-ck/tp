@@ -17,10 +17,14 @@ public class ExitTestModeCommand extends Command {
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
      */
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
-        ui.printTestModeEnd();
-        fileManager.exitTestMode();
-        topicManager.testModeEnd();
-        ui.printDivider();
+        if (topicManager.getIsTestModeOn()) {
+            ui.printTestModeEnd();
+            fileManager.exitTestMode();
+            topicManager.testModeEnd();
+            ui.printDivider();
+        } else {
+            ui.printTestModeEndFail();
+        }
     }
 
     @Override
