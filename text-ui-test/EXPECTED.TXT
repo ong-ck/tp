@@ -6,7 +6,6 @@ Here are all your notes:
 ======================================================
 1. graph traversal notes
 2. sorting notes
-3. linked list notes
 ======================================================
 ======================================================
 Here are the filtered notes:
@@ -15,8 +14,6 @@ Here are the filtered notes:
 1. graph traversal notes
 [SORTING]
 1. sorting notes
-[LINKED_LIST]
-1. linked list notes
 ======================================================
 ======================================================
 The available COMMAND_TYPE(s) are:
@@ -47,10 +44,8 @@ This is an invalid command, please ensure all your fields are correct.
 Type 'help' for additional assistance.
 ======================================================
 ======================================================
-Here are the filtered notes:
-======================================================
-[LINKED_LIST]
-1. linked list notes
+Unsuccessful!
+Type 'help c/filter' for assistance.
 ======================================================
 ======================================================
 Unsuccessful! LINKED LIST is not a topic in CS2040C.
@@ -79,7 +74,6 @@ Here are all your notes:
 ======================================================
 1. graph traversal notes
 2. sorting notes
-3. linked list notes
 ======================================================
 ======================================================
 Unsuccessful! A note with that name already exists.
@@ -103,8 +97,6 @@ Here are the filtered notes:
 1. graph traversal notes
 [SORTING]
 1. sorting notes
-[LINKED_LIST]
-1. linked list notes
 ======================================================
 ======================================================
 Unsuccessful! MST is not a topic in CS2040C.
