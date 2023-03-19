@@ -92,3 +92,54 @@ after opening the application.
    ======================================================
     ```
    2. The application would then close in the command-line interface.
+
+### Adding a `Note`
+1. Type the command: `add n/[NOTE NAME] t/[TOPIC NAME]`.
+   1. `[NOTE NAME]` would represent the name of the note.
+      1. The note file is in the form `[NOTE NAME].txt`.
+   2. `[TOPIC NAME]` would represent the `Topic` the note is tagged to.
+      1. **CASE 1 :** The `[TOPIC NAME]` is valid.
+      > Example : 
+      > 
+      > add n/note name t/LINKED_LIST
+      2. **CASE 2 :** The `[TOPIC NAME]` is invalid.
+      > Example :
+      >
+      > add n/note name t/linkedlist
+      > 
+      > add n/note name t/SOMETHING
+2. Leaving any fields blank would cause an error message to be printed.
+> Example :
+>
+> add n/ t/
+> 
+> add n/note t/
+3. Leaving out `n/` or `t/` would cause an error message to be printed.
+> Example :
+>
+> add note LINKED_LIST
+
+### Listing all `Notes`
+1. Type the command: `list`.
+   1. **CASE 1 :** There are some `Notes` stored.
+      1. The application would print out all the `Notes` stored.
+   2. **CASE 2 :** There are no `Notes` stored.
+      1. The application would print out a message indicating that no 
+      notes have been stored.
+
+### Deleting a `Note`
+1. Type the command: `remove n/[NOTE NAME]`.
+   1. `[NOTE NAME]` would represent the name of the note.
+   2. **CASE 1 :** The `Note` with `[NOTE NAME]` exists.
+      1. The `Note` is deleted successfully and a message would be printed.
+   3. **CASE 2 :** The `Note` with `[NOTE NAME]` does not exist.
+      1. The application would print out an error message indicating 
+      that the note does not exist.
+2. Leaving any fields blank would cause an error message to be printed. 
+> Example :
+>
+> remove n/
+3. Leaving out `n/` or `t/` would cause an error message to be printed.
+> Example :
+>
+> remove note
