@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 
 public class TopoCommand extends Command {
 
-    private LinkedHashMap<String, ArrayList<String>> toposortedNotes;
+    private LinkedHashMap<String, ArrayList<String>> topoSortedNotes;
     private final String name;
 
     /**
@@ -18,16 +18,16 @@ public class TopoCommand extends Command {
      * @param name Name of the note file.
      */
     public TopoCommand(String name) {
-        this.toposortedNotes = new LinkedHashMap<>();
+        this.topoSortedNotes = new LinkedHashMap<>();
         this.name = name;
     }
 
-    String getName() {
+    public String getName() {
         return this.name;
     }
 
-    public void printSingleTopic(Ui ui, String topicName) {
-        ArrayList<String> notes = toposortedNotes.get(topicName);
+    private void printSingleTopic(String topicName) {
+        ArrayList<String> notes = topoSortedNotes.get(topicName);
         int serialNumber = 1;
         System.out.println("[" + topicName + "]");
         for (String note : notes) {
@@ -36,12 +36,12 @@ public class TopoCommand extends Command {
         }
     }
 
-    public void printToposortedNotes(TopicManager topicManager, Ui ui) {
-        toposortedNotes = topicManager.getAllNotesAfterTopic(name);
+    public void printTopoSortedNotes(TopicManager topicManager, Ui ui) {
+        topoSortedNotes = topicManager.getAllNotesBeforeTopic(name);
         ui.printToposortSuccess();
-        for (String topicName : toposortedNotes.keySet()) {
-            if (!toposortedNotes.get(topicName).isEmpty()) {
-                printSingleTopic(ui, topicName);
+        for (String topicName : topoSortedNotes.keySet()) {
+            if (!topoSortedNotes.get(topicName).isEmpty()) {
+                printSingleTopic(topicName);
             }
         }
         ui.printDivider();
@@ -60,7 +60,7 @@ public class TopoCommand extends Command {
             return;
         }
 
-        printToposortedNotes(topicManager, ui);
+        printTopoSortedNotes(topicManager, ui);
     }
 
     @Override

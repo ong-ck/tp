@@ -243,18 +243,18 @@ public class TopicManager {
         this.isTestModeOn = false;
     }
 
-    public LinkedHashMap<String, ArrayList<String>> getAllNotesAfterTopic(String noteName) {
+    public LinkedHashMap<String, ArrayList<String>> getAllNotesBeforeTopic(String noteName) {
         LinkedHashMap<String, ArrayList<String>> toPrintNotes = new LinkedHashMap<>();
-        boolean isTopicFound = false;
+        boolean isPartOfTopoOrder = false;
 
         for (String topicName : TOPIC_ORDER) {
             // Check which topic contains that particular note
             if ((topics.get(topicName).isInsideTopic(noteName))) {
-                isTopicFound = true;
+                isPartOfTopoOrder = true;
             }
 
             // Start tracking subsequent notes when topic of target note is found
-            if (isTopicFound) {
+            if (isPartOfTopoOrder) {
                 ArrayList<String> topicNotes = getNotesByTopic(topicName);
                 toPrintNotes.put(topicName, topicNotes);
             }
