@@ -95,6 +95,9 @@ public class Ui {
         printDivider();
     }
 
+    /**
+     * Prints an error message indicating that a note of a specific name already exists.
+     */
     public void printNoteExists() {
         printDivider();
         System.out.println("Unsuccessful! A note with that name already exists.");
@@ -297,6 +300,9 @@ public class Ui {
         printDivider();
     }
 
+    /**
+     * Prints an error message when test mode exit failed.
+     */
     public void printTestModeEndFail() {
         printDivider();
         System.out.println("Unsuccessful, test mode has not been started.");
@@ -312,6 +318,9 @@ public class Ui {
         printDivider();
     }
 
+    /**
+     * Prints a message indicating that file is successfully recreated.
+     */
     public void printFileRecreatedSuccess() {
         printDivider();
         System.out.println("File recreated.");
@@ -366,7 +375,10 @@ public class Ui {
         printDivider();
     }
 
-    public void printToposortSuccess() {
+    /**
+     * Prints the header statement when toposort is successful.
+     */
+    public void printTopoSortSuccess() {
         printDivider();
         System.out.println("Here are the topologically sorted notes:");
         printDivider();

@@ -10,7 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * The <code>TopicManager</code> object handles the
+ * The <code>TopicManager</code> object handles the different
+ * <code>Topic</code> objects and the notes within them.
  */
 public class TopicManager {
 
@@ -20,6 +21,7 @@ public class TopicManager {
                     "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS", "MINIMUM_SPANNING_TREE")
     );
 
+    /** List of topics in topological order */
     private static final ArrayList<String> TOPIC_ORDER = new ArrayList<>(
             Arrays.asList("MINIMUM_SPANNING_TREE", "SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES",
                     "BINARY_SEARCH_TREE", "UNION_FIND_DS", "HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING")
@@ -61,6 +63,11 @@ public class TopicManager {
         this.topics = topics;
     }
 
+    /**
+     * Checks if test mode is turned on.
+     *
+     * @return True if test mode is turned on, false otherwise.
+     */
     public boolean getIsTestModeOn() {
         return this.isTestModeOn;
     }
@@ -243,6 +250,12 @@ public class TopicManager {
         this.isTestModeOn = false;
     }
 
+    /**
+     * Get a list of all topics stored in CLIAlgo that are before a specific target topic.
+     *
+     * @param noteName The name of the note that is part of the target topic.
+     * @return A HashMap containing all notes before a specific target topic.
+     */
     public LinkedHashMap<String, ArrayList<String>> getAllNotesBeforeTopic(String noteName) {
         LinkedHashMap<String, ArrayList<String>> toPrintNotes = new LinkedHashMap<>();
         boolean isPartOfTopoOrder = false;

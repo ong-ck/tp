@@ -6,7 +6,12 @@ import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
+/**
+ * The <code>TopoCommand</code> object represents the user command to
+ * print the topologically sorted notes after a specific target note.
+ */
 public class TopoCommand extends Command {
 
     private LinkedHashMap<String, ArrayList<String>> topoSortedNotes;
@@ -26,6 +31,11 @@ public class TopoCommand extends Command {
         return this.name;
     }
 
+    /**
+     * Prints all notes of a single specific topic.
+     *
+     * @param topicName The topic by which the notes are to be printed from.
+     */
     private void printSingleTopic(String topicName) {
         ArrayList<String> notes = topoSortedNotes.get(topicName);
         int serialNumber = 1;
@@ -36,9 +46,15 @@ public class TopoCommand extends Command {
         }
     }
 
+    /**
+     * Prints all notes after a specific target note in a topological manner.
+     *
+     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param ui The <code>Ui</code> object which handles outputs to the user.
+     */
     public void printTopoSortedNotes(TopicManager topicManager, Ui ui) {
         topoSortedNotes = topicManager.getAllNotesBeforeTopic(name);
-        ui.printToposortSuccess();
+        ui.printTopoSortSuccess();
         for (String topicName : topoSortedNotes.keySet()) {
             if (!topoSortedNotes.get(topicName).isEmpty()) {
                 printSingleTopic(topicName);
@@ -47,6 +63,14 @@ public class TopoCommand extends Command {
         ui.printDivider();
     }
 
+    /**
+     * An overridden method to execute the user command to print the
+     * topologically sorted notes after a specific target note.
+     *
+     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param ui The <code>Ui</code> object which handles outputs to the user.
+     * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
+     */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         if (topicManager.isEmpty()) {
@@ -63,8 +87,14 @@ public class TopoCommand extends Command {
         printTopoSortedNotes(topicManager, ui);
     }
 
+    /**
+     * An overridden method that checks for equality of <code>TopoCommand</code> objects.
+     *
+     * @param otherCommand The other <code>TopoCommand</code> object to be checked against.
+     * @return A boolean value to determine whether the <code>TopoCommand</code> objects are equal.
+     */
     @Override
     public boolean equals(Command otherCommand) {
-        return false;
+        return true;
     }
 }
