@@ -7,6 +7,7 @@ public class Note extends File {
     private String name;
     private String path;
     private String topic;
+    private int importance;
 
     /**
      * Constructor for <code>Note</code> object.
