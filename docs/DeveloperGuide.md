@@ -25,9 +25,12 @@ The access modifiers of these methods are `private` can can only be accessed wit
 Given below is an example usage of how the filter mechanism behaves at each step.
 
 > **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the 
-> user entered a valid command, the `Parser` will instantiate the appropriate `FilterCommand` object.
+> user entered a valid command, the `Parser` will process the full command using the `StringManipulation` interface and
+> prepare the appropriate `FilterCommand` object.
 
-> **Step 2**:
+> **Step 2**: If the `topic` field is left empty, the `Parser` will instantiate a new `FilterCommand` object, setting
+> the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
+> a new `FilterCommand` using its constructor.
 
 ## Product scope
 ### Target user profile
