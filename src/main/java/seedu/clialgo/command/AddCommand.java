@@ -67,9 +67,10 @@ public class AddCommand extends Command {
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         String notePath = name + ".txt";
         Note newNote = new Note(name, notePath, topic);
+        boolean isTestModeOn = topicManager.getIsTestModeOn();
 
         // Check if the file exists
-        if ((checkFileType() == FileType.DOESNOTEXIST) && !(topicManager.getIsTestModeOn())) {
+        if ((checkFileType() == FileType.DOESNOTEXIST) && !isTestModeOn) {
             ui.printFileDoesNotExist();
             return;
         }
