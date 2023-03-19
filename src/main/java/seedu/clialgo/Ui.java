@@ -359,4 +359,10 @@ public class Ui {
         System.out.println("Please add the file into the folder and try again.");
         printDivider();
     }
+
+    public void printToposortSuccess() {
+        printDivider();
+        System.out.println("Here are the topologically sorted notes:");
+        printDivider();
+    }
 }

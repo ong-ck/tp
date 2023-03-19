@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -17,6 +18,11 @@ public class TopicManager {
     private static final ArrayList<String> TOPIC_NAMES = new ArrayList<>(
             Arrays.asList("SORTING", "LINKED_LIST", "GRAPH_STRUCTURES", "BINARY_HEAP", "HASH_TABLE", "GRAPH_TRAVERSAL",
                     "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS", "MINIMUM_SPANNING_TREE")
+    );
+
+    private static final ArrayList<String> TOPIC_ORDER = new ArrayList<>(
+            Arrays.asList("MINIMUM_SPANNING_TREE", "SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES",
+                    "BINARY_SEARCH_TREE", "UNION_FIND_DS", "HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING")
     );
 
     /** General HashSet to check for duplicate names. */
@@ -235,5 +241,24 @@ public class TopicManager {
         this.allNotes = allNotesOutsideTestMode;
         this.topics = topicsOutsideTestMode;
         this.isTestModeOn = false;
+    }
+
+    public LinkedHashMap<String, ArrayList<String>> getAllNotesAfterTopic(String noteName) {
+        LinkedHashMap<String, ArrayList<String>> toPrintNotes = new LinkedHashMap<>();
+        boolean isTopicFound = false;
+
+        for (String topicName : TOPIC_ORDER) {
+            // Check which topic contains that particular note
+            if ((topics.get(topicName).isInsideTopic(noteName))) {
+                isTopicFound = true;
+            }
+
+            // Start tracking subsequent notes when topic of target note is found
+            if (isTopicFound) {
+                ArrayList<String> topicNotes = getNotesByTopic(topicName);
+                toPrintNotes.put(topicName, topicNotes);
+            }
+        }
+        return toPrintNotes;
     }
 }
