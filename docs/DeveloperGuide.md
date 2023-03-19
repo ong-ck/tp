@@ -2,12 +2,32 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the 
+original source as well}
 
-## Design & implementation
+## Design
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+## Implementation
+### Filter by keyword feature
+#### Current Implementation
+The filter mechanism is facilitated by `FilterCommand`. It extends `Command` with an overridden `execute()` method. The
+`FilterCommand` has 2 different executions depending on the constructor used to instantiate it. During execution, the
+`FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
+Additionally, it implements the following operations.
+
+- `printAllTopics()` - Prints out all notes stored in CLIAlgo that is sorted by `topic`.
+- `printSingleTopic()` - Prints out all notes stored in CLIAlgo that is tagged to the given `topic`.
+
+The access modifiers of these methods are `private` can can only be accessed within `FilterCommand`.
+
+Given below is an example usage of how the filter mechanism behaves at each step.
+
+> **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the 
+> user entered a valid command, the `Parser` will instantiate the appropriate `FilterCommand` object.
+
+> **Step 2**:
 
 ## Product scope
 ### Target user profile
