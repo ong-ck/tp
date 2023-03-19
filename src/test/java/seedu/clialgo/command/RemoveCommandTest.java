@@ -7,7 +7,6 @@ import seedu.clialgo.storage.FileManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,42 +40,42 @@ public class RemoveCommandTest {
 
     @Test
     void execute_properInput_expectRemoveSuccessfulMessage() {
-            String testDataPath = ".\\testdata";
-            TopicManager topicManager = new TopicManager();
-            Ui ui = new Ui();
-            FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
 
-            new TestModeCommand().execute(topicManager, ui, fileManager);
+        new TestModeCommand().execute(topicManager, ui, fileManager);
 
-            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(actualOutput));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
-            fileManager.initialize();
+        fileManager.initialize();
 
-            String dummyNoteName = "queue";
-            String dummyNoteTopic = "LINKED_LIST";
+        String dummyNoteName = "queue";
+        String dummyNoteTopic = "LINKED_LIST";
 
-            new AddCommand(dummyNoteName, dummyNoteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(dummyNoteName, dummyNoteTopic).execute(topicManager, ui, fileManager);
 
-            String os = System.getProperty("os.name");
-            String expectedOutput = "";
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
 
-            actualOutput.reset();
+        actualOutput.reset();
 
-            new RemoveCommand(dummyNoteName).execute(topicManager, ui, fileManager);
+        new RemoveCommand(dummyNoteName).execute(topicManager, ui, fileManager);
 
-            if (os.contains("Windows")) {
-                expectedOutput = "======================================================\r\n" +
-                        "Successfully removed queue.\r\n" +
-                        "======================================================\r\n";
-            } else {
-                expectedOutput = "======================================================\n" +
-                        "Successfully removed queue.\n" +
-                        "======================================================\n";
-            }
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Successfully removed queue.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Successfully removed queue.\n" +
+                    "======================================================\n";
+        }
 
-            assertEquals(expectedOutput, actualOutput.toString());
-            FileManager.deleteAll(new File(testDataPath));
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
     }
 
     @Test

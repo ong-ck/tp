@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 
 import seedu.clialgo.TopicManager;
@@ -57,37 +56,37 @@ class AddCommandTest {
      */
     @Test
     void execute_properInput_expectAddSuccessfulMessage() {
-            String testDataPath = ".\\testdata";
-            TopicManager topicManager = new TopicManager();
-            Ui ui = new Ui();
-            FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
-            fileManager.initialize();
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
 
-            new TestModeCommand().execute(topicManager, ui, fileManager);
+        new TestModeCommand().execute(topicManager, ui, fileManager);
 
-            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(actualOutput));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
-            String actualNoteName = "queue";
-            String actualNoteTopic = "LINKED_LIST";
+        String actualNoteName = "queue";
+        String actualNoteTopic = "LINKED_LIST";
 
-            new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
 
-            String os = System.getProperty("os.name");
-            String expectedOutput = "";
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
 
-            if (os.contains("Windows")) {
-                expectedOutput = "======================================================\r\n" +
-                        "Successfully added queue into LINKED_LIST.\r\n" +
-                        "======================================================\r\n";
-            } else {
-                expectedOutput = "======================================================\n" +
-                        "Successfully added queue into LINKED_LIST.\n" +
-                        "======================================================\n";
-            }
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Successfully added queue into LINKED_LIST.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Successfully added queue into LINKED_LIST.\n" +
+                    "======================================================\n";
+        }
 
-            assertEquals(expectedOutput, actualOutput.toString());
-            FileManager.deleteAll(new File(testDataPath));
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
     }
 
     /**
@@ -97,39 +96,39 @@ class AddCommandTest {
      */
     @Test
     void execute_invalidTopicInput_expectAddUnsuccessfulDueToInvalidTopicMessage() {
-            String testDataPath = ".\\testdata";
-            TopicManager topicManager = new TopicManager();
-            Ui ui = new Ui();
-            FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
-            fileManager.initialize();
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
 
-            new TestModeCommand().execute(topicManager, ui, fileManager);
+        new TestModeCommand().execute(topicManager, ui, fileManager);
 
-            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(actualOutput));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
-            String actualNoteName = "queue";
-            String actualNoteTopic = "invalidTopic";
+        String actualNoteName = "queue";
+        String actualNoteTopic = "invalidTopic";
 
-            new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
 
-            String os = System.getProperty("os.name");
-            String expectedOutput = "";
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
 
-            if (os.contains("Windows")) {
-                expectedOutput = "======================================================\r\n" +
-                        "Unsuccessful! invalidTopic is not a topic in CS2040C.\r\n" +
-                        "Type 'help c/add' for assistance.\r\n" +
-                        "======================================================\r\n";
-            } else {
-                expectedOutput = "======================================================\n" +
-                        "Unsuccessful! invalidTopic is not a topic in CS2040C.\n" +
-                        "Type 'help c/add' for assistance.\n" +
-                        "======================================================\n";
-            }
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Unsuccessful! invalidTopic is not a topic in CS2040C.\r\n" +
+                    "Type 'help c/add' for assistance.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Unsuccessful! invalidTopic is not a topic in CS2040C.\n" +
+                    "Type 'help c/add' for assistance.\n" +
+                    "======================================================\n";
+        }
 
-            assertEquals(expectedOutput, actualOutput.toString());
-            FileManager.deleteAll(new File(testDataPath));
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
     }
 
     /**
@@ -139,47 +138,47 @@ class AddCommandTest {
      */
     @Test
     void execute_repeatedInput_expectAddUnsuccessfulDueToInvalidCommandMessage() {
-            String testDataPath = ".\\testdata";
-            TopicManager topicManager = new TopicManager();
-            Ui ui = new Ui();
-            FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
-            fileManager.initialize();
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
 
-            new TestModeCommand().execute(topicManager, ui, fileManager);
+        new TestModeCommand().execute(topicManager, ui, fileManager);
 
-            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(actualOutput));
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
 
-            String actualNoteName = "queue";
-            String actualNoteTopic = "LINKED_LIST";
+        String actualNoteName = "queue";
+        String actualNoteTopic = "LINKED_LIST";
 
-            // Adding the note with same name twice into same topic
-            new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
-            new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
+        // Adding the note with same name twice into same topic
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
 
-            String os = System.getProperty("os.name");
-            String expectedOutput = "";
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
 
-            if (os.contains("Windows")) {
+        if (os.contains("Windows")) {
 
-                expectedOutput = "======================================================\r\n" +
-                        "Successfully added queue into LINKED_LIST.\r\n" +
-                        "======================================================\r\n" +
-                        "======================================================\r\n" +
-                        "Unsuccessful! A note with that name already exists.\r\n" +
-                        "Type 'list' to view the list of notes.\r\n" +
-                        "======================================================\r\n";
-            } else {
-                expectedOutput = "======================================================\n" +
-                        "Successfully added queue into LINKED_LIST.\n" +
-                        "======================================================\n" +
-                        "======================================================\n" +
-                        "Unsuccessful! A note with that name already exists.\n" +
-                        "Type 'list' to view the list of notes.\n" +
-                        "======================================================\n";
-            }
+            expectedOutput = "======================================================\r\n" +
+                    "Successfully added queue into LINKED_LIST.\r\n" +
+                    "======================================================\r\n" +
+                    "======================================================\r\n" +
+                    "Unsuccessful! A note with that name already exists.\r\n" +
+                    "Type 'list' to view the list of notes.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Successfully added queue into LINKED_LIST.\n" +
+                    "======================================================\n" +
+                    "======================================================\n" +
+                    "Unsuccessful! A note with that name already exists.\n" +
+                    "Type 'list' to view the list of notes.\n" +
+                    "======================================================\n";
+        }
 
-            assertEquals(expectedOutput, actualOutput.toString());
-            FileManager.deleteAll(new File(testDataPath));
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
     }
 }
