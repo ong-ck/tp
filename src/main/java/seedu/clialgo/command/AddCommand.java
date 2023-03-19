@@ -43,7 +43,7 @@ public class AddCommand extends Command {
      *
      * @return A <code>FileType</code> enum that determines whether the file DOESNOTEXIST, is a TXT or CPP file.
      */
-    public FileType isFileExist() {
+    public FileType checkFileType() {
         String pathInTxt = this.name + ".txt";
         String pathInCpp = this.name + ".cpp";
 
@@ -69,7 +69,7 @@ public class AddCommand extends Command {
         Note newNote = new Note(name, notePath, topic);
 
         // Check if the file exists
-        if ((isFileExist() == FileType.DOESNOTEXIST) && !(topicManager.getIsTestModeOn())) {
+        if ((checkFileType() == FileType.DOESNOTEXIST) && !(topicManager.getIsTestModeOn())) {
             ui.printFileDoesNotExist();
             return;
         }
