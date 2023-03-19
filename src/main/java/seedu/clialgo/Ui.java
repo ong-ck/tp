@@ -383,4 +383,13 @@ public class Ui {
         System.out.println("Here are the topologically sorted notes:");
         printDivider();
     }
+
+    /**
+     * Prints an error message indicating that no notes are in CLIAlgo.
+     */
+    public void printNoNotesSaved() {
+        printDivider();
+        System.out.println("You have no notes at the moment!");
+        printDivider();
+    }
 }

@@ -74,13 +74,15 @@ public class TopoCommand extends Command {
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         if (topicManager.isEmpty()) {
-            System.out.println("You have no notes at the moment!");
+            ui.printNoNotesSaved();
             return;
         }
 
         // Check if noteName is valid
         if (!topicManager.isRepeatedNote(name)) {
+            ui.printDivider();
             System.out.println("You do not have this note!");
+            ui.printDivider();
             return;
         }
 
