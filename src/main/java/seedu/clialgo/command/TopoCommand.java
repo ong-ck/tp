@@ -95,6 +95,39 @@ public class TopoCommand extends Command {
      */
     @Override
     public boolean equals(Command otherCommand) {
+        TopoCommand otherTopoCommand = (TopoCommand) otherCommand;
+        LinkedHashMap<String, ArrayList<String>> otherTopoSortedNotes = otherTopoCommand.topoSortedNotes;
+
+        // Check name attribute is equal
+        if (!Objects.equals(otherTopoCommand.name, this.name)) {
+            return false;
+        }
+
+        // Check that all topics in otherTopoCommand are also present
+        for (String topic : otherTopoSortedNotes.keySet()) {
+            if (!this.topoSortedNotes.containsKey(topic)) {
+                return false;
+            }
+
+            // Check that all notes in specific topic of otherTopoCommand are also present
+            for (String note : otherTopoSortedNotes.get(topic)) {
+                if (!this.topoSortedNotes.get(topic).contains(note)) {
+                    return false;
+                }
+
+            }
+
+            // Check that number of notes in topic is equal -> topic is equal
+            if (otherTopoSortedNotes.get(topic).size() == this.topoSortedNotes.get(topic).size()) {
+                return false;
+            }
+        }
+
+        // Check that number of topics are equal -> topoSortedNotes is equal
+        if (otherTopoSortedNotes.size() == this.topoSortedNotes.size()) {
+            return false;
+        }
+
         return true;
     }
 }
