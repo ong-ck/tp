@@ -69,7 +69,7 @@ public class AddCommand extends Command {
         Note newNote = new Note(name, notePath, topic);
 
         // Check if the file exists
-        if (isFileExist() == FileType.DOESNOTEXIST) {
+        if ((isFileExist() == FileType.DOESNOTEXIST) && !(topicManager.getIsTestModeOn())) {
             ui.printFileDoesNotExist();
             return;
         }

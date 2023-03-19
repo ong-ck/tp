@@ -57,21 +57,16 @@ class AddCommandTest {
      */
     @Test
     void execute_properInput_expectAddSuccessfulMessage() {
-        try {
-            File testFile = new File(".\\queue.txt");
-            if (testFile.createNewFile()) {
-                System.out.println("File created: " + testFile.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(actualOutput));
-
             String testDataPath = ".\\testdata";
             TopicManager topicManager = new TopicManager();
             Ui ui = new Ui();
             FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
             fileManager.initialize();
+
+            new TestModeCommand().execute(topicManager, ui, fileManager);
+
+            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(actualOutput));
 
             String actualNoteName = "queue";
             String actualNoteTopic = "LINKED_LIST";
@@ -93,10 +88,6 @@ class AddCommandTest {
 
             assertEquals(expectedOutput, actualOutput.toString());
             FileManager.deleteAll(new File(testDataPath));
-            testFile.delete();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
     }
 
     /**
@@ -106,21 +97,16 @@ class AddCommandTest {
      */
     @Test
     void execute_invalidTopicInput_expectAddUnsuccessfulDueToInvalidTopicMessage() {
-        try {
-            File testFile = new File(".\\queue.txt");
-            if (testFile.createNewFile()) {
-                System.out.println("File created: " + testFile.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(actualOutput));
-
             String testDataPath = ".\\testdata";
             TopicManager topicManager = new TopicManager();
             Ui ui = new Ui();
             FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
             fileManager.initialize();
+
+            new TestModeCommand().execute(topicManager, ui, fileManager);
+
+            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(actualOutput));
 
             String actualNoteName = "queue";
             String actualNoteTopic = "invalidTopic";
@@ -144,10 +130,6 @@ class AddCommandTest {
 
             assertEquals(expectedOutput, actualOutput.toString());
             FileManager.deleteAll(new File(testDataPath));
-            testFile.delete();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
     }
 
     /**
@@ -157,21 +139,16 @@ class AddCommandTest {
      */
     @Test
     void execute_repeatedInput_expectAddUnsuccessfulDueToInvalidCommandMessage() {
-        try {
-            File testFile = new File(".\\queue.txt");
-            if (testFile.createNewFile()) {
-                System.out.println("File created: " + testFile.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(actualOutput));
-
             String testDataPath = ".\\testdata";
             TopicManager topicManager = new TopicManager();
             Ui ui = new Ui();
             FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
             fileManager.initialize();
+
+            new TestModeCommand().execute(topicManager, ui, fileManager);
+
+            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(actualOutput));
 
             String actualNoteName = "queue";
             String actualNoteTopic = "LINKED_LIST";
@@ -204,9 +181,5 @@ class AddCommandTest {
 
             assertEquals(expectedOutput, actualOutput.toString());
             FileManager.deleteAll(new File(testDataPath));
-            testFile.delete();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
     }
 }

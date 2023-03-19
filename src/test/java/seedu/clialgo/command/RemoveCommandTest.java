@@ -41,21 +41,16 @@ public class RemoveCommandTest {
 
     @Test
     void execute_properInput_expectRemoveSuccessfulMessage() {
-        try {
-            File testFile = new File(".\\queue.txt");
-            if (testFile.createNewFile()) {
-                System.out.println("File created: " + testFile.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-
-            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-            System.setOut(new PrintStream(actualOutput));
-
             String testDataPath = ".\\testdata";
             TopicManager topicManager = new TopicManager();
             Ui ui = new Ui();
             FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+
+            new TestModeCommand().execute(topicManager, ui, fileManager);
+
+            ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(actualOutput));
+
             fileManager.initialize();
 
             String dummyNoteName = "queue";
@@ -71,8 +66,6 @@ public class RemoveCommandTest {
             new RemoveCommand(dummyNoteName).execute(topicManager, ui, fileManager);
 
             if (os.contains("Windows")) {
-                // This expected output has "File Created" due to the first
-                // initialisation of the FileManager in AddCommandTest.
                 expectedOutput = "======================================================\r\n" +
                         "Successfully removed queue.\r\n" +
                         "======================================================\r\n";
@@ -84,10 +77,6 @@ public class RemoveCommandTest {
 
             assertEquals(expectedOutput, actualOutput.toString());
             FileManager.deleteAll(new File(testDataPath));
-            testFile.delete();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
     }
 
     @Test
