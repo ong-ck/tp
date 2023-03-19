@@ -5,7 +5,6 @@ import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class TopoCommand extends Command {
