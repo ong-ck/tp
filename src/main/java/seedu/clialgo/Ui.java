@@ -95,6 +95,9 @@ public class Ui {
         printDivider();
     }
 
+    /**
+     * Prints an error message indicating that a note of a specific name already exists.
+     */
     public void printNoteExists() {
         printDivider();
         System.out.println("Unsuccessful! A note with that name already exists.");
@@ -298,6 +301,15 @@ public class Ui {
     }
 
     /**
+     * Prints an error message when test mode exit failed.
+     */
+    public void printTestModeEndFail() {
+        printDivider();
+        System.out.println("Unsuccessful, test mode has not been started.");
+        printDivider();
+    }
+
+    /**
      * Prints an error message indicating failure to write to file.
      */
     public void printFileWriteError() {
@@ -306,6 +318,9 @@ public class Ui {
         printDivider();
     }
 
+    /**
+     * Prints a message indicating that file is successfully recreated.
+     */
     public void printFileRecreatedSuccess() {
         printDivider();
         System.out.println("File recreated.");
@@ -357,6 +372,24 @@ public class Ui {
         printDivider();
         System.out.println("This file does not exist.");
         System.out.println("Please add the file into the folder and try again.");
+        printDivider();
+    }
+
+    /**
+     * Prints the header statement when toposort is successful.
+     */
+    public void printTopoSortSuccess() {
+        printDivider();
+        System.out.println("Here are the topologically sorted notes:");
+        printDivider();
+    }
+
+    /**
+     * Prints an error message indicating that no notes are in CLIAlgo.
+     */
+    public void printNoNotesSaved() {
+        printDivider();
+        System.out.println("You have no notes at the moment!");
         printDivider();
     }
 }
