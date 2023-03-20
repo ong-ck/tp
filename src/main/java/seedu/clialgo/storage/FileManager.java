@@ -16,7 +16,7 @@ import java.util.Objects;
 
 /**
  * Object containing all the raw data for the application, able to update each .txt file which stores the information
- * of the <code>Notes</code> in each <code>Topic</code>, where the .txt files are named in the convention of
+ * of the <code>Files</code> in each <code>Topic</code>, where the .txt files are named in the convention of
  * <code>topicName</code>.txt.
  */
 public class FileManager {
@@ -115,18 +115,18 @@ public class FileManager {
     }
 
     /**
-     * Process a <code>Note</code> and add it to the stored data in the <code>SingleFile</code> object and append the
-     * processed <code>Note</code> as a <code>String</code> to the .txt file. If the file does not exist,
+     * Process a <code>File</code> and add it to the stored data in the <code>SingleFile</code> object and append the
+     * processed <code>File</code> as a <code>String</code> to the .txt file. If the file does not exist,
      * <code>IOException</code> is caught and the file would be recreated from the existing data .
      *
-     * @param name The name of the note.
-     * @param note The <code>Note</code> being added.
+     * @param name The name of the file.
+     * @param file The <code>File</code> being added.
      * @return true if executed successfully and false if execution failed.
      */
-    public boolean addEntry (String name, Note note) {
-        SingleFile singleFile = topicRawData.get(note.getTopic());
+    public boolean addEntry (String name, seedu.clialgo.file.File file) {
+        SingleFile singleFile = topicRawData.get(file.getTopic());
         try {
-            singleFile.writeNoteToFile(encoder.encodeNote(name ,note));
+            singleFile.writeFileToFile(encoder.encodeFile(name ,file));
         } catch (IOException e) {
             ui.printFileWriteError();
             singleFile.recreateFile();
@@ -136,16 +136,16 @@ public class FileManager {
     }
 
     /**
-     * Deletes <code>Note</code> with <code>noteName</code> in <code>topicName</code>.txt and rewrite the .txt file. If
+     * Deletes <code>File</code> with <code>fileName</code> in <code>topicName</code>.txt and rewrite the .txt file. If
      * the file does not exist, <code>IOException</code> is caught and the file would be recreated.
      *
-     * @param noteName The name of the <code>Note</code> being deleted.
+     * @param fileName The name of the <code>File</code> being deleted.
      * @return true if executed successfully and false if execution failed.
      */
-    public boolean deleteEntry (String noteName) {
+    public boolean deleteEntry (String fileName) {
         for (SingleFile singleFile : topicRawData.values()) {
             try {
-                singleFile.deleteEntry(noteName);
+                singleFile.deleteEntry(fileName);
             } catch (IOException e) {
                 ui.printFileWriteError();
                 singleFile.recreateFile();
@@ -168,7 +168,7 @@ public class FileManager {
      * Reads all the raw data stored in this object and returns a <code>HashMap</code> of <code>Topics</code> that is
      * processed.
      *
-     * @return Returns the initialized <code>HashMap</code> of <code>Notes</code>.
+     * @return Returns the initialized <code>HashMap</code> of <code>Files</code>.
      */
     public HashMap<String, Topic> decodeAll() {
         HashMap<String, Topic> topics = new HashMap<>();

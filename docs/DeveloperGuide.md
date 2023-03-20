@@ -24,6 +24,20 @@ corresponding `Topic`'s  `.txt`
 - reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
+#### Add
+**API** : `AddCommand.java`
+
+Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
+
+![](.\\UML\\Add.png "AddCommand Class Diagram")
+
+The `AddCommand` component
+- can check if the file to be added into our CLIAlgo exists within the same directory as the program
+- can check for the type of file, whether it is `.txt` or `.cpp` based on the name of the file
+- can ensure that there are no files with repeated names such that all names of files added are unique
+
+
+
 ## Product scope
 ### Target user profile
 
@@ -84,6 +98,11 @@ Use case ends.
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 notes without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be able to handle situations where data files are corrupted (i.e. missing or altered fields)
+5. Should be easily reusable for other developers who wish to create a similar app.
+6. Should be easily maintainable and modifiable, by having private attributes and methods which reduces dependencies between different parts of the program
+7. Should be secure in terms of protecting sensitive data such as name and path of files and preventing unauthorised access to them.
+8. Should be able to execute user commands in no longer than 2 seconds.
 
 ## Glossary
 

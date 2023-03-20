@@ -56,7 +56,7 @@ class TopicTest {
         Topic testTopic = new Topic(testTopicName);
         testTopic.addNote(testNoteName, testNote);
 
-        assertEquals(testTopic.getNotes(), testNotesHashmap);
+        assertEquals(testTopic.getFiles(), testNotesHashmap);
     }
 
     @Test
@@ -72,7 +72,7 @@ class TopicTest {
         String topicName = "LINKED_LIST";
         String path = "dummy";
         Note note = new Note(noteName, path, topicName);
-        topic.getNotes().put(noteName, note);
+        topic.getFiles().put(noteName, note);
         assertFalse(topic.isEmpty());
     }
 
@@ -83,7 +83,7 @@ class TopicTest {
         String topicName = "LINKED_LIST";
         String path = "dummy";
         Note note = new Note(noteName, path, topicName);
-        topic.getNotes().put(noteName, note);
+        topic.getFiles().put(noteName, note);
         assertTrue(topic.isInsideTopic(noteName));
     }
 
@@ -104,14 +104,14 @@ class TopicTest {
         String topicName = "LINKED_LIST";
         Note note1 = new Note(noteName1, path1, topicName);
         Note note2 = new Note(noteName2, path2, topicName);
-        topic.getNotes().put(noteName1, note1);
-        topic.getNotes().put(noteName2, note2);
+        topic.getFiles().put(noteName1, note1);
+        topic.getFiles().put(noteName2, note2);
 
         HashMap<String, Note> expectedOutcome = new HashMap<>();
         expectedOutcome.put(noteName1, note1);
         expectedOutcome.put(noteName2, note2);
 
-        assertEquals(expectedOutcome, topic.getNotes());
+        assertEquals(expectedOutcome, topic.getFiles());
     }
 
     @Test
@@ -137,14 +137,14 @@ class TopicTest {
         Note note2 = new Note(noteName2, path2, topicName);
         Note note3 = new Note(noteName3, path3, topicName);
         Note note4 = new Note(noteName4, path4, topicName);
-        topic.getNotes().put(noteName1, note1);
-        topic.getNotes().put(noteName2, note2);
-        topic.getNotes().put(noteName3, note3);
-        topic.getNotes().put(noteName4, note4);
+        topic.getFiles().put(noteName1, note1);
+        topic.getFiles().put(noteName2, note2);
+        topic.getFiles().put(noteName3, note3);
+        topic.getFiles().put(noteName4, note4);
 
         ArrayList<String> expectedOutcome = new ArrayList<>(Arrays.asList(noteName2, noteName3, noteName4, noteName1));
 
-        assertEquals(expectedOutcome, topic.getAllNotesInTopic());
+        assertEquals(expectedOutcome, topic.getAllFilesInTopic());
     }
 
     @Test
@@ -160,11 +160,11 @@ class TopicTest {
         Note note1 = new Note(noteName1, path1, topicName);
         Note note2 = new Note(noteName2, path2, topicName);
         Note note3 = new Note(noteName3, path3, topicName);
-        topic.getNotes().put(noteName1, note1);
-        topic.getNotes().put(noteName2, note2);
-        topic.getNotes().put(noteName3, note3);
-        assertTrue(topic.removeNote(noteName1));
-        assertTrue(topic.removeNote(noteName2));
-        assertTrue(topic.removeNote(noteName3));
+        topic.getFiles().put(noteName1, note1);
+        topic.getFiles().put(noteName2, note2);
+        topic.getFiles().put(noteName3, note3);
+        assertTrue(topic.removeFile(noteName1));
+        assertTrue(topic.removeFile(noteName2));
+        assertTrue(topic.removeFile(noteName3));
     }
 }

@@ -1,6 +1,7 @@
 package seedu.clialgo;
 
 import seedu.clialgo.file.Note;
+import seedu.clialgo.file.File;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +15,231 @@ import java.util.Map;
  * <code>Topic</code> objects and the notes within them.
  */
 public class TopicManager {
+//
+//    /** List of valid topics */
+//    private static final ArrayList<String> TOPIC_NAMES = new ArrayList<>(
+//            Arrays.asList("SORTING", "LINKED_LIST", "GRAPH_STRUCTURES", "BINARY_HEAP", "HASH_TABLE", "GRAPH_TRAVERSAL",
+//                    "BINARY_SEARCH_TREE", "SS_SHORTEST_PATH", "UNION_FIND_DS", "MINIMUM_SPANNING_TREE")
+//    );
+//
+//    /** General HashSet to check for duplicate names. */
+//    private HashSet<String> allNotes;
+//
+//    /** Data Structure to hold all the topics */
+//    private HashMap<String, Topic> topics;
+//
+//    private HashSet<String> allNotesOutsideTestMode;
+//    private HashMap<String, Topic> topicsOutsideTestMode;
+//    private boolean isTestModeOn;
+//
+//    /**
+//     * Constructor that initializes a <code>TopicManager</code> object that contains a HashMap of all the names of the
+//     * topics in CLIAlgo as keys, with a corresponding <code>Topic</code> object as value. Also initializes a HashSet
+//     * that will be used to store the names of all notes that will be added.
+//     */
+//    public TopicManager() {
+//        allNotes = new HashSet<>();
+//        topics = new HashMap<>();
+//        for (String topicName : TOPIC_NAMES) {
+//            topics.put(topicName, new Topic(topicName));
+//        }
+//        isTestModeOn = false;
+//    }
+//
+//    /**
+//     * Constructor that initialises a <code>TopicManager</code> object that contains a HashSet of the current names of
+//     * the notes present as well as a HashMap of all the topics.
+//     *
+//     * @param allNotes A HashSet of the names of all the notes present.
+//     * @param topics A HashMap of all the topics in CLIAlgo.
+//     */
+//    public TopicManager(HashSet<String> allNotes, HashMap<String, Topic> topics) {
+//        this.allNotes = allNotes;
+//        this.topics = topics;
+//    }
+//
+//    public boolean getIsTestModeOn() {
+//        return this.isTestModeOn;
+//    }
+//
+//
+//    /** Checks if there are any notes stored in CLIAlgo. */
+//    public boolean isEmpty() {
+//        return allNotes.isEmpty();
+//    }
+//
+//    /** Checks if a specified topic has no notes stored in it. */
+//    public boolean isTopicEmpty(String topic) {
+//        return topics.get(topic).isEmpty();
+//    }
+//
+//    /** Checks if a given note name has been used before. */
+//    public boolean isRepeatedNote(String noteName) {
+//        return this.allNotes.contains(noteName);
+//    }
+//
+//    /**
+//     * Checks if the input string is a valid topic.
+//     *
+//     * @param topic The input string.
+//     * @return True if the input string is a valid topic, false otherwise.
+//     */
+//    public boolean isValidTopic(String topic) {
+//        return TOPIC_NAMES.contains(topic);
+//    }
+//
+//    /**
+//     * Obtains all the topics in CLIAlgo.
+//     *
+//     * @return A HashMap containing all the topics in CLIAlgo.
+//     */
+//    public HashMap<String, Topic> getTopics() {
+//        return this.topics;
+//    }
+//
+//    /**
+//     * Obtains all the names of the topics in CLIAlgo.
+//     *
+//     * @return An ArrayList containing all the names of the topics in CLIAlgo.
+//     */
+//    public ArrayList<String> getTopicNames() {
+//        return TOPIC_NAMES;
+//    }
+//
+//    /**
+//     * Gets all notes stored in CLIAlgo and stores it in an ArrayList.
+//     *
+//     * @return An ArrayList containing all the names of the notes stored in CLIAlgo.
+//     */
+//    public ArrayList<String> getAllNotes() {
+//        ArrayList<String> toPrintNotes = new ArrayList<>();
+//        for (Map.Entry<String, Topic> entry : topics.entrySet()) {
+//            Topic currentTopic = entry.getValue();
+//            toPrintNotes.addAll(currentTopic.getAllNotesInTopic());
+//        }
+//        return toPrintNotes;
+//    }
+//
+//    /**
+//     * Get a list of all note stored in a specified topic.
+//     *
+//     * @param topic The specified topic.
+//     * @return An ArrayList containing names of all the notes stored in the specified topic.
+//     */
+//    public ArrayList<String> getNotesByTopic(String topic) {
+//        return topics.get(topic).getAllNotesInTopic();
+//    }
+//
+//    /**
+//     * Get a list of all topics stored in CLIAlgo that are grouped by topics.
+//     *
+//     * @return An HashMap containing all notes stored in CLIAlgo.
+//     */
+//    public HashMap<String, ArrayList<String>> getAllNotesByTopic() {
+//        HashMap<String, ArrayList<String>> toPrintNotes = new HashMap<>();
+//        for (Map.Entry<String, Topic> entry : topics.entrySet()) {
+//            Topic currentTopic = entry.getValue();
+//            if (currentTopic.isEmpty()) {
+//                continue;
+//            }
+//            toPrintNotes.put(entry.getKey(), currentTopic.getAllNotesInTopic());
+//            assert toPrintNotes.containsKey(currentTopic.getTopicName());
+//        }
+//        return toPrintNotes;
+//    }
+//
+//    /**
+//     * Adds a new note into the specific <code>Topic</code> object
+//     * while keeping track of the names of all notes added.
+//     * Name of the note to be added cannot be the same as a previously added note.
+//     *
+//     * @param noteName Name of the note file.
+//     * @param topicName Name of the topic the note is added to.
+//     * @param note The <code>Note</code> object representing the note file.
+//     * @return True if note is successfully added and False otherwise.
+//     */
+//    public boolean addNote(String noteName, String topicName, Note note) {
+//        // Check if note name has been taken
+//        if (allNotes.contains(noteName)) {
+//            return false;
+//        }
+//
+//        // Adds note into topic hashmap
+//        topics.get(topicName).addNote(noteName, note);
+//
+//        assert topics.get(topicName).isInsideTopic(noteName);
+//
+//        // Keep track of name of note added
+//        allNotes.add(noteName);
+//
+//        return true;
+//    }
+//
+//    /**
+//     * Removes a note from the specific <code>Topic</code> object while keeping track of the names of all notes
+//     * remaining.
+//     *
+//     * @param noteName Name of the note file.
+//     * @return Returns true if the name of the note file is inside a any topic, false otherwise
+//     */
+//    public boolean removeNote(String noteName) {
+//        for (String topicName : TOPIC_NAMES) {
+//
+//            // Check which topic contains that particular note
+//            if ((topics.get(topicName).isInsideTopic(noteName))) {
+//
+//                // Remove name of note from the allNotes set to keep track of names
+//                allNotes.remove(noteName);
+//
+//                assert !allNotes.contains(noteName);
+//
+//                // Remove the note from that particular topic
+//                return topics.get(topicName).removeNote(noteName);
+//            }
+//        }
+//        return false;
+//    }
+//
+//    /**
+//     * Initializes the <code>topics</code> and <code>allNote</code> of this object by taking in input from the
+//     * <code>FileManager</code> object.
+//     *
+//     * @param topics The output obtained from the <code>FileManager</code> by calling <code>decodeAll</code>.
+//     */
+//    public void initialize(HashMap<String, Topic> topics) {
+//        this.topics = topics;
+//        for (Topic topic: topics.values()) {
+//            if (topic != null) {
+//                allNotes.addAll(topic.getAllNotesInTopic());
+//            }
+//        }
+//    }
+//
+//    /**
+//     * Resets <code>topics</code> and <code>allNotes</code> when test mode starts. Stores the data outside of test mode
+//     * separately.
+//     */
+//    public void testModeStart() {
+//        this.topicsOutsideTestMode = topics;
+//        this.allNotesOutsideTestMode = allNotes;
+//        allNotes = new HashSet<>();
+//        topics = new HashMap<>();
+//        for (String topicName : TOPIC_NAMES) {
+//            topics.put(topicName, new Topic(topicName));
+//        }
+//        this.isTestModeOn = true;
+//    }
+//
+//    /**
+//     * Retrieves the <code>topics</code> and <code>allNotes</code> data from before the start of test mode when test
+//     * mode ends such that the state before the start of test mode is restored.
+//     */
+//    public void testModeEnd() {
+//        this.allNotes = allNotesOutsideTestMode;
+//        this.topics = topicsOutsideTestMode;
+//        this.isTestModeOn = false;
+//    }
+
 
     /** List of valid topics */
     private static final ArrayList<String> TOPIC_NAMES = new ArrayList<>(
@@ -28,22 +254,22 @@ public class TopicManager {
     );
 
     /** General HashSet to check for duplicate names. */
-    private HashSet<String> allNotes;
+    private HashSet<String> allFiles;
 
     /** Data Structure to hold all the topics */
     private HashMap<String, Topic> topics;
 
-    private HashSet<String> allNotesOutsideTestMode;
+    private HashSet<String> allFilesOutsideTestMode;
     private HashMap<String, Topic> topicsOutsideTestMode;
     private boolean isTestModeOn;
 
     /**
      * Constructor that initializes a <code>TopicManager</code> object that contains a HashMap of all the names of the
      * topics in CLIAlgo as keys, with a corresponding <code>Topic</code> object as value. Also initializes a HashSet
-     * that will be used to store the names of all notes that will be added.
+     * that will be used to store the names of all files that will be added.
      */
     public TopicManager() {
-        allNotes = new HashSet<>();
+        allFiles = new HashSet<>();
         topics = new HashMap<>();
         for (String topicName : TOPIC_NAMES) {
             topics.put(topicName, new Topic(topicName));
@@ -53,13 +279,13 @@ public class TopicManager {
 
     /**
      * Constructor that initialises a <code>TopicManager</code> object that contains a HashSet of the current names of
-     * the notes present as well as a HashMap of all the topics.
+     * the files present as well as a HashMap of all the topics.
      *
-     * @param allNotes A HashSet of the names of all the notes present.
+     * @param allFiles A HashSet of the names of all the files present.
      * @param topics A HashMap of all the topics in CLIAlgo.
      */
-    public TopicManager(HashSet<String> allNotes, HashMap<String, Topic> topics) {
-        this.allNotes = allNotes;
+    public TopicManager(HashSet<String> allFiles, HashMap<String, Topic> topics) {
+        this.allFiles = allFiles;
         this.topics = topics;
     }
 
@@ -73,19 +299,19 @@ public class TopicManager {
     }
 
 
-    /** Checks if there are any notes stored in CLIAlgo. */
+    /** Checks if there are any files stored in CLIAlgo. */
     public boolean isEmpty() {
-        return allNotes.isEmpty();
+        return allFiles.isEmpty();
     }
 
-    /** Checks if a specified topic has no notes stored in it. */
+    /** Checks if a specified topic has no files stored in it. */
     public boolean isTopicEmpty(String topic) {
         return topics.get(topic).isEmpty();
     }
 
-    /** Checks if a given note name has been used before. */
-    public boolean isRepeatedNote(String noteName) {
-        return this.allNotes.contains(noteName);
+    /** Checks if a given file name has been used before. */
+    public boolean isRepeatedNote(String fileName) {
+        return this.allFiles.contains(fileName);
     }
 
     /**
@@ -117,17 +343,17 @@ public class TopicManager {
     }
 
     /**
-     * Gets all notes stored in CLIAlgo and stores it in an ArrayList.
+     * Gets all files stored in CLIAlgo and stores it in an ArrayList.
      *
-     * @return An ArrayList containing all the names of the notes stored in CLIAlgo.
+     * @return An ArrayList containing all the names of the files stored in CLIAlgo.
      */
-    public ArrayList<String> getAllNotes() {
-        ArrayList<String> toPrintNotes = new ArrayList<>();
+    public ArrayList<String> getAllFiles() {
+        ArrayList<String> toPrintFiles = new ArrayList<>();
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic currentTopic = entry.getValue();
-            toPrintNotes.addAll(currentTopic.getAllNotesInTopic());
+            toPrintFiles.addAll(currentTopic.getAllFilesInTopic());
         }
-        return toPrintNotes;
+        return toPrintFiles;
     }
 
     /**
@@ -136,8 +362,8 @@ public class TopicManager {
      * @param topic The specified topic.
      * @return An ArrayList containing names of all the notes stored in the specified topic.
      */
-    public ArrayList<String> getNotesByTopic(String topic) {
-        return topics.get(topic).getAllNotesInTopic();
+    public ArrayList<String> getFilesByTopic(String topic) {
+        return topics.get(topic).getAllFilesInTopic();
     }
 
     /**
@@ -145,73 +371,72 @@ public class TopicManager {
      *
      * @return An HashMap containing all notes stored in CLIAlgo.
      */
-    public HashMap<String, ArrayList<String>> getAllNotesByTopic() {
-        HashMap<String, ArrayList<String>> toPrintNotes = new HashMap<>();
+    public HashMap<String, ArrayList<String>> getAllFilesInTopic() {
+        HashMap<String, ArrayList<String>> toPrintFiles = new HashMap<>();
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic currentTopic = entry.getValue();
             if (currentTopic.isEmpty()) {
                 continue;
             }
-            toPrintNotes.put(entry.getKey(), currentTopic.getAllNotesInTopic());
-            assert toPrintNotes.containsKey(currentTopic.getTopicName());
+            toPrintFiles.put(entry.getKey(), currentTopic.getAllFilesInTopic());
+            assert toPrintFiles.containsKey(currentTopic.getTopicName());
         }
-        return toPrintNotes;
+        return toPrintFiles;
     }
 
     /**
-     * Adds a new note into the specific <code>Topic</code> object
-     * while keeping track of the names of all notes added.
-     * Name of the note to be added cannot be the same as a previously added note.
+     * Adds a new file into the specific <code>Topic</code> object
+     * while keeping track of the names of all files added.
+     * Name of the note to be added cannot be the same as a previously added file.
      *
-     * @param noteName Name of the note file.
+     * @param fileName Name of the file.
      * @param topicName Name of the topic the note is added to.
-     * @param note The <code>Note</code> object representing the note file.
-     * @return True if note is successfully added and False otherwise.
+     * @param file The <code>Note</code> object representing the file.
+     * @return True if file is successfully added and False otherwise.
      */
-    public boolean addNote(String noteName, String topicName, Note note) {
+    public boolean addFile(String fileName, String topicName, File file) {
         // Check if note name has been taken
-        if (allNotes.contains(noteName)) {
+        if (allFiles.contains(fileName)) {
             return false;
         }
 
         // Adds note into topic hashmap
-        topics.get(topicName).addNote(noteName, note);
+        topics.get(topicName).addFile(fileName, file);
 
-        assert topics.get(topicName).isInsideTopic(noteName);
+        assert topics.get(topicName).isInsideTopic(fileName);
 
-        // Keep track of name of note added
-        allNotes.add(noteName);
+        // Keep track of name of file added
+        allFiles.add(fileName);
 
         return true;
     }
 
     /**
-     * Removes a note from the specific <code>Topic</code> object while keeping track of the names of all notes
+     * Removes a file from the specific <code>Topic</code> object while keeping track of the names of all files
      * remaining.
      *
-     * @param noteName Name of the note file.
-     * @return Returns true if the name of the note file is inside a any topic, false otherwise
+     * @param fileName Name of the file.
+     * @return Returns true if the name of the file is inside any topic, false otherwise
      */
-    public boolean removeNote(String noteName) {
+    public boolean removeFile(String fileName) {
         for (String topicName : TOPIC_NAMES) {
 
-            // Check which topic contains that particular note
-            if ((topics.get(topicName).isInsideTopic(noteName))) {
+            // Check which topic contains that particular file
+            if ((topics.get(topicName).isInsideTopic(fileName))) {
+                // Remove name of file from the allFiles set to keep track of names
+                allFiles.remove(fileName);
 
-                // Remove name of note from the allNotes set to keep track of names
-                allNotes.remove(noteName);
+                assert !allFiles.contains(fileName);
 
-                assert !allNotes.contains(noteName);
-
-                // Remove the note from that particular topic
-                return topics.get(topicName).removeNote(noteName);
+                // Remove the file from that particular topic
+                return topics.get(topicName).removeFile(fileName);
             }
         }
         return false;
     }
 
     /**
-     * Initializes the <code>topics</code> and <code>allNote</code> of this object by taking in input from the
+     * Initializes the <code>topics</code> and <code>allFile</code> of this object by taking in input from the
      * <code>FileManager</code> object.
      *
      * @param topics The output obtained from the <code>FileManager</code> by calling <code>decodeAll</code>.
@@ -220,7 +445,7 @@ public class TopicManager {
         this.topics = topics;
         for (Topic topic: topics.values()) {
             if (topic != null) {
-                allNotes.addAll(topic.getAllNotesInTopic());
+                allFiles.addAll(topic.getAllFilesInTopic());
             }
         }
     }
@@ -231,8 +456,8 @@ public class TopicManager {
      */
     public void testModeStart() {
         this.topicsOutsideTestMode = topics;
-        this.allNotesOutsideTestMode = allNotes;
-        allNotes = new HashSet<>();
+        this.allFilesOutsideTestMode = allFiles;
+        allFiles = new HashSet<>();
         topics = new HashMap<>();
         for (String topicName : TOPIC_NAMES) {
             topics.put(topicName, new Topic(topicName));
@@ -241,11 +466,11 @@ public class TopicManager {
     }
 
     /**
-     * Retrieves the <code>topics</code> and <code>allNotes</code> data from before the start of test mode when test
+     * Retrieves the <code>topics</code> and <code>allFiles</code> data from before the start of test mode when test
      * mode ends such that the state before the start of test mode is restored.
      */
     public void testModeEnd() {
-        this.allNotes = allNotesOutsideTestMode;
+        this.allFiles = allFilesOutsideTestMode;
         this.topics = topicsOutsideTestMode;
         this.isTestModeOn = false;
     }
@@ -268,7 +493,7 @@ public class TopicManager {
 
             // Start tracking subsequent notes when topic of target note is found
             if (isPartOfTopoOrder) {
-                ArrayList<String> topicNotes = getNotesByTopic(topicName);
+                ArrayList<String> topicNotes = getFilesByTopic(topicName);
                 toPrintNotes.put(topicName, topicNotes);
             }
         }

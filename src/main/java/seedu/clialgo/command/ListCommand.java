@@ -22,7 +22,7 @@ public class ListCommand extends Command {
             return;
         }
         ui.printListSuccess();
-        ArrayList<String> printedNotes = topicManager.getAllNotes();
+        ArrayList<String> printedNotes = topicManager.getAllFiles();
         int serialNumber = 1;
         for (String note : printedNotes) {
             System.out.println(serialNumber + ". " + note);

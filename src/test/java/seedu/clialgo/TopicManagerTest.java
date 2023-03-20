@@ -23,8 +23,8 @@ class TopicManagerTest {
         TopicManager topicManager = new TopicManager();
         Topic topic = new Topic("SORTING");
         topicManager.getTopics().put("SORTING", topic);
-        topic.getNotes().put("bubble sort notes", new Note("dummy", "dummy", "SORTING"));
-        assertTrue(topicManager.removeNote("bubble sort notes"));
+        topic.getFiles().put("bubble sort notes", new Note("dummy", "dummy", "SORTING"));
+        assertTrue(topicManager.removeFile("bubble sort notes"));
     }
 
     /**
@@ -36,7 +36,7 @@ class TopicManagerTest {
     void removeNote_checkForNoteThatDoesNotExist_expectFalse() {
         TopicManager topicManager = new TopicManager();
         String noteNameThatDoesNotExist = "dummy";
-        assertFalse(topicManager.removeNote(noteNameThatDoesNotExist));
+        assertFalse(topicManager.removeFile(noteNameThatDoesNotExist));
     }
 
     /**
@@ -215,7 +215,7 @@ class TopicManagerTest {
             topicManager.addNote("dummy" + index, "LINKED_LIST", note);
             expectedResult.add("dummy" + index);
         }
-        assertEquals(expectedResult, topicManager.getAllNotes());
+        assertEquals(expectedResult, topicManager.getAllFiles());
     }
 
     @Test
@@ -272,6 +272,6 @@ class TopicManagerTest {
         TopicManager topicManagerTest = new TopicManager();
         topicManagerTest.initialize(topicManager.getTopics());
 
-        assertEquals(expectedAllNotes, topicManagerTest.getAllNotes());
+        assertEquals(expectedAllNotes, topicManagerTest.getAllFiles());
     }
 }

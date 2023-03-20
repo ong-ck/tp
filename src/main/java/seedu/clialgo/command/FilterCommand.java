@@ -25,7 +25,7 @@ public class FilterCommand extends Command {
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
     public void printAllTopics(TopicManager topicManager, Ui ui) {
-        HashMap<String, ArrayList<String>> notes = topicManager.getAllNotesByTopic();
+        HashMap<String, ArrayList<String>> notes = topicManager.getAllFilesInTopic();
         ui.printFilterSuccess();
         for (Map.Entry<String, ArrayList<String>> entry : notes.entrySet()) {
             ArrayList<String> currentTopicNotes = entry.getValue();
@@ -47,7 +47,7 @@ public class FilterCommand extends Command {
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
     public void printSingleTopic(TopicManager topicManager, Ui ui) {
-        ArrayList<String> notes = topicManager.getNotesByTopic(this.topic);
+        ArrayList<String> notes = topicManager.getFilesByTopic(this.topic);
         ui.printFilterSuccess();
         int serialNumber = 1;
         System.out.println("[" + this.topic + "]");

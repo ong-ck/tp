@@ -19,14 +19,14 @@ public class RemoveCommand extends Command {
     /**
      * Constructor for command to remove note from topic list.
      *
-     * @param name Name of the note file.
+     * @param name Name of the file.
      */
     public RemoveCommand(String name) {
         this.name = name;
     }
 
     /**
-     * Overridden method that removes a note corresponding to <code>name</code> from the list. It then saves the
+     * Overridden method that removes a file corresponding to <code>name</code> from the list. It then saves the
      * updated list.
      *
      * @param topicManager A Topic object containing all the different topics available.
@@ -47,19 +47,18 @@ public class RemoveCommand extends Command {
         }
 
         assert topicManager.isRepeatedNote(this.name);
-        boolean isSuccessfullyRemoved = topicManager.removeNote(name);
+        boolean isSuccessfullyRemoved = topicManager.removeFile(name);
 
         if (!isSuccessfullyRemoved) {
             ui.printRemoveFail();
             return;
         }
 
-
         ui.printRemoveSuccess(name);
     }
 
     /**
-     * Gets the name of the note to be removed.
+     * Gets the name of the file to be removed.
      *
      * @return Name of the note.
      */

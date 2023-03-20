@@ -1,18 +1,20 @@
 package seedu.clialgo;
 
 import seedu.clialgo.file.Note;
+import seedu.clialgo.file.File;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Map;
 
+
 /**
  * The <code>Topic</code> object handles the operations of the notes within a specific topic.
  */
 public class Topic {
     private final String topicName;
-    private final HashMap<String, Note> notes;
+    private final HashMap<String, File> files;
 
     /**
      * Constructor that initializes an empty <code>Topic</code> object.
@@ -21,46 +23,46 @@ public class Topic {
      */
     public Topic(String topicName) {
         this.topicName = topicName;
-        notes = new HashMap<>();
+        files = new HashMap<>();
     }
 
     /**
-     * Constructor that initializes a <code>Topic</code> object with notes stored in it.
+     * Constructor that initializes a <code>Topic</code> object with files stored in it.
      *
      * @param topicName The name of the topic.
-     * @param notes A HashMap containing the notes stored in the <code>Topic</code> object.
+     * @param files A HashMap containing the files stored in the <code>Topic</code> object.
      */
-    public Topic(String topicName, HashMap<String, Note> notes) {
+    public Topic(String topicName, HashMap<String, File> files) {
         this.topicName = topicName;
-        this.notes = notes;
+        this.files = files;
     }
 
     /**
-     * Checks if the <code>Topic</code> object has any notes inside.
+     * Checks if the <code>Topic</code> object has any files inside.
      *
-     * @return Returns true if the topic has no notes inside, false otherwise.
+     * @return Returns true if the topic has no files inside, false otherwise.
      */
     public boolean isEmpty() {
-        return this.notes.isEmpty();
+        return this.files.isEmpty();
     }
 
     /**
-     * Checks if the <code>Topic</code> object has a specified note inside.
+     * Checks if the <code>Topic</code> object has a specified file inside.
      *
-     * @param noteName Name of note.
-     * @return Returns true if the topic contains the note that is specified by noteName, false otherwise.
+     * @param fileName Name of file.
+     * @return Returns true if the topic contains the file that is specified by fileName, false otherwise.
      */
-    public boolean isInsideTopic(String noteName) {
-        return this.notes.containsKey(noteName);
+    public boolean isInsideTopic(String fileName) {
+        return this.files.containsKey(fileName);
     }
 
     /**
-     * Obtains all the notes inside the <code>Topic</code> object.
+     * Obtains all the files inside the <code>Topic</code> object.
      *
-     * @return A HashMap of all the notes inside this <code>Topic</code> object.
+     * @return A HashMap of all the files inside this <code>Topic</code> object.
      */
-    public HashMap<String, Note> getNotes() {
-        return notes;
+    public HashMap<String, File> getFiles() {
+        return files;
     }
 
     public String getTopicName() {
@@ -68,37 +70,36 @@ public class Topic {
     }
 
     /**
-     * Gets all notes stored in this specific topic and stores them in an ArrayList.
+     * Gets all files stored in this specific topic and stores them in an ArrayList.
      *
-     * @return An ArrayList containing all the notes stored in this topic.
+     * @return An ArrayList containing all the files stored in this topic.
      */
-    public ArrayList<String> getAllNotesInTopic() {
-        ArrayList<String> topicNotes = new ArrayList<>();
-        for (Map.Entry<String, Note> entry : notes.entrySet()) {
-            String noteName = entry.getValue().getName();
-            topicNotes.add(noteName);
+    public ArrayList<String> getAllFilesInTopic() {
+        ArrayList<String> topicFiles = new ArrayList<>();
+        for (Map.Entry<String, File> entry : files.entrySet()) {
+            String fileName = entry.getValue().getName();
+            topicFiles.add(fileName);
         }
-        return topicNotes;
+        return topicFiles;
     }
 
     /**
-     * Adds a note linked to a specific topic.
+     * Adds a file linked to a specific topic.
      *
-     * @param name Name of the note file.
-     * @param note A <code>Note</code> object representing the note file.
+     * @param name Name of the file.
+     * @param file A <code>Note</code> object representing the file.
      */
-    public void addNote(String name, Note note) {
-        notes.put(name, note);
+    public void addFile(String name, File file) {
+        files.put(name, file);
     }
 
     /**
-     * Removes a note based on its name.
+     * Removes a file based on its name.
      *
-     * @param name Name of the note file.
+     * @param name Name of the file.
      */
-    public boolean removeNote(String name) {
-        notes.remove(name);
-
+    public boolean removeFile(String name) {
+        files.remove(name);
         return true;
     }
 
@@ -110,6 +111,6 @@ public class Topic {
      */
     public boolean equals(Topic otherTopic) {
         return Objects.equals(this.topicName, otherTopic.topicName) &&
-                Objects.equals(this.notes, otherTopic.notes);
+                Objects.equals(this.files, otherTopic.files);
     }
 }

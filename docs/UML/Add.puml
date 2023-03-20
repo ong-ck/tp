@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+
+abstract class Command {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+}
+
+class AddCommand {
+    #name: String
+    #ui: String
+    #topic: String
+    +getName(): String
+    +getTag(): String
+    +checkFileType(): FileType
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+}
+
+class AddCodeCommand {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+}
+
+class AddNoteCommand {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+}
+
+class TopicManager {
+}
+
+class Ui {
+}
+
+class FileManager {
+}
+
+Command <|-- AddCommand
+AddCommand <|-- AddCodeCommand
+AddCommand <|-- AddNoteCommand
+
+TopicManager .. AddCommand: gets reference from <
+Ui .. AddCommand: gets reference from <
+FileManager .. AddCommand: gets reference from <
+
+@enduml
+
+
+
+@enduml

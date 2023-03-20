@@ -14,9 +14,9 @@ import seedu.clialgo.Ui;
  */
 public class AddCommand extends Command {
 
-    private final String name;
-    private final Ui ui;
-    private final String topic;
+    protected final String name;
+    protected final Ui ui;
+    protected final String topic;
 
     /**
      * Constructor for command to add note to topic list.
@@ -65,8 +65,6 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
-        String notePath = name + ".txt";
-        Note newNote = new Note(name, notePath, topic);
         boolean isTestModeOn = topicManager.getIsTestModeOn();
 
         // Check if the file exists
@@ -87,19 +85,12 @@ public class AddCommand extends Command {
             return;
         }
 
-        boolean isAddedToFile = fileManager.addEntry(name, newNote);
-
-        //  Check if note is successfully added to data file
-        if (!isAddedToFile) {
-            return;
-        }
-
-        boolean isAdded = topicManager.addNote(name, topic, newNote);
-
-        // Check if added -> execute invalid command if note is not added
-        if (!isAdded) {
-            new InvalidCommand().execute(topicManager, ui, fileManager);
-            return;
+        if (checkFileType() == FileType.TXT) {
+            AddCommand addCommandType = new AddNoteCommand(name, topic);
+            addCommandType.execute(topicManager, ui, fileManager);
+        } else if (checkFileType() == FileType.CPP) {
+            AddCommand addCommandType = new AddCodeCommand(name, topic);
+            addCommandType.execute(topicManager, ui, fileManager);
         }
 
         assert this.name != null;
