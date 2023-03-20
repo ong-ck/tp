@@ -7,7 +7,22 @@ original source as well}
 
 ## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+#### Storage
+**API** : `FileManager.java`
+
+Here is a class diagram of the `FileManager` which facilitates the storage
+function of the application.
+
+![](.\\UML\\FileManagerClass.png "FileManager Class Diagram")
+
+The `FileManager` component
+- can save each `Topic`'s data as an individual `.txt` file
+- can interpret `Note` objects as a `String` and store it into its 
+corresponding `Topic`'s  `.txt`
+- updates the corresponding `Topic`'s  `.txt` whenever a `add` or
+`remove` command is called by the user
+- reads from each `Topic`'s  `.txt` and returns a `Topic` object when
+initializing the application
 
 ## Implementation
 ### Filter by keyword feature
@@ -24,7 +39,7 @@ The access modifiers of these methods are `private` can can only be accessed wit
 
 Given below is an example usage of how the filter mechanism behaves at each step.
 
-> **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the 
+> **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the
 > user entered a valid command, the `Parser` will process the full command using the `StringManipulation` interface and
 > prepare the appropriate `FilterCommand` object.
 
