@@ -1,9 +1,7 @@
 package seedu.clialgo.storage;
 
-import seedu.clialgo.file.Note;
 import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
-//import seedu.clialgo.file.File;
 
 import java.io.File;
 import java.io.FileNotFoundException;

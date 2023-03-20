@@ -15,6 +15,15 @@ public class FileDecoder {
     protected String currentName;
     protected final String separator;
 
+    /**
+     * Constructor for the fileDecoder object
+     *
+     * @param separator The <code>String</code> which separates each form of data stored in each <code>File</code>.
+     */
+    public FileDecoder (String separator) {
+        this.separator = separator;
+    }
+
     public FileType checkFileType() {
         String pathInTxt = this.currentName + ".txt";
         String pathInCpp = this.currentName + ".cpp";
@@ -26,15 +35,6 @@ public class FileDecoder {
         } else {
             return FileType.DOESNOTEXIST;
         }
-    }
-
-    /**
-     * Constructor for the fileDecoder object
-     *
-     * @param separator The <code>String</code> which separates each form of data stored in each <code>File</code>.
-     */
-    public FileDecoder (String separator) {
-        this.separator = separator;
     }
 
     /**
@@ -57,7 +57,6 @@ public class FileDecoder {
             } else {
                 currentFile = new Note(this.currentName, splitFile[1], splitFile[2]);
             }
-//            currentFile = new File(this.currentName, splitNote[1], splitNote[2]);
         } catch (ArrayIndexOutOfBoundsException e) {
             return true;
         }

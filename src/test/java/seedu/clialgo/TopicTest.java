@@ -40,11 +40,11 @@ class TopicTest {
     }
 
     /**
-     * Checks the <code>addNote</code> method correctly
+     * Checks the <code>addFile</code> method correctly
      * adds a <code>Note</code> object into its Hashmap.
      */
     @Test
-    void addNote_checkNoteIsAdded_expectCorrectNotesHashmapAttribute() {
+    void addFile_checkNoteIsAdded_expectCorrectNotesHashmapAttribute() {
         String testTopicName = "SORTING";
         String testNoteName = "dummyName";
 
@@ -54,7 +54,7 @@ class TopicTest {
         testNotesHashmap.put(testNoteName, testNote);
 
         Topic testTopic = new Topic(testTopicName);
-        testTopic.addNote(testNoteName, testNote);
+        testTopic.addFile(testNoteName, testNote);
 
         assertEquals(testTopic.getFiles(), testNotesHashmap);
     }
@@ -95,7 +95,7 @@ class TopicTest {
     }
 
     @Test
-    void getNotes_addNotes_expectAddedNotesToBeReturnInHashMap() {
+    void getNotes_addFiles_expectAddedNotesToBeReturnInHashMap() {
         Topic topic = new Topic("LINKED_LIST");
         String noteName1 = "queue";
         String noteName2 = "deque";
@@ -122,7 +122,7 @@ class TopicTest {
     }
 
     @Test
-    void getAllNotesInTopic_addNotes_expectAddedNotesToBeReturnInArrayList() {
+    void getAllNotesInTopic_addFiles_expectAddedNotesToBeReturnInArrayList() {
         String topicName = "LINKED_LIST";
         Topic topic = new Topic(topicName);
         String noteName1 = "queue";

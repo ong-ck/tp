@@ -62,37 +62,37 @@ class TopicManagerTest {
         String noteName = "queue";
         String topicName = "LINKED_LIST";
         Note note = new Note(noteName, "dummy path", topicName);
-        topicManager.addNote(noteName, topicName, note);
+        topicManager.addFile(noteName, topicName, note);
         assertTrue(topicManager.isRepeatedNote(noteName));
     }
 
 
     /**
-     * Checks the <code>addNote</code> method of the <code>TopicManager</code> class.
-     * Inputs proper inputs for <code>addNote</code> method and expects the method
+     * Checks the <code>addFile</code> method of the <code>TopicManager</code> class.
+     * Inputs proper inputs for <code>addFile</code> method and expects the method
      * to return True.
      */
     @Test
-    void addNote_checkProperInput_expectTrue() {
+    void addFile_checkProperInput_expectTrue() {
         String noteName = "dummyName";
         String topicName = "SORTING";
         Note note = new Note(noteName, noteName + ".txt", topicName);
-        assertTrue(new TopicManager().addNote(noteName, topicName, note));
+        assertTrue(new TopicManager().addFile(noteName, topicName, note));
     }
 
     /**
-     * Checks the <code>addNote</code> method of the <code>TopicManager</code> class.
+     * Checks the <code>addFile</code> method of the <code>TopicManager</code> class.
      * Inputs repeated name for <code>TopicManager</code> object and expects the method
      * to return False.
      */
     @Test
-    void addNote_checkRepeatedNoteName_expectFalse() {
+    void addFile_checkRepeatedNoteName_expectFalse() {
         String noteName = "dummyName";
         String topicName = "SORTING";
         Note note = new Note(noteName, noteName + ".txt", topicName);
         TopicManager topicManager = new TopicManager();
-        topicManager.addNote(noteName, topicName, note);
-        assertFalse(topicManager.addNote(noteName, topicName, note));
+        topicManager.addFile(noteName, topicName, note);
+        assertFalse(topicManager.addFile(noteName, topicName, note));
     }
 
     @Test
@@ -144,7 +144,7 @@ class TopicManagerTest {
         String noteName = "queue";
         String topicName = "LINKED_LIST";
         Note note = new Note(noteName, "dummy path", topicName);
-        topicManager.addNote(noteName, topicName, note);
+        topicManager.addFile(noteName, topicName, note);
         assertFalse(topicManager.isEmpty());
     }
 
@@ -160,7 +160,7 @@ class TopicManagerTest {
         String noteName = "queue";
         String topicName = "LINKED_LIST";
         Note note = new Note(noteName, "dummy path", topicName);
-        topicManager.addNote(noteName, topicName, note);
+        topicManager.addFile(noteName, topicName, note);
         assertFalse(topicManager.isTopicEmpty(topicName));
     }
 
@@ -212,42 +212,42 @@ class TopicManagerTest {
         ArrayList<String> expectedResult = new ArrayList<>();
         for (int index = 0; index < 10; index++) {
             Note note = new Note("dummy" + index, "dummy", "dummy");
-            topicManager.addNote("dummy" + index, "LINKED_LIST", note);
+            topicManager.addFile("dummy" + index, "LINKED_LIST", note);
             expectedResult.add("dummy" + index);
         }
         assertEquals(expectedResult, topicManager.getAllFiles());
     }
 
     @Test
-    void getNotesByTopic_inputNotesByTopic_expectCorrectNotesByTopic() {
+    void getFilesByTopic_inputNotesByTopic_expectCorrectNotesByTopic() {
         TopicManager topicManager = new TopicManager();
         String noteName1 = "queue";
         String topicName1 = "LINKED_LIST";
         Note note1 = new Note(noteName1, "dummy1", topicName1);
-        topicManager.addNote(noteName1, topicName1, note1);
+        topicManager.addFile(noteName1, topicName1, note1);
 
         String noteName2 = "deque";
         Note note2 = new Note(noteName2, "dummy2", topicName1);
-        topicManager.addNote(noteName2, topicName1, note2);
+        topicManager.addFile(noteName2, topicName1, note2);
 
         String noteName3 = "bubble sort";
         String topicName2 = "SORTING";
         Note note3 = new Note(noteName3, "dummy3", topicName2);
-        topicManager.addNote(noteName3, topicName2, note3);
+        topicManager.addFile(noteName3, topicName2, note3);
 
         String noteName4 = "merge sort";
         Note note4 = new Note(noteName4, "dummy4", topicName2);
-        topicManager.addNote(noteName4, topicName2, note4);
+        topicManager.addFile(noteName4, topicName2, note4);
 
         ArrayList<String> expectedOutcomeForLinkedList = new ArrayList<>();
         expectedOutcomeForLinkedList.add("deque");
         expectedOutcomeForLinkedList.add("queue");
-        assertEquals(expectedOutcomeForLinkedList, topicManager.getNotesByTopic("LINKED_LIST"));
+        assertEquals(expectedOutcomeForLinkedList, topicManager.getFilesByTopic("LINKED_LIST"));
 
         ArrayList<String> expectedOutcomeForSorting = new ArrayList<>();
         expectedOutcomeForSorting.add("bubble sort");
         expectedOutcomeForSorting.add("merge sort");
-        assertEquals(expectedOutcomeForSorting, topicManager.getNotesByTopic("SORTING"));
+        assertEquals(expectedOutcomeForSorting, topicManager.getFilesByTopic("SORTING"));
     }
 
     @Test
@@ -260,11 +260,11 @@ class TopicManagerTest {
 
         String noteName1 = "queue";
         Note note1 = new Note(noteName1, "dummy1", topicName);
-        topicManager.addNote(noteName1, topicName, note1);
+        topicManager.addFile(noteName1, topicName, note1);
 
         String noteName2 = "stack";
         Note note2 = new Note(noteName2, "dummy2", topicName);
-        topicManager.addNote(noteName2, topicName, note2);
+        topicManager.addFile(noteName2, topicName, note2);
 
         expectedAllNotes.add(noteName2);
         expectedAllNotes.add(noteName1);

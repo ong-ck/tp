@@ -68,7 +68,7 @@ public class ListCommandTest {
     void isExecutedCorrectly_oneInput_expectTrue() {
         String input = "list";
         Note note = new Note("test", "", "LINKED_LIST");
-        topicManager.addNote(note.getName(), note.getTopic(), note);
+        topicManager.addFile(note.getName(), note.getTopic(), note);
         Command command = parser.parse(input, topicManager);
         command.execute(topicManager, ui, fileManager);
 
@@ -100,8 +100,8 @@ public class ListCommandTest {
         String input = "list";
         Note note1 = new Note("test1", "", "LINKED_LIST");
         Note note2 = new Note("test2", "", "LINKED_LIST");
-        topicManager.addNote(note1.getName(), note1.getTopic(), note1);
-        topicManager.addNote(note2.getName(), note2.getTopic(), note2);
+        topicManager.addFile(note1.getName(), note1.getTopic(), note1);
+        topicManager.addFile(note2.getName(), note2.getTopic(), note2);
         Command command = parser.parse(input, topicManager);
         command.execute(topicManager, ui, fileManager);
 

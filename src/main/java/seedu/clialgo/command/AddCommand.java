@@ -4,7 +4,6 @@ import java.util.Objects;
 import java.io.File;
 
 import seedu.clialgo.FileType;
-import seedu.clialgo.file.Note;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.Ui;

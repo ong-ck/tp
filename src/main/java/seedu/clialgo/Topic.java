@@ -1,6 +1,5 @@
 package seedu.clialgo;
 
-import seedu.clialgo.file.Note;
 import seedu.clialgo.file.File;
 
 import java.util.ArrayList;
