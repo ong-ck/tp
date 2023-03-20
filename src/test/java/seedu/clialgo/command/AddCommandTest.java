@@ -160,7 +160,6 @@ class AddCommandTest {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-
             expectedOutput = "======================================================\r\n" +
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n" +

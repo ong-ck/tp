@@ -85,11 +85,9 @@ public class AddCommand extends Command {
         }
 
         if (checkFileType() == FileType.TXT) {
-            AddCommand addCommandType = new AddNoteCommand(name, topic);
-            addCommandType.execute(topicManager, ui, fileManager);
+            new AddNoteCommand(name, topic).execute(topicManager, ui, fileManager);
         } else if (checkFileType() == FileType.CPP) {
-            AddCommand addCommandType = new AddCodeCommand(name, topic);
-            addCommandType.execute(topicManager, ui, fileManager);
+            new AddCodeCommand(name, topic).execute(topicManager, ui, fileManager);
         }
 
         assert this.name != null;
