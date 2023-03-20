@@ -56,9 +56,10 @@ public class TopoCommand extends Command {
         topoSortedNotes = topicManager.getAllNotesBeforeTopic(name);
         ui.printTopoSortSuccess();
         for (String topicName : topoSortedNotes.keySet()) {
-            if (!topoSortedNotes.get(topicName).isEmpty()) {
-                printSingleTopic(topicName);
+            if (topoSortedNotes.get(topicName).isEmpty()) {
+                continue;
             }
+            printSingleTopic(topicName);
         }
         ui.printDivider();
     }
