@@ -46,7 +46,6 @@ public class Buffer {
     public void clearBuffer() {
         notes.clear();
         codes.clear();
-        deleteFiles();
     }
 
     public void deleteFiles() {
@@ -83,6 +82,8 @@ public class Buffer {
     }
 
     public void exportBuffer() {
+        deleteFiles();
+        addFilesToBuffer();
         Desktop desktop = Desktop.getDesktop();
         try {
             desktop.open(pathToBuffer);
