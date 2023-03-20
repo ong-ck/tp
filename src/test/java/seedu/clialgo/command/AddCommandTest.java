@@ -4,11 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 
+import org.w3c.dom.ls.LSOutput;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
+import seedu.clialgo.storage.SingleFile;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -139,6 +142,15 @@ class AddCommandTest {
     @Test
     void execute_repeatedInput_expectAddUnsuccessfulDueToInvalidCommandMessage() {
         String testDataPath = ".\\testdata";
+        File file = new File(".\\" + "queue" + ".txt");
+        try {
+            if (file.createNewFile()) {
+                System.out.println("File created");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());

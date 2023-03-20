@@ -7,6 +7,7 @@ import seedu.clialgo.storage.FileManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -84,6 +85,14 @@ public class RemoveCommandTest {
         System.setOut(new PrintStream(actualOutput));
 
         String testDataPath = ".\\testdata";
+        File file = new File(".\\" + "queue" + ".txt");
+        try {
+            if (file.createNewFile()) {
+                System.out.println("File created");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
