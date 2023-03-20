@@ -5,9 +5,24 @@
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ## Design & implementation
+### Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+#### Storage
+**API** : `FileManager.java`
 
+Here is a class diagram of the `FileManager` which facilitates the storage
+function of the application.
+
+![](.\\UML\\FileManagerClass.png "FileManager Class Diagram")
+
+The `FileManager` component
+- can save each `Topic`'s data as an individual `.txt` file
+- can interpret `Note` objects as a `String` and store it into its 
+corresponding `Topic`'s  `.txt`
+- updates the corresponding `Topic`'s  `.txt` whenever a `add` or
+`remove` command is called by the user
+- reads from each `Topic`'s  `.txt` and returns a `Topic` object when
+initializing the application
 
 ## Product scope
 ### Target user profile

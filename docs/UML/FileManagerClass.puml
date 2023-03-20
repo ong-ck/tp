@@ -1,0 +1,63 @@
+@startuml
+
+class FileManager {
+-path: String
+-topicRawData: HashMap<String, SingleFile>
+-topicNames: Arraylist<String>
++initialize()
++createSingleFile()
++addEntry(name: String, note: Note)
++deleteEntry(noteName: String)
+}
+
+class SingleFile {
+-storedRawData: HashMap<String, String>
+-notes: HashMap<String, Note>
++readFile()
++recreateFile()
++writeNoteToFile(encodedNote: String)
++deleteEntry(name: String)
++convertFileToTopic(): Topic
+}
+
+class FileDecoder {
++decodeString(encodedNote: String, topicName: String): boolean
+}
+
+class FileEncoder {
++encodeNote(name: String, note: Note): String
+}
+
+class File {
++createNewFile()
+}
+
+class Topic {
+}
+
+class Note {
+}
+
+class Scanner {
++nextLine()
+}
+
+class FileWriter {
++write()
+}
+
+FileManager --> "1" FileEncoder
+FileManager *- "*" SingleFile
+SingleFile --> "1" FileDecoder
+SingleFile --> "1" File
+SingleFile -- Topic : creates >
+SingleFile .. FileWriter : passes string to >
+File .. FileWriter : writes to <
+SingleFile .. Scanner : updates storedRawData <
+File .. Scanner : passes string to >
+Note .. FileManager : gets reference from <
+Note .. FileEncoder : gets reference from <
+Topic *- "*" Note
+
+
+@enduml
