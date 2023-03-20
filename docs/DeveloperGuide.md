@@ -7,7 +7,17 @@ original source as well}
 
 ## Design
 
-#### Storage
+### Parser
+**API** : `Parser.java`
+Here is a class diagram of the `Parser` component which is responsible for processing commands
+and preparing the appropriate `Command` object.
+
+How the `Parser` component works:
+
+- 
+
+
+### Storage
 **API** : `FileManager.java`
 
 Here is a class diagram of the `FileManager` which facilitates the storage

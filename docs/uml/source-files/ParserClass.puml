@@ -1,0 +1,13 @@
+@startuml
+class Parser {
+-COMMANDS: Arraylist<String>
+-KEYWORDS: Arraylist<String>
+
+-prepareCommand(): Command
+#isCorrectMarker(userInput: String, correctMarker: String): boolean
++isValidCommand(): boolean
++isValidKeyword(): boolean
++parse(fullCommand: String, topics: TopicManager): Command
+
+}
+@enduml
