@@ -7,11 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import org.w3c.dom.ls.LSOutput;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
-import seedu.clialgo.storage.SingleFile;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
