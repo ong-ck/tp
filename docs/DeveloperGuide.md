@@ -23,7 +23,7 @@ How the `Parser` component works:
 Here is a class diagram of the `FileManager` which facilitates the storage
 function of the application.
 
-![](.\\UML\\FileManagerClass.png "FileManager Class Diagram")
+![](.\\uml\\diagrams\\FileManagerClass.png "FileManager Class Diagram")
 
 The `FileManager` component
 - can save each `Topic`'s data as an individual `.txt` file

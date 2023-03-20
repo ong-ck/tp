@@ -8,6 +8,33 @@ class Parser {
 +isValidCommand(): boolean
 +isValidKeyword(): boolean
 +parse(fullCommand: String, topics: TopicManager): Command
-
 }
+
+interface StringManipulation {
+getFirstWord(userInput: String, regex: String): String
+removeFirstWord(userInput: String, regex: String): String
+removeMarker(userInput: String, marker: String): String
+}
+
+class Ui {
+}
+
+class TopicManager {
+}
+
+class CLIAlgo {
++CLIAlgo(): void
+-run(): void
+}
+
+package command {
+}
+
+CLIAlgo --> "1" Ui : ui
+CLIAlgo --> "1" TopicManager : topicManager
+CLIAlgo --> "1" Parser : parser
+Parser ..|> StringManipulation
+Parser ..> Ui
+Parser ..> TopicManager
+Parser ..> command
 @enduml
