@@ -1,10 +1,10 @@
 package seedu.clialgo.storage;
 
-import seedu.clialgo.file.File;
+import seedu.clialgo.file.CS2040CFile;
 
 /**
- * Object that takes in a <code>File</code> object and converts it into a <code>String</code> which is then written
- * to the .txt file which the <code>File</code> has the <code>File.tag</code> of.
+ * Object that takes in a <code>CS2040CFile</code> object and converts it into a <code>String</code> which is then
+ * written to the .txt file which the <code>CS2040CFile</code> has the <code>CS2040CFile.tag</code> of.
  */
 public class FileEncoder {
 
@@ -20,14 +20,14 @@ public class FileEncoder {
     }
 
     /**
-     * Encodes a File into an encoded <code>String</code>.
+     * Encodes a CS2040CFile into an encoded <code>String</code>.
      *
-     * @param name The name of the <code>File</code>.
-     * @param file The <code>File</code> object processed.
+     * @param name The name of the <code>CS2040CFile</code>.
+     * @param cs2040cFile The <code>CS2040CFile</code> object processed.
      * @return Returns a processed string.
      */
-    public String encodeFile (String name, File file) {
-        return name + separator + file.getPath() + separator + file.getTopic();
+    public String encodeCS2040CFile(String name, CS2040CFile cs2040cFile) {
+        return name + separator + cs2040cFile.getPath() + separator + cs2040cFile.getTopic();
     }
 
 }

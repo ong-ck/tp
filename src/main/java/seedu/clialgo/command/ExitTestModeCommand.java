@@ -12,7 +12,7 @@ public class ExitTestModeCommand extends Command {
     /**
      * An overridden method to end the application in test mode.
      *
-     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
      */

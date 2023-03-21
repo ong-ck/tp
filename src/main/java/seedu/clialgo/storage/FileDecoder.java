@@ -3,15 +3,15 @@ package seedu.clialgo.storage;
 //import seedu.clialgo.file.Note;
 import seedu.clialgo.FileType;
 import seedu.clialgo.file.Code;
-import seedu.clialgo.file.File;
+import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.file.Note;
 
 /**
- * Object that processes a <code>String</code> passed to it and returns a <code>File</code> representing the
+ * Object that processes a <code>String</code> passed to it and returns a <code>CS2040CFile</code> representing the
  * information in the <code>String</code>.
  */
 public class FileDecoder {
-    protected File currentFile;
+    protected CS2040CFile currentCS2040CFile;
     protected String currentName;
     protected final String separator;
 
@@ -38,24 +38,24 @@ public class FileDecoder {
     }
 
     /**
-     * Converts an encoded <code>File</code> from a <code>String</code> and stores the name of the
-     * <code>File</code> and the <code>File</code> itself in this object. If there are any missing or corrupted fields,
-     * the <code>File</code> object is deemed corrupted.
+     * Converts an encoded <code>CS2040CFile</code> from a <code>String</code> and stores the name of the
+     * <code>CS2040CFile</code> and the <code>CS2040CFile</code> itself in this object. If there are any missing or
+     * corrupted fields, the <code>CS2040CFile</code> object is deemed corrupted.
      *
-     * @param encodedFile The encoded <code>String</code> that represents a <code>File</code>.
+     * @param encodedCS2040CFile The encoded <code>String</code> that represents a <code>CS2040CFile</code>.
      * @return true if there are any wrong entries or <code>isCorrupted</code> otherwise.
      */
-    public boolean decodeString (String encodedFile, String topicName) {
+    public boolean decodeString (String encodedCS2040CFile, String topicName) {
         try {
-            String[] splitFile = encodedFile.split(separator, 3);
-            if (!splitFile[2].equals(topicName)) {
+            String[] splitCS2040CFile = encodedCS2040CFile.split(separator, 3);
+            if (!splitCS2040CFile[2].equals(topicName)) {
                 return true;
             }
-            this.currentName = splitFile[0];
+            this.currentName = splitCS2040CFile[0];
             if (checkFileType() == FileType.CPP) {
-                currentFile = new Code(this.currentName, splitFile[1], splitFile[2]);
+                currentCS2040CFile = new Code(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2]);
             } else {
-                currentFile = new Note(this.currentName, splitFile[1], splitFile[2]);
+                currentCS2040CFile = new Note(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2]);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             return true;
@@ -67,7 +67,7 @@ public class FileDecoder {
         return currentName;
     }
 
-    public File processedFile () {
-        return currentFile;
+    public CS2040CFile processedCS2040CFile() {
+        return currentCS2040CFile;
     }
 }

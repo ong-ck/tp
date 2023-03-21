@@ -1,6 +1,6 @@
 package seedu.clialgo.file;
 
-public class Code extends File {
+public class Code extends CS2040CFile {
     /**
      * Constructor for <code>Code</code> object.
      *

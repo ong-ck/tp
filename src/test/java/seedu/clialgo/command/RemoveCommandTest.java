@@ -112,12 +112,12 @@ public class RemoveCommandTest {
             // initialisation of the FileManager in AddCommandTest.
             expectedOutput = "======================================================\r\n" +
                     "Unsuccessful!\r\n" +
-                    "Type 'help c/remove' for assistance on how to remove a note.\r\n" +
+                    "Type 'help c/remove' for assistance on how to remove a CS2040CFile.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "Unsuccessful!\n" +
-                    "Type 'help c/remove' for assistance on how to remove a note.\n" +
+                    "Type 'help c/remove' for assistance on how to remove a CS2040CFile.\n" +
                     "======================================================\n";
         }
 

@@ -48,13 +48,13 @@ public class ListCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "You have no notes!\r\n" +
-                    "Type 'help c/add' for assistance on how to add a note.\r\n" +
+                    "You have no CS2040CFiles!\r\n" +
+                    "Type 'help c/add' for assistance on how to add a CS2040CFile.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "You have no notes!\n" +
-                    "Type 'help c/add' for assistance on how to add a note.\n" +
+                    "You have no CS2040CFiles!\n" +
+                    "Type 'help c/add' for assistance on how to add a CS2040CFile.\n" +
                 "======================================================\n";
         }
         assertEquals(expectedOutput, outputStream.toString());
@@ -68,7 +68,7 @@ public class ListCommandTest {
     void isExecutedCorrectly_oneInput_expectTrue() {
         String input = "list";
         Note note = new Note("test", "", "LINKED_LIST");
-        topicManager.addFile(note.getName(), note.getTopic(), note);
+        topicManager.addCS2040CFile(note.getName(), note.getTopic(), note);
         Command command = parser.parse(input, topicManager);
         command.execute(topicManager, ui, fileManager);
 
@@ -77,13 +77,13 @@ public class ListCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Here are all your notes:\r\n" +
+                    "Here are all your CS2040CFiles:\r\n" +
                     "======================================================\r\n" +
                     "1. test\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "Here are all your notes:\n" +
+                    "Here are all your CS2040CFiles:\n" +
                     "======================================================\n" +
                     "1. test\n" +
                     "======================================================\n";
@@ -100,8 +100,8 @@ public class ListCommandTest {
         String input = "list";
         Note note1 = new Note("test1", "", "LINKED_LIST");
         Note note2 = new Note("test2", "", "LINKED_LIST");
-        topicManager.addFile(note1.getName(), note1.getTopic(), note1);
-        topicManager.addFile(note2.getName(), note2.getTopic(), note2);
+        topicManager.addCS2040CFile(note1.getName(), note1.getTopic(), note1);
+        topicManager.addCS2040CFile(note2.getName(), note2.getTopic(), note2);
         Command command = parser.parse(input, topicManager);
         command.execute(topicManager, ui, fileManager);
 
@@ -110,14 +110,14 @@ public class ListCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Here are all your notes:\r\n" +
+                    "Here are all your CS2040CFiles:\r\n" +
                     "======================================================\r\n" +
                     "1. test2\r\n" +
                     "2. test1\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "Here are all your notes:\n" +
+                    "Here are all your CS2040CFiles:\n" +
                     "======================================================\n" +
                     "1. test2\n" +
                     "2. test1\n" +

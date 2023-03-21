@@ -7,9 +7,9 @@ import seedu.clialgo.storage.FileManager;
 
 public class AddCodeCommand extends AddCommand {
     /**
-     * Constructor for command to add note to topic list.
+     * Constructor for command to add code file to topic list.
      *
-     * @param name  Name of the note file.
+     * @param name  Name of the code file.
      * @param topic The topic that this file is tagged to.
      */
     public AddCodeCommand(String name, String topic) {
@@ -29,14 +29,14 @@ public class AddCodeCommand extends AddCommand {
         Code newCode = new Code(name, codePath, topic);
         boolean isAddedToFile = fileManager.addEntry(name, newCode);
 
-        //  Check if note is successfully added to data file
+        //  Check if code file is successfully added to data file
         if (!isAddedToFile) {
             return;
         }
 
-        boolean isAdded = topicManager.addFile(name, topic, newCode);
+        boolean isAdded = topicManager.addCS2040CFile(name, topic, newCode);
 
-        // Check if added -> execute invalid command if note is not added
+        // Check if added -> execute invalid command if code file is not added
         if (!isAdded) {
             new InvalidCommand().execute(topicManager, ui, fileManager);
             return;

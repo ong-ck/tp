@@ -59,19 +59,19 @@ public class Ui {
     public void printHelpPage() {
         printDivider();
         System.out.println("The available COMMAND_TYPE(s) are:");
-        System.out.println("[add]: add note");
-        System.out.println("[remove]: remove note");
-        System.out.println("[list]: displays all notes");
-        System.out.println("[filter]: filters notes by topic");
+        System.out.println("[add]: add CS2040CFile");
+        System.out.println("[remove]: remove CS2040CFile");
+        System.out.println("[list]: displays all CS2040CFiles");
+        System.out.println("[filter]: filters CS2040CFiles by topic");
         System.out.println("[exit]: close the application");
         System.out.println("For more help on a specific command, type `help c/COMMAND_TYPE`");
         printDivider();
     }
 
     /**
-     * Prints a message indicating successful addition of the notes to the tagged topic in the list
+     * Prints a message indicating successful addition of the CS2040CFile to the tagged topic in the list
      *
-     * @param name the name of the notes defined by the user
+     * @param name the name of the CS2040CFile defined by the user
      * @param topic the CS2040C topic
      */
     public void printAddSuccess(String name, String topic) {
@@ -83,7 +83,7 @@ public class Ui {
     }
 
     /**
-     * Prints a message indicating the failure to add notes to a topic (which does not exist in CS2040)
+     * Prints a message indicating the failure to add CS2040CFile to a topic (which does not exist in CS2040C)
      *
      * @param topic the CS2040C topic
      */
@@ -96,38 +96,38 @@ public class Ui {
     }
 
     /**
-     * Prints an error message indicating that a note of a specific name already exists.
+     * Prints an error message indicating that a CS2040CFile of a specific name already exists.
      */
-    public void printNoteExists() {
+    public void printCS2040CFileExists() {
         printDivider();
-        System.out.println("Unsuccessful! A note with that name already exists.");
-        System.out.println("Type 'list' to view the list of notes.");
+        System.out.println("Unsuccessful! A CS2040CFile with that name already exists.");
+        System.out.println("Type 'list' to view the list of CS2040CFiles.");
         printDivider();
     }
 
     /**
-     * Prints the list of notes saved by the user
+     * Prints the list of CS2040CFiles saved by the user
      */
     public void printListSuccess() {
         printDivider();
-        System.out.println("Here are all your notes:");
+        System.out.println("Here are all your CS2040CFiles:");
         printDivider();
     }
 
     /**
-     * Prints an error message if user has no saved notes
+     * Prints an error message if user has no saved CS2040CFiles
      */
     public void printListFail() {
         printDivider();
-        System.out.println("You have no notes!");
-        System.out.println("Type 'help c/add' for assistance on how to add a note.");
+        System.out.println("You have no CS2040CFiles!");
+        System.out.println("Type 'help c/add' for assistance on how to add a CS2040CFile.");
         printDivider();
     }
 
     /**
-     * Prints a message indicating successful purge of a user-defined notes
+     * Prints a message indicating successful purge of a user-defined CS2040CFile
      *
-     * @param name the name of the notes defined by the user
+     * @param name the name of the CS2040CFile defined by the user
      */
     public void printRemoveSuccess(String name) {
         assert name != null;
@@ -137,26 +137,26 @@ public class Ui {
     }
 
     /**
-     * Prints an error message if user has not used appropriate flags/no notes exist of the specific name
+     * Prints an error message if user has not used appropriate flags/no CS2040CFiles exist of the specific name
      */
     public void printRemoveFail() {
         printDivider();
         System.out.println("Unsuccessful!");
-        System.out.println("Type 'help c/remove' for assistance on how to remove a note.");
+        System.out.println("Type 'help c/remove' for assistance on how to remove a CS2040CFile.");
         printDivider();
     }
 
     /**
-     * Prints a filtered set of notes user-specified by keyword and topic name
+     * Prints a filtered set of CS2040CFiles user-specified by keyword and topic name
      */
     public void printFilterSuccess() {
         printDivider();
-        System.out.println("Here are the filtered notes:");
+        System.out.println("Here are the filtered CS2040CFiles:");
         printDivider();
     }
 
     /**
-     * Prints a filtered set of notes user-specified by keyword and topic name
+     * Prints a filtered set of CS2040CFiles user-specified by keyword and topic name
      */
     public void printFilterFail() {
         printDivider();
@@ -180,9 +180,9 @@ public class Ui {
      */
     public void printHelpAdd() {
         printDivider();
-        System.out.println("This function adds a note and tags it to a topic.");
+        System.out.println("This function adds a CS2040CFile and tags it to a topic.");
         System.out.println("The syntax for the 'add' command is: add n/NAME t/TOPIC.");
-        System.out.println("NAME refers to the notes' file name.");
+        System.out.println("NAME refers to the CS2040CFiles' file name.");
         System.out.println("TOPIC refers to the topic that NAME will be tagged to.");
         System.out.println("Case sensitive. NAME and TOPIC fields must be non-empty.");
         System.out.println("Invalid NAME or TOPIC will cause an error.");
@@ -198,9 +198,9 @@ public class Ui {
      */
     public void printHelpRemove() {
         printDivider();
-        System.out.println("This function removes a note from the tagged topic.");
+        System.out.println("This function removes a CS2040CFile from the tagged topic.");
         System.out.println("The syntax for the 'remove' command is: remove n/NAME.");
-        System.out.println("NAME refers to the notes' file name.");
+        System.out.println("NAME refers to the CS2040CFiles' file name.");
         System.out.println("'n/' must be included else NAME will not be read.");
         System.out.println("Invalid NAME will cause an error.");
         printDivider();
@@ -212,7 +212,7 @@ public class Ui {
      */
     public void printHelpList() {
         printDivider();
-        System.out.println("This function lists all stored notes.");
+        System.out.println("This function lists all stored CS2040CFiles.");
         System.out.println("The syntax for the 'list' command is: list.");
         System.out.println("Command should only contain one word (i.e. no extensions).");
         printDivider();
@@ -267,9 +267,9 @@ public class Ui {
      */
     public void printNameNotFoundCommand() {
         printDivider();
-        System.out.println("Unsuccessful! A note of that name does not exist.");
-        System.out.println("Only notes in your list can be removed.");
-        System.out.println("Type 'list' to see notes you can remove.");
+        System.out.println("Unsuccessful! A CS2040CFile of that name does not exist.");
+        System.out.println("Only CS2040CFiles in your list can be removed.");
+        System.out.println("Type 'list' to see CS2040CFiles you can remove.");
         printDivider();
     }
 
@@ -356,12 +356,12 @@ public class Ui {
     }
 
     /**
-     * Prints an error message indicating that note is invalid.
+     * Prints an error message indicating that CS2040CFile is invalid.
      */
-    public void printInvalidNote() {
+    public void printInvalidCS2040CFile() {
         printDivider();
-        System.out.println("Invalid note.");
-        System.out.println("Type 'help c/add' for how to add a note.");
+        System.out.println("Invalid CS2040CFile.");
+        System.out.println("Type 'help c/add' for how to add a CS2040CFile.");
         printDivider();
     }
 
@@ -380,16 +380,16 @@ public class Ui {
      */
     public void printTopoSortSuccess() {
         printDivider();
-        System.out.println("Here are the topologically sorted notes:");
+        System.out.println("Here are the topologically sorted CS2040CFiles:");
         printDivider();
     }
 
     /**
-     * Prints an error message indicating that no notes are in CLIAlgo.
+     * Prints an error message indicating that no CS2040CFiles are in CLIAlgo.
      */
-    public void printNoNotesSaved() {
+    public void printNoCS2040CFilesSaved() {
         printDivider();
-        System.out.println("You have no notes at the moment!");
+        System.out.println("You have no CS2040CFiles at the moment!");
         printDivider();
     }
 }

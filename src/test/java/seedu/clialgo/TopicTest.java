@@ -54,9 +54,9 @@ class TopicTest {
         testNotesHashmap.put(testNoteName, testNote);
 
         Topic testTopic = new Topic(testTopicName);
-        testTopic.addFile(testNoteName, testNote);
+        testTopic.addCS2040CFile(testNoteName, testNote);
 
-        assertEquals(testTopic.getFiles(), testNotesHashmap);
+        assertEquals(testTopic.getC2040CFiles(), testNotesHashmap);
     }
 
     @Test
@@ -72,7 +72,7 @@ class TopicTest {
         String topicName = "LINKED_LIST";
         String path = "dummy";
         Note note = new Note(noteName, path, topicName);
-        topic.getFiles().put(noteName, note);
+        topic.getC2040CFiles().put(noteName, note);
         assertFalse(topic.isEmpty());
     }
 
@@ -83,7 +83,7 @@ class TopicTest {
         String topicName = "LINKED_LIST";
         String path = "dummy";
         Note note = new Note(noteName, path, topicName);
-        topic.getFiles().put(noteName, note);
+        topic.getC2040CFiles().put(noteName, note);
         assertTrue(topic.isInsideTopic(noteName));
     }
 
@@ -104,14 +104,14 @@ class TopicTest {
         String topicName = "LINKED_LIST";
         Note note1 = new Note(noteName1, path1, topicName);
         Note note2 = new Note(noteName2, path2, topicName);
-        topic.getFiles().put(noteName1, note1);
-        topic.getFiles().put(noteName2, note2);
+        topic.getC2040CFiles().put(noteName1, note1);
+        topic.getC2040CFiles().put(noteName2, note2);
 
         HashMap<String, Note> expectedOutcome = new HashMap<>();
         expectedOutcome.put(noteName1, note1);
         expectedOutcome.put(noteName2, note2);
 
-        assertEquals(expectedOutcome, topic.getFiles());
+        assertEquals(expectedOutcome, topic.getC2040CFiles());
     }
 
     @Test
@@ -137,14 +137,14 @@ class TopicTest {
         Note note2 = new Note(noteName2, path2, topicName);
         Note note3 = new Note(noteName3, path3, topicName);
         Note note4 = new Note(noteName4, path4, topicName);
-        topic.getFiles().put(noteName1, note1);
-        topic.getFiles().put(noteName2, note2);
-        topic.getFiles().put(noteName3, note3);
-        topic.getFiles().put(noteName4, note4);
+        topic.getC2040CFiles().put(noteName1, note1);
+        topic.getC2040CFiles().put(noteName2, note2);
+        topic.getC2040CFiles().put(noteName3, note3);
+        topic.getC2040CFiles().put(noteName4, note4);
 
         ArrayList<String> expectedOutcome = new ArrayList<>(Arrays.asList(noteName2, noteName3, noteName4, noteName1));
 
-        assertEquals(expectedOutcome, topic.getAllFilesInTopic());
+        assertEquals(expectedOutcome, topic.getAllCS2040CFilesInTopic());
     }
 
     @Test
@@ -160,11 +160,11 @@ class TopicTest {
         Note note1 = new Note(noteName1, path1, topicName);
         Note note2 = new Note(noteName2, path2, topicName);
         Note note3 = new Note(noteName3, path3, topicName);
-        topic.getFiles().put(noteName1, note1);
-        topic.getFiles().put(noteName2, note2);
-        topic.getFiles().put(noteName3, note3);
-        assertTrue(topic.removeFile(noteName1));
-        assertTrue(topic.removeFile(noteName2));
-        assertTrue(topic.removeFile(noteName3));
+        topic.getC2040CFiles().put(noteName1, note1);
+        topic.getC2040CFiles().put(noteName2, note2);
+        topic.getC2040CFiles().put(noteName3, note3);
+        assertTrue(topic.removeCS2040CFile(noteName1));
+        assertTrue(topic.removeCS2040CFile(noteName2));
+        assertTrue(topic.removeCS2040CFile(noteName3));
     }
 }

@@ -1,22 +1,23 @@
 package seedu.clialgo.file;
 
-public abstract class File {
+public abstract class CS2040CFile {
     protected String name;
     protected String path;
     protected String topic;
     protected int importance;
 
     /**
-     * Constructor for <code>Note</code> object.
+     * Constructor for <code>CS2040CFile</code> object.
      *
      * @param name Name of the file.
      * @param path Path to the file.
      * @param topic Topic that file should be tagged.
      */
-    public File(String name, String path, String topic) {
+    public CS2040CFile(String name, String path, String topic) {
         this.name = name;
         this.path = path;
         this.topic = topic;
+        this.importance = importance;
     }
 
     /**

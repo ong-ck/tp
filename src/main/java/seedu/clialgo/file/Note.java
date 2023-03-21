@@ -3,7 +3,7 @@ package seedu.clialgo.file;
 /**
  * The <code>Note</code> object represents each note file that the user can add into CLIAlgo.
  */
-public class Note extends File {
+public class Note extends CS2040CFile {
     /**
      * Constructor for <code>Note</code> object.
      *

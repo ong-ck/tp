@@ -87,20 +87,20 @@ class UiTest {
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
                     "The available COMMAND_TYPE(s) are:\r\n" +
-                    "[add]: add note\r\n" +
-                    "[remove]: remove note\r\n" +
-                    "[list]: displays all notes\r\n" +
-                    "[filter]: filters notes by topic\r\n" +
+                    "[add]: add CS2040CFile\r\n" +
+                    "[remove]: remove CS2040CFile\r\n" +
+                    "[list]: displays all CS2040CFiles\r\n" +
+                    "[filter]: filters CS2040CFiles by topic\r\n" +
                     "[exit]: close the application\r\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "The available COMMAND_TYPE(s) are:\n" +
-                    "[add]: add note\n" +
-                    "[remove]: remove note\n" +
-                    "[list]: displays all notes\n" +
-                    "[filter]: filters notes by topic\n" +
+                    "[add]: add CS2040CFile\n" +
+                    "[remove]: remove CS2040CFile\n" +
+                    "[list]: displays all CS2040CFiles\n" +
+                    "[filter]: filters CS2040CFiles by topic\n" +
                     "[exit]: close the application\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`\n" +
                     "======================================================\n";
@@ -165,20 +165,20 @@ class UiTest {
         System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
-        ui.printNoteExists();
+        ui.printCS2040CFileExists();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Unsuccessful! A note with that name already exists.\r\n" +
-                    "Type 'list' to view the list of notes.\r\n" +
+                    "Unsuccessful! A CS2040CFile with that name already exists.\r\n" +
+                    "Type 'list' to view the list of CS2040CFiles.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "Unsuccessful! A note with that name already exists.\n" +
-                    "Type 'list' to view the list of notes.\n" +
+                    "Unsuccessful! A CS2040CFile with that name already exists.\n" +
+                    "Type 'list' to view the list of CS2040CFiles.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -197,11 +197,11 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Here are all your notes:\r\n" +
+                    "Here are all your CS2040CFiles:\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "Here are all your notes:\n" +
+                    "Here are all your CS2040CFiles:\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -220,13 +220,13 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "You have no notes!\r\n" +
-                    "Type 'help c/add' for assistance on how to add a note.\r\n" +
+                    "You have no CS2040CFiles!\r\n" +
+                    "Type 'help c/add' for assistance on how to add a CS2040CFile.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput =  "======================================================\n" +
-                    "You have no notes!\n" +
-                    "Type 'help c/add' for assistance on how to add a note.\n" +
+                    "You have no CS2040CFiles!\n" +
+                    "Type 'help c/add' for assistance on how to add a CS2040CFile.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -270,12 +270,12 @@ class UiTest {
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
                     "Unsuccessful!\r\n" +
-                    "Type 'help c/remove' for assistance on how to remove a note.\r\n" +
+                    "Type 'help c/remove' for assistance on how to remove a CS2040CFile.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "Unsuccessful!\n" +
-                    "Type 'help c/remove' for assistance on how to remove a note.\n" +
+                    "Type 'help c/remove' for assistance on how to remove a CS2040CFile.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -294,11 +294,11 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Here are the filtered notes:\r\n" +
+                    "Here are the filtered CS2040CFiles:\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "Here are the filtered notes:\n" +
+                    "Here are the filtered CS2040CFiles:\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -365,9 +365,9 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function adds a note and tags it to a topic.\r\n" +
+                    "This function adds a CS2040CFile and tags it to a topic.\r\n" +
                     "The syntax for the 'add' command is: add n/NAME t/TOPIC.\r\n" +
-                    "NAME refers to the notes' file name.\r\n" +
+                    "NAME refers to the CS2040CFiles' file name.\r\n" +
                     "TOPIC refers to the topic that NAME will be tagged to.\r\n" +
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\r\n" +
                     "Invalid NAME or TOPIC will cause an error.\r\n" +
@@ -377,9 +377,9 @@ class UiTest {
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function adds a note and tags it to a topic.\n" +
+                    "This function adds a CS2040CFile and tags it to a topic.\n" +
                     "The syntax for the 'add' command is: add n/NAME t/TOPIC.\n" +
-                    "NAME refers to the notes' file name.\n" +
+                    "NAME refers to the CS2040CFiles' file name.\n" +
                     "TOPIC refers to the topic that NAME will be tagged to.\n" +
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
                     "Invalid NAME or TOPIC will cause an error.\n" +
@@ -404,17 +404,17 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function removes a note from the tagged topic.\r\n" +
+                    "This function removes a CS2040CFile from the tagged topic.\r\n" +
                     "The syntax for the 'remove' command is: remove n/NAME.\r\n" +
-                    "NAME refers to the notes' file name.\r\n" +
+                    "NAME refers to the CS2040CFiles' file name.\r\n" +
                     "'n/' must be included else NAME will not be read.\r\n" +
                     "Invalid NAME will cause an error.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function removes a note from the tagged topic.\n" +
+                    "This function removes a CS2040CFile from the tagged topic.\n" +
                     "The syntax for the 'remove' command is: remove n/NAME.\n" +
-                    "NAME refers to the notes' file name.\n" +
+                    "NAME refers to the CS2040CFiles' file name.\n" +
                     "'n/' must be included else NAME will not be read.\n" +
                     "Invalid NAME will cause an error.\n" +
                     "======================================================\n";
@@ -435,13 +435,13 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function lists all stored notes.\r\n" +
+                    "This function lists all stored CS2040CFiles.\r\n" +
                     "The syntax for the 'list' command is: list.\r\n" +
                     "Command should only contain one word (i.e. no extensions).\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function lists all stored notes.\n" +
+                    "This function lists all stored CS2040CFiles.\n" +
                     "The syntax for the 'list' command is: list.\n" +
                     "Command should only contain one word (i.e. no extensions).\n" +
                     "======================================================\n";
@@ -547,15 +547,15 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Unsuccessful! A note of that name does not exist.\r\n" +
-                    "Only notes in your list can be removed.\r\n" +
-                    "Type 'list' to see notes you can remove.\r\n" +
+                    "Unsuccessful! A CS2040CFile of that name does not exist.\r\n" +
+                    "Only CS2040CFiles in your list can be removed.\r\n" +
+                    "Type 'list' to see CS2040CFiles you can remove.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "Unsuccessful! A note of that name does not exist.\n" +
-                    "Only notes in your list can be removed.\n" +
-                    "Type 'list' to see notes you can remove.\n" +
+                    "Unsuccessful! A CS2040CFile of that name does not exist.\n" +
+                    "Only CS2040CFiles in your list can be removed.\n" +
+                    "Type 'list' to see CS2040CFiles you can remove.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -728,20 +728,20 @@ class UiTest {
         System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
-        ui.printInvalidNote();
+        ui.printInvalidCS2040CFile();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "Invalid note.\r\n" +
-                    "Type 'help c/add' for how to add a note.\r\n" +
+                    "Invalid CS2040CFile.\r\n" +
+                    "Type 'help c/add' for how to add a CS2040CFile.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "Invalid note.\n" +
-                    "Type 'help c/add' for how to add a note.\n" +
+                    "Invalid CS2040CFile.\n" +
+                    "Type 'help c/add' for how to add a CS2040CFile.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());

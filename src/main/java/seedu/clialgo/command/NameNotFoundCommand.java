@@ -7,14 +7,14 @@ import seedu.clialgo.Ui;
 
 /**
  * Represents an executable command. A <code>NameNotFoundCommand</code> object is created whenever the user enters a
- * command that does not contain any existing name of any notes and is unable to generate the appropriate
+ * command that does not contain any existing name of any CS2040CFiles and is unable to generate the appropriate
  * <code>Command</code> object.
  */
 public class NameNotFoundCommand extends Command {
 
     /**
      * This method informs the user that they have keyed in a command that does not contain any existing name of any
-     * notes.
+     * CS2040CFiles.
      */
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         ui.printNameNotFoundCommand();

@@ -174,16 +174,16 @@ class AddCommandTest {
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n" +
                     "======================================================\r\n" +
-                    "Unsuccessful! A note with that name already exists.\r\n" +
-                    "Type 'list' to view the list of notes.\r\n" +
+                    "Unsuccessful! A CS2040CFile with that name already exists.\r\n" +
+                    "Type 'list' to view the list of CS2040CFiles.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n" +
                     "======================================================\n" +
-                    "Unsuccessful! A note with that name already exists.\n" +
-                    "Type 'list' to view the list of notes.\n" +
+                    "Unsuccessful! A CS2040CFile with that name already exists.\n" +
+                    "Type 'list' to view the list of CS2040CFiles.\n" +
                     "======================================================\n";
         }
 

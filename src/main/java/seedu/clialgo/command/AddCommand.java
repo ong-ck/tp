@@ -9,7 +9,7 @@ import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.Ui;
 
 /**
- * The <code>AddCommand</code> objects represents the user command to add new notes into CLIAlgo.
+ * The <code>AddCommand</code> objects represents the user command to add new CS2040CFiles into CLIAlgo.
  */
 public class AddCommand extends Command {
 
@@ -18,9 +18,9 @@ public class AddCommand extends Command {
     protected final String topic;
 
     /**
-     * Constructor for command to add note to topic list.
+     * Constructor for command to add CS2040CFile to topic list.
      *
-     * @param name Name of the note file.
+     * @param name Name of the CS2040CFile.
      * @param topic The topic that this file is tagged to.
      */
     public AddCommand(String name, String topic) {
@@ -56,9 +56,9 @@ public class AddCommand extends Command {
     }
 
     /**
-     * An overridden method to execute the user command to add new notes into CLIAlgo.
+     * An overridden method to execute the user command to add new CS2040CFiles into CLIAlgo.
      *
-     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
      */
@@ -78,9 +78,9 @@ public class AddCommand extends Command {
             return;
         }
         // Check if the note is repeated
-        if (topicManager.isRepeatedNote(name)) {
-            assert topicManager.isRepeatedNote(name);
-            ui.printNoteExists();
+        if (topicManager.isRepeatedCS2040CFile(name)) {
+            assert topicManager.isRepeatedCS2040CFile(name);
+            ui.printCS2040CFileExists();
             return;
         }
 

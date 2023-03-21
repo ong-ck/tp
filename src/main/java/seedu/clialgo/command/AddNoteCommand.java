@@ -7,7 +7,7 @@ import seedu.clialgo.file.Note;
 
 public class AddNoteCommand extends AddCommand {
     /**
-     * Constructor for command to add note to topic list.
+     * Constructor for command to add note file to topic list.
      *
      * @param name  Name of the note file.
      * @param topic The topic that this file is tagged to.
@@ -34,7 +34,7 @@ public class AddNoteCommand extends AddCommand {
             return;
         }
 
-        boolean isAdded = topicManager.addFile(name, topic, newNote);
+        boolean isAdded = topicManager.addCS2040CFile(name, topic, newNote);
 
         // Check if added -> execute invalid command if note is not added
         if (!isAdded) {

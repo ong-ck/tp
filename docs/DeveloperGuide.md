@@ -18,7 +18,7 @@ The `Parser` component:
 
 - Reads in the full command keyed in by the user through the `Ui` class.
 - Extracts out the keywords from the command such as `command type`, `topic`, `file name` using
-using the `StringManipulation` interface.
+the `StringManipulation` interface.
 - Verify the validity of the user's input command.
 - Handle cases where the user keys in an invalid command.
 - Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
@@ -49,8 +49,8 @@ Here is a class diagram of the `AddCommand` which is responsible for adding eith
 ![](.\\UML\\Add.png "AddCommand Class Diagram")
 
 The `AddCommand` component
-- can check if the file to be added into our CLIAlgo exists within the same directory as the program
-- can check for the type of file, whether it is `.txt` or `.cpp` based on the name of the file
+- can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
+- can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
 - can ensure that there are no files with repeated names such that all names of files added are unique
 
 

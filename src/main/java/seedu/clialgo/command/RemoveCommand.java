@@ -9,24 +9,24 @@ import seedu.clialgo.Ui;
 
 /**
  * Represents an executable command from the user. A <code>RemoveCommand</code> object contains the name of
- * the note to be deleted. This object removes the note corresponding to the name of the note from the list when the
- * execute method is called.
+ * the CS2040CFile to be deleted. This object removes the CS2040CFile corresponding to the name of the CS2040CFile from
+ * the list when the execute method is called.
  */
 public class RemoveCommand extends Command {
 
     private final String name;
 
     /**
-     * Constructor for command to remove note from topic list.
+     * Constructor for command to remove CS2040CFile from topic list.
      *
-     * @param name Name of the file.
+     * @param name Name of the CS2040CFile.
      */
     public RemoveCommand(String name) {
         this.name = name;
     }
 
     /**
-     * Overridden method that removes a file corresponding to <code>name</code> from the list. It then saves the
+     * Overridden method that removes a CS2040CFile corresponding to <code>name</code> from the list. It then saves the
      * updated list.
      *
      * @param topicManager A Topic object containing all the different topics available.
@@ -46,8 +46,8 @@ public class RemoveCommand extends Command {
             return;
         }
 
-        assert topicManager.isRepeatedNote(this.name);
-        boolean isSuccessfullyRemoved = topicManager.removeFile(name);
+        assert topicManager.isRepeatedCS2040CFile(this.name);
+        boolean isSuccessfullyRemoved = topicManager.removeCS2040CFile(name);
 
         if (!isSuccessfullyRemoved) {
             ui.printRemoveFail();
@@ -58,9 +58,9 @@ public class RemoveCommand extends Command {
     }
 
     /**
-     * Gets the name of the file to be removed.
+     * Gets the name of the CS2040CFile to be removed.
      *
-     * @return Name of the note.
+     * @return Name of the CS2040CFile.
      */
     public String getName() {
         return name;
