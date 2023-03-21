@@ -140,7 +140,12 @@ Use case ends.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *notes* - A note file saved by the user as a `.txt` or `.cpp`
+* *desktop CLI* - The terminal in Windows, Linux or macOS
+* *mainstream OS* - Windows, Linux or macOS
+* *CS2040C* - The Data Structures and Algorithms module in NUS
+* *Visualgo* - A webpage developed by Professor Steven Halim for use in modules such as CS2040C
+* *topics* - One of the ten topics taught in CS2040C
 
 ## Instructions for manual testing
 
