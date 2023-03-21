@@ -14,9 +14,14 @@ and preparing the appropriate `Command` object.
 
 ![](.\\uml\\diagrams\\ParserClass.png "Parser Class Diagram")
 
-How the `Parser` component works:
+The `Parser` component:
 
-- 
+- Reads in the full command keyed in by the user through the `Ui` class.
+- Extracts out the keywords from the command such as `command type`, `topic`, `file name` using
+using the `StringManipulation` interface.
+- Verify the validity of the user's input command.
+- Handle cases where the user keys in an invalid command.
+- Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
 
 
 ### Storage
