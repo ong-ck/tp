@@ -24,7 +24,7 @@ public class FilterCommand extends Command {
      * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
-    public void printAllTopics(TopicManager topicManager, Ui ui) {
+    private void printAllTopics(TopicManager topicManager, Ui ui) {
         HashMap<String, ArrayList<String>> notes = topicManager.getAllNotesByTopic();
         ui.printFilterSuccess();
         for (Map.Entry<String, ArrayList<String>> entry : notes.entrySet()) {
@@ -46,7 +46,7 @@ public class FilterCommand extends Command {
      * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
-    public void printSingleTopic(TopicManager topicManager, Ui ui) {
+    private void printSingleTopic(TopicManager topicManager, Ui ui) {
         ArrayList<String> notes = topicManager.getNotesByTopic(this.topic);
         ui.printFilterSuccess();
         int serialNumber = 1;
