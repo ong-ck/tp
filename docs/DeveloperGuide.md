@@ -12,6 +12,8 @@ original source as well}
 Here is a class diagram of the `Parser` component which is responsible for processing commands
 and preparing the appropriate `Command` object.
 
+![](.\\uml\\diagrams\\ParserClass.png "Parser Class Diagram")
+
 How the `Parser` component works:
 
 - 
