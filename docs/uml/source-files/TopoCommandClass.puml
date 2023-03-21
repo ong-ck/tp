@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Command {
++execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void {abstract}
++equals(otherCommand: Command): boolean {abstract}
+}
+
+class TopoCommand {
+-topoSortedNotes: LinkedHashMap<String, ArrayList<String>>
+-name: String
+
++getName(): String
+-printSingleTopic(topicName: String): void
++printTopoSortedNotes(topicManager: TopicManager, ui: Ui): void
++execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
++equals(otherCommand: Command): boolean
+}
+
+class Ui {
+}
+
+class TopicManager {
+}
+
+class FileManager {
+}
+
+Command ..> Ui
+TopoCommand ..> Ui
+Command ..> TopicManager
+TopoCommand ..> TopicManager
+Command ..> FileManager
+TopoCommand ..> FileManager
+Command <|-- TopoCommand
+@enduml
