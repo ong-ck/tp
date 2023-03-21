@@ -46,7 +46,7 @@ initializing the application
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
 
-![](.\\UML\\Add.png "AddCommand Class Diagram")
+![](.\\uml\\diagrams\\Add.png "AddCommand Class Diagram")
 
 The `AddCommand` component
 - can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
