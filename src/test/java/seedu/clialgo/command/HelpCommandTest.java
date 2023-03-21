@@ -43,7 +43,7 @@ class HelpCommandTest {
                     "[add]: add CS2040CFile\n" +
                     "[remove]: remove CS2040CFile\n" +
                     "[list]: displays all CS2040CFiles\n" +
-                    "[filter]: filters notes by topic\n" +
+                    "[filter]: filters CS2040CFiles by topic\n" +
                     "[exit]: close the application\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`\n" +
                     "======================================================\n";
