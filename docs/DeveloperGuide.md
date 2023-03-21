@@ -41,6 +41,19 @@ corresponding `Topic`'s  `.txt`
 - reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
+### TopoSort
+**API** : `TopoCommand.java`
+
+Here is a class diagram of the `TopoCommand` which facilitates the storage
+function of the application.
+
+![](.\\uml\\diagrams\\TopoCommandClass.png "TopoCommand Class Diagram")
+
+The `TopoCommand` component
+- can topologically sort `CS2040CFile` objects in a specific `topic` order
+- can print out the list of topologically sorted `CS2040CFile` objects
+- can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
+
 ## Implementation
 ### Filter by keyword feature
 #### Current Implementation
