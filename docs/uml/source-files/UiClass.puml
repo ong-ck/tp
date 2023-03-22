@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Ui {
+-Divider: String
++printDivider(): void
++getUserInput(): void
++closeScanner():void
++printWelcomeMessage(): void
++printExitMessage(): void
++printHelpPage(): void
++printAddSuccess(): void
++printAddFail(): void
++printNoteExists(): void
++printListSuccess(): void
++printListFail(): void
++printRemoveSuccess(): void
++printRemoveFail(): void
++printFilterFail(): void
++printFilterEmpty(): void
++printHelpAdd(): void
++printHelpRemove(): void
++printHelpList(): void
++printHelpFilter(): void
++printHelpExit(): void
++printInvalidCommand(): void
++printNameNotFoundCommand(): void
++printSaveFail(): void
++printTestModeStart(): void
++printTestModeEnd(): void
++printTestModeEndFail(): void
++printFileWriteError(): void
++printFileRecreatedSuccess(): void
++printFolderCreateError(): void
++printFileDeleteSuccess(): void
++printFileDeleteFail(): void
++printInvalidNote(): void
++printFileDoesNotExist(): void
++printTopoSortSuccess(): void
++printNoNotesSaved(): void
+}
+
+FileManager --> "1  " Ui
+FileManager *- "*" SingleFile
+SingleFile --> "1 " Ui
+
+Command --> Ui
+
+AddCommand ..|> Command
+ExitCommand ..|> Command
+FilterCommand ..|> Command
+HelpCommand ..|> Command
+ListCommand ..|> Command
+RemoveCommand ..|> Command
+TestModeCommand ..|> Command
+ExitTestModeCommand ..|> Command
+TopoCommand ..|> Command
+
+@enduml
