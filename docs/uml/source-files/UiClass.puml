@@ -40,20 +40,4 @@ class Ui {
 +printNoNotesSaved(): void
 }
 
-FileManager --> "1  " Ui
-FileManager *- "*" SingleFile
-SingleFile --> "1 " Ui
-
-Command --> Ui
-
-AddCommand ..|> Command
-ExitCommand ..|> Command
-FilterCommand ..|> Command
-HelpCommand ..|> Command
-ListCommand ..|> Command
-RemoveCommand ..|> Command
-TestModeCommand ..|> Command
-ExitTestModeCommand ..|> Command
-TopoCommand ..|> Command
-
 @enduml
