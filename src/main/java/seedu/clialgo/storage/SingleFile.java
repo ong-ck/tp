@@ -1,5 +1,6 @@
 package seedu.clialgo.storage;
 
+import seedu.clialgo.file.Code;
 import seedu.clialgo.file.Note;
 import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
@@ -18,6 +19,7 @@ public class SingleFile {
     private final Ui ui;
     private final HashMap<String, String> storedRawData = new HashMap<>();
     private final HashMap<String, Note> notes = new HashMap<>();
+    private final HashMap<String, Code> codes = new HashMap<>();
     private final FileDecoder decoder;
 
 
@@ -42,7 +44,11 @@ public class SingleFile {
             boolean isCorrupted = decoder.decodeString(rawData, name);
             if (!isCorrupted) {
                 storedRawData.put(decoder.decodedName(), rawData);
-                notes.put(decoder.decodedName(), decoder.processedNote());
+                if (decoder.processedNote() != null) {
+                    notes.put(decoder.decodedName(), decoder.processedNote());
+                } else if (decoder.processedCode() != null) {
+                    codes.put(decoder.decodedName(), decoder.processedCode());
+                }
             } else {
                 isFileCorrupted = true;
             }
@@ -58,21 +64,22 @@ public class SingleFile {
     }
 
     /**
-     * Writes a single <code>Note</code> encoded as a <code>String</code> to the .txt file. If the file does not exist
+     * Writes a single <code>File</code> encoded as a <code>String</code> to the .txt file. If the file does not exist
      * during method call, recreate the file with <code>recreateFile</code>.
      *
-     * @param encodedNote The <code>Note</code> encoded as a <code>String</code>.
+     * @param encodedFile The <code>File</code> which is either a <code>Note</code> or <code>Code</code> object encoded
+     * as a <code>String</code>.
      * @throws IOException Throws an exception if the file write fails.
      */
-    public void writeNoteToFile(String encodedNote) throws IOException {
-        assert encodedNote != null : "Empty string";
+    public void writeToFile(String encodedFile) throws IOException {
+        assert encodedFile != null : "Empty string";
         try {
             if (!file.exists()) {
                 recreateFile();
                 overwriteFile();
             }
             FileWriter fileWriter = new FileWriter(file, true);
-            fileWriter.write(encodedNote + "\n");
+            fileWriter.write(encodedFile + "\n");
             fileWriter.close();
         } catch (IOException e) {
             throw new IOException();
@@ -132,7 +139,7 @@ public class SingleFile {
     }
 
     public Topic convertFileToTopic () {
-        return new Topic(name, notes);
+        return new Topic(name, notes, codes);
     }
 
     public void clearFile() {

@@ -1,5 +1,6 @@
 package seedu.clialgo.storage;
 
+import seedu.clialgo.file.Code;
 import seedu.clialgo.file.Note;
 import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
@@ -123,10 +124,19 @@ public class FileManager {
      * @param note The <code>Note</code> being added.
      * @return true if executed successfully and false if execution failed.
      */
-    public boolean addEntry (String name, Note note) {
-        SingleFile singleFile = topicRawData.get(note.getTopic());
+    public boolean addEntry (String name, Note note, Code code) {
+        SingleFile singleFile;
+        if (note != null) {
+            singleFile = topicRawData.get(note.getTopic());
+        } else {
+            singleFile = topicRawData.get(code.getTopic());
+        }
         try {
-            singleFile.writeNoteToFile(encoder.encodeNote(name ,note));
+            if (note != null) {
+                singleFile.writeToFile(encoder.encodeNote(name, note));
+            } else {
+                singleFile.writeToFile(encoder.encodeCode(name, code));
+            }
         } catch (IOException e) {
             ui.printFileWriteError();
             singleFile.recreateFile();
@@ -139,13 +149,14 @@ public class FileManager {
      * Deletes <code>Note</code> with <code>noteName</code> in <code>topicName</code>.txt and rewrite the .txt file. If
      * the file does not exist, <code>IOException</code> is caught and the file would be recreated.
      *
-     * @param noteName The name of the <code>Note</code> being deleted.
+     * @param fileName The name of the <code>File</code> being deleted (can be either a <code>Note</code> or
+     * <code>Code</code> object).
      * @return true if executed successfully and false if execution failed.
      */
-    public boolean deleteEntry (String noteName) {
+    public boolean deleteEntry (String fileName) {
         for (SingleFile singleFile : topicRawData.values()) {
             try {
-                singleFile.deleteEntry(noteName);
+                singleFile.deleteEntry(fileName);
             } catch (IOException e) {
                 ui.printFileWriteError();
                 singleFile.recreateFile();

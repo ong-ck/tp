@@ -1,5 +1,6 @@
 package seedu.clialgo.storage;
 
+import seedu.clialgo.file.Code;
 import seedu.clialgo.file.Note;
 
 /**
@@ -8,6 +9,7 @@ import seedu.clialgo.file.Note;
  */
 public class FileDecoder {
     protected Note currentNote;
+    protected Code currentCode;
     protected String currentName;
     protected final String separator;
 
@@ -30,12 +32,18 @@ public class FileDecoder {
      */
     public boolean decodeString (String encodedNote, String topicName) {
         try {
-            String[] splitNote = encodedNote.split(separator, 3);
-            if (!splitNote[2].equals(topicName)) {
+            String[] splitNote = encodedNote.split(separator, 4);
+            if (!splitNote[3].equals(topicName)) {
                 return true;
             }
-            this.currentName = splitNote[0];
-            currentNote = new Note(this.currentName, splitNote[1], splitNote[2]);
+            this.currentName = splitNote[1];
+            if (splitNote[0].equals("N")) {
+                currentNote = new Note(this.currentName, splitNote[2], splitNote[3]);
+                currentCode = null;
+            } else if (splitNote[0].equals("C")) {
+                currentCode = new Code(this.currentName, splitNote[2], splitNote[3]);
+                currentNote = null;
+            }
         } catch (ArrayIndexOutOfBoundsException e) {
             return true;
         }
@@ -48,5 +56,9 @@ public class FileDecoder {
 
     public Note processedNote () {
         return currentNote;
+    }
+
+    public Code processedCode() {
+        return currentCode;
     }
 }

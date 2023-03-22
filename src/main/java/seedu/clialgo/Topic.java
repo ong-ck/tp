@@ -1,5 +1,6 @@
 package seedu.clialgo;
 
+import seedu.clialgo.file.Code;
 import seedu.clialgo.file.Note;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Map;
 public class Topic {
     private final String topicName;
     private final HashMap<String, Note> notes;
+    private final HashMap<String, Code> codes;
 
     /**
      * Constructor that initializes an empty <code>Topic</code> object.
@@ -22,6 +24,7 @@ public class Topic {
     public Topic(String topicName) {
         this.topicName = topicName;
         notes = new HashMap<>();
+        codes = new HashMap<>();
     }
 
     /**
@@ -30,9 +33,10 @@ public class Topic {
      * @param topicName The name of the topic.
      * @param notes A HashMap containing the notes stored in the <code>Topic</code> object.
      */
-    public Topic(String topicName, HashMap<String, Note> notes) {
+    public Topic(String topicName, HashMap<String, Note> notes, HashMap<String, Code> codes) {
         this.topicName = topicName;
         this.notes = notes;
+        this.codes = codes;
     }
 
     /**

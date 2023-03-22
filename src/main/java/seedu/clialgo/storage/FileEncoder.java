@@ -1,5 +1,6 @@
 package seedu.clialgo.storage;
 
+import seedu.clialgo.file.Code;
 import seedu.clialgo.file.Note;
 
 /**
@@ -27,7 +28,11 @@ public class FileEncoder {
      * @return Returns a processed string.
      */
     public String encodeNote (String name, Note note) {
-        return name + separator + note.getPath() + separator + note.getTopic();
+        return "N" + separator + name + separator + note.getPath() + separator + note.getTopic();
+    }
+
+    public String encodeCode (String name, Code code) {
+        return "C" + separator + name + separator + code.getPath() + separator + code.getTopic();
     }
 
 }
