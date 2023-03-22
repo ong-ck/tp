@@ -2,12 +2,67 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the 
+original source as well}
 
-## Design & implementation
+## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### Parser
+**API** : `Parser.java`
+Here is a class diagram of the `Parser` component which is responsible for processing commands
+and preparing the appropriate `Command` object.
 
+![](.\\uml\\diagrams\\ParserClass.png "Parser Class Diagram")
+
+The `Parser` component:
+
+- Reads in the full command keyed in by the user through the `Ui` class.
+- Extracts out the keywords from the command such as `command type`, `topic`, `file name` using
+using the `StringManipulation` interface.
+- Verify the validity of the user's input command.
+- Handle cases where the user keys in an invalid command.
+- Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
+
+
+### Storage
+**API** : `FileManager.java`
+
+Here is a class diagram of the `FileManager` which facilitates the storage
+function of the application.
+
+![](.\\uml\\diagrams\\FileManagerClass.png "FileManager Class Diagram")
+
+The `FileManager` component
+- can save each `Topic`'s data as an individual `.txt` file
+- can interpret `Note` objects as a `String` and store it into its 
+corresponding `Topic`'s  `.txt`
+- updates the corresponding `Topic`'s  `.txt` whenever a `add` or
+`remove` command is called by the user
+- reads from each `Topic`'s  `.txt` and returns a `Topic` object when
+initializing the application
+
+## Implementation
+### Filter by keyword feature
+#### Current Implementation
+The filter mechanism is facilitated by `FilterCommand`. It extends `Command` with an overridden `execute()` method. The
+`FilterCommand` has 2 different executions depending on the constructor used to instantiate it. During execution, the
+`FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
+Additionally, it implements the following operations.
+
+- `printAllTopics()` - Prints out all notes stored in CLIAlgo that is sorted by `topic`.
+- `printSingleTopic()` - Prints out all notes stored in CLIAlgo that is tagged to the given `topic`.
+
+The access modifiers of these methods are `private` can can only be accessed within `FilterCommand`.
+
+Given below is an example usage of how the filter mechanism behaves at each step.
+
+> **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the
+> user entered a valid command, the `Parser` will process the full command using the `StringManipulation` interface and
+> prepare the appropriate `FilterCommand` object.
+
+> **Step 2**: If the `topic` field is left empty, the `Parser` will instantiate a new `FilterCommand` object, setting
+> the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
+> a new `FilterCommand` using its constructor.
 
 ## Product scope
 ### Target user profile

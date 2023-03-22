@@ -66,7 +66,7 @@ public class Parser implements StringManipulation {
      * @return True if the marker used by the user matches correctMarker. False otherwise.
      * @throws IndexOutOfBoundsException If length of userInput < length of correctMarker.
      */
-    public boolean isCorrectMarker(String userInput, String correctMarker) throws IndexOutOfBoundsException {
+    protected boolean isCorrectMarker(String userInput, String correctMarker) throws IndexOutOfBoundsException {
         String markerPresent = userInput.substring(0, correctMarker.length());
         return markerPresent.equals(correctMarker);
     }
