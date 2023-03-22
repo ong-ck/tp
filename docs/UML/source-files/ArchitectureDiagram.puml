@@ -1,0 +1,55 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide empty members
+
+class user {
+
+}
+
+package clialgo <<rectangle>> {
+    class CLIAlgo #lightgreen {
+
+    }
+
+    class Parser #lightblue{
+    }
+
+    class Ui #red {
+    }
+
+    class TopicManager #purple {
+    }
+
+    class Topic #magenta{
+    }
+
+    class command #grey {
+    }
+
+    class storage #beige {
+    }
+
+    class CS2040CFile {
+    }
+}
+package harddisk {
+}
+user --> Ui
+CLIAlgo --> Ui
+CLIAlgo -->TopicManager
+CLIAlgo --> Parser
+CLIAlgo ..> storage
+Parser ..> Ui
+Parser ..> TopicManager
+Parser ..> command
+storage ..> harddisk
+TopicManager --> Topic
+storage --> CS2040CFile
+command ..> Ui
+command ..> TopicManager
+command ..> storage
+command ..> CS2040CFile
+Topic ..> CS2040CFile
+
+hide circle
+@enduml

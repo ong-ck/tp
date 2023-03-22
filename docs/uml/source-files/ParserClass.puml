@@ -1,4 +1,5 @@
 @startuml
+skinparam classAttributeIconSize 0
 class Parser {
 -COMMANDS: Arraylist<String>
 -KEYWORDS: Arraylist<String>
@@ -27,7 +28,7 @@ class CLIAlgo {
 -run(): void
 }
 
-package command {
+package command <<rectangle>>{
 }
 
 CLIAlgo --> "1" Ui : ui
@@ -37,4 +38,6 @@ Parser ..|> StringManipulation
 Parser ..> Ui
 Parser ..> TopicManager
 Parser ..> command
+
+hide circle
 @enduml
