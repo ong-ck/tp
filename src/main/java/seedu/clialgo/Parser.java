@@ -35,7 +35,7 @@ public class Parser implements StringManipulation {
 
     /** List of valid keywords */
     private static final ArrayList<String> KEYWORDS = new ArrayList<>(
-            Arrays.asList("topic")
+            Arrays.asList("topic", "importance")
     );
 
     /**
@@ -105,23 +105,23 @@ public class Parser implements StringManipulation {
     }
 
     /**
-     * Returns a <code>AddCommand</code> object that adds a note to CLIAlgo when executed.
+     * Returns a <code>AddCommand</code> object that adds a CS2040CFile to CLIAlgo when executed.
      * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
      *
-     * @param description String containing the information on the note to be added.
+     * @param description String containing the information on the CS2040CFile to be added.
      * @param topics The topic manager class containing all topics in CLIAlgo.
-     * @return a Command object that adds a note to CLIAlgo when executed.
+     * @return a Command object that adds a CS2040CFile to CLIAlgo when executed.
      */
     private Command prepareAddCommand(String description, TopicManager topics) {
         if (description == null) {
             return new InvalidCommand();
         }
-        String noteName;
+        String cs2040cFileName;
         String topicName;
         try {
-            String noteNameWithMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
+            String cs2040cFileNameWithMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (topicName == null || !isCorrectMarker(noteNameWithMarker, NAME_MARKER)) {
+            if (topicName == null || !isCorrectMarker(cs2040cFileNameWithMarker, NAME_MARKER)) {
                 return new InvalidCommand();
             }
 
@@ -129,54 +129,54 @@ public class Parser implements StringManipulation {
                 return new InvalidTopicCommand(topicName);
             }
 
-            noteName = StringManipulation.removeMarker(noteNameWithMarker, NAME_MARKER);
+            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithMarker, NAME_MARKER);
 
         } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException e) {
             return new InvalidCommand();
         }
-        assert noteName.length() > 0;
+        assert cs2040cFileName.length() > 0;
         assert topicName.length() > 0;
-        return new AddCommand(noteName, topicName);
+        return new AddCommand(cs2040cFileName, topicName);
     }
 
     /**
-     * Returns a <code>RemoveCommand</code> object that deletes a note from CLIAlgo when executed.
-     * Returns <code>NameNotFoundCommand</code> when the user does not key in an existing note name.
+     * Returns a <code>RemoveCommand</code> object that deletes a CS2040CFile from CLIAlgo when executed.
+     * Returns <code>NameNotFoundCommand</code> when the user does not key in an existing CS2040CFile name.
      * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
      *
-     * @param description String containing the information on the note to be removed.
+     * @param description String containing the information on the CS2040CFile to be removed.
      * @param topics The topic manager class containing all topics in CLIAlgo.
-     * @return a Command object that deletes a note from CLIAlgo when executed.
+     * @return a Command object that deletes a CS2040CFile from CLIAlgo when executed.
      */
     private Command prepareRemoveCommand(String description, TopicManager topics) {
         if (description == null) {
             return new InvalidCommand();
         }
-        String noteName;
+        String cs2040cFileName;
         try {
             if (!isCorrectMarker(description, NAME_MARKER)) {
                 return new InvalidCommand();
             }
 
-            noteName = StringManipulation.removeMarker(description, NAME_MARKER);
+            cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER);
 
-            if (!topics.isRepeatedNote(noteName)) {
+            if (!topics.isRepeatedCS2040CFile(cs2040cFileName)) {
                 return new NameNotFoundCommand();
             }
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
-        assert noteName.length() > 0;
-        return new RemoveCommand(noteName);
+        assert cs2040cFileName.length() > 0;
+        return new RemoveCommand(cs2040cFileName);
     }
 
     /**
-     * Returns a <code>FilterCommand</code> object that lists notes according a certain criteria.
+     * Returns a <code>FilterCommand</code> object that lists CS2040CFiles according a certain criteria.
      * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
      *
-     * @param description String containing criteria to filter the notes by.
+     * @param description String containing criteria to filter the CS2040CFiles by.
      * @param topics The topic manager class containing all topics in CLIAlgo.
-     * @return a Command object that lists notes according a certain criteria.
+     * @return a Command object that lists CS2040CFiles according a certain criteria.
      */
     private Command prepareFilterCommand(String description, TopicManager topics) {
         if (description == null) {
@@ -206,7 +206,7 @@ public class Parser implements StringManipulation {
     }
 
     /**
-     * @return A <code>Command</code> object that list out the notes stored in CLIAlgo.
+     * @return A <code>Command</code> object that list out the CS2040CFiles stored in CLIAlgo.
      */
     private Command prepareListCommand() {
         return new ListCommand();

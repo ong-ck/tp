@@ -11,9 +11,9 @@ public class InvalidTopicCommand extends Command {
     private String topic;
 
     /**
-     * Constructor for command when an invalid topic is being tagged to a note file.
+     * Constructor for command when an invalid topic is being tagged to a CS2040CFile.
      *
-     * @param topic The invalid topic for the note file.
+     * @param topic The invalid topic for the CS2040CFile.
      */
     public InvalidTopicCommand(String topic) {
         this.topic = topic;
@@ -21,7 +21,7 @@ public class InvalidTopicCommand extends Command {
 
     /**
      * An overridden method to execute the command when
-     * an invalid topic is being tagged to a note file.
+     * an invalid topic is being tagged to a CS2040CFile.
      *
      * @param topicManager The <code>TopicManager</code> object.
      * @param ui The <code>Ui</code> object.
