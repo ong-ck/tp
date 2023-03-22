@@ -1,6 +1,5 @@
 package seedu.clialgo.storage;
 
-//import seedu.clialgo.file.Note;
 import seedu.clialgo.FileType;
 import seedu.clialgo.file.Code;
 import seedu.clialgo.file.CS2040CFile;
@@ -47,15 +46,17 @@ public class FileDecoder {
      */
     public boolean decodeString (String encodedCS2040CFile, String topicName) {
         try {
-            String[] splitCS2040CFile = encodedCS2040CFile.split(separator, 3);
+            String[] splitCS2040CFile = encodedCS2040CFile.split(separator, 4);
             if (!splitCS2040CFile[2].equals(topicName)) {
                 return true;
             }
             this.currentName = splitCS2040CFile[0];
             if (checkFileType() == FileType.CPP) {
-                currentCS2040CFile = new Code(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2]);
+                currentCS2040CFile = new Code(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2],
+                        Integer.parseInt(splitCS2040CFile[3]));
             } else {
-                currentCS2040CFile = new Note(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2]);
+                currentCS2040CFile = new Note(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2],
+                        Integer.parseInt(splitCS2040CFile[3]));
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             return true;

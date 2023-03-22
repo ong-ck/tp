@@ -8,10 +8,13 @@ public class Code extends CS2040CFile {
      * @param path Path to the code file.
      * @param topic Topic that code file should be tagged.
      */
+    public Code(String name, String path, String topic, int importance) {
+        super(name, path, topic, importance);
+    }
+
     public Code(String name, String path, String topic) {
         super(name, path, topic);
     }
-
     /**
      * Prints the name of the code file.
      */
@@ -63,5 +66,10 @@ public class Code extends CS2040CFile {
     @Override
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    @Override
+    public int getImportance() {
+        return this.importance;
     }
 }
