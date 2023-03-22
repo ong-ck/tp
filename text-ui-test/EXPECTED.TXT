@@ -5,18 +5,18 @@ Hello! Welcome to CLIAlgo Notes!
 Starting test mode.
 ======================================================
 ======================================================
-You have no notes!
-Type 'help c/add' for assistance on how to add a note.
+You have no CS2040CFiles!
+Type 'help c/add' for assistance on how to add a CS2040CFile.
 ======================================================
 ======================================================
 The filtered list is empty!
 ======================================================
 ======================================================
 The available COMMAND_TYPE(s) are:
-[add]: add note
-[remove]: remove note
-[list]: displays all notes
-[filter]: filters notes by topic
+[add]: add CS2040CFile
+[remove]: remove CS2040CFile
+[list]: displays all CS2040CFiles
+[filter]: filters CS2040CFiles by topic
 [exit]: close the application
 For more help on a specific command, type `help c/COMMAND_TYPE`
 ======================================================
@@ -25,9 +25,9 @@ Unsuccessful! sorting is not a topic in CS2040C.
 Type 'help c/add' for assistance.
 ======================================================
 ======================================================
-This function adds a note and tags it to a topic.
+This function adds a CS2040CFile and tags it to a topic.
 The syntax for the 'add' command is: add n/NAME t/TOPIC.
-NAME refers to the notes' file name.
+NAME refers to the CS2040CFiles' file name.
 TOPIC refers to the topic that NAME will be tagged to.
 Case sensitive. NAME and TOPIC fields must be non-empty.
 Invalid NAME or TOPIC will cause an error.
@@ -47,9 +47,9 @@ Unsuccessful! LINKED LIST is not a topic in CS2040C.
 Type 'help c/add' for assistance.
 ======================================================
 ======================================================
-This function removes a note from the tagged topic.
+This function removes a CS2040CFile from the tagged topic.
 The syntax for the 'remove' command is: remove n/NAME.
-NAME refers to the notes' file name.
+NAME refers to the CS2040CFiles' file name.
 'n/' must be included else NAME will not be read.
 Invalid NAME will cause an error.
 ======================================================
@@ -57,21 +57,21 @@ Invalid NAME will cause an error.
 The filtered list is empty!
 ======================================================
 ======================================================
-Unsuccessful! A note of that name does not exist.
-Only notes in your list can be removed.
-Type 'list' to see notes you can remove.
+Unsuccessful! A CS2040CFile of that name does not exist.
+Only CS2040CFiles in your list can be removed.
+Type 'list' to see CS2040CFiles you can remove.
 ======================================================
 ======================================================
-You have no notes!
-Type 'help c/add' for assistance on how to add a note.
+You have no CS2040CFiles!
+Type 'help c/add' for assistance on how to add a CS2040CFile.
 ======================================================
 ======================================================
 Successfully added sorting notes into SORTING.
 ======================================================
 ======================================================
-This function adds a note and tags it to a topic.
+This function adds a CS2040CFile and tags it to a topic.
 The syntax for the 'add' command is: add n/NAME t/TOPIC.
-NAME refers to the notes' file name.
+NAME refers to the CS2040CFiles' file name.
 TOPIC refers to the topic that NAME will be tagged to.
 Case sensitive. NAME and TOPIC fields must be non-empty.
 Invalid NAME or TOPIC will cause an error.
@@ -80,7 +80,7 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
 ======================================================
 ======================================================
-Here are the filtered notes:
+Here are the filtered CS2040CFiles:
 ======================================================
 [SORTING]
 1. sorting notes
@@ -97,9 +97,9 @@ Type 'help c/filter' for assistance.
 Successfully removed sorting notes.
 ======================================================
 ======================================================
-Unsuccessful! A note of that name does not exist.
-Only notes in your list can be removed.
-Type 'list' to see notes you can remove.
+Unsuccessful! A CS2040CFile of that name does not exist.
+Only CS2040CFiles in your list can be removed.
+Type 'list' to see CS2040CFiles you can remove.
 ======================================================
 ======================================================
 Ending test mode.

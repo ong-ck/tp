@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import seedu.clialgo.TopicManager;
@@ -139,6 +140,15 @@ class AddCommandTest {
     @Test
     void execute_repeatedInput_expectAddUnsuccessfulDueToInvalidCommandMessage() {
         String testDataPath = ".\\testdata";
+        File file = new File(".\\" + "queue" + ".txt");
+        try {
+            if (file.createNewFile()) {
+                System.out.println("File created");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -160,21 +170,20 @@ class AddCommandTest {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-
             expectedOutput = "======================================================\r\n" +
                     "Successfully added queue into LINKED_LIST.\r\n" +
                     "======================================================\r\n" +
                     "======================================================\r\n" +
-                    "Unsuccessful! A note with that name already exists.\r\n" +
-                    "Type 'list' to view the list of notes.\r\n" +
+                    "Unsuccessful! A CS2040CFile with that name already exists.\r\n" +
+                    "Type 'list' to view the list of CS2040CFiles.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n" +
                     "======================================================\n" +
-                    "Unsuccessful! A note with that name already exists.\n" +
-                    "Type 'list' to view the list of notes.\n" +
+                    "Unsuccessful! A CS2040CFile with that name already exists.\n" +
+                    "Type 'list' to view the list of CS2040CFiles.\n" +
                     "======================================================\n";
         }
 

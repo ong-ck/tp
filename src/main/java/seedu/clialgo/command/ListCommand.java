@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class ListCommand extends Command {
     /**
-     * This method prints all the notes stored in CLIAlgo.
-     * If there are no notes stored in CLIAlgo, this method informs the user that the topicManager is empty.
+     * This method prints all the CS2040CFiles stored in CLIAlgo.
+     * If there are no CS2040CFiles stored in CLIAlgo, this method informs the user that the topicManager is empty.
      *
-     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
      */
@@ -22,10 +22,10 @@ public class ListCommand extends Command {
             return;
         }
         ui.printListSuccess();
-        ArrayList<String> printedNotes = topicManager.getAllNotes();
+        ArrayList<String> printedCS2040CFiles = topicManager.getAllCS2040CFiles();
         int serialNumber = 1;
-        for (String note : printedNotes) {
-            System.out.println(serialNumber + ". " + note);
+        for (String cs2040cFile : printedCS2040CFiles) {
+            System.out.println(serialNumber + ". " + cs2040cFile);
             serialNumber++;
         }
         ui.printDivider();
