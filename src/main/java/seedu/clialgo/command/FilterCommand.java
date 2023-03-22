@@ -19,21 +19,21 @@ public class FilterCommand extends Command {
     }
 
     /**
-     * This method prints all the notes stored across all non-empty topics in CLIAlgo.
+     * This method prints all the CS2040CFiles stored across all non-empty topics in CLIAlgo.
      *
-     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
-    private void printAllTopics(TopicManager topicManager, Ui ui) {
-        HashMap<String, ArrayList<String>> notes = topicManager.getAllNotesByTopic();
+    public void printAllTopics(TopicManager topicManager, Ui ui) {
+        HashMap<String, ArrayList<String>> cs2040cFiles = topicManager.getAllCS2040CFilesByTopic();
         ui.printFilterSuccess();
-        for (Map.Entry<String, ArrayList<String>> entry : notes.entrySet()) {
-            ArrayList<String> currentTopicNotes = entry.getValue();
+        for (Map.Entry<String, ArrayList<String>> entry : cs2040cFiles.entrySet()) {
+            ArrayList<String> currentTopicCS2040CFiles = entry.getValue();
             String topicName = entry.getKey();
             int serialNumber = 1;
             System.out.println("[" + topicName + "]");
-            for (String note : currentTopicNotes) {
-                System.out.println(serialNumber + ". " + note);
+            for (String cs2040cFile : currentTopicCS2040CFiles) {
+                System.out.println(serialNumber + ". " + cs2040cFile);
                 serialNumber++;
             }
         }
@@ -41,29 +41,29 @@ public class FilterCommand extends Command {
     }
 
     /**
-     * This method prints all the note stored in a single specified topic.
+     * This method prints all the CS2040CFile stored in a single specified topic.
      *
-     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
-    private void printSingleTopic(TopicManager topicManager, Ui ui) {
-        ArrayList<String> notes = topicManager.getNotesByTopic(this.topic);
+    public void printSingleTopic(TopicManager topicManager, Ui ui) {
+        ArrayList<String> cs2040cFiles = topicManager.getCS2040CFilesByTopic(this.topic);
         ui.printFilterSuccess();
         int serialNumber = 1;
         System.out.println("[" + this.topic + "]");
-        for (String note : notes) {
-            System.out.println(serialNumber + ". " + note);
+        for (String cs2040cFile : cs2040cFiles) {
+            System.out.println(serialNumber + ". " + cs2040cFile);
             serialNumber++;
         }
         ui.printDivider();
     }
 
     /**
-     * Prints the note stored in all topics or just a single topics depending on the topic.
-     * If there are no notes stored in CLIAlgo or in the given topic, it prints a string to inform the user.
+     * Prints the CS2040CFile stored in all topics or just a single topics depending on the topic.
+     * If there are no CS2040CFiles stored in CLIAlgo or in the given topic, it prints a string to inform the user.
      * If an invalid topic is given, it prints a string to inform the reader.
      *
-     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
      */

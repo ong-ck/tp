@@ -1,8 +1,8 @@
 package seedu.clialgo.storage;
 
-import seedu.clialgo.file.Note;
 import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
+import seedu.clialgo.file.CS2040CFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,15 +13,15 @@ import java.util.Scanner;
 
 public class SingleFile {
 
-    private File file;
+    private java.io.File file;
     private final String name;
     private final Ui ui;
     private final HashMap<String, String> storedRawData = new HashMap<>();
-    private final HashMap<String, Note> notes = new HashMap<>();
+    private final HashMap<String, CS2040CFile> cs2040cFiles = new HashMap<>();
     private final FileDecoder decoder;
 
 
-    public SingleFile (File file, String name, FileDecoder decoder) {
+    public SingleFile (java.io.File file, String name, FileDecoder decoder) {
         this.file = file;
         this.name = name;
         this.ui = new Ui();
@@ -42,7 +42,7 @@ public class SingleFile {
             boolean isCorrupted = decoder.decodeString(rawData, name);
             if (!isCorrupted) {
                 storedRawData.put(decoder.decodedName(), rawData);
-                notes.put(decoder.decodedName(), decoder.processedNote());
+                cs2040cFiles.put(decoder.decodedName(), decoder.processedCS2040CFile());
             } else {
                 isFileCorrupted = true;
             }
@@ -58,21 +58,22 @@ public class SingleFile {
     }
 
     /**
-     * Writes a single <code>Note</code> encoded as a <code>String</code> to the .txt file. If the file does not exist
+     * Writes a single <code>CS2040CFile</code> encoded as a <code>String</code> to the .txt file.
+     * If the file does not exist
      * during method call, recreate the file with <code>recreateFile</code>.
      *
-     * @param encodedNote The <code>Note</code> encoded as a <code>String</code>.
+     * @param encodedCS2040CFile The <code>CS2040CFile</code> encoded as a <code>String</code>.
      * @throws IOException Throws an exception if the file write fails.
      */
-    public void writeNoteToFile(String encodedNote) throws IOException {
-        assert encodedNote != null : "Empty string";
+    public void writeCS2040CFileToFile(String encodedCS2040CFile) throws IOException {
+        assert encodedCS2040CFile != null : "Empty string";
         try {
             if (!file.exists()) {
                 recreateFile();
                 overwriteFile();
             }
             FileWriter fileWriter = new FileWriter(file, true);
-            fileWriter.write(encodedNote + "\n");
+            fileWriter.write(encodedCS2040CFile + "\n");
             fileWriter.close();
         } catch (IOException e) {
             throw new IOException();
@@ -97,10 +98,10 @@ public class SingleFile {
     }
 
     /**
-     * Deletes a single <code>Note</code> and updates the .txt file. If the file does not exist
+     * Deletes a single <code>CS2040CFile</code> and updates the .txt file. If the file does not exist
      * during method call, recreate the file with <code>recreateFile</code>.
      *
-     * @param name The name of the <code>Note</code> being deleted.
+     * @param name The name of the <code>CS2040CFile</code> being deleted.
      * @throws IOException Throws an exception if the file write fails.
      */
     public void deleteEntry(String name) throws IOException{
@@ -113,7 +114,7 @@ public class SingleFile {
             } catch (IOException e) {
                 throw new IOException();
             }
-            notes.remove(name);
+            cs2040cFiles.remove(name);
         }
     }
 
@@ -132,7 +133,7 @@ public class SingleFile {
     }
 
     public Topic convertFileToTopic () {
-        return new Topic(name, notes);
+        return new Topic(name, cs2040cFiles);
     }
 
     public void clearFile() {

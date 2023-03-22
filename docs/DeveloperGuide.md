@@ -18,7 +18,7 @@ The `Parser` component:
 
 - Reads in the full command keyed in by the user through the `Ui` class.
 - Extracts out the keywords from the command such as `command type`, `topic`, `file name` using
-using the `StringManipulation` interface.
+the `StringManipulation` interface.
 - Verify the validity of the user's input command.
 - Handle cases where the user keys in an invalid command.
 - Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
@@ -41,6 +41,7 @@ corresponding `Topic`'s  `.txt`
 - reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
+
 ### TopoSort
 **API** : `TopoCommand.java`
 
@@ -53,6 +54,19 @@ The `TopoCommand` component
 - can topologically sort `CS2040CFile` objects in a specific `topic` order
 - can print out the list of topologically sorted `CS2040CFile` objects
 - can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
+
+
+#### Add
+**API** : `AddCommand.java`
+
+Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
+
+![](.\\uml\\diagrams\\Add.png "AddCommand Class Diagram")
+
+The `AddCommand` component
+- can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
+- can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
+- can ensure that there are no files with repeated names such that all names of files added are unique
 
 ## Implementation
 ### Filter by keyword feature
@@ -76,6 +90,7 @@ Given below is an example usage of how the filter mechanism behaves at each step
 > **Step 2**: If the `topic` field is left empty, the `Parser` will instantiate a new `FilterCommand` object, setting
 > the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
 > a new `FilterCommand` using its constructor.
+
 
 ## Product scope
 ### Target user profile
@@ -137,6 +152,11 @@ Use case ends.
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 notes without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be able to handle situations where data files are corrupted (i.e. missing or altered fields)
+5. Should be easily reusable for other developers who wish to create a similar app.
+6. Should be easily maintainable and modifiable, by having private attributes and methods which reduces dependencies between different parts of the program
+7. Should be secure in terms of protecting sensitive data such as name and path of files and preventing unauthorised access to them.
+8. Should be able to execute user commands in no longer than 2 seconds.
 
 ## Glossary
 

@@ -30,20 +30,20 @@ class HelpCommandTest {
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
                     "The available COMMAND_TYPE(s) are:\r\n" +
-                    "[add]: add note\r\n" +
-                    "[remove]: remove note\r\n" +
-                    "[list]: displays all notes\r\n" +
-                    "[filter]: filters notes by topic\r\n" +
+                    "[add]: add CS2040CFile\r\n" +
+                    "[remove]: remove CS2040CFile\r\n" +
+                    "[list]: displays all CS2040CFiles\r\n" +
+                    "[filter]: filters CS2040CFiles by topic\r\n" +
                     "[exit]: close the application\r\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "The available COMMAND_TYPE(s) are:\n" +
-                    "[add]: add note\n" +
-                    "[remove]: remove note\n" +
-                    "[list]: displays all notes\n" +
-                    "[filter]: filters notes by topic\n" +
+                    "[add]: add CS2040CFile\n" +
+                    "[remove]: remove CS2040CFile\n" +
+                    "[list]: displays all CS2040CFiles\n" +
+                    "[filter]: filters CS2040CFiles by topic\n" +
                     "[exit]: close the application\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`\n" +
                     "======================================================\n";
@@ -71,9 +71,9 @@ class HelpCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function adds a note and tags it to a topic.\r\n" +
+                    "This function adds a CS2040CFile and tags it to a topic.\r\n" +
                     "The syntax for the 'add' command is: add n/NAME t/TOPIC.\r\n" +
-                    "NAME refers to the notes' file name.\r\n" +
+                    "NAME refers to the CS2040CFiles' file name.\r\n" +
                     "TOPIC refers to the topic that NAME will be tagged to.\r\n" +
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\r\n" +
                     "Invalid NAME or TOPIC will cause an error.\r\n" +
@@ -83,9 +83,9 @@ class HelpCommandTest {
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function adds a note and tags it to a topic.\n" +
+                    "This function adds a CS2040CFile and tags it to a topic.\n" +
                     "The syntax for the 'add' command is: add n/NAME t/TOPIC.\n" +
-                    "NAME refers to the notes' file name.\n" +
+                    "NAME refers to the CS2040CFiles' file name.\n" +
                     "TOPIC refers to the topic that NAME will be tagged to.\n" +
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
                     "Invalid NAME or TOPIC will cause an error.\n" +
@@ -116,17 +116,17 @@ class HelpCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function removes a note from the tagged topic.\r\n" +
+                    "This function removes a CS2040CFile from the tagged topic.\r\n" +
                     "The syntax for the 'remove' command is: remove n/NAME.\r\n" +
-                    "NAME refers to the notes' file name.\r\n" +
+                    "NAME refers to the CS2040CFiles' file name.\r\n" +
                     "'n/' must be included else NAME will not be read.\r\n" +
                     "Invalid NAME will cause an error.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function removes a note from the tagged topic.\n" +
+                    "This function removes a CS2040CFile from the tagged topic.\n" +
                     "The syntax for the 'remove' command is: remove n/NAME.\n" +
-                    "NAME refers to the notes' file name.\n" +
+                    "NAME refers to the CS2040CFiles' file name.\n" +
                     "'n/' must be included else NAME will not be read.\n" +
                     "Invalid NAME will cause an error.\n" +
                     "======================================================\n";
@@ -192,13 +192,13 @@ class HelpCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function lists all stored notes.\r\n" +
+                    "This function lists all stored CS2040CFiles.\r\n" +
                     "The syntax for the 'list' command is: list.\r\n" +
                     "Command should only contain one word (i.e. no extensions).\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function lists all stored notes.\n" +
+                    "This function lists all stored CS2040CFiles.\n" +
                     "The syntax for the 'list' command is: list.\n" +
                     "Command should only contain one word (i.e. no extensions).\n" +
                     "======================================================\n";

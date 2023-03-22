@@ -10,20 +10,20 @@ import java.util.Objects;
 
 /**
  * The <code>TopoCommand</code> object represents the user command to
- * print the topologically sorted notes after a specific target note.
+ * print the topologically sorted CS2040CFiles after a specific target CS2040CFile.
  */
 public class TopoCommand extends Command {
 
-    private LinkedHashMap<String, ArrayList<String>> topoSortedNotes;
+    private LinkedHashMap<String, ArrayList<String>> topoSortedCS2040CFiles;
     private final String name;
 
     /**
-     * Constructor for command to print notes in a topological manner.
+     * Constructor for command to print CS2040CFiles in a topological manner.
      *
-     * @param name Name of the note file.
+     * @param name Name of the CS2040CFile.
      */
     public TopoCommand(String name) {
-        this.topoSortedNotes = new LinkedHashMap<>();
+        this.topoSortedCS2040CFiles = new LinkedHashMap<>();
         this.name = name;
     }
 
@@ -32,31 +32,31 @@ public class TopoCommand extends Command {
     }
 
     /**
-     * Prints all notes of a single specific topic.
+     * Prints all CS2040CFiles of a single specific topic.
      *
-     * @param topicName The topic by which the notes are to be printed from.
+     * @param topicName The topic by which the CS2040CFiles are to be printed from.
      */
     private void printSingleTopic(String topicName) {
-        ArrayList<String> notes = topoSortedNotes.get(topicName);
+        ArrayList<String> cs2040cFiles = topoSortedCS2040CFiles.get(topicName);
         int serialNumber = 1;
         System.out.println("[" + topicName + "]");
-        for (String note : notes) {
-            System.out.println(serialNumber + ". " + note);
+        for (String cs2040cFile : cs2040cFiles) {
+            System.out.println(serialNumber + ". " + cs2040cFile);
             serialNumber++;
         }
     }
 
     /**
-     * Prints all notes after a specific target note in a topological manner.
+     * Prints all CS2040CFiles after a specific target CS2040CFile in a topological manner.
      *
-     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
-    public void printTopoSortedNotes(TopicManager topicManager, Ui ui) {
-        topoSortedNotes = topicManager.getAllNotesBeforeTopic(name);
+    public void printTopoSortedCS2040CFiles(TopicManager topicManager, Ui ui) {
+        topoSortedCS2040CFiles = topicManager.getAllCS2040CFilesBeforeTopic(name);
         ui.printTopoSortSuccess();
-        for (String topicName : topoSortedNotes.keySet()) {
-            if (topoSortedNotes.get(topicName).isEmpty()) {
+        for (String topicName : topoSortedCS2040CFiles.keySet()) {
+            if (topoSortedCS2040CFiles.get(topicName).isEmpty()) {
                 continue;
             }
             printSingleTopic(topicName);
@@ -66,28 +66,28 @@ public class TopoCommand extends Command {
 
     /**
      * An overridden method to execute the user command to print the
-     * topologically sorted notes after a specific target note.
+     * topologically sorted CS2040CFiles after a specific target CS2040CFile.
      *
-     * @param topicManager The <code>TopicManager</code> object which handles all notes stored in CLIAlgo.
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
         if (topicManager.isEmpty()) {
-            ui.printNoNotesSaved();
+            ui.printNoCS2040CFilesSaved();
             return;
         }
 
-        // Check if noteName is valid
-        if (!topicManager.isRepeatedNote(name)) {
+        // Check if cs2040cFileName is valid
+        if (!topicManager.isRepeatedCS2040CFile(name)) {
             ui.printDivider();
-            System.out.println("You do not have this note!");
+            System.out.println("You do not have this CS2040CFile!");
             ui.printDivider();
             return;
         }
 
-        printTopoSortedNotes(topicManager, ui);
+        printTopoSortedCS2040CFiles(topicManager, ui);
     }
 
     /**
@@ -99,7 +99,7 @@ public class TopoCommand extends Command {
     @Override
     public boolean equals(Command otherCommand) {
         TopoCommand otherTopoCommand = (TopoCommand) otherCommand;
-        LinkedHashMap<String, ArrayList<String>> otherTopoSortedNotes = otherTopoCommand.topoSortedNotes;
+        LinkedHashMap<String, ArrayList<String>> otherTopoSortedCS2040CFiles = otherTopoCommand.topoSortedCS2040CFiles;
 
         // Check name attribute is equal
         if (!Objects.equals(otherTopoCommand.name, this.name)) {
@@ -107,27 +107,27 @@ public class TopoCommand extends Command {
         }
 
         // Check that all topics in otherTopoCommand are also present
-        for (String topic : otherTopoSortedNotes.keySet()) {
-            if (!this.topoSortedNotes.containsKey(topic)) {
+        for (String topic : otherTopoSortedCS2040CFiles.keySet()) {
+            if (!this.topoSortedCS2040CFiles.containsKey(topic)) {
                 return false;
             }
 
-            // Check that all notes in specific topic of otherTopoCommand are also present
-            for (String note : otherTopoSortedNotes.get(topic)) {
-                if (!this.topoSortedNotes.get(topic).contains(note)) {
+            // Check that all CS2040CFiles in specific topic of otherTopoCommand are also present
+            for (String cs2040cFile : otherTopoSortedCS2040CFiles.get(topic)) {
+                if (!this.topoSortedCS2040CFiles.get(topic).contains(cs2040cFile)) {
                     return false;
                 }
 
             }
 
-            // Check that number of notes in topic is equal -> topic is equal
-            if (otherTopoSortedNotes.get(topic).size() == this.topoSortedNotes.get(topic).size()) {
+            // Check that number of CS2040CFiles in topic is equal -> topic is equal
+            if (otherTopoSortedCS2040CFiles.get(topic).size() == this.topoSortedCS2040CFiles.get(topic).size()) {
                 return false;
             }
         }
 
-        // Check that number of topics are equal -> topoSortedNotes is equal
-        if (otherTopoSortedNotes.size() == this.topoSortedNotes.size()) {
+        // Check that number of topics are equal -> topoSortedCS2040CFiles is equal
+        if (otherTopoSortedCS2040CFiles.size() == this.topoSortedCS2040CFiles.size()) {
             return false;
         }
 
