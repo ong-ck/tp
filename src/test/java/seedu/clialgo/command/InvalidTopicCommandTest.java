@@ -1,6 +1,7 @@
 package seedu.clialgo.command;
 
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.Buffer;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
@@ -57,6 +58,7 @@ class InvalidTopicCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
         ArrayList<String> invalidTopics = new ArrayList<>(
                 Arrays.asList("sorting", "linked_list", "graph_structures", "binary_heap", "hash_table",
@@ -87,7 +89,7 @@ class InvalidTopicCommandTest {
             }
 
             // Generate the actual output
-            new InvalidTopicCommand(invalidTopic).execute(topicManager, ui, fileManager);
+            new InvalidTopicCommand(invalidTopic).execute(topicManager, ui, fileManager, buffer);
             assertEquals(expectedOutput, outContent.toString());
             outContent.reset();
         }

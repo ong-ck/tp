@@ -1,5 +1,6 @@
 package seedu.clialgo.command;
 
+import seedu.clialgo.Buffer;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
@@ -7,7 +8,7 @@ import seedu.clialgo.storage.FileManager;
 import java.util.Objects;
 
 public class HelpCommand extends Command {
-    private String command;
+    private final String command;
 
     public HelpCommand() {
         command = null;
@@ -22,7 +23,7 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
+    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         if (command == null) {
             ui.printHelpPage();
             return;

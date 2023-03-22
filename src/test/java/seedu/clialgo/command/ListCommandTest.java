@@ -2,6 +2,7 @@ package seedu.clialgo.command;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.Buffer;
 import seedu.clialgo.file.Note;
 import seedu.clialgo.Parser;
 import seedu.clialgo.TopicManager;
@@ -20,6 +21,7 @@ public class ListCommandTest {
     private TopicManager topicManager;
     private Parser parser;
     private FileManager fileManager;
+    private Buffer buffer;
 
     /**
      * Runs before each test, initializes  <code>Ui</code>, <code>TopicManager</code>, <code>Parser</code> and
@@ -32,6 +34,7 @@ public class ListCommandTest {
         topicManager = new TopicManager();
         ui = new Ui();
         fileManager = new FileManager(".\\testdata", new ArrayList<>());
+        buffer = Buffer.getInstance();
     }
 
     /**
@@ -41,7 +44,7 @@ public class ListCommandTest {
     void isEmptyCheck_expectTrue() {
         String input = "list";
         Command command = parser.parse(input, topicManager);
-        command.execute(topicManager, ui, fileManager);
+        command.execute(topicManager, ui, fileManager, buffer);
 
         String os = System.getProperty("os.name");
         String expectedOutput;
@@ -70,7 +73,7 @@ public class ListCommandTest {
         Note note = new Note("test", "", "LINKED_LIST");
         topicManager.addCS2040CFile(note.getName(), note.getTopic(), note);
         Command command = parser.parse(input, topicManager);
-        command.execute(topicManager, ui, fileManager);
+        command.execute(topicManager, ui, fileManager, buffer);
 
         String os = System.getProperty("os.name");
         String expectedOutput;
@@ -103,7 +106,7 @@ public class ListCommandTest {
         topicManager.addCS2040CFile(note1.getName(), note1.getTopic(), note1);
         topicManager.addCS2040CFile(note2.getName(), note2.getTopic(), note2);
         Command command = parser.parse(input, topicManager);
-        command.execute(topicManager, ui, fileManager);
+        command.execute(topicManager, ui, fileManager, buffer);
 
         String os = System.getProperty("os.name");
         String expectedOutput;

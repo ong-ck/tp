@@ -272,4 +272,16 @@ public class TopicManager {
         }
         return toPrintCS2040CFiles;
     }
+
+    public ArrayList<CS2040CFile> getAllFilesAsFiles() {
+        ArrayList<CS2040CFile> files = new ArrayList<>();
+        for (Topic topic: topics.values()) {
+            files.addAll(topic.getC2040CFiles().values());
+        }
+        return files;
+    }
+
+    public Topic getOneTopic(String topicName) {
+        return topics.get(topicName);
+    }
 }

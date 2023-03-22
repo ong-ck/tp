@@ -1,6 +1,7 @@
 package seedu.clialgo.command;
 
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.Buffer;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
@@ -22,6 +23,7 @@ class HelpCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -50,7 +52,7 @@ class HelpCommandTest {
         }
 
         // Generate the actual output
-        new HelpCommand().execute(topicManager, ui, fileManager);
+        new HelpCommand().execute(topicManager, ui, fileManager, buffer);
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
@@ -65,6 +67,7 @@ class HelpCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -95,7 +98,7 @@ class HelpCommandTest {
                     "======================================================\n";
         }
 
-        new HelpCommand("add").execute(topicManager, ui, fileManager);
+        new HelpCommand("add").execute(topicManager, ui, fileManager, buffer);
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
@@ -110,6 +113,7 @@ class HelpCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -132,7 +136,7 @@ class HelpCommandTest {
                     "======================================================\n";
         }
 
-        new HelpCommand("remove").execute(topicManager, ui, fileManager);
+        new HelpCommand("remove").execute(topicManager, ui, fileManager, buffer);
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
@@ -147,6 +151,7 @@ class HelpCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -171,7 +176,7 @@ class HelpCommandTest {
                     "======================================================\n";
         }
 
-        new HelpCommand("filter").execute(topicManager, ui, fileManager);
+        new HelpCommand("filter").execute(topicManager, ui, fileManager, buffer);
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
@@ -186,6 +191,7 @@ class HelpCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -204,7 +210,7 @@ class HelpCommandTest {
                     "======================================================\n";
         }
 
-        new HelpCommand("list").execute(topicManager, ui, fileManager);
+        new HelpCommand("list").execute(topicManager, ui, fileManager, buffer);
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
@@ -219,6 +225,7 @@ class HelpCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -237,7 +244,7 @@ class HelpCommandTest {
                     "======================================================\n";
         }
 
-        new HelpCommand("exit").execute(topicManager, ui, fileManager);
+        new HelpCommand("exit").execute(topicManager, ui, fileManager, buffer);
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }

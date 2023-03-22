@@ -2,6 +2,7 @@ package seedu.clialgo.command;
 
 import java.util.Objects;
 
+import seedu.clialgo.Buffer;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.Ui;
@@ -32,9 +33,10 @@ public class RemoveCommand extends Command {
      * @param topicManager A Topic object containing all the different topics available.
      * @param ui A Ui object which handles outputs to the user.
      * @param fileManager An object responsible for saving information.
+     * @param buffer The object responsible to export filtered files.
      */
     @Override
-    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
+    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         if (topicManager.isEmpty()) {
             ui.printRemoveFail();
             return;

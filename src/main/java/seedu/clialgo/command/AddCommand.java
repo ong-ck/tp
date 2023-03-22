@@ -3,6 +3,7 @@ package seedu.clialgo.command;
 import java.util.Objects;
 import java.io.File;
 
+import seedu.clialgo.Buffer;
 import seedu.clialgo.FileType;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
@@ -61,9 +62,10 @@ public class AddCommand extends Command {
      * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
+     * @param buffer The object responsible to export filtered files.
      */
     @Override
-    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
+    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
 
         boolean isTestModeOn = topicManager.getIsTestModeOn();
 
@@ -75,7 +77,7 @@ public class AddCommand extends Command {
 
         // Check if topicName is valid
         if (!topicManager.isValidTopic(topic)) {
-            new InvalidTopicCommand(topic).execute(topicManager, ui, fileManager);
+            new InvalidTopicCommand(topic).execute(topicManager, ui, fileManager, buffer);
             return;
         }
         // Check if the note is repeated
@@ -86,11 +88,11 @@ public class AddCommand extends Command {
         }
 
         if (checkFileType() == FileType.TXT) {
-            new AddNoteCommand(name, topic).execute(topicManager, ui, fileManager);
+            new AddNoteCommand(name, topic).execute(topicManager, ui, fileManager, buffer);
         } else if (checkFileType() == FileType.CPP) {
-            new AddCodeCommand(name, topic).execute(topicManager, ui, fileManager);
+            new AddCodeCommand(name, topic).execute(topicManager, ui, fileManager, buffer);
         } else if (checkFileType() == FileType.DOESNOTEXIST && isTestModeOn) {
-            new AddNoteCommand(name, topic).execute(topicManager, ui, fileManager);
+            new AddNoteCommand(name, topic).execute(topicManager, ui, fileManager, buffer);
         }
 
         assert this.name != null;

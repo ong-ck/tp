@@ -33,7 +33,6 @@ public class Code extends CS2040CFile {
      *
      * @return The location path of the code file.
      */
-    @Override
     public String getPath() {
         return path;
     }
@@ -48,12 +47,12 @@ public class Code extends CS2040CFile {
         this.path = path;
     }
 
+
     /**
      * Gets the tag of the code file.
      *
      * @return The tag of the code file.
      */
-    @Override
     public String getTopic() {
         return this.topic;
     }
@@ -63,12 +62,14 @@ public class Code extends CS2040CFile {
      *
      * @param topic The new tag for the code file.
      */
-    @Override
     public void setTopic(String topic) {
         this.topic = topic;
     }
 
-    @Override
+    public void setImportance(int importance) {
+        this.importance = importance;
+    }
+
     public int getImportance() {
         return this.importance;
     }

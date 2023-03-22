@@ -1,6 +1,7 @@
 package seedu.clialgo.command;
 
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.Buffer;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
@@ -45,8 +46,9 @@ public class RemoveCommandTest {
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        Buffer buffer = Buffer.getInstance();
 
-        new TestModeCommand().execute(topicManager, ui, fileManager);
+        new TestModeCommand().execute(topicManager, ui, fileManager, buffer);
 
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
@@ -56,14 +58,14 @@ public class RemoveCommandTest {
         String dummyNoteName = "queue";
         String dummyNoteTopic = "LINKED_LIST";
 
-        new AddCommand(dummyNoteName, dummyNoteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(dummyNoteName, dummyNoteTopic).execute(topicManager, ui, fileManager, buffer);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 
         actualOutput.reset();
 
-        new RemoveCommand(dummyNoteName).execute(topicManager, ui, fileManager);
+        new RemoveCommand(dummyNoteName).execute(topicManager, ui, fileManager, buffer);
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
@@ -97,6 +99,7 @@ public class RemoveCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
         actualOutput.reset();
 
@@ -105,7 +108,7 @@ public class RemoveCommandTest {
 
         String noteName = "queue";
 
-        new RemoveCommand(noteName).execute(topicManager, ui, fileManager);
+        new RemoveCommand(noteName).execute(topicManager, ui, fileManager, buffer);
 
         if (os.contains("Windows")) {
             // This expected output has "File Created" due to the first

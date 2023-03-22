@@ -9,12 +9,14 @@ public class CLIAlgo {
     private final TopicManager topicManager;
     private final FileManager fileManager;
     private final Parser parser;
+    private final Buffer buffer;
 
     public CLIAlgo() {
         ui = new Ui();
         topicManager = new TopicManager();
         fileManager = new FileManager(DATA_PATH, topicManager.getTopicNames());
         parser = new Parser();
+        buffer = Buffer.getInstance();
         ui.printWelcomeMessage();
     }
 
@@ -25,7 +27,7 @@ public class CLIAlgo {
         while (true) {
             String fullCommand = ui.getUserInput();
             Command command = parser.parse(fullCommand, topicManager);
-            command.execute(topicManager, ui, fileManager);
+            command.execute(topicManager, ui, fileManager, buffer);
         }
     }
 

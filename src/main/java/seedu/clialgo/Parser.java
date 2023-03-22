@@ -4,6 +4,7 @@ import seedu.clialgo.command.AddCommand;
 import seedu.clialgo.command.Command;
 import seedu.clialgo.command.ExitCommand;
 import seedu.clialgo.command.ExitTestModeCommand;
+import seedu.clialgo.command.ExportCommand;
 import seedu.clialgo.command.FilterCommand;
 import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
@@ -30,7 +31,7 @@ public class Parser implements StringManipulation {
     /** List of valid commands */
     private static final ArrayList<String> COMMANDS = new ArrayList<>(
             Arrays.asList("help", "add", "remove", "filter", "exit", "list", "start-test-mode", "exit-test-mode",
-            "topo")
+                    "export", "topo")
     );
 
     /** List of valid keywords */
@@ -233,12 +234,15 @@ public class Parser implements StringManipulation {
         return new ExitTestModeCommand();
     }
 
+    private Command prepareExport() {
+        return new ExportCommand();
+    }
+
     /**
      * Returns a <code>TopoCommand</code> object that lists notes according a topological sort order.
      * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
      *
      * @param description String containing criteria to filter the notes by.
-     * @param topics The topic manager class containing all topics in CLIAlgo.
      * @return a Command object that lists notes according a certain criteria.
      */
     private Command prepareTopoCommand(String description) {
@@ -283,6 +287,8 @@ public class Parser implements StringManipulation {
             return prepareTestModeCommand();
         case "exit-test-mode":
             return prepareExitTestModeCommand();
+        case "export":
+            return prepareExport();
         case "topo":
             return prepareTopoCommand(description);
         default:

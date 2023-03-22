@@ -1,7 +1,9 @@
 package seedu.clialgo.command;
 
+import seedu.clialgo.Buffer;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
+import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
@@ -52,16 +54,19 @@ public class TopoCommand extends Command {
      * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
-    public void printTopoSortedCS2040CFiles(TopicManager topicManager, Ui ui) {
+    public ArrayList<CS2040CFile> printTopoSortedCS2040CFiles(TopicManager topicManager, Ui ui) {
         topoSortedCS2040CFiles = topicManager.getAllCS2040CFilesBeforeTopic(name);
         ui.printTopoSortSuccess();
+        ArrayList<CS2040CFile> files = new ArrayList<>();
         for (String topicName : topoSortedCS2040CFiles.keySet()) {
             if (topoSortedCS2040CFiles.get(topicName).isEmpty()) {
                 continue;
             }
             printSingleTopic(topicName);
+            files.addAll(topicManager.getTopics().get(topicName).getCS2040CFilesAsArray());
         }
         ui.printDivider();
+        return files;
     }
 
     /**
@@ -71,10 +76,12 @@ public class TopoCommand extends Command {
      * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
+     * @param buffer The object responsible to export filtered files.
      */
     @Override
-    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
+    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         if (topicManager.isEmpty()) {
+            buffer.updateBuffer(new ArrayList<>());
             ui.printNoCS2040CFilesSaved();
             return;
         }
@@ -87,7 +94,8 @@ public class TopoCommand extends Command {
             return;
         }
 
-        printTopoSortedCS2040CFiles(topicManager, ui);
+        ArrayList<CS2040CFile> files = printTopoSortedCS2040CFiles(topicManager, ui);
+        buffer.updateBuffer(files);
     }
 
     /**
@@ -127,10 +135,6 @@ public class TopoCommand extends Command {
         }
 
         // Check that number of topics are equal -> topoSortedCS2040CFiles is equal
-        if (otherTopoSortedCS2040CFiles.size() == this.topoSortedCS2040CFiles.size()) {
-            return false;
-        }
-
-        return true;
+        return otherTopoSortedCS2040CFiles.size() != this.topoSortedCS2040CFiles.size();
     }
 }
