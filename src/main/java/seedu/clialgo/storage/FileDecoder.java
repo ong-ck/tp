@@ -71,4 +71,5 @@ public class FileDecoder {
     public CS2040CFile processedCS2040CFile() {
         return currentCS2040CFile;
     }
+
 }
