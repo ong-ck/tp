@@ -13,11 +13,18 @@ public abstract class CS2040CFile {
      * @param path Path to the file.
      * @param topic Topic that file should be tagged.
      */
-    public CS2040CFile(String name, String path, String topic) {
+    public CS2040CFile(String name, String path, String topic, int importance) {
         this.name = name;
         this.path = path;
         this.topic = topic;
         this.importance = importance;
+    }
+
+    public CS2040CFile(String name, String path, String topic) {
+        this.name = name;
+        this.path = path;
+        this.topic = topic;
+        this.importance = 5;    // placeholder
     }
 
     /**
@@ -54,4 +61,6 @@ public abstract class CS2040CFile {
      * @param topic The new tag for the file.
      */
     public abstract void setTopic(String topic);
+
+    public abstract int getImportance();
 }

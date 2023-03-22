@@ -15,6 +15,10 @@ public class Note extends CS2040CFile {
         super(name, path, topic);
     }
 
+    public Note(String name, String path, String topic, int importance) {
+        super(name, path, topic, importance);
+    }
+
     /**
      * Prints the name of the note file.
      */
@@ -66,5 +70,10 @@ public class Note extends CS2040CFile {
     @Override
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    @Override
+    public int getImportance() {
+        return this.importance;
     }
 }

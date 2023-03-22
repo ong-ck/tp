@@ -27,7 +27,8 @@ public class FileEncoder {
      * @return Returns a processed string.
      */
     public String encodeCS2040CFile(String name, CS2040CFile cs2040cFile) {
-        return name + separator + cs2040cFile.getPath() + separator + cs2040cFile.getTopic();
+        return name + separator + cs2040cFile.getPath() + separator + cs2040cFile.getTopic() + separator +
+                cs2040cFile.getImportance();
     }
 
 }
