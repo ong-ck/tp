@@ -64,6 +64,7 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
+
         boolean isTestModeOn = topicManager.getIsTestModeOn();
 
         // Check if the file exists
