@@ -67,8 +67,8 @@ public class SingleFile {
      * Writes a single <code>File</code> encoded as a <code>String</code> to the .txt file. If the file does not exist
      * during method call, recreate the file with <code>recreateFile</code>.
      *
-     * @param encodedFile The <code>File</code> which is either a <code>Note</code> or <code>Code</code> object encoded
-     * as a <code>String</code>.
+     * @param encodedFile The <code>File</code> which is either a <code>Note</code> or <code>Code</code> object
+     *                    encoded as a <code>String</code>.
      * @throws IOException Throws an exception if the file write fails.
      */
     public void writeToFile(String encodedFile) throws IOException {

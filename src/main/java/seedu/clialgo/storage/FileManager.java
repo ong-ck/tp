@@ -149,8 +149,8 @@ public class FileManager {
      * Deletes <code>Note</code> with <code>noteName</code> in <code>topicName</code>.txt and rewrite the .txt file. If
      * the file does not exist, <code>IOException</code> is caught and the file would be recreated.
      *
-     * @param fileName The name of the <code>File</code> being deleted (can be either a <code>Note</code> or
-     * <code>Code</code> object).
+     * @param fileName The name of the <code>File</code> being deleted (can be either a <code>Note</code> a
+     *                 <code>Code</code> object).
      * @return true if executed successfully and false if execution failed.
      */
     public boolean deleteEntry (String fileName) {

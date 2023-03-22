@@ -43,6 +43,8 @@ public class FileDecoder {
             } else if (splitNote[0].equals("C")) {
                 currentCode = new Code(this.currentName, splitNote[2], splitNote[3]);
                 currentNote = null;
+            } else {
+                return true;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             return true;
