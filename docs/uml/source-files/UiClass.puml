@@ -3,7 +3,6 @@
 
 class Ui {
 -Divider: String
-+printDivider(): void
 +getUserInput(): void
 +printWelcomeMessage(): void
 +printExitMessage(): void
@@ -14,28 +13,20 @@ class Ui {
 +printFilterFail(): void
 +printInvalidCommand(): void
 +printSaveFail(): void
-+printTestModeStart(): void
-+printTestModeEnd(): void
 +printFileWriteError(): void
 +printInvalidNote(): void
 +printTopoSortSuccess(): void
 }
 
-FileManager --> "1  " Ui
+package Command <<Rectangle>> {
+}
+
+CLIAlgo--> "1" Ui
+
+FileManager --> "1    " Ui
 FileManager *- "*" SingleFile
-SingleFile --> "1 " Ui
+SingleFile --> "1  " Ui
 
-Command --> Ui
-
-AddCommand ..|> Command
-ExitCommand ..|> Command
-FilterCommand ..|> Command
-HelpCommand ..|> Command
-ListCommand ..|> Command
-RemoveCommand ..|> Command
-TestModeCommand ..|> Command
-ExitTestModeCommand ..|> Command
-TopoCommand ..|> Command
-
+Command ..> Ui
 
 @enduml
