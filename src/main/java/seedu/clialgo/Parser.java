@@ -4,6 +4,7 @@ import seedu.clialgo.command.AddCommand;
 import seedu.clialgo.command.Command;
 import seedu.clialgo.command.ExitCommand;
 import seedu.clialgo.command.ExitTestModeCommand;
+import seedu.clialgo.command.ExportCommand;
 import seedu.clialgo.command.FilterCommand;
 import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
@@ -28,7 +29,8 @@ public class Parser implements StringManipulation {
 
     /** List of valid commands */
     private static final ArrayList<String> COMMANDS = new ArrayList<>(
-            Arrays.asList("help", "add", "remove", "filter", "exit", "list", "start-test-mode", "exit-test-mode")
+            Arrays.asList("help", "add", "remove", "filter", "exit", "list", "start-test-mode", "exit-test-mode",
+                    "export")
     );
 
     /** List of valid keywords */
@@ -231,6 +233,10 @@ public class Parser implements StringManipulation {
         return new ExitTestModeCommand();
     }
 
+    private Command prepareExport() {
+        return new ExportCommand();
+    }
+
     /**
      * This function takes in the command keyword and description and executes the specified command.
      *
@@ -256,6 +262,8 @@ public class Parser implements StringManipulation {
             return prepareTestModeCommand();
         case "exit-test-mode":
             return prepareExitTestModeCommand();
+        case "export":
+            return prepareExport();
         default:
             return prepareExitCommand();
         }

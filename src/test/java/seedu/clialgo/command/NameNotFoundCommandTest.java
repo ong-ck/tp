@@ -2,6 +2,7 @@ package seedu.clialgo.command;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.Buffer;
 import seedu.clialgo.Parser;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
@@ -24,6 +25,7 @@ public class NameNotFoundCommandTest {
     private TopicManager topicManager;
     private Parser parser;
     private FileManager fileManager;
+    private Buffer buffer;
 
     /**
      * Runs before each test, initializes  <code>Ui</code>, <code>TopicManager</code>, <code>Parser</code> and
@@ -36,6 +38,7 @@ public class NameNotFoundCommandTest {
         topicManager = new TopicManager();
         ui = new Ui();
         fileManager = new FileManager(".\\testdata", new ArrayList<>());
+        buffer = Buffer.getInstance();
     }
 
     /**
@@ -45,7 +48,7 @@ public class NameNotFoundCommandTest {
     void isExecutedCorrectly_inputWithNonExistentName_expectTrue() {
         String input = "remove n/nothing";
         Command command = parser.parse(input, topicManager);
-        command.execute(topicManager, ui, fileManager);
+        command.execute(topicManager, ui, fileManager, buffer);
 
         String os = System.getProperty("os.name");
         String expectedOutput;

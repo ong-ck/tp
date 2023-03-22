@@ -1,5 +1,6 @@
 package seedu.clialgo.command;
 
+import seedu.clialgo.Buffer;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
@@ -8,7 +9,7 @@ import java.util.Objects;
 
 public class InvalidTopicCommand extends Command {
 
-    private String topic;
+    private final String topic;
 
     /**
      * Constructor for command when an invalid topic is being tagged to a CS2040CFile.
@@ -26,9 +27,10 @@ public class InvalidTopicCommand extends Command {
      * @param topicManager The <code>TopicManager</code> object.
      * @param ui The <code>Ui</code> object.
      * @param fileManager The <code>FileManager</code> object.
+     * @param buffer The object responsible to export filtered files.
      */
     @Override
-    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
+    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         ui.printAddFail(topic);
     }
 

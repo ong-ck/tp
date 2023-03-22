@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import seedu.clialgo.Buffer;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
@@ -62,8 +63,9 @@ class AddCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
-        new TestModeCommand().execute(topicManager, ui, fileManager);
+        new TestModeCommand().execute(topicManager, ui, fileManager, buffer);
 
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
@@ -71,7 +73,7 @@ class AddCommandTest {
         String actualNoteName = "queue";
         String actualNoteTopic = "LINKED_LIST";
 
-        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager, buffer);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -102,8 +104,9 @@ class AddCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
-        new TestModeCommand().execute(topicManager, ui, fileManager);
+        new TestModeCommand().execute(topicManager, ui, fileManager, buffer);
 
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
@@ -111,7 +114,7 @@ class AddCommandTest {
         String actualNoteName = "queue";
         String actualNoteTopic = "invalidTopic";
 
-        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager, buffer);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -153,8 +156,9 @@ class AddCommandTest {
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
 
-        new TestModeCommand().execute(topicManager, ui, fileManager);
+        new TestModeCommand().execute(topicManager, ui, fileManager, buffer);
 
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
@@ -163,8 +167,8 @@ class AddCommandTest {
         String actualNoteTopic = "LINKED_LIST";
 
         // Adding the note with same name twice into same topic
-        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
-        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager, buffer);
+        new AddCommand(actualNoteName, actualNoteTopic).execute(topicManager, ui, fileManager, buffer);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";

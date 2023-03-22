@@ -1,5 +1,6 @@
 package seedu.clialgo.command;
 
+import seedu.clialgo.Buffer;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.Ui;
@@ -16,7 +17,7 @@ public class NameNotFoundCommand extends Command {
      * This method informs the user that they have keyed in a command that does not contain any existing name of any
      * CS2040CFiles.
      */
-    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
+    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         ui.printNameNotFoundCommand();
     }
 

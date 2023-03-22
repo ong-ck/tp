@@ -1,8 +1,6 @@
 package seedu.clialgo;
 
-import seedu.clialgo.file.Code;
-
-import seedu.clialgo.file.Note;
+import seedu.clialgo.file.CS2040CFile;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -16,21 +14,19 @@ import java.util.Objects;
 
 public class Buffer {
 
-    private Buffer buffer = null;
-    private ArrayList<Note> notes;
-    private ArrayList<Code> codes;
+    private static Buffer buffer = null;
+    private final ArrayList<CS2040CFile> files;
     private final File pathToBuffer;
     private final Ui ui;
 
     private Buffer() {
-        this.notes = new ArrayList<>();
-        this.codes = new ArrayList<>();
-        this.ui = new Ui();
-        this.pathToBuffer = new File(".\\export");
+        files = new ArrayList<>();
+        ui = new Ui();
+        pathToBuffer = new File(".\\export");
         createFolder();
     }
 
-    public Buffer getInstance() {
+    public static Buffer getInstance() {
         if (buffer == null) {
             buffer = new Buffer();
         }
@@ -43,11 +39,6 @@ public class Buffer {
         }
     }
 
-    public void clearBuffer() {
-        notes.clear();
-        codes.clear();
-    }
-
     public void deleteFiles() {
         for (File file : Objects.requireNonNull(pathToBuffer.listFiles())) {
             if (!file.delete()) {
@@ -56,23 +47,16 @@ public class Buffer {
         }
     }
 
-    public void updateBuffer() {
-        clearBuffer();
+    public void updateBuffer(ArrayList<CS2040CFile> filteredFiles) {
+        files.clear();
+        deleteFiles();
+        files.addAll(filteredFiles);
     }
 
     public void addFilesToBuffer() {
-        for (Note note: notes) {
-            Path target = Paths.get(pathToBuffer + note.getName() + ".txt");
-            Path source = Paths.get(note.getPath());
-            try {
-                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                ui.printFileWriteError();
-            }
-        }
-        for (Code code: codes) {
-            Path target = Paths.get(pathToBuffer + code.getName() + ".txt");
-            Path source = Paths.get(code.getPath());
+        for (CS2040CFile file: files) {
+            Path source = Paths.get(".\\" + file.getPath());
+            Path target = Paths.get(pathToBuffer + "\\" + file.getPath());
             try {
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {

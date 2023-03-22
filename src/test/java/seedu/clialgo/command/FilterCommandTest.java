@@ -2,6 +2,7 @@ package seedu.clialgo.command;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.Buffer;
 import seedu.clialgo.Parser;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
@@ -19,6 +20,7 @@ public class FilterCommandTest {
     private TopicManager topicManager;
     private Parser parser;
     private FileManager fileManager;
+    private Buffer buffer;
 
     /**
      * Runs before each test, initializes  <code>Ui</code>, <code>TopicManager</code>, <code>Parser</code> and
@@ -31,6 +33,7 @@ public class FilterCommandTest {
         topicManager = new TopicManager();
         ui = new Ui();
         fileManager = new FileManager(".\\testdata", new ArrayList<>());
+        buffer = Buffer.getInstance();
     }
 
     /**
@@ -40,7 +43,7 @@ public class FilterCommandTest {
     void isEmptyCheck_expectTrue() {
         String input = "filter k/topic";
         Command command = parser.parse(input, topicManager);
-        command.execute(topicManager, ui, fileManager);
+        command.execute(topicManager, ui, fileManager, buffer);
 
         input = "filter k/topic t/";
 
@@ -56,13 +59,13 @@ public class FilterCommandTest {
                     "The filtered list is empty!\n" +
                     "======================================================\n";
         }
-        String newExpectedOutput = expectedOutput;
+        StringBuilder newExpectedOutput = new StringBuilder(expectedOutput);
         for (String string : topicManager.getTopicNames()) {
             String newInput = input + string;
             command = parser.parse(newInput, topicManager);
-            command.execute(topicManager, ui, fileManager);
-            newExpectedOutput += expectedOutput;
+            command.execute(topicManager, ui, fileManager, buffer);
+            newExpectedOutput.append(expectedOutput);
         }
-        assertEquals(newExpectedOutput, outputStream.toString());
+        assertEquals(newExpectedOutput.toString(), outputStream.toString());
     }
 }

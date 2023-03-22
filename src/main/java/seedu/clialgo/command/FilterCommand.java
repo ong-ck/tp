@@ -1,7 +1,10 @@
 package seedu.clialgo.command;
 
+import seedu.clialgo.Buffer;
+import seedu.clialgo.Topic;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
+import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
@@ -10,8 +13,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class FilterCommand extends Command {
-    private String keyWord;
-    private String topic;
+    private final String keyWord;
+    private final String topic;
 
     public FilterCommand(String keyWord, String topic) {
         this.keyWord = keyWord;
@@ -66,26 +69,33 @@ public class FilterCommand extends Command {
      * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
+     * @param buffer The object responsible to export filtered files.
      */
     @Override
-    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager) {
+    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         if (topicManager.isEmpty()) {
             ui.printFilterEmpty();
+            buffer.updateBuffer(new ArrayList<>());
             return;
         }
         if (this.topic == null) {
             printAllTopics(topicManager, ui);
+            buffer.updateBuffer(topicManager.getAllFilesAsFiles());
             return;
         }
         if (!topicManager.isValidTopic(this.topic)) {
-            new InvalidTopicCommand(this.topic).execute(topicManager, ui, fileManager);
+            new InvalidTopicCommand(this.topic).execute(topicManager, ui, fileManager, buffer);
             return;
         }
         if (topicManager.isTopicEmpty(this.topic)) {
             ui.printFilterFail();
+            buffer.updateBuffer(new ArrayList<>());
             return;
         }
         printSingleTopic(topicManager, ui);
+        Topic topic = topicManager.getOneTopic(this.topic);
+        ArrayList<CS2040CFile> files = topic.getCS2040CFilesAsArray();
+        buffer.updateBuffer(files);
     }
 
     @Override

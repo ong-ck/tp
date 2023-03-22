@@ -102,6 +102,10 @@ public class Topic {
         return true;
     }
 
+    public ArrayList<CS2040CFile> getCS2040CFilesAsArray() {
+        return new ArrayList<>(cs2040cFiles.values());
+    }
+
     /**
      * A method that checks for equality of <code>Topic</code> objects.
      *
