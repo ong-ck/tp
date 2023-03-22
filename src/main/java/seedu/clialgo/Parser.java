@@ -12,6 +12,7 @@ import seedu.clialgo.command.ListCommand;
 import seedu.clialgo.command.NameNotFoundCommand;
 import seedu.clialgo.command.RemoveCommand;
 import seedu.clialgo.command.TestModeCommand;
+import seedu.clialgo.command.TopoCommand;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
 
@@ -28,7 +29,8 @@ public class Parser implements StringManipulation {
 
     /** List of valid commands */
     private static final ArrayList<String> COMMANDS = new ArrayList<>(
-            Arrays.asList("help", "add", "remove", "filter", "exit", "list", "start-test-mode", "exit-test-mode")
+            Arrays.asList("help", "add", "remove", "filter", "exit", "list", "start-test-mode", "exit-test-mode",
+            "topo")
     );
 
     /** List of valid keywords */
@@ -232,6 +234,31 @@ public class Parser implements StringManipulation {
     }
 
     /**
+     * Returns a <code>TopoCommand</code> object that lists notes according a topological sort order.
+     * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
+     *
+     * @param description String containing criteria to filter the notes by.
+     * @param topics The topic manager class containing all topics in CLIAlgo.
+     * @return a Command object that lists notes according a certain criteria.
+     */
+    private Command prepareTopoCommand(String description, TopicManager topics) {
+        if (description == null) {
+            return new InvalidCommand();
+        }
+        String noteName;
+        try {
+            if (description.equals("") || !isCorrectMarker(description, NAME_MARKER)) {
+                return new InvalidCommand();
+            }
+            noteName = StringManipulation.removeMarker(description, NAME_MARKER);
+        } catch (NullInputException | EmptyFieldException e) {
+            return new InvalidCommand();
+        }
+        return new TopoCommand(noteName);
+    }
+
+
+    /**
      * This function takes in the command keyword and description and executes the specified command.
      *
      * @param command The command keyword indicating the type of command to execute.
@@ -256,6 +283,8 @@ public class Parser implements StringManipulation {
             return prepareTestModeCommand();
         case "exit-test-mode":
             return prepareExitTestModeCommand();
+        case "topo":
+            return prepareTopoCommand(description, topics);
         default:
             return prepareExitCommand();
         }
