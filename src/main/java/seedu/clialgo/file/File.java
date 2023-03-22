@@ -57,4 +57,8 @@ public abstract class File {
     public String getType() {
         return type;
     }
+
+    public int getImportance() {
+        return importance;
+    }
 }

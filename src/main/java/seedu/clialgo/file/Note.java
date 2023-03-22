@@ -18,4 +18,12 @@ public class Note extends File {
         this.topic = topic;
         this.type = "NOTE";
     }
+
+    public Note(String name, String path, String topic, int importance) {
+        this.name = name;
+        this.path = path;
+        this.topic = topic;
+        this.importance = importance;
+        this.type = "NOTE";
+    }
 }

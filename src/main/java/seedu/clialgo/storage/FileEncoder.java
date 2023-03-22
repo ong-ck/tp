@@ -28,11 +28,13 @@ public class FileEncoder {
      * @return Returns a processed string.
      */
     public String encodeNote (String name, Note note) {
-        return "N" + separator + name + separator + note.getPath() + separator + note.getTopic();
+        return "N" + separator + name + separator + note.getPath() + separator + note.getTopic() + separator +
+                note.getImportance();
     }
 
     public String encodeCode (String name, Code code) {
-        return "C" + separator + name + separator + code.getPath() + separator + code.getTopic();
+        return "C" + separator + name + separator + code.getPath() + separator + code.getTopic() + separator +
+                code.getImportance();
     }
 
 }

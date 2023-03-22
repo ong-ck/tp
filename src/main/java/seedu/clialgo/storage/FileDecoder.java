@@ -32,21 +32,21 @@ public class FileDecoder {
      */
     public boolean decodeString (String encodedNote, String topicName) {
         try {
-            String[] splitNote = encodedNote.split(separator, 4);
+            String[] splitNote = encodedNote.split(separator, 5);
             if (!splitNote[3].equals(topicName)) {
                 return true;
             }
             this.currentName = splitNote[1];
             if (splitNote[0].equals("N")) {
-                currentNote = new Note(this.currentName, splitNote[2], splitNote[3]);
+                currentNote = new Note(this.currentName, splitNote[2], splitNote[3], Integer.parseInt(splitNote[4]));
                 currentCode = null;
             } else if (splitNote[0].equals("C")) {
-                currentCode = new Code(this.currentName, splitNote[2], splitNote[3]);
+                currentCode = new Code(this.currentName, splitNote[2], splitNote[3], Integer.parseInt(splitNote[4]));
                 currentNote = null;
             } else {
                 return true;
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             return true;
         }
         return false;

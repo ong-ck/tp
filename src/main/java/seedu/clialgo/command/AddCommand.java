@@ -65,7 +65,7 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager) {
-        String notePath = name + ".txt";
+        String notePath = ".\\" + name + ".txt";
         Note newNote = new Note(name, notePath, topic);
         boolean isTestModeOn = topicManager.getIsTestModeOn();
 
