@@ -58,7 +58,7 @@ public class FileDecoder {
                 currentCS2040CFile = new Note(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2],
                         Integer.parseInt(splitCS2040CFile[3]));
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             return true;
         }
         return false;
