@@ -41,6 +41,21 @@ corresponding `Topic`'s  `.txt`
 - reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
+
+### TopoSort
+**API** : `TopoCommand.java`
+
+Here is a class diagram of the `TopoCommand` which facilitates the storage
+function of the application.
+
+![](.\\uml\\diagrams\\TopoCommandClass.png "TopoCommand Class Diagram")
+
+The `TopoCommand` component
+- can topologically sort `CS2040CFile` objects in a specific `topic` order
+- can print out the list of topologically sorted `CS2040CFile` objects
+- can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
+
+
 #### Add
 **API** : `AddCommand.java`
 
@@ -52,7 +67,6 @@ The `AddCommand` component
 - can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
 - can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
 - can ensure that there are no files with repeated names such that all names of files added are unique
-
 
 ## Implementation
 ### Filter by keyword feature
@@ -146,7 +160,12 @@ Use case ends.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *notes* - A note file saved by the user as a `.txt` or `.cpp`
+* *desktop CLI* - The terminal in Windows, Linux or macOS
+* *mainstream OS* - Windows, Linux or macOS
+* *CS2040C* - The Data Structures and Algorithms module in NUS
+* *Visualgo* - A webpage developed by Professor Steven Halim for use in modules such as CS2040C
+* *topics* - One of the ten topics taught in CS2040C
 
 ## Instructions for manual testing
 
