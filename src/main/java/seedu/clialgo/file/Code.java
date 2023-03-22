@@ -1,40 +1,76 @@
 package seedu.clialgo.file;
 
-public class Code extends File {
-    private String name;
-    private String path;
-    private String topic;
-    private int importance;
+public class Code extends CS2040CFile {
+    /**
+     * Constructor for <code>Code</code> object.
+     *
+     * @param name Name of the code file.
+     * @param path Path to the code file.
+     * @param topic Topic that code file should be tagged.
+     */
+    public Code(String name, String path, String topic, int importance) {
+        super(name, path, topic, importance);
+    }
 
+    public Code(String name, String path, String topic) {
+        super(name, path, topic);
+    }
+    /**
+     * Prints the name of the code file.
+     */
+    @Override
+    public void printFileName() {
+        System.out.println(name);
+    }
+
+    @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    /**
+     * Gets the location path of the code file.
+     *
+     * @return The location path of the code file.
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * Sets the location path of the code file.
+     *
+     * @param path The new location path of the code file.
+     */
+    @Override
     public void setPath(String path) {
         this.path = path;
     }
 
+
+    /**
+     * Gets the tag of the code file.
+     *
+     * @return The tag of the code file.
+     */
     public String getTopic() {
-        return topic;
+        return this.topic;
     }
 
+    /**
+     * Sets the tag of the code file.
+     *
+     * @param topic The new tag for the code file.
+     */
     public void setTopic(String topic) {
         this.topic = topic;
     }
 
-    public int getImportance() {
-        return importance;
-    }
-
     public void setImportance(int importance) {
         this.importance = importance;
+    }
+
+    public int getImportance() {
+        return this.importance;
     }
 }

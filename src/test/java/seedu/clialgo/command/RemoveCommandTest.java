@@ -7,6 +7,7 @@ import seedu.clialgo.storage.FileManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -84,6 +85,14 @@ public class RemoveCommandTest {
         System.setOut(new PrintStream(actualOutput));
 
         String testDataPath = ".\\testdata";
+        File file = new File(".\\" + "queue" + ".txt");
+        try {
+            if (file.createNewFile()) {
+                System.out.println("File created");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -103,12 +112,12 @@ public class RemoveCommandTest {
             // initialisation of the FileManager in AddCommandTest.
             expectedOutput = "======================================================\r\n" +
                     "Unsuccessful!\r\n" +
-                    "Type 'help c/remove' for assistance on how to remove a note.\r\n" +
+                    "Type 'help c/remove' for assistance on how to remove a CS2040CFile.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "Unsuccessful!\n" +
-                    "Type 'help c/remove' for assistance on how to remove a note.\n" +
+                    "Type 'help c/remove' for assistance on how to remove a CS2040CFile.\n" +
                     "======================================================\n";
         }
 

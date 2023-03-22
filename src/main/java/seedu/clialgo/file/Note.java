@@ -3,12 +3,7 @@ package seedu.clialgo.file;
 /**
  * The <code>Note</code> object represents each note file that the user can add into CLIAlgo.
  */
-public class Note extends File {
-    private String name;
-    private String path;
-    private String topic;
-    private int importance;
-
+public class Note extends CS2040CFile {
     /**
      * Constructor for <code>Note</code> object.
      *
@@ -17,18 +12,22 @@ public class Note extends File {
      * @param topic Topic that note file should be tagged.
      */
     public Note(String name, String path, String topic) {
-        this.name = name;
-        this.path = path;
-        this.topic = topic;
+        super(name, path, topic);
+    }
+
+    public Note(String name, String path, String topic, int importance) {
+        super(name, path, topic, importance);
     }
 
     /**
      * Prints the name of the note file.
      */
-    public void printNoteName() {
+    @Override
+    public void printFileName() {
         System.out.println(name);
     }
 
+    @Override
     public String getName() {
         return this.name;
     }
@@ -38,6 +37,7 @@ public class Note extends File {
      *
      * @return The location path of the note file.
      */
+    @Override
     public String getPath() {
         return path;
     }
@@ -47,6 +47,7 @@ public class Note extends File {
      *
      * @param path The new location path of the note file.
      */
+    @Override
     public void setPath(String path) {
         this.path = path;
     }
@@ -56,6 +57,7 @@ public class Note extends File {
      *
      * @return The tag of the note file.
      */
+    @Override
     public String getTopic() {
         return this.topic;
     }
@@ -65,7 +67,13 @@ public class Note extends File {
      *
      * @param topic The new tag for the note file.
      */
+    @Override
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    @Override
+    public int getImportance() {
+        return this.importance;
     }
 }

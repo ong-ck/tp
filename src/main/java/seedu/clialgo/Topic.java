@@ -1,18 +1,19 @@
 package seedu.clialgo;
 
-import seedu.clialgo.file.Note;
+import seedu.clialgo.file.CS2040CFile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Map;
 
+
 /**
- * The <code>Topic</code> object handles the operations of the notes within a specific topic.
+ * The <code>Topic</code> object handles the operations of the CS2040CFiles within a specific topic.
  */
 public class Topic {
     private final String topicName;
-    private final HashMap<String, Note> notes;
+    private final HashMap<String, CS2040CFile> cs2040cFiles;
 
     /**
      * Constructor that initializes an empty <code>Topic</code> object.
@@ -21,46 +22,46 @@ public class Topic {
      */
     public Topic(String topicName) {
         this.topicName = topicName;
-        notes = new HashMap<>();
+        cs2040cFiles = new HashMap<>();
     }
 
     /**
-     * Constructor that initializes a <code>Topic</code> object with notes stored in it.
+     * Constructor that initializes a <code>Topic</code> object with CS2040CFiles stored in it.
      *
      * @param topicName The name of the topic.
-     * @param notes A HashMap containing the notes stored in the <code>Topic</code> object.
+     * @param cs2040cFiles A HashMap containing the CS2040CFiles stored in the <code>Topic</code> object.
      */
-    public Topic(String topicName, HashMap<String, Note> notes) {
+    public Topic(String topicName, HashMap<String, CS2040CFile> cs2040cFiles) {
         this.topicName = topicName;
-        this.notes = notes;
+        this.cs2040cFiles = cs2040cFiles;
     }
 
     /**
-     * Checks if the <code>Topic</code> object has any notes inside.
+     * Checks if the <code>Topic</code> object has any CS2040CFiles inside.
      *
-     * @return Returns true if the topic has no notes inside, false otherwise.
+     * @return Returns true if the topic has no CS2040CFiles inside, false otherwise.
      */
     public boolean isEmpty() {
-        return this.notes.isEmpty();
+        return this.cs2040cFiles.isEmpty();
     }
 
     /**
-     * Checks if the <code>Topic</code> object has a specified note inside.
+     * Checks if the <code>Topic</code> object has a specified CS2040CFile inside.
      *
-     * @param noteName Name of note.
-     * @return Returns true if the topic contains the note that is specified by noteName, false otherwise.
+     * @param cs2040CFileName Name of CS2040CFile.
+     * @return Returns true if the topic contains the CS2040CFile that is specified by cs2040CFileName, false otherwise.
      */
-    public boolean isInsideTopic(String noteName) {
-        return this.notes.containsKey(noteName);
+    public boolean isInsideTopic(String cs2040CFileName) {
+        return this.cs2040cFiles.containsKey(cs2040CFileName);
     }
 
     /**
-     * Obtains all the notes inside the <code>Topic</code> object.
+     * Obtains all the CS2040CFiles inside the <code>Topic</code> object.
      *
-     * @return A HashMap of all the notes inside this <code>Topic</code> object.
+     * @return A HashMap of all the cs2040CFiles inside this <code>Topic</code> object.
      */
-    public HashMap<String, Note> getNotes() {
-        return notes;
+    public HashMap<String, CS2040CFile> getC2040CFiles() {
+        return cs2040cFiles;
     }
 
     public String getTopicName() {
@@ -68,37 +69,36 @@ public class Topic {
     }
 
     /**
-     * Gets all notes stored in this specific topic and stores them in an ArrayList.
+     * Gets all CS2040CFiles stored in this specific topic and stores them in an ArrayList.
      *
-     * @return An ArrayList containing all the notes stored in this topic.
+     * @return An ArrayList containing all the CS2040CFiles stored in this topic.
      */
-    public ArrayList<String> getAllNotesInTopic() {
-        ArrayList<String> topicNotes = new ArrayList<>();
-        for (Map.Entry<String, Note> entry : notes.entrySet()) {
-            String noteName = entry.getValue().getName();
-            topicNotes.add(noteName);
+    public ArrayList<String> getAllCS2040CFilesInTopic() {
+        ArrayList<String> topicCS2040CFiles = new ArrayList<>();
+        for (Map.Entry<String, CS2040CFile> entry : cs2040cFiles.entrySet()) {
+            String cs2040cFileName = entry.getValue().getName();
+            topicCS2040CFiles.add(cs2040cFileName);
         }
-        return topicNotes;
+        return topicCS2040CFiles;
     }
 
     /**
-     * Adds a note linked to a specific topic.
+     * Adds a CS2040CFile linked to a specific topic.
      *
-     * @param name Name of the note file.
-     * @param note A <code>Note</code> object representing the note file.
+     * @param name Name of the CS2040CFile.
+     * @param cs2040cFile A <code>CS2040CFile</code> object representing the CS2040CFile.
      */
-    public void addNote(String name, Note note) {
-        notes.put(name, note);
+    public void addCS2040CFile(String name, CS2040CFile cs2040cFile) {
+        cs2040cFiles.put(name, cs2040cFile);
     }
 
     /**
-     * Removes a note based on its name.
+     * Removes a CS2040CFile based on its name.
      *
-     * @param name Name of the note file.
+     * @param name Name of the CS2040CFile.
      */
-    public boolean removeNote(String name) {
-        notes.remove(name);
-
+    public boolean removeCS2040CFile(String name) {
+        cs2040cFiles.remove(name);
         return true;
     }
 
@@ -110,6 +110,6 @@ public class Topic {
      */
     public boolean equals(Topic otherTopic) {
         return Objects.equals(this.topicName, otherTopic.topicName) &&
-                Objects.equals(this.notes, otherTopic.notes);
+                Objects.equals(this.cs2040cFiles, otherTopic.cs2040cFiles);
     }
 }
