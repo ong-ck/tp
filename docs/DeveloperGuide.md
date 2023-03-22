@@ -7,6 +7,28 @@ original source as well}
 
 ## Design
 
+### Architecture
+The **_Architecture Diagram_** given above explains the high-level design of `CLIAlgo`.
+
+Given below is a quick overview of the main components and how they interact with each other.
+
+#### Main components of the architecture
+
+- `CLIAlgo`: consist of only 1 main method and it is responsible for initializing the componnents
+in the correct sequence and connects them with each other during runtime.
+- `commons`: Represents a collection of classes that are used by multiple other components. They are essential for 
+reading and processing inputs from the user. It consist of:
+  - `Ui`: Responsible for handling all interactions with the user.
+  - `Parser`: Responsible for making sense of all commands entered by the user.
+  - `Topic`: A class responsible for managing all files allocated to single topic in CS2040C.
+  - `TopicManager`: A class responsible for handling operations involving all `Topic`.
+- `command`: A collection of `Command` objects which handles the different functionalities of `CLIAlgo`.
+- `file`: A collection of files used in CS2040C.
+- `storage`: A collection of classes responsible for reading, storing and writing data to the hard disk.
+
+#### How the architecture components interact with each other
+
+
 ### Parser
 **API** : `Parser.java`
 Here is a class diagram of the `Parser` component which is responsible for processing commands

@@ -241,7 +241,7 @@ public class Parser implements StringManipulation {
      * @param topics The topic manager class containing all topics in CLIAlgo.
      * @return a Command object that lists notes according a certain criteria.
      */
-    private Command prepareTopoCommand(String description, TopicManager topics) {
+    private Command prepareTopoCommand(String description) {
         if (description == null) {
             return new InvalidCommand();
         }
@@ -284,7 +284,7 @@ public class Parser implements StringManipulation {
         case "exit-test-mode":
             return prepareExitTestModeCommand();
         case "topo":
-            return prepareTopoCommand(description, topics);
+            return prepareTopoCommand(description);
         default:
             return prepareExitCommand();
         }
