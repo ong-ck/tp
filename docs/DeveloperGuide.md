@@ -8,6 +8,9 @@ original source as well}
 ## Design
 
 ### Architecture
+
+![](.\\uml\\diagrams\\ArchitectureDiagram.png "Architecture Diagram")
+
 The **_Architecture Diagram_** given above explains the high-level design of `CLIAlgo`.
 
 Given below is a quick overview of the main components and how they interact with each other.

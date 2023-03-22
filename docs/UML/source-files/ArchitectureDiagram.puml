@@ -2,37 +2,54 @@
 skinparam classAttributeIconSize 0
 hide empty members
 
-class CLIAlgo #lightgreen {
+class user {
 
 }
 
-class Parser #lightblue{
-}
+package clialgo <<rectangle>> {
+    class CLIAlgo #lightgreen {
 
-interface StringManipulation {
-}
+    }
 
-class Ui {
-}
+    class Parser #lightblue{
+    }
 
-class TopicManager {
-}
+    class Ui #red {
+    }
 
-package command <<rectangle>>{
-}
+    class TopicManager #purple {
+    }
 
-package storage <<rectangle>>{
-}
-package file <<rectangle>>{
-}
+    class Topic #magenta{
+    }
 
+    class command #grey {
+    }
+
+    class storage #beige {
+    }
+
+    class CS2040CFile {
+    }
+}
+package harddisk {
+}
+user --> Ui
 CLIAlgo --> Ui
 CLIAlgo -->TopicManager
 CLIAlgo --> Parser
-Parser ..|> StringManipulation
+CLIAlgo ..> storage
 Parser ..> Ui
 Parser ..> TopicManager
 Parser ..> command
+storage ..> harddisk
+TopicManager --> Topic
+storage --> CS2040CFile
+command ..> Ui
+command ..> TopicManager
+command ..> storage
+command ..> CS2040CFile
+Topic ..> CS2040CFile
 
 hide circle
 @enduml
