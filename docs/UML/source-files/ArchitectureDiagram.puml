@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide empty members
+
+class CLIAlgo #lightgreen {
+
+}
+
+class Parser #lightblue{
+}
+
+interface StringManipulation {
+}
+
+class Ui {
+}
+
+class TopicManager {
+}
+
+package command <<rectangle>>{
+}
+
+package storage <<rectangle>>{
+}
+package file <<rectangle>>{
+}
+
+CLIAlgo --> Ui
+CLIAlgo -->TopicManager
+CLIAlgo --> Parser
+Parser ..|> StringManipulation
+Parser ..> Ui
+Parser ..> TopicManager
+Parser ..> command
+
+hide circle
+@enduml
