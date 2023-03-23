@@ -24,7 +24,7 @@ public abstract class CS2040CFile {
         this.name = name;
         this.path = path;
         this.topic = topic;
-        this.importance = 5;    // placeholder
+        this.importance = 5; // placeholder
     }
 
     /**

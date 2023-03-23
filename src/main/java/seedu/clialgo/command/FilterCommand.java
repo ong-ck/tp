@@ -1,10 +1,8 @@
 package seedu.clialgo.command;
 
 import seedu.clialgo.Buffer;
-import seedu.clialgo.Topic;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
-import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
@@ -13,8 +11,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class FilterCommand extends Command {
-    private final String keyWord;
-    private final String topic;
+    protected final String keyWord;
+    protected final String topic;
 
     public FilterCommand(String keyWord, String topic) {
         this.keyWord = keyWord;
@@ -78,24 +76,12 @@ public class FilterCommand extends Command {
             buffer.updateBuffer(new ArrayList<>());
             return;
         }
-        if (this.topic == null) {
-            printAllTopics(topicManager, ui);
-            buffer.updateBuffer(topicManager.getAllFilesAsFiles());
-            return;
+
+        if (keyWord.equals("topic")) {
+            new FilterByTopicCommand(keyWord, topic).execute(topicManager, ui, fileManager, buffer);
+        } else if (keyWord.equals("importance")) {
+            new FilterByImportanceCommand(keyWord, topic).execute(topicManager, ui, fileManager, buffer);
         }
-        if (!topicManager.isValidTopic(this.topic)) {
-            new InvalidTopicCommand(this.topic).execute(topicManager, ui, fileManager, buffer);
-            return;
-        }
-        if (topicManager.isTopicEmpty(this.topic)) {
-            ui.printFilterFail();
-            buffer.updateBuffer(new ArrayList<>());
-            return;
-        }
-        printSingleTopic(topicManager, ui);
-        Topic topic = topicManager.getOneTopic(this.topic);
-        ArrayList<CS2040CFile> files = topic.getCS2040CFilesAsArray();
-        buffer.updateBuffer(files);
     }
 
     @Override
