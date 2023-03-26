@@ -11,12 +11,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class FilterByImportanceCommand extends FilterCommand {
-    public FilterByImportanceCommand(String keyWord, String topic) {
-        super(keyWord, topic);
-    }
 
-    // Method
-    // Comparator for sorting by importance
     public Comparator<CS2040CFile> importanceLevel = (cs2040cFile1, cs2040cFile2) -> {
         int cs2040cFile1Importance = cs2040cFile1.getImportance();
         int cs2040cFile2Importance = cs2040cFile2.getImportance();
@@ -24,6 +19,9 @@ public class FilterByImportanceCommand extends FilterCommand {
         return cs2040cFile2Importance - cs2040cFile1Importance;
     };
 
+    public FilterByImportanceCommand(String keyWord, String topic) {
+        super(keyWord, topic);
+    }
 
     @Override
     public void printAllTopics(TopicManager topicManager, Ui ui) {
