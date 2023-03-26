@@ -19,7 +19,11 @@ import seedu.clialgo.exceptions.parser.NullInputException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//@@author heejet
+/**
+ * A <code>Parser</code> object is created to make sense of the commands keyed in by the user. It creates the
+ * appropriate <code>Command</code> object to execute the user commands.
+ */
 public class Parser implements StringManipulation {
     /** Delimiters use to separate inputs within commands */
     public static final String NAME_MARKER = "n/";
@@ -257,7 +261,7 @@ public class Parser implements StringManipulation {
             if (description.equals("") || !isCorrectMarker(description, NAME_MARKER)) {
                 return new InvalidCommand();
             }
-            noteName = StringManipulation.removeMarker(description, NAME_MARKER);
+            noteName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
