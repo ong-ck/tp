@@ -130,7 +130,7 @@ public class Parser implements StringManipulation {
                 return new InvalidTopicCommand(topicName);
             }
 
-            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithMarker, NAME_MARKER);
+            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithMarker, NAME_MARKER).toLowerCase();
 
         } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException e) {
             return new InvalidCommand();
@@ -159,7 +159,7 @@ public class Parser implements StringManipulation {
                 return new InvalidCommand();
             }
 
-            cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER);
+            cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
 
             if (!topics.isRepeatedCS2040CFile(cs2040cFileName)) {
                 return new NameNotFoundCommand();
