@@ -22,7 +22,12 @@ public class ExportCommand extends Command {
         }
         buffer.exportBuffer();
     }
-
+    /**
+     * An overridden method that checks for equality of <code>ExportCommand </code> objects.
+     *
+     * @param otherCommand The other <code>ExportCommand </code> object to be checked against.
+     * @return A boolean value to determine whether the <code>ExportCommand </code> objects are equal.
+     */
     public boolean equals(Command otherCommand) {
         return otherCommand instanceof ExportCommand;
     }

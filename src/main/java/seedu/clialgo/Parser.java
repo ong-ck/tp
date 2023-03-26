@@ -234,6 +234,9 @@ public class Parser implements StringManipulation {
         return new ExitTestModeCommand();
     }
 
+    /**
+     * @return A <code>Command</code> object that exports all CS2040CFiles stored in the buffer.
+     */
     private Command prepareExport() {
         return new ExportCommand();
     }
