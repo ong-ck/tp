@@ -12,6 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+//@@author heejet
+/**
+ * Represents an executable command from the user. A <code>FilterByTopicCommand</code> prints out CS2040CFiles filtered
+ * by topics.
+ */
 public class FilterByTopicCommand extends FilterCommand {
     public FilterByTopicCommand(String keyWord, String topic) {
         super(keyWord, topic);

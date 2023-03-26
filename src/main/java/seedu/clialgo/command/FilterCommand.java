@@ -7,6 +7,10 @@ import seedu.clialgo.storage.FileManager;
 
 import java.util.Objects;
 
+/**
+ * Represents an executable command from the user. A <code>FilterCommand</code> prints out CS2040CFiles filtered either
+ * by topics or importance.
+ */
 public class FilterCommand extends Command {
     protected final String keyWord;
     protected final String topic;
@@ -16,6 +20,7 @@ public class FilterCommand extends Command {
         this.topic = topic;
     }
 
+    //@@author heejet
     /**
      * Checks the keyword and executes the correct variant of <code>FilterCommand</code>.
      * If <codde>keyWord</codde> is "topic" it executes <code>FilterByTopicCommand</code>.
@@ -36,6 +41,7 @@ public class FilterCommand extends Command {
             new FilterByImportanceCommand(this.keyWord, this.topic).execute(topicManager, ui, fileManager, buffer);
         }
     }
+    //@@author
 
     @Override
     public boolean equals(Command otherCommand) {

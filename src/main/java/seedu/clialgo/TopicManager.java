@@ -50,6 +50,7 @@ public class TopicManager {
         isTestModeOn = false;
     }
 
+    //@@author heejet
     /**
      * Constructor that initialises a <code>TopicManager</code> object that contains a HashSet of the current names of
      * the CS2040CFiles present as well as a HashMap of all the topics.
@@ -61,12 +62,9 @@ public class TopicManager {
         this.allCS2040CFiles = allCS2040CFiles;
         this.topics = topics;
     }
+    //@@author
 
-    /**
-     * Checks if test mode is turned on.
-     *
-     * @return True if test mode is turned on, false otherwise.
-     */
+    /** Checks if test mode is turned on. */
     public boolean getIsTestModeOn() {
         return this.isTestModeOn;
     }
@@ -87,12 +85,7 @@ public class TopicManager {
         return this.allCS2040CFiles.contains(cs2040CFileName);
     }
 
-    /**
-     * Checks if the input string is a valid topic.
-     *
-     * @param topic The input string.
-     * @return True if the input string is a valid topic, false otherwise.
-     */
+    /** Checks if the input string is a valid topic. */
     public boolean isValidTopic(String topic) {
         return TOPIC_NAMES.contains(topic);
     }
@@ -115,6 +108,7 @@ public class TopicManager {
         return TOPIC_NAMES;
     }
 
+    //@@author heejet
     /**
      * Gets all CS2040CFiles stored in CLIAlgo and stores it in an ArrayList.
      *
@@ -128,6 +122,7 @@ public class TopicManager {
         }
         return toPrintCS2040CFiles;
     }
+    //@@author
 
     /**
      * Get a list of all CS2040CFiles stored in a specified topic.
@@ -139,6 +134,7 @@ public class TopicManager {
         return topics.get(topic).getAllCS2040CFilesInTopic();
     }
 
+    //@@author heejet
     /**
      * Get a list of all topics stored in CLIAlgo that are grouped by topics.
      *
@@ -156,6 +152,7 @@ public class TopicManager {
         }
         return toPrintCS2040CFiles;
     }
+    //@@author
 
     /**
      * Adds a new CS2040CFile into the specific <code>Topic</code> object
