@@ -81,6 +81,8 @@ public class FilterCommand extends Command {
             new FilterByTopicCommand(keyWord, topic).execute(topicManager, ui, fileManager, buffer);
         } else if (keyWord.equals("importance")) {
             new FilterByImportanceCommand(keyWord, topic).execute(topicManager, ui, fileManager, buffer);
+        } else {
+            ui.printInvalidCommand();
         }
     }
 

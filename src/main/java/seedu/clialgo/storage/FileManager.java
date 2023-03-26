@@ -20,7 +20,6 @@ import java.util.Objects;
  * <code>topicName</code>.txt.
  */
 public class FileManager {
-
     private final FileEncoder encoder;
     private final FileDecoder decoder;
     private final String initialPath;
