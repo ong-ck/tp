@@ -384,12 +384,17 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints an error message indicating that no CS2040CFiles are in CLIAlgo.
-     */
+    /** Prints an error message indicating that no CS2040CFiles are in CLIAlgo. */
     public void printNoCS2040CFilesSaved() {
         printDivider();
         System.out.println("You have no CS2040CFiles at the moment!");
+        printDivider();
+    }
+
+    /** Prints a message informing the user that the Buffer is empty */
+    public void printBufferEmpty() {
+        printDivider();
+        System.out.println("You have no CS2040CFiles in the buffer!");
         printDivider();
     }
 }
