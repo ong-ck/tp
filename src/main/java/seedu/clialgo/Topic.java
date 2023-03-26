@@ -25,6 +25,7 @@ public class Topic {
         cs2040cFiles = new HashMap<>();
     }
 
+    //@@author heejet
     /**
      * Constructor that initializes a <code>Topic</code> object with CS2040CFiles stored in it.
      *
@@ -44,6 +45,7 @@ public class Topic {
     public boolean isEmpty() {
         return this.cs2040cFiles.isEmpty();
     }
+    //@@author
 
     /**
      * Checks if the <code>Topic</code> object has a specified CS2040CFile inside.
