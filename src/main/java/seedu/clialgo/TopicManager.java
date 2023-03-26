@@ -26,13 +26,13 @@ public class TopicManager {
                     "BINARY_SEARCH_TREE", "UNION_FIND_DS", "HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING")
     );
 
-    /** General HashSet to check for duplicate names. */
-    private HashSet<String> allCS2040CFiles;
+    /** General Hashmap to check for duplicate names. */
+    private HashMap<String, String> allCS2040CFiles;
 
     /** Data Structure to hold all the topics */
     private HashMap<String, Topic> topics;
 
-    private HashSet<String> allCS2040CFilesOutsideTestMode;
+    private HashMap<String, String> allCS2040CFilesOutsideTestMode;
     private HashMap<String, Topic> topicsOutsideTestMode;
     private boolean isTestModeOn;
 
@@ -42,7 +42,7 @@ public class TopicManager {
      * that will be used to store the names of all CS2040CFiles that will be added.
      */
     public TopicManager() {
-        allCS2040CFiles = new HashSet<>();
+        allCS2040CFiles = new HashMap<>();
         topics = new HashMap<>();
         for (String topicName : TOPIC_NAMES) {
             topics.put(topicName, new Topic(topicName));
@@ -58,7 +58,7 @@ public class TopicManager {
      * @param allCS2040CFiles A HashSet of the names of all the CS2040CFiles present.
      * @param topics A HashMap of all the topics in CLIAlgo.
      */
-    public TopicManager(HashSet<String> allCS2040CFiles, HashMap<String, Topic> topics) {
+    public TopicManager(HashMap<String, String> allCS2040CFiles, HashMap<String, Topic> topics) {
         this.allCS2040CFiles = allCS2040CFiles;
         this.topics = topics;
     }
@@ -82,7 +82,7 @@ public class TopicManager {
 
     /** Checks if a given CS2040CFile name has been used before. */
     public boolean isRepeatedCS2040CFile(String cs2040CFileName) {
-        return this.allCS2040CFiles.contains(cs2040CFileName);
+        return this.allCS2040CFiles.containsKey(cs2040CFileName);
     }
 
     /** Checks if the input string is a valid topic. */
@@ -166,7 +166,7 @@ public class TopicManager {
      */
     public boolean addCS2040CFile(String cs2040cFileName, String topicName, CS2040CFile cs2040cFile) {
         // Check if CS2040CFile name has been taken
-        if (allCS2040CFiles.contains(cs2040cFileName)) {
+        if (isRepeatedCS2040CFile(cs2040cFileName)) {
             return false;
         }
 
@@ -176,7 +176,7 @@ public class TopicManager {
         assert topics.get(topicName).isInsideTopic(cs2040cFileName);
 
         // Keep track of name of CS2040CFile added
-        allCS2040CFiles.add(cs2040cFileName);
+        allCS2040CFiles.put(cs2040cFileName, topicName);
 
         return true;
     }
@@ -196,7 +196,7 @@ public class TopicManager {
                 // Remove name of file from the allFiles set to keep track of names
                 allCS2040CFiles.remove(cs2040cFileName);
 
-                assert !allCS2040CFiles.contains(cs2040cFileName);
+                assert !allCS2040CFiles.containsKey(cs2040cFileName);
 
                 // Remove the file from that particular topic
                 return topics.get(topicName).removeCS2040CFile(cs2040cFileName);
@@ -214,8 +214,11 @@ public class TopicManager {
     public void initialize(HashMap<String, Topic> topics) {
         this.topics = topics;
         for (Topic topic: topics.values()) {
-            if (topic != null) {
-                allCS2040CFiles.addAll(topic.getAllCS2040CFilesInTopic());
+            if (topic == null) {
+                continue;
+            }
+            for (String fileName : topic.getAllCS2040CFilesInTopic()) {
+                allCS2040CFiles.put(fileName, topic.getTopicName());
             }
         }
     }
@@ -227,7 +230,7 @@ public class TopicManager {
     public void testModeStart() {
         this.topicsOutsideTestMode = topics;
         this.allCS2040CFilesOutsideTestMode = allCS2040CFiles;
-        allCS2040CFiles = new HashSet<>();
+        allCS2040CFiles = new HashMap<>();
         topics = new HashMap<>();
         for (String topicName : TOPIC_NAMES) {
             topics.put(topicName, new Topic(topicName));
