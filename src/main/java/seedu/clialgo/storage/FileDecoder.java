@@ -54,9 +54,11 @@ public class FileDecoder {
             if (checkFileType() == FileType.CPP) {
                 currentCS2040CFile = new Code(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2],
                         Integer.parseInt(splitCS2040CFile[3]));
-            } else {
+            } else if (checkFileType() == FileType.TXT) {
                 currentCS2040CFile = new Note(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2],
                         Integer.parseInt(splitCS2040CFile[3]));
+            } else {
+                return true;
             }
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             return true;
