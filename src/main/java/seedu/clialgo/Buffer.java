@@ -34,7 +34,9 @@ public class Buffer {
     }
 
     private void createFolder() {
-        if (!pathToBuffer.mkdir()) {
+        try {
+            Files.createDirectories(pathToBuffer.toPath());
+        } catch (IOException e) {
             ui.printFolderCreateError();
         }
     }
