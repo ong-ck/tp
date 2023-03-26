@@ -3,6 +3,10 @@ package seedu.clialgo;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
 
+//@@author heejet
+/**
+ * An interface used to processed user commands and extract out command names and keywords.
+ */
 public interface StringManipulation {
     /**
      * Extracts out the first word of an input string.
