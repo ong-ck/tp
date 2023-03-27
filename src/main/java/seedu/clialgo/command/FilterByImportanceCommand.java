@@ -33,6 +33,7 @@ public class FilterByImportanceCommand extends FilterCommand {
             System.out.println(serialNumber + ". " + cs2040cFile.getName() + " [" + cs2040cFile.getImportance() + "]");
             ++serialNumber;
         }
+        ui.printDivider();
     }
 
     @Override
@@ -46,7 +47,7 @@ public class FilterByImportanceCommand extends FilterCommand {
             System.out.println(serialNumber + ". " + cs2040cFile.getName() + " [" + cs2040cFile.getImportance() + "]");
             ++serialNumber;
         }
-
+        ui.printDivider();
     }
 
     @Override
