@@ -29,6 +29,34 @@ Example of usage:
 
 `todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
+### Listing Notes `list`
+List all notes (in any order) present in `CLIAlgo`.
+
+#### Format:
+```
+list
+```
+
+- Command is **case-sensitive**.
+- Command should only contain one word.
+- Not following the syntax strictly would result in an invalid command message.
+
+#### Example of usage:
+Input:
+```
+list
+```
+Output:
+```
+======================================================
+Here are all your CS2040CFiles:
+======================================================
+1. priority queue notes
+2. bubble sort note
+3. linked list code
+======================================================
+```
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
