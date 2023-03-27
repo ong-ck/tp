@@ -62,7 +62,7 @@ public class Buffer {
             try {
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
-                ui.printFileWriteError();
+                ui.printFileMissing();
             }
         }
     }

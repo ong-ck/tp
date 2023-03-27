@@ -392,4 +392,11 @@ public class Ui {
         System.out.println("You have no CS2040CFiles at the moment!");
         printDivider();
     }
+
+    public void printFileMissing() {
+        printDivider();
+        System.out.println("File missing from root directory.");
+        System.out.println("Did the file get deleted?");
+        printDivider();
+    }
 }

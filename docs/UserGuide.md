@@ -11,23 +11,50 @@
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `Duke` from [here](http://link.to/duke).
 
-## Features 
+## Features
 
-{Give detailed description of each feature}
+### Exporting `Files`
+Whenever a `filter` or `topo` command is input by the user, the 
+`Files` listed by the above commands would be stored in a 
+`Buffer`. These stored `Files` can then be copied into 
+`./export`.
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+Format: `export`
+- If the Operating System has a valid file explorer, `./export` 
+would be opened automatically.
+- If the buffer is empty when `export` is inputted, `./export` 
+would be empty.
+- Every time `export` is called, the `Files` within `./export`
+are deleted before the `Files` are copied into `./export`
+- If a `File` stored in the `Buffer` does not exist for some reason 
+(i.e. if the user deleted the `File`) an error message would be
+printed for each `File` not found.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Example of usage:
+```
+filter k/topic
+======================================================
+Here are the filtered CS2040CFiles:
+======================================================
+[SORTING]
+1. TEST
+[LINKED_LIST]
+1. Test1
+======================================================
+export
+```
+Here is `./export` opened after `export` is input.
+![](.\\images\\export1.png)
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+```
+filter k/topic
+======================================================
+The filtered list is empty!
+======================================================
+export
+```
+Here `./export` after `export` is input with an empty `Buffer`.
+![](.\\images\\export2.png)
 
 ## FAQ
 
