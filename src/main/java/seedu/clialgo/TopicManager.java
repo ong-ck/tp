@@ -5,7 +5,6 @@ import seedu.clialgo.file.CS2040CFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -49,20 +48,6 @@ public class TopicManager {
         }
         isTestModeOn = false;
     }
-
-    //@@author heejet
-    /**
-     * Constructor that initialises a <code>TopicManager</code> object that contains a HashSet of the current names of
-     * the CS2040CFiles present as well as a HashMap of all the topics.
-     *
-     * @param allCS2040CFiles A HashSet of the names of all the CS2040CFiles present.
-     * @param topics A HashMap of all the topics in CLIAlgo.
-     */
-    public TopicManager(HashMap<String, String> allCS2040CFiles, HashMap<String, Topic> topics) {
-        this.allCS2040CFiles = allCS2040CFiles;
-        this.topics = topics;
-    }
-    //@@author
 
     /** Checks if test mode is turned on. */
     public boolean getIsTestModeOn() {
@@ -109,6 +94,10 @@ public class TopicManager {
     }
 
     //@@author heejet
+    public String getTopicOfCS2040CFile(String noteName) {
+        return this.allCS2040CFiles.get(noteName);
+    }
+
     /**
      * Gets all CS2040CFiles stored in CLIAlgo and stores it in an ArrayList.
      *
@@ -188,21 +177,20 @@ public class TopicManager {
      * @param cs2040cFileName Name of the CS2040CFile.
      * @return Returns true if the name of the CS2040CFile is inside any topic, false otherwise
      */
-    public boolean removeCS2040CFile(String cs2040cFileName) {
-        for (String topicName : TOPIC_NAMES) {
-
-            // Check which topic contains that particular file
-            if ((topics.get(topicName).isInsideTopic(cs2040cFileName))) {
-                // Remove name of file from the allFiles set to keep track of names
-                allCS2040CFiles.remove(cs2040cFileName);
-
-                assert !allCS2040CFiles.containsKey(cs2040cFileName);
-
-                // Remove the file from that particular topic
-                return topics.get(topicName).removeCS2040CFile(cs2040cFileName);
-            }
+    public boolean removeCS2040CFile(String cs2040cFileName, String topicName) {
+        if (!isRepeatedCS2040CFile(cs2040cFileName)) {
+            return false;
         }
-        return false;
+
+        boolean isInsideTopic = topics.get(topicName).isInsideTopic(cs2040cFileName);
+
+        if (!isInsideTopic) {
+            return false;
+        }
+
+        topics.get(topicName).removeCS2040CFile(cs2040cFileName);
+        allCS2040CFiles.remove(cs2040cFileName);
+        return true;
     }
 
     /**

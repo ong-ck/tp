@@ -23,8 +23,9 @@ class TopicManagerTest {
         TopicManager topicManager = new TopicManager();
         Topic topic = new Topic("SORTING");
         topicManager.getTopics().put("SORTING", topic);
-        topic.getC2040CFiles().put("bubble sort notes", new Note("dummy", "dummy", "SORTING"));
-        assertTrue(topicManager.removeCS2040CFile("bubble sort notes"));
+        topicManager.addCS2040CFile("bubble sort notes", "SORTING",
+                new Note("bubble sort notes", "dummy", "SORTING"));
+        assertTrue(topicManager.removeCS2040CFile("bubble sort notes", "SORTING"));
     }
 
     /**
@@ -36,7 +37,7 @@ class TopicManagerTest {
     void removeNote_checkForNoteThatDoesNotExist_expectFalse() {
         TopicManager topicManager = new TopicManager();
         String noteNameThatDoesNotExist = "dummy";
-        assertFalse(topicManager.removeCS2040CFile(noteNameThatDoesNotExist));
+        assertFalse(topicManager.removeCS2040CFile(noteNameThatDoesNotExist, "SORTING"));
     }
 
     /**

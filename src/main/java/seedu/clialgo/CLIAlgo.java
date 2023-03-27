@@ -37,10 +37,13 @@ public class CLIAlgo {
         ui.printWelcomeMessage();
     }
 
-    /** Continuously reads in the user input until the exit command is executed */
-    private void run() {
+    private void initialize() {
         fileManager.initialize();
         topicManager.initialize(fileManager.decodeAll());
+    }
+
+    /** Continuously reads in the user input until the exit command is executed */
+    private void run() {
         while (true) {
             String fullCommand = ui.getUserInput();
             Command command = parser.parse(fullCommand, topicManager);
@@ -50,6 +53,7 @@ public class CLIAlgo {
 
     public static void main(String[] args) {
         CLIAlgo cliAlgo = new CLIAlgo();
+        cliAlgo.initialize();
         cliAlgo.run();
     }
 }

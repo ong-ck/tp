@@ -100,7 +100,7 @@ public class Topic {
      * @param name Name of the CS2040CFile.
      */
     public boolean removeCS2040CFile(String name) {
-        cs2040cFiles.remove(name);
+        this.cs2040cFiles.remove(name);
         return true;
     }
 

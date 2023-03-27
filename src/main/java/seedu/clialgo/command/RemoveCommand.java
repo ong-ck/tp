@@ -42,20 +42,21 @@ public class RemoveCommand extends Command {
             return;
         }
 
-        boolean isDeletedInFile = fileManager.deleteEntry(name);
-
-        if (!isDeletedInFile) {
-            return;
-        }
+        String topicName = topicManager.getTopicOfCS2040CFile(this.name);
 
         assert topicManager.isRepeatedCS2040CFile(this.name);
-        boolean isSuccessfullyRemoved = topicManager.removeCS2040CFile(name);
+        boolean isSuccessfullyRemoved = topicManager.removeCS2040CFile(this.name, topicName);
 
         if (!isSuccessfullyRemoved) {
             ui.printRemoveFail();
             return;
         }
 
+        boolean isDeletedInFile = fileManager.deleteEntry(name, topicName);
+
+        if (!isDeletedInFile) {
+            return;
+        }
         ui.printRemoveSuccess(name);
     }
 
