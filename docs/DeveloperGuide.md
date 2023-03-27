@@ -114,6 +114,24 @@ Given below is an example usage of how the filter mechanism behaves at each step
 > the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
 > a new `FilterCommand` using its constructor.
 
+### Export feature
+#### Current implementation
+The export function is supported by a singleton object, `Buffer`. 
+Whenever a `filter` or `topo` command is called, the method
+within the `Buffer` object, `updateBuffer` would be called which
+replaces the `CS2040CFile` objects stored within the buffer with the
+output `CS2040CFile` objects being output from the `filter` 
+command.
+
+When an `export` command is then called, a `ExportCommand` 
+object is instantiated. The `ExportCommand` object extends
+`Command` with an overridden `execute()` method. When the 
+`execute()` method is called, the `exportBuffer` method in the 
+`Buffer` is called. This copies all the `CS2040CFile` stored in
+the buffer to the export folder stored at `.\\export` and opens 
+the folder by using the default file explorer of the system.
+> Take note that this does not work for some Operating Systems
+> without a file explorer
 
 ## Product scope
 ### Target user profile
