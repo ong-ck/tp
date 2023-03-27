@@ -13,10 +13,10 @@ import seedu.clialgo.Ui;
  * The <code>AddCommand</code> objects represents the user command to add new CS2040CFiles into CLIAlgo.
  */
 public class AddCommand extends Command {
-
     protected final String name;
     protected final Ui ui;
     protected final String topic;
+    protected final int importance;
 
     /**
      * Constructor for command to add CS2040CFile to topic list.
@@ -28,6 +28,25 @@ public class AddCommand extends Command {
         this.name = name;
         this.topic = topic;
         this.ui = new Ui();
+        importance = 5;
+    }
+
+    /**
+     * Constructor for command to add CS2040CFile to topic list.
+     *
+     * @param name Name of the CS2040CFile.
+     * @param topic The topic that this file is tagged to.
+     * @param importance The importance of the CS2040CFile.
+     */
+    public AddCommand(String name, String topic, int importance) {
+        this.name = name;
+        this.topic = topic;
+        this.ui = new Ui();
+        this.importance = importance;
+    }
+
+    int getImportance() {
+        return this.importance;
     }
 
     String getName() {
@@ -66,7 +85,6 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
-
         boolean isTestModeOn = topicManager.getIsTestModeOn();
 
         // Check if the file exists
@@ -88,11 +106,11 @@ public class AddCommand extends Command {
         }
 
         if (checkFileType() == FileType.TXT) {
-            new AddNoteCommand(name, topic).execute(topicManager, ui, fileManager, buffer);
+            new AddNoteCommand(name, topic, importance).execute(topicManager, ui, fileManager, buffer);
         } else if (checkFileType() == FileType.CPP) {
-            new AddCodeCommand(name, topic).execute(topicManager, ui, fileManager, buffer);
+            new AddCodeCommand(name, topic, importance).execute(topicManager, ui, fileManager, buffer);
         } else if (checkFileType() == FileType.DOESNOTEXIST && isTestModeOn) {
-            new AddNoteCommand(name, topic).execute(topicManager, ui, fileManager, buffer);
+            new AddNoteCommand(name, topic, importance).execute(topicManager, ui, fileManager, buffer);
         }
 
         assert this.name != null;

@@ -18,6 +18,17 @@ public class AddNoteCommand extends AddCommand {
     }
 
     /**
+     * Constructor for command to add note file to topic list.
+     *
+     * @param name  Name of the note file.
+     * @param topic The topic that this file is tagged to.
+     * @param importance The importance of the note file.
+     */
+    public AddNoteCommand(String name, String topic, int importance) {
+        super(name, topic, importance);
+    }
+
+    /**
      * An overridden method to execute the user command to add new notes into CLIAlgo.
      *
      * @param topicManager The <code>TopicManager</code> object which handles all files stored in CLIAlgo.
@@ -28,7 +39,7 @@ public class AddNoteCommand extends AddCommand {
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         String notePath = name + ".txt";
-        Note newNote = new Note(name, notePath, topic);
+        Note newNote = new Note(name, notePath, topic, importance);
         boolean isAddedToFile = fileManager.addEntry(name, newNote);
 
         //  Check if note is successfully added to data file

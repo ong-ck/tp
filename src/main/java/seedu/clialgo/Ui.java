@@ -392,4 +392,13 @@ public class Ui {
         System.out.println("You have no CS2040CFiles at the moment!");
         printDivider();
     }
+
+    /**
+     * Prints an error message indicating the input in the importance field is in the invalid range.
+     */
+    public void printInvalidImportance(String importance) {
+        printDivider();
+        System.out.println(importance + " is not in the valid 1-10 range for importance.");
+        printDivider();
+    }
 }
