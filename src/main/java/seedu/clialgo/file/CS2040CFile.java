@@ -5,6 +5,7 @@ public abstract class CS2040CFile {
     protected String path;
     protected String topic;
     protected int importance;
+    public static final int DEFAULT_IMPORTANCE = 5;
 
     /**
      * Constructor for <code>CS2040CFile</code> object (with user-defined importance).
@@ -32,7 +33,7 @@ public abstract class CS2040CFile {
         this.name = name;
         this.path = path;
         this.topic = topic;
-        this.importance = 5;
+        this.importance = DEFAULT_IMPORTANCE;
     }
 
     /**

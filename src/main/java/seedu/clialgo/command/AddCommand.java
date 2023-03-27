@@ -17,6 +17,7 @@ public class AddCommand extends Command {
     protected final Ui ui;
     protected final String topic;
     protected final int importance;
+    public static final int DEFAULT_IMPORTANCE = 5;
 
     /**
      * Constructor for command to add CS2040CFile to topic list.
@@ -28,7 +29,7 @@ public class AddCommand extends Command {
         this.name = name;
         this.topic = topic;
         this.ui = new Ui();
-        importance = 5;
+        importance = DEFAULT_IMPORTANCE;
     }
 
     /**

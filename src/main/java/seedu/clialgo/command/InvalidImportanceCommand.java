@@ -19,6 +19,6 @@ public class InvalidImportanceCommand extends Command {
 
     @Override
     public boolean equals(Command otherCommand) {
-        return false;
+        return otherCommand instanceof InvalidImportanceCommand;
     }
 }

@@ -29,8 +29,8 @@ public class FilterByImportanceCommand extends FilterCommand {
         ui.printFilterSuccess();
         cs2040cFiles.sort(importanceLevel);
         int serialNumber = 1;
-        for (CS2040CFile cs2040CFile : cs2040cFiles) {
-            System.out.println(serialNumber + ". " + cs2040CFile.getName());
+        for (CS2040CFile cs2040cFile : cs2040cFiles) {
+            System.out.println(serialNumber + ". " + cs2040cFile.getName() + " [" + cs2040cFile.getImportance() + "]");
             ++serialNumber;
         }
     }
@@ -43,7 +43,7 @@ public class FilterByImportanceCommand extends FilterCommand {
         int serialNumber = 1;
         System.out.println("[" + this.topic + "]");
         for (CS2040CFile cs2040cFile : cs2040cFiles) {
-            System.out.println(serialNumber + ". " + cs2040cFile.getName());
+            System.out.println(serialNumber + ". " + cs2040cFile.getName() + " [" + cs2040cFile.getImportance() + "]");
             ++serialNumber;
         }
 

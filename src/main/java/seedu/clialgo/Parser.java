@@ -73,8 +73,7 @@ public class Parser implements StringManipulation {
      */
     public boolean isValidImportance(String keyWord) throws NumberFormatException {
         assert keyWord != null;
-        int importance;
-        importance = Integer.parseInt(keyWord);
+        int importance = Integer.parseInt(keyWord);
         return importance >= 1 && importance <= 10;
     }
 
@@ -137,12 +136,11 @@ public class Parser implements StringManipulation {
         String cs2040cFileName;
         String updatedTopicName;
         String importanceField;
-        String cs2040cFileNameWithNameMarker;
         String topicName;
         int importance = 5;
         boolean containsImportance = false;
         try {
-            cs2040cFileNameWithNameMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
+            String cs2040cFileNameWithNameMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
 
             // check if optional 'i/' is present in topicName substring
