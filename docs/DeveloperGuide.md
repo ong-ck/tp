@@ -57,7 +57,7 @@ function of the application.
 
 The `FileManager` component
 - can save each `Topic`'s data as an individual `.txt` file
-- can interpret `Note` objects as a `String` and store it into its 
+- can interpret `Note` and `Code` objects as a `String` and store it into its 
 corresponding `Topic`'s  `.txt`
 - updates the corresponding `Topic`'s  `.txt` whenever a `add` or
 `remove` command is called by the user
@@ -285,33 +285,34 @@ after opening the application.
       1. **CASE 1 :** The `[TOPIC NAME]` is valid.
       > Example : 
       > 
-      > add n/note name t/LINKED_LIST
+      > add n/name t/LINKED_LIST
       2. **CASE 2 :** The `[TOPIC NAME]` is invalid.
       > Example :
       >
-      > add n/note name t/linkedlist
+      > add n/name t/linkedlist
       > 
-      > add n/note name t/SOMETHING
+      > add n/name t/SOMETHING
 2. Leaving any fields blank would cause an error message to be printed.
 > Example :
 >
 > add n/ t/
 > 
-> add n/note t/
+> add n/name t/
 3. Leaving out `n/` or `t/` would cause an error message to be printed.
 > Example :
 >
-> add note LINKED_LIST
+> add name LINKED_LIST
 
-### Listing all `Notes`
+### Listing all `Files`
 1. Type the command: `list`.
-   1. **CASE 1 :** There are some `Notes` stored.
-      1. The application would print out all the `Notes` stored.
-   2. **CASE 2 :** There are no `Notes` stored.
+   1. **CASE 1 :** There are some `Files` stored.
+      1. The application would print out all the `Files` stored.
+      2. Note that `Files` include both `Notes` and `Codes`.
+   2. **CASE 2 :** There are no `Files` stored.
       1. The application would print out a message indicating that no 
       notes have been stored.
 
-### Deleting a `Note`
+### Deleting a `File`
 1. Type the command: `remove n/[NAME]`.
    1. `[NAME]` would represent the name of the note or code 
    stored.
@@ -328,9 +329,9 @@ after opening the application.
 3. Leaving out `n/` or `t/` would cause an error message to be printed.
 > Example :
 >
-> remove note
+> remove name
 
-### Filtering `Notes`
+### Filtering `Files`
 1. Type the command: `filter k/[KEYWORD] t/[TOPIC NAME]`.
    1. `[KEYWORD]` would be `topic` representing filtering by 
    `Topic` or `importance` representing filtering by the 
@@ -358,6 +359,17 @@ after opening the application.
 > Example :
 >
 > filter k/topic
+
+### Exporting `Files`
+1. After a command for `filter` or `topo`, the `Files` that were listed would be stored in the `Buffer`.
+2. These `Files` would be copied to the `export` folder and given that it is supported by the Operating
+System, the `export` folder would automatically be opened.
+   1. If opening the folder is not supported, an invalid command error would be printed, but the `Files`
+   would still be copied into the `export` folder.
+3. The contents of the `Files` copied would be identical to the `File` in the directory where the `.jar`
+file is located.
+4. If `filter` or `topo` is called again, the `export` folder would not be updated until `export` is inputted
+again.
 
 ### Saving data
 1. `Notes` and `Codes` are represented as : 
