@@ -131,7 +131,7 @@ object is instantiated. The `ExportCommand` object extends
 the buffer to the export folder stored at `.\\export` and opens 
 the folder by using the default file explorer of the system.
 > Take note that this does not work for some Operating Systems
-> without a file explorer
+> without a file explorer (e.g. some Linux-based systems)
 
 ## Product scope
 ### Target user profile
@@ -222,7 +222,8 @@ is the file name of the jar file.
 4. The application would then open in the command-line interface.
 5. Note that if the application has initialised correctly, there would be a 
 `data` folder created with some `.txt` files in the same directory as the 
-jar file.
+jar file. There also would be an `export` folder
+created.
 
 #### _Optional : Test Mode_
 1. If the tester does not want their data that they entered to be saved, they 
@@ -269,10 +270,18 @@ after opening the application.
    2. The application would then close in the command-line interface.
 
 ### Adding a `Note`
-1. Type the command: `add n/[NOTE NAME] t/[TOPIC NAME]`.
+1. Type the command: `add n/[NOTE NAME or CODE NAME] t/[TOPIC NAME]`.
    1. `[NOTE NAME]` would represent the name of the note.
       1. The note file is in the form `[NOTE NAME].txt`.
-   2. `[TOPIC NAME]` would represent the `Topic` the note is tagged to.
+      2. The note file has to exist in the same directory as the
+      `.jar` file of this application else it'll print an error 
+      message.
+   2. `[CODE NAME]` would represent the name of the code file.
+      1. The code file is in the form `[CODE NAME].cpp`.
+      2. The code file has to exist in the same directory as the
+      `.jar` file of this application else it'll print an error
+      message.
+   3. `[TOPIC NAME]` would represent the `Topic` the note is tagged to.
       1. **CASE 1 :** The `[TOPIC NAME]` is valid.
       > Example : 
       > 
@@ -303,11 +312,13 @@ after opening the application.
       notes have been stored.
 
 ### Deleting a `Note`
-1. Type the command: `remove n/[NOTE NAME]`.
-   1. `[NOTE NAME]` would represent the name of the note.
-   2. **CASE 1 :** The `Note` with `[NOTE NAME]` exists.
-      1. The `Note` is deleted successfully and a message would be printed.
-   3. **CASE 2 :** The `Note` with `[NOTE NAME]` does not exist.
+1. Type the command: `remove n/[NAME]`.
+   1. `[NAME]` would represent the name of the note or code 
+   stored.
+   2. **CASE 1 :** The `Note` or `Code` with `[NAME]` exists.
+      1. The `Note` or `Code` is deleted successfully and a message would be printed.
+   3. **CASE 2 :** The `Note` or `Code` with `[NAME]` 
+   does not exist.
       1. The application would print out an error message indicating 
       that the note does not exist.
 2. Leaving any fields blank would cause an error message to be printed. 
@@ -320,9 +331,13 @@ after opening the application.
 > remove note
 
 ### Filtering `Notes`
-1. Type the command: `filter k/[KEYWORDS] t/[TOPIC NAME]`.
-   1. `[KEYWORD]` would be `topic` representing filtering by `Topic`
-   2. `[TOPIC NAME]` would represent the `Topic` the note is tagged to.
+1. Type the command: `filter k/[KEYWORD] t/[TOPIC NAME]`.
+   1. `[KEYWORD]` would be `topic` representing filtering by 
+   `Topic` or `importance` representing filtering by the 
+   importance attribute tagged to each `Note` or `Code`
+   added into the application.
+   2. `[TOPIC NAME]` would represent the `Topic` the note is 
+   tagged to.
       1. **CASE 1 :** The `[TOPIC NAME]` is valid.
       > Example :
       >
@@ -333,6 +348,8 @@ after opening the application.
       > filter k/topic t/linkedlist
       >
       > filter k/topic t/SOMETHING
+     3. There is no need for the `[TOPIC NAME]` field if the `[KEYWORD]`
+     used is not `topic`.
 2. Leaving `k/` blank would cause an error message to be printed.
 > Example :
 >
@@ -343,10 +360,10 @@ after opening the application.
 > filter k/topic
 
 ### Saving data
-1. Notes are represented as : 
-`[NOTE NAME]&@[PATH TO NOTE]&@[TOPIC NAME]`
+1. `Notes` and `Codes` are represented as : 
+`[NAME]&@[PATH TO FILE]&@[TOPIC NAME]&@[IMPORTANCE]`
 2. The application checks for invalid `[TOPIC NAME]` only
-3. The application checks that there are three fields separated by `&@`
+3. The application checks that there are at least three fields separated by `&@`
 4. Corrupted lines of files are ignored by the application and removed 
 subsequently
 > Example:
@@ -370,6 +387,8 @@ subsequently
 > TEST2test2.txtSORTING
 >
 > After running application:
-5. If a file is deleted in the middle of the application running somehow the 
+5. If a data file is deleted in the middle of the application running somehow the 
 application would recreate the file in its last state when running `add` or 
 `remove` 
+6. If a file stored in the data file does not exist in the directory,
+it is considered to be a corrupted entry.
