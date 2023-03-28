@@ -7,14 +7,26 @@ import seedu.clialgo.file.Code;
 import seedu.clialgo.storage.FileManager;
 
 public class AddCodeCommand extends AddCommand {
+
     /**
      * Constructor for command to add code file to topic list.
      *
-     * @param name  Name of the code file.
+     * @param name Name of the code file.
      * @param topic The topic that this file is tagged to.
      */
     public AddCodeCommand(String name, String topic) {
         super(name, topic);
+    }
+
+    /**
+     * Constructor for command to add code file to topic list.
+     *
+     * @param name Name of the code file.
+     * @param topic The topic that this file is tagged to.
+     * @param importance The importance of the code file.
+     */
+    public AddCodeCommand(String name, String topic, int importance) {
+        super(name, topic, importance);
     }
 
     /**
@@ -28,7 +40,7 @@ public class AddCodeCommand extends AddCommand {
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         String codePath = name + ".cpp";
-        Code newCode = new Code(name, codePath, topic);
+        Code newCode = new Code(name, codePath, topic, importance);
         boolean isAddedToFile = fileManager.addEntry(name, newCode);
 
         //  Check if code file is successfully added to data file

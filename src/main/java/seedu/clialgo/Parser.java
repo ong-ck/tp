@@ -9,6 +9,7 @@ import seedu.clialgo.command.FilterCommand;
 import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
 import seedu.clialgo.command.InvalidTopicCommand;
+import seedu.clialgo.command.InvalidImportanceCommand;
 import seedu.clialgo.command.ListCommand;
 import seedu.clialgo.command.NameNotFoundCommand;
 import seedu.clialgo.command.RemoveCommand;
@@ -16,9 +17,11 @@ import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.command.TopoCommand;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
+import seedu.clialgo.exceptions.parser.NumberFormatException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Parser implements StringManipulation {
     /** Delimiters use to separate inputs within commands */
@@ -26,6 +29,7 @@ public class Parser implements StringManipulation {
     public static final String COMMAND_MARKER = "c/";
     public static final String TOPIC_MARKER = "t/";
     public static final String KEYWORD_MARKER = "k/";
+    public static final String IMPORTANCE_MARKER = "i/";
     public static final String WHITE_SPACE = " ";
 
     /** List of valid commands */
@@ -59,6 +63,18 @@ public class Parser implements StringManipulation {
     public boolean isValidKeyword(String keyWord) {
         assert keyWord != null;
         return KEYWORDS.contains(keyWord);
+    }
+
+    /**
+     * Checks if the input string is in the valid importance range (1-10).
+     *
+     * @param keyWord The input string.
+     * @return True if the input string is in the valid importance range, False otherwise.
+     */
+    public boolean isValidImportance(String keyWord) throws NumberFormatException {
+        assert keyWord != null;
+        int importance = Integer.parseInt(keyWord);
+        return importance >= 1 && importance <= 10;
     }
 
     /**
@@ -118,11 +134,29 @@ public class Parser implements StringManipulation {
             return new InvalidCommand();
         }
         String cs2040cFileName;
+        String updatedTopicName;
+        String importanceField;
         String topicName;
+        int importance = 5;
+        boolean containsImportance = false;
         try {
-            String cs2040cFileNameWithMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
+            String cs2040cFileNameWithNameMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-            if (topicName == null || !isCorrectMarker(cs2040cFileNameWithMarker, NAME_MARKER)) {
+
+            // check if optional 'i/' is present in topicName substring
+            if (StringManipulation.containsMarker(topicName, IMPORTANCE_MARKER)) {
+                containsImportance = true;
+                updatedTopicName = StringManipulation.getFirstWord(topicName, IMPORTANCE_MARKER);
+                importanceField = StringManipulation.removeFirstWord(topicName, IMPORTANCE_MARKER);
+                if (isValidImportance(importanceField)) {
+                    importance = Integer.parseInt(Objects.requireNonNull(importanceField));
+                    topicName = updatedTopicName;
+                } else {
+                    return new InvalidImportanceCommand(importanceField);
+                }
+            }
+
+            if (topicName == null || !isCorrectMarker(cs2040cFileNameWithNameMarker, NAME_MARKER)) {
                 return new InvalidCommand();
             }
 
@@ -130,13 +164,16 @@ public class Parser implements StringManipulation {
                 return new InvalidTopicCommand(topicName);
             }
 
-            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithMarker, NAME_MARKER);
+            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithNameMarker, NAME_MARKER);
 
-        } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException e) {
+        } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException | NumberFormatException e) {
             return new InvalidCommand();
         }
         assert cs2040cFileName.length() > 0;
         assert topicName.length() > 0;
+        if (containsImportance) {
+            return new AddCommand(cs2040cFileName, topicName, importance);
+        }
         return new AddCommand(cs2040cFileName, topicName);
     }
 
@@ -312,7 +349,6 @@ public class Parser implements StringManipulation {
                 return new InvalidCommand();
             }
             description = StringManipulation.removeFirstWord(fullCommand, WHITE_SPACE);
-
         } catch (NullInputException e) {
             return new InvalidCommand();
         }
