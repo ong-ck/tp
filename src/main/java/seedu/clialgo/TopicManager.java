@@ -5,7 +5,6 @@ import seedu.clialgo.file.CS2040CFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -26,13 +25,13 @@ public class TopicManager {
                     "BINARY_SEARCH_TREE", "UNION_FIND_DS", "HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING")
     );
 
-    /** General HashSet to check for duplicate names. */
-    private HashSet<String> allCS2040CFiles;
+    /** General Hashmap to check for duplicate names. */
+    private HashMap<String, String> allCS2040CFiles;
 
     /** Data Structure to hold all the topics */
     private HashMap<String, Topic> topics;
 
-    private HashSet<String> allCS2040CFilesOutsideTestMode;
+    private HashMap<String, String> allCS2040CFilesOutsideTestMode;
     private HashMap<String, Topic> topicsOutsideTestMode;
     private boolean isTestModeOn;
 
@@ -42,7 +41,7 @@ public class TopicManager {
      * that will be used to store the names of all CS2040CFiles that will be added.
      */
     public TopicManager() {
-        allCS2040CFiles = new HashSet<>();
+        allCS2040CFiles = new HashMap<>();
         topics = new HashMap<>();
         for (String topicName : TOPIC_NAMES) {
             topics.put(topicName, new Topic(topicName));
@@ -50,23 +49,7 @@ public class TopicManager {
         isTestModeOn = false;
     }
 
-    /**
-     * Constructor that initialises a <code>TopicManager</code> object that contains a HashSet of the current names of
-     * the CS2040CFiles present as well as a HashMap of all the topics.
-     *
-     * @param allCS2040CFiles A HashSet of the names of all the CS2040CFiles present.
-     * @param topics A HashMap of all the topics in CLIAlgo.
-     */
-    public TopicManager(HashSet<String> allCS2040CFiles, HashMap<String, Topic> topics) {
-        this.allCS2040CFiles = allCS2040CFiles;
-        this.topics = topics;
-    }
-
-    /**
-     * Checks if test mode is turned on.
-     *
-     * @return True if test mode is turned on, false otherwise.
-     */
+    /** Checks if test mode is turned on. */
     public boolean getIsTestModeOn() {
         return this.isTestModeOn;
     }
@@ -84,15 +67,10 @@ public class TopicManager {
 
     /** Checks if a given CS2040CFile name has been used before. */
     public boolean isRepeatedCS2040CFile(String cs2040CFileName) {
-        return this.allCS2040CFiles.contains(cs2040CFileName);
+        return this.allCS2040CFiles.containsKey(cs2040CFileName);
     }
 
-    /**
-     * Checks if the input string is a valid topic.
-     *
-     * @param topic The input string.
-     * @return True if the input string is a valid topic, false otherwise.
-     */
+    /** Checks if the input string is a valid topic. */
     public boolean isValidTopic(String topic) {
         return TOPIC_NAMES.contains(topic);
     }
@@ -115,6 +93,11 @@ public class TopicManager {
         return TOPIC_NAMES;
     }
 
+    //@@author heejet
+    public String getTopicOfCS2040CFile(String noteName) {
+        return this.allCS2040CFiles.get(noteName);
+    }
+
     /**
      * Gets all CS2040CFiles stored in CLIAlgo and stores it in an ArrayList.
      *
@@ -128,6 +111,7 @@ public class TopicManager {
         }
         return toPrintCS2040CFiles;
     }
+    //@@author
 
     /**
      * Get a list of all CS2040CFiles stored in a specified topic.
@@ -139,12 +123,13 @@ public class TopicManager {
         return topics.get(topic).getAllCS2040CFilesInTopic();
     }
 
+    //@@author heejet
     /**
      * Get a list of all topics stored in CLIAlgo that are grouped by topics.
      *
      * @return An HashMap containing all CS2040CFiles stored in CLIAlgo.
      */
-    public HashMap<String, ArrayList<String>> getAllCS2040CFilesByTopic() {
+    public HashMap<String, ArrayList<String>> getAllCS2040CFilesGroupedByTopic() {
         HashMap<String, ArrayList<String>> toPrintCS2040CFiles = new HashMap<>();
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic currentTopic = entry.getValue();
@@ -156,6 +141,7 @@ public class TopicManager {
         }
         return toPrintCS2040CFiles;
     }
+    //@@author
 
     /**
      * Adds a new CS2040CFile into the specific <code>Topic</code> object
@@ -169,7 +155,7 @@ public class TopicManager {
      */
     public boolean addCS2040CFile(String cs2040cFileName, String topicName, CS2040CFile cs2040cFile) {
         // Check if CS2040CFile name has been taken
-        if (allCS2040CFiles.contains(cs2040cFileName)) {
+        if (isRepeatedCS2040CFile(cs2040cFileName)) {
             return false;
         }
 
@@ -179,7 +165,7 @@ public class TopicManager {
         assert topics.get(topicName).isInsideTopic(cs2040cFileName);
 
         // Keep track of name of CS2040CFile added
-        allCS2040CFiles.add(cs2040cFileName);
+        allCS2040CFiles.put(cs2040cFileName, topicName);
 
         return true;
     }
@@ -191,21 +177,20 @@ public class TopicManager {
      * @param cs2040cFileName Name of the CS2040CFile.
      * @return Returns true if the name of the CS2040CFile is inside any topic, false otherwise
      */
-    public boolean removeCS2040CFile(String cs2040cFileName) {
-        for (String topicName : TOPIC_NAMES) {
-
-            // Check which topic contains that particular file
-            if ((topics.get(topicName).isInsideTopic(cs2040cFileName))) {
-                // Remove name of file from the allFiles set to keep track of names
-                allCS2040CFiles.remove(cs2040cFileName);
-
-                assert !allCS2040CFiles.contains(cs2040cFileName);
-
-                // Remove the file from that particular topic
-                return topics.get(topicName).removeCS2040CFile(cs2040cFileName);
-            }
+    public boolean removeCS2040CFile(String cs2040cFileName, String topicName) {
+        if (!isRepeatedCS2040CFile(cs2040cFileName)) {
+            return false;
         }
-        return false;
+
+        boolean isInsideTopic = topics.get(topicName).isInsideTopic(cs2040cFileName);
+
+        if (!isInsideTopic) {
+            return false;
+        }
+
+        topics.get(topicName).removeCS2040CFile(cs2040cFileName);
+        allCS2040CFiles.remove(cs2040cFileName);
+        return true;
     }
 
     /**
@@ -217,8 +202,11 @@ public class TopicManager {
     public void initialize(HashMap<String, Topic> topics) {
         this.topics = topics;
         for (Topic topic: topics.values()) {
-            if (topic != null) {
-                allCS2040CFiles.addAll(topic.getAllCS2040CFilesInTopic());
+            if (topic == null) {
+                continue;
+            }
+            for (String fileName : topic.getAllCS2040CFilesInTopic()) {
+                allCS2040CFiles.put(fileName, topic.getTopicName());
             }
         }
     }
@@ -230,7 +218,7 @@ public class TopicManager {
     public void testModeStart() {
         this.topicsOutsideTestMode = topics;
         this.allCS2040CFilesOutsideTestMode = allCS2040CFiles;
-        allCS2040CFiles = new HashSet<>();
+        allCS2040CFiles = new HashMap<>();
         topics = new HashMap<>();
         for (String topicName : TOPIC_NAMES) {
             topics.put(topicName, new Topic(topicName));

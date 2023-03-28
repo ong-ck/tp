@@ -34,6 +34,7 @@ public class FilterCommandTest {
         ui = new Ui();
         fileManager = new FileManager(".\\testdata", new ArrayList<>());
         buffer = Buffer.getInstance();
+        outputStream.reset();
     }
 
     /**

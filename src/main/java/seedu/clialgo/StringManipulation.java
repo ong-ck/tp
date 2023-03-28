@@ -3,6 +3,10 @@ package seedu.clialgo;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
 
+//@@author heejet
+/**
+ * An interface used to processed user commands and extract out command names and keywords.
+ */
 public interface StringManipulation {
     /**
      * Extracts out the first word of an input string.
@@ -56,5 +60,20 @@ public interface StringManipulation {
             throw new EmptyFieldException();
         }
         return keyword.trim();
+    }
+
+    /**
+     * This method returns true if a marker is present in a string.
+     *
+     * @param userInput The string containing the marker.
+     * @param marker The marker to be checked.
+     * @return True if the marker is present in the string (userInput).
+     * @throws NullInputException If userInput is empty or null.
+     */
+    static boolean containsMarker(String userInput, String marker) throws NullInputException {
+        if ((userInput == null) || userInput.equals("")) {
+            throw new NullInputException();
+        }
+        return userInput.contains(marker);
     }
 }

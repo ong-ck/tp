@@ -120,7 +120,6 @@ Given below is an example usage of how the filter mechanism behaves at each step
 
 The function for reading the previously saved data is facilitated by the FileManager.
 
-
 ### Export feature
 #### Current implementation
 The export function is supported by a singleton object, `Buffer`. 

@@ -76,4 +76,9 @@ public class Note extends CS2040CFile {
     public int getImportance() {
         return this.importance;
     }
+
+    @Override
+    public void setImportance(int importance) {
+        this.importance = importance;
+    }
 }

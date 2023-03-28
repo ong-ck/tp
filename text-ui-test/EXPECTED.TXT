@@ -83,7 +83,7 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 Here are the filtered CS2040CFiles:
 ======================================================
 [SORTING]
-1. sorting notes
+1. [NOTE] sorting notes
 ======================================================
 ======================================================
 Unsuccessful! MST is not a topic in CS2040C.
