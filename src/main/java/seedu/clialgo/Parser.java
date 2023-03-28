@@ -21,8 +21,6 @@ import seedu.clialgo.exceptions.parser.NullInputException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import java.util.Objects;
-
 //@@author heejet
 /**
  * A <code>Parser</code> object is created to make sense of the commands keyed in by the user. It creates the

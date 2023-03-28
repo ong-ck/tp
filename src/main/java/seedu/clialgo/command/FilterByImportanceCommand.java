@@ -23,7 +23,6 @@ public class FilterByImportanceCommand extends FilterCommand {
         super(keyWord, topic);
     }
 
-    @Override
     public void printAllTopics(TopicManager topicManager, Ui ui) {
         ArrayList<CS2040CFile> cs2040cFiles = topicManager.getAllFilesAsFiles();
         ui.printFilterSuccess();
@@ -36,7 +35,6 @@ public class FilterByImportanceCommand extends FilterCommand {
         ui.printDivider();
     }
 
-    @Override
     public void printSingleTopic(TopicManager topicManager, Ui ui) {
         ArrayList<CS2040CFile> cs2040cFiles = topicManager.getOneTopic(this.topic).getCS2040CFilesAsArray();
         ui.printFilterSuccess();
