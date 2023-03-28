@@ -116,12 +116,22 @@ Given below is an example usage of how the filter mechanism behaves at each step
 
 ### Initializing previous saved data feature
 #### Current implementation
-![](.\\sequence\\diagrams\\initializationFileManager.png "FileManager Initialization Sequence Diagram")
 
-The function for reading the previously saved data is facilitated by the FileManager.
+![](.\\sequence\\diagrams\\InitializationFileManager.png "FileManager Initialization Sequence Diagram")
+
+The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
+creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for 
+in `[TOPIC NAME].txt` in the folder `.\\data`. If the files already exist, they are not created. Instead, 
+the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder` 
+which would then convert these raw data into `CS2040CFile` objects. The `CS2040File` objects are then passed
+into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
+back to the `TopicManager`, completing the initialization process.
 
 ### Export feature
 #### Current implementation
+
+![](.\\sequence\\diagrams\\Export.png "Export Sequence Diagram")
+
 The export function is supported by a singleton object, `Buffer`. 
 Whenever a `filter` or `topo` command is called, the method
 within the `Buffer` object, `updateBuffer` would be called which

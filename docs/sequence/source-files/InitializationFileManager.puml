@@ -8,23 +8,55 @@ participant Scanner as s
 participant FileDecoder as fd
 
 -> fm : initialize()
-fm -> sf ** : createSingleFile(string : String)
-sf -> f : new File()
-f -> f : createNewFile()
-f --> sf : setFile(file : File)
-sf --> fm : newFile : SingleFile
+activate fm
+loop topicNames
+    fm -> sf ** : createSingleFile(string : String)
+    activate sf
+    sf -> f ** : new File()
+    activate f
+    f -> f : createNewFile()
+    f --> sf : setFile(file : File)
+    deactivate f
+    sf --> fm : newFile : SingleFile
+    deactivate sf
+end
 fm -> sf : readFile()
-sf -> s ** : new Scanner()
+activate sf
+sf -> s ** : new Scanner(file : File)
+activate s
+deactivate fm
     loop hasNext()
+    s -> f
+    activate f
+    f --> s
+    deactivate f
     s --> sf : nextLine()
     sf -> fd : decodeString()
-    return isCorrupted
-        alt !isCorrupted
-        fd --> sf : processedCS2040CFile
-        else isCorrupted
-        sf --> sf : overwriteFile()
+    activate fd
+    fd --> sf : isCorrupted
+        alt isCorrupted
+        sf --> sf : isFileCorrupted
+        activate sf
+        deactivate sf
+        else else
+        fd --> sf
+        activate sf
+        deactivate sf
         end
     end
+    destroy s
+    deactivate fd
+    alt isFileCorrupted
+    sf -> sf : overwriteFile()
+    activate sf
+    sf --> sf
+    deactivate sf
 tm -> fm : decodeAll()
+deactivate sf
+activate fm
+fm -> sf : convertFileToTopic()
+activate sf
+return
 return topics : HashMap<String, Topic>
+
 @enduml
