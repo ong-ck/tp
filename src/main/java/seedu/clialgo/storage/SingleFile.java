@@ -16,8 +16,8 @@ public class SingleFile {
     private java.io.File file;
     private final String name;
     private final Ui ui;
-    private final HashMap<String, String> storedRawData = new HashMap<>();
-    private final HashMap<String, CS2040CFile> cs2040cFiles = new HashMap<>();
+    private final HashMap<String, String> storedRawData;
+    private final HashMap<String, CS2040CFile> cs2040cFiles;
     private final FileDecoder decoder;
 
 
@@ -26,6 +26,8 @@ public class SingleFile {
         this.name = name;
         this.ui = new Ui();
         this.decoder = decoder;
+        this.storedRawData  = new HashMap<>();
+        this.cs2040cFiles = new HashMap<>();
     }
 
     /**
@@ -40,12 +42,12 @@ public class SingleFile {
         while (scanner.hasNext()) {
             String rawData = scanner.nextLine();
             boolean isCorrupted = decoder.decodeString(rawData, name);
-            if (!isCorrupted) {
-                storedRawData.put(decoder.decodedName(), rawData);
-                cs2040cFiles.put(decoder.decodedName(), decoder.processedCS2040CFile());
-            } else {
+            if (isCorrupted) {
                 isFileCorrupted = true;
+                break;
             }
+            this.storedRawData.put(decoder.decodedName(), rawData);
+            this.cs2040cFiles.put(decoder.decodedName(), decoder.processedCS2040CFile());
         }
         scanner.close();
         if (isFileCorrupted) {
@@ -65,7 +67,8 @@ public class SingleFile {
      * @param encodedCS2040CFile The <code>CS2040CFile</code> encoded as a <code>String</code>.
      * @throws IOException Throws an exception if the file write fails.
      */
-    public void writeCS2040CFileToFile(String encodedCS2040CFile) throws IOException {
+    public void writeCS2040CFileToFile(String fileName, String encodedCS2040CFile, CS2040CFile cs2040cFile)
+            throws IOException {
         assert encodedCS2040CFile != null : "Empty string";
         try {
             if (!file.exists()) {
@@ -75,6 +78,8 @@ public class SingleFile {
             FileWriter fileWriter = new FileWriter(file, true);
             fileWriter.write(encodedCS2040CFile + "\n");
             fileWriter.close();
+            this.storedRawData.put(fileName, encodedCS2040CFile);
+            this.cs2040cFiles.put(fileName, cs2040cFile);
         } catch (IOException e) {
             throw new IOException();
         }
@@ -105,17 +110,19 @@ public class SingleFile {
      * @throws IOException Throws an exception if the file write fails.
      */
     public void deleteEntry(String name) throws IOException{
-        if (storedRawData.remove(name) != null) {
-            try {
-                if (!file.exists()) {
-                    recreateFile();
-                }
-                overwriteFile();
-            } catch (IOException e) {
-                throw new IOException();
-            }
-            cs2040cFiles.remove(name);
+        if (!this.storedRawData.containsKey(name)) {
+            return;
         }
+        storedRawData.remove(name);
+        try {
+            if (!file.exists()) {
+                recreateFile();
+            }
+            overwriteFile();
+        } catch (IOException e) {
+            throw new IOException();
+        }
+        cs2040cFiles.remove(name);
     }
 
     /**

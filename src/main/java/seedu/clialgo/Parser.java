@@ -17,12 +17,15 @@ import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.command.TopoCommand;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
-import seedu.clialgo.exceptions.parser.NumberFormatException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
+//@@author heejet
+/**
+ * A <code>Parser</code> object is created to make sense of the commands keyed in by the user. It creates the
+ * appropriate <code>Command</code> object to execute the user commands.
+ */
 public class Parser implements StringManipulation {
     /** Delimiters use to separate inputs within commands */
     public static final String NAME_MARKER = "n/";
@@ -134,27 +137,14 @@ public class Parser implements StringManipulation {
             return new InvalidCommand();
         }
         String cs2040cFileName;
-        String updatedTopicName;
-        String importanceField;
         String topicName;
-        int importance = 5;
-        boolean containsImportance = false;
+        int importance;
         try {
-            String cs2040cFileNameWithNameMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
-            topicName = StringManipulation.removeFirstWord(description, TOPIC_MARKER);
-
-            // check if optional 'i/' is present in topicName substring
-            if (StringManipulation.containsMarker(topicName, IMPORTANCE_MARKER)) {
-                containsImportance = true;
-                updatedTopicName = StringManipulation.getFirstWord(topicName, IMPORTANCE_MARKER);
-                importanceField = StringManipulation.removeFirstWord(topicName, IMPORTANCE_MARKER);
-                if (isValidImportance(importanceField)) {
-                    importance = Integer.parseInt(Objects.requireNonNull(importanceField));
-                    topicName = updatedTopicName;
-                } else {
-                    return new InvalidImportanceCommand(importanceField);
-                }
-            }
+            String cs2040cFileNameAndTopicName = StringManipulation.getFirstWord(description, IMPORTANCE_MARKER);
+            String importanceField = StringManipulation.removeFirstWord(description, IMPORTANCE_MARKER);
+            String cs2040cFileNameWithNameMarker = StringManipulation.getFirstWord(cs2040cFileNameAndTopicName,
+                    TOPIC_MARKER);
+            topicName = StringManipulation.removeFirstWord(cs2040cFileNameAndTopicName, TOPIC_MARKER);
 
             if (topicName == null || !isCorrectMarker(cs2040cFileNameWithNameMarker, NAME_MARKER)) {
                 return new InvalidCommand();
@@ -164,17 +154,25 @@ public class Parser implements StringManipulation {
                 return new InvalidTopicCommand(topicName);
             }
 
-            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithNameMarker, NAME_MARKER);
+            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithNameMarker, NAME_MARKER).toLowerCase();
 
+            if (importanceField != null && !isValidImportance(importanceField)) {
+                return new InvalidImportanceCommand(importanceField);
+            }
+
+            if (importanceField == null) {
+                return new AddCommand(cs2040cFileName, topicName);
+            }
+
+            importance = Integer.parseInt(importanceField);
         } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException | NumberFormatException e) {
             return new InvalidCommand();
         }
+
         assert cs2040cFileName.length() > 0;
         assert topicName.length() > 0;
-        if (containsImportance) {
-            return new AddCommand(cs2040cFileName, topicName, importance);
-        }
-        return new AddCommand(cs2040cFileName, topicName);
+
+        return new AddCommand(cs2040cFileName, topicName, importance);
     }
 
     /**
@@ -196,7 +194,7 @@ public class Parser implements StringManipulation {
                 return new InvalidCommand();
             }
 
-            cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER);
+            cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
 
             if (!topics.isRepeatedCS2040CFile(cs2040cFileName)) {
                 return new NameNotFoundCommand();
@@ -271,6 +269,9 @@ public class Parser implements StringManipulation {
         return new ExitTestModeCommand();
     }
 
+    /**
+     * @return A <code>Command</code> object that exports all CS2040CFiles stored in the buffer.
+     */
     private Command prepareExport() {
         return new ExportCommand();
     }
@@ -291,7 +292,7 @@ public class Parser implements StringManipulation {
             if (description.equals("") || !isCorrectMarker(description, NAME_MARKER)) {
                 return new InvalidCommand();
             }
-            noteName = StringManipulation.removeMarker(description, NAME_MARKER);
+            noteName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }

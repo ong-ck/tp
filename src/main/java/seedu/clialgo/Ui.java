@@ -384,18 +384,20 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints an error message indicating that no CS2040CFiles are in CLIAlgo.
-     */
+    /** Prints an error message indicating that no CS2040CFiles are in CLIAlgo. */
     public void printNoCS2040CFilesSaved() {
         printDivider();
         System.out.println("You have no CS2040CFiles at the moment!");
         printDivider();
     }
 
-    /**
-     * Prints an error message indicating the input in the importance field is in the invalid range.
-     */
+    /** Prints a message informing the user that the Buffer is empty */
+    public void printBufferEmpty() {
+        printDivider();
+        System.out.println("You have no CS2040CFiles in the buffer!");
+    }
+
+    /** Prints an error message indicating the input in the importance field is in the invalid range. */
     public void printInvalidImportance(String importance) {
         printDivider();
         System.out.println(importance + " is not in the valid 1-10 range for importance.");

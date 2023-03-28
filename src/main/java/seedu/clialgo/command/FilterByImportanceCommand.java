@@ -5,6 +5,7 @@ import seedu.clialgo.Topic;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.CS2040CFile;
+import seedu.clialgo.file.Code;
 import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
@@ -23,20 +24,23 @@ public class FilterByImportanceCommand extends FilterCommand {
         super(keyWord, topic);
     }
 
-    @Override
     public void printAllTopics(TopicManager topicManager, Ui ui) {
         ArrayList<CS2040CFile> cs2040cFiles = topicManager.getAllFilesAsFiles();
         ui.printFilterSuccess();
         cs2040cFiles.sort(importanceLevel);
         int serialNumber = 1;
         for (CS2040CFile cs2040cFile : cs2040cFiles) {
-            System.out.println(serialNumber + ". " + cs2040cFile.getName() + " [" + cs2040cFile.getImportance() + "]");
+            String cs2040cFileType = "[NOTE] ";
+            if (cs2040cFile instanceof Code) {
+                cs2040cFileType = "[CODE] ";
+            }
+            System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
+                    cs2040cFile.getImportance() + "]");
             ++serialNumber;
         }
         ui.printDivider();
     }
 
-    @Override
     public void printSingleTopic(TopicManager topicManager, Ui ui) {
         ArrayList<CS2040CFile> cs2040cFiles = topicManager.getOneTopic(this.topic).getCS2040CFilesAsArray();
         ui.printFilterSuccess();
@@ -44,7 +48,12 @@ public class FilterByImportanceCommand extends FilterCommand {
         int serialNumber = 1;
         System.out.println("[" + this.topic + "]");
         for (CS2040CFile cs2040cFile : cs2040cFiles) {
-            System.out.println(serialNumber + ". " + cs2040cFile.getName() + " [" + cs2040cFile.getImportance() + "]");
+            String cs2040cFileType = "[NOTE] ";
+            if (cs2040cFile instanceof Code) {
+                cs2040cFileType = "[CODE] ";
+            }
+            System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
+                    cs2040cFile.getImportance() + "]");
             ++serialNumber;
         }
         ui.printDivider();

@@ -142,7 +142,8 @@ class TopicTest {
         topic.getC2040CFiles().put(noteName3, note3);
         topic.getC2040CFiles().put(noteName4, note4);
 
-        ArrayList<String> expectedOutcome = new ArrayList<>(Arrays.asList(noteName2, noteName3, noteName4, noteName1));
+        ArrayList<String> expectedOutcome = new ArrayList<>(Arrays.asList("[NOTE] " + noteName2,
+                "[NOTE] " + noteName3, "[NOTE] " + noteName4, "[NOTE] " + noteName1));
 
         assertEquals(expectedOutcome, topic.getAllCS2040CFilesInTopic());
     }
