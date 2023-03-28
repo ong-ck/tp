@@ -1,6 +1,7 @@
 package seedu.clialgo;
 
 import seedu.clialgo.file.CS2040CFile;
+import seedu.clialgo.file.Code;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,7 +80,13 @@ public class Topic {
         ArrayList<String> topicCS2040CFiles = new ArrayList<>();
         for (Map.Entry<String, CS2040CFile> entry : cs2040cFiles.entrySet()) {
             String cs2040cFileName = entry.getValue().getName();
-            topicCS2040CFiles.add(cs2040cFileName);
+            String cs2040cFileNameWithLabel;
+            if (cs2040cFiles.get(cs2040cFileName) instanceof Code) {
+                cs2040cFileNameWithLabel = String.format("[CODE] " + cs2040cFileName);
+            } else {
+                cs2040cFileNameWithLabel = String.format("[NOTE] " + cs2040cFileName);
+            }
+            topicCS2040CFiles.add(cs2040cFileNameWithLabel);
         }
         return topicCS2040CFiles;
     }

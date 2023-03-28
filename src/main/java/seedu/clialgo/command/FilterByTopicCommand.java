@@ -29,7 +29,7 @@ public class FilterByTopicCommand extends FilterCommand {
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
     public void printAllTopics(TopicManager topicManager, Ui ui) {
-        HashMap<String, ArrayList<String>> cs2040cFiles = topicManager.getAllCS2040CFilesByTopic();
+        HashMap<String, ArrayList<String>> cs2040cFiles = topicManager.getAllCS2040CFilesGroupedByTopic();
         ui.printFilterSuccess();
         for (Map.Entry<String, ArrayList<String>> entry : cs2040cFiles.entrySet()) {
             ArrayList<String> currentTopicCS2040CFiles = entry.getValue();

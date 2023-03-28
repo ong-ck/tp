@@ -129,7 +129,7 @@ public class TopicManager {
      *
      * @return An HashMap containing all CS2040CFiles stored in CLIAlgo.
      */
-    public HashMap<String, ArrayList<String>> getAllCS2040CFilesByTopic() {
+    public HashMap<String, ArrayList<String>> getAllCS2040CFilesGroupedByTopic() {
         HashMap<String, ArrayList<String>> toPrintCS2040CFiles = new HashMap<>();
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic currentTopic = entry.getValue();

@@ -214,7 +214,7 @@ class TopicManagerTest {
         for (int index = 0; index < 10; index++) {
             Note note = new Note("dummy" + index, "dummy", "dummy");
             topicManager.addCS2040CFile("dummy" + index, "LINKED_LIST", note);
-            expectedResult.add("dummy" + index);
+            expectedResult.add("[NOTE] dummy" + index);
         }
         assertEquals(expectedResult, topicManager.getAllCS2040CFiles());
     }
@@ -241,13 +241,13 @@ class TopicManagerTest {
         topicManager.addCS2040CFile(noteName4, topicName2, note4);
 
         ArrayList<String> expectedOutcomeForLinkedList = new ArrayList<>();
-        expectedOutcomeForLinkedList.add("deque");
-        expectedOutcomeForLinkedList.add("queue");
+        expectedOutcomeForLinkedList.add("[NOTE] deque");
+        expectedOutcomeForLinkedList.add("[NOTE] queue");
         assertEquals(expectedOutcomeForLinkedList, topicManager.getCS2040CFilesByTopic("LINKED_LIST"));
 
         ArrayList<String> expectedOutcomeForSorting = new ArrayList<>();
-        expectedOutcomeForSorting.add("bubble sort");
-        expectedOutcomeForSorting.add("merge sort");
+        expectedOutcomeForSorting.add("[NOTE] bubble sort");
+        expectedOutcomeForSorting.add("[NOTE] merge sort");
         assertEquals(expectedOutcomeForSorting, topicManager.getCS2040CFilesByTopic("SORTING"));
     }
 
@@ -267,8 +267,8 @@ class TopicManagerTest {
         Note note2 = new Note(noteName2, "dummy2", topicName);
         topicManager.addCS2040CFile(noteName2, topicName, note2);
 
-        expectedAllNotes.add(noteName2);
-        expectedAllNotes.add(noteName1);
+        expectedAllNotes.add("[NOTE] " + noteName2);
+        expectedAllNotes.add("[NOTE] " + noteName1);
 
         TopicManager topicManagerTest = new TopicManager();
         topicManagerTest.initialize(topicManager.getTopics());

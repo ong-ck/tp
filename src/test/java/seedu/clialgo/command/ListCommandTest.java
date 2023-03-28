@@ -82,13 +82,13 @@ public class ListCommandTest {
             expectedOutput = "======================================================\r\n" +
                     "Here are all your CS2040CFiles:\r\n" +
                     "======================================================\r\n" +
-                    "1. test\r\n" +
+                    "1. [NOTE] test\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "Here are all your CS2040CFiles:\n" +
                     "======================================================\n" +
-                    "1. test\n" +
+                    "1. [NOTE] test\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, outputStream.toString());
@@ -115,15 +115,15 @@ public class ListCommandTest {
             expectedOutput = "======================================================\r\n" +
                     "Here are all your CS2040CFiles:\r\n" +
                     "======================================================\r\n" +
-                    "1. test2\r\n" +
-                    "2. test1\r\n" +
+                    "1. [NOTE] test2\r\n" +
+                    "2. [NOTE] test1\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "Here are all your CS2040CFiles:\n" +
                     "======================================================\n" +
-                    "1. test2\n" +
-                    "2. test1\n" +
+                    "1. [NOTE] test2\n" +
+                    "2. [NOTE] test1\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, outputStream.toString());
