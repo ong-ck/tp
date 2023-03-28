@@ -20,7 +20,6 @@ import java.util.Objects;
  * <code>topicName</code>.txt.
  */
 public class FileManager {
-
     private final FileEncoder encoder;
     private final FileDecoder decoder;
     private final String initialPath;
@@ -123,7 +122,7 @@ public class FileManager {
      * @param cs2040cFile The <code>CS2040CFile</code> being added.
      * @return true if executed successfully and false if execution failed.
      */
-    public boolean addEntry (String name, CS2040CFile cs2040cFile) {
+    public boolean addEntry(String name, CS2040CFile cs2040cFile) {
         SingleFile singleFile = topicRawData.get(cs2040cFile.getTopic());
         try {
             String encodedCS2040CFile = encoder.encodeCS2040CFile(name , cs2040cFile);
@@ -159,7 +158,7 @@ public class FileManager {
      *
      * @param topicName The name of the .txt file being emptied.
      */
-    public void deleteAllEntry (String topicName) {
+    public void deleteAllEntry(String topicName) {
         topicRawData.get(topicName).clearFile();
     }
 
