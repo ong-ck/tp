@@ -29,6 +29,87 @@ Example of usage:
 
 `todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
+### Listing CS2040CFiles `list`
+List all CS2040CFiles (in any order) present in `CLIAlgo`.
+
+#### Format:
+```
+list
+```
+
+- Command is **case-sensitive**.
+- Command should only contain one word.
+- Not following the syntax strictly would result in an invalid command message.
+
+#### Example of usage:
+Input:
+```
+list
+```
+Output:
+```
+======================================================
+Here are all your CS2040CFiles:
+======================================================
+1. priority queue notes
+2. bubble sort note
+3. linked list code
+======================================================
+```
+
+### Filtering CS2040CFiles `filter`
+Filters the CS2040CFiles by a user-specified keyword and prints a list of CS2040CFiles filtered based
+on the keyword.
+
+#### Format:
+```
+filter k/KEYWORD [t/TOPIC_NAME]
+```
+- Only specific `KEYWORD` can be used to filter.
+  - Valid `KEYWORD` includes: `topic`, `importance`.
+- `KEYWORD` and `TOPIC_NAME` are **case-sensitive**.
+- `TOPIC_NAME` is an optional input and leaving it blank would result in `CLIAlgo` printing all 
+CS2040CFiles.
+- Not following the syntax strictly would result in an invalid command message.
+
+#### Example of usage:
+
+Filtering without providing `TOPIC_NAME`.
+
+Input:
+```
+filter k/topic
+```
+Output:
+```
+======================================================
+Here are the filtered CS2040CFiles:
+======================================================
+[SORTING]
+1. bubble sort
+[LINKED_LIST]
+1. linked list code
+2. linked list note
+======================================================
+```
+
+Filtering according to `TOPIC_NAME`.
+
+Input:
+```
+filter k/topic t/LINKED_LIST
+```
+Output:
+```
+======================================================
+Here are the filtered CS2040CFiles:
+======================================================
+[LINKED_LIST]
+1. linked list code
+2. linked list note
+======================================================
+```
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 

@@ -20,9 +20,9 @@ public class Buffer {
     private final Ui ui;
 
     private Buffer() {
-        files = new ArrayList<>();
-        ui = new Ui();
-        pathToBuffer = new File(".\\export");
+        this.files = new ArrayList<>();
+        this.ui = new Ui();
+        this.pathToBuffer = new File(".\\export");
         createFolder();
     }
 
@@ -34,9 +34,15 @@ public class Buffer {
     }
 
     private void createFolder() {
-        if (!pathToBuffer.mkdir()) {
+        try {
+            Files.createDirectories(pathToBuffer.toPath());
+        } catch (IOException e) {
             ui.printFolderCreateError();
         }
+    }
+
+    public boolean isEmpty() {
+        return this.files.isEmpty();
     }
 
     public void deleteFiles() {
@@ -48,15 +54,15 @@ public class Buffer {
     }
 
     public void updateBuffer(ArrayList<CS2040CFile> filteredFiles) {
-        files.clear();
+        this.files.clear();
         deleteFiles();
-        files.addAll(filteredFiles);
+        this.files.addAll(filteredFiles);
     }
 
     public void addFilesToBuffer() {
-        for (CS2040CFile file: files) {
+        for (CS2040CFile file: this.files) {
             Path source = Paths.get(".\\" + file.getPath());
-            Path target = Paths.get(pathToBuffer + "\\" + file.getPath());
+            Path target = Paths.get(this.pathToBuffer + "\\" + file.getPath());
             try {
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
@@ -70,9 +76,9 @@ public class Buffer {
         addFilesToBuffer();
         Desktop desktop = Desktop.getDesktop();
         try {
-            desktop.open(pathToBuffer);
+            desktop.open(this.pathToBuffer);
         } catch (IllegalArgumentException | IOException e) {
-            ui.printInvalidCommand();
+            this.ui.printInvalidCommand();
         }
     }
 }
