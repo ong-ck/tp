@@ -1,11 +1,11 @@
 package seedu.clialgo.file;
 
 public abstract class CS2040CFile {
+    public static final int DEFAULT_IMPORTANCE = 5;
     protected String name;
     protected String path;
     protected String topic;
     protected int importance;
-    public static final int DEFAULT_IMPORTANCE = 5;
 
     /**
      * Constructor for <code>CS2040CFile</code> object (with user-defined importance).

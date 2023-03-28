@@ -13,11 +13,11 @@ import seedu.clialgo.Ui;
  * The <code>AddCommand</code> objects represents the user command to add new CS2040CFiles into CLIAlgo.
  */
 public class AddCommand extends Command {
+    public static final int DEFAULT_IMPORTANCE = 5;
     protected final String name;
     protected final Ui ui;
     protected final String topic;
     protected final int importance;
-    public static final int DEFAULT_IMPORTANCE = 5;
 
     /**
      * Constructor for command to add CS2040CFile to topic list.
