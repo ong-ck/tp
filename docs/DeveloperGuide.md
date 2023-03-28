@@ -114,6 +114,13 @@ Given below is an example usage of how the filter mechanism behaves at each step
 > the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
 > a new `FilterCommand` using its constructor.
 
+### Initializing previous saved data feature
+#### Current implementation
+![](.\\sequence\\diagrams\\initializationFileManager.png "FileManager Initialization Sequence Diagram")
+
+The function for reading the previously saved data is facilitated by the FileManager.
+
+
 ### Export feature
 #### Current implementation
 The export function is supported by a singleton object, `Buffer`. 

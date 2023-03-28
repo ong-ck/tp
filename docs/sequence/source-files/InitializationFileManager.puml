@@ -1,0 +1,30 @@
+@startuml
+
+participant TopicManager as tm
+participant FileManager as fm
+participant SingleFile as sf
+participant File as f
+participant Scanner as s
+participant FileDecoder as fd
+
+-> fm : initialize()
+fm -> sf ** : createSingleFile(string : String)
+sf -> f : new File()
+f -> f : createNewFile()
+f --> sf : setFile(file : File)
+sf --> fm : newFile : SingleFile
+fm -> sf : readFile()
+sf -> s ** : new Scanner()
+    loop hasNext()
+    s --> sf : nextLine()
+    sf -> fd : decodeString()
+    return isCorrupted
+        alt !isCorrupted
+        fd --> sf : processedCS2040CFile
+        else isCorrupted
+        sf --> sf : overwriteFile()
+        end
+    end
+tm -> fm : decodeAll()
+return topics : HashMap<String, Topic>
+@enduml
