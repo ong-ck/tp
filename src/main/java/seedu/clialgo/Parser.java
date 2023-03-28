@@ -31,6 +31,7 @@ public class Parser implements StringManipulation {
     public static final String KEYWORD_MARKER = "k/";
     public static final String IMPORTANCE_MARKER = "i/";
     public static final String WHITE_SPACE = " ";
+    public static final int DEFAULT_IMPORTANCE = 5;
 
     /** List of valid commands */
     private static final ArrayList<String> COMMANDS = new ArrayList<>(
@@ -137,7 +138,7 @@ public class Parser implements StringManipulation {
         String updatedTopicName;
         String importanceField;
         String topicName;
-        int importance = 5;
+        int importance = DEFAULT_IMPORTANCE;
         boolean containsImportance = false;
         try {
             String cs2040cFileNameWithNameMarker = StringManipulation.getFirstWord(description, TOPIC_MARKER);
