@@ -1,23 +1,14 @@
 @startuml
 
-actor User as u
-participant CLIAlgo as cli
-participant Parser as p
 participant HelpCommand as hc
 participant Ui as ui
 
-u -> cli : `help c/COMMAND_TYPE`
-activate cli
-cli -> p : prepareHelpCommand()
-activate p
-p -> hc **
 activate hc
-hc --> p
+ -> hc **
+<-- hc
 deactivate hc
-p --> cli
-deactivate p
-cli -> hc : execute()
-activate hc
+ -> hc : execute()
+ activate hc
 activate ui
     alt null
     hc -> ui : ui.printHelpPage()
@@ -42,7 +33,6 @@ activate ui
     ui --> hc
    end
 deactivate ui
-hc --> cli
-cli --> u
+<-- hc
 
 @enduml
