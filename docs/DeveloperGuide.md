@@ -129,27 +129,22 @@ range.
 
 Given below is an example of how the `Parser` works when it is issued a remove command.
 
-> **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the
-> user entered a valid command, the `Parser` will process the full command using the `StringManipulation` interface and
-> prepare the appropriate `FilterCommand` object.
+> **Step 1**: The user enters a command. The full command is read in by the `Ui`. `CLIAlgo` invokes the `parse()`
+> method from the `Parser`.
 
-> **Step 2**: If the `topic` field is left empty, the `Parser` will instantiate a new `FilterCommand` object, setting
-> the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
-> a new `FilterCommand` using `topic` in its constructor.
+> **Step 2**: The `parse()` method extracts out the command keyword provided by the user. It then calls the 
+> `prepareCommand()` method.
 
-> **Step 3**: The `FilterCommand` is executed. Based on the `keyWord` used to instantiate it, `FilterCommand` invokes
-> the constructor of its subclass (`FilterByTopicCommand` or `FilterByImportanceCommand`) and calls the `execute()`
-> method.
+> **Step 3**: The `parepareCommand()` identifies the correct `Command` object to prepare based on the command keyword.
+> Since the command keyword provided is `remove`, `prepareCommand()` calls `prepareRemoveCommand()`.
 
-> **Step 4**: If `topic` is `null`, `FilterByTopicCommand` self-invokes `printAllTopics()` method which in turns calls
-> `getAllCS2040CFilesGroupedByTopic()` from the `TopicManager`. If `topic` is not `null` and is valid, it self-invokes
-> `printSingleTopic()` method which in turns calls `getCS2040CFilesByTopic` from the `TopicManager`.
+> **Step 4**: If the `NAME` field of the command is null or not labelled using the correct marker, 
+> `prepareRemoveCommand()` returns an `InvalidCommand` object. If the name of the `CS2040CFile` provided is not
+> found, it returns a `NameNotFoundCommand`. If the `NAME` input field is valid, a `RemoveCommand` object is returned.
 
-> **Step 5**: If `getAllCS2040CFilesGroupedByTopic()` is called, the TopicManager calls the
-> `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFiles`
-> to the user.
+The following sequence diagram shows how the Parser work.
 
-
+![](.\\sequence\\diagrams\\Parser.png "Parser Sequence Diagram")
 
 ### Filter by keyword feature
 
@@ -192,7 +187,7 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
 > `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFiles`
 > to the user.
 
-The folloing sequence diagram shows how the filter by topic operation work.
+The following sequence diagram shows how the filter by topic operation work.
 
 ![](.\\sequence\\diagrams\\FilterByTopic.png "Filter by Topic Sequence Diagram")
 

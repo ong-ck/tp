@@ -1,0 +1,66 @@
+@startuml
+CLIAlgo -> Ui : getUserInput()
+activate Ui
+return fullCommand : String
+
+CLIAlgo -> Parser : parse(fullCommand : String)
+activate Parser
+    Parser -> StringManipulation : getFirstWord(fullCommand : String)
+    activate StringManipulation
+    return command : String
+
+    alt !isValidCommand(command)
+        Parser -> InvalidCommand **
+        activate InvalidCommand
+        return
+    else else
+        Parser -> StringManipulation : removeFirstWord(fullCommand : String)
+        activate StringManipulation
+        return description : String
+
+        Parser -> Parser : prepareCommand(command : String, description : String, topics : TopicManager)
+        activate Parser
+            alt command == "help"
+            else command == "add"
+            else command == "remove"
+                Parser -> Parser : PrepareRemoveCommand (description : String, topics : TopicManager)
+                activate Parser
+                    alt description == null
+                        Parser -> InvalidCommand **
+                        activate InvalidCommand
+                        return
+                    else !isCorrectMarker(description)
+                        Parser -> InvalidCommand **
+                        activate InvalidCommand
+                        return
+                    else
+                        Parser -> StringManipulation : RemoveMarker(description : String)
+                        activate StringManipulation
+                        return cs2040cFileName
+
+                        Parser -> TopicManager : isRepeatedCS2040CFile(cs2040cFileName : String)
+                        activate TopicManager
+                        return isRepeatedCS2040CFile : boolean
+
+                        alt !iisRepeatedCS2040CFile
+                            Parser -> NameNotFoundCommand **
+                            activate NameNotFoundCommand
+                            return NameNotFoundCommand
+                        else
+                            Parser -> RemoveCommand **
+                            activate RemoveCommand
+                            return RemoveCommand
+                        end
+                    end
+                return
+            else command == "filter"
+            else command == "list"
+            else command == "export"
+            else command == "topo"
+            else
+            end
+        return
+    end
+return
+
+@enduml
