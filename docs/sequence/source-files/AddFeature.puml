@@ -1,66 +1,12 @@
 @startuml
 
-'actor User as u
-'participant CLIAlgo as cli
-'participant UI as ui
-'participant TopicManager as tm
-'participant FileManager as fm
-''participant Parser as p
-'participant AddCommand as a
-'participant InvalidTopicCommand as it
-'participant AddNoteCommand as an
-'participant AddCodeCommand as ac
-'participant InvalidCommand as ic
-
-'u -> cli **
-'activate cli
-'
-'cli -> ui **
-'activate ui
-'ui --> cli
-'deactivate ui
-'
-'cli -> tm **
-'activate tm
-'tm --> cli
-'deactivate tm
-'
-'cli -> fm **
-'activate fm
-'fm --> cli
-'deactivate fm
-'
-'
-'cli -> p **
-'activate p
-'p --> cli
-'deactivate p
-'
-'cli -> ui : getUserInput()
-'activate ui
-'ui --> cli
-'deactivate ui
-'
-'
-'cli -> p : parse(add n/name t/topic)
-'activate p
-'p -> a **
-'activate a
-'a --> p
-'deactivate a
-'p --> cli
-'deactivate p
-
-'participant CLIAlgo as cli
 participant UI as ui
-'participant TopicManager as tm
-'participant FileManager as fm
-'participant Parser as p
+
 participant AddCommand as a
 participant InvalidTopicCommand as it
 participant AddNoteCommand as an
 participant AddCodeCommand as ac
-'participant InvalidCommand as ic
+
 
 -> a : execute()
 activate a
@@ -75,6 +21,7 @@ activate a
         activate it
         it --> a
         deactivate it
+        destroy it
         <-- a : return
     end
     opt is CS2040CFile is repeated
@@ -91,8 +38,6 @@ activate a
         activate an
         an -> fm : addEntry()
         activate fm
-'        activate an
-'        an -> fm : addEntry()
         opt CS2040CFile is not added to file manager
             fm --> an
             deactivate fm
@@ -109,10 +54,13 @@ activate a
             ic --> an
             deactivate ic
 
+
             an -> ic : execute()
             activate ic
             ic --> a
             deactivate ic
+            destroy ic
+            destroy an
         end
     else CS2040CFile type is cpp
         a -> ac **
@@ -127,7 +75,7 @@ activate a
             fm --> ac
             deactivate fm
         end
-'        participant TopicManager as tm
+
         ac -> tm : addCS2040CFile
         activate tm
         tm --> ac
@@ -142,11 +90,12 @@ activate a
             activate ic
             ic --> a
             deactivate ic
+            destroy ic
+            destroy ac
         end
     end
 
 a -> ui : printAddSuccess()
-
-
+destroy a
 
 @enduml
