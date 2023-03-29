@@ -251,6 +251,7 @@ are deleted before the `Files` are copied into `./export`
 - If a `File` stored in the `Buffer` does not exist for some reason 
 (i.e. if the user deleted the `File`) an error message would be
 printed for each `File` not found.
+- **Removing a file using the remove command empties the buffer!**
 
 Example of usage:
 ```

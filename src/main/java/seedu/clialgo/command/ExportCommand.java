@@ -20,6 +20,7 @@ public class ExportCommand extends Command {
             new EmptyBufferCommand().execute(topicManager, ui, fileManager, buffer);
             return;
         }
+        ui.printExportSuccess();
         buffer.exportBuffer();
     }
     /**
