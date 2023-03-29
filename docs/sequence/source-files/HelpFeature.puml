@@ -3,10 +3,6 @@
 participant HelpCommand as hc
 participant Ui as ui
 
-activate hc
- -> hc **
-<-- hc
-deactivate hc
  -> hc : execute()
  activate hc
 activate ui
