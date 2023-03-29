@@ -134,6 +134,41 @@ Here are the filtered CS2040CFiles:
 ======================================================
 ```
 
+### Topologically Sort CS2040CFiles `topo` 
+Prints a topologically sorted list of CS2040CFiles before a user-specified note name.
+
+#### Format:
+```
+topo n/NOTE_NAME
+```
+
+- The topological sort follows the following order (latest to earliest): "MINIMUM_SPANNING_TREE", 
+"SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES", "BINARY_SEARCH_TREE", "UNION_FIND_DS", 
+"HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING".
+- Only `NOTE_NAME` of notes that are **saved locally and added to CLIAlgo** can be used.
+  - If no notes are saved locally and added to CLIAlgo, a feedback message will be printed instead.
+- Command and `NOTE_NAME` are **case-sensitive**.
+- Not following the syntax strictly would result in an invalid command message.
+
+#### Example of usage:
+Input:
+```
+topo n/bst
+```
+Output:
+```
+======================================================
+Here are the topologically sorted CS2040CFiles:
+======================================================
+[BINARY_SEARCH_TREE]
+1. [NOTE] bst
+[LINKED_LIST]
+1. [NOTE] queue
+[SORTING]
+1. [NOTE] sorting
+======================================================
+```
+
 ### Viewing help `help`
 Shows a message explaining the format of supported commands in the application and their functions. If a valid command 
 is entered after ‘help’ using the `c/` delimiter, it shows the format and function of that specific command instead.
@@ -194,6 +229,12 @@ The following sequence diagram shows how the help operation works:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Action | Format, Examples                                                                                  |
+|--------|---------------------------------------------------------------------------------------------------|
+| help   | `help [c/COMMAND_TYPE]`<br/>e.g., `help`, `help c/add`                                            |
+| add    | `add n/NAME t/TOPIC`<br/>e.g., `add n/bst t/BST`                                                  |
+| remove | `remove n/NAME`<br/>e.g., `remove n/bst`                                                          |
+| list   | `list`                                                                                             |
+| filter | `filter k/KEYWORD [t/TOPIC_NAME]`<br/>e.g., `filter k/topic`, <br/>`filter k/topic t/LINKED_LIST` |
+| topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
+| exit   | `exit`                                                                                            |

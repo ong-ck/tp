@@ -54,7 +54,7 @@ public class TopoCommand extends Command {
      * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
-    public ArrayList<CS2040CFile> printTopoSortedCS2040CFiles(TopicManager topicManager, Ui ui) {
+    private ArrayList<CS2040CFile> printTopoSortedCS2040CFiles(TopicManager topicManager, Ui ui) {
         topoSortedCS2040CFiles = topicManager.getAllCS2040CFilesBeforeTopic(name);
         ui.printTopoSortSuccess();
         ArrayList<CS2040CFile> files = new ArrayList<>();
