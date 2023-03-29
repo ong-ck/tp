@@ -391,6 +391,12 @@ public class Ui {
         printDivider();
     }
 
+    public void printFileMissing() {
+        printDivider();
+        System.out.println("File missing from root directory.");
+        System.out.println("Did the file get deleted?");
+    }
+
     /** Prints a message informing the user that the Buffer is empty */
     public void printBufferEmpty() {
         printDivider();

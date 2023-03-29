@@ -57,7 +57,7 @@ function of the application.
 
 The `FileManager` component
 - can save each `Topic`'s data as an individual `.txt` file
-- can interpret `Note` objects as a `String` and store it into its 
+- can interpret `Note` and `Code` objects as a `String` and store it into its 
 corresponding `Topic`'s  `.txt`
 - updates the corresponding `Topic`'s  `.txt` whenever a `add` or
 `remove` command is called by the user
@@ -114,6 +114,40 @@ Given below is an example usage of how the filter mechanism behaves at each step
 > the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
 > a new `FilterCommand` using its constructor.
 
+### Initializing previous saved data feature
+#### Current implementation
+
+![](.\\sequence\\diagrams\\InitializationFileManager.png "FileManager Initialization Sequence Diagram")
+
+The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
+creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for 
+in `TOPIC_NAME.txt` in the folder `.\\data`. If the files already exist, they are not created. Instead, 
+the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder` 
+which would then convert these raw data into `CS2040CFile` objects. The `CS2040File` objects are then passed
+into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
+back to the `TopicManager`, completing the initialization process.
+
+### Export feature
+#### Current implementation
+
+![](.\\sequence\\diagrams\\Export.png "Export Sequence Diagram")
+
+The export function is supported by a singleton object, `Buffer`. 
+Whenever a `filter` or `topo` command is called, the method
+within the `Buffer` object, `updateBuffer` would be called which
+replaces the `CS2040CFile` objects stored within the buffer with the
+output `CS2040CFile` objects being output from the `filter` 
+command.
+
+When an `export` command is then called, a `ExportCommand` 
+object is instantiated. The `ExportCommand` object extends
+`Command` with an overridden `execute()` method. When the 
+`execute()` method is called, the `exportBuffer` method in the 
+`Buffer` is called. This copies all the `CS2040CFile` stored in
+the buffer to the export folder stored at `.\\export` and opens 
+the folder by using the default file explorer of the system.
+> Take note that this does not work for some Operating Systems
+> without a file explorer (e.g. some Linux-based systems)
 
 ## Product scope
 ### Target user profile
@@ -199,12 +233,13 @@ Below are guidelines for testers to test the application
 2. Right click in the folder where the jar file is located and open the 
 command-line interface. 
 _**Example:**_ `` Open in Terminal``
-3. Type: ``java -jar .\[NAME OF JAR FILE]`` where ``[NAME OF JAR FILE]``
+3. Type: ``java -jar .\NAME_OF_JAR_FILE`` where ``NAME_OF_JAR_FILE``
 is the file name of the jar file.
 4. The application would then open in the command-line interface.
 5. Note that if the application has initialised correctly, there would be a 
 `data` folder created with some `.txt` files in the same directory as the 
-jar file.
+jar file. There also would be an `export` folder
+created.
 
 #### _Optional : Test Mode_
 1. If the tester does not want their data that they entered to be saved, they 
@@ -251,45 +286,56 @@ after opening the application.
    2. The application would then close in the command-line interface.
 
 ### Adding a `Note`
-1. Type the command: `add n/[NOTE NAME] t/[TOPIC NAME]`.
-   1. `[NOTE NAME]` would represent the name of the note.
-      1. The note file is in the form `[NOTE NAME].txt`.
-   2. `[TOPIC NAME]` would represent the `Topic` the note is tagged to.
-      1. **CASE 1 :** The `[TOPIC NAME]` is valid.
+1. Type the command: `add n/NOTE_NAME t/TOPIC_NAME` or `add n/CODE_NAME t/TOPIC_NAME`.
+   1. `NOTE_NAME` would represent the name of the note.
+      1. The note file is in the form `NOTE_NAME.txt`.
+      2. The note file has to exist in the same directory as the
+      `.jar` file of this application else it'll print an error 
+      message.
+   2. `CODE_NAME` would represent the name of the code file.
+      1. The code file is in the form `CODE_NAME.cpp`.
+      2. The code file has to exist in the same directory as the
+      `.jar` file of this application else it'll print an error
+      message.
+   3. `TOPIC_NAME` would represent the `Topic` the note is tagged to.
+      1. **CASE 1 :** The `TOPIC_NAME` is valid.
       > Example : 
       > 
-      > add n/note name t/LINKED_LIST
-      2. **CASE 2 :** The `[TOPIC NAME]` is invalid.
+      > add n/name t/LINKED_LIST
+      2. **CASE 2 :** The `TOPIC_NAME` is invalid.
       > Example :
       >
-      > add n/note name t/linkedlist
+      > add n/name t/linkedlist
       > 
-      > add n/note name t/SOMETHING
+      > add n/name t/SOMETHING
 2. Leaving any fields blank would cause an error message to be printed.
 > Example :
 >
 > add n/ t/
 > 
-> add n/note t/
+> add n/name t/
 3. Leaving out `n/` or `t/` would cause an error message to be printed.
 > Example :
 >
-> add note LINKED_LIST
+> add name LINKED_LIST
 
-### Listing all `Notes`
+### Listing all `Files`
 1. Type the command: `list`.
-   1. **CASE 1 :** There are some `Notes` stored.
-      1. The application would print out all the `Notes` stored.
-   2. **CASE 2 :** There are no `Notes` stored.
+   1. **CASE 1 :** There are some `Files` stored.
+      1. The application would print out all the `Files` stored.
+      2. Note that `Files` include both `Notes` and `Codes`.
+   2. **CASE 2 :** There are no `Files` stored.
       1. The application would print out a message indicating that no 
       notes have been stored.
 
-### Deleting a `Note`
-1. Type the command: `remove n/[NOTE NAME]`.
-   1. `[NOTE NAME]` would represent the name of the note.
-   2. **CASE 1 :** The `Note` with `[NOTE NAME]` exists.
-      1. The `Note` is deleted successfully and a message would be printed.
-   3. **CASE 2 :** The `Note` with `[NOTE NAME]` does not exist.
+### Deleting a `File`
+1. Type the command: `remove n/FILE_NAME`.
+   1. `NAME` would represent the name of the note or code 
+   stored.
+   2. **CASE 1 :** The `Note` or `Code` with `FILE_NAME` exists.
+      1. The `Note` or `Code` is deleted successfully and a message would be printed.
+   3. **CASE 2 :** The `Note` or `Code` with `FILE_NAME` 
+   does not exist.
       1. The application would print out an error message indicating 
       that the note does not exist.
 2. Leaving any fields blank would cause an error message to be printed. 
@@ -299,17 +345,22 @@ after opening the application.
 3. Leaving out `n/` or `t/` would cause an error message to be printed.
 > Example :
 >
-> remove note
+> remove name
 
-### Filtering `Notes`
-1. Type the command: `filter k/[KEYWORDS] t/[TOPIC NAME]`.
-   1. `[KEYWORD]` would be `topic` representing filtering by `Topic`
-   2. `[TOPIC NAME]` would represent the `Topic` the note is tagged to.
-      1. **CASE 1 :** The `[TOPIC NAME]` is valid.
+### Filtering `Files`
+1. Type the command: `filter k/KEYWORD [t/TOPIC_NAME]`.
+   1. `KEYWORD` would be `topic` representing filtering by 
+   `Topic` or `importance` representing filtering by the 
+   importance attribute tagged to each `Note` or `Code`
+   added into the application.
+   2. `TOPIC_NAME` would represent the `Topic` the note is 
+   tagged to or `Importance` level.
+   3. `TOPIC_NAME` is an optional field
+      1. **CASE 1 :** The `TOPIC_NAME` is valid.
       > Example :
       >
       > filter k/topic t/LINKED_LIST
-      2. **CASE 2 :** The `[TOPIC NAME]` is invalid.
+      2. **CASE 2 :** The `TOPIC_NAME` is invalid.
       > Example :
       >
       > filter k/topic t/linkedlist
@@ -324,11 +375,22 @@ after opening the application.
 >
 > filter k/topic
 
+### Exporting `Files`
+1. After a command for `filter` or `topo`, the `Files` that were listed would be stored in the `Buffer`.
+2. These `Files` would be copied to the `export` folder and given that it is supported by the Operating
+System, the `export` folder would automatically be opened.
+   1. If opening the folder is not supported, an invalid command error would be printed, but the `Files`
+   would still be copied into the `export` folder.
+3. The contents of the `Files` copied would be identical to the `File` in the directory where the `.jar`
+file is located.
+4. If `filter` or `topo` is called again, the `export` folder would not be updated until `export` is inputted
+again.
+
 ### Saving data
-1. Notes are represented as : 
-`[NOTE NAME]&@[PATH TO NOTE]&@[TOPIC NAME]`
-2. The application checks for invalid `[TOPIC NAME]` only
-3. The application checks that there are three fields separated by `&@`
+1. `Notes` and `Codes` are represented as : 
+`NAME&@PATH_TO_FILE&@TOPIC_NAME&@IMPORTANCE`
+2. The application checks for invalid `TOPIC_NAME` only
+3. The application checks that there are at least three fields separated by `&@`
 4. Corrupted lines of files are ignored by the application and removed 
 subsequently
 > Example:
@@ -352,6 +414,8 @@ subsequently
 > TEST2test2.txtSORTING
 >
 > After running application:
-5. If a file is deleted in the middle of the application running somehow the 
+5. If a data file is deleted in the middle of the application running somehow the 
 application would recreate the file in its last state when running `add` or 
 `remove` 
+6. If a file stored in the data file does not exist in the directory,
+it is considered to be a corrupted entry.

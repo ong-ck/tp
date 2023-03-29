@@ -1,0 +1,33 @@
+@startuml
+
+actor User as u
+participant CLIAlgo as cli
+participant Parser as p
+participant FilterByTopicCommand as fc
+participant TopicManager as tm
+participant Buffer as b
+
+u -> cli : `filter k/topic`
+activate cli
+cli -> p : prepareFilterCommand()
+deactivate cli
+activate p
+p --> fc **
+activate fc
+deactivate p
+fc -> tm
+activate tm
+tm --> fc
+deactivate tm
+fc -> b : files : ArrayList<CS2040CFile>
+activate b
+destroy fc
+b -> b : updateBuffer(files : ArrayList<CS2040CFile>)
+activate b
+b --> b
+deactivate b
+u -> b : `export`
+b --> u
+
+
+@enduml

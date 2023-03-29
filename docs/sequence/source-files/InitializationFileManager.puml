@@ -1,0 +1,63 @@
+@startuml
+
+participant TopicManager as tm
+participant FileManager as fm
+participant SingleFile as sf
+participant File as f
+participant Scanner as s
+participant FileDecoder as fd
+
+-> fm : initialize()
+activate fm
+loop topicNames
+    fm -> sf ** : createSingleFile(string : String)
+    activate sf
+    sf -> f ** : new File()
+    activate f
+    f -> f : createNewFile()
+    f --> sf : setFile(file : File)
+    deactivate f
+    sf --> fm : newFile : SingleFile
+    deactivate sf
+end
+fm -> sf : readFile()
+activate sf
+sf -> s ** : new Scanner(file : File)
+activate s
+deactivate fm
+    loop hasNext()
+    s -> f
+    activate f
+    f --> s
+    deactivate f
+    s --> sf : nextLine()
+    sf -> fd : decodeString()
+    activate fd
+    fd --> sf : isCorrupted
+        alt isCorrupted
+        sf --> sf : isFileCorrupted
+        deactivate sf
+        else else
+        fd --> sf
+        activate sf
+        sf-->sf
+        deactivate sf
+        end
+    end
+    destroy s
+    deactivate sf
+    deactivate fd
+    opt isFileCorrupted
+    sf -> sf : overwriteFile()
+    activate sf
+    sf --> sf
+    deactivate sf
+    end
+tm -> fm : decodeAll()
+activate fm
+fm -> sf : convertFileToTopic()
+activate sf
+return
+return topics : HashMap<String, Topic>
+
+@enduml
