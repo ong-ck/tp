@@ -37,6 +37,8 @@ public class HelpCommand extends Command {
             return;
         case "filter":
             ui.printHelpFilter();
+        case "topo":
+            ui.printHelpTopoSort();
             return;
         case "list":
             ui.printHelpList();

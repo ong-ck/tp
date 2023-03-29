@@ -1,0 +1,48 @@
+@startuml
+
+actor User as u
+participant CLIAlgo as cli
+participant Parser as p
+participant HelpCommand as hc
+participant Ui as ui
+
+u -> cli : `help c/COMMAND_TYPE`
+activate cli
+cli -> p : prepareHelpCommand()
+activate p
+p -> hc **
+activate hc
+hc --> p
+deactivate hc
+p --> cli
+deactivate p
+cli -> hc : execute()
+activate hc
+activate ui
+    alt null
+    hc -> ui : ui.printHelpPage()
+    ui --> hc
+    else add
+    hc -> ui : ui.printHelpAdd()
+    ui --> hc
+    else remove
+    hc -> ui : ui.printHelpRemove()
+    ui --> hc
+    else filter
+    hc -> ui : ui.printHelpFilter()
+    ui --> hc
+    else topo
+    hc -> ui : ui.printHelpTopo()
+    ui --> hc
+    else list
+    hc -> ui : ui.printHelpList()
+    ui --> hc
+    else exit
+    hc -> ui : ui.printHelpExit()
+    ui --> hc
+   end
+deactivate ui
+hc --> cli
+cli --> u
+
+@enduml
