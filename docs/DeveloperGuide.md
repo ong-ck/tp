@@ -114,6 +114,7 @@ Given below is an example usage of how the filter mechanism behaves at each step
 > the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
 > a new `FilterCommand` using its constructor.
 
+
 ### Initializing previous saved data feature
 #### Current implementation
 
@@ -148,6 +149,45 @@ the buffer to the export folder stored at `.\\export` and opens
 the folder by using the default file explorer of the system.
 > Take note that this does not work for some Operating Systems
 > without a file explorer (e.g. some Linux-based systems)
+=======
+### Add CS2040CFile feature
+#### Current Implementation
+
+![](.\\sequence\\diagrams\\AddFeature.png "AddFeature Sequence Diagram")
+
+The add mechanism is facilitated by "AddCommand". It extends the abstract `Command` with an overridden `execute()` 
+method. Within the `execute()` function, the path of the CS2040CFile, as specified by its name, is checked using 
+`checkFileType`, to determine if the CS2040CFile exists within the directory of the program. The topic of the 
+CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C, 
+and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile`, to ensure that no other files
+of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the 
+CS2040CFile.
+
+> **Step 1**: The user launches the application for the first time. Objects `CLIAlgo`, `Ui`, `Parser` , `TopicManager`,
+> `FileManager` are created.
+
+> **Step 2**: The user enters the add command, which invokes the `getUserInput()` method of `Ui` object and returns the 
+> user input to the `CLIAlgo` object. After which, it invokes the `parse()` method of the `Parser` object and determines
+> that it is an add command and creates a new `AddCommand` object.
+
+> **Step 3**: The `CLIAlgo` object than invokes the `execute()` method of the `AddCommand` object.
+
+> **Step 4**: The name of CS2040CFile is checked, to see if a file of that name exists within the directory. If it is 
+> not, the `printFileDoesNotExist()` method of the `Ui` object is invoked
+
+> **Step 5**: The topic name of the CS2040CFile is checked, to see if it belongs to one of the topics in CS2040C. If it
+> is, a new `InvalidTopicCommand` object is created and executed.
+
+> **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the 
+> `Topic Manager` object, which means that there are duplicates.
+
+> **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. If the file to be added
+> is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked. Otherwise, if the
+> file to be added is a `.cpp` file, a new `AddCodeCommand` object would then be created its `execute()` method invoked.
+
+> **Step 8**: The respective `execute()` methods of either the `AddCodeCommand` object or the `AddNoteCommand` object,
+> will then handle adding of the file into the `File Mnanager` object by calling the `addEntry()` method and adding the
+>  file into the `Topic Manager` object using the  `addCS2040CFile` method.
 
 ## Product scope
 ### Target user profile
@@ -318,6 +358,17 @@ after opening the application.
 > Example :
 >
 > add name LINKED_LIST
+=======
+> add note LINKED_LIST
+4. Optional to add an importance tag to the CS2040CFile, which is a number from 1 to 10
+> Example : 
+> 
+> add n/name t/LINKED_LIST i/5
+>5. Adding an importance number no within the range of 1 to 10 would cause and error message to be printed.
+> Example:
+>
+> add n/name t/LINKED_LIST i/100
+
 
 ### Listing all `Files`
 1. Type the command: `list`.

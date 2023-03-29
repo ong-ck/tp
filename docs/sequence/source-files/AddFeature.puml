@@ -1,0 +1,117 @@
+@startuml
+
+actor User as u
+participant CLIAlgo as cli
+participant UI as ui
+participant TopicManager as tm
+participant FileManager as fm
+participant Parser as p
+participant AddCommand as a
+participant InvalidTopicCommand as it
+participant AddNoteCommand as an
+participant AddCodeCommand as ac
+participant InvalidCommand as ic
+
+u -> cli **
+activate cli
+
+cli -> ui **
+activate ui
+ui --> cli
+deactivate ui
+
+cli -> tm **
+activate tm
+tm --> cli
+deactivate tm
+
+cli -> fm **
+activate fm
+fm --> cli
+deactivate fm
+
+
+cli -> p **
+activate p
+p --> cli
+deactivate p
+
+cli -> ui : getUserInput()
+activate ui
+ui --> cli
+deactivate ui
+
+
+cli -> p : parse(add n/name t/topic)
+activate p
+p -> a **
+activate a
+a --> p
+deactivate a
+p --> cli
+deactivate p
+
+cli -> a : execute()
+activate a
+    opt CS2040CFile does not exist in directory
+        a -> ui : printFileDoesNotExist()
+        a --> cli : return
+    end
+    opt topicName is not valid
+        a -> it **
+        activate it
+        it --> a
+        deactivate it
+        a --> cli : return
+    end
+    opt is CS2040CFile is repeated
+        a -> ui : printCS2040CFileExists()
+        a --> cli : return
+    end
+    alt CS2040CFile type is txt
+        a -> an **
+        activate an
+        an --> a
+        deactivate an
+        a -> an : execute()
+        activate an
+        an -> fm : addEntry()
+        opt CS2040CFile is not added to file manager
+            fm --> an
+        end
+        an -> tm : addCS2040CFile
+        opt CS2040CFile is not added to topic manager
+            an -> ic **
+            activate ic
+            ic --> an
+            deactivate ic
+            an -> ic : execute()
+            activate ic
+        end
+    else CS2040CFile type is cpp
+        a -> ac **
+        activate ac
+        ac --> a
+        deactivate ac
+        a -> ac : execute()
+        activate ac
+        ac -> fm : addEntry()
+        opt CS2040CFile is not added to file manager
+            fm --> ac
+        end
+        ac -> tm : addCS2040CFile
+        opt CS2040CFile is not added to topic manager
+            an -> ic **
+            activate ic
+            ic --> ac
+            deactivate ic
+            ac -> ic : execute()
+            activate ic
+        end
+    end
+
+a -> ui : printAddSuccess()
+
+
+
+@enduml
