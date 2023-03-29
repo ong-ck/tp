@@ -135,6 +135,12 @@ Here are the filtered CS2040CFiles:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Action | Format, Examples                                                                                  |
+|--------|---------------------------------------------------------------------------------------------------|
+| help   | `help [c/COMMAND_TYPE]`<br/>e.g., `help`, `help c/add`                                            |
+| add    | `add n/NAME t/TOPIC`<br/>e.g., `add n/bst t/BST`                                                  |
+| remove | `remove n/NAME`<br/>e.g., `remove n/bst`                                                          |
+| list   | `list`                                                                                             |
+| filter | `filter k/KEYWORD [t/TOPIC_NAME]`<br/>e.g., `filter k/topic`, <br/>`filter k/topic t/LINKED_LIST` |
+| topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
+| exit   | `exit`                                                                                            |
