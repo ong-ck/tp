@@ -76,7 +76,7 @@ public class Topic {
      *
      * @return An ArrayList containing all the CS2040CFiles stored in this topic.
      */
-    public ArrayList<String> getAllCS2040CFilesInTopic() {
+    public ArrayList<String> getAllCS2040CFilesInTopicToPrint() {
         ArrayList<String> topicCS2040CFiles = new ArrayList<>();
         for (Map.Entry<String, CS2040CFile> entry : cs2040cFiles.entrySet()) {
             String cs2040cFileName = entry.getValue().getName();
