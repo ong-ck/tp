@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TopicManagerTest {
+    //@@author nicholas132000
     /**
      * Checks the <code>removeNote</code> method of the <code>TopicManager</code> class.
      * Instantiates a topicManager object which contains a topic object which contains a test note.
@@ -66,7 +67,7 @@ class TopicManagerTest {
         topicManager.addCS2040CFile(noteName, topicName, note);
         assertTrue(topicManager.isRepeatedCS2040CFile(noteName));
     }
-
+    //@@author
 
     /**
      * Checks the <code>addFile</code> method of the <code>TopicManager</code> class.
@@ -139,6 +140,7 @@ class TopicManagerTest {
         }
     }
 
+    //@@author nicholas132000
     @Test
     void isEmpty_allNotesIsNotEmpty_expectFalse() {
         TopicManager topicManager = new TopicManager();
@@ -275,4 +277,5 @@ class TopicManagerTest {
 
         assertEquals(expectedAllNotes, topicManagerTest.getAllCS2040CFiles());
     }
+    //@@author
 }
