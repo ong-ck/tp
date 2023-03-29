@@ -389,7 +389,7 @@ public class Ui {
         System.out.println("Please add the file into the folder and try again.");
         printDivider();
     }
-    
+
     /**
      * Prints the header statement when toposort is successful.
      */
