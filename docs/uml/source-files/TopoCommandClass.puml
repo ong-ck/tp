@@ -24,6 +24,9 @@ class Ui {
 class TopicManager {
 }
 
+class Buffer {
+}
+
 class FileManager {
 }
 
@@ -33,5 +36,6 @@ Command ..> TopicManager
 TopoCommand ..> TopicManager
 Command ..> FileManager
 TopoCommand ..> FileManager
+TopoCommand ..> Buffer
 Command <|-- TopoCommand
 @enduml

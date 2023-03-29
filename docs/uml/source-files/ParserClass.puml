@@ -24,6 +24,9 @@ class Ui {
 class TopicManager {
 }
 
+class Buffer {
+}
+
 class CLIAlgo {
 +CLIAlgo(): void
 -run(): void
@@ -39,6 +42,7 @@ Parser ..|> StringManipulation
 Parser ..> Ui
 Parser ..> TopicManager
 Parser ..> command
+Parser ..> Buffer
 
 
 @enduml

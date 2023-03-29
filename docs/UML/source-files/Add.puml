@@ -35,6 +35,9 @@ class TopicManager {
 class Ui {
 }
 
+class Buffer {
+}
+
 class FileManager {
 }
 
@@ -45,6 +48,7 @@ AddCommand <|-- AddNoteCommand
 TopicManager .. AddCommand: gets reference from <
 Ui .. AddCommand: gets reference from <
 FileManager .. AddCommand: gets reference from <
+Buffer .. AddCommand: gets reference from <
 
 @enduml
 
