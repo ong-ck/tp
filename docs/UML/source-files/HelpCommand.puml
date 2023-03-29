@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class Command {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+}
+
+class HelpCommand {
+    -command: String
+    +getCommand(): String
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+}
+
+class TopicManager {
+}
+
+class Ui {
+}
+
+class FileManager {
+}
+
+class Buffer {
+}
+
+Command <|-- HelpCommand
+
+
+TopicManager .. HelpCommand
+Ui .. HelpCommand
+FileManager .. HelpCommand
+Buffer .. HelpCommand
+@enduml
+
+
+
+@enduml

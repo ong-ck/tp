@@ -76,6 +76,17 @@ corresponding `Topic`'s  `.txt`
 - reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
+#### Help
+**API** : `HelpCommand.java`
+
+Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
+
+![](.\\uml\\diagrams\\HelpCommand.png "AddCommand Class Diagram")
+
+The `HelpCommand` component
+- Provides the user with a list of valid commands in `CLIAlgo`.
+- Provides the user with the correct format for each command in `CLIAlgo`.
+
 #### Add
 **API** : `AddCommand.java`
 
@@ -87,6 +98,22 @@ The `AddCommand` component
 - can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
 - can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
 - can ensure that there are no files with repeated names such that all names of files added are unique
+
+#### Filter
+**API** : `FilterCommand.java`
+
+Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
+the user's specified `keyWord`.
+
+![](.\\uml\\diagrams\\FilterClass.png "FilterCommand Class Diagram")
+
+The `FilterCommand` component
+- instantiate a subclass based on the `keyWord` used in its constructor.
+   - If the `keyWord` is `topic` it creates and instance of its subclass `FilterByTopicCommand` and invoke the
+     `execute()` method.
+   - If the `keyWord` is `importance` it creates and instance of its subclass `FilterByImportanceCommand` and invoke the
+     `execute()` method.
+- The respective subclasses will print the `CS2040CFiles` filtered based on the `keyWord` provided.
 
 ### TopoSort
 **API** : `TopoCommand.java`
@@ -100,23 +127,6 @@ The `TopoCommand` component
 - can topologically sort `CS2040CFile` objects in a specific `topic` order
 - can print out the list of topologically sorted `CS2040CFile` objects
 - can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
-
-
-#### Filter
-**API** : `FilterCommand.java`
-
-Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
-the user's specified `keyWord`.
-
-![](.\\uml\\diagrams\\FilterClass.png "FilterCommand Class Diagram")
-
-The `FilterCommand` component
-- instantiate a subclass based on the `keyWord` used in its constructor.
-  - If the `keyWord` is `topic` it creates and instance of its subclass `FilterByTopicCommand` and invoke the 
-`execute()` method.
-  - If the `keyWord` is `importance` it creates and instance of its subclass `FilterByImportanceCommand` and invoke the
-`execute()` method.
-- The respective subclasses will print the `CS2040CFiles` filtered based on the `keyWord` provided.
 
 ## Implementation
 
@@ -154,11 +164,28 @@ The following sequence diagram shows how the Parser work.
 
 ![](.\\sequence\\diagrams\\Parser.png "Parser Sequence Diagram")
 
+### Initializing previous saved data feature
+
+#### Current implementation
+
+The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
+creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for
+in `TOPIC_NAME.txt` in the folder `.\\data`. If the files already exist, they are not created. Instead,
+the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder`
+which would then convert these raw data into `CS2040CFile` objects. The `CS2040File` objects are then passed
+into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
+back to the `TopicManager`, completing the initialization process.
+
+The following sequence diagram shows how previously saved files are loaded into `CLIAlgo`.
+
+![](.\\sequence\\diagrams\\InitializationFileManager.png "FileManager Initialization Sequence Diagram")
+
+
 ### Help Feature
 #### Current Implementation
 The following sequence diagram shows how the help operation works:
 
-![HelpFeature.png](sequence%2Fdiagrams%2FHelpFeature.png)
+![](.\\sequence\\diagrams\\HelpFeature.png "HelpCommand Sequence Diagram")
 
 ### Add CS2040CFile feature
 #### Current Implementation
@@ -246,47 +273,6 @@ The following **_Sequence Diagram_** shows how the filter by topic operation wor
 
 ![](.\\sequence\\diagrams\\FilterByTopic.png "Filter by Topic Sequence Diagram")
 
-
-### Initializing previous saved data feature
-
-#### Current implementation
-
-The following sequence diagram shows how previously saved files are loaded into `CLIAlgo`.
-
-![](.\\sequence\\diagrams\\InitializationFileManager.png "FileManager Initialization Sequence Diagram")
-
-The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
-creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for 
-in `TOPIC_NAME.txt` in the folder `.\\data`. If the files already exist, they are not created. Instead, 
-the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder` 
-which would then convert these raw data into `CS2040CFile` objects. The `CS2040File` objects are then passed
-into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
-back to the `TopicManager`, completing the initialization process.
-
-### Export feature
-#### Current implementation
-
-The following sequence diagram shows how the export feature works.
-
-![](.\\sequence\\diagrams\\Export.png "Export Sequence Diagram")
-
-The export function is supported by a singleton object, `Buffer`. 
-Whenever a `filter` or `topo` command is called, the method
-within the `Buffer` object, `updateBuffer` would be called which
-replaces the `CS2040CFile` objects stored within the buffer with the
-output `CS2040CFile` objects being output from the `filter` 
-command.
-
-When an `export` command is then called, a `ExportCommand` 
-object is instantiated. The `ExportCommand` object extends
-`Command` with an overridden `execute()` method. When the 
-`execute()` method is called, the `exportBuffer` method in the 
-`Buffer` is called. This copies all the `CS2040CFile` stored in
-the buffer to the export folder stored at `.\\export` and opens 
-the folder by using the default file explorer of the system.
-> Take note that this does not work for some Operating Systems
-> without a file explorer (e.g. some Linux-based systems)
-
 ### TopoSort feature
 #### Current implementation
 
@@ -322,6 +308,30 @@ Given below is an example usage scenario and how the TopoSort mechanism behaves 
 The following sequence diagram shows how the `TopoCommand` works.
 
 ![](.\\sequence\\diagrams\\TopoSort.png "TopoSort Sequence Diagram")
+
+### Export feature
+#### Current implementation
+
+The export function is supported by a singleton object, `Buffer`.
+Whenever a `filter` or `topo` command is called, the method
+within the `Buffer` object, `updateBuffer` would be called which
+replaces the `CS2040CFile` objects stored within the buffer with the
+output `CS2040CFile` objects being output from the `filter`
+command.
+
+When an `export` command is then called, a `ExportCommand`
+object is instantiated. The `ExportCommand` object extends
+`Command` with an overridden `execute()` method. When the
+`execute()` method is called, the `exportBuffer` method in the
+`Buffer` is called. This copies all the `CS2040CFile` stored in
+the buffer to the export folder stored at `.\\export` and opens
+the folder by using the default file explorer of the system.
+> Take note that this does not work for some Operating Systems
+> without a file explorer (e.g. some Linux-based systems)
+
+The following sequence diagram shows how the export feature works.
+
+![](.\\sequence\\diagrams\\Export.png "Export Sequence Diagram")
 
 ## Product scope
 ### Target user profile
