@@ -29,7 +29,7 @@ in the correct sequence and connects them with each other during runtime.
 
 #### How the architecture components interact with each other
 
-The Sequence Diagram below shows a high level overview of how the components interact with each other
+The **_Sequence Diagram_** below shows a high level overview of how the components interact with each other
 
 ![](.\\sequence\\diagrams\\Architecture.png "Filter by Topic Sequence Diagram")
 
@@ -152,9 +152,50 @@ The following sequence diagram shows how the help operation works:
 
 ![HelpFeature.png](sequence%2Fdiagrams%2FHelpFeature.png)
 
-### Filter by keyword feature
-
+### Add CS2040CFile feature
 #### Current Implementation
+
+The add mechanism is facilitated by "AddCommand". It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` function, the path of the CS2040CFile, as specified by its name, is checked using
+`checkFileType`, to determine if the CS2040CFile exists within the directory of the program. The topic of the
+CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C,
+and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile`, to ensure that no other files
+of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the
+CS2040CFile.
+
+> **Step 1**: The user launches the application for the first time. Objects `CLIAlgo`, `Ui`, `Parser` , `TopicManager`,
+> `FileManager` are created.
+
+> **Step 2**: The user enters the add command, which invokes the `getUserInput()` method of `Ui` object and returns the
+> user input to the `CLIAlgo` object. After which, it invokes the `parse()` method of the `Parser` object and determines
+> that it is an add command and creates a new `AddCommand` object.
+
+> **Step 3**: The `CLIAlgo` object than invokes the `execute()` method of the `AddCommand` object.
+
+> **Step 4**: The name of CS2040CFile is checked, to see if a file of that name exists within the directory. If it is
+> not, the `printFileDoesNotExist()` method of the `Ui` object is invoked
+
+> **Step 5**: The topic name of the CS2040CFile is checked, to see if it belongs to one of the topics in CS2040C. If it
+> is, a new `InvalidTopicCommand` object is created and executed.
+
+> **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the
+> `Topic Manager` object, which means that there are duplicates.
+
+> **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. If the file to be added
+> is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked. Otherwise, if the
+> file to be added is a `.cpp` file, a new `AddCodeCommand` object would then be created its `execute()` method invoked.
+
+> **Step 8**: The respective `execute()` methods of either the `AddCodeCommand` object or the `AddNoteCommand` object,
+> will then handle adding of the file into the `File Mnanager` object by calling the `addEntry()` method and adding the
+>  file into the `Topic Manager` object using the  `addCS2040CFile` method.
+
+The **_Sequence Diagram_** below shows the `AddCommand` works.
+
+![](.\\sequence\\diagrams\\AddFeature.png "AddFeature Sequence Diagram")
+
+### Filter by keyword feature
+#### Current Implementation
+
 The filter mechanism is facilitated by `FilterCommand`. It extends `Command` with an overridden `execute()` method. The
 `FilterCommand` has 2 subclass `FilterByTopicCommand` and `FilterByImportanceCommand`. Each with their own overriden 
 `execute()` method. During execution, the `FilterCommand` decides which of its subclass to instantiate and execute 
@@ -193,7 +234,7 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
 > `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFiles`
 > to the user.
 
-The following sequence diagram shows how the filter by topic operation work.
+The following **_Sequence Diagram_** shows how the filter by topic operation work.
 
 ![](.\\sequence\\diagrams\\FilterByTopic.png "Filter by Topic Sequence Diagram")
 
@@ -215,7 +256,6 @@ into a `HashMap` which represents the topic these `CS2040CFile` objects belong t
 back to the `TopicManager`, completing the initialization process.
 
 ### Export feature
-
 #### Current implementation
 
 The following sequence diagram shows how the export feature works.
@@ -238,50 +278,9 @@ the buffer to the export folder stored at `.\\export` and opens
 the folder by using the default file explorer of the system.
 > Take note that this does not work for some Operating Systems
 > without a file explorer (e.g. some Linux-based systems)
-=======
-### Add CS2040CFile feature
-#### Current Implementation
-
-![](.\\sequence\\diagrams\\AddFeature.png "AddFeature Sequence Diagram")
-
-The add mechanism is facilitated by "AddCommand". It extends the abstract `Command` with an overridden `execute()` 
-method. Within the `execute()` function, the path of the CS2040CFile, as specified by its name, is checked using 
-`checkFileType`, to determine if the CS2040CFile exists within the directory of the program. The topic of the 
-CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C, 
-and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile`, to ensure that no other files
-of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the 
-CS2040CFile.
-
-> **Step 1**: The user launches the application for the first time. Objects `CLIAlgo`, `Ui`, `Parser` , `TopicManager`,
-> `FileManager` are created.
-
-> **Step 2**: The user enters the add command, which invokes the `getUserInput()` method of `Ui` object and returns the 
-> user input to the `CLIAlgo` object. After which, it invokes the `parse()` method of the `Parser` object and determines
-> that it is an add command and creates a new `AddCommand` object.
-
-> **Step 3**: The `CLIAlgo` object than invokes the `execute()` method of the `AddCommand` object.
-
-> **Step 4**: The name of CS2040CFile is checked, to see if a file of that name exists within the directory. If it is 
-> not, the `printFileDoesNotExist()` method of the `Ui` object is invoked
-
-> **Step 5**: The topic name of the CS2040CFile is checked, to see if it belongs to one of the topics in CS2040C. If it
-> is, a new `InvalidTopicCommand` object is created and executed.
-
-> **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the 
-> `Topic Manager` object, which means that there are duplicates.
-
-> **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. If the file to be added
-> is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked. Otherwise, if the
-> file to be added is a `.cpp` file, a new `AddCodeCommand` object would then be created its `execute()` method invoked.
-
-> **Step 8**: The respective `execute()` methods of either the `AddCodeCommand` object or the `AddNoteCommand` object,
-> will then handle adding of the file into the `File Mnanager` object by calling the `addEntry()` method and adding the
->  file into the `Topic Manager` object using the  `addCS2040CFile` method.
 
 ### TopoSort feature
 #### Current implementation
-
-![](.\\sequence\\diagrams\\TopoSort.png "TopoSort Sequence Diagram")
 
 The TopoSort mechanism is facilitated by `TopoCommand`. It extends `Command` with an 
 overridden `execute()` method, and stores internally the name of the note file and 
@@ -311,6 +310,10 @@ Given below is an example usage scenario and how the TopoSort mechanism behaves 
 > Step 4. For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic` will be executed to print all
 > note names present in the specific topic. As the topics are saved in topological order, the printed note names
 > will be printed in the correct order.
+
+The following sequence diagram shows how the `TopoCommand` works.
+
+![](.\\sequence\\diagrams\\TopoSort.png "TopoSort Sequence Diagram")
 
 ## Product scope
 ### Target user profile
