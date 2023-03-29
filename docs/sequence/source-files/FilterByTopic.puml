@@ -1,55 +1,69 @@
 @startuml
+activate FilterCommand
 
-Parser -> FilterCommand ** 
-loop topicNames
-    fm -> sf ** : createSingleFile(string : String)
-    activate sf
-    sf -> f ** : new File()
-    activate f
-    f -> f : createNewFile()
-    f --> sf : setFile(file : File)
-    deactivate f
-    sf --> fm : newFile : SingleFile
-    deactivate sf
-end
-fm -> sf : readFile()
-activate sf
-sf -> s ** : new Scanner(file : File)
-activate s
-deactivate fm
-    loop hasNext()
-    s -> f
-    activate f
-    f --> s
-    deactivate f
-    s --> sf : nextLine()
-    sf -> fd : decodeString()
-    activate fd
-    fd --> sf : isCorrupted
-        alt isCorrupted
-        sf --> sf : isFileCorrupted
-        deactivate sf
-        else else
-        fd --> sf
-        activate sf
-        sf-->sf
-        deactivate sf
-        end
+-> FilterCommand : execute()
+    opt topicManger.isEmpty()
+        FilterCommand -> Ui : printFilterEmpty()
+        activate Ui
+        return
+        FilterCommand -> Buffer : updateBuffer(filteredFiles : ArrayList<CS2040CFile>)
+        activate Buffer
+        return
     end
-    destroy s
-    deactivate sf
-    deactivate fd
-    opt isFileCorrupted
-    sf -> sf : overwriteFile()
-    activate sf
-    sf --> sf
-    deactivate sf
-    end
-tm -> fm : decodeAll()
-activate fm
-fm -> sf : convertFileToTopic()
-activate sf
-return
-return topics : HashMap<String, Topic>
+    alt keyWord.equals("topic")
+        FilterCommand -> FilterByTopicCommand **
+        activate FilterByTopicCommand
+        return
 
+        FilterCommand -> FilterByTopicCommand : execute()
+        activate FilterByTopicCommand
+            alt topic == null
+                FilterByTopicCommand -> FilterByTopicCommand : printAllTopics();
+                activate FilterByTopicCommand
+                    FilterByTopicCommand -> TopicManager : getAllCS2040CFilesGroupedByTopic()
+                    activate TopicManager
+                        loop topics.entrySet()
+                            TopicManager -> Topic : getAllCS2040CFilesInTopic()
+                            activate Topic
+                            return topicCS2040CFiles : ArrayList<String>
+                        end
+                    return toPrintCS2040CFiles : HashMap<String, ArrayList<String>>
+
+                    FilterByTopicCommand -> Ui : printFilterSuccess()
+                    activate Ui
+                    return
+
+                    loop cs2040cFiles.entrySet()
+                        FilterByTopicCommand -> System.out : println()
+                        activate System.out
+                        return
+                    end
+                return
+            else else
+                FilterByTopicCommand -> FilterByTopicCommand : printSingleTopic
+                activate FilterByTopicCommand
+                    FilterByTopicCommand -> TopicManager : getAllCS2040CFilesByTopic
+                    activate TopicManager
+                        TopicManager -> Topic : getAllCS2040CFilesInTopic
+                        activate Topic
+                        return topicCS2040CFiles : ArrayList<String>
+                    return ArrayList<String>
+
+                    FilterByTopicCommand -> Ui : printFilterSuccess()
+                    activate Ui
+                    return
+
+                    loop cs2040cFiles
+                        FilterByTopicCommand -> System.out : println()
+                        activate System.out
+                        return
+                    end
+                return
+            end
+        return
+        destroy FilterByTopicCommand
+    else keyWord.equals("importance")
+    else else
+    end
+    deactivate FilterCommand
 @enduml

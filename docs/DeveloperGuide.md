@@ -136,7 +136,7 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
 
 The folloing sequence diagram shows how the filter by topic operation work.
 
-
+![](.\\sequence\\diagrams\\FilterByTopic.png "Filter by Topic Sequence Diagram")
 
 ### Initializing previous saved data feature
 

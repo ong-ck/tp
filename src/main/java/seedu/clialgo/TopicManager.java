@@ -107,7 +107,7 @@ public class TopicManager {
         ArrayList<String> toPrintCS2040CFiles = new ArrayList<>();
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic currentTopic = entry.getValue();
-            toPrintCS2040CFiles.addAll(currentTopic.getAllCS2040CFilesInTopic());
+        toPrintCS2040CFiles.addAll(currentTopic.getAllCS2040CFilesInTopic());
         }
         return toPrintCS2040CFiles;
     }
