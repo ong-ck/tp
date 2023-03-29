@@ -1,5 +1,6 @@
 @startuml
 skinparam classAttributeIconSize 0
+hide circle
 class Parser {
 -COMMANDS: Arraylist<String>
 -KEYWORDS: Arraylist<String>
@@ -23,6 +24,9 @@ class Ui {
 class TopicManager {
 }
 
+class Buffer {
+}
+
 class CLIAlgo {
 +CLIAlgo(): void
 -run(): void
@@ -38,6 +42,7 @@ Parser ..|> StringManipulation
 Parser ..> Ui
 Parser ..> TopicManager
 Parser ..> command
+Parser ..> Buffer
 
-hide circle
+
 @enduml

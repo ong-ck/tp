@@ -107,7 +107,7 @@ public class TopicManager {
         ArrayList<String> toPrintCS2040CFiles = new ArrayList<>();
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic currentTopic = entry.getValue();
-            toPrintCS2040CFiles.addAll(currentTopic.getAllCS2040CFilesInTopic());
+            toPrintCS2040CFiles.addAll(currentTopic.getAllCS2040CFilesInTopicToPrint());
         }
         return toPrintCS2040CFiles;
     }
@@ -119,8 +119,8 @@ public class TopicManager {
      * @param topic The specified topic.
      * @return An ArrayList containing names of all the CS2040CFiles stored in the specified topic.
      */
-    public ArrayList<String> getCS2040CFilesByTopic(String topic) {
-        return topics.get(topic).getAllCS2040CFilesInTopic();
+    public ArrayList<String> getCS2040CFilesByTopicToPrint(String topic) {
+        return topics.get(topic).getAllCS2040CFilesInTopicToPrint();
     }
 
     //@@author heejet
@@ -129,14 +129,14 @@ public class TopicManager {
      *
      * @return An HashMap containing all CS2040CFiles stored in CLIAlgo.
      */
-    public HashMap<String, ArrayList<String>> getAllCS2040CFilesGroupedByTopic() {
+    public HashMap<String, ArrayList<String>> getAllCS2040CFilesGroupedByTopicToPrint() {
         HashMap<String, ArrayList<String>> toPrintCS2040CFiles = new HashMap<>();
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic currentTopic = entry.getValue();
             if (currentTopic.isEmpty()) {
                 continue;
             }
-            toPrintCS2040CFiles.put(entry.getKey(), currentTopic.getAllCS2040CFilesInTopic());
+            toPrintCS2040CFiles.put(entry.getKey(), currentTopic.getAllCS2040CFilesInTopicToPrint());
             assert toPrintCS2040CFiles.containsKey(currentTopic.getTopicName());
         }
         return toPrintCS2040CFiles;
@@ -201,12 +201,13 @@ public class TopicManager {
      */
     public void initialize(HashMap<String, Topic> topics) {
         this.topics = topics;
-        for (Topic topic: topics.values()) {
+        for (Map.Entry<String, Topic> entry : topics.entrySet()) {
+            Topic topic = entry.getValue();
             if (topic == null) {
                 continue;
             }
-            for (String fileName : topic.getAllCS2040CFilesInTopic()) {
-                allCS2040CFiles.put(fileName, topic.getTopicName());
+            for (CS2040CFile fileName : topic.getC2040CFiles().values()) {
+                allCS2040CFiles.put(fileName.getName(), topic.getTopicName());
             }
         }
     }
@@ -254,7 +255,7 @@ public class TopicManager {
 
             // Start tracking subsequent CS2040CFiles when topic of target CS2040CFile is found
             if (isPartOfTopoOrder) {
-                ArrayList<String> topicCS2040CFiles = getCS2040CFilesByTopic(topicName);
+                ArrayList<String> topicCS2040CFiles = getCS2040CFilesByTopicToPrint(topicName);
                 toPrintCS2040CFiles.put(topicName, topicCS2040CFiles);
             }
         }

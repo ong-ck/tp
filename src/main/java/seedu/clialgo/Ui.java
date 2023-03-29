@@ -420,6 +420,13 @@ public class Ui {
         printDivider();
     }
 
+    /** Prints a message informing the user that the export operation was successful */
+    public void printExportSuccess() {
+        printDivider();
+        System.out.println("Exporting files...");
+        printDivider();
+    }
+
     /** Prints an error message indicating the input in the importance field is in the invalid range. */
     public void printInvalidImportance(String importance) {
         printDivider();

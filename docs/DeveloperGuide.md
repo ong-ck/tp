@@ -29,6 +29,20 @@ in the correct sequence and connects them with each other during runtime.
 
 #### How the architecture components interact with each other
 
+The **_Sequence Diagram_** below shows a high level overview of how the components interact with each other
+
+![](.\\sequence\\diagrams\\Architecture.png "Filter by Topic Sequence Diagram")
+
+### Ui
+**API** : Ui.java
+Here is a class diagram of the `Ui` component which is responsible for handling all interactin with the User.
+
+![](.\\uml\\diagrams\\UiClass.png "Parser Class Diagram")
+
+The `Ui` component:
+- Reads in the full command keyed in by the user for the `Parser`.
+- Prints error messages when the user provides invalid inputs.
+- Prints confirmation message when a command have been executed successfully.
 
 ### Parser
 **API** : `Parser.java`
@@ -38,14 +52,12 @@ and preparing the appropriate `Command` object.
 ![](.\\uml\\diagrams\\ParserClass.png "Parser Class Diagram")
 
 The `Parser` component:
-
 - Reads in the full command keyed in by the user through the `Ui` class.
 - Extracts out the keywords from the command such as `command type`, `topic`, `file name` using
 the `StringManipulation` interface.
 - Verify the validity of the user's input command.
 - Handle cases where the user keys in an invalid command.
 - Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
-
 
 ### Storage
 **API** : `FileManager.java`
@@ -64,6 +76,44 @@ corresponding `Topic`'s  `.txt`
 - reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
+#### Help
+**API** : `HelpCommand.java`
+
+Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
+
+![](.\\uml\\diagrams\\HelpCommand.png "AddCommand Class Diagram")
+
+The `HelpCommand` component
+- Provides the user with a list of valid commands in `CLIAlgo`.
+- Provides the user with the correct format for each command in `CLIAlgo`.
+
+#### Add
+**API** : `AddCommand.java`
+
+Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
+
+![](.\\uml\\diagrams\\Add.png "AddCommand Class Diagram")
+
+The `AddCommand` component
+- can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
+- can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
+- can ensure that there are no files with repeated names such that all names of files added are unique
+
+#### Filter
+**API** : `FilterCommand.java`
+
+Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
+the user's specified `keyWord`.
+
+![](.\\uml\\diagrams\\FilterClass.png "FilterCommand Class Diagram")
+
+The `FilterCommand` component
+- instantiate a subclass based on the `keyWord` used in its constructor.
+   - If the `keyWord` is `topic` it creates and instance of its subclass `FilterByTopicCommand` and invoke the
+     `execute()` method.
+   - If the `keyWord` is `importance` it creates and instance of its subclass `FilterByImportanceCommand` and invoke the
+     `execute()` method.
+- The respective subclasses will print the `CS2040CFiles` filtered based on the `keyWord` provided.
 
 ### TopoSort
 **API** : `TopoCommand.java`
@@ -78,107 +128,92 @@ The `TopoCommand` component
 - can print out the list of topologically sorted `CS2040CFile` objects
 - can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
 
-
-#### Add
-**API** : `AddCommand.java`
-
-Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
-
-![](.\\uml\\diagrams\\Add.png "AddCommand Class Diagram")
-
-The `AddCommand` component
-- can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
-- can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
-- can ensure that there are no files with repeated names such that all names of files added are unique
-
 ## Implementation
-### Filter by keyword feature
+
+### Parser
 #### Current Implementation
-The filter mechanism is facilitated by `FilterCommand`. It extends `Command` with an overridden `execute()` method. The
-`FilterCommand` has 2 different executions depending on the constructor used to instantiate it. During execution, the
-`FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
-Additionally, it implements the following operations.
+Parsing of commands is done by the `Parser` class. It implements the `StringManipulation` interface which allows
+`Parser` to extract the relevant keywords to prepare the appropriate `Command` object. It is also reponsible for
+handling invalid inputs by the user. The `Parser` consist of the following methods.
 
-- `printAllTopics()` - Prints out all notes stored in CLIAlgo that is sorted by `topic`.
-- `printSingleTopic()` - Prints out all notes stored in CLIAlgo that is tagged to the given `topic`.
+- `parse()`: Extracts out the command keyword from the user input.
+- `prepareCommand()`: Prepares the appropriate `Command` object based on the commmand keyword and the other
+relevant input fields provided by the user. It also checks if the format of the command is correct.
+- `isCorrectMarker()`: Checks if the marker used to label the input fields are correct.
+- `isValidImportance()`: Checks if the importance value provided by the user is a valid integer and within the [1, 10]
+range.
+- `isValidKeyword()`: Checks if the `keyWord` provided by the user is valid when preparing the `FilterCommand`.
+- `isValidCommand()`: Checks if the command keyword provided by the user is valid.
 
-The access modifiers of these methods are `private` can can only be accessed within `FilterCommand`.
+Given below is an example of how the `Parser` works when it is issued a remove command.
 
-Given below is an example usage of how the filter mechanism behaves at each step.
+> **Step 1**: The user enters a command. The full command is read in by the `Ui`. `CLIAlgo` invokes the `parse()`
+> method from the `Parser`.
 
-> **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the
-> user entered a valid command, the `Parser` will process the full command using the `StringManipulation` interface and
-> prepare the appropriate `FilterCommand` object.
+> **Step 2**: The `parse()` method extracts out the command keyword provided by the user. It then calls the 
+> `prepareCommand()` method.
 
-> **Step 2**: If the `topic` field is left empty, the `Parser` will instantiate a new `FilterCommand` object, setting
-> the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
-> a new `FilterCommand` using its constructor.
+> **Step 3**: The `parepareCommand()` identifies the correct `Command` object to prepare based on the command keyword.
+> Since the command keyword provided is `remove`, `prepareCommand()` calls `prepareRemoveCommand()`.
 
+> **Step 4**: If the `NAME` field of the command is null or not labelled using the correct marker, 
+> `prepareRemoveCommand()` returns an `InvalidCommand` object. If the name of the `CS2040CFile` provided is not
+> found, it returns a `NameNotFoundCommand`. If the `NAME` input field is valid, a `RemoveCommand` object is returned.
+
+The following sequence diagram shows how the Parser work.
+
+![](.\\sequence\\diagrams\\Parser.png "Parser Sequence Diagram")
 
 ### Initializing previous saved data feature
+
 #### Current implementation
 
-![](.\\sequence\\diagrams\\InitializationFileManager.png "FileManager Initialization Sequence Diagram")
-
 The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
-creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for 
-in `TOPIC_NAME.txt` in the folder `.\\data`. If the files already exist, they are not created. Instead, 
-the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder` 
+creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for
+in `TOPIC_NAME.txt` in the folder `.\\data`. If the files already exist, they are not created. Instead,
+the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder`
 which would then convert these raw data into `CS2040CFile` objects. The `CS2040File` objects are then passed
 into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
 back to the `TopicManager`, completing the initialization process.
 
-### Export feature
-#### Current implementation
+The following sequence diagram shows how previously saved files are loaded into `CLIAlgo`.
 
-![](.\\sequence\\diagrams\\Export.png "Export Sequence Diagram")
+![](.\\sequence\\diagrams\\InitializationFileManager.png "FileManager Initialization Sequence Diagram")
 
-The export function is supported by a singleton object, `Buffer`. 
-Whenever a `filter` or `topo` command is called, the method
-within the `Buffer` object, `updateBuffer` would be called which
-replaces the `CS2040CFile` objects stored within the buffer with the
-output `CS2040CFile` objects being output from the `filter` 
-command.
 
-When an `export` command is then called, a `ExportCommand` 
-object is instantiated. The `ExportCommand` object extends
-`Command` with an overridden `execute()` method. When the 
-`execute()` method is called, the `exportBuffer` method in the 
-`Buffer` is called. This copies all the `CS2040CFile` stored in
-the buffer to the export folder stored at `.\\export` and opens 
-the folder by using the default file explorer of the system.
-> Take note that this does not work for some Operating Systems
-> without a file explorer (e.g. some Linux-based systems)
-=======
+### Help Feature
+#### Current Implementation
+The following sequence diagram shows how the help operation works:
+
+![](.\\sequence\\diagrams\\HelpFeature.png "HelpCommand Sequence Diagram")
+
 ### Add CS2040CFile feature
 #### Current Implementation
 
-![](.\\sequence\\diagrams\\AddFeature.png "AddFeature Sequence Diagram")
-
-The add mechanism is facilitated by "AddCommand". It extends the abstract `Command` with an overridden `execute()` 
-method. Within the `execute()` function, the path of the CS2040CFile, as specified by its name, is checked using 
-`checkFileType`, to determine if the CS2040CFile exists within the directory of the program. The topic of the 
-CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C, 
+The add mechanism is facilitated by "AddCommand". It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` function, the path of the CS2040CFile, as specified by its name, is checked using
+`checkFileType`, to determine if the CS2040CFile exists within the directory of the program. The topic of the
+CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C,
 and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile`, to ensure that no other files
-of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the 
+of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the
 CS2040CFile.
 
 > **Step 1**: The user launches the application for the first time. Objects `CLIAlgo`, `Ui`, `Parser` , `TopicManager`,
 > `FileManager` are created.
 
-> **Step 2**: The user enters the add command, which invokes the `getUserInput()` method of `Ui` object and returns the 
+> **Step 2**: The user enters the add command, which invokes the `getUserInput()` method of `Ui` object and returns the
 > user input to the `CLIAlgo` object. After which, it invokes the `parse()` method of the `Parser` object and determines
 > that it is an add command and creates a new `AddCommand` object.
 
 > **Step 3**: The `CLIAlgo` object than invokes the `execute()` method of the `AddCommand` object.
 
-> **Step 4**: The name of CS2040CFile is checked, to see if a file of that name exists within the directory. If it is 
+> **Step 4**: The name of CS2040CFile is checked, to see if a file of that name exists within the directory. If it is
 > not, the `printFileDoesNotExist()` method of the `Ui` object is invoked
 
 > **Step 5**: The topic name of the CS2040CFile is checked, to see if it belongs to one of the topics in CS2040C. If it
 > is, a new `InvalidTopicCommand` object is created and executed.
 
-> **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the 
+> **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the
 > `Topic Manager` object, which means that there are duplicates.
 
 > **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. If the file to be added
@@ -189,10 +224,57 @@ CS2040CFile.
 > will then handle adding of the file into the `File Mnanager` object by calling the `addEntry()` method and adding the
 >  file into the `Topic Manager` object using the  `addCS2040CFile` method.
 
+The **_Sequence Diagram_** below shows the `AddCommand` works.
+
+![](.\\sequence\\diagrams\\AddFeature.png "AddFeature Sequence Diagram")
+
+### Filter by keyword feature
+#### Current Implementation
+
+The filter mechanism is facilitated by `FilterCommand`. It extends `Command` with an overridden `execute()` method. The
+`FilterCommand` has 2 subclass `FilterByTopicCommand` and `FilterByImportanceCommand`. Each with their own overriden 
+`execute()` method. During execution, the `FilterCommand` decides which of its subclass to instantiate and execute 
+depending on the `keyWord` provided. Both `FilterByTopicCommand` and `FilterByImportanceCommad`
+`FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
+
+- `FilterByTopicCommand`
+  - `printAllTopics()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is sorted by `topic`.
+  - `printSingleTopic()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is tagged to the given `topic`.
+- `FilterByImportanceCommand`
+   - `printAllTopics()` - Prints out all `CS2040CFiles` stored in CLIAlgo sorted by `importance`.
+   - `printSingleTopic()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is tagged to the given `topic` sorted 
+by `importance`.
+
+The access modifiers of these methods are `private` can can only be accessed within `FilterCommand`.
+
+Given below is an example usage of how the filter by `topic` mechanism behaves at each step.
+
+> **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the
+> user entered a valid command, the `Parser` will process the full command using the `StringManipulation` interface and
+> prepare the appropriate `FilterCommand` object.
+
+> **Step 2**: If the `topic` field is left empty, the `Parser` will instantiate a new `FilterCommand` object, setting
+> the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
+> a new `FilterCommand` using `topic` in its constructor.
+
+> **Step 3**: The `FilterCommand` is executed. Based on the `keyWord` used to instantiate it, `FilterCommand` invokes 
+> the constructor of its subclass (`FilterByTopicCommand` or `FilterByImportanceCommand`) and calls the `execute()`
+> method.
+ 
+> **Step 4**: If `topic` is `null`, `FilterByTopicCommand` self-invokes `printAllTopics()` method which in turns calls 
+> `getAllCS2040CFilesGroupedByTopic()` from the `TopicManager`. If `topic` is not `null` and is valid, it self-invokes 
+> `printSingleTopic()` method which in turns calls `getCS2040CFilesByTopic` from the `TopicManager`.
+
+> **Step 5**: If `getAllCS2040CFilesGroupedByTopic()` is called, the TopicManager calls the 
+> `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFiles`
+> to the user.
+
+The following **_Sequence Diagram_** shows how the filter by topic operation work.
+
+![](.\\sequence\\diagrams\\FilterByTopic.png "Filter by Topic Sequence Diagram")
+
 ### TopoSort feature
 #### Current implementation
-
-![](.\\sequence\\diagrams\\TopoSort.png "TopoSort Sequence Diagram")
 
 The TopoSort mechanism is facilitated by `TopoCommand`. It extends `Command` with an 
 overridden `execute()` method, and stores internally the name of the note file and 
@@ -222,6 +304,34 @@ Given below is an example usage scenario and how the TopoSort mechanism behaves 
 > Step 4. For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic` will be executed to print all
 > note names present in the specific topic. As the topics are saved in topological order, the printed note names
 > will be printed in the correct order.
+
+The following sequence diagram shows how the `TopoCommand` works.
+
+![](.\\sequence\\diagrams\\TopoSort.png "TopoSort Sequence Diagram")
+
+### Export feature
+#### Current implementation
+
+The export function is supported by a singleton object, `Buffer`.
+Whenever a `filter` or `topo` command is called, the method
+within the `Buffer` object, `updateBuffer` would be called which
+replaces the `CS2040CFile` objects stored within the buffer with the
+output `CS2040CFile` objects being output from the `filter`
+command.
+
+When an `export` command is then called, a `ExportCommand`
+object is instantiated. The `ExportCommand` object extends
+`Command` with an overridden `execute()` method. When the
+`execute()` method is called, the `exportBuffer` method in the
+`Buffer` is called. This copies all the `CS2040CFile` stored in
+the buffer to the export folder stored at `.\\export` and opens
+the folder by using the default file explorer of the system.
+> Take note that this does not work for some Operating Systems
+> without a file explorer (e.g. some Linux-based systems)
+
+The following sequence diagram shows how the export feature works.
+
+![](.\\sequence\\diagrams\\Export.png "Export Sequence Diagram")
 
 ## Product scope
 ### Target user profile

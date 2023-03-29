@@ -29,6 +29,9 @@ package clialgo <<rectangle>> {
     class storage #beige {
     }
 
+    class Buffer #pink {
+    }
+
     class CS2040CFile {
     }
 }
@@ -49,6 +52,7 @@ command ..> Ui
 command ..> TopicManager
 command ..> storage
 command ..> CS2040CFile
+command ..> Buffer
 Topic ..> CS2040CFile
 
 hide circle

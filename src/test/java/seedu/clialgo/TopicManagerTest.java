@@ -245,12 +245,12 @@ class TopicManagerTest {
         ArrayList<String> expectedOutcomeForLinkedList = new ArrayList<>();
         expectedOutcomeForLinkedList.add("[NOTE] deque");
         expectedOutcomeForLinkedList.add("[NOTE] queue");
-        assertEquals(expectedOutcomeForLinkedList, topicManager.getCS2040CFilesByTopic("LINKED_LIST"));
+        assertEquals(expectedOutcomeForLinkedList, topicManager.getCS2040CFilesByTopicToPrint("LINKED_LIST"));
 
         ArrayList<String> expectedOutcomeForSorting = new ArrayList<>();
         expectedOutcomeForSorting.add("[NOTE] bubble sort");
         expectedOutcomeForSorting.add("[NOTE] merge sort");
-        assertEquals(expectedOutcomeForSorting, topicManager.getCS2040CFilesByTopic("SORTING"));
+        assertEquals(expectedOutcomeForSorting, topicManager.getCS2040CFilesByTopicToPrint("SORTING"));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package seedu.clialgo.command;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import seedu.clialgo.Buffer;
@@ -57,6 +58,7 @@ public class RemoveCommand extends Command {
         if (!isDeletedInFile) {
             return;
         }
+        buffer.updateBuffer(new ArrayList<>());
         ui.printRemoveSuccess(name);
     }
 

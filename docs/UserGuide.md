@@ -20,49 +20,60 @@ the help window. Some example commands you can try are:
 
 ## Features
 
-### Exporting `Files`
-Whenever a `filter` or `topo` command is input by the user, the 
-`Files` listed by the above commands would be stored in a 
-`Buffer`. These stored `Files` can then be copied into 
-`./export`.
+### Viewing help `help`
+Shows a message explaining the format of supported commands in the application and their functions. If a valid command
+is entered after ‘help’ using the `c/` delimiter, it shows the format and function of that specific command instead.
 
-Format: `export`
-- If the Operating System has a valid file explorer, `./export` 
-would be opened automatically.
-- If the buffer is empty when `export` is inputted, an error message
-would be printed.
-- Every time `export` is called, the `Files` within `./export`
-are deleted before the `Files` are copied into `./export`
-- If a `File` stored in the `Buffer` does not exist for some reason 
-(i.e. if the user deleted the `File`) an error message would be
-printed for each `File` not found.
+#### Format:
+`help [c/COMMAND_TYPE]`
+- `COMMAND_TYPE` is **case-sensitive** and is an optional input
 
-Example of usage:
+#### Example of usage:
+Input:
 ```
-filter k/topic
-======================================================
-Here are the filtered CS2040CFiles:
-======================================================
-[SORTING]
-1. TEST
-[LINKED_LIST]
-1. Test1
-======================================================
-export
+help
 ```
-Here is `./export` opened after `export` is input.
-![](.\\images\\export1.png)
+Output:
+```
+======================================================
+The available COMMAND_TYPE(s) are:
+[add]: add CS2040CFile
+[remove]: remove CS2040CFile
+[list]: displays all CS2040CFiles
+[filter]: filters CS2040CFiles by topic
+[exit]: close the application
+For more help on a specific command, type `help c/COMMAND_TYPE`
+======================================================
+```
+Input:
+```
+help c/add
+```
+Output:
+```
+======================================================
+This function adds a CS2040CFile and tags it to a topic.
+The syntax for the 'add' command is: add n/NAME t/TOPIC.
+NAME refers to the CS2040CFiles' file name.
+TOPIC refers to the topic that NAME will be tagged to.
+Case sensitive. NAME and TOPIC fields must be non-empty.
+Invalid NAME or TOPIC will cause an error.
+Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
+'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
+'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
+======================================================
+```
 
 ### Adding a CS2040CFile: `add`
-Adds a CS2040CFile that exists into our file manager. It could be either a note file or a code file. Requires a topic 
+Adds a CS2040CFile that exists into our file manager. It could be either a note file or a code file. Requires a topic
 tagged to it, and an optional importance level, a number from 1 to 10.
 
-#### Format: 
+#### Format:
 ```
 add n/CODE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
 add n/NOTE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
 ```
-- Not following the syntax strictly would result in an invalid command message. 
+- Not following the syntax strictly would result in an invalid command message.
 - Only full words will be matched. E.g. `LINKED_LIST` will not match `Link List`.
 - `n/` and `t/` fields must be non-empty.
 - `i/` field is optional.
@@ -145,10 +156,10 @@ on the keyword.
 filter k/KEYWORD [t/TOPIC_NAME]
 ```
 - Only specific `KEYWORD` can be used to filter.
-  - Valid `KEYWORD` includes: `topic`, `importance`.
+    - Valid `KEYWORD` includes: `topic`, `importance`.
 - `KEYWORD` and `TOPIC_NAME` are **case-sensitive**.
-- `TOPIC_NAME` is an optional input and leaving it blank would result in `CLIAlgo` printing all 
-CS2040CFiles.
+- `TOPIC_NAME` is an optional input and leaving it blank would result in `CLIAlgo` printing all
+  CS2040CFiles.
 - Not following the syntax strictly would result in an invalid command message.
 
 #### Example of usage:
@@ -189,7 +200,7 @@ Here are the filtered CS2040CFiles:
 ======================================================
 ```
 
-### Topologically Sort CS2040CFiles `topo` 
+### Topologically Sort CS2040CFiles `topo`
 Prints a topologically sorted list of CS2040CFiles before a user-specified note name.
 
 #### Format:
@@ -197,11 +208,11 @@ Prints a topologically sorted list of CS2040CFiles before a user-specified note 
 topo n/NOTE_NAME
 ```
 
-- The topological sort follows the following order (latest to earliest): "MINIMUM_SPANNING_TREE", 
-"SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES", "BINARY_SEARCH_TREE", "UNION_FIND_DS", 
-"HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING".
+- The topological sort follows the following order (latest to earliest): "MINIMUM_SPANNING_TREE",
+  "SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES", "BINARY_SEARCH_TREE", "UNION_FIND_DS",
+  "HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING".
 - Only `NOTE_NAME` of notes that are **saved locally and added to CLIAlgo** can be used.
-  - If no notes are saved locally and added to CLIAlgo, a feedback message will be printed instead.
+    - If no notes are saved locally and added to CLIAlgo, a feedback message will be printed instead.
 - Command and `NOTE_NAME` are **case-sensitive**.
 - Not following the syntax strictly would result in an invalid command message.
 
@@ -224,57 +235,39 @@ Here are the topologically sorted CS2040CFiles:
 ======================================================
 ```
 
-### Viewing help `help`
-Shows a message explaining the format of supported commands in the application and their functions. If a valid command 
-is entered after ‘help’ using the `c/` delimiter, it shows the format and function of that specific command instead.
+### Exporting `Files`
+Whenever a `filter` or `topo` command is input by the user, the 
+`Files` listed by the above commands would be stored in a 
+`Buffer`. These stored `Files` can then be copied into 
+`./export`.
 
-#### Format:
-`help [c/COMMAND_TYPE]`
-- `COMMAND_TYPE` is **case-sensitive** and is an optional input
+Format: `export`
+- If the Operating System has a valid file explorer, `./export` 
+would be opened automatically.
+- If the buffer is empty when `export` is inputted, an error message
+would be printed.
+- Every time `export` is called, the `Files` within `./export`
+are deleted before the `Files` are copied into `./export`
+- If a `File` stored in the `Buffer` does not exist for some reason 
+(i.e. if the user deleted the `File`) an error message would be
+printed for each `File` not found.
+- **Removing a file using the remove command empties the buffer!**
 
-#### Example of usage:
-Input:
+Example of usage:
 ```
-help
-```
-Output:
-```
+filter k/topic
 ======================================================
-The available COMMAND_TYPE(s) are:
-[add]: add CS2040CFile
-[remove]: remove CS2040CFile
-[list]: displays all CS2040CFiles
-[filter]: filters CS2040CFiles by topic
-[exit]: close the application
-For more help on a specific command, type `help c/COMMAND_TYPE`
+Here are the filtered CS2040CFiles:
 ======================================================
-```
-Input:
-```
-help c/add
-```
-Output:
-```
+[SORTING]
+1. TEST
+[LINKED_LIST]
+1. Test1
 ======================================================
-This function adds a CS2040CFile and tags it to a topic.
-The syntax for the 'add' command is: add n/NAME t/TOPIC.
-NAME refers to the CS2040CFiles' file name.
-TOPIC refers to the topic that NAME will be tagged to.
-Case sensitive. NAME and TOPIC fields must be non-empty.
-Invalid NAME or TOPIC will cause an error.
-Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
-'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
-'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
-======================================================
+export
 ```
-
-## Implementation
-This section describes some noteworthy details on how certain features are implemented.
-
-### Help Feature
-The following sequence diagram shows how the help operation works:
-
-![HelpFeature.png](sequence%2Fdiagrams%2FHelpFeature.png)
+Here is `./export` opened after `export` is input.
+![](.\\images\\export1.png)
 
 ## FAQ
 
@@ -296,9 +289,10 @@ The following sequence diagram shows how the help operation works:
 | Action | Format, Examples                                                                                  |
 |--------|---------------------------------------------------------------------------------------------------|
 | help   | `help [c/COMMAND_TYPE]`<br/>e.g., `help`, `help c/add`                                            |
-| add    | `add n/NAME t/TOPIC`<br/>e.g., `add n/bst t/BST`                                                  |
+| add    | `add n/NAME t/TOPIC [i/IMPORTANCE]`<br/>e.g., `add n/bst t/BST i/6`                               |
 | remove | `remove n/NAME`<br/>e.g., `remove n/bst`                                                          |
-| list   | `list`                                                                                             |
+| list   | `list`                                                                                            |
 | filter | `filter k/KEYWORD [t/TOPIC_NAME]`<br/>e.g., `filter k/topic`, <br/>`filter k/topic t/LINKED_LIST` |
 | topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
+| export | `export`                                                                                           |
 | exit   | `exit`                                                                                            |

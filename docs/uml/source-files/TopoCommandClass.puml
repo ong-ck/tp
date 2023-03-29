@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
-
+skinparam classAttributeIconSize 0
+hide circle
 abstract class Command {
 +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void {abstract}
 +equals(otherCommand: Command): boolean {abstract}
@@ -23,6 +24,9 @@ class Ui {
 class TopicManager {
 }
 
+class Buffer {
+}
+
 class FileManager {
 }
 
@@ -32,5 +36,6 @@ Command ..> TopicManager
 TopoCommand ..> TopicManager
 Command ..> FileManager
 TopoCommand ..> FileManager
+TopoCommand ..> Buffer
 Command <|-- TopoCommand
 @enduml
