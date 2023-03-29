@@ -6,6 +6,7 @@ import seedu.clialgo.Buffer;
 import seedu.clialgo.Parser;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
+import seedu.clialgo.file.Note;
 import seedu.clialgo.storage.FileManager;
 
 import java.io.ByteArrayOutputStream;
@@ -46,6 +47,8 @@ public class NameNotFoundCommandTest {
      */
     @Test
     void isExecutedCorrectly_inputWithNonExistentName_expectTrue() {
+        topicManager.addCS2040CFile("something", "SORTING", new Note("something",
+                "path", "SORTING"));
         String input = "remove n/nothing";
         Command command = parser.parse(input, topicManager);
         command.execute(topicManager, ui, fileManager, buffer);
@@ -68,17 +71,5 @@ public class NameNotFoundCommandTest {
         }
         assertEquals(expectedOutput, outputStream.toString());
     }
-
-    /**
-     * Checks if the <code>equals</code> method of a <code>NameNotFoundCommand<</code> object works as expected.
-     */
-    @Test
-    void isEqualsMethodWorking_expectTrue() {
-        String input = "remove n/nothing";
-        Command command = parser.parse(input, topicManager);
-        Command testCommand = new NameNotFoundCommand();
-        assertTrue(testCommand.equals(command));
-    }
-
 }
 

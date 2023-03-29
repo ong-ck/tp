@@ -74,7 +74,7 @@ public class Parser implements StringManipulation {
      * @param keyWord The input string.
      * @return True if the input string is in the valid importance range, False otherwise.
      */
-    public boolean isValidImportance(String keyWord) throws NumberFormatException {
+    private boolean isValidImportance(String keyWord) throws NumberFormatException {
         assert keyWord != null;
         int importance = Integer.parseInt(keyWord);
         return importance >= 1 && importance <= 10;
@@ -196,9 +196,6 @@ public class Parser implements StringManipulation {
 
             cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
 
-            if (!topics.isRepeatedCS2040CFile(cs2040cFileName)) {
-                return new NameNotFoundCommand();
-            }
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
