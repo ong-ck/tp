@@ -149,6 +149,11 @@ the folder by using the default file explorer of the system.
 > Take note that this does not work for some Operating Systems
 > without a file explorer (e.g. some Linux-based systems)
 
+### TopoSort feature
+#### Current implementation
+
+![](.\\sequence\\diagrams\\TopoSort.png "TopoSort Sequence Diagram")
+
 ## Product scope
 ### Target user profile
 
