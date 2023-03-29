@@ -178,6 +178,13 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 ======================================================
 ```
 
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### Help Feature
+The following sequence diagram shows how the help operation works:
+
+![HelpFeature.png](sequence%2Fdiagrams%2FHelpFeature.png)
 
 ## FAQ
 

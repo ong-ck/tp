@@ -30,10 +30,10 @@ The syntax for the 'add' command is: add n/NAME t/TOPIC.
 NAME refers to the CS2040CFiles' file name.
 TOPIC refers to the topic that NAME will be tagged to.
 Case sensitive. NAME and TOPIC fields must be non-empty.
-Invalid NAME or TOPIC will cause an error.
 Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
 'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
+Invalid NAME or TOPIC will cause an error.
 ======================================================
 ======================================================
 This is an invalid command, please ensure all your fields are correct.
@@ -74,10 +74,10 @@ The syntax for the 'add' command is: add n/NAME t/TOPIC.
 NAME refers to the CS2040CFiles' file name.
 TOPIC refers to the topic that NAME will be tagged to.
 Case sensitive. NAME and TOPIC fields must be non-empty.
-Invalid NAME or TOPIC will cause an error.
 Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
 'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
+Invalid NAME or TOPIC will cause an error.
 ======================================================
 ======================================================
 Here are the filtered CS2040CFiles:
