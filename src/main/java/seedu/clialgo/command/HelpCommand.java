@@ -7,6 +7,10 @@ import seedu.clialgo.storage.FileManager;
 
 import java.util.Objects;
 
+/**
+ * Represents an executable command. A <code>HelpCommand</code> object is created whenever the
+ * user wants assistance on what commands are supported by the program.
+ */
 public class HelpCommand extends Command {
     private final String command;
 
@@ -22,8 +26,19 @@ public class HelpCommand extends Command {
         return this.command;
     }
 
+    /**
+     * Prints the help page.
+     * If there is no <code>COMMAND_TYPE</code> present in the user input, it prints a general help page.
+     * If there is a <code>COMMAND_TYPE</code> present in the user input, the specific help page based on the
+     * <code>COMMAND_TYPE</code> (after <code>c/</code> delimiter) is printed.
+     *
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
+     * @param ui The <code>Ui</code> object which handles outputs to the user.
+     * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
+     * @param buffer The object responsible to export filtered files.
+     */
     @Override
-    public void execute (TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
+    public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         if (command == null) {
             ui.printHelpPage();
             return;

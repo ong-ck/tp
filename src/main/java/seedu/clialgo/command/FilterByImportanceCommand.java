@@ -10,6 +10,7 @@ import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class FilterByImportanceCommand extends FilterCommand {
 
@@ -101,5 +102,19 @@ public class FilterByImportanceCommand extends FilterCommand {
         Topic topic = topicManager.getOneTopic(this.topic);
         ArrayList<CS2040CFile> files = topic.getCS2040CFilesAsArray();
         buffer.updateBuffer(files);
+    }
+
+    /**
+     * An overridden method that checks for equality of <code>FilterByImportanceCommand</code> objects.
+     *
+     * @param otherCommand The other <code>FilterByImportanceCommand</code> object to be checked against.
+     * @return A boolean value to determine whether the <code>FilterByImportanceCommand</code> objects are equal.
+     */
+    @Override
+    public boolean equals(Command otherCommand) {
+        FilterByImportanceCommand otherFilterByImportanceCommand = (FilterByImportanceCommand) otherCommand;
+
+        return Objects.equals(this.keyWord, otherFilterByImportanceCommand.keyWord) &&
+                Objects.equals(this.topic, otherFilterByImportanceCommand.topic);
     }
 }
