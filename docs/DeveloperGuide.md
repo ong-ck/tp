@@ -94,6 +94,22 @@ The `AddCommand` component
 - can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
 - can ensure that there are no files with repeated names such that all names of files added are unique
 
+#### Filter
+**API** : `FilterCommand.java`
+
+Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
+the user's specified `keyWord`.
+
+![](.\\uml\\diagrams\\FilterClass.png "FilterCommand Class Diagram")
+
+The `FilterCommand` component
+- instantiate a subclass based on the `keyWord` used in its constructor.
+  - If the `keyWord` is `topic` it creates and instance of its subclass `FilterByTopicCommand` and invoke the 
+`execute()` method.
+  - If the `keyWord` is `importance` it creates and instance of its subclass `FilterByImportanceCommand` and invoke the
+`execute()` method.
+- The respective subclasses will print the `CS2040CFiles` filtered based on the `keyWord` provided.
+
 ## Implementation
 
 ### Filter by keyword feature
