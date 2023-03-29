@@ -127,6 +127,41 @@ Here are the filtered CS2040CFiles:
 ======================================================
 ```
 
+### Topologically Sort CS2040CFiles `topo` 
+Prints a topologically sorted list of CS2040CFiles before a user-specified note name.
+
+#### Format:
+```
+topo n/NOTE_NAME
+```
+
+- The topological sort follows the following order (latest to earliest): "MINIMUM_SPANNING_TREE", 
+"SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES", "BINARY_SEARCH_TREE", "UNION_FIND_DS", 
+"HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING".
+- Only `NOTE_NAME` of notes that are **saved locally and added to CLIAlgo** can be used.
+  - If no notes are saved locally and added to CLIAlgo, a feedback message will be printed instead.
+- Command and `NOTE_NAME` are **case-sensitive**.
+- Not following the syntax strictly would result in an invalid command message.
+
+#### Example of usage:
+Input:
+```
+topo n/bst
+```
+Output:
+```
+======================================================
+Here are the topologically sorted CS2040CFiles:
+======================================================
+[BINARY_SEARCH_TREE]
+1. [NOTE] bst
+[LINKED_LIST]
+1. [NOTE] queue
+[SORTING]
+1. [NOTE] sorting
+======================================================
+```
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
