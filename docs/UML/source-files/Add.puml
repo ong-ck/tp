@@ -4,6 +4,8 @@
 autonumber
 
 @startuml
+skinparam classAttributeIconSize 0
+hide circle
 
 abstract class Command {
     +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void

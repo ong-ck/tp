@@ -53,6 +53,61 @@ export
 Here is `./export` opened after `export` is input.
 ![](.\\images\\export1.png)
 
+### Adding a CS2040CFile: `add`
+Adds a CS2040CFile that exists into our file manager. It could be either a note file or a code file. Requires a topic 
+tagged to it, and an optional importance level, a number from 1 to 10.
+
+#### Format: 
+```
+add n/CODE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
+add n/NOTE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
+```
+- Not following the syntax strictly would result in an invalid command message. 
+- Only full words will be matched. E.g. `LINKED_LIST` will not match `Link List`.
+- `n/` and `t/` fields must be non-empty.
+- `i/` field is optional.
+
+#### Example of usage:
+Input:
+```
+add n/queue t/LINKED_LIST
+```
+or
+```
+add n/queue t/LINKED_LIST i/5
+```
+Output:
+```
+======================================================
+Successfully added queue into LINKED_LIST.
+======================================================
+```
+
+### Removing a CS2040CFile: `remove`
+Removes a CS2040CFile that exists from our file manager.
+
+#### Format:
+```
+remove n/CODE_NAME
+remove n/NOTE_NAME
+```
+
+- Not following the syntax strictly would result in an invalid command message.
+
+#### Example of usage:
+Input:
+```
+remove n/queue
+```
+
+Output:
+```
+======================================================
+Successfully removed queue.
+======================================================
+```
+
+
 ### Listing CS2040CFiles `list`
 List all CS2040CFiles (in any order) present in `CLIAlgo`.
 
@@ -134,6 +189,41 @@ Here are the filtered CS2040CFiles:
 ======================================================
 ```
 
+### Topologically Sort CS2040CFiles `topo` 
+Prints a topologically sorted list of CS2040CFiles before a user-specified note name.
+
+#### Format:
+```
+topo n/NOTE_NAME
+```
+
+- The topological sort follows the following order (latest to earliest): "MINIMUM_SPANNING_TREE", 
+"SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES", "BINARY_SEARCH_TREE", "UNION_FIND_DS", 
+"HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING".
+- Only `NOTE_NAME` of notes that are **saved locally and added to CLIAlgo** can be used.
+  - If no notes are saved locally and added to CLIAlgo, a feedback message will be printed instead.
+- Command and `NOTE_NAME` are **case-sensitive**.
+- Not following the syntax strictly would result in an invalid command message.
+
+#### Example of usage:
+Input:
+```
+topo n/bst
+```
+Output:
+```
+======================================================
+Here are the topologically sorted CS2040CFiles:
+======================================================
+[BINARY_SEARCH_TREE]
+1. [NOTE] bst
+[LINKED_LIST]
+1. [NOTE] queue
+[SORTING]
+1. [NOTE] sorting
+======================================================
+```
+
 ### Viewing help `help`
 Shows a message explaining the format of supported commands in the application and their functions. If a valid command 
 is entered after ‘help’ using the `c/` delimiter, it shows the format and function of that specific command instead.
@@ -182,10 +272,25 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Copy all the CS2040CFiles as well as the data.txt file into the new Computer.
+
+**Q**: How do I gain easy access to all my filtered or topologically sorted CS2040CFiles?
+
+**A**: Enter the export command after filtering or topologically sorting your CS2040CFiles.
+
+**Q**: What if I am unable to add because the program tells me that my CS2040CFile does not exist?
+
+**A**: Ensure that all your CS2040CFiles are in the same directory as this `jar` file.
+
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Action | Format, Examples                                                                                  |
+|--------|---------------------------------------------------------------------------------------------------|
+| help   | `help [c/COMMAND_TYPE]`<br/>e.g., `help`, `help c/add`                                            |
+| add    | `add n/NAME t/TOPIC`<br/>e.g., `add n/bst t/BST`                                                  |
+| remove | `remove n/NAME`<br/>e.g., `remove n/bst`                                                          |
+| list   | `list`                                                                                             |
+| filter | `filter k/KEYWORD [t/TOPIC_NAME]`<br/>e.g., `filter k/topic`, <br/>`filter k/topic t/LINKED_LIST` |
+| topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
+| exit   | `exit`                                                                                            |
