@@ -28,7 +28,7 @@ public class FilterByTopicCommand extends FilterCommand {
      * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
-    public void printAllTopics(TopicManager topicManager, Ui ui) {
+    private void printAllTopics(TopicManager topicManager, Ui ui) {
         HashMap<String, ArrayList<String>> cs2040cFiles = topicManager.getAllCS2040CFilesGroupedByTopic();
         ui.printFilterSuccess();
         for (Map.Entry<String, ArrayList<String>> entry : cs2040cFiles.entrySet()) {
@@ -50,7 +50,7 @@ public class FilterByTopicCommand extends FilterCommand {
      * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
-    public void printSingleTopic(TopicManager topicManager, Ui ui) {
+    private void printSingleTopic(TopicManager topicManager, Ui ui) {
         ArrayList<String> cs2040cFiles = topicManager.getCS2040CFilesByTopic(this.topic);
         ui.printFilterSuccess();
         int serialNumber = 1;

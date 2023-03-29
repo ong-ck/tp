@@ -24,7 +24,7 @@ public class FilterByImportanceCommand extends FilterCommand {
         super(keyWord, topic);
     }
 
-    public void printAllTopics(TopicManager topicManager, Ui ui) {
+    private void printAllTopics(TopicManager topicManager, Ui ui) {
         ArrayList<CS2040CFile> cs2040cFiles = topicManager.getAllFilesAsFiles();
         ui.printFilterSuccess();
         cs2040cFiles.sort(importanceLevel);
@@ -41,7 +41,7 @@ public class FilterByImportanceCommand extends FilterCommand {
         ui.printDivider();
     }
 
-    public void printSingleTopic(TopicManager topicManager, Ui ui) {
+    private void printSingleTopic(TopicManager topicManager, Ui ui) {
         ArrayList<CS2040CFile> cs2040cFiles = topicManager.getOneTopic(this.topic).getCS2040CFilesAsArray();
         ui.printFilterSuccess();
         cs2040cFiles.sort(importanceLevel);

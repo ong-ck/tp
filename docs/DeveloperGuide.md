@@ -92,19 +92,27 @@ The `AddCommand` component
 - can ensure that there are no files with repeated names such that all names of files added are unique
 
 ## Implementation
+
 ### Filter by keyword feature
+
 #### Current Implementation
 The filter mechanism is facilitated by `FilterCommand`. It extends `Command` with an overridden `execute()` method. The
-`FilterCommand` has 2 different executions depending on the constructor used to instantiate it. During execution, the
+`FilterCommand` has 2 subclass `FilterByTopicCommand` and `FilterByImportanceCommand`. Each with their own overriden 
+`execute()` method. During execution, the `FilterCommand` decides which of its subclass to instantiate and execute 
+depending on the `keyWord` provided. Both `FilterByTopicCommand` and `FilterByImportanceCommad`
 `FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
-Additionally, it implements the following operations.
 
-- `printAllTopics()` - Prints out all notes stored in CLIAlgo that is sorted by `topic`.
-- `printSingleTopic()` - Prints out all notes stored in CLIAlgo that is tagged to the given `topic`.
+- `FilterByTopicCommand`
+  - `printAllTopics()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is sorted by `topic`.
+  - `printSingleTopic()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is tagged to the given `topic`.
+- `FilterByImportanceCommand`
+   - `printAllTopics()` - Prints out all `CS2040CFiles` stored in CLIAlgo sorted by `importance`.
+   - `printSingleTopic()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is tagged to the given `topic` sorted 
+by `importance`.
 
 The access modifiers of these methods are `private` can can only be accessed within `FilterCommand`.
 
-Given below is an example usage of how the filter mechanism behaves at each step.
+Given below is an example usage of how the filter by `topic` mechanism behaves at each step.
 
 > **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the
 > user entered a valid command, the `Parser` will process the full command using the `StringManipulation` interface and
@@ -112,10 +120,29 @@ Given below is an example usage of how the filter mechanism behaves at each step
 
 > **Step 2**: If the `topic` field is left empty, the `Parser` will instantiate a new `FilterCommand` object, setting
 > the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
-> a new `FilterCommand` using its constructor.
+> a new `FilterCommand` using `topic` in its constructor.
+
+> **Step 3**: The `FilterCommand` is executed. Based on the `keyWord` used to instantiate it, `FilterCommand` invokes 
+> the constructor of its subclass (`FilterByTopicCommand` or `FilterByImportanceCommand`) and calls the `execute()`
+> method.
+ 
+> **Step 4**: If `topic` is `null`, `FilterByTopicCommand` self-invokes `printAllTopics()` method which in turns calls 
+> `getAllCS2040CFilesGroupedByTopic()` from the `TopicManager`. If `topic` is not `null` and is valid, it self-invokes 
+> `printSingleTopic()` method which in turns calls `getCS2040CFilesByTopic` from the `TopicManager`.
+
+> **Step 5**: If `getAllCS2040CFilesGroupedByTopic()` is called, the TopicManager calls the 
+> `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFiles`
+> to the user.
+
+The folloing sequence diagram shows how the filter by topic operation work.
+
+
 
 ### Initializing previous saved data feature
+
 #### Current implementation
+
+The following sequence diagram shows how previously saved files are loaded into `CLIAlgo`.
 
 ![](.\\sequence\\diagrams\\InitializationFileManager.png "FileManager Initialization Sequence Diagram")
 
@@ -128,7 +155,10 @@ into a `HashMap` which represents the topic these `CS2040CFile` objects belong t
 back to the `TopicManager`, completing the initialization process.
 
 ### Export feature
+
 #### Current implementation
+
+The following sequence diagram shows how the export feature works.
 
 ![](.\\sequence\\diagrams\\Export.png "Export Sequence Diagram")
 
