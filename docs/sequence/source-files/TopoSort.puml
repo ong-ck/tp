@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant TopoCommand as tc
+participant TopicManager as tm
+
+-> tc : execute()
+activate tc
+tc -> tm
+activate tm
+tm --> tc
+deactivate tm
+tc -> tc : printTopoSortedCS2040CFiles(topicManager : TopicManager, ui : Ui)
+activate tc
+tc -> tm : getAllCS2040CFilesBeforeTopic(name : String)
+activate tm
+tm --> tc
+deactivate tm
+loop topicName
+    tc -> tc : printSingleTopic(topicName : String)
+end
+tc --> tc
+deactivate tc
+<-- tc !!
+@enduml

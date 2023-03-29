@@ -4,6 +4,7 @@ actor User as u
 participant CLIAlgo as cli
 participant Parser as p
 participant FilterByTopicCommand as fc
+participant ExportCommand as ec
 participant TopicManager as tm
 participant Buffer as b
 
@@ -26,8 +27,18 @@ b -> b : updateBuffer(files : ArrayList<CS2040CFile>)
 activate b
 b --> b
 deactivate b
-u -> b : `export`
-b --> u
+u -> cli : `export`
+activate cli
+cli -> p : prepareExportCommand()
+deactivate cli
+activate p
+p --> ec **
+activate ec
+deactivate p
+ec -> b : exportBuffer()
+b --> ec
+ec --> u
+destroy ec
 
 
 @enduml

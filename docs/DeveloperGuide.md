@@ -189,6 +189,40 @@ CS2040CFile.
 > will then handle adding of the file into the `File Mnanager` object by calling the `addEntry()` method and adding the
 >  file into the `Topic Manager` object using the  `addCS2040CFile` method.
 
+### TopoSort feature
+#### Current implementation
+
+![](.\\sequence\\diagrams\\TopoSort.png "TopoSort Sequence Diagram")
+
+The TopoSort mechanism is facilitated by `TopoCommand`. It extends `Command` with an 
+overridden `execute()` method, and stores internally the name of the note file and 
+topologically sorted notes as `name` and `topoSortedCS2040CFiles`.
+Additionally, it implements the following operations:
+
+- TopoCommand#printTopoSortedCS2040CFiles() - Prints all CS2040CFiles after a specific 
+target CS2040CFile in a topological manner. 
+- TopoCommand#printSingleTopic() - Prints all CS2040CFiles of a single specific topic.
+
+These operations are `private` and can only be accessed in `TopoCommand`.
+
+Given below is an example usage scenario and how the TopoSort mechanism behaves at each step.
+
+> Step 1. The user will input a command in the format `topo n\noteName`. The input will be read
+> by the `Ui` and processed by the `Parser`. The `Parser` will then call the `prepareTopoCommand`
+> to create a new `TopoCommand` object.
+
+> Step 2. The `execute` method of the `TopoCommand` object will be executed, which will check
+> whether there are any saved notes (via the `isEmpty` method of `TopicManager`) and whether the `noteName` exists as a note in the application
+> (via the `isRepeatedCS2040CFile` method of `TopicManager`).
+
+> Step 3. The `printTopoSortedCS2040CFiles` method is called to obtain the relevant note files in topological
+> order from `TopicManager` via the `getAllCS2040CFilesBeforeTopic` method. This will be stored internally in 
+> a LinkedHashMap called `topoSortedCS2040CFiles`.
+
+> Step 4. For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic` will be executed to print all
+> note names present in the specific topic. As the topics are saved in topological order, the printed note names
+> will be printed in the correct order.
+
 ## Product scope
 ### Target user profile
 

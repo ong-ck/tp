@@ -2,6 +2,7 @@ package seedu.clialgo;
 
 import java.util.Scanner;
 
+//@@author nikkiDEEE
 /**
  * Text UI of the application.
  */
@@ -185,10 +186,10 @@ public class Ui {
         System.out.println("NAME refers to the CS2040CFiles' file name.");
         System.out.println("TOPIC refers to the topic that NAME will be tagged to.");
         System.out.println("Case sensitive. NAME and TOPIC fields must be non-empty.");
-        System.out.println("Invalid NAME or TOPIC will cause an error.");
         System.out.println("Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',");
         System.out.println("'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',");
         System.out.println("'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.");
+        System.out.println("Invalid NAME or TOPIC will cause an error.");
         printDivider();
     }
 
@@ -215,6 +216,21 @@ public class Ui {
         System.out.println("This function lists all stored CS2040CFiles.");
         System.out.println("The syntax for the 'list' command is: list.");
         System.out.println("Command should only contain one word (i.e. no extensions).");
+        printDivider();
+    }
+
+    /**
+     * Prints the requirements for using the 'topo' command
+     * To be called when userInput.equals("help c/topo")
+     */
+    public void printHelpTopoSort() {
+        printDivider();
+        System.out.println("This function prints all files before the user-defined filename.");
+        System.out.println("The syntax for the 'topo' command is: topo n/NAME.");
+        System.out.println("NAME refers to the CS2040CFiles' file name.");
+        System.out.println("Case sensitive. NAME field must be non-empty.");
+        System.out.println("'n/' must be included else NAME will not be read.");
+        System.out.println("Invalid NAME will cause an error.");
         printDivider();
     }
 
@@ -387,20 +403,21 @@ public class Ui {
     /** Prints an error message indicating that no CS2040CFiles are in CLIAlgo. */
     public void printNoCS2040CFilesSaved() {
         printDivider();
-        System.out.println("You have no CS2040CFiles at the moment!");
+        System.out.println("You have no CS2040CFiles at the moment.");
         printDivider();
     }
 
     public void printFileMissing() {
         printDivider();
         System.out.println("File missing from root directory.");
-        System.out.println("Did the file get deleted?");
+        printDivider();
     }
 
     /** Prints a message informing the user that the Buffer is empty */
     public void printBufferEmpty() {
         printDivider();
-        System.out.println("You have no CS2040CFiles in the buffer!");
+        System.out.println("You have no CS2040CFiles in the buffer.");
+        printDivider();
     }
 
     /** Prints an error message indicating the input in the importance field is in the invalid range. */
@@ -409,4 +426,5 @@ public class Ui {
         System.out.println(importance + " is not in the valid 1-10 range for importance.");
         printDivider();
     }
+    //@@author
 }
