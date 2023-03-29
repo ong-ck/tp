@@ -121,7 +121,7 @@ Given below is an example usage of how the filter mechanism behaves at each step
 
 The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
 creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for 
-in `[TOPIC NAME].txt` in the folder `.\\data`. If the files already exist, they are not created. Instead, 
+in `[TOPIC_NAME].txt` in the folder `.\\data`. If the files already exist, they are not created. Instead, 
 the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder` 
 which would then convert these raw data into `CS2040CFile` objects. The `CS2040File` objects are then passed
 into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
@@ -286,23 +286,23 @@ after opening the application.
    2. The application would then close in the command-line interface.
 
 ### Adding a `Note`
-1. Type the command: `add n/[NOTE NAME or CODE NAME] t/[TOPIC NAME]`.
-   1. `[NOTE NAME]` would represent the name of the note.
-      1. The note file is in the form `[NOTE NAME].txt`.
+1. Type the command: `add n/[NOTE_NAME or CODE_NAME] t/[TOPIC_NAME]`.
+   1. `[NOTE_NAME]` would represent the name of the note.
+      1. The note file is in the form `[NOTE_NAME].txt`.
       2. The note file has to exist in the same directory as the
       `.jar` file of this application else it'll print an error 
       message.
-   2. `[CODE NAME]` would represent the name of the code file.
-      1. The code file is in the form `[CODE NAME].cpp`.
+   2. `[CODE_NAME]` would represent the name of the code file.
+      1. The code file is in the form `[CODE_NAME].cpp`.
       2. The code file has to exist in the same directory as the
       `.jar` file of this application else it'll print an error
       message.
-   3. `[TOPIC NAME]` would represent the `Topic` the note is tagged to.
-      1. **CASE 1 :** The `[TOPIC NAME]` is valid.
+   3. `[TOPIC_NAME]` would represent the `Topic` the note is tagged to.
+      1. **CASE 1 :** The `[TOPIC_NAME]` is valid.
       > Example : 
       > 
       > add n/name t/LINKED_LIST
-      2. **CASE 2 :** The `[TOPIC NAME]` is invalid.
+      2. **CASE 2 :** The `[TOPIC_NAME]` is invalid.
       > Example :
       >
       > add n/name t/linkedlist
@@ -348,24 +348,24 @@ after opening the application.
 > remove name
 
 ### Filtering `Files`
-1. Type the command: `filter k/[KEYWORD] t/[TOPIC NAME]`.
+1. Type the command: `filter k/[KEYWORD] t/[TOPIC_NAME]`.
    1. `[KEYWORD]` would be `topic` representing filtering by 
    `Topic` or `importance` representing filtering by the 
    importance attribute tagged to each `Note` or `Code`
    added into the application.
-   2. `[TOPIC NAME]` would represent the `Topic` the note is 
+   2. `[TOPIC_NAME]` would represent the `Topic` the note is 
    tagged to.
-      1. **CASE 1 :** The `[TOPIC NAME]` is valid.
+      1. **CASE 1 :** The `[TOPIC_NAME]` is valid.
       > Example :
       >
       > filter k/topic t/LINKED_LIST
-      2. **CASE 2 :** The `[TOPIC NAME]` is invalid.
+      2. **CASE 2 :** The `[TOPIC_NAME]` is invalid.
       > Example :
       >
       > filter k/topic t/linkedlist
       >
       > filter k/topic t/SOMETHING
-     3. There is no need for the `[TOPIC NAME]` field if the `[KEYWORD]`
+     3. There is no need for the `[TOPIC_NAME]` field if the `[KEYWORD]`
      used is not `topic`.
 2. Leaving `k/` blank would cause an error message to be printed.
 > Example :
@@ -389,8 +389,8 @@ again.
 
 ### Saving data
 1. `Notes` and `Codes` are represented as : 
-`[NAME]&@[PATH TO FILE]&@[TOPIC NAME]&@[IMPORTANCE]`
-2. The application checks for invalid `[TOPIC NAME]` only
+`[NAME]&@[PATH_TO_FILE]&@[TOPIC_NAME]&@[IMPORTANCE]`
+2. The application checks for invalid `[TOPIC_NAME]` only
 3. The application checks that there are at least three fields separated by `&@`
 4. Corrupted lines of files are ignored by the application and removed 
 subsequently
