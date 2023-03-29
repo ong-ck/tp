@@ -121,7 +121,7 @@ Given below is an example usage of how the filter mechanism behaves at each step
 
 The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
 creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for 
-in `[TOPIC_NAME].txt` in the folder `.\\data`. If the files already exist, they are not created. Instead, 
+in `TOPIC_NAME.txt` in the folder `.\\data`. If the files already exist, they are not created. Instead, 
 the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder` 
 which would then convert these raw data into `CS2040CFile` objects. The `CS2040File` objects are then passed
 into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
@@ -233,7 +233,7 @@ Below are guidelines for testers to test the application
 2. Right click in the folder where the jar file is located and open the 
 command-line interface. 
 _**Example:**_ `` Open in Terminal``
-3. Type: ``java -jar .\[NAME OF JAR FILE]`` where ``[NAME OF JAR FILE]``
+3. Type: ``java -jar .\NAME_OF_JAR_FILE`` where ``NAME_OF_JAR_FILE``
 is the file name of the jar file.
 4. The application would then open in the command-line interface.
 5. Note that if the application has initialised correctly, there would be a 
@@ -286,23 +286,23 @@ after opening the application.
    2. The application would then close in the command-line interface.
 
 ### Adding a `Note`
-1. Type the command: `add n/[NOTE_NAME or CODE_NAME] t/[TOPIC_NAME]`.
-   1. `[NOTE_NAME]` would represent the name of the note.
-      1. The note file is in the form `[NOTE_NAME].txt`.
+1. Type the command: `add n/NOTE_NAME t/TOPIC_NAME` or `add n/CODE_NAME t/TOPIC_NAME`.
+   1. `NOTE_NAME` would represent the name of the note.
+      1. The note file is in the form `NOTE_NAME.txt`.
       2. The note file has to exist in the same directory as the
       `.jar` file of this application else it'll print an error 
       message.
-   2. `[CODE_NAME]` would represent the name of the code file.
-      1. The code file is in the form `[CODE_NAME].cpp`.
+   2. `CODE_NAME` would represent the name of the code file.
+      1. The code file is in the form `CODE_NAME.cpp`.
       2. The code file has to exist in the same directory as the
       `.jar` file of this application else it'll print an error
       message.
-   3. `[TOPIC_NAME]` would represent the `Topic` the note is tagged to.
-      1. **CASE 1 :** The `[TOPIC_NAME]` is valid.
+   3. `TOPIC_NAME` would represent the `Topic` the note is tagged to.
+      1. **CASE 1 :** The `TOPIC_NAME` is valid.
       > Example : 
       > 
       > add n/name t/LINKED_LIST
-      2. **CASE 2 :** The `[TOPIC_NAME]` is invalid.
+      2. **CASE 2 :** The `TOPIC_NAME` is invalid.
       > Example :
       >
       > add n/name t/linkedlist
@@ -329,12 +329,12 @@ after opening the application.
       notes have been stored.
 
 ### Deleting a `File`
-1. Type the command: `remove n/[NAME]`.
-   1. `[NAME]` would represent the name of the note or code 
+1. Type the command: `remove n/FILE_NAME`.
+   1. `NAME` would represent the name of the note or code 
    stored.
-   2. **CASE 1 :** The `Note` or `Code` with `[NAME]` exists.
+   2. **CASE 1 :** The `Note` or `Code` with `FILE_NAME` exists.
       1. The `Note` or `Code` is deleted successfully and a message would be printed.
-   3. **CASE 2 :** The `Note` or `Code` with `[NAME]` 
+   3. **CASE 2 :** The `Note` or `Code` with `FILE_NAME` 
    does not exist.
       1. The application would print out an error message indicating 
       that the note does not exist.
@@ -348,25 +348,24 @@ after opening the application.
 > remove name
 
 ### Filtering `Files`
-1. Type the command: `filter k/[KEYWORD] t/[TOPIC_NAME]`.
-   1. `[KEYWORD]` would be `topic` representing filtering by 
+1. Type the command: `filter k/KEYWORD [t/TOPIC_NAME]`.
+   1. `KEYWORD` would be `topic` representing filtering by 
    `Topic` or `importance` representing filtering by the 
    importance attribute tagged to each `Note` or `Code`
    added into the application.
-   2. `[TOPIC_NAME]` would represent the `Topic` the note is 
-   tagged to.
-      1. **CASE 1 :** The `[TOPIC_NAME]` is valid.
+   2. `TOPIC_NAME` would represent the `Topic` the note is 
+   tagged to or `Importance` level.
+   3. `TOPIC_NAME` is an optional field
+      1. **CASE 1 :** The `TOPIC_NAME` is valid.
       > Example :
       >
       > filter k/topic t/LINKED_LIST
-      2. **CASE 2 :** The `[TOPIC_NAME]` is invalid.
+      2. **CASE 2 :** The `TOPIC_NAME` is invalid.
       > Example :
       >
       > filter k/topic t/linkedlist
       >
       > filter k/topic t/SOMETHING
-     3. There is no need for the `[TOPIC_NAME]` field if the `[KEYWORD]`
-     used is not `topic`.
 2. Leaving `k/` blank would cause an error message to be printed.
 > Example :
 >
@@ -389,8 +388,8 @@ again.
 
 ### Saving data
 1. `Notes` and `Codes` are represented as : 
-`[NAME]&@[PATH_TO_FILE]&@[TOPIC_NAME]&@[IMPORTANCE]`
-2. The application checks for invalid `[TOPIC_NAME]` only
+`NAME&@PATH_TO_FILE&@TOPIC_NAME&@IMPORTANCE`
+2. The application checks for invalid `TOPIC_NAME` only
 3. The application checks that there are at least three fields separated by `&@`
 4. Corrupted lines of files are ignored by the application and removed 
 subsequently
