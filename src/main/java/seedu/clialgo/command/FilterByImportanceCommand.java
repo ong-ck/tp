@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Objects;
 
+//@@author nikkiDEEE
+/**
+ * Represents an executable command from the user. A <code>FilterByImportanceCommand</code> prints out CS2040CFiles
+ * filtered by importance.
+ */
 public class FilterByImportanceCommand extends FilterCommand {
 
     public Comparator<CS2040CFile> importanceLevel = (cs2040cFile1, cs2040cFile2) -> {

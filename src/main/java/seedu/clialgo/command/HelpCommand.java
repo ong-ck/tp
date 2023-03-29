@@ -7,6 +7,7 @@ import seedu.clialgo.storage.FileManager;
 
 import java.util.Objects;
 
+//@@ author nikkiDEEE
 /**
  * Represents an executable command. A <code>HelpCommand</code> object is created whenever the
  * user wants assistance on what commands are supported by the program.
@@ -71,3 +72,4 @@ public class HelpCommand extends Command {
         return Objects.equals(this.getCommand(), otherHelpCommand.getCommand());
     }
 }
+//@@ author

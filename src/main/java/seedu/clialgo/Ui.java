@@ -2,10 +2,10 @@ package seedu.clialgo;
 
 import java.util.Scanner;
 
+//@@author nikkiDEEE
 /**
  * Text UI of the application.
  */
-//@@author nikkiDEEE
 public class Ui {
 
     private static final String DIVIDER = "======================================================";
