@@ -33,6 +33,17 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 
 ![](.\\sequence\\diagrams\\Architecture.png "Filter by Topic Sequence Diagram")
 
+### Ui
+**API** : Ui.java
+Here is a class diagram of the `Ui` component which is responsible for handling all interactin with the User.
+
+![](.\\uml\\diagrams\\UiClass.png "Parser Class Diagram")
+
+The `Ui` component:
+- Reads in the full command keyed in by the user for the `Parser`.
+- Prints error messages when the user provides invalid inputs.
+- Prints confirmation message when a command have been executed successfully.
+
 ### Parser
 **API** : `Parser.java`
 Here is a class diagram of the `Parser` component which is responsible for processing commands
@@ -41,14 +52,12 @@ and preparing the appropriate `Command` object.
 ![](.\\uml\\diagrams\\ParserClass.png "Parser Class Diagram")
 
 The `Parser` component:
-
 - Reads in the full command keyed in by the user through the `Ui` class.
 - Extracts out the keywords from the command such as `command type`, `topic`, `file name` using
 the `StringManipulation` interface.
 - Verify the validity of the user's input command.
 - Handle cases where the user keys in an invalid command.
 - Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
-
 
 ### Storage
 **API** : `FileManager.java`
@@ -67,6 +76,17 @@ corresponding `Topic`'s  `.txt`
 - reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
+#### Add
+**API** : `AddCommand.java`
+
+Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
+
+![](.\\uml\\diagrams\\Add.png "AddCommand Class Diagram")
+
+The `AddCommand` component
+- can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
+- can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
+- can ensure that there are no files with repeated names such that all names of files added are unique
 
 ### TopoSort
 **API** : `TopoCommand.java`
@@ -81,18 +101,6 @@ The `TopoCommand` component
 - can print out the list of topologically sorted `CS2040CFile` objects
 - can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
 
-
-#### Add
-**API** : `AddCommand.java`
-
-Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
-
-![](.\\uml\\diagrams\\Add.png "AddCommand Class Diagram")
-
-The `AddCommand` component
-- can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
-- can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
-- can ensure that there are no files with repeated names such that all names of files added are unique
 
 #### Filter
 **API** : `FilterCommand.java`
