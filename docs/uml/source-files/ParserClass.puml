@@ -1,5 +1,6 @@
 @startuml
 skinparam classAttributeIconSize 0
+hide circle
 class Parser {
 -COMMANDS: Arraylist<String>
 -KEYWORDS: Arraylist<String>
@@ -39,5 +40,5 @@ Parser ..> Ui
 Parser ..> TopicManager
 Parser ..> command
 
-hide circle
+
 @enduml
