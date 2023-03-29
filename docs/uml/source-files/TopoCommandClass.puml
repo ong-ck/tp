@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
-
+skinparam classAttributeIconSize 0
+hide circle
 abstract class Command {
 +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void {abstract}
 +equals(otherCommand: Command): boolean {abstract}
