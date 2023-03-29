@@ -213,7 +213,8 @@ class AddCommandTest {
         System.setOut(new PrintStream(actualOutput));
 
         // Adding a file that does not exist
-        new AddCommand("thisFileDoesNotExist", "LINKED_LIST").execute(topicManager, ui, fileManager, buffer);
+        new AddCommand("thisFileDoesNotExist", "LINKED_LIST", 10).execute(topicManager, ui,
+                fileManager, buffer);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -226,6 +227,51 @@ class AddCommandTest {
             expectedOutput = "======================================================\n" +
                     "This file does not exist.\n" +
                     "Please add the file into the folder and try again.\n" +
+                    "======================================================\n";
+        }
+
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
+    }
+
+    /**
+     * Checks the <code>execute</code> method of the <code>AddCommand</code> class.
+     * Inputs a name of a file that does not exist into the  <code>AddCommand</code> object and expects the method
+     * to print file does not exit.
+     */
+    @Test
+    void execute_fileDoesNotExist_expectPrintFileDoesExist() {
+        String testDataPath = ".\\testdata";
+        File file = new File(".\\" + "queue" + ".txt");
+        try {
+            if (file.createNewFile()) {
+                System.out.println("File created");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
+
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        // Adding a file that does not exist
+        new AddCommand("queue", "LINKED_LIST", 10).execute(topicManager, ui, fileManager, buffer);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Successfully added queue into LINKED_LIST.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Successfully added queue into LINKED_LIST.\n" +
                     "======================================================\n";
         }
 

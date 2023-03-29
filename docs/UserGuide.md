@@ -45,10 +45,6 @@ export
 ```
 Here is `./export` opened after `export` is input.
 ![](.\\images\\export1.png)
-=======
-## Features 
-
-{Give detailed description of each feature}
 
 ### Adding a CS2040CFile: `add`
 Adds a CS2040CFile that exists into our file manager. It could be either a note file or a code file. Requires a topic 
@@ -90,7 +86,6 @@ remove n/NOTE_NAME
 ```
 
 - Not following the syntax strictly would result in an invalid command message.
-
 
 #### Example of usage:
 Input:
