@@ -93,7 +93,6 @@ public class AddCommand extends Command {
             ui.printFileDoesNotExist();
             return;
         }
-
         // Check if topicName is valid
         if (!topicManager.isValidTopic(topic)) {
             new InvalidTopicCommand(topic).execute(topicManager, ui, fileManager, buffer);

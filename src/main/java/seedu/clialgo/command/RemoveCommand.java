@@ -7,7 +7,7 @@ import seedu.clialgo.TopicManager;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.Ui;
 
-
+//@@author nicholas132000
 /**
  * Represents an executable command from the user. A <code>RemoveCommand</code> object contains the name of
  * the CS2040CFile to be deleted. This object removes the CS2040CFile corresponding to the name of the CS2040CFile from
@@ -68,6 +68,7 @@ public class RemoveCommand extends Command {
     public String getName() {
         return name;
     }
+    //@@author
 
     /**
      * An overridden method that checks for equality of <code>RemoveCommand</code> objects.

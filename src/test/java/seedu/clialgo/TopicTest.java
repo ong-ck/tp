@@ -59,6 +59,7 @@ class TopicTest {
         assertEquals(testTopic.getC2040CFiles(), testNotesHashmap);
     }
 
+    //@@author nicholas132000
     @Test
     void isEmpty_topicIsEmpty_expectTrue() {
         Topic topic = new Topic("LINKED_LIST");
@@ -168,4 +169,5 @@ class TopicTest {
         assertTrue(topic.removeCS2040CFile(noteName2));
         assertTrue(topic.removeCS2040CFile(noteName3));
     }
+    //@@author
 }
