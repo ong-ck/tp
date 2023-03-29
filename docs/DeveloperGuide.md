@@ -112,6 +112,45 @@ The `FilterCommand` component
 
 ## Implementation
 
+### Parser
+#### Current Implementation
+Parsing of commands is done by the `Parser` class. It implements the `StringManipulation` interface which allows
+`Parser` to extract the relevant keywords to prepare the appropriate `Command` object. It is also reponsible for
+handling invalid inputs by the user. The `Parser` consist of the following methods.
+
+- `parse()`: Extracts out the command keyword from the user input.
+- `prepareCommand()`: Prepares the appropriate `Command` object based on the commmand keyword and the other
+relevant input fields provided by the user. It also checks if the format of the command is correct.
+- `isCorrectMarker()`: Checks if the marker used to label the input fields are correct.
+- `isValidImportance()`: Checks if the importance value provided by the user is a valid integer and within the [1, 10]
+range.
+- `isValidKeyword()`: Checks if the `keyWord` provided by the user is valid when preparing the `FilterCommand`.
+- `isValidCommand()`: Checks if the command keyword provided by the user is valid.
+
+Given below is an example of how the `Parser` works when it is issued a remove command.
+
+> **Step 1**: The user enters a command. The full command is read in by the `Ui` and processed by the `Parser`. If the
+> user entered a valid command, the `Parser` will process the full command using the `StringManipulation` interface and
+> prepare the appropriate `FilterCommand` object.
+
+> **Step 2**: If the `topic` field is left empty, the `Parser` will instantiate a new `FilterCommand` object, setting
+> the `topic` field to be `null`. If the `topic` field is filled with a valid topic name, the `Parser` will instantiate
+> a new `FilterCommand` using `topic` in its constructor.
+
+> **Step 3**: The `FilterCommand` is executed. Based on the `keyWord` used to instantiate it, `FilterCommand` invokes
+> the constructor of its subclass (`FilterByTopicCommand` or `FilterByImportanceCommand`) and calls the `execute()`
+> method.
+
+> **Step 4**: If `topic` is `null`, `FilterByTopicCommand` self-invokes `printAllTopics()` method which in turns calls
+> `getAllCS2040CFilesGroupedByTopic()` from the `TopicManager`. If `topic` is not `null` and is valid, it self-invokes
+> `printSingleTopic()` method which in turns calls `getCS2040CFilesByTopic` from the `TopicManager`.
+
+> **Step 5**: If `getAllCS2040CFilesGroupedByTopic()` is called, the TopicManager calls the
+> `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFiles`
+> to the user.
+
+
+
 ### Filter by keyword feature
 
 #### Current Implementation
