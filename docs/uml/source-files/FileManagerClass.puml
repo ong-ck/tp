@@ -1,4 +1,5 @@
 @startuml
+skinparam classAttributeIconSize 0
 
 class FileManager {
 -path: String
@@ -59,5 +60,5 @@ Note .. FileManager : gets reference from <
 Note .. FileEncoder : gets reference from <
 Topic *- "*" Note
 
-
+hide circle
 @enduml

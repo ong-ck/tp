@@ -18,23 +18,40 @@ the help window. Some example commands you can try are:
    - `list`: list all existing notes
    - `remove n/toposort`: remove the 'toposort.txt' note from the list
 
-## Features 
+## Features
 
-{Give detailed description of each feature}
+### Exporting `Files`
+Whenever a `filter` or `topo` command is input by the user, the 
+`Files` listed by the above commands would be stored in a 
+`Buffer`. These stored `Files` can then be copied into 
+`./export`.
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+Format: `export`
+- If the Operating System has a valid file explorer, `./export` 
+would be opened automatically.
+- If the buffer is empty when `export` is inputted, an error message
+would be printed.
+- Every time `export` is called, the `Files` within `./export`
+are deleted before the `Files` are copied into `./export`
+- If a `File` stored in the `Buffer` does not exist for some reason 
+(i.e. if the user deleted the `File`) an error message would be
+printed for each `File` not found.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
-
-Example of usage: 
-
-`todo n/Write the rest of the User Guide d/next week`
-
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Example of usage:
+```
+filter k/topic
+======================================================
+Here are the filtered CS2040CFiles:
+======================================================
+[SORTING]
+1. TEST
+[LINKED_LIST]
+1. Test1
+======================================================
+export
+```
+Here is `./export` opened after `export` is input.
+![](.\\images\\export1.png)
 
 ### Listing CS2040CFiles `list`
 List all CS2040CFiles (in any order) present in `CLIAlgo`.
