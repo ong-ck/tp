@@ -370,10 +370,10 @@ class UiTest {
                     "NAME refers to the CS2040CFiles' file name.\r\n" +
                     "TOPIC refers to the topic that NAME will be tagged to.\r\n" +
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\r\n" +
-                    "Invalid NAME or TOPIC will cause an error.\r\n" +
                     "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\r\n" +
                     "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\r\n" +
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\r\n" +
+                    "Invalid NAME or TOPIC will cause an error.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
@@ -382,10 +382,10 @@ class UiTest {
                     "NAME refers to the CS2040CFiles' file name.\n" +
                     "TOPIC refers to the topic that NAME will be tagged to.\n" +
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
-                    "Invalid NAME or TOPIC will cause an error.\n" +
                     "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\n" +
                     "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\n" +
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\n" +
+                    "Invalid NAME or TOPIC will cause an error.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -767,6 +767,122 @@ class UiTest {
             expectedOutput = "======================================================\n" +
                     "This file does not exist.\n" +
                     "Please add the file into the folder and try again.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printTopoSortSuccess() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printTopoSortSuccess();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Here are the topologically sorted CS2040CFiles:\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Here are the topologically sorted CS2040CFiles:\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printNoCS2040CFilesSaved() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printNoCS2040CFilesSaved();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "You have no CS2040CFiles at the moment.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "You have no CS2040CFiles at the moment.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printFileMissing() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printFileMissing();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "File missing from root directory.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "File missing from root directory.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printBufferEmpty() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printBufferEmpty();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "You have no CS2040CFiles in the buffer.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "You have no CS2040CFiles in the buffer.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printInvalidImportance() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        String importance = "INVALID_IMPORTANCE";
+        ui.printInvalidImportance(importance);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "INVALID_IMPORTANCE is not in the valid 1-10 range for importance.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "INVALID_IMPORTANCE is not in the valid 1-10 range for importance.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
