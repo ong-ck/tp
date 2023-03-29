@@ -1,0 +1,23 @@
+@startuml
+actor User
+activate CLIAlgo
+    loop fullCommand != "exit"
+    User -> CLIAlgo
+    CLIAlgo -> Ui : getUserInput()
+    activate Ui
+    return fullCommand : String
+
+    CLIAlgo -> Parser : parse
+    activate Parser
+        Parser -> Command **
+        activate Command
+        return
+    return command : Command
+
+    CLIAlgo -> Command : execute()
+    activate Command
+    return
+    destroy Command
+    end
+destroy CLIAlgo
+@enduml

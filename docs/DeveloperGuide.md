@@ -29,6 +29,9 @@ in the correct sequence and connects them with each other during runtime.
 
 #### How the architecture components interact with each other
 
+The Sequence Diagram below shows a high level overview of how the components interact with each other
+
+![](.\\sequence\\diagrams\\Architecture.png "Filter by Topic Sequence Diagram")
 
 ### Parser
 **API** : `Parser.java`
