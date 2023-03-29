@@ -36,11 +36,11 @@ deactivate fm
     fd --> sf : isCorrupted
         alt isCorrupted
         sf --> sf : isFileCorrupted
-        activate sf
         deactivate sf
         else else
         fd --> sf
         activate sf
+        sf-->sf
         deactivate sf
         end
     end
