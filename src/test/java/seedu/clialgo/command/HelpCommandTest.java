@@ -79,10 +79,10 @@ class HelpCommandTest {
                     "NAME refers to the CS2040CFiles' file name.\r\n" +
                     "TOPIC refers to the topic that NAME will be tagged to.\r\n" +
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\r\n" +
-                    "Invalid NAME or TOPIC will cause an error.\r\n" +
                     "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\r\n" +
                     "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\r\n" +
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\r\n" +
+                    "Invalid NAME or TOPIC will cause an error.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
@@ -91,10 +91,10 @@ class HelpCommandTest {
                     "NAME refers to the CS2040CFiles' file name.\n" +
                     "TOPIC refers to the topic that NAME will be tagged to.\n" +
                     "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
-                    "Invalid NAME or TOPIC will cause an error.\n" +
                     "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\n" +
                     "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\n" +
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\n" +
+                    "Invalid NAME or TOPIC will cause an error.\n" +
                     "======================================================\n";
         }
 

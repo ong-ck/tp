@@ -5,20 +5,45 @@ import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 
+import java.util.Objects;
+
+//@@author nikkiDEEE
 public class InvalidImportanceCommand extends Command {
     private final String importance;
 
+    /**
+     * Constructor for command when an invalid importance is being assigned to a CS2040CFile.
+     *
+     * @param importance The invalid importance assigned to the CS2040CFile.
+     */
     public InvalidImportanceCommand(String importance) {
         this.importance = importance;
     }
 
+    /**
+     * An overridden method to execute the command when an invalid importance is being assigned to a CS2040CFile.
+     *
+     * @param topicManager The <code>TopicManager</code> object.
+     * @param ui The <code>Ui</code> object.
+     * @param fileManager The <code>FileManager</code> object.
+     * @param buffer The object responsible to export filtered files.
+     */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         ui.printInvalidImportance(importance);
     }
 
+    /**
+     * An overridden method that checks for equality of <code>InvalidImportanceCommand</code> objects.
+     *
+     * @param otherCommand The other object to be checked against.
+     * @return A boolean value to determine whether the <code>InvalidImportanceCommand</code> objects are equal.
+     */
     @Override
     public boolean equals(Command otherCommand) {
-        return otherCommand instanceof InvalidImportanceCommand;
+        InvalidImportanceCommand otherInvalidImportanceCommand = (InvalidImportanceCommand) otherCommand;
+
+        return Objects.equals(this.importance, otherInvalidImportanceCommand.importance);
     }
 }
+//@@author
