@@ -146,6 +146,12 @@ The following sequence diagram shows how the Parser work.
 
 ![](.\\sequence\\diagrams\\Parser.png "Parser Sequence Diagram")
 
+### Help Feature
+#### Current Implementation
+The following sequence diagram shows how the help operation works:
+
+![HelpFeature.png](sequence%2Fdiagrams%2FHelpFeature.png)
+
 ### Filter by keyword feature
 
 #### Current Implementation
