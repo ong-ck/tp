@@ -45,14 +45,15 @@ deactivate fm
         end
     end
     destroy s
+    deactivate sf
     deactivate fd
-    alt isFileCorrupted
+    opt isFileCorrupted
     sf -> sf : overwriteFile()
     activate sf
     sf --> sf
     deactivate sf
+    end
 tm -> fm : decodeAll()
-deactivate sf
 activate fm
 fm -> sf : convertFileToTopic()
 activate sf
