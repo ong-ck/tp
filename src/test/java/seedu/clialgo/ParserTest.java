@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Test;
 import seedu.clialgo.command.AddCommand;
 import seedu.clialgo.command.Command;
 import seedu.clialgo.command.ExitCommand;
+import seedu.clialgo.command.ExportCommand;
 import seedu.clialgo.command.FilterCommand;
 import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
 import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.ListCommand;
+import seedu.clialgo.command.TopoCommand;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//@@author heejet
 class ParserTest {
     /** Test isValidCommand */
     @Test
@@ -262,6 +265,71 @@ class ParserTest {
             InvalidCommand correctWithSpaceOutput = new InvalidCommand();
             Command actualWithSpaceOutput = parser.parse(withSpaceInput, topics);
             assertTrue(correctWithSpaceOutput.equals(actualWithSpaceOutput));
+        }
+    }
+
+    @Test
+    void parse_invalidExport_expectInvalidCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        ArrayList<String> inputCommands = new ArrayList<>(
+                Arrays.asList("export.", "Export", "expt", "exportexport", "ex port")
+        );
+
+        InvalidCommand expectedOutput = new InvalidCommand();
+
+        for (String command : inputCommands) {
+            Command actualNoSpaceOutput = parser.parse(command, topics);
+            assertTrue(expectedOutput.equals(actualNoSpaceOutput));
+        }
+    }
+
+    @Test
+    void parse_validExport_expectExportCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        String input = "export";
+
+        ExportCommand expectedOutput = new ExportCommand();
+
+        Command actualNoSpaceOutput = parser.parse(input, topics);
+        assertTrue(expectedOutput.equals(actualNoSpaceOutput));
+    }
+
+    @Test
+    void parse_invalidTopo_expectInvalidCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        ArrayList<String> nameFields = new ArrayList<>(
+                Arrays.asList("", "N/noteName", "k/noteName", null, "n/")
+        );
+
+        InvalidCommand expectedOutput = new InvalidCommand();
+
+        for (String nameField : nameFields) {
+            String input = "topo " + nameField;
+            Command actualOutput = parser.parse(input, topics);
+            assertTrue(expectedOutput.equals(actualOutput));
+        }
+    }
+
+    @Test
+    void parse_validTopo_expectTopoCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        ArrayList<String> nameFields = new ArrayList<>(
+                Arrays.asList("linked list", "     linked list      ", "42343", "h2312", "asd_323")
+        );
+
+        for (String nameField : nameFields) {
+            String input = "topo n/" + nameField;
+            Command actualOutput = parser.parse(input, topics);
+            TopoCommand expectedOutput = new TopoCommand(nameField.trim());
+            assertTrue(expectedOutput.equals(actualOutput));
         }
     }
 }

@@ -135,6 +135,6 @@ public class TopoCommand extends Command {
         }
 
         // Check that number of topics are equal -> topoSortedCS2040CFiles is equal
-        return otherTopoSortedCS2040CFiles.size() != this.topoSortedCS2040CFiles.size();
+        return otherTopoSortedCS2040CFiles.size() == this.topoSortedCS2040CFiles.size();
     }
 }
