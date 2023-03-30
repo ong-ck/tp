@@ -34,7 +34,7 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 ![](sequence/diagrams/Architecture.png "Filter by Topic Sequence Diagram")
 
 ### Ui
-**API** : [`Ui.java`](../src/main/java/seedu/clialgo/Ui.java)
+[**API**](../src/main/java/seedu/clialgo/Ui.java) : `Ui.java`
 
 Here is a class diagram of the `Ui` component which is responsible for handling all interaction with the User.
 
