@@ -146,6 +146,7 @@ The `TopoCommand` component
 
 ### Parser
 #### Current Implementation
+
 Parsing of commands is done by the `Parser` class. It implements the `StringManipulation` interface which allows
 `Parser` to extract the relevant keywords to prepare the appropriate `Command` object. It is also responsible for
 handling invalid inputs by the user. The `Parser` consist of the following methods.
@@ -193,9 +194,9 @@ The following sequence diagram shows how previously saved files are loaded into 
 
 ![](sequence-diagrams/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
 
-
 ### Help Feature
 #### Current Implementation
+
 The following sequence diagram shows how the help operation works:
 
 ![](sequence-diagrams/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
@@ -240,6 +241,29 @@ CS2040CFile.
 The **_Sequence Diagram_** below shows the `AddCommand` works.
 
 ![](sequence-diagrams/diagrams/AddFeature.png "AddFeature Sequence Diagram")
+
+### List feature
+#### Current implementation
+
+The list feature mechanism is facilitated by `ListCommand`. It extends `Command` with an
+overridden `execute()` method. It calls the `getAllCS2040CFiles()` method from the `TopicManager` to get all the
+`CS2040CFile` stored in `CLIAlgo`. It then prints them out to the user.
+
+Given below is an example usage scenario and how the list feature behaves at each step.
+
+> **Step 1:** The user will input a command in the format `list`. The input will be read by the `Ui` and processed by the
+> `Parser`. The `Parser` will then call the `prepareListCommand` to create a new `ListCommand` object.
+
+> **Step 2:** The `execute` method of the `ListCommand` object will be executed. `ListCommand` first checks if the
+> `TopicManager` is empty by calling the `isEmpty()` method of the `TopicManager`. If the `TopicManager` is empty, 
+> `ListCommand` will print out a message to inform the user that the `TopicManager` is empty.
+
+> **Step 3:** If the `TopicManager` is not empty, `ListCommand` calls the `getAllCS2040CFiles()` method from the 
+> `TopicManager` which returns an `ArrayList<String>` containing the names and labels of all `CS2040CFile` stored in 
+> `CLIAlgo`.
+
+> **Step 4:** `ListCommand` iterates through the `ArrayList<String>` and prints the names of all the `CS2040CFile` 
+> stored in `CLIAlgo`.
 
 ### Filter by keyword feature
 #### Current Implementation
@@ -302,19 +326,20 @@ These operations are `private` and can only be accessed in `TopoCommand`.
 
 Given below is an example usage scenario and how the TopoSort mechanism behaves at each step.
 
-> Step 1. The user will input a command in the format `topo n\noteName`. The input will be read
+> **Step 1:** The user will input a command in the format `topo n\noteName`. The input will be read
 > by the `Ui` and processed by the `Parser`. The `Parser` will then call the `prepareTopoCommand`
 > to create a new `TopoCommand` object.
 
-> Step 2. The `execute` method of the `TopoCommand` object will be executed, which will check
-> whether there are any saved notes (via the `isEmpty` method of `TopicManager`) and whether the `noteName` exists as a note in the application
+> **Step 2:** The `execute` method of the `TopoCommand` object will be executed, which will check
+> whether there are any saved notes (via the `isEmpty` method of `TopicManager`) and whether the `noteName` exists as a 
+> note in the application
 > (via the `isRepeatedCS2040CFile` method of `TopicManager`).
 
-> Step 3. The `printTopoSortedCS2040CFiles` method is called to obtain the relevant note files in topological
+> **Step 3:** The `printTopoSortedCS2040CFiles` method is called to obtain the relevant note files in topological
 > order from `TopicManager` via the `getAllCS2040CFilesBeforeTopic` method. This will be stored internally in 
 > a LinkedHashMap called `topoSortedCS2040CFiles`.
 
-> Step 4. For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic` will be executed to print all
+> **Step 4:** For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic` will be executed to print all
 > note names present in the specific topic. As the topics are saved in topological order, the printed note names
 > will be printed in the correct order.
 
