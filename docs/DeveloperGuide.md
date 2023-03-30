@@ -17,7 +17,7 @@ Given below is a quick overview of the main components and how they interact wit
 
 #### Main components of the architecture
 
-- `CLIAlgo`: consist of only 1 main method and it is responsible for initializing the componnents
+- `CLIAlgo`: consist of only 1 main method, and it is responsible for initializing the components
 in the correct sequence and connects them with each other during runtime.
 - `Ui`: Responsible for handling all interactions with the user.
 - `Parser`: Responsible for making sense of all commands entered by the user.
@@ -134,11 +134,11 @@ The `TopoCommand` component
 ### Parser
 #### Current Implementation
 Parsing of commands is done by the `Parser` class. It implements the `StringManipulation` interface which allows
-`Parser` to extract the relevant keywords to prepare the appropriate `Command` object. It is also reponsible for
+`Parser` to extract the relevant keywords to prepare the appropriate `Command` object. It is also responsible for
 handling invalid inputs by the user. The `Parser` consist of the following methods.
 
 - `parse()`: Extracts out the command keyword from the user input.
-- `prepareCommand()`: Prepares the appropriate `Command` object based on the commmand keyword and the other
+- `prepareCommand()`: Prepares the appropriate `Command` object based on the command keyword and the other
 relevant input fields provided by the user. It also checks if the format of the command is correct.
 - `isCorrectMarker()`: Checks if the marker used to label the input fields are correct.
 - `isValidImportance()`: Checks if the importance value provided by the user is a valid integer and within the [1, 10]
@@ -232,7 +232,7 @@ The **_Sequence Diagram_** below shows the `AddCommand` works.
 #### Current Implementation
 
 The filter mechanism is facilitated by `FilterCommand`. It extends `Command` with an overridden `execute()` method. The
-`FilterCommand` has 2 subclass `FilterByTopicCommand` and `FilterByImportanceCommand`. Each with their own overriden 
+`FilterCommand` has 2 subclass `FilterByTopicCommand` and `FilterByImportanceCommand`. Each with their own overridden 
 `execute()` method. During execution, the `FilterCommand` decides which of its subclass to instantiate and execute 
 depending on the `keyWord` provided. Both `FilterByTopicCommand` and `FilterByImportanceCommad`
 `FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
