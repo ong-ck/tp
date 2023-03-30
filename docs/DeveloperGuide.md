@@ -9,7 +9,7 @@ original source as well}
 
 ### Architecture
 
-![](.\\uml\\diagrams\\ArchitectureDiagram.png "Architecture Diagram")
+![](UML/diagrams/ArchitectureDiagram.png "Architecture Diagram")
 
 The **_Architecture Diagram_** given above explains the high-level design of `CLIAlgo`.
 
@@ -31,13 +31,13 @@ in the correct sequence and connects them with each other during runtime.
 
 The **_Sequence Diagram_** below shows a high level overview of how the components interact with each other
 
-![](.\\sequence\\diagrams\\Architecture.png "Filter by Topic Sequence Diagram")
+![](./sequence/diagrams/Architecture.png "Filter by Topic Sequence Diagram")
 
 ### Ui
 **API** : Ui.java
 Here is a class diagram of the `Ui` component which is responsible for handling all interactin with the User.
 
-![](.\\uml\\diagrams\\UiClass.png "Parser Class Diagram")
+![](./uml/diagrams/UiClass.png "Parser Class Diagram")
 
 The `Ui` component:
 - Reads in the full command keyed in by the user for the `Parser`.
@@ -49,7 +49,7 @@ The `Ui` component:
 Here is a class diagram of the `Parser` component which is responsible for processing commands
 and preparing the appropriate `Command` object.
 
-![](.\\uml\\diagrams\\ParserClass.png "Parser Class Diagram")
+![](./UML/diagrams/ParserClass.png "Parser Class Diagram")
 
 The `Parser` component:
 - Reads in the full command keyed in by the user through the `Ui` class.
@@ -65,7 +65,7 @@ the `StringManipulation` interface.
 Here is a class diagram of the `FileManager` which facilitates the storage
 function of the application.
 
-![](.\\uml\\diagrams\\FileManagerClass.png "FileManager Class Diagram")
+![](./uml/diagrams/FileManagerClass.png "FileManager Class Diagram")
 
 The `FileManager` component
 - can save each `Topic`'s data as an individual `.txt` file
@@ -81,7 +81,7 @@ initializing the application
 
 Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
 
-![](.\\uml\\diagrams\\HelpCommand.png "AddCommand Class Diagram")
+![](./UML/diagrams/HelpCommand.png "AddCommand Class Diagram")
 
 The `HelpCommand` component
 - Provides the user with a list of valid commands in `CLIAlgo`.
@@ -92,7 +92,7 @@ The `HelpCommand` component
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
 
-![](.\\uml\\diagrams\\Add.png "AddCommand Class Diagram")
+![](./UML/diagrams/Add.png "AddCommand Class Diagram")
 
 The `AddCommand` component
 - can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
@@ -105,7 +105,7 @@ The `AddCommand` component
 Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
 the user's specified `keyWord`.
 
-![](.\\uml\\diagrams\\FilterClass.png "FilterCommand Class Diagram")
+![](./UML/diagrams/FilterClass.png "FilterCommand Class Diagram")
 
 The `FilterCommand` component
 - instantiate a subclass based on the `keyWord` used in its constructor.
@@ -121,7 +121,7 @@ The `FilterCommand` component
 Here is a class diagram of the `TopoCommand` which facilitates the storage
 function of the application.
 
-![](.\\uml\\diagrams\\TopoCommandClass.png "TopoCommand Class Diagram")
+![](./uml/diagrams/TopoCommandClass.png "TopoCommand Class Diagram")
 
 The `TopoCommand` component
 - can topologically sort `CS2040CFile` objects in a specific `topic` order
@@ -162,7 +162,7 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 
 The following sequence diagram shows how the Parser work.
 
-![](.\\sequence\\diagrams\\Parser.png "Parser Sequence Diagram")
+![](./sequence/diagrams/Parser.png "Parser Sequence Diagram")
 
 ### Initializing previous saved data feature
 #### Current implementation
@@ -177,14 +177,14 @@ back to the `TopicManager`, completing the initialization process.
 
 The following sequence diagram shows how previously saved files are loaded into `CLIAlgo`.
 
-![](.\\sequence\\diagrams\\InitializationFileManager.png "FileManager Initialization Sequence Diagram")
+![](./sequence/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
 
 
 ### Help Feature
 #### Current Implementation
 The following sequence diagram shows how the help operation works:
 
-![](.\\sequence\\diagrams\\HelpFeature.png "HelpCommand Sequence Diagram")
+![](./sequence/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
 
 ### Add CS2040CFile feature
 #### Current Implementation
@@ -225,7 +225,7 @@ CS2040CFile.
 
 The **_Sequence Diagram_** below shows the `AddCommand` works.
 
-![](.\\sequence\\diagrams\\AddFeature.png "AddFeature Sequence Diagram")
+![](./sequence/diagrams/AddFeature.png "AddFeature Sequence Diagram")
 
 ### Filter by keyword feature
 #### Current Implementation
@@ -270,7 +270,7 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
 
 The following **_Sequence Diagram_** shows how the filter by topic operation work.
 
-![](.\\sequence\\diagrams\\FilterByTopic.png "Filter by Topic Sequence Diagram")
+![](./sequence/diagrams/FilterByTopic.png "Filter by Topic Sequence Diagram")
 
 ### TopoSort feature
 #### Current implementation
@@ -306,7 +306,7 @@ Given below is an example usage scenario and how the TopoSort mechanism behaves 
 
 The following sequence diagram shows how the `TopoCommand` works.
 
-![](.\\sequence\\diagrams\\TopoSort.png "TopoSort Sequence Diagram")
+![](./sequence/diagrams/TopoSort.png "TopoSort Sequence Diagram")
 
 ### Export feature
 #### Current implementation
@@ -330,7 +330,7 @@ the folder by using the default file explorer of the system.
 
 The following sequence diagram shows how the export feature works.
 
-![](.\\sequence\\diagrams\\Export.png "Export Sequence Diagram")
+![](./sequence/diagrams/Export.png "Export Sequence Diagram")
 
 ## Product scope
 ### Target user profile
