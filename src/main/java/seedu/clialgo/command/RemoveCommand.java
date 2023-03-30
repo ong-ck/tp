@@ -43,6 +43,11 @@ public class RemoveCommand extends Command {
             return;
         }
 
+        if (!topicManager.isRepeatedCS2040CFile(this.name)) {
+            new NameNotFoundCommand().execute(topicManager, ui, fileManager, buffer);
+            return;
+        }
+
         String topicName = topicManager.getTopicOfCS2040CFile(this.name);
 
         assert topicManager.isRepeatedCS2040CFile(this.name);

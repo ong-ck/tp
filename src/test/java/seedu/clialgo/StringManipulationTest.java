@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
 
-
+//@@author heejet
 class StringManipulationTest {
     public static final String NAME_MARKER = "n/";
     public static final String COMMAND_MARKER = "c/";

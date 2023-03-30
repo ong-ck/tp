@@ -157,15 +157,14 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 > Since the command keyword provided is `remove`, `prepareCommand()` calls `prepareRemoveCommand()`.
 
 > **Step 4**: If the `NAME` field of the command is null or not labelled using the correct marker, 
-> `prepareRemoveCommand()` returns an `InvalidCommand` object. If the name of the `CS2040CFile` provided is not
-> found, it returns a `NameNotFoundCommand`. If the `NAME` input field is valid, a `RemoveCommand` object is returned.
+> `prepareRemoveCommand()` returns an `InvalidCommand` object. If the `NAME` input field is valid, a `RemoveCommand` 
+> object is returned.
 
 The following sequence diagram shows how the Parser work.
 
 ![](.\\sequence\\diagrams\\Parser.png "Parser Sequence Diagram")
 
 ### Initializing previous saved data feature
-
 #### Current implementation
 
 The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`

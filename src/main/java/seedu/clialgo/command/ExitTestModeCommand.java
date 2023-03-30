@@ -32,6 +32,6 @@ public class ExitTestModeCommand extends Command {
 
     @Override
     public boolean equals(Command otherCommand) {
-        return false;
+        return otherCommand instanceof ExitTestModeCommand;
     }
 }

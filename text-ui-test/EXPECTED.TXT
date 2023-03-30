@@ -57,9 +57,8 @@ Invalid NAME will cause an error.
 The filtered list is empty!
 ======================================================
 ======================================================
-Unsuccessful! A CS2040CFile of that name does not exist.
-Only CS2040CFiles in your list can be removed.
-Type 'list' to see CS2040CFiles you can remove.
+Unsuccessful!
+Type 'help c/remove' for assistance on how to remove a CS2040CFile.
 ======================================================
 ======================================================
 You have no CS2040CFiles!
@@ -97,9 +96,8 @@ Type 'help c/filter' for assistance.
 Successfully removed sorting notes.
 ======================================================
 ======================================================
-Unsuccessful! A CS2040CFile of that name does not exist.
-Only CS2040CFiles in your list can be removed.
-Type 'list' to see CS2040CFiles you can remove.
+Unsuccessful!
+Type 'help c/remove' for assistance on how to remove a CS2040CFile.
 ======================================================
 ======================================================
 Ending test mode.

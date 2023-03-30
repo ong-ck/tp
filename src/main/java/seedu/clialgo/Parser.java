@@ -11,7 +11,6 @@ import seedu.clialgo.command.InvalidCommand;
 import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.InvalidImportanceCommand;
 import seedu.clialgo.command.ListCommand;
-import seedu.clialgo.command.NameNotFoundCommand;
 import seedu.clialgo.command.RemoveCommand;
 import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.command.TopoCommand;
@@ -74,7 +73,7 @@ public class Parser implements StringManipulation {
      * @param keyWord The input string.
      * @return True if the input string is in the valid importance range, False otherwise.
      */
-    public boolean isValidImportance(String keyWord) throws NumberFormatException {
+    private boolean isValidImportance(String keyWord) throws NumberFormatException {
         assert keyWord != null;
         int importance = Integer.parseInt(keyWord);
         return importance >= 1 && importance <= 10;
@@ -138,10 +137,11 @@ public class Parser implements StringManipulation {
         }
         String cs2040cFileName;
         String topicName;
+        String importanceField = "";
         int importance;
         try {
             String cs2040cFileNameAndTopicName = StringManipulation.getFirstWord(description, IMPORTANCE_MARKER);
-            String importanceField = StringManipulation.removeFirstWord(description, IMPORTANCE_MARKER);
+            importanceField = StringManipulation.removeFirstWord(description, IMPORTANCE_MARKER);
             String cs2040cFileNameWithNameMarker = StringManipulation.getFirstWord(cs2040cFileNameAndTopicName,
                     TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(cs2040cFileNameAndTopicName, TOPIC_MARKER);
@@ -165,8 +165,10 @@ public class Parser implements StringManipulation {
             }
 
             importance = Integer.parseInt(importanceField);
-        } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException | NumberFormatException e) {
+        } catch (NullInputException | EmptyFieldException | IndexOutOfBoundsException e) {
             return new InvalidCommand();
+        } catch (NumberFormatException e) {
+            return new InvalidImportanceCommand(importanceField);
         }
 
         assert cs2040cFileName.length() > 0;
@@ -196,9 +198,6 @@ public class Parser implements StringManipulation {
 
             cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
 
-            if (!topics.isRepeatedCS2040CFile(cs2040cFileName)) {
-                return new NameNotFoundCommand();
-            }
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }

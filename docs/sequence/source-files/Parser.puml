@@ -25,11 +25,7 @@ activate Parser
             else command == "remove"
                 Parser -> Parser : PrepareRemoveCommand (description : String, topics : TopicManager)
                 activate Parser
-                    alt description == null
-                        Parser -> InvalidCommand **
-                        activate InvalidCommand
-                        return
-                    else !isCorrectMarker(description)
+                    alt description == null || !isCorrectMarker(description)
                         Parser -> InvalidCommand **
                         activate InvalidCommand
                         return
@@ -38,19 +34,9 @@ activate Parser
                         activate StringManipulation
                         return cs2040cFileName
 
-                        Parser -> TopicManager : isRepeatedCS2040CFile(cs2040cFileName : String)
-                        activate TopicManager
-                        return isRepeatedCS2040CFile : boolean
-
-                        alt !iisRepeatedCS2040CFile
-                            Parser -> NameNotFoundCommand **
-                            activate NameNotFoundCommand
-                            return NameNotFoundCommand
-                        else
-                            Parser -> RemoveCommand **
-                            activate RemoveCommand
-                            return RemoveCommand
-                        end
+                        Parser -> RemoveCommand **
+                        activate RemoveCommand
+                        return RemoveCommand
                     end
                 return
             else command == "filter"

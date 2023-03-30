@@ -4,11 +4,17 @@ import org.junit.jupiter.api.Test;
 import seedu.clialgo.command.AddCommand;
 import seedu.clialgo.command.Command;
 import seedu.clialgo.command.ExitCommand;
+import seedu.clialgo.command.ExitTestModeCommand;
+import seedu.clialgo.command.ExportCommand;
 import seedu.clialgo.command.FilterCommand;
 import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
+import seedu.clialgo.command.InvalidImportanceCommand;
 import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.ListCommand;
+import seedu.clialgo.command.RemoveCommand;
+import seedu.clialgo.command.TestModeCommand;
+import seedu.clialgo.command.TopoCommand;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//@@author heejet
 class ParserTest {
     /** Test isValidCommand */
     @Test
@@ -117,10 +124,21 @@ class ParserTest {
     void parse_normalInput_expectCorrectCommandObject() {
         Parser parser = new Parser();
         TopicManager topics = new TopicManager();
+
         String addInput = "add n/Name of File t/LINKED_LIST";
         AddCommand correctAddOutput = new AddCommand("name of file", "LINKED_LIST");
         Command actualAddOutput = parser.parse(addInput, topics);
         assertTrue(correctAddOutput.equals(actualAddOutput));
+
+        String addInputWithImportance = "add n/note name t/SORTING i/8";
+        AddCommand correctAddInputWithImportanceOutput = new AddCommand("note name", "SORTING", 8);
+        Command actualAddInputWithImportanceOutput = parser.parse(addInputWithImportance, topics);
+        assertTrue(correctAddInputWithImportanceOutput.equals(actualAddInputWithImportanceOutput));
+
+        String removeInput = "remove n/note name";
+        RemoveCommand correctRemoveInputOutput = new RemoveCommand("note name");
+        Command actualRemoveInputOutput = parser.parse(removeInput, topics);
+        assertTrue(correctRemoveInputOutput.equals(actualRemoveInputOutput));
 
         String helpInputNoCommand = "help";
         HelpCommand correctHelpNoCommandOutput = new HelpCommand();
@@ -166,6 +184,76 @@ class ParserTest {
         ExitCommand correctExitOutput = new ExitCommand();
         Command actualExitOutput = parser.parse(exitInput, topics);
         assertTrue(correctExitOutput.equals(actualExitOutput));
+
+        String startTestInput = "start-test-mode";
+        TestModeCommand correctStartTestOutput = new TestModeCommand();
+        Command actualStartTestOutput = parser.parse(startTestInput, topics);
+        assertTrue(correctStartTestOutput.equals(actualStartTestOutput));
+
+        String exitTestInput = "exit-test-mode";
+        ExitTestModeCommand correctExitTestOutput = new ExitTestModeCommand();
+        Command actualExitTestOutput = parser.parse(exitTestInput, topics);
+        assertTrue(correctExitTestOutput.equals(actualExitTestOutput));
+    }
+
+    @Test
+    void parse_invalidImportance_expectInvalidImportanceCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        ArrayList<String> invalidImportanceInputs = new ArrayList<>(
+                Arrays.asList("100", "-2", "dfsdhk", ".", "4fg")
+        );
+        for (String importanceInput : invalidImportanceInputs) {
+            String input = "add n/note name t/SORTING i/" + importanceInput;
+            InvalidImportanceCommand expectedOutput = new InvalidImportanceCommand(importanceInput);
+
+            Command actualOutput = parser.parse(input, topics);
+            assertTrue(expectedOutput.equals(actualOutput));
+        }
+    }
+    @Test
+    void parse_invalidInput_expectInvalidCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        InvalidCommand expectedOutput = new InvalidCommand();
+
+        ArrayList<String> invalidKeywordFields = new ArrayList<>(
+                Arrays.asList("", "dfsdhk", ".", "IMPORTANCE", " ", "Topic", null)
+        );
+        for (String invalidKeywordField : invalidKeywordFields) {
+            String wrongKeywordInput = "filter k/" + invalidKeywordField;
+
+            Command actualWrongKeywordOutput = parser.parse(wrongKeywordInput, topics);
+            assertTrue(expectedOutput.equals(actualWrongKeywordOutput));
+        }
+
+        ArrayList<String> invalidAddFields = new ArrayList<>(
+                Arrays.asList(" t/SORTING", "", "note ", "note t/", null)
+        );
+        for (String invalidAddField: invalidAddFields) {
+            String wrongAddInput = "add n/" + invalidAddField;
+
+            Command actualWrongAddOutput = parser.parse(wrongAddInput, topics);
+            assertTrue(expectedOutput.equals(actualWrongAddOutput));
+        }
+    }
+
+    @Test
+    void parse_invalidHelpCommand_expectInvalidCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+        ArrayList<String> invalidCommandFields = new ArrayList<>(
+                Arrays.asList("ADD", "dfsdhk", "1remove", ".", " ")
+        );
+        InvalidCommand expectedOutput = new InvalidCommand();
+        for (String invalidCommandField : invalidCommandFields) {
+            String wronginvalidHelpCommandInput = "help c/" + invalidCommandField;
+
+            Command actualWrongFirstMarkerOutput = parser.parse(wronginvalidHelpCommandInput, topics);
+            assertTrue(expectedOutput.equals(actualWrongFirstMarkerOutput));
+        }
     }
 
     @Test
@@ -181,6 +269,11 @@ class ParserTest {
         InvalidCommand correctWrongSecondMarkerOutput = new InvalidCommand();
         Command actualWrongSecondMarkerOutput = parser.parse(wrongSecondMarkerInput, topics);
         assertTrue(correctWrongSecondMarkerOutput.equals(actualWrongSecondMarkerOutput));
+
+        String wrongRemoveMarkerInput = "remove t/Name of File";
+        InvalidCommand correctWrongRemoveMarkerInputOutput = new InvalidCommand();
+        Command actualWrongRemoveMarkerInputOutput = parser.parse(wrongRemoveMarkerInput, topics);
+        assertTrue(correctWrongRemoveMarkerInputOutput.equals(actualWrongRemoveMarkerInputOutput));
 
         String wrongSingleMarker = "help t/add";
         InvalidCommand correctWrongSingleMarkerOutput = new InvalidCommand();
@@ -232,6 +325,11 @@ class ParserTest {
         Command actualEmptySecondFieldOutput = parser.parse(emptySecondFieldInput, topics);
         assertTrue(correctEmptySecondFieldOutput.equals(actualEmptySecondFieldOutput));
 
+        String removeInput = "remove n/";
+        InvalidCommand correctRemoveOutput = new InvalidCommand();
+        Command actualCorrectRemoveOutput  = parser.parse(removeInput, topics);
+        assertTrue(correctRemoveOutput.equals(actualCorrectRemoveOutput));
+
         String emptySingleFieldInput = "help c/";
         InvalidCommand correctEmptySingleFieldOutput = new InvalidCommand();
         Command actualEmptySingleFieldOutput = parser.parse(emptySingleFieldInput, topics);
@@ -249,7 +347,7 @@ class ParserTest {
         TopicManager topics = new TopicManager();
 
         ArrayList<String> commands = new ArrayList<>(
-                Arrays.asList("add", "remove", "filter")
+                Arrays.asList("add", "remove", "filter", "", null)
         );
 
         for (String command : commands) {
@@ -262,6 +360,71 @@ class ParserTest {
             InvalidCommand correctWithSpaceOutput = new InvalidCommand();
             Command actualWithSpaceOutput = parser.parse(withSpaceInput, topics);
             assertTrue(correctWithSpaceOutput.equals(actualWithSpaceOutput));
+        }
+    }
+
+    @Test
+    void parse_invalidExport_expectInvalidCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        ArrayList<String> inputCommands = new ArrayList<>(
+                Arrays.asList("export.", "Export", "expt", "exportexport", "ex port")
+        );
+
+        InvalidCommand expectedOutput = new InvalidCommand();
+
+        for (String command : inputCommands) {
+            Command actualNoSpaceOutput = parser.parse(command, topics);
+            assertTrue(expectedOutput.equals(actualNoSpaceOutput));
+        }
+    }
+
+    @Test
+    void parse_validExport_expectExportCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        String input = "export";
+
+        ExportCommand expectedOutput = new ExportCommand();
+
+        Command actualNoSpaceOutput = parser.parse(input, topics);
+        assertTrue(expectedOutput.equals(actualNoSpaceOutput));
+    }
+
+    @Test
+    void parse_invalidTopo_expectInvalidCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        ArrayList<String> nameFields = new ArrayList<>(
+                Arrays.asList("", "N/noteName", "k/noteName", null, "n/")
+        );
+
+        InvalidCommand expectedOutput = new InvalidCommand();
+
+        for (String nameField : nameFields) {
+            String input = "topo " + nameField;
+            Command actualOutput = parser.parse(input, topics);
+            assertTrue(expectedOutput.equals(actualOutput));
+        }
+    }
+
+    @Test
+    void parse_validTopo_expectTopoCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        ArrayList<String> nameFields = new ArrayList<>(
+                Arrays.asList("linked list", "     linked list      ", "42343", "h2312", "asd_323")
+        );
+
+        for (String nameField : nameFields) {
+            String input = "topo n/" + nameField;
+            Command actualOutput = parser.parse(input, topics);
+            TopoCommand expectedOutput = new TopoCommand(nameField.trim());
+            assertTrue(expectedOutput.equals(actualOutput));
         }
     }
 }
