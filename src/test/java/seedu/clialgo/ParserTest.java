@@ -4,13 +4,16 @@ import org.junit.jupiter.api.Test;
 import seedu.clialgo.command.AddCommand;
 import seedu.clialgo.command.Command;
 import seedu.clialgo.command.ExitCommand;
+import seedu.clialgo.command.ExitTestModeCommand;
 import seedu.clialgo.command.ExportCommand;
 import seedu.clialgo.command.FilterCommand;
 import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
+import seedu.clialgo.command.InvalidImportanceCommand;
 import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.ListCommand;
 import seedu.clialgo.command.RemoveCommand;
+import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.command.TopoCommand;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -181,8 +184,34 @@ class ParserTest {
         ExitCommand correctExitOutput = new ExitCommand();
         Command actualExitOutput = parser.parse(exitInput, topics);
         assertTrue(correctExitOutput.equals(actualExitOutput));
+
+        String startTestInput = "start-test-mode";
+        TestModeCommand correctStartTestOutput = new TestModeCommand();
+        Command actualStartTestOutput = parser.parse(startTestInput, topics);
+        assertTrue(correctStartTestOutput.equals(actualStartTestOutput));
+
+        String exitTestInput = "exit-test-mode";
+        ExitTestModeCommand correctExitTestOutput = new ExitTestModeCommand();
+        Command actualExitTestOutput = parser.parse(exitTestInput, topics);
+        assertTrue(correctExitTestOutput.equals(actualExitTestOutput));
     }
 
+    @Test
+    void parse_invalidImportance_expectInvalidImportanceCommandObject() {
+        Parser parser = new Parser();
+        TopicManager topics = new TopicManager();
+
+        ArrayList<String> invalidImportanceInputs = new ArrayList<>(
+                Arrays.asList("100", "-2", "dfsdhk", ".", "4fg")
+        );
+        for (String importanceInput : invalidImportanceInputs) {
+            String input = "add n/note name t/SORTING i/" + importanceInput;
+            InvalidImportanceCommand expectedOutput = new InvalidImportanceCommand(importanceInput);
+
+            Command actualOutput = parser.parse(input, topics);
+            assertTrue(expectedOutput.equals(actualOutput));
+        }
+    }
     @Test
     void parse_invalidInput_expectInvalidCommandObject() {
         Parser parser = new Parser();
@@ -241,6 +270,11 @@ class ParserTest {
         Command actualWrongSecondMarkerOutput = parser.parse(wrongSecondMarkerInput, topics);
         assertTrue(correctWrongSecondMarkerOutput.equals(actualWrongSecondMarkerOutput));
 
+        String wrongRemoveMarkerInput = "remove t/Name of File";
+        InvalidCommand correctWrongRemoveMarkerInputOutput = new InvalidCommand();
+        Command actualWrongRemoveMarkerInputOutput = parser.parse(wrongRemoveMarkerInput, topics);
+        assertTrue(correctWrongRemoveMarkerInputOutput.equals(actualWrongRemoveMarkerInputOutput));
+
         String wrongSingleMarker = "help t/add";
         InvalidCommand correctWrongSingleMarkerOutput = new InvalidCommand();
         Command actualWrongSingleMarkerOutput = parser.parse(wrongSingleMarker, topics);
@@ -290,6 +324,11 @@ class ParserTest {
         InvalidCommand correctEmptySecondFieldOutput = new InvalidCommand();
         Command actualEmptySecondFieldOutput = parser.parse(emptySecondFieldInput, topics);
         assertTrue(correctEmptySecondFieldOutput.equals(actualEmptySecondFieldOutput));
+
+        String removeInput = "remove n/";
+        InvalidCommand correctRemoveOutput = new InvalidCommand();
+        Command actualCorrectRemoveOutput  = parser.parse(removeInput, topics);
+        assertTrue(correctRemoveOutput.equals(actualCorrectRemoveOutput));
 
         String emptySingleFieldInput = "help c/";
         InvalidCommand correctEmptySingleFieldOutput = new InvalidCommand();

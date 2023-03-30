@@ -11,7 +11,6 @@ import seedu.clialgo.command.InvalidCommand;
 import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.InvalidImportanceCommand;
 import seedu.clialgo.command.ListCommand;
-import seedu.clialgo.command.NameNotFoundCommand;
 import seedu.clialgo.command.RemoveCommand;
 import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.command.TopoCommand;
@@ -138,10 +137,11 @@ public class Parser implements StringManipulation {
         }
         String cs2040cFileName;
         String topicName;
+        String importanceField = "";
         int importance;
         try {
             String cs2040cFileNameAndTopicName = StringManipulation.getFirstWord(description, IMPORTANCE_MARKER);
-            String importanceField = StringManipulation.removeFirstWord(description, IMPORTANCE_MARKER);
+            importanceField = StringManipulation.removeFirstWord(description, IMPORTANCE_MARKER);
             String cs2040cFileNameWithNameMarker = StringManipulation.getFirstWord(cs2040cFileNameAndTopicName,
                     TOPIC_MARKER);
             topicName = StringManipulation.removeFirstWord(cs2040cFileNameAndTopicName, TOPIC_MARKER);
@@ -165,8 +165,10 @@ public class Parser implements StringManipulation {
             }
 
             importance = Integer.parseInt(importanceField);
-        } catch (NullInputException | EmptyFieldException  | IndexOutOfBoundsException | NumberFormatException e) {
+        } catch (NullInputException | EmptyFieldException | IndexOutOfBoundsException e) {
             return new InvalidCommand();
+        } catch (NumberFormatException e) {
+            return new InvalidImportanceCommand(importanceField);
         }
 
         assert cs2040cFileName.length() > 0;

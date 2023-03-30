@@ -27,6 +27,6 @@ public class TestModeCommand extends Command {
 
     @Override
     public boolean equals(Command otherCommand) {
-        return false;
+        return otherCommand instanceof TestModeCommand;
     }
 }
