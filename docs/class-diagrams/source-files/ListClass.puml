@@ -3,11 +3,11 @@ skinparam classAttributeIconSize 0
 hide circle
 
 abstract class Command {
-    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
 class ListCommand {
-    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer : Buffer): void
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
 class TopicManager {

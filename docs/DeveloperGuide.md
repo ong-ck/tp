@@ -93,7 +93,7 @@ The `HelpCommand` component
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
 
-![](class-diagrams/diagrams/Add.png "AddCommand Class Diagram")
+![](class-diagrams/diagrams/AddClass.png "AddCommand Class Diagram")
 
 The `AddCommand` component
 - can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program

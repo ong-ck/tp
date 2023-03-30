@@ -1,14 +1,9 @@
 @startuml
-'https://plantuml.com/sequence-diagram
-
-autonumber
-
-@startuml
 skinparam classAttributeIconSize 0
 hide circle
 
 abstract class Command {
-    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
 class AddCommand {
@@ -18,15 +13,15 @@ class AddCommand {
     +getName(): String
     +getTag(): String
     +checkFileType(): FileType
-    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
 class AddCodeCommand {
-    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
 class AddNoteCommand {
-    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
 class TopicManager {
@@ -45,13 +40,8 @@ Command <|-- AddCommand
 AddCommand <|-- AddCodeCommand
 AddCommand <|-- AddNoteCommand
 
-TopicManager .. AddCommand: gets reference from <
-Ui .. AddCommand: gets reference from <
-FileManager .. AddCommand: gets reference from <
-Buffer .. AddCommand: gets reference from <
-
-@enduml
-
-
-
+TopicManager .. AddCommand
+Ui .. AddCommand
+FileManager .. AddCommand
+Buffer .. AddCommand
 @enduml
