@@ -46,7 +46,7 @@ The `Ui` component:
 - Prints confirmation message when a command have been executed successfully.
 
 ### Parser
-**API** : `Parser.java`
+[**API**](../src/main/java/seedu/clialgo/Parser.java) : `Parser.java`
 Here is a class diagram of the `Parser` component which is responsible for processing commands
 and preparing the appropriate `Command` object.
 
@@ -61,7 +61,7 @@ the `StringManipulation` interface.
 - Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
 
 ### Storage
-**API** : `FileManager.java`
+[**API**](../src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
 
 Here is a class diagram of the `FileManager` which facilitates the storage
 function of the application.
@@ -78,7 +78,7 @@ corresponding `Topic`'s  `.txt`
 initializing the application
 
 #### Help
-**API** : `HelpCommand.java`
+[**API**](../src/main/java/seedu/clialgo/command/HelpCommand.java) : `HelpCommand.java`
 
 Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
 
@@ -89,7 +89,7 @@ The `HelpCommand` component
 - Provides the user with the correct format for each command in `CLIAlgo`.
 
 #### Add
-**API** : `AddCommand.java`
+[**API**](../src/main/java/seedu/clialgo/command/AddCommand.java) : `AddCommand.java`
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
 
@@ -101,7 +101,7 @@ The `AddCommand` component
 - can ensure that there are no files with repeated names such that all names of files added are unique
 
 #### Filter
-**API** : `FilterCommand.java`
+[**API**](../src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
 
 Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
 the user's specified `keyWord`.
@@ -117,7 +117,7 @@ The `FilterCommand` component
 - The respective subclasses will print the `CS2040CFiles` filtered based on the `keyWord` provided.
 
 ### TopoSort
-**API** : `TopoCommand.java`
+[**API**](../src/main/java/seedu/clialgo/command/TopoCommand.java) : `TopoCommand.java`
 
 Here is a class diagram of the `TopoCommand` which facilitates the storage
 function of the application.
