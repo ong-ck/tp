@@ -100,6 +100,19 @@ The `AddCommand` component
 - can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
 - can ensure that there are no files with repeated names such that all names of files added are unique
 
+#### List
+[**API**](../src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
+
+Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile` in `CLIAlgo`.
+
+![](class-diagrams/diagrams/ListClass.png "ListCommand Class Diagram")
+
+The `ListCommand` component
+- Prints out all `CS2040CFile` stored in `CLIAlgo` in **any** order.
+- Indicates if the `CS2040CFile` is a `Note` or `Code`.
+  - If the `CS2040CFile` is a `Note`, it would be labelled with `[NOTE]` before the name of the `CS2040CFile`.
+  - If the `CS2040CFile` is a `Code`, it would be labelled with `[CODE]` before the name of the `CS2040CFile`.
+
 #### Filter
 [**API**](../src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
 

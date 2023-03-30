@@ -29,7 +29,3 @@ Ui .. ListCommand
 FileManager .. ListCommand
 Buffer .. ListCommand
 @enduml
-
-
-
-@enduml
