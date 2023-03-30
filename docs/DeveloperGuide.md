@@ -34,11 +34,12 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 ![](sequence/diagrams/Architecture.png "Filter by Topic Sequence Diagram")
 
 ### Ui
-**API** : Ui.java
+**API** : [`Ui.java`](../src/main/java/seedu/clialgo/Ui.java)
+
 Here is a class diagram of the `Ui` component which is responsible for handling all interaction with the User.
 
 ![](uml/diagrams/UiClass.png "Parser Class Diagram")
-
+   
 The `Ui` component:
 - Reads in the full command keyed in by the user for the `Parser`.
 - Prints error messages when the user provides invalid inputs.
@@ -153,7 +154,7 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 > **Step 2**: The `parse()` method extracts out the command keyword provided by the user. It then calls the 
 > `prepareCommand()` method.
 
-> **Step 3**: The `parepareCommand()` identifies the correct `Command` object to prepare based on the command keyword.
+> **Step 3**: The `prepareCommand()` identifies the correct `Command` object to prepare based on the command keyword.
 > Since the command keyword provided is `remove`, `prepareCommand()` calls `prepareRemoveCommand()`.
 
 > **Step 4**: If the `NAME` field of the command is null or not labelled using the correct marker, 
