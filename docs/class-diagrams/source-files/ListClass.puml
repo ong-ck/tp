@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class Command {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
+}
+
+class ListCommand {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer : Buffer): void
+}
+
+class TopicManager {
+}
+
+class Ui {
+}
+
+class Buffer {
+}
+
+class FileManager {
+}
+
+Command <|-- ListCommand
+
+TopicManager .. ListCommand
+Ui .. ListCommand
+FileManager .. ListCommand
+Buffer .. ListCommand
+@enduml
+
+
+
+@enduml
