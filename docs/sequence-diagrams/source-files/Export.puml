@@ -1,0 +1,37 @@
+@startuml
+
+participant ": ExportCommand" as ExportCommand
+participant "buffer: Buffer" as Buffer
+participant ": EmptyBufferCommand" as EmptyBufferCommand
+participant "ui: Ui" as Ui
+
+-> ExportCommand: execute()
+activate ExportCommand
+    ExportCommand -> Buffer: isEmpty()
+    activate Buffer
+    return :boolean
+
+    opt buffer is empty
+        ExportCommand -> EmptyBufferCommand **
+        activate EmptyBufferCommand
+        return
+
+        ExportCommand -> EmptyBufferCommand: execute()
+        activate EmptyBufferCommand
+            EmptyBufferCommand -> Ui: printBufferEmpty()
+            activate Ui
+            return
+        return
+        destroy EmptyBufferCommand
+        <-- ExportCommand
+    end
+
+    ExportCommand -> Ui: printExportSuccess()
+    activate Ui
+    return
+    ExportCommand -> Buffer: exportBuffer()
+    activate Buffer
+    return
+return
+destroy ExportCommand
+@enduml

@@ -8,6 +8,7 @@ import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -34,21 +35,6 @@ public class TopoCommand extends Command {
     }
 
     /**
-     * Prints all CS2040CFiles of a single specific topic.
-     *
-     * @param topicName The topic by which the CS2040CFiles are to be printed from.
-     */
-    private void printSingleTopic(String topicName) {
-        ArrayList<String> cs2040cFiles = topoSortedCS2040CFiles.get(topicName);
-        int serialNumber = 1;
-        System.out.println("[" + topicName + "]");
-        for (String cs2040cFile : cs2040cFiles) {
-            System.out.println(serialNumber + ". " + cs2040cFile);
-            serialNumber++;
-        }
-    }
-
-    /**
      * Prints all CS2040CFiles after a specific target CS2040CFile in a topological manner.
      *
      * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
@@ -58,11 +44,17 @@ public class TopoCommand extends Command {
         topoSortedCS2040CFiles = topicManager.getAllCS2040CFilesBeforeTopic(name);
         ui.printTopoSortSuccess();
         ArrayList<CS2040CFile> files = new ArrayList<>();
-        for (String topicName : topoSortedCS2040CFiles.keySet()) {
-            if (topoSortedCS2040CFiles.get(topicName).isEmpty()) {
+        for (Map.Entry<String, ArrayList<String>> entry : topoSortedCS2040CFiles.entrySet()) {
+            String topicName = entry.getKey();
+            ArrayList<String> listOfFiles = entry.getValue();
+
+            if (listOfFiles.isEmpty()) {
                 continue;
             }
-            printSingleTopic(topicName);
+
+            System.out.println("[" + topicName + "]");
+
+            ui.printListOfCS2040CFiles(listOfFiles);
             files.addAll(topicManager.getTopics().get(topicName).getCS2040CFilesAsArray());
         }
         ui.printDivider();
@@ -88,9 +80,7 @@ public class TopoCommand extends Command {
 
         // Check if cs2040cFileName is valid
         if (!topicManager.isRepeatedCS2040CFile(name)) {
-            ui.printDivider();
-            System.out.println("You do not have this CS2040CFile!");
-            ui.printDivider();
+            ui.printFileDoesNotExist();
             return;
         }
 

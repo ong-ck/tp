@@ -5,30 +5,35 @@ participant Ui as ui
 
  -> hc : execute()
  activate hc
-activate ui
     alt null
     hc -> ui : ui.printHelpPage()
-    ui --> hc
+    activate ui
+    return
     else add
     hc -> ui : ui.printHelpAdd()
-    ui --> hc
+    activate ui
+    return
     else remove
     hc -> ui : ui.printHelpRemove()
-    ui --> hc
+    activate ui
+    return
     else filter
     hc -> ui : ui.printHelpFilter()
-    ui --> hc
+    activate ui
+    return
     else topo
     hc -> ui : ui.printHelpTopo()
-    ui --> hc
+    activate ui
+    return
     else list
     hc -> ui : ui.printHelpList()
-    ui --> hc
+    activate ui
+    return
     else exit
     hc -> ui : ui.printHelpExit()
-    ui --> hc
+    activate ui
+    return
    end
-deactivate ui
 <-- hc
-
+destroy hc
 @enduml

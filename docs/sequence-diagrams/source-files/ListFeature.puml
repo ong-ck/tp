@@ -1,0 +1,31 @@
+@startuml
+participant ": ListCommand" as ListCommand
+participant "topicManager: TopicManager" as TopicManager
+participant "ui: Ui" as Ui
+
+-> ListCommand : execute()
+activate ListCommand
+    ListCommand -> TopicManager: isEmpty()
+    activate TopicManager
+    return
+
+    alt TopicManager is empty
+        ListCommand -> Ui : printListFail()
+        activate Ui
+        return
+    else else
+        ListCommand -> Ui : printListSuccess()
+        activate Ui
+        return
+
+        ListCommand -> TopicManager : getAllCS2040CFiles()
+        activate TopicManager
+        return printedCS2040CFiles: ArrayList<String>
+
+        ListCommand -> Ui : printListOfCS2040CFiles(printedCS2040CFiles: ArrayList<String>)
+        activate Ui
+        return
+    end
+return
+destroy ListCommand
+@enduml

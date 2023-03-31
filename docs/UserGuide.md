@@ -267,7 +267,7 @@ Here are the filtered CS2040CFiles:
 export
 ```
 Here is `./export` opened after `export` is input.
-![](.\\images\\export1.png)
+![](images/export1.png)
 
 ## FAQ
 
@@ -294,5 +294,5 @@ Here is `./export` opened after `export` is input.
 | list   | `list`                                                                                            |
 | filter | `filter k/KEYWORD [t/TOPIC_NAME]`<br/>e.g., `filter k/topic`, <br/>`filter k/topic t/LINKED_LIST` |
 | topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
-| export | `export`                                                                                           |
+| export | `export`                                                                                          |
 | exit   | `exit`                                                                                            |

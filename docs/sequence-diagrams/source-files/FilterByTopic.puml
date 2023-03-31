@@ -1,7 +1,12 @@
 @startuml
-activate FilterCommand
+participant ": FilterCommand" as FilterCommand
+participant ": FilterByTopicCommand" as FilterByTopicCommand
+participant "ui: Ui" as Ui
+participant "topicManager: TopicManager" as TopicManager
+participant "buffer: Buffer" as Buffer
 
 -> FilterCommand : execute()
+activate FilterCommand
     opt topicManger.isEmpty()
         FilterCommand -> Ui : printFilterEmpty()
         activate Ui
@@ -10,6 +15,7 @@ activate FilterCommand
         activate Buffer
         return
     end
+    <-- FilterCommand
     alt keyWord.equals("topic")
         FilterCommand -> FilterByTopicCommand **
         activate FilterByTopicCommand
@@ -18,46 +24,44 @@ activate FilterCommand
         FilterCommand -> FilterByTopicCommand : execute()
         activate FilterByTopicCommand
             alt topic == null
-                FilterByTopicCommand -> FilterByTopicCommand : printAllTopics();
+                FilterByTopicCommand -> FilterByTopicCommand : printAllTopics()
                 activate FilterByTopicCommand
                     FilterByTopicCommand -> TopicManager : getAllCS2040CFilesGroupedByTopic()
                     activate TopicManager
-                        loop topics.entrySet()
-                            TopicManager -> Topic : getAllCS2040CFilesInTopic()
-                            activate Topic
-                            return topicCS2040CFiles : ArrayList<String>
-                        end
-                    return toPrintCS2040CFiles : HashMap<String, ArrayList<String>>
+                    return toPrintCS2040CFiles: HashMap<String, ArrayList<String>>
 
                     FilterByTopicCommand -> Ui : printFilterSuccess()
                     activate Ui
                     return
 
-                    loop cs2040cFiles.entrySet()
-                        FilterByTopicCommand -> System.out : println()
-                        activate System.out
+                    loop toPrintCS2040CFiles
+                        FilterByTopicCommand -> Ui : printListOfCS2040CFiles(currentTopicCS2040CFiles)
+                        activate Ui
                         return
                     end
                 return
+
+                FilterByTopicCommand -> Buffer: updateBuffer();
+                activate Buffer
+                return
             else else
-                FilterByTopicCommand -> FilterByTopicCommand : printSingleTopic
+                FilterByTopicCommand -> FilterByTopicCommand : printSingleTopic()
                 activate FilterByTopicCommand
-                    FilterByTopicCommand -> TopicManager : getAllCS2040CFilesByTopic
+                    FilterByTopicCommand -> TopicManager : getAllCS2040CFilesByTopic()
                     activate TopicManager
-                        TopicManager -> Topic : getAllCS2040CFilesInTopic
-                        activate Topic
-                        return topicCS2040CFiles : ArrayList<String>
-                    return ArrayList<String>
+                    return toPrintCS2040CFiles: ArrayList<String>
 
                     FilterByTopicCommand -> Ui : printFilterSuccess()
                     activate Ui
                     return
 
-                    loop cs2040cFiles
-                        FilterByTopicCommand -> System.out : println()
-                        activate System.out
-                        return
-                    end
+                    FilterByTopicCommand -> Ui : printListOfCS2040CFiles(toPrintCS2040CFiles)
+                    activate Ui
+                    return
+                return
+
+                FilterByTopicCommand -> Buffer: updateBuffer();
+                activate Buffer
                 return
             end
         return
@@ -65,5 +69,6 @@ activate FilterCommand
     else keyWord.equals("importance")
     else else
     end
-    deactivate FilterCommand
+return
+destroy FilterCommand
 @enduml
