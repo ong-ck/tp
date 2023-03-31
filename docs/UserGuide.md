@@ -73,6 +73,10 @@ tagged to it, and an optional importance level, a number from 1 to 10.
 add n/CODE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
 add n/NOTE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
 ```
+- **The corresponding file must be present in the same folder as `clialgo.jar` in order for the `CS2040CFile` to be
+added successfully**
+  - For example, you want to add `queue.txt` into `CLIAlgo`, `queue.txt` must be present in the same folder as the
+`.jar` file.
 - Not following the syntax strictly would result in an invalid command message.
 - Only full words will be matched. E.g. `LINKED_LIST` will not match `Link List`.
 - `n/` and `t/` fields must be non-empty.
