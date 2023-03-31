@@ -1,101 +1,80 @@
 @startuml
 
-participant UI as ui
-
-participant AddCommand as a
-participant InvalidTopicCommand as it
-participant AddNoteCommand as an
-participant AddCodeCommand as ac
-
+participant ": AddCommand" as a
+participant ": InvalidTopicCommand" as it
+participant ": AddNoteCommand" as an
+participant ": AddCodeCommand" as ac
+participant "fileManager: FileManager" as fm
+participant "topicManager: TopicManager" as tm
+participant ": InvalidCommand" as ic
+participant "ui: Ui" as ui
 
 -> a : execute()
 activate a
     opt CS2040CFile does not exist in directory
         a -> ui : printFileDoesNotExist()
         activate ui
-        <-- a : return
-        deactivate ui
+        return
     end
+    <-- a
+
     opt topicName is not valid
         a -> it **
         activate it
-        it --> a
-        deactivate it
+        return
+
+        a -> it: execute()
+        activate it
+        return
         destroy it
-        <-- a : return
+        <-- a
     end
+
     opt is CS2040CFile is repeated
         a -> ui : printCS2040CFileExists()
-        <-- a : return
+        activate ui
+        return
     end
+
     alt CS2040CFile type is txt
         a -> an **
         activate an
-        an --> a
-        deactivate an
+        return
+
         a -> an : execute()
-        participant FileManager as fm
         activate an
-        an -> fm : addEntry()
-        activate fm
-        opt CS2040CFile is not added to file manager
-            fm --> an
-            deactivate fm
-        end
-        participant TopicManager as tm
-        an -> tm : addCS2040CFile
-        activate tm
-        tm --> an
-        deactivate tm
-        opt CS2040CFile is not added to topic manager
-        participant InvalidCommand as ic
-            an -> ic **
-            activate ic
-            ic --> an
-            deactivate ic
+            an -> fm : addEntry()
+            activate fm
+            return isAddedToFile: boolean
 
+            opt CS2040CFile is not added to fileManager
+                an --> a
+                <-- a
+            end
 
-            an -> ic : execute()
-            activate ic
-            ic --> a
-            deactivate ic
-            destroy ic
+            an -> tm : addCS2040CFile()
+            activate tm
+            return isAdded: boolean
+
+            opt CS2040CFile is not added to topicManager
+                an -> ic **
+                activate ic
+                return
+
+                an -> ic : execute()
+                activate ic
+                return
+                destroy ic
+            end
+            return
             destroy an
+            <-- a
+        else else
         end
-    else CS2040CFile type is cpp
-        a -> ac **
-        activate ac
-        an --> a
-        deactivate ac
-        a -> ac : execute()
-        activate ac
-        an -> fm : addEntry()
-        activate fm
-        opt CS2040CFile is not added to file manager
-            fm --> ac
-            deactivate fm
-        end
-
-        ac -> tm : addCS2040CFile
-        activate tm
-        tm --> ac
-        deactivate tm
-        opt CS2040CFile is not added to topic manager
-            ac -> ic **
-            activate ic
-            ic --> ac
-            deactivate ic
-
-            ac -> ic : execute()
-            activate ic
-            ic --> a
-            deactivate ic
-            destroy ic
-            destroy ac
-        end
-    end
-
-a -> ui : printAddSuccess()
+    a -> ui : printAddSuccess()
+    activate ui
+    return
+return
 destroy a
 
 @enduml

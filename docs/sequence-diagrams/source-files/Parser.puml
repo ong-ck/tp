@@ -1,9 +1,10 @@
 @startuml
-CLIAlgo -> Ui : getUserInput()
-activate Ui
-return fullCommand : String
+participant "parser: Parser" as Parser
+participant "<<interface>> \n StringManipulation" as StringManipulation
+participant ": InvalidCommand" as InvalidCommand
+participant ": RemoveCommand" as RemoveCommand
 
-CLIAlgo -> Parser : parse(fullCommand : String)
+-> Parser : parse(fullCommand : String)
 activate Parser
     Parser -> StringManipulation : getFirstWord(fullCommand : String)
     activate StringManipulation
@@ -47,6 +48,6 @@ activate Parser
             end
         return
     end
-return
+return command: Command
 
 @enduml

@@ -1,4 +1,10 @@
 @startuml
+participant ": FilterCommand" as FilterCommand
+participant ": FilterByTopicCommand" as FilterByTopicCommand
+participant "ui: Ui" as Ui
+participant "topicManager: TopicManager" as TopicManager
+participant "buffer: Buffer" as Buffer
+
 -> FilterCommand : execute()
 activate FilterCommand
     opt topicManger.isEmpty()

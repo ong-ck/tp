@@ -1,44 +1,36 @@
 @startuml
 
-actor User as u
-participant CLIAlgo as cli
-participant Parser as p
-participant FilterByTopicCommand as fc
-participant ExportCommand as ec
-participant TopicManager as tm
-participant Buffer as b
+participant ": ExportCommand" as ExportCommand
+participant "buffer: Buffer" as Buffer
+participant ": EmptyBufferCommand" as EmptyBufferCommand
+participant "ui: Ui" as Ui
 
-u -> cli : `filter k/topic`
-activate cli
-cli -> p : prepareFilterCommand()
-deactivate cli
-activate p
-p --> fc **
-activate fc
-deactivate p
-fc -> tm
-activate tm
-tm --> fc
-deactivate tm
-fc -> b : files : ArrayList<CS2040CFile>
-activate b
-destroy fc
-b -> b : updateBuffer(files : ArrayList<CS2040CFile>)
-activate b
-b --> b
-deactivate b
-u -> cli : `export`
-activate cli
-cli -> p : prepareExportCommand()
-deactivate cli
-activate p
-p --> ec **
-activate ec
-deactivate p
-ec -> b : exportBuffer()
-b --> ec
-ec --> u
-destroy ec
+-> ExportCommand: execute()
+activate ExportCommand
+    ExportCommand -> Buffer: isEmpty()
+    activate Buffer
+    return :boolean
 
+    opt buffer is empty
+        ExportCommand -> EmptyBufferCommand **
+        activate EmptyBufferCommand
+        return
+
+        ExportCommand -> EmptyBufferCommand: execute()
+        activate EmptyBufferCommand
+            EmptyBufferCommand -> Ui: printBufferEmpty()
+            activate Ui
+            return
+        return
+        <-- ExportCommand
+    end
+
+    ExportCommand -> Ui: printExportSuccess()
+    activate Ui
+    return
+    ExportCommand -> Buffer: exportBuffer()
+    activate Buffer
+    return
+return
 
 @enduml

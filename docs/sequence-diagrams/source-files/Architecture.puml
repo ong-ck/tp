@@ -1,5 +1,10 @@
 @startuml
 actor User
+participant "cliAlgo: CLIAlgo" as CLIAlgo
+participant "ui: Ui" as Ui
+participant "parser: Parser" as Parser
+participant ": Command" as Command
+
 activate CLIAlgo
     loop fullCommand != "exit"
     User -> CLIAlgo
@@ -7,7 +12,7 @@ activate CLIAlgo
     activate Ui
     return fullCommand : String
 
-    CLIAlgo -> Parser : parse
+    CLIAlgo -> Parser : parse(fullCommand: String)
     activate Parser
         Parser -> Command **
         activate Command

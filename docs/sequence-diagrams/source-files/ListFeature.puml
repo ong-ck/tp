@@ -1,4 +1,8 @@
 @startuml
+participant ": ListCommand" as ListCommand
+participant "topicManager: TopicManager" as TopicManager
+participant "ui: Ui" as Ui
+
 -> ListCommand : execute()
 activate ListCommand
     ListCommand -> TopicManager: isEmpty()

@@ -1,8 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-participant TopoCommand as tc
-participant TopicManager as tm
+participant ": TopoCommand" as tc
+participant "topicManager: TopicManager" as tm
 
 -> tc : execute()
 activate tc
