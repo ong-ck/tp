@@ -26,6 +26,7 @@ public class ListCommand extends Command {
         ui.printListSuccess();
         ArrayList<String> printedCS2040CFiles = topicManager.getAllCS2040CFiles();
         ui.printListOfCS2040CFiles(printedCS2040CFiles);
+        ui.printDivider();
     }
 
     @Override

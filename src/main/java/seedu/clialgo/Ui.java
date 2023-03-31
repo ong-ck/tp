@@ -449,7 +449,6 @@ public class Ui {
             System.out.println(serialNumber + ". " + cs2040cFile);
             serialNumber++;
         }
-        printDivider();
     }
     //@@author
 }
