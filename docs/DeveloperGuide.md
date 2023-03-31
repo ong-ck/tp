@@ -265,6 +265,10 @@ Given below is an example usage scenario and how the list feature behaves at eac
 > **Step 4:** `ListCommand` iterates through the `ArrayList<String>` and prints the names of all the `CS2040CFile` 
 > stored in `CLIAlgo`.
 
+The following **_Sequence Diagram_** shows how the list operation work.
+
+![](sequence-diagrams/diagrams/ListFeature.png "Filter by Topic Sequence Diagram")
+
 ### Filter by keyword feature
 #### Current Implementation
 

@@ -25,12 +25,7 @@ public class ListCommand extends Command {
         }
         ui.printListSuccess();
         ArrayList<String> printedCS2040CFiles = topicManager.getAllCS2040CFiles();
-        int serialNumber = 1;
-        for (String cs2040cFile : printedCS2040CFiles) {
-            System.out.println(serialNumber + ". " + cs2040cFile);
-            serialNumber++;
-        }
-        ui.printDivider();
+        ui.printListOfCS2040CFiles(printedCS2040CFiles);
     }
 
     @Override

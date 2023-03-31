@@ -1,5 +1,6 @@
 package seedu.clialgo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //@@author nikkiDEEE
@@ -431,6 +432,23 @@ public class Ui {
     public void printInvalidImportance(String importance) {
         printDivider();
         System.out.println(importance + " is not in the valid 1-10 range for importance.");
+        printDivider();
+    }
+    //@@author
+
+    //@@author heejet
+    /**
+     * This method prints out the CS2040CFiles in the ArrayList provided to the user.
+     *
+     * @param cs2040cFiles An ArrayList containing the names and labels of all CS2040C files to be printed
+     */
+    public void printListOfCS2040CFiles(ArrayList<String> cs2040cFiles) {
+        assert !cs2040cFiles.isEmpty();
+        int serialNumber = 1;
+        for (String cs2040cFile : cs2040cFiles) {
+            System.out.println(serialNumber + ". " + cs2040cFile);
+            serialNumber++;
+        }
         printDivider();
     }
     //@@author
