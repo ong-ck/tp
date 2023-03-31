@@ -15,6 +15,7 @@ activate FilterCommand
         activate Buffer
         return
     end
+    <-- FilterCommand
     alt keyWord.equals("topic")
         FilterCommand -> FilterByTopicCommand **
         activate FilterByTopicCommand
@@ -39,6 +40,10 @@ activate FilterCommand
                         return
                     end
                 return
+
+                FilterByTopicCommand -> Buffer: updateBuffer();
+                activate Buffer
+                return
             else else
                 FilterByTopicCommand -> FilterByTopicCommand : printSingleTopic()
                 activate FilterByTopicCommand
@@ -53,6 +58,10 @@ activate FilterCommand
                     FilterByTopicCommand -> Ui : printListOfCS2040CFiles(toPrintCS2040CFiles)
                     activate Ui
                     return
+                return
+
+                FilterByTopicCommand -> Buffer: updateBuffer();
+                activate Buffer
                 return
             end
         return

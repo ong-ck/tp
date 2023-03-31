@@ -25,4 +25,6 @@ activate CLIAlgo
     destroy Command
     end
 destroy CLIAlgo
+destroy Ui
+destroy Parser
 @enduml

@@ -1,25 +1,59 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-participant ": TopoCommand" as tc
-participant "topicManager: TopicManager" as tm
+participant ": TopoCommand" as TopoCommand
+participant "topicManager: TopicManager" as TopicManager
+participant "buffer: Buffer" as Buffer
+participant "ui: Ui" as Ui
 
--> tc : execute()
-activate tc
-tc -> tm
-activate tm
-tm --> tc
-deactivate tm
-tc -> tc : printTopoSortedCS2040CFiles(topicManager : TopicManager, ui : Ui)
-activate tc
-tc -> tm : getAllCS2040CFilesBeforeTopic(name : String)
-activate tm
-tm --> tc
-deactivate tm
-loop topicName
-    tc -> tc : printSingleTopic(topicName : String)
-end
-tc --> tc
-deactivate tc
-<-- tc !!
+-> TopoCommand : execute()
+activate TopoCommand
+    TopoCommand -> TopicManager: isEmpty()
+    activate TopicManager
+    return : boolean
+
+    opt TopicManager is empty
+        TopoCommand -> Buffer: updateBuffer()
+        activate Buffer
+        return
+
+        TopoCommand -> Ui: printNoCS2040CFilesSaved()
+        activate Ui
+        return
+        <-- TopoCommand
+    end
+
+    TopoCommand -> TopicManager: isRepeatedCS2040CFile(CS2040CFileName: String)
+    activate TopicManager
+    return : boolean
+
+    opt TopicManager does not contain CS2040CFileName
+        TopoCommand -> Ui: printFileDoesNotExist()
+        activate Ui
+        return
+        <-- TopoCommand
+    end
+
+    TopoCommand -> TopoCommand: printTopoSortedCS2040CFiles()
+    activate TopoCommand
+        TopoCommand -> TopicManager: getAllCS2040CFilesBeforeTopic(CS2040CFileName: String)
+        activate TopicManager
+        return topoSortedCS2040CFiles: LinkedHashMap<String, ArrayList<String>>
+
+        TopoCommand -> Ui: printTopoSortSuccess()
+        activate Ui
+        return
+
+        loop topoSortedCS2040CFiles
+            TopoCommand -> Ui: printListOf2040CFiles()
+            activate Ui
+            return
+        end
+    return files: ArrayList<CS2040CFile>
+
+    TopoCommand -> Buffer: updateBuffer(files: ArrayList<CS2040CFile>)
+    activate Buffer
+    return
+return
+destroy TopoCommand
 @enduml
