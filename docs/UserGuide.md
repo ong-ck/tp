@@ -255,6 +255,11 @@ CS2040CFile listed by the above commands would be stored in a
 > and `topo` such that all the files are placed into a single folder. This means that if the user
 > wanted to only access files that are of a certain category, they are able to. For users that have hundreds
 > of files, it improves their productivity!*
+> 
+> *For instance, the user has dozens of files of similar names such
+> as a.txt, aa.txt, aaaaa.cpp. The user just has to categorize the 
+> files within the application once and with filter, all the relevant
+> files would be retrieved and placed together.*
 
 Format: `export`
 - Note that `export` **_ONLY_** works with `filter` and `topo` and **_not_** other functions such as `list`.
