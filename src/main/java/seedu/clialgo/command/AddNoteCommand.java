@@ -12,16 +12,6 @@ public class AddNoteCommand extends AddCommand {
      *
      * @param name  Name of the note file.
      * @param topic The topic that this file is tagged to.
-     */
-    public AddNoteCommand(String name, String topic) {
-        super(name, topic);
-    }
-
-    /**
-     * Constructor for command to add note file to topic list.
-     *
-     * @param name  Name of the note file.
-     * @param topic The topic that this file is tagged to.
      * @param importance The importance of the note file.
      */
     public AddNoteCommand(String name, String topic, int importance) {

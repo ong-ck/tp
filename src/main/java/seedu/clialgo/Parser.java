@@ -155,7 +155,7 @@ public class Parser implements StringManipulation {
                 return new InvalidTopicCommand(topicName);
             }
 
-            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithNameMarker, NAME_MARKER).toLowerCase();
+            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithNameMarker, NAME_MARKER);
 
             if (importanceField != null && !isValidImportance(importanceField)) {
                 return new InvalidImportanceCommand(importanceField);
@@ -197,7 +197,7 @@ public class Parser implements StringManipulation {
                 return new InvalidCommand();
             }
 
-            cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
+            cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER);
 
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
@@ -244,14 +244,20 @@ public class Parser implements StringManipulation {
     /**
      * @return A <code>Command</code> object that list out the CS2040CFiles stored in CLIAlgo.
      */
-    private Command prepareListCommand() {
+    private Command prepareListCommand(String description) {
+        if (!(description == null || description.length() == 0)) {
+            return new InvalidCommand();
+        }
         return new ListCommand();
     }
 
     /**
      * @return A <code>Command</code> object that exits CLIAlgo.
      */
-    private Command prepareExitCommand() {
+    private Command prepareExitCommand(String description) {
+        if (!(description == null || description.length() == 0)) {
+            return new InvalidCommand();
+        }
         return new ExitCommand();
     }
 
@@ -272,7 +278,10 @@ public class Parser implements StringManipulation {
     /**
      * @return A <code>Command</code> object that exports all CS2040CFiles stored in the buffer.
      */
-    private Command prepareExport() {
+    private Command prepareExport(String description) {
+        if (!(description == null || description.length() == 0)) {
+            return new InvalidCommand();
+        }
         return new ExportCommand();
     }
 
@@ -292,7 +301,7 @@ public class Parser implements StringManipulation {
             if (description.equals("") || !isCorrectMarker(description, NAME_MARKER)) {
                 return new InvalidCommand();
             }
-            noteName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
+            noteName = StringManipulation.removeMarker(description, NAME_MARKER);
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
@@ -320,17 +329,17 @@ public class Parser implements StringManipulation {
         case "filter":
             return prepareFilterCommand(description, topics);
         case "list":
-            return prepareListCommand();
+            return prepareListCommand(description);
         case "start-test-mode":
             return prepareTestModeCommand();
         case "exit-test-mode":
             return prepareExitTestModeCommand();
         case "export":
-            return prepareExport();
+            return prepareExport(description);
         case "topo":
             return prepareTopoCommand(description);
         default:
-            return prepareExitCommand();
+            return prepareExitCommand(description);
         }
     }
 
