@@ -4,6 +4,7 @@ import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.CS2040CFile;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -79,7 +80,11 @@ public class SingleFile {
                 overwriteFile();
             }
             FileWriter fileWriter = new FileWriter(file, true);
-            fileWriter.write(encodedCS2040CFile + "\n");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(encodedCS2040CFile);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+            bufferedWriter.close();
             fileWriter.close();
             this.storedRawData.put(fileName, encodedCS2040CFile);
             this.cs2040cFiles.put(fileName, cs2040cFile);
@@ -96,9 +101,13 @@ public class SingleFile {
     public void overwriteFile() throws IOException {
         try {
             FileWriter fileWriter = new FileWriter(file, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             for (String s : storedRawData.values()) {
-                fileWriter.write(s);
+                bufferedWriter.write(s);
+                bufferedWriter.newLine();
             }
+            bufferedWriter.flush();
+            bufferedWriter.close();
             fileWriter.close();
         } catch (IOException e) {
             throw new IOException();
