@@ -414,7 +414,7 @@ public class Ui {
     /** Prints a message informing the user that the export operation was successful */
     public void printExportSuccess() {
         printDivider();
-        System.out.println("Exporting files...");
+        System.out.println("Successfully exported file(s).");
         printDivider();
     }
 
