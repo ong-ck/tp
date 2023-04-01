@@ -441,4 +441,12 @@ public class Ui {
         System.out.println("Note that the corrupted entries are discarded!");
         printDivider();
     }
+
+    /** Prints a message to the user if the keyword entered after the `k/` field is neither topic nor importance. */
+    public void printInvalidFilterKeyword() {
+        printDivider();
+        System.out.println("Invalid keyword! Only `topic` and `importance` are supported keywords.");
+        System.out.println("Type `help c/filter for more information.");
+        printDivider();
+    }
 }

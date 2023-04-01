@@ -621,6 +621,31 @@ class UiTest {
     }
 
     @Test
+     void printInvalidFilterKeyword() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printInvalidFilterKeyword();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Invalid keyword! Only `topic` and `importance` are supported keywords.\r\n" +
+                    "Type `help c/filter for more information.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Invalid keyword! Only `topic` and `importance` are supported keywords.\n" +
+                    "Type `help c/filter for more information.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+     }
+
+    @Test
     void printNameNotFoundCommand() {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
