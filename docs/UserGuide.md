@@ -2,8 +2,11 @@
 
 ## Introduction
 
-CLIAlgo is a desktop application for managing your CS2040C notes and code. It is optimized to be used via a Command Line
-Interface (CLI). If you can type fast, you can access and sort your notes faster than ever before.
+CLIAlgo is a desktop application for **managing your CS2040C notes and code**. It is optimized to be used via a Command 
+Line Interface (CLI). If you can type fast, you can access and sort your notes faster than ever before. `CLIAlgo` is a 
+**note management** application and not a note taking application. Therefore, users are expected to already have the 
+required `.txt` or `.cpp` files **in the same folder** as the `.jar` file before starting the application. Features like
+note creation and editing are beyond the scope of this application.
 
 ## Quick Start
 
@@ -12,7 +15,9 @@ Interface (CLI). If you can type fast, you can access and sort your notes faster
 3. Copy the file to the folder you want to use as the home folder for your CS2040C notes.
 4. Open a command terminal, ‘cd’ into the folder you put the .jar  file in, and use the `java -jar -clialgo` command to 
 run the application.
-5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open 
+5. Ensure that all your `CS2040CFile`s with either `.cpp` or `.txt` as their extension are present in the same folder 
+as the `.jar` file.
+6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open 
 the help window. Some example commands you can try are:
    - `add n/toposort t/SORTING`: add a 'toposort.txt' file as notes to the topic 'SORTING'
    - `list`: list all existing notes
@@ -151,9 +156,9 @@ Output:
 ======================================================
 Here are all your CS2040CFiles:
 ======================================================
-1. priority queue notes
-2. bubble sort note
-3. linked list code
+1. [CODE] bubble sort
+2. [CODE] queue
+3. [NOTE] linked list note
 ======================================================
 ```
 

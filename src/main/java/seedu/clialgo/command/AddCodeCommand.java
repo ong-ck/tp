@@ -7,17 +7,6 @@ import seedu.clialgo.file.Code;
 import seedu.clialgo.storage.FileManager;
 
 public class AddCodeCommand extends AddCommand {
-
-    /**
-     * Constructor for command to add code file to topic list.
-     *
-     * @param name Name of the code file.
-     * @param topic The topic that this file is tagged to.
-     */
-    public AddCodeCommand(String name, String topic) {
-        super(name, topic);
-    }
-
     /**
      * Constructor for command to add code file to topic list.
      *
