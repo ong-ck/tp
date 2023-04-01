@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private static final String DIVIDER = "======================================================================";
+    private static final String DIVIDER = "======================================================";
 
     /**
      * Scanner object to read user input.
