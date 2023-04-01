@@ -643,7 +643,7 @@ class UiTest {
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
-     }
+    }
 
     @Test
     void printNameNotFoundCommand() {
