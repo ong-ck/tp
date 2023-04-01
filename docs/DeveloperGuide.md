@@ -9,7 +9,7 @@ original source as well}
 
 ### Architecture
 
-![](UML/diagrams/ArchitectureDiagram.png "Architecture Diagram")
+![](class-diagrams/diagrams/ArchitectureDiagram.png "Architecture Diagram")
 
 The **_Architecture Diagram_** given above explains the high-level design of `CLIAlgo`.
 
@@ -17,7 +17,7 @@ Given below is a quick overview of the main components and how they interact wit
 
 #### Main components of the architecture
 
-- `CLIAlgo`: consist of only 1 main method and it is responsible for initializing the componnents
+- `CLIAlgo`: consist of only 1 main method, and it is responsible for initializing the components
 in the correct sequence and connects them with each other during runtime.
 - `Ui`: Responsible for handling all interactions with the user.
 - `Parser`: Responsible for making sense of all commands entered by the user.
@@ -31,25 +31,26 @@ in the correct sequence and connects them with each other during runtime.
 
 The **_Sequence Diagram_** below shows a high level overview of how the components interact with each other
 
-![](./sequence/diagrams/Architecture.png "Filter by Topic Sequence Diagram")
+![](sequence-diagrams/diagrams/Architecture.png "Filter by Topic Sequence Diagram")
 
 ### Ui
-**API** : Ui.java
-Here is a class diagram of the `Ui` component which is responsible for handling all interactin with the User.
+[**API**](../src/main/java/seedu/clialgo/Ui.java) : `Ui.java`
 
-![](./uml/diagrams/UiClass.png "Parser Class Diagram")
+Here is a class diagram of the `Ui` component which is responsible for handling all interaction with the User.
 
+![](class-diagrams/diagrams/UiClass.png "Parser Class Diagram")
+   
 The `Ui` component:
 - Reads in the full command keyed in by the user for the `Parser`.
 - Prints error messages when the user provides invalid inputs.
 - Prints confirmation message when a command have been executed successfully.
 
 ### Parser
-**API** : `Parser.java`
+[**API**](../src/main/java/seedu/clialgo/Parser.java) : `Parser.java`
 Here is a class diagram of the `Parser` component which is responsible for processing commands
 and preparing the appropriate `Command` object.
 
-![](./UML/diagrams/ParserClass.png "Parser Class Diagram")
+![](class-diagrams/diagrams/ParserClass.png "Parser Class Diagram")
 
 The `Parser` component:
 - Reads in the full command keyed in by the user through the `Ui` class.
@@ -60,12 +61,12 @@ the `StringManipulation` interface.
 - Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
 
 ### Storage
-**API** : `FileManager.java`
+[**API**](../src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
 
 Here is a class diagram of the `FileManager` which facilitates the storage
 function of the application.
 
-![](./uml/diagrams/FileManagerClass.png "FileManager Class Diagram")
+![](class-diagrams/diagrams/FileManagerClass.png "FileManager Class Diagram")
 
 The `FileManager` component
 - can save each `Topic`'s data as an individual `.txt` file
@@ -77,35 +78,48 @@ corresponding `Topic`'s  `.txt`
 initializing the application
 
 #### Help
-**API** : `HelpCommand.java`
+[**API**](../src/main/java/seedu/clialgo/command/HelpCommand.java) : `HelpCommand.java`
 
 Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
 
-![](./UML/diagrams/HelpCommand.png "AddCommand Class Diagram")
+![](class-diagrams/diagrams/HelpCommand.png "AddCommand Class Diagram")
 
 The `HelpCommand` component
 - Provides the user with a list of valid commands in `CLIAlgo`.
 - Provides the user with the correct format for each command in `CLIAlgo`.
 
 #### Add
-**API** : `AddCommand.java`
+[**API**](../src/main/java/seedu/clialgo/command/AddCommand.java) : `AddCommand.java`
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
 
-![](./UML/diagrams/Add.png "AddCommand Class Diagram")
+![](class-diagrams/diagrams/AddClass.png "AddCommand Class Diagram")
 
 The `AddCommand` component
 - can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
 - can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
 - can ensure that there are no files with repeated names such that all names of files added are unique
 
+#### List
+[**API**](../src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
+
+Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile` in `CLIAlgo`.
+
+![](class-diagrams/diagrams/ListClass.png "ListCommand Class Diagram")
+
+The `ListCommand` component
+- Prints out all `CS2040CFile` stored in `CLIAlgo` in **any** order.
+- Indicates if the `CS2040CFile` is a `Note` or `Code`.
+  - If the `CS2040CFile` is a `Note`, it would be labelled with `[NOTE]` before the name of the `CS2040CFile`.
+  - If the `CS2040CFile` is a `Code`, it would be labelled with `[CODE]` before the name of the `CS2040CFile`.
+
 #### Filter
-**API** : `FilterCommand.java`
+[**API**](../src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
 
 Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
 the user's specified `keyWord`.
 
-![](./UML/diagrams/FilterClass.png "FilterCommand Class Diagram")
+![](class-diagrams/diagrams/FilterClass.png "FilterCommand Class Diagram")
 
 The `FilterCommand` component
 - instantiate a subclass based on the `keyWord` used in its constructor.
@@ -116,12 +130,12 @@ The `FilterCommand` component
 - The respective subclasses will print the `CS2040CFiles` filtered based on the `keyWord` provided.
 
 ### TopoSort
-**API** : `TopoCommand.java`
+[**API**](../src/main/java/seedu/clialgo/command/TopoCommand.java) : `TopoCommand.java`
 
 Here is a class diagram of the `TopoCommand` which facilitates the storage
 function of the application.
 
-![](./uml/diagrams/TopoCommandClass.png "TopoCommand Class Diagram")
+![](class-diagrams/diagrams/TopoCommandClass.png "TopoCommand Class Diagram")
 
 The `TopoCommand` component
 - can topologically sort `CS2040CFile` objects in a specific `topic` order
@@ -132,12 +146,13 @@ The `TopoCommand` component
 
 ### Parser
 #### Current Implementation
+
 Parsing of commands is done by the `Parser` class. It implements the `StringManipulation` interface which allows
-`Parser` to extract the relevant keywords to prepare the appropriate `Command` object. It is also reponsible for
+`Parser` to extract the relevant keywords to prepare the appropriate `Command` object. It is also responsible for
 handling invalid inputs by the user. The `Parser` consist of the following methods.
 
 - `parse()`: Extracts out the command keyword from the user input.
-- `prepareCommand()`: Prepares the appropriate `Command` object based on the commmand keyword and the other
+- `prepareCommand()`: Prepares the appropriate `Command` object based on the command keyword and the other
 relevant input fields provided by the user. It also checks if the format of the command is correct.
 - `isCorrectMarker()`: Checks if the marker used to label the input fields are correct.
 - `isValidImportance()`: Checks if the importance value provided by the user is a valid integer and within the [1, 10]
@@ -153,7 +168,7 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 > **Step 2**: The `parse()` method extracts out the command keyword provided by the user. It then calls the 
 > `prepareCommand()` method.
 
-> **Step 3**: The `parepareCommand()` identifies the correct `Command` object to prepare based on the command keyword.
+> **Step 3**: The `prepareCommand()` identifies the correct `Command` object to prepare based on the command keyword.
 > Since the command keyword provided is `remove`, `prepareCommand()` calls `prepareRemoveCommand()`.
 
 > **Step 4**: If the `NAME` field of the command is null or not labelled using the correct marker, 
@@ -162,7 +177,7 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 
 The following sequence diagram shows how the Parser work.
 
-![](./sequence/diagrams/Parser.png "Parser Sequence Diagram")
+![](sequence-diagrams/diagrams/Parser.png "Parser Sequence Diagram")
 
 ### Initializing previous saved data feature
 #### Current implementation
@@ -177,14 +192,14 @@ back to the `TopicManager`, completing the initialization process.
 
 The following sequence diagram shows how previously saved files are loaded into `CLIAlgo`.
 
-![](./sequence/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
-
+![](sequence-diagrams/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
 
 ### Help Feature
 #### Current Implementation
+
 The following sequence diagram shows how the help operation works:
 
-![](./sequence/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
+![](sequence-diagrams/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
 
 ### Add CS2040CFile feature
 #### Current Implementation
@@ -225,13 +240,40 @@ CS2040CFile.
 
 The **_Sequence Diagram_** below shows the `AddCommand` works.
 
-![](./sequence/diagrams/AddFeature.png "AddFeature Sequence Diagram")
+![](sequence-diagrams/diagrams/AddFeature.png "AddFeature Sequence Diagram")
+
+### List feature
+#### Current implementation
+
+The list feature mechanism is facilitated by `ListCommand`. It extends `Command` with an
+overridden `execute()` method. It calls the `getAllCS2040CFiles()` method from the `TopicManager` to get all the
+`CS2040CFile` stored in `CLIAlgo`. It then prints them out to the user.
+
+Given below is an example usage scenario and how the list feature behaves at each step.
+
+> **Step 1:** The user will input a command in the format `list`. The input will be read by the `Ui` and processed by the
+> `Parser`. The `Parser` will then call the `prepareListCommand` to create a new `ListCommand` object.
+
+> **Step 2:** The `execute` method of the `ListCommand` object will be executed. `ListCommand` first checks if the
+> `TopicManager` is empty by calling the `isEmpty()` method of the `TopicManager`. If the `TopicManager` is empty, 
+> `ListCommand` will print out a message to inform the user that the `TopicManager` is empty.
+
+> **Step 3:** If the `TopicManager` is not empty, `ListCommand` calls the `getAllCS2040CFiles()` method from the 
+> `TopicManager` which returns an `ArrayList<String>` containing the names and labels of all `CS2040CFile` stored in 
+> `CLIAlgo`.
+
+> **Step 4:** `ListCommand` iterates through the `ArrayList<String>` and prints the names of all the `CS2040CFile` 
+> stored in `CLIAlgo`.
+
+The following **_Sequence Diagram_** shows how the list operation work.
+
+![](sequence-diagrams/diagrams/ListFeature.png "Filter by Topic Sequence Diagram")
 
 ### Filter by keyword feature
 #### Current Implementation
 
 The filter mechanism is facilitated by `FilterCommand`. It extends `Command` with an overridden `execute()` method. The
-`FilterCommand` has 2 subclass `FilterByTopicCommand` and `FilterByImportanceCommand`. Each with their own overriden 
+`FilterCommand` has 2 subclass `FilterByTopicCommand` and `FilterByImportanceCommand`. Each with their own overridden 
 `execute()` method. During execution, the `FilterCommand` decides which of its subclass to instantiate and execute 
 depending on the `keyWord` provided. Both `FilterByTopicCommand` and `FilterByImportanceCommad`
 `FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
@@ -270,7 +312,7 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
 
 The following **_Sequence Diagram_** shows how the filter by topic operation work.
 
-![](./sequence/diagrams/FilterByTopic.png "Filter by Topic Sequence Diagram")
+![](sequence-diagrams/diagrams/FilterByTopic.png "Filter by Topic Sequence Diagram")
 
 ### TopoSort feature
 #### Current implementation
@@ -288,25 +330,26 @@ These operations are `private` and can only be accessed in `TopoCommand`.
 
 Given below is an example usage scenario and how the TopoSort mechanism behaves at each step.
 
-> Step 1. The user will input a command in the format `topo n\noteName`. The input will be read
+> **Step 1:** The user will input a command in the format `topo n\noteName`. The input will be read
 > by the `Ui` and processed by the `Parser`. The `Parser` will then call the `prepareTopoCommand`
 > to create a new `TopoCommand` object.
 
-> Step 2. The `execute` method of the `TopoCommand` object will be executed, which will check
-> whether there are any saved notes (via the `isEmpty` method of `TopicManager`) and whether the `noteName` exists as a note in the application
+> **Step 2:** The `execute` method of the `TopoCommand` object will be executed, which will check
+> whether there are any saved notes (via the `isEmpty` method of `TopicManager`) and whether the `noteName` exists as a 
+> note in the application
 > (via the `isRepeatedCS2040CFile` method of `TopicManager`).
 
-> Step 3. The `printTopoSortedCS2040CFiles` method is called to obtain the relevant note files in topological
+> **Step 3:** The `printTopoSortedCS2040CFiles` method is called to obtain the relevant note files in topological
 > order from `TopicManager` via the `getAllCS2040CFilesBeforeTopic` method. This will be stored internally in 
 > a LinkedHashMap called `topoSortedCS2040CFiles`.
 
-> Step 4. For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic` will be executed to print all
+> **Step 4:** For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic` will be executed to print all
 > note names present in the specific topic. As the topics are saved in topological order, the printed note names
 > will be printed in the correct order.
 
 The following sequence diagram shows how the `TopoCommand` works.
 
-![](./sequence/diagrams/TopoSort.png "TopoSort Sequence Diagram")
+![](sequence-diagrams/diagrams/TopoSort.png "TopoSort Sequence Diagram")
 
 ### Export feature
 #### Current implementation
@@ -330,7 +373,7 @@ the folder by using the default file explorer of the system.
 
 The following sequence diagram shows how the export feature works.
 
-![](./sequence/diagrams/Export.png "Export Sequence Diagram")
+![](sequence-diagrams/diagrams/Export.png "Export Sequence Diagram")
 
 ## Product scope
 ### Target user profile

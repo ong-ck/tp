@@ -111,7 +111,10 @@ public class Buffer {
         try {
             desktop.open(this.pathToBuffer);
         } catch (IllegalArgumentException | IOException e) {
-            this.ui.printInvalidCommand();
+            ui.printOpenFolderNotSupported();
+        } catch (NullPointerException e) {
+            createFolder();
+            ui.printFolderMissing();
         }
     }
 }

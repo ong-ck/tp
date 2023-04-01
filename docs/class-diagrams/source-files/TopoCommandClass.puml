@@ -3,7 +3,7 @@
 skinparam classAttributeIconSize 0
 hide circle
 abstract class Command {
-+execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void {abstract}
++execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void {abstract}
 +equals(otherCommand: Command): boolean {abstract}
 }
 
@@ -14,7 +14,7 @@ class TopoCommand {
 +getName(): String
 -printSingleTopic(topicName: String): void
 +printTopoSortedNotes(topicManager: TopicManager, ui: Ui): void
-+execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager): void
++execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 +equals(otherCommand: Command): boolean
 }
 

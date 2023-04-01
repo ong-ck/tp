@@ -18,6 +18,12 @@ the help window. Some example commands you can try are:
    - `list`: list all existing notes
    - `remove n/toposort`: remove the 'toposort.txt' note from the list
 
+> **WARNING**
+> 
+> If any of the files stored in the data files are corrupted, i.e. any of the fields within the data files are invalid
+> the application discards that file stored within the data file.
+>
+
 ## Features
 
 ### Viewing help `help`
@@ -73,6 +79,10 @@ tagged to it, and an optional importance level, a number from 1 to 10.
 add n/CODE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
 add n/NOTE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
 ```
+- **The corresponding file must be present in the same folder as `clialgo.jar` in order for the `CS2040CFile` to be
+added successfully**
+  - For example, you want to add `queue.txt` into `CLIAlgo`, `queue.txt` must be present in the same folder as the
+`.jar` file.
 - Not following the syntax strictly would result in an invalid command message.
 - Only full words will be matched. E.g. `LINKED_LIST` will not match `Link List`.
 - `n/` and `t/` fields must be non-empty.
@@ -236,12 +246,23 @@ Here are the topologically sorted CS2040CFiles:
 ```
 
 ### Exporting `Files`
-Whenever a `filter` or `topo` command is input by the user, the 
-`Files` listed by the above commands would be stored in a 
-`Buffer`. These stored `Files` can then be copied into 
+Whenever a `filter` or `topo` command is input by the user, the
+CS2040CFile listed by the above commands would be stored in a 
+`Buffer`. These stored CS2040CFile can then be copied into 
 `./export`.
 
+> *The `export` command is to further expand the functionality of commands such as `filter`
+> and `topo` such that all the files are placed into a single folder. This means that if the user
+> wanted to only access files that are of a certain category, they are able to. For users that have hundreds
+> of files, it improves their productivity!*
+> 
+> *For instance, the user has dozens of files of similar names such
+> as a.txt, aa.txt, aaaaa.cpp. The user just has to categorize the 
+> files within the application once and with filter, all the relevant
+> files would be retrieved and placed together.*
+
 Format: `export`
+- Note that `export` **_ONLY_** works with `filter` and `topo` and **_not_** other functions such as `list`.
 - If the Operating System has a valid file explorer, `./export` 
 would be opened automatically.
 - If the buffer is empty when `export` is inputted, an error message
@@ -267,7 +288,7 @@ Here are the filtered CS2040CFiles:
 export
 ```
 Here is `./export` opened after `export` is input.
-![](.\\images\\export1.png)
+![](images/export1.png)
 
 ## FAQ
 
@@ -294,5 +315,5 @@ Here is `./export` opened after `export` is input.
 | list   | `list`                                                                                            |
 | filter | `filter k/KEYWORD [t/TOPIC_NAME]`<br/>e.g., `filter k/topic`, <br/>`filter k/topic t/LINKED_LIST` |
 | topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
-| export | `export`                                                                                           |
+| export | `export`                                                                                          |
 | exit   | `exit`                                                                                            |
