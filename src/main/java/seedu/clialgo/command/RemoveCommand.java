@@ -58,6 +58,7 @@ public class RemoveCommand extends Command {
             return;
         }
 
+        fileManager.recreateAll();
         boolean isDeletedInFile = fileManager.deleteEntry(name, topicName);
 
         if (!isDeletedInFile) {

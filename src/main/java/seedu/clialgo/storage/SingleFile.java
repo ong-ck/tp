@@ -13,7 +13,8 @@ import java.util.Scanner;
 
 public class SingleFile {
 
-    private java.io.File file;
+    private File file;
+    private File folder;
     private final String name;
     private final Ui ui;
     private final HashMap<String, String> storedRawData;
@@ -21,8 +22,9 @@ public class SingleFile {
     private final FileDecoder decoder;
 
 
-    public SingleFile (java.io.File file, String name, FileDecoder decoder) {
+    public SingleFile (File file, File folder, String name, FileDecoder decoder) {
         this.file = file;
+        this.folder = folder;
         this.name = name;
         this.ui = new Ui();
         this.decoder = decoder;
@@ -39,11 +41,13 @@ public class SingleFile {
     public void readFile() throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         boolean isFileCorrupted = false;
+        int corruptCount = 0;
         while (scanner.hasNext()) {
             String rawData = scanner.nextLine();
             boolean isCorrupted = decoder.decodeString(rawData, name);
             if (isCorrupted) {
                 isFileCorrupted = true;
+                corruptCount += 1;
                 break;
             }
             this.storedRawData.put(decoder.decodedName(), rawData);
@@ -53,6 +57,7 @@ public class SingleFile {
         if (isFileCorrupted) {
             try {
                 overwriteFile();
+                ui.printCorruptedFileDiscarded(corruptCount, name);
             } catch (IOException e) {
                 ui.printFileWriteError();
             }
@@ -132,10 +137,9 @@ public class SingleFile {
         try {
             if (file.createNewFile()) {
                 overwriteFile();
-                ui.printFileRecreatedSuccess();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            ui.printFileWriteError();
         }
     }
 

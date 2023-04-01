@@ -40,6 +40,7 @@ public class AddCodeCommand extends AddCommand {
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         String codePath = name + ".cpp";
+        fileManager.recreateAll();
         Code newCode = new Code(name, codePath, topic, importance);
         boolean isAddedToFile = fileManager.addEntry(name, newCode);
 
