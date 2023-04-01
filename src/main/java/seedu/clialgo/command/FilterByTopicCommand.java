@@ -81,7 +81,7 @@ public class FilterByTopicCommand extends FilterCommand {
             return;
         }
         if (topicManager.isTopicEmpty(this.topic)) {
-            ui.printFilterFail();
+            ui.printFilterTopicEmpty();
             buffer.updateBuffer(new ArrayList<>());
             return;
         }

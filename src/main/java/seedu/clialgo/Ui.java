@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private static final String DIVIDER = "======================================================";
+    private static final String DIVIDER = "======================================================================";
 
     /**
      * Scanner object to read user input.
@@ -164,6 +164,14 @@ public class Ui {
         printDivider();
         System.out.println("Unsuccessful!");
         System.out.println("Type 'help c/filter' for assistance.");
+        printDivider();
+    }
+
+    public void printFilterTopicEmpty() {
+        printDivider();
+        System.out.println("There are no files in this topic!");
+        System.out.println("You can add a file to this topic using the add command.");
+        System.out.println("Type 'help c/add' for more information on how to add a CS2040CFile.");
         printDivider();
     }
 
