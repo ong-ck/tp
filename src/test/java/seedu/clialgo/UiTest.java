@@ -330,24 +330,53 @@ class UiTest {
     }
 
     @Test
-    void printFilterEmpty() {
+    void printFilterTopicEmpty() {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
         Ui ui = new Ui();
-        ui.printFilterEmpty();
+        ui.printFilterTopicEmpty();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "The filtered list is empty!\r\n" +
+                    "There are no files in this topic!\r\n" +
+                    "You can add a file to this topic using the add command!\r\n" +
+                    "Type 'help c/add' for more information on how to add a CS2040CFile.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "The filtered list is empty!\n" +
-                    "======================================================\n";
+                    "There are no files in this topic!\n" +
+                    "You can add a file to this topic using the add command.\n" +
+                    "Type 'help c/add' for more information on how to add a CS2040CFile.\n" +                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printFilterAllTopicsEmpty() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printFilterAllTopicsEmpty();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "You have no files!\r\n" +
+                    "You can add a file to a specific topic using the add command.\r\n" +
+                    "Type 'help c/add' for more information on how to add a CS2040CFile.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "You have no files!\n" +
+                    "You can add a file to a specific topic using the add command.\n" +
+                    "Type 'help c/add' for more information on how to add a CS2040CFile.\n" +                    "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }
