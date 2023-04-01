@@ -350,7 +350,8 @@ class UiTest {
             expectedOutput = "======================================================\n" +
                     "There are no files in this topic!\n" +
                     "You can add a file to this topic using the add command.\n" +
-                    "Type 'help c/add' for more information on how to add a CS2040CFile.\n" +                    "======================================================\n";
+                    "Type 'help c/add' for more information on how to add a CS2040CFile.\n" +
+                    "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }
@@ -376,7 +377,8 @@ class UiTest {
             expectedOutput = "======================================================\n" +
                     "You have no files!\n" +
                     "You can add a file to a specific topic using the add command.\n" +
-                    "Type 'help c/add' for more information on how to add a CS2040CFile.\n" +                    "======================================================\n";
+                    "Type 'help c/add' for more information on how to add a CS2040CFile.\n" +
+                    "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }
