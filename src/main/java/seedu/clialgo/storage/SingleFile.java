@@ -4,6 +4,7 @@ import seedu.clialgo.Topic;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.CS2040CFile;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 
 public class SingleFile {
 
-    private java.io.File file;
+    private File file;
     private final String name;
     private final Ui ui;
     private final HashMap<String, String> storedRawData;
@@ -21,7 +22,7 @@ public class SingleFile {
     private final FileDecoder decoder;
 
 
-    public SingleFile (java.io.File file, String name, FileDecoder decoder) {
+    public SingleFile (File file, String name, FileDecoder decoder) {
         this.file = file;
         this.name = name;
         this.ui = new Ui();
@@ -39,11 +40,13 @@ public class SingleFile {
     public void readFile() throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         boolean isFileCorrupted = false;
+        int corruptCount = 0;
         while (scanner.hasNext()) {
             String rawData = scanner.nextLine();
             boolean isCorrupted = decoder.decodeString(rawData, name);
             if (isCorrupted) {
                 isFileCorrupted = true;
+                corruptCount += 1;
                 break;
             }
             this.storedRawData.put(decoder.decodedName(), rawData);
@@ -53,6 +56,7 @@ public class SingleFile {
         if (isFileCorrupted) {
             try {
                 overwriteFile();
+                ui.printCorruptedFileDiscarded(corruptCount, name);
             } catch (IOException e) {
                 ui.printFileWriteError();
             }
@@ -76,7 +80,11 @@ public class SingleFile {
                 overwriteFile();
             }
             FileWriter fileWriter = new FileWriter(file, true);
-            fileWriter.write(encodedCS2040CFile + "\n");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(encodedCS2040CFile);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+            bufferedWriter.close();
             fileWriter.close();
             this.storedRawData.put(fileName, encodedCS2040CFile);
             this.cs2040cFiles.put(fileName, cs2040cFile);
@@ -93,9 +101,13 @@ public class SingleFile {
     public void overwriteFile() throws IOException {
         try {
             FileWriter fileWriter = new FileWriter(file, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             for (String s : storedRawData.values()) {
-                fileWriter.write(s);
+                bufferedWriter.write(s);
+                bufferedWriter.newLine();
             }
+            bufferedWriter.flush();
+            bufferedWriter.close();
             fileWriter.close();
         } catch (IOException e) {
             throw new IOException();
@@ -132,10 +144,9 @@ public class SingleFile {
         try {
             if (file.createNewFile()) {
                 overwriteFile();
-                ui.printFileRecreatedSuccess();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            ui.printFileWriteError();
         }
     }
 

@@ -78,7 +78,6 @@ public class FileManager {
             try {
                 singleFile.readFile();
             } catch (FileNotFoundException e) {
-                ui.printFileWriteError();
                 singleFile.recreateFile();
             }
         }
@@ -211,6 +210,15 @@ public class FileManager {
             ui.printFileDeleteFail();
         } else {
             ui.printFileDeleteSuccess();
+        }
+    }
+
+    public void recreateAll() {
+        if (!new File(path).exists()) {
+            createFolder();
+        }
+        for (SingleFile singleFile: topicRawData.values()) {
+            singleFile.recreateFile();
         }
     }
 }

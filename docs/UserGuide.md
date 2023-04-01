@@ -18,6 +18,12 @@ the help window. Some example commands you can try are:
    - `list`: list all existing notes
    - `remove n/toposort`: remove the 'toposort.txt' note from the list
 
+> **WARNING**
+> 
+> If any of the files stored in the data files are corrupted, i.e. any of the fields within the data files are invalid
+> the application discards that file stored within the data file.
+>
+
 ## Features
 
 ### Viewing help `help`
@@ -240,12 +246,23 @@ Here are the topologically sorted CS2040CFiles:
 ```
 
 ### Exporting `Files`
-Whenever a `filter` or `topo` command is input by the user, the 
-`Files` listed by the above commands would be stored in a 
-`Buffer`. These stored `Files` can then be copied into 
+Whenever a `filter` or `topo` command is input by the user, the
+CS2040CFile listed by the above commands would be stored in a 
+`Buffer`. These stored CS2040CFile can then be copied into 
 `./export`.
 
+> *The `export` command is to further expand the functionality of commands such as `filter`
+> and `topo` such that all the files are placed into a single folder. This means that if the user
+> wanted to only access files that are of a certain category, they are able to. For users that have hundreds
+> of files, it improves their productivity!*
+> 
+> *For instance, the user has dozens of files of similar names such
+> as a.txt, aa.txt, aaaaa.cpp. The user just has to categorize the 
+> files within the application once and with filter, all the relevant
+> files would be retrieved and placed together.*
+
 Format: `export`
+- Note that `export` **_ONLY_** works with `filter` and `topo` and **_not_** other functions such as `list`.
 - If the Operating System has a valid file explorer, `./export` 
 would be opened automatically.
 - If the buffer is empty when `export` is inputted, an error message

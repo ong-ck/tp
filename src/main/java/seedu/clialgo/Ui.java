@@ -336,16 +336,6 @@ public class Ui {
     }
 
     /**
-     * Prints a message indicating that file is successfully recreated.
-     */
-    public void printFileRecreatedSuccess() {
-        printDivider();
-        System.out.println("File recreated.");
-        System.out.println("Try again.");
-        printDivider();
-    }
-
-    /**
      * Prints an error message indicating failure to create folder.
      */
     public void printFolderCreateError() {
@@ -451,4 +441,29 @@ public class Ui {
         }
     }
     //@@author
+
+    public void printOpenFolderNotSupported () {
+        printDivider();
+        System.out.println("Your OS does not support `export` try opening the folder manually.");
+        printDivider();
+    }
+
+    public void printFolderMissing () {
+        printDivider();
+        System.out.println("The export folder seems to be missing.");
+        System.out.println("The export folder has been recreated.");
+        System.out.println("Try the `export` command again.");
+        printDivider();
+    }
+
+    public void printCorruptedFileDiscarded (int corruptCount, String name) {
+        printDivider();
+        if (corruptCount == 1) {
+            System.out.println(corruptCount + " corrupted save entry detected in " + name + ".txt .");
+        } else {
+            System.out.println(corruptCount + " corrupted entries detected in " + name + ".txt .");
+        }
+        System.out.println("Note that the corrupted entries are discarded!");
+        printDivider();
+    }
 }
