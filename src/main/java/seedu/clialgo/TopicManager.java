@@ -54,7 +54,6 @@ public class TopicManager {
         return this.isTestModeOn;
     }
 
-
     /** Checks if there are any CS2040CFiles stored in CLIAlgo. */
     public boolean isEmpty() {
         return allCS2040CFiles.isEmpty();
@@ -67,7 +66,7 @@ public class TopicManager {
 
     /** Checks if a given CS2040CFile name has been used before. */
     public boolean isRepeatedCS2040CFile(String cs2040CFileName) {
-        return this.allCS2040CFiles.containsKey(cs2040CFileName);
+        return this.allCS2040CFiles.containsKey(cs2040CFileName.toLowerCase());
     }
 
     /** Checks if the input string is a valid topic. */
@@ -95,7 +94,7 @@ public class TopicManager {
 
     //@@author heejet
     public String getTopicOfCS2040CFile(String noteName) {
-        return this.allCS2040CFiles.get(noteName);
+        return this.allCS2040CFiles.get(noteName.toLowerCase());
     }
 
     /**
@@ -144,100 +143,6 @@ public class TopicManager {
     //@@author
 
     /**
-     * Adds a new CS2040CFile into the specific <code>Topic</code> object
-     * while keeping track of the names of all CS2040CFiles added.
-     * Name of the CS2040CFile to be added cannot be the same as a previously added CS2040CFile.
-     *
-     * @param cs2040cFileName Name of the CS2040CFile.
-     * @param topicName Name of the topic the CS2040CFile is added to.
-     * @param cs2040cFile The <code>CS2040CFile</code> object representing the CS2040CFile.
-     * @return True if file is successfully added and False otherwise.
-     */
-    public boolean addCS2040CFile(String cs2040cFileName, String topicName, CS2040CFile cs2040cFile) {
-        // Check if CS2040CFile name has been taken
-        if (isRepeatedCS2040CFile(cs2040cFileName)) {
-            return false;
-        }
-
-        // Adds CS2040CFile into topic hashmap
-        topics.get(topicName).addCS2040CFile(cs2040cFileName, cs2040cFile);
-
-        assert topics.get(topicName).isInsideTopic(cs2040cFileName);
-
-        // Keep track of name of CS2040CFile added
-        allCS2040CFiles.put(cs2040cFileName, topicName);
-
-        return true;
-    }
-
-    /**
-     * Removes a CS2040CFile from the specific <code>Topic</code> object while keeping track of the names of all
-     * CS2040CFiles remaining.
-     *
-     * @param cs2040cFileName Name of the CS2040CFile.
-     * @return Returns true if the name of the CS2040CFile is inside any topic, false otherwise
-     */
-    public boolean removeCS2040CFile(String cs2040cFileName, String topicName) {
-        if (!isRepeatedCS2040CFile(cs2040cFileName)) {
-            return false;
-        }
-
-        boolean isInsideTopic = topics.get(topicName).isInsideTopic(cs2040cFileName);
-
-        if (!isInsideTopic) {
-            return false;
-        }
-
-        topics.get(topicName).removeCS2040CFile(cs2040cFileName);
-        allCS2040CFiles.remove(cs2040cFileName);
-        return true;
-    }
-
-    /**
-     * Initializes the <code>topics</code> and <code>allCS2040CFile</code> of this object by taking in input from the
-     * <code>FileManager</code> object.
-     *
-     * @param topics The output obtained from the <code>FileManager</code> by calling <code>decodeAll</code>.
-     */
-    public void initialize(HashMap<String, Topic> topics) {
-        this.topics = topics;
-        for (Map.Entry<String, Topic> entry : topics.entrySet()) {
-            Topic topic = entry.getValue();
-            if (topic == null) {
-                continue;
-            }
-            for (CS2040CFile fileName : topic.getC2040CFiles().values()) {
-                allCS2040CFiles.put(fileName.getName(), topic.getTopicName());
-            }
-        }
-    }
-
-    /**
-     * Resets <code>topics</code> and <code>allCS2040CFiles</code> when test mode starts. Stores the data outside of
-     * test mode separately.
-     */
-    public void testModeStart() {
-        this.topicsOutsideTestMode = topics;
-        this.allCS2040CFilesOutsideTestMode = allCS2040CFiles;
-        allCS2040CFiles = new HashMap<>();
-        topics = new HashMap<>();
-        for (String topicName : TOPIC_NAMES) {
-            topics.put(topicName, new Topic(topicName));
-        }
-        this.isTestModeOn = true;
-    }
-
-    /**
-     * Retrieves the <code>topics</code> and <code>allCS2040CFiles</code> data from before the start of test mode when
-     * test mode ends such that the state before the start of test mode is restored.
-     */
-    public void testModeEnd() {
-        this.allCS2040CFiles = allCS2040CFilesOutsideTestMode;
-        this.topics = topicsOutsideTestMode;
-        this.isTestModeOn = false;
-    }
-
-    /**
      * Get a list of all topics stored in CLIAlgo that are before a specific target topic.
      *
      * @param cs2040cFileName The name of the CS2040CFile that is part of the target topic.
@@ -273,4 +178,99 @@ public class TopicManager {
     public Topic getOneTopic(String topicName) {
         return topics.get(topicName);
     }
+
+    /**
+     * Initializes the <code>topics</code> and <code>allCS2040CFile</code> of this object by taking in input from the
+     * <code>FileManager</code> object.
+     *
+     * @param topics The output obtained from the <code>FileManager</code> by calling <code>decodeAll</code>.
+     */
+    public void initialize(HashMap<String, Topic> topics) {
+        this.topics = topics;
+        for (Map.Entry<String, Topic> entry : topics.entrySet()) {
+            Topic topic = entry.getValue();
+            if (topic == null) {
+                continue;
+            }
+            for (CS2040CFile fileName : topic.getC2040CFiles().values()) {
+                allCS2040CFiles.put(fileName.getName().toLowerCase(), topic.getTopicName());
+            }
+        }
+    }
+
+    /**
+     * Adds a new CS2040CFile into the specific <code>Topic</code> object
+     * while keeping track of the names of all CS2040CFiles added.
+     * Name of the CS2040CFile to be added cannot be the same as a previously added CS2040CFile.
+     *
+     * @param cs2040cFileName Name of the CS2040CFile.
+     * @param topicName Name of the topic the CS2040CFile is added to.
+     * @param cs2040cFile The <code>CS2040CFile</code> object representing the CS2040CFile.
+     * @return True if file is successfully added and False otherwise.
+     */
+    public boolean addCS2040CFile(String cs2040cFileName, String topicName, CS2040CFile cs2040cFile) {
+        // Check if CS2040CFile name has been taken
+        if (isRepeatedCS2040CFile(cs2040cFileName)) {
+            return false;
+        }
+
+        // Adds CS2040CFile into topic hashmap
+        topics.get(topicName).addCS2040CFile(cs2040cFileName, cs2040cFile);
+
+        assert topics.get(topicName).isInsideTopic(cs2040cFileName);
+
+        // Keep track of name of CS2040CFile added
+        allCS2040CFiles.put(cs2040cFileName.toLowerCase(), topicName);
+
+        return true;
+    }
+
+    /**
+     * Removes a CS2040CFile from the specific <code>Topic</code> object while keeping track of the names of all
+     * CS2040CFiles remaining.
+     *
+     * @param cs2040cFileName Name of the CS2040CFile.
+     * @return Returns true if the name of the CS2040CFile is inside any topic, false otherwise
+     */
+    public boolean removeCS2040CFile(String cs2040cFileName, String topicName) {
+        if (!isRepeatedCS2040CFile(cs2040cFileName)) {
+            return false;
+        }
+
+        boolean isInsideTopic = topics.get(topicName).isInsideTopic(cs2040cFileName);
+
+        if (!isInsideTopic) {
+            return false;
+        }
+
+        topics.get(topicName).removeCS2040CFile(cs2040cFileName);
+        allCS2040CFiles.remove(cs2040cFileName);
+        return true;
+    }
+
+    /**
+     * Resets <code>topics</code> and <code>allCS2040CFiles</code> when test mode starts. Stores the data outside of
+     * test mode separately.
+     */
+    public void testModeStart() {
+        this.topicsOutsideTestMode = topics;
+        this.allCS2040CFilesOutsideTestMode = allCS2040CFiles;
+        allCS2040CFiles = new HashMap<>();
+        topics = new HashMap<>();
+        for (String topicName : TOPIC_NAMES) {
+            topics.put(topicName, new Topic(topicName));
+        }
+        this.isTestModeOn = true;
+    }
+
+    /**
+     * Retrieves the <code>topics</code> and <code>allCS2040CFiles</code> data from before the start of test mode when
+     * test mode ends such that the state before the start of test mode is restored.
+     */
+    public void testModeEnd() {
+        this.allCS2040CFiles = allCS2040CFilesOutsideTestMode;
+        this.topics = topicsOutsideTestMode;
+        this.isTestModeOn = false;
+    }
+
 }

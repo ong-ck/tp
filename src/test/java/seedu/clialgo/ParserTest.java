@@ -126,7 +126,7 @@ class ParserTest {
         TopicManager topics = new TopicManager();
 
         String addInput = "add n/Name of File t/LINKED_LIST";
-        AddCommand correctAddOutput = new AddCommand("name of file", "LINKED_LIST");
+        AddCommand correctAddOutput = new AddCommand("Name of File", "LINKED_LIST");
         Command actualAddOutput = parser.parse(addInput, topics);
         assertTrue(correctAddOutput.equals(actualAddOutput));
 

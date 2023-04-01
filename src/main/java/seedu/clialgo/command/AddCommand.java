@@ -113,9 +113,9 @@ public class AddCommand extends Command {
             new AddNoteCommand(name, topic, importance).execute(topicManager, ui, fileManager, buffer);
         }
 
-        assert this.name != null;
         assert this.topic != null;
         assert topicManager.isValidTopic(topic);
+
         // Ui for successful adding
         ui.printAddSuccess(name, topic);
     }

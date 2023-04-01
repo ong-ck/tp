@@ -154,7 +154,7 @@ public class Parser implements StringManipulation {
                 return new InvalidTopicCommand(topicName);
             }
 
-            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithNameMarker, NAME_MARKER).toLowerCase();
+            cs2040cFileName = StringManipulation.removeMarker(cs2040cFileNameWithNameMarker, NAME_MARKER);
 
             if (importanceField != null && !isValidImportance(importanceField)) {
                 return new InvalidImportanceCommand(importanceField);
@@ -196,7 +196,7 @@ public class Parser implements StringManipulation {
                 return new InvalidCommand();
             }
 
-            cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
+            cs2040cFileName = StringManipulation.removeMarker(description, NAME_MARKER);
 
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
@@ -300,7 +300,7 @@ public class Parser implements StringManipulation {
             if (description.equals("") || !isCorrectMarker(description, NAME_MARKER)) {
                 return new InvalidCommand();
             }
-            noteName = StringManipulation.removeMarker(description, NAME_MARKER).toLowerCase();
+            noteName = StringManipulation.removeMarker(description, NAME_MARKER);
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();
         }
