@@ -151,9 +151,9 @@ Output:
 ======================================================
 Here are all your CS2040CFiles:
 ======================================================
-1. priority queue notes
-2. bubble sort note
-3. linked list code
+1. [CODE] bubble sort
+2. [CODE] queue
+3. [NOTE] linked list note
 ======================================================
 ```
 
