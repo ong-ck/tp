@@ -53,7 +53,7 @@ public class FileManager {
      */
     public SingleFile createSingleFile(String name) {
         File file = new File(path + "\\" + name + ".txt");
-        SingleFile newFile = new SingleFile(file, new File(path), name, decoder);
+        SingleFile newFile = new SingleFile(file, name, decoder);
         try {
             if (file.createNewFile()) {
                 newFile.setFile(file);

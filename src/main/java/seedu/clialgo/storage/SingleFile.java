@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class SingleFile {
 
     private File file;
-    private File folder;
     private final String name;
     private final Ui ui;
     private final HashMap<String, String> storedRawData;
@@ -22,9 +21,8 @@ public class SingleFile {
     private final FileDecoder decoder;
 
 
-    public SingleFile (File file, File folder, String name, FileDecoder decoder) {
+    public SingleFile (File file, String name, FileDecoder decoder) {
         this.file = file;
-        this.folder = folder;
         this.name = name;
         this.ui = new Ui();
         this.decoder = decoder;
