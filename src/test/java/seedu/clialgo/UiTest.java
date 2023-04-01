@@ -343,7 +343,7 @@ class UiTest {
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
                     "There are no files in this topic!\r\n" +
-                    "You can add a file to this topic using the add command!\r\n" +
+                    "You can add a file to this topic using the add command.\r\n" +
                     "Type 'help c/add' for more information on how to add a CS2040CFile.\r\n" +
                     "======================================================\r\n";
         } else {
