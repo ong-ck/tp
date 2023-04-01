@@ -67,7 +67,7 @@ public class FilterByTopicCommand extends FilterCommand {
     @Override
     public void execute (TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         if (topicManager.isEmpty()) {
-            ui.printFilterEmpty();
+            ui.printFilterAllTopicsEmpty();
             buffer.updateBuffer(new ArrayList<>());
             return;
         }

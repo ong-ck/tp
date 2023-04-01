@@ -1,0 +1,18 @@
+@startuml
+
+participant ":CLIAlgo" as cli
+participant ":Ui" as ui
+
+activate cli
+cli -> ui **
+activate ui
+return
+cli -> ui : uiPrintWelcomeMessage()
+activate ui
+return
+cli -> ui : getUserInput()
+activate ui
+return fullCommand : String
+deactivate ui
+
+@enduml
