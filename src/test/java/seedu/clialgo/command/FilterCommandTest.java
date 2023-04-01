@@ -53,11 +53,15 @@ public class FilterCommandTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "The filtered list is empty!\r\n" +
+                    "You have no files!\r\n" +
+                    "You can add a file to a specific topic using the add command.\r\n" +
+                    "Type 'help c/add' for more information on how to add a CS2040CFile.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "The filtered list is empty!\n" +
+                    "You have no files!\n" +
+                    "You can add a file to a specific topic using the add command.\n" +
+                    "Type 'help c/add' for more information on how to add a CS2040CFile.\n" +
                     "======================================================\n";
         }
         StringBuilder newExpectedOutput = new StringBuilder(expectedOutput);
