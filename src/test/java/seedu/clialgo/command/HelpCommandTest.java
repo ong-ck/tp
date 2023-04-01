@@ -172,8 +172,8 @@ class HelpCommandTest {
                     "\r\n" +
                     "KEYWORD: String keyword has to be either `topic` or `importance`.\r\n" +
                     "TOPIC: String topic chosen from list below (optional field).\r\n" +
-                    "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\r\n" +
                     "\r\n" +
+                    "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\r\n" +
                     "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\r\n" +
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\r\n" +
                     "======================================================\r\n";
