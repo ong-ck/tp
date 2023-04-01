@@ -1,6 +1,7 @@
 package seedu.clialgo;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 //@@author nikkiDEEE
@@ -8,10 +9,10 @@ import java.util.Scanner;
 public class Ui {
 
     private static final String DIVIDER = "======================================================";
-
-    /** Scanner object to read user input. */
+    private static final String EXIT_COMMAND = "exit";
     private final Scanner in;
 
+    /** Ui constructor */
     public Ui() {
         in = new Scanner(System.in);
     }
@@ -22,7 +23,14 @@ public class Ui {
      * @return userInput A String input by the user
      */
     public String getUserInput() {
-        return in.nextLine();
+        String fullUserInput;
+        try {
+            fullUserInput = in.nextLine();
+        } catch (NoSuchElementException | IllegalStateException e) {
+            printReadFail();
+            return EXIT_COMMAND;
+        }
+        return fullUserInput;
     }
 
     /**
@@ -43,6 +51,14 @@ public class Ui {
     public void printExitMessage() {
         printDivider();
         System.out.println("Thank you for using CLIAlgo! Study hard!");
+        printDivider();
+    }
+
+    /** Prints message informing the user that there is an error reading in the input */
+    public void printReadFail() {
+        printDivider();
+        System.out.println("It seems that there is an error reading in your input.");
+        System.out.println("Please restart the application");
         printDivider();
     }
 
@@ -389,7 +405,7 @@ public class Ui {
     /** Prints a message informing the user that the export operation was successful. */
     public void printExportSuccess() {
         printDivider();
-        System.out.println("Exporting files...");
+        System.out.println("Successfully exported file(s).");
         printDivider();
     }
 
