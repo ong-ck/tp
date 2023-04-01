@@ -5,7 +5,7 @@ participant Ui as ui
 
  -> hc : execute()
  activate hc
-    alt null
+    alt command is null
     hc -> ui : ui.printHelpPage()
     activate ui
     return

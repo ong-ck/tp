@@ -5,26 +5,20 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 //@@author nikkiDEEE
-/**
- * Text UI of the application.
- */
+/** Text UI of the application. */
 public class Ui {
 
     private static final String DIVIDER = "======================================================";
-
     private static final String EXIT_COMMAND = "exit";
-
-    /**
-     * Scanner object to read user input.
-     */
     private final Scanner in;
 
+    /** Ui constructor */
     public Ui() {
         in = new Scanner(System.in);
     }
 
     /**
-     * Returns user input
+     * Returns user input.
      *
      * @return userInput A String input by the user
      */
@@ -40,22 +34,20 @@ public class Ui {
     }
 
     /**
-     * Prints a divider
+     * Prints a divider.
      */
     public void printDivider() {
         System.out.println(DIVIDER);
     }
 
-    /**
-     * Prints the intro message when application starts
-     */
+    /** Prints the intro message when application starts. */
     public void printWelcomeMessage() {
         printDivider();
         System.out.println("Hello! Welcome to CLIAlgo Notes!");
         printDivider();
     }
 
-    /** Prints the outro message when the application is closed */
+    /** Prints the outro message when the application is closed. */
     public void printExitMessage() {
         printDivider();
         System.out.println("Thank you for using CLIAlgo! Study hard!");
@@ -71,8 +63,8 @@ public class Ui {
     }
 
     /**
-     * Prints a list of valid (available) user commands
-     * To be called when userInput.equals("help")
+     * Prints a list of valid (available) user commands.
+     * To be called when userInput.equals("help").
      */
     public void printHelpPage() {
         printDivider();
@@ -87,10 +79,10 @@ public class Ui {
     }
 
     /**
-     * Prints a message indicating successful addition of the CS2040CFile to the tagged topic in the list
+     * Prints a message indicating successful addition of the CS2040CFile to the tagged topic in the list.
      *
-     * @param name the name of the CS2040CFile defined by the user
-     * @param topic the CS2040C topic
+     * @param name the name of the CS2040CFile defined by the user.
+     * @param topic the CS2040C topic.
      */
     public void printAddSuccess(String name, String topic) {
         assert name != null;
@@ -101,9 +93,9 @@ public class Ui {
     }
 
     /**
-     * Prints a message indicating the failure to add CS2040CFile to a topic (which does not exist in CS2040C)
+     * Prints a message indicating the failure to add CS2040CFile to a topic (which does not exist in CS2040C).
      *
-     * @param topic the CS2040C topic
+     * @param topic the CS2040C topic.
      */
     public void printAddFail(String topic) {
         assert topic != null;
@@ -123,18 +115,14 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints the list of CS2040CFiles saved by the user
-     */
+    /** Prints the list of CS2040CFiles saved by the user. */
     public void printListSuccess() {
         printDivider();
         System.out.println("Here are all your CS2040CFiles:");
         printDivider();
     }
 
-    /**
-     * Prints an error message if user has no saved CS2040CFiles
-     */
+    /** Prints an error message if user has no saved CS2040CFiles. */
     public void printListFail() {
         printDivider();
         System.out.println("You have no CS2040CFiles!");
@@ -143,9 +131,9 @@ public class Ui {
     }
 
     /**
-     * Prints a message indicating successful purge of a user-defined CS2040CFile
+     * Prints a message indicating successful purge of a user-defined CS2040CFile.
      *
-     * @param name the name of the CS2040CFile defined by the user
+     * @param name the name of the CS2040CFile defined by the user.
      */
     public void printRemoveSuccess(String name) {
         assert name != null;
@@ -154,9 +142,7 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints an error message if user has not used appropriate flags/no CS2040CFiles exist of the specific name
-     */
+    /** Prints an error message if user has not used appropriate flags/no CS2040CFiles exist of the specific name. */
     public void printRemoveFail() {
         printDivider();
         System.out.println("Unsuccessful!");
@@ -164,18 +150,14 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints a filtered set of CS2040CFiles user-specified by keyword and topic name
-     */
+    /** Prints a filtered set of CS2040CFiles user-specified by keyword and topic name. */
     public void printFilterSuccess() {
         printDivider();
         System.out.println("Here are the filtered CS2040CFiles:");
         printDivider();
     }
 
-    /**
-     * Prints a filtered set of CS2040CFiles user-specified by keyword and topic name
-     */
+    /** Prints a filtered set of CS2040CFiles user-specified by keyword and topic name. */
     public void printFilterFail() {
         printDivider();
         System.out.println("Unsuccessful!");
@@ -183,18 +165,27 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints feedback to user that filtered list is empty.
-     */
-    public void printFilterEmpty() {
+    /** Prints feedback to user that there are no notes to be filtered. */
+    public void printFilterTopicEmpty() {
         printDivider();
-        System.out.println("The filtered list is empty!");
+        System.out.println("There are no files in this topic!");
+        System.out.println("You can add a file to this topic using the add command.");
+        System.out.println("Type 'help c/add' for more information on how to add a CS2040CFile.");
+        printDivider();
+    }
+
+    /** Prints feedback to user that there are no notes to be filtered. */
+    public void printFilterAllTopicsEmpty() {
+        printDivider();
+        System.out.println("You have no files!");
+        System.out.println("You can add a file to a specific topic using the add command.");
+        System.out.println("Type 'help c/add' for more information on how to add a CS2040CFile.");
         printDivider();
     }
 
     /**
-     * Prints the requirements for using the 'add' command
-     * To be called when userInput.equals("help c/add")
+     * Prints the requirements for using the 'add' command.
+     * To be called when userInput.equals("help c/add").
      */
     public void printHelpAdd() {
         printDivider();
@@ -211,8 +202,8 @@ public class Ui {
     }
 
     /**
-     * Prints the requirements for using the 'remove' command
-     * To be called when userInput.equals("help c/remove")
+     * Prints the requirements for using the 'remove' command.
+     * To be called when userInput.equals("help c/remove").
      */
     public void printHelpRemove() {
         printDivider();
@@ -225,8 +216,8 @@ public class Ui {
     }
 
     /**
-     * Prints the requirements for using the 'list' command
-     * To be called when userInput.equals("help c/list")
+     * Prints the requirements for using the 'list' command.
+     * To be called when userInput.equals("help c/list").
      */
     public void printHelpList() {
         printDivider();
@@ -237,8 +228,8 @@ public class Ui {
     }
 
     /**
-     * Prints the requirements for using the 'topo' command
-     * To be called when userInput.equals("help c/topo")
+     * Prints the requirements for using the 'topo' command.
+     * To be called when userInput.equals("help c/topo").
      */
     public void printHelpTopoSort() {
         printDivider();
@@ -252,8 +243,8 @@ public class Ui {
     }
 
     /**
-     * Prints the requirements for using the 'filter' command
-     * To be called when userInput.equals("help c/filter")
+     * Prints the requirements for using the 'filter' command.
+     * To be called when userInput.equals("help c/filter").
      */
     public void printHelpFilter() {
         printDivider();
@@ -267,8 +258,8 @@ public class Ui {
     }
 
     /**
-     * Prints the requirements for using the 'exit' command
-     * To be called when userInput.equals("help c/exit")
+     * Prints the requirements for using the 'exit' command.
+     * To be called when userInput.equals("help c/exit").
      */
     public void printHelpExit() {
         printDivider();
@@ -278,9 +269,7 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints an error message indicating invalid user-input
-     */
+    /** Prints an error message indicating invalid user-input. */
     public void printInvalidCommand() {
         printDivider();
         System.out.println("This is an invalid command, please ensure all your fields are correct.");
@@ -288,16 +277,12 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Close the System.in scanner
-     */
+    /** Close the System.in scanner. */
     public void closeScanner() {
         this.in.close();
     }
 
-    /**
-     * Prints an error message when the user tries to remove a file whose name does not exist
-     */
+    /** Prints an error message when the user tries to remove a file whose name does not exist. */
     public void printNameNotFoundCommand() {
         printDivider();
         System.out.println("Unsuccessful! A CS2040CFile of that name does not exist.");
@@ -306,81 +291,63 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints an error message when saving data is unsuccessful.
-     */
+    /** Prints an error message when saving data is unsuccessful. */
     public void printSaveFail() {
         printDivider();
         System.out.println("Saving data was unsuccessful. Please try again.");
         printDivider();
     }
 
-    /**
-     * Prints a message indicating the start of test mode.
-     */
+    /** Prints a message indicating the start of test mode. */
     public void printTestModeStart() {
         printDivider();
         System.out.println("Starting test mode.");
         printDivider();
     }
 
-    /**
-     * Prints a message indicating the end of test mode.
-     */
+    /** Prints a message indicating the end of test mode. */
     public void printTestModeEnd() {
         printDivider();
         System.out.println("Ending test mode.");
         printDivider();
     }
 
-    /**
-     * Prints an error message when test mode exit failed.
-     */
+    /** Prints an error message when test mode exit failed. */
     public void printTestModeEndFail() {
         printDivider();
         System.out.println("Unsuccessful, test mode has not been started.");
         printDivider();
     }
 
-    /**
-     * Prints an error message indicating failure to write to file.
-     */
+    /** Prints an error message indicating failure to write to file. */
     public void printFileWriteError() {
         printDivider();
         System.out.println("File not found.");
         printDivider();
     }
 
-    /**
-     * Prints an error message indicating failure to create folder.
-     */
+    /** Prints an error message indicating failure to create folder. */
     public void printFolderCreateError() {
         printDivider();
         System.out.println("Folder not created.");
         printDivider();
     }
 
-    /**
-     * Prints an error message indicating file delete success.
-     */
+    /** Prints an error message indicating file delete success. */
     public void printFileDeleteSuccess() {
         printDivider();
         System.out.println("Successfully deleted file.");
         printDivider();
     }
 
-    /**
-     * Prints an error message indicating failure to delete the file.
-     */
+    /** Prints an error message indicating failure to delete the file. */
     public void printFileDeleteFail() {
         printDivider();
         System.out.println("Unsuccessful! Delete failed.");
         printDivider();
     }
 
-    /**
-     * Prints an error message indicating that CS2040CFile is invalid.
-     */
+    /** Prints an error message indicating that CS2040CFile is invalid. */
     public void printInvalidCS2040CFile() {
         printDivider();
         System.out.println("Invalid CS2040CFile.");
@@ -388,9 +355,7 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints an error message to inform the user that the file does not exist.
-     */
+    /** Prints an error message to inform the user that the file does not exist. */
     public void printFileDoesNotExist() {
         printDivider();
         System.out.println("This file does not exist.");
@@ -398,9 +363,7 @@ public class Ui {
         printDivider();
     }
 
-    /**
-     * Prints the header statement when toposort is successful.
-     */
+    /** Prints the header statement when toposort is successful. */
     public void printTopoSortSuccess() {
         printDivider();
         System.out.println("Here are the topologically sorted CS2040CFiles:");
@@ -414,20 +377,21 @@ public class Ui {
         printDivider();
     }
 
+    /** Prints a message informing the user that the file is missing from the root directory. */
     public void printFileMissing() {
         printDivider();
         System.out.println("File missing from root directory.");
         printDivider();
     }
 
-    /** Prints a message informing the user that the Buffer is empty */
+    /** Prints a message informing the user that the Buffer is empty. */
     public void printBufferEmpty() {
         printDivider();
         System.out.println("You have no CS2040CFiles in the buffer.");
         printDivider();
     }
 
-    /** Prints a message informing the user that the export operation was successful */
+    /** Prints a message informing the user that the export operation was successful. */
     public void printExportSuccess() {
         printDivider();
         System.out.println("Successfully exported file(s).");

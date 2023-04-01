@@ -1,0 +1,52 @@
+@startuml
+
+participant ":CLIAlgo" as cli
+participant ":Parser" as p
+participant ":ListCommand" as lc
+participant ":TopicManager" as tm
+participant ":Ui" as ui
+
+activate cli
+cli -> ui **
+activate ui
+return
+cli -> ui : uiPrintWelcomeMessage()
+activate ui
+return
+loop fullCommand != "exit"
+cli -> ui : getUserInput()
+activate ui
+note over ui : User input: `list`
+return fullCommand : String
+deactivate ui
+note over cli : fullCommand: `list`
+cli -> p : parse(fullCommand)
+activate p
+p -> lc **
+activate lc
+lc --> p
+deactivate lc
+p -> lc : execute()
+activate lc
+
+alt TopicManager is empty
+    lc -> ui : printListFail()
+    activate ui
+    return
+
+else else
+    lc -> ui : printListSuccess()
+    activate ui
+    return
+    lc -> tm : getAllCS2040CFiles()
+    activate tm
+    return printedCS2040CFiles: ArrayList<String>
+    lc -> ui : printListOfCS2040CFiles(printedCS2040CFiles: ArrayList<String>)
+    activate ui
+    return
+end
+lc --> cli
+destroy lc
+end
+
+@enduml

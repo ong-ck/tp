@@ -9,7 +9,9 @@ You have no CS2040CFiles!
 Type 'help c/add' for assistance on how to add a CS2040CFile.
 ======================================================
 ======================================================
-The filtered list is empty!
+You have no files!
+You can add a file to a specific topic using the add command.
+Type 'help c/add' for more information on how to add a CS2040CFile.
 ======================================================
 ======================================================
 The available COMMAND_TYPE(s) are:
@@ -40,7 +42,9 @@ This is an invalid command, please ensure all your fields are correct.
 Type 'help' for additional assistance.
 ======================================================
 ======================================================
-The filtered list is empty!
+You have no files!
+You can add a file to a specific topic using the add command.
+Type 'help c/add' for more information on how to add a CS2040CFile.
 ======================================================
 ======================================================
 Unsuccessful! LINKED LIST is not a topic in CS2040C.
@@ -54,7 +58,9 @@ NAME refers to the CS2040CFiles' file name.
 Invalid NAME will cause an error.
 ======================================================
 ======================================================
-The filtered list is empty!
+You have no files!
+You can add a file to a specific topic using the add command.
+Type 'help c/add' for more information on how to add a CS2040CFile.
 ======================================================
 ======================================================
 Unsuccessful!
@@ -89,8 +95,9 @@ Unsuccessful! MST is not a topic in CS2040C.
 Type 'help c/add' for assistance.
 ======================================================
 ======================================================
-Unsuccessful!
-Type 'help c/filter' for assistance.
+There are no files in this topic!
+You can add a file to this topic using the add command.
+Type 'help c/add' for more information on how to add a CS2040CFile.
 ======================================================
 ======================================================
 Successfully removed sorting notes.

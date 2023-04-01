@@ -197,6 +197,18 @@ The following sequence diagram shows how previously saved files are loaded into 
 ### Help Feature
 #### Current Implementation
 
+The help mechanism is facilitated by "HelpCommand". It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` function, the input command after the `c/` delimiter is parsed and checked against the
+valid string commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
+
+> **Step 1**: The user enters the `help` command, which invokes `HelpCommand` and returns control back to parser. 
+
+> **Step 2**: `execute()` of `HelpCommand` is called by `CLIAlgo`.
+
+> **Step 3**: 1 of 7 valid commands is called and its Ui method is invoked from the Ui class.
+
+> **Step 4**: HelpCommand object is destroyed and control is handed back to the user.
+
 The following sequence diagram shows how the help operation works:
 
 ![](sequence-diagrams/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
@@ -374,6 +386,18 @@ the folder by using the default file explorer of the system.
 The following sequence diagram shows how the export feature works.
 
 ![](sequence-diagrams/diagrams/Export.png "Export Sequence Diagram")
+
+### Ui
+#### Current implementation
+
+All UI interactions are taken care of by the Ui class. It is responsible for taking in user inputs and giving text-ui
+outputs to provide guidance and a pleasant user experience overall.
+
+The methods in the Ui class use "System.out.println()" from the Java Standard Library to display output to the user.
+
+The following sequence diagram is a small example of how the Ui object is used.
+
+![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
 
 ## Product scope
 ### Target user profile

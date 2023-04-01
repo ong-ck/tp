@@ -89,6 +89,11 @@ public class FilterByImportanceCommand extends FilterCommand {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
+        if (topicManager.isEmpty()) {
+            ui.printFilterAllTopicsEmpty();
+            buffer.updateBuffer(new ArrayList<>());
+            return;
+        }
         if (this.topic == null) {
             printAllTopics(topicManager, ui);
             buffer.updateBuffer(topicManager.getAllFilesAsFiles());
@@ -99,7 +104,7 @@ public class FilterByImportanceCommand extends FilterCommand {
             return;
         }
         if (topicManager.isTopicEmpty(this.topic)) {
-            ui.printFilterFail();
+            ui.printFilterTopicEmpty();
             buffer.updateBuffer(new ArrayList<>());
             return;
         }
