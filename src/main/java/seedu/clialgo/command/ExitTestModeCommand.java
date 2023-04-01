@@ -23,11 +23,9 @@ public class ExitTestModeCommand extends Command {
             ui.printTestModeEndFail();
             return;
         }
-
         ui.printTestModeEnd();
         fileManager.exitTestMode();
         topicManager.testModeEnd();
-        ui.printDivider();
     }
 
     @Override

@@ -42,8 +42,8 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
 ======================================================
 ======================================================
-This is an invalid command, please ensure all your fields are correct.
-Type 'help' for additional assistance.
+Invalid keyword! Only `topic` and `importance` are supported keywords.
+Type `help c/filter for more information.
 ======================================================
 ======================================================
 You have no files!
