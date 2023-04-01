@@ -37,9 +37,7 @@ public class FilterCommandTest {
         outputStream.reset();
     }
 
-    /**
-     * Checks correct execution of <code>execute</code> method when printing empty <code>allNotes</code>.
-     */
+    /** Checks correct execution of <code>execute</code> method when printing empty <code>allNotes</code>. */
     @Test
     void isEmptyCheck_expectTrue() {
         String input = "filter k/topic";
