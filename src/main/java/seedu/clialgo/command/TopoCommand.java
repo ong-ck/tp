@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
+//@@author ong-ck
 /**
  * The <code>TopoCommand</code> object represents the user command to
  * print the topologically sorted CS2040CFiles after a specific target CS2040CFile.
@@ -44,6 +45,7 @@ public class TopoCommand extends Command {
         topoSortedCS2040CFiles = topicManager.getAllCS2040CFilesBeforeTopic(name);
         ui.printTopoSortSuccess();
         ArrayList<CS2040CFile> files = new ArrayList<>();
+        int currentSerialNumber = 1;
         for (Map.Entry<String, ArrayList<String>> entry : topoSortedCS2040CFiles.entrySet()) {
             String topicName = entry.getKey();
             ArrayList<String> listOfFiles = entry.getValue();
@@ -54,7 +56,7 @@ public class TopoCommand extends Command {
 
             System.out.println("[" + topicName + "]");
 
-            ui.printListOfCS2040CFiles(listOfFiles);
+            currentSerialNumber = ui.printTopoSortedListOfCS2040CFiles(listOfFiles, currentSerialNumber);
             files.addAll(topicManager.getTopics().get(topicName).getCS2040CFilesAsArray());
         }
         ui.printDivider();

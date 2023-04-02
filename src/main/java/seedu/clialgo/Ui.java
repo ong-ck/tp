@@ -422,6 +422,26 @@ public class Ui {
     }
     //@@author
 
+    //@@author ong-ck
+    /**
+     * Prints the CS2040CFiles from a provided ArrayList with the index continuing from a given serial number.
+     *
+     * @param cs2040cFiles An ArrayList containing the names and labels of all CS2040C files to be printed
+     * @param currentserialNumber The serial number of the note for the index to start printing from.
+     * @return The serial number of the last note printed.
+     */
+    public int printTopoSortedListOfCS2040CFiles(ArrayList<String> cs2040cFiles, int currentserialNumber) {
+        assert !cs2040cFiles.isEmpty();
+        assert currentserialNumber >= 1;
+        int serialNumber = currentserialNumber;
+        for (String cs2040cFile : cs2040cFiles) {
+            System.out.println(serialNumber + ". " + cs2040cFile);
+            serialNumber++;
+        }
+        return serialNumber;
+    }
+    //@@author
+
     public void printOpenFolderNotSupported () {
         printDivider();
         System.out.println("Your OS does not support `export` try opening the folder manually.");
