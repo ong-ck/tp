@@ -20,6 +20,7 @@ original source as well}
   - [Filter](#design-filter)
   - [TopoSort](#design-toposort)
 - [Implementation](#implementation)
+  - [Ui](#implementation-ui)
   - [Parser](#implementation-parser)
   - [Initializing previous saved data feature](#implementation-initialize)
   - [Help Feature](#implementation-help)
@@ -28,7 +29,6 @@ original source as well}
   - [Filter by keyword feature](#implementation-filter)
   - [TopoSort feature](#implementation-toposort)
   - [Export feature](#implementation-export)
-  - [Ui](#implementation-ui)
 - [Product scope](#product-scope)
 - [User Stories](#user-stories)
 - [Use Cases](#use-cases)
@@ -214,6 +214,32 @@ The `TopoCommand` component
 
 ## Implementation
 
+<div id="implementation-ui"></div>
+
+### Ui
+#### Current implementation
+
+All UI interactions are taken care of by the Ui class. It is responsible for taking in user inputs and giving text-ui
+outputs to provide guidance and a pleasant user experience overall. The Ui uses the `Scanner` class from `java.util` to
+take in input from the user and `System.out.println()` method from `java.lang` to output messages to the user.
+
+Given below is an example of how the `Ui` works when it is issued a list command.
+
+> **Step 1**: The user enters a command. The full command is read in by the `Ui` using the `getUserInput()` method. The
+> `Ui` uses the `nextLine()` method of the `Scanner` object to read in the user input.
+
+> **Step 2**: If it encounters a `NoSuchElementException` or `IllegalStateException`, it returns an `EXIT_COMMAND` which
+> safely closes the application. If no exception has occurred, the `Ui` returns the `String` to `CLIAlgo`.
+
+> **Step 3**: When the `ListCommand` is executed, it calls the `printListOfCS2040CFiles()` method of the `Ui`. The `Ui`
+> then iterates through the `ArrayList` provided by the `ListCommand` and prints the `CS2040CFile` label and name on a 
+> new line using the `println()` method from `System.out`.
+
+The following **_Sequence Diagram_** shows how the Ui object is used.
+
+![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-parser"></div>
 
 ### Parser
@@ -247,7 +273,7 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 > `prepareRemoveCommand()` returns an `InvalidCommand` object. If the `NAME` input field is valid, a `RemoveCommand` 
 > object is returned.
 
-The following sequence diagram shows how the Parser work.
+The following **_Sequence Diagram_** shows how the Parser work.
 
 ![](sequence-diagrams/diagrams/Parser.png "Parser Sequence Diagram")
 
@@ -265,7 +291,7 @@ which would then convert these raw data into `CS2040CFile` objects. The `CS2040F
 into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
 back to the `TopicManager`, completing the initialization process.
 
-The following sequence diagram shows how previously saved files are loaded into `CLIAlgo`.
+The following **_Sequence Diagram_** shows how previously saved files are loaded into `CLIAlgo`.
 
 ![](sequence-diagrams/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
 
@@ -277,17 +303,21 @@ The following sequence diagram shows how previously saved files are loaded into 
 
 The help mechanism is facilitated by "HelpCommand". It extends the abstract `Command` with an overridden `execute()`
 method. Within the `execute()` function, the input command after the `c/` delimiter is parsed and checked against the
-valid string commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
+valid commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
 
-> **Step 1**: The user enters the `help` command, which invokes `HelpCommand` and returns control back to parser. 
+Given below is an example usage of how the `help c/add` mechanism behaves at each step.
 
-> **Step 2**: `execute()` of `HelpCommand` is called by `CLIAlgo`.
+> **Step 1**: The user enters the `help` command, which is processed by the `Parser` which instantiates a `HelpCommand`
+> using the appropriate constructor and returns it to `CLIAlgo`. 
 
-> **Step 3**: 1 of 7 valid commands is called and its Ui method is invoked from the Ui class.
+> **Step 2**: The `execute()` method of `HelpCommand` is called by `CLIAlgo`.
 
-> **Step 4**: HelpCommand object is destroyed and control is handed back to the user.
+> **Step 3**: Since the command provided is `add`, the `HelpCommand` calls the `printHelpAdd()` method from the `Ui`.
+> This method prints out instructions on how the `add` command should be used in `CLIAlgo`.
 
-The following sequence diagram shows how the help operation works:
+> **Step 4**: HelpCommand object is destroyed and control is handed back to the `CLIAlgo`.
+
+The following **_Sequence Diagram_** shows how the help operation work.
 
 ![](sequence-diagrams/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
 
@@ -304,6 +334,8 @@ CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a v
 and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile`, to ensure that no other files
 of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the
 CS2040CFile.
+
+Given below is an example usage of how the add feature behaves at each step.
 
 > **Step 1**: The user launches the application for the first time. Objects `CLIAlgo`, `Ui`, `Parser` , `TopicManager`,
 > `FileManager` are created.
@@ -479,22 +511,6 @@ the folder by using the default file explorer of the system.
 The following sequence diagram shows how the export feature works.
 
 ![](sequence-diagrams/diagrams/Export.png "Export Sequence Diagram")
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-<div id="implementation-ui"></div>
-
-### Ui
-#### Current implementation
-
-All UI interactions are taken care of by the Ui class. It is responsible for taking in user inputs and giving text-ui
-outputs to provide guidance and a pleasant user experience overall.
-
-The methods in the Ui class use the `Scanner` class from `java.util` to take in input and `System.out.println()` method 
-from `java.lang` to display output.
-
-The following sequence diagram is a small example of how the Ui object is used.
-
-![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="product-scope"></div>
