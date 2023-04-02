@@ -151,6 +151,18 @@ All UI interactions are taken care of by the Ui class. It is responsible for tak
 outputs to provide guidance and a pleasant user experience overall. The Ui uses the `Scanner` class from `java.util` to
 take in input from the user and `System.out.println()` method from `java.lang` to output messages to the user.
 
+Given below is an example of how the `Ui` works when it is issued a list command.
+
+> **Step 1**: The user enters a command. The full command is read in by the `Ui` using the `getUserInput()` method. The
+> `Ui` uses the `nextLine()` method of the `Scanner` object to read in the user input.
+
+> **Step 2**: If it encounters a `NoSuchElementException` or `IllegalStateException`, it returns an `EXIT_COMMAND` which
+> safely closes the application. If no exception has occurred, the `Ui` returns the `String` to `CLIAlgo`.
+
+> **Step 3**: When the `ListCommand` is executed, it calls the `printListOfCS2040CFiles()` method of the `Ui`. The `Ui`
+> then iterates through the `ArrayList` provided by the `ListCommand` and prints the `CS2040CFile` label and name on a 
+> new line using the `println()` method from `System.out`.
+
 The following **_Sequence Diagram_** shows how the Ui object is used.
 
 ![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")

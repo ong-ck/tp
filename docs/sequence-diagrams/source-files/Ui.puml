@@ -1,52 +1,27 @@
 @startuml
+participant ":ListCommand" as ListCommand
+participant "ui: Ui" as Ui
+participant "in: Scanner" as Scanner
+participant "System.out" as System
 
-participant ":CLIAlgo" as cli
-participant ":Parser" as p
-participant ":ListCommand" as lc
-participant ":TopicManager" as tm
-participant ":Ui" as ui
+-> Ui: getUserInput()
+activate Ui
+    Ui -> Scanner: nextLine()
+    activate Scanner
+    return :String
+return fullCommand: String
 
-activate cli
-cli -> ui **
-activate ui
+-> ListCommand: execute()
+activate ListCommand
+    ListCommand -> Ui: printListOfCS2040CFiles()
+    activate Ui
+        loop cs2040cFiles
+            Ui -> System: println(cs2040cFile: String)
+            activate System
+            return
+        end
+    return
 return
-cli -> ui : uiPrintWelcomeMessage()
-activate ui
-return
-loop fullCommand != "exit"
-cli -> ui : getUserInput()
-activate ui
-note over ui : User input: `list`
-return fullCommand : String
-deactivate ui
-note over cli : fullCommand: `list`
-cli -> p : parse(fullCommand)
-activate p
-p -> lc **
-activate lc
-lc --> p
-deactivate lc
-p -> lc : execute()
-activate lc
-
-alt TopicManager is empty
-    lc -> ui : printListFail()
-    activate ui
-    return
-
-else else
-    lc -> ui : printListSuccess()
-    activate ui
-    return
-    lc -> tm : getAllCS2040CFiles()
-    activate tm
-    return printedCS2040CFiles: ArrayList<String>
-    lc -> ui : printListOfCS2040CFiles(printedCS2040CFiles: ArrayList<String>)
-    activate ui
-    return
-end
-lc --> cli
-destroy lc
-end
+destroy ListCommand
 
 @enduml
