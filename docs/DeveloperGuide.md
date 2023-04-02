@@ -142,6 +142,22 @@ The `TopoCommand` component
 - can print out the list of topologically sorted `CS2040CFile` objects
 - can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
 
+### Export
+[**API**](../src/main/java/seedu/clialgo/Buffer.java) : `Buffer.java`
+
+Here is a class diagram of the `Buffer` which facilitates the storing of `CS2040CFiles`
+returned from `filter` and `topo` commands and the copying of `CS2040CFiles` stored within
+into `.\\export` and opening the folder subsequently if supported by the Operating System.
+
+![](class-diagrams/diagrams/ExportClass.png "Buffer Class Diagram")
+
+The `Buffer` component
+- can store `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
+- can update stored `CS2040CFiles`
+- can copy `CS2040CFiles` into `.\\export` folder
+- can delete `CS2040CFiles` in `.\\export` folder
+- can open `.\\export` folder automatically if supported by the Operating System
+
 ## Implementation
 
 ### Parser
