@@ -144,6 +144,18 @@ The `TopoCommand` component
 
 ## Implementation
 
+### Ui
+#### Current implementation
+
+All UI interactions are taken care of by the Ui class. It is responsible for taking in user inputs and giving text-ui
+outputs to provide guidance and a pleasant user experience overall.
+
+The methods in the Ui class use "System.out.println()" from the Java Standard Library to display output to the user.
+
+The following sequence diagram is a small example of how the Ui object is used.
+
+![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
+
 ### Parser
 #### Current Implementation
 
@@ -386,18 +398,6 @@ the folder by using the default file explorer of the system.
 The following sequence diagram shows how the export feature works.
 
 ![](sequence-diagrams/diagrams/Export.png "Export Sequence Diagram")
-
-### Ui
-#### Current implementation
-
-All UI interactions are taken care of by the Ui class. It is responsible for taking in user inputs and giving text-ui
-outputs to provide guidance and a pleasant user experience overall.
-
-The methods in the Ui class use "System.out.println()" from the Java Standard Library to display output to the user.
-
-The following sequence diagram is a small example of how the Ui object is used.
-
-![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
 
 ## Product scope
 ### Target user profile
