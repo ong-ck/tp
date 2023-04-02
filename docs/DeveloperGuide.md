@@ -148,12 +148,10 @@ The `TopoCommand` component
 #### Current implementation
 
 All UI interactions are taken care of by the Ui class. It is responsible for taking in user inputs and giving text-ui
-outputs to provide guidance and a pleasant user experience overall.
+outputs to provide guidance and a pleasant user experience overall. The Ui uses the `Scanner` class from `java.util` to
+take in input from the user and `System.out.println()` method from `java.lang` to output messages to the user.
 
-The methods in the Ui class use the `Scanner` class from `java.util` to take in input and `System.out.println()` method
-from `java.lang` to display output.
-
-The following sequence diagram is a small example of how the Ui object is used.
+The following **_Sequence Diagram_** shows how the Ui object is used.
 
 ![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
 
@@ -188,7 +186,7 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 > `prepareRemoveCommand()` returns an `InvalidCommand` object. If the `NAME` input field is valid, a `RemoveCommand` 
 > object is returned.
 
-The following sequence diagram shows how the Parser work.
+The following **_Sequence Diagram_** shows how the Parser work.
 
 ![](sequence-diagrams/diagrams/Parser.png "Parser Sequence Diagram")
 
@@ -203,7 +201,7 @@ which would then convert these raw data into `CS2040CFile` objects. The `CS2040F
 into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
 back to the `TopicManager`, completing the initialization process.
 
-The following sequence diagram shows how previously saved files are loaded into `CLIAlgo`.
+The following **_Sequence Diagram_** shows how previously saved files are loaded into `CLIAlgo`.
 
 ![](sequence-diagrams/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
 
@@ -214,7 +212,9 @@ The help mechanism is facilitated by "HelpCommand". It extends the abstract `Com
 method. Within the `execute()` function, the input command after the `c/` delimiter is parsed and checked against the
 valid string commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
 
-> **Step 1**: The user enters the `help` command, which invokes `HelpCommand` and returns control back to parser. 
+Given below is an example usage of how the filter by `topic` mechanism behaves at each step.
+
+> **Step 1**: The user enters the `help` command, which invokes `HelpCommand` and returns control back to `CLIAlgo`. 
 
 > **Step 2**: `execute()` of `HelpCommand` is called by `CLIAlgo`.
 
@@ -222,7 +222,7 @@ valid string commands supported by `CLIAlgo`. The command to which it matches is
 
 > **Step 4**: HelpCommand object is destroyed and control is handed back to the user.
 
-The following sequence diagram shows how the help operation works:
+The following **_Sequence Diagram_** shows how the help operation work.
 
 ![](sequence-diagrams/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
 
@@ -236,6 +236,8 @@ CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a v
 and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile`, to ensure that no other files
 of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the
 CS2040CFile.
+
+Given below is an example usage of how the add feature behaves at each step.
 
 > **Step 1**: The user launches the application for the first time. Objects `CLIAlgo`, `Ui`, `Parser` , `TopicManager`,
 > `FileManager` are created.
