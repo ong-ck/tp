@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -997,5 +999,34 @@ class UiTest {
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printListOfCS2040CFilesWithGivenIndex() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        int startingSerialNumber = 1;
+        ArrayList<String> notes = new ArrayList<>(Arrays.asList("NotesA", "NotesB", "NotesC"));
+
+        Ui ui = new Ui();
+        int actualSerialNumber;
+        int expectedSerialNumber = notes.size() + 1;
+        actualSerialNumber = ui.printListOfCS2040CFilesWithGivenIndex(notes, startingSerialNumber);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "1. NotesA\r\n" +
+                    "2. NotesB\r\n" +
+                    "3. NotesC\r\n";
+        } else {
+            expectedOutput = "1. NotesA\n" +
+                    "2. NotesB\n" +
+                    "3. NotesC\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+        assertEquals(expectedSerialNumber, actualSerialNumber);
     }
 }
