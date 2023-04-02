@@ -1,4 +1,5 @@
 @startuml
+hide footbox
 
 participant ":FileManager" as fm
 participant ":FileEncoder" as fe
