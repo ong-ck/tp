@@ -45,9 +45,9 @@ activate TopoCommand
         return
 
         loop topoSortedCS2040CFiles
-            TopoCommand -> Ui: printListOf2040CFiles()
+            TopoCommand -> Ui: printListOfCS2040CFilesWithGivenIndex()
             activate Ui
-            return
+            return serialNumber: String
         end
     return files: ArrayList<CS2040CFile>
 
