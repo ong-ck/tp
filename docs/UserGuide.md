@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 # User Guide
 
 ## Introduction
@@ -7,6 +9,21 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
 **note management** application and not a note taking application. Therefore, users are expected to already have the 
 required `.txt` or `.cpp` files **in the same folder** as the `.jar` file before starting the application. Features like
 note creation and editing are beyond the scope of this application.
+
+- [Quick Start](#quick-start)
+- [Features](#features)
+    - [`help` - Viewing help](#help)
+    - [`add` - Adding a CS2040CFile](#add)
+    - [`remove` - Removing a CS2040CFile](#remove)
+    - [`list` - Listing CS2040CFiles](#list)
+    - [`filter` - Filtering CS2040CFiles](#filter)
+    - [`topo` - Topologically Sort CS2040CFiles](#topo)
+    - [`export` - Exporting files](#export)
+    - [`exit` - Exiting the program](#exit)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
+
+<div id="quick-start"></div>
 
 ## Quick Start
 
@@ -29,7 +46,13 @@ the help window. Some example commands you can try are:
 > the application discards that file stored within the data file.
 >
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<div id="features"></div>
+
 ## Features
+
+<div id="help"></div>
 
 ### Viewing help `help`
 Shows a message explaining the format of supported commands in the application and their functions. If a valid command
@@ -75,6 +98,9 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 ======================================================
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="add"></div>
+
 ### Adding a CS2040CFile: `add`
 Adds a CS2040CFile that exists into our file manager. It could be either a note file or a code file. Requires a topic
 tagged to it, and an optional importance level, a number from 1 to 10.
@@ -109,6 +135,9 @@ Successfully added queue into LINKED_LIST.
 ======================================================
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="remove"></div>
+
 ### Removing a CS2040CFile: `remove`
 Removes a CS2040CFile that exists from our file manager.
 
@@ -133,6 +162,8 @@ Successfully removed queue.
 ======================================================
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="list"></div>
 
 ### Listing CS2040CFiles `list`
 List all CS2040CFiles (in any order) present in `CLIAlgo`.
@@ -161,6 +192,9 @@ Here are all your CS2040CFiles:
 3. [NOTE] linked list note
 ======================================================
 ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="filter"></div>
 
 ### Filtering CS2040CFiles `filter`
 Filters the CS2040CFiles by a user-specified keyword and prints a list of CS2040CFiles filtered based
@@ -215,6 +249,9 @@ Here are the filtered CS2040CFiles:
 ======================================================
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="topo"></div>
+
 ### Topologically Sort CS2040CFiles `topo`
 Prints a topologically sorted list of CS2040CFiles before a user-specified note name.
 
@@ -249,6 +286,9 @@ Here are the topologically sorted CS2040CFiles:
 1. [NOTE] sorting
 ======================================================
 ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="export"></div>
 
 ### Exporting `Files`
 Whenever a `filter` or `topo` command is input by the user, the
@@ -295,6 +335,35 @@ export
 Here is `./export` opened after `export` is input.
 ![](images/export1.png)
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="exit"></div>
+
+### Exiting the program `exit`
+Exits `CLIAlgo`.
+
+#### Format:
+```
+exit
+```
+- Command is **case-sensitive**.
+- Command should only contain one word.
+- Not following the syntax strictly would result in an invalid command message.
+
+#### Example of usage:
+Input:
+```
+exit
+```
+Output:
+```
+======================================================
+Thank you for using CLIAlgo! Study hard!
+======================================================
+```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="FAQ"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -309,6 +378,8 @@ Here is `./export` opened after `export` is input.
 
 **A**: Ensure that all your CS2040CFiles are in the same directory as this `jar` file.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="command-summary"></div>
 
 ## Command Summary
 
@@ -322,3 +393,5 @@ Here is `./export` opened after `export` is input.
 | topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
 | export | `export`                                                                                          |
 | exit   | `exit`                                                                                            |
+
+<p align="right">(<a href="#top">back to top</a>)</p>
