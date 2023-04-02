@@ -83,7 +83,6 @@ public class SingleFile {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(encodedCS2040CFile);
             bufferedWriter.newLine();
-            bufferedWriter.flush();
             bufferedWriter.close();
             fileWriter.close();
             this.storedRawData.put(fileName, encodedCS2040CFile);
@@ -106,7 +105,6 @@ public class SingleFile {
                 bufferedWriter.write(s);
                 bufferedWriter.newLine();
             }
-            bufferedWriter.flush();
             bufferedWriter.close();
             fileWriter.close();
         } catch (IOException e) {

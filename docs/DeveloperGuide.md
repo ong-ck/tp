@@ -19,10 +19,12 @@ original source as well}
   - [List](#design-list)
   - [Filter](#design-filter)
   - [TopoSort](#design-toposort)
+  - [Export](#design-export)
 - [Implementation](#implementation)
   - [Ui](#implementation-ui)
   - [Parser](#implementation-parser)
   - [Initializing previous saved data feature](#implementation-initialize)
+  - [Writing a CS2040CFile to data file](#implementation-write)
   - [Help Feature](#implementation-help)
   - [Add CS2040CFile feature](#implementation-add)
   - [List feature](#implementation-list)
@@ -210,6 +212,25 @@ The `TopoCommand` component
 - can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-export"></div>
+
+### Export
+[**API**](../src/main/java/seedu/clialgo/Buffer.java) : `Buffer.java`
+
+Here is a class diagram of the `Buffer` which facilitates the storing of `CS2040CFiles`
+returned from `filter` and `topo` commands and the copying of `CS2040CFiles` stored within
+into `.\\export` and opening the folder subsequently if supported by the Operating System.
+
+![](class-diagrams/diagrams/ExportClass.png "Buffer Class Diagram")
+
+The `Buffer` component
+- can store `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
+- can update stored `CS2040CFiles`
+- can copy `CS2040CFiles` into `.\\export` folder
+- can delete `CS2040CFiles` in `.\\export` folder
+- can open `.\\export` folder automatically if supported by the Operating System
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation"></div>
 
 ## Implementation
@@ -291,9 +312,62 @@ which would then convert these raw data into `CS2040CFile` objects. The `CS2040F
 into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
 back to the `TopicManager`, completing the initialization process.
 
+Given below is how the sequence of `initialize()` is run
+
+> **Step 1**: During the start-up of the application, a folder is created to store all the data files.
+
+> **Step 2**: For every `Topic`, create a `SingleFile` which containing the data file of those `Topics`
+> with the path `.\\data\\TOPIC_NAME.txt` where TOPIC_NAME is replaced with the name of the `Topic`.
+> This only occurs if the file did not exist prior to the running of the application.
+
+> **Step 3**: If the file already existed prior, readFile() is run. This creates a `Scanner` which would 
+> translate the data file line by line into `String`. Each line of `String` corresponds to a `CS2040CFile`.
+
+> **Step 4**: The `String` is then decoded using `decode()` and is converted into a `CS2040CFile`. If the
+> `String` is unable to be converted into a `CS2040CFile`, the `String` is deemed to be corrupted and is 
+> subsequently deleted from the data file.
+
+> **Step 5**: The translated `CS2040CFiles` are then stored within the `SingleFile`. `FileManager` then
+> invokes `decodeAll()` which retrieves all the `Topics` stored within each `SingleFile` which contains
+> all the `CS2040CFiles`. This is returned in the form of a `HashMap`.
+
 The following **_Sequence Diagram_** shows how previously saved files are loaded into `CLIAlgo`.
 
 ![](sequence-diagrams/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-write"></div>
+
+### Writing a `CS2040CFile` to data file
+#### Current Implementation
+
+The function for writing a `CS2040CFile` to a data file is facilitated by the `FileManager`. When the `addEntry`
+is called, an already created `CS2040CFile` and its name is passed to the `FileManager`. The `FileManager` then 
+passes the `CS2040CFile` to the `FileEncoder` which translates it into raw data. The raw data is then written into
+the data file using the `BufferedWriter`.
+
+Given below is how a single `CS2040CFile` is entered into the data file:
+
+> **Step 1**: When a valid `CS2040CFile` is added to the application, it is passed to the `FileManager` and 
+> addEntry() is invoked.
+
+> **Step 2**: The `CS2040CFile` is then passed to the `FileEncoder` and a `String` representing the 
+> `CS2040CFile` is returned to the `FileManger`.
+
+> **Step 3**: A `FileWriter` object is then created and a `BufferedWriter` object is also created containing
+> the `FileWriter`.
+
+> **Step 4**: The previously encoded `String` is then passed to the `BufferedWriter` and `write()` and 
+> `newLine()` is called. This writes the encoded `String` to the relevant data file and adds a new line
+> to the data file.
+
+> **Step 4**: `close()` is called for both the `BufferedWriter` and `FileWriter` to stop them from writing
+> to the data file further.
+
+The following **_Sequence Diagram_** shows how a `CS2040CFile` is encoded before being written to 
+the relevant data file.
+
+![](sequence-diagrams/diagrams/AddEntry.png "FileManager Add Entry Sequence Diagram")
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-help"></div>

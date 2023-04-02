@@ -15,8 +15,11 @@ loop topicNames
     sf -> f ** : new File()
     activate f
     f -> f : createNewFile()
-    f --> sf : setFile(file : File)
+    f -> sf : setFile(file : File)
+    activate sf
     deactivate f
+    sf --> sf
+    deactivate sf
     sf --> fm : newFile : SingleFile
     deactivate sf
 end
