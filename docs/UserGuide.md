@@ -10,6 +10,8 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
 required `.txt` or `.cpp` files **in the same folder** as the `.jar` file before starting the application. Features like
 note creation and editing are beyond the scope of this application.
 
+## Table of Contents
+
 - [Quick Start](#quick-start)
 - [Features](#features)
     - [`help` - Viewing help](#help)
@@ -47,7 +49,6 @@ the help window. Some example commands you can try are:
 >
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 <div id="features"></div>
 
 ## Features
