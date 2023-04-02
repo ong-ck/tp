@@ -8,7 +8,19 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
 
 #### Features Implemented
 
-1. List all `CS2040CFile`s.
+1. Parser
+   - **What it does**: It processes commands by the User through the `Ui` and prepares the appropriate `Command`.
+   object to be executed by `CLIAlgo`.
+
+   - **Highlights**: The challenge with implementing the parser was being able to extract out relevant keywords from the
+   user input and using the correct constructor to instantiate the correct `Command` object and returned it to 
+   `CLIAlgo`. To do this task efficiently without excessive code duplication, the `Parser` implements the 
+   `StringManipulation` interface. The `StringManipulation` interface handles all operations such as splitting the input
+   string and throwing any `Exceptions` that occur during the operation and returns `null` when the string is
+   empty.
+   
+
+2. List all `CS2040CFile`s.
    - **What it does**: Allows users of `CLIAlgo` to list all the `CS2040CFile`s that are tracked by `CLIAlgo`. Each 
    `CS2040CFile` is also labelled as either a `CODE` or a `NOTE` file based on its file extension. `.cpp` files are
    labelled with `[CODE]` and files with `.txt` are labelled with `[NOTE]`.
@@ -23,7 +35,8 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
    and `Code`). I have also written the `printListOfCS2040CFiles()` method in the `Ui` class so that `ArrayList` can be
    printed without duplicating code.
    
-2. Filter by topic.
+
+3. Filter by topic.
    - **What it does**: The filter by topic feature has two executions. The first execution occurs when the optional
    `topic` field in the command is left empty. In this version, `CLIAlgo` prints out all `CS2040CFiles` that are tracked
    by the application. The `CS2040CFiles` are grouped according to the `topic` they are tagged to. The second execution
@@ -45,11 +58,11 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
 #### Documentation
 
 #### Team-based tasks
-- Created labels and milestones in the team's Github repository.
-- Organized weekly online meetings and discussions.
-- Created issues based on work assigned during team meetings.
-- Compiled and build final `.jar` files for releases.
-- Distributed workload among team members.
-- Set internal deadlines each iteration.
-- Review team members PR with non-trivial comments.
+1. Created labels and milestones in the team's Github repository. 
+2. Organized weekly online meetings and discussions. 
+3. Created issues based on work assigned during team meetings. 
+4. Compiled and build final `.jar` files for releases. 
+5. Distributed workload among team members. 
+6. Set internal deadlines each iteration. 
+7. Review team members PR with non-trivial comments.
    
