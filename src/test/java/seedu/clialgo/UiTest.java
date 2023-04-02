@@ -87,22 +87,26 @@ class UiTest {
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
                     "The available COMMAND_TYPE(s) are:\r\n" +
+                    "\r\n" +
                     "[add]: add CS2040CFile\r\n" +
                     "[remove]: remove CS2040CFile\r\n" +
                     "[list]: displays all CS2040CFiles\r\n" +
                     "[filter]: filters CS2040CFiles by topic\r\n" +
                     "[exit]: close the application\r\n" +
-                    "For more help on a specific command, type `help c/COMMAND_TYPE`\r\n" +
+                    "\r\n" +
+                    "For more help on a specific command, type `help c/COMMAND_TYPE`.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
                     "The available COMMAND_TYPE(s) are:\n" +
+                    "\n" +
                     "[add]: add CS2040CFile\n" +
                     "[remove]: remove CS2040CFile\n" +
                     "[list]: displays all CS2040CFiles\n" +
                     "[filter]: filters CS2040CFiles by topic\n" +
                     "[exit]: close the application\n" +
-                    "For more help on a specific command, type `help c/COMMAND_TYPE`\n" +
+                    "\n" +
+                    "For more help on a specific command, type `help c/COMMAND_TYPE`.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -396,27 +400,31 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function adds a CS2040CFile and tags it to a topic.\r\n" +
-                    "The syntax for the 'add' command is: add n/NAME t/TOPIC.\r\n" +
-                    "NAME refers to the CS2040CFiles' file name.\r\n" +
-                    "TOPIC refers to the topic that NAME will be tagged to.\r\n" +
-                    "Case sensitive. NAME and TOPIC fields must be non-empty.\r\n" +
+                    "Add a CS2040CFile to a topic using:\r\n" +
+                    "\r\n" +
+                    "    `add n/NAME t/TOPIC [i/IMPORTANCE]`\r\n" +
+                    "\r\n" +
+                    "NAME: String name of the CS2040CFile file.\r\n" +
+                    "TOPIC: String topic that NAME will be tagged to.\r\n" +
+                    "IMPORTANCE: int level of importance on a scale of 1-10 (optional field).\r\n" +
+                    "\r\n" +
                     "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\r\n" +
                     "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\r\n" +
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\r\n" +
-                    "Invalid NAME or TOPIC will cause an error.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function adds a CS2040CFile and tags it to a topic.\n" +
-                    "The syntax for the 'add' command is: add n/NAME t/TOPIC.\n" +
-                    "NAME refers to the CS2040CFiles' file name.\n" +
-                    "TOPIC refers to the topic that NAME will be tagged to.\n" +
-                    "Case sensitive. NAME and TOPIC fields must be non-empty.\n" +
+                    "Add a CS2040CFile to a topic using:\n" +
+                    "\n" +
+                    "    `add n/NAME t/TOPIC [i/IMPORTANCE]`\n" +
+                    "\n" +
+                    "NAME: String name of the CS2040CFile file.\n" +
+                    "TOPIC: String topic that NAME will be tagged to.\n" +
+                    "IMPORTANCE: int level of importance on a scale of 1-10 (optional field).\n" +
+                    "\n" +
                     "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\n" +
                     "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\n" +
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\n" +
-                    "Invalid NAME or TOPIC will cause an error.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -435,19 +443,19 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function removes a CS2040CFile from the tagged topic.\r\n" +
-                    "The syntax for the 'remove' command is: remove n/NAME.\r\n" +
-                    "NAME refers to the CS2040CFiles' file name.\r\n" +
-                    "'n/' must be included else NAME will not be read.\r\n" +
-                    "Invalid NAME will cause an error.\r\n" +
+                    "Remove a CS2040CFile using:\r\n" +
+                    "\r\n" +
+                    "    `remove n/NAME`\r\n" +
+                    "\r\n" +
+                    "NAME: String name of the CS2040CFile file.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function removes a CS2040CFile from the tagged topic.\n" +
-                    "The syntax for the 'remove' command is: remove n/NAME.\n" +
-                    "NAME refers to the CS2040CFiles' file name.\n" +
-                    "'n/' must be included else NAME will not be read.\n" +
-                    "Invalid NAME will cause an error.\n" +
+                    "Remove a CS2040CFile using:\n" +
+                    "\n" +
+                    "    `remove n/NAME`\n" +
+                    "\n" +
+                    "NAME: String name of the CS2040CFile file.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -466,15 +474,50 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function lists all stored CS2040CFiles.\r\n" +
-                    "The syntax for the 'list' command is: list.\r\n" +
+                    "List all stored CS2040CFiles using:\r\n" +
+                    "\r\n" +
+                    "    `list`\r\n" +
+                    "\r\n" +
                     "Command should only contain one word (i.e. no extensions).\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function lists all stored CS2040CFiles.\n" +
-                    "The syntax for the 'list' command is: list.\n" +
+                    "List all stored CS2040CFiles using:\n" +
+                    "\n" +
+                    "    `list`\n" +
+                    "\n" +
                     "Command should only contain one word (i.e. no extensions).\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printHelpTopoSort() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printHelpTopoSort();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Print all files before the user-defined filename using:\r\n" +
+                    "\r\n" +
+                    "    `topo n/NAME`\r\n" +
+                    "\r\n" +
+                    "NAME: String name of the CS2040CFile file.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Print all files before the user-defined filename using:\n" +
+                    "\n" +
+                    "    `topo n/NAME`\n" +
+                    "\n" +
+                    "NAME: String name of the CS2040CFile file.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -493,21 +536,29 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function filters by topic/importance and topic name.\r\n" +
-                    "The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME\r\n" +
-                    "KEYWORD has to be either 'topic' or 'importance'.\r\n" +
-                    "TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.\r\n" +
-                    "Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.\r\n" +
-                    "Invalid KEYWORD and/or TOPIC_NAME will cause an error.\r\n" +
+                    "Filter by topic/importance and topic name using:\r\n" +
+                    "\r\n" +
+                    "    `filter k/KEYWORD [t/TOPIC]`\r\n" +
+                    "\r\n" +
+                    "KEYWORD: String keyword has to be either `topic` or `importance`.\r\n" +
+                    "TOPIC: String topic chosen from list below (optional field).\r\n" +
+                    "\r\n" +
+                    "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\r\n" +
+                    "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\r\n" +
+                    "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function filters by topic/importance and topic name.\n" +
-                    "The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME\n" +
-                    "KEYWORD has to be either 'topic' or 'importance'.\n" +
-                    "TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.\n" +
-                    "Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.\n" +
-                    "Invalid KEYWORD and/or TOPIC_NAME will cause an error.\n" +
+                    "Filter by topic/importance and topic name using:\n" +
+                    "\n" +
+                    "    `filter k/KEYWORD [t/TOPIC]`\n" +
+                    "\n" +
+                    "KEYWORD: String keyword has to be either `topic` or `importance`.\n" +
+                    "TOPIC: String topic chosen from list below (optional field).\n" +
+                    "\n" +
+                    "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\n" +
+                    "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\n" +
+                    "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -526,14 +577,18 @@ class UiTest {
 
         if (os.contains("Windows")) {
             expectedOutput = "======================================================\r\n" +
-                    "This function exits the application.\r\n" +
-                    "The syntax for the 'exit' command is: exit.\r\n" +
+                    "Exits CLIAlgo using:\r\n" +
+                    "\r\n" +
+                    "    `exit`\r\n" +
+                    "\r\n" +
                     "Command should only contain one word (i.e. no extensions).\r\n" +
                     "======================================================\r\n";
         } else {
             expectedOutput = "======================================================\n" +
-                    "This function exits the application.\n" +
-                    "The syntax for the 'exit' command is: exit.\n" +
+                    "Exits CLIAlgo using:\n" +
+                    "\n" +
+                    "    `exit`\n" +
+                    "\n" +
                     "Command should only contain one word (i.e. no extensions).\n" +
                     "======================================================\n";
         }
@@ -560,6 +615,31 @@ class UiTest {
             expectedOutput = "======================================================\n" +
                     "This is an invalid command, please ensure all your fields are correct.\n" +
                     "Type 'help' for additional assistance.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+     void printInvalidFilterKeyword() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printInvalidFilterKeyword();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Invalid keyword! Only `topic` and `importance` are supported keywords.\r\n" +
+                    "Type `help c/filter for more information.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Invalid keyword! Only `topic` and `importance` are supported keywords.\n" +
+                    "Type `help c/filter for more information.\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
