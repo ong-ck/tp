@@ -12,7 +12,6 @@ filter k/topic t/SORTING
 remove n/    hash table notes
 list
 add n/sorting notes t/SORTING
-help c/add
 filter k/ topic
 filter k/topic t/MST
 filter k/topic t/MINIMUM_SPANNING_TREE

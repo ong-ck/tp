@@ -150,7 +150,8 @@ The `TopoCommand` component
 All UI interactions are taken care of by the Ui class. It is responsible for taking in user inputs and giving text-ui
 outputs to provide guidance and a pleasant user experience overall.
 
-The methods in the Ui class use "System.out.println()" from the Java Standard Library to display output to the user.
+The methods in the Ui class use the `Scanner` class from `java.util` to take in input and `System.out.println()` method
+from `java.lang` to display output.
 
 The following sequence diagram is a small example of how the Ui object is used.
 
