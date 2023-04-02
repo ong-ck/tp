@@ -430,7 +430,7 @@ public class Ui {
      * @param currentserialNumber The serial number of the note for the index to start printing from.
      * @return The serial number of the last note printed.
      */
-    public int printTopoSortedListOfCS2040CFiles(ArrayList<String> cs2040cFiles, int currentserialNumber) {
+    public int printListOfCS2040CFilesWithGivenIndex(ArrayList<String> cs2040cFiles, int currentserialNumber) {
         assert !cs2040cFiles.isEmpty();
         assert currentserialNumber >= 1;
         int serialNumber = currentserialNumber;
