@@ -10,6 +10,7 @@ import seedu.clialgo.command.HelpCommand;
 import seedu.clialgo.command.InvalidCommand;
 import seedu.clialgo.command.InvalidTopicCommand;
 import seedu.clialgo.command.InvalidImportanceCommand;
+import seedu.clialgo.command.InvalidFilterCommand;
 import seedu.clialgo.command.ListCommand;
 import seedu.clialgo.command.RemoveCommand;
 import seedu.clialgo.command.TestModeCommand;
@@ -232,7 +233,7 @@ public class Parser implements StringManipulation {
             keyWord = StringManipulation.removeMarker(fullKeyWord, KEYWORD_MARKER);
 
             if (!isValidKeyword(keyWord)) {
-                return new InvalidCommand();
+                return new InvalidFilterCommand();
             }
         } catch (NullInputException | EmptyFieldException e) {
             return new InvalidCommand();

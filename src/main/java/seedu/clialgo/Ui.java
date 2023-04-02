@@ -69,12 +69,14 @@ public class Ui {
     public void printHelpPage() {
         printDivider();
         System.out.println("The available COMMAND_TYPE(s) are:");
+        System.out.println();
         System.out.println("[add]: add CS2040CFile");
         System.out.println("[remove]: remove CS2040CFile");
         System.out.println("[list]: displays all CS2040CFiles");
         System.out.println("[filter]: filters CS2040CFiles by topic");
         System.out.println("[exit]: close the application");
-        System.out.println("For more help on a specific command, type `help c/COMMAND_TYPE`");
+        System.out.println();
+        System.out.println("For more help on a specific command, type `help c/COMMAND_TYPE`.");
         printDivider();
     }
 
@@ -189,15 +191,17 @@ public class Ui {
      */
     public void printHelpAdd() {
         printDivider();
-        System.out.println("This function adds a CS2040CFile and tags it to a topic.");
-        System.out.println("The syntax for the 'add' command is: add n/NAME t/TOPIC.");
-        System.out.println("NAME refers to the CS2040CFiles' file name.");
-        System.out.println("TOPIC refers to the topic that NAME will be tagged to.");
-        System.out.println("Case sensitive. NAME and TOPIC fields must be non-empty.");
+        System.out.println("Add a CS2040CFile to a topic using:");
+        System.out.println();
+        System.out.println("    `add n/NAME t/TOPIC [i/IMPORTANCE]`");
+        System.out.println();
+        System.out.println("NAME: String name of the CS2040CFile file.");
+        System.out.println("TOPIC: String topic that NAME will be tagged to.");
+        System.out.println("IMPORTANCE: int level of importance on a scale of 1-10 (optional field).");
+        System.out.println();
         System.out.println("Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',");
         System.out.println("'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',");
         System.out.println("'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.");
-        System.out.println("Invalid NAME or TOPIC will cause an error.");
         printDivider();
     }
 
@@ -207,11 +211,11 @@ public class Ui {
      */
     public void printHelpRemove() {
         printDivider();
-        System.out.println("This function removes a CS2040CFile from the tagged topic.");
-        System.out.println("The syntax for the 'remove' command is: remove n/NAME.");
-        System.out.println("NAME refers to the CS2040CFiles' file name.");
-        System.out.println("'n/' must be included else NAME will not be read.");
-        System.out.println("Invalid NAME will cause an error.");
+        System.out.println("Remove a CS2040CFile using:");
+        System.out.println();
+        System.out.println("    `remove n/NAME`");
+        System.out.println();
+        System.out.println("NAME: String name of the CS2040CFile file.");
         printDivider();
     }
 
@@ -221,8 +225,10 @@ public class Ui {
      */
     public void printHelpList() {
         printDivider();
-        System.out.println("This function lists all stored CS2040CFiles.");
-        System.out.println("The syntax for the 'list' command is: list.");
+        System.out.println("List all stored CS2040CFiles using:");
+        System.out.println();
+        System.out.println("    `list`");
+        System.out.println();
         System.out.println("Command should only contain one word (i.e. no extensions).");
         printDivider();
     }
@@ -233,12 +239,11 @@ public class Ui {
      */
     public void printHelpTopoSort() {
         printDivider();
-        System.out.println("This function prints all files before the user-defined filename.");
-        System.out.println("The syntax for the 'topo' command is: topo n/NAME.");
-        System.out.println("NAME refers to the CS2040CFiles' file name.");
-        System.out.println("Case sensitive. NAME field must be non-empty.");
-        System.out.println("'n/' must be included else NAME will not be read.");
-        System.out.println("Invalid NAME will cause an error.");
+        System.out.println("Print all files before the user-defined filename using:");
+        System.out.println();
+        System.out.println("    `topo n/NAME`");
+        System.out.println();
+        System.out.println("NAME: String name of the CS2040CFile file.");
         printDivider();
     }
 
@@ -248,12 +253,16 @@ public class Ui {
      */
     public void printHelpFilter() {
         printDivider();
-        System.out.println("This function filters by topic/importance and topic name.");
-        System.out.println("The syntax for the 'filter' command is: filter k/KEYWORD t/TOPIC_NAME");
-        System.out.println("KEYWORD has to be either 'topic' or 'importance'.");
-        System.out.println("TOPIC_NAME can be any (one) of the pre-defined topics in CS2040C.");
-        System.out.println("Case sensitive. KEYWORD and TOPIC_NAME fields must be non-empty.");
-        System.out.println("Invalid KEYWORD and/or TOPIC_NAME will cause an error.");
+        System.out.println("Filter by topic/importance and topic name using:");
+        System.out.println();
+        System.out.println("    `filter k/KEYWORD [t/TOPIC]`");
+        System.out.println();
+        System.out.println("KEYWORD: String keyword has to be either `topic` or `importance`.");
+        System.out.println("TOPIC: String topic chosen from list below (optional field).");
+        System.out.println();
+        System.out.println("Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',");
+        System.out.println("'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',");
+        System.out.println("'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.");
         printDivider();
     }
 
@@ -263,8 +272,10 @@ public class Ui {
      */
     public void printHelpExit() {
         printDivider();
-        System.out.println("This function exits the application.");
-        System.out.println("The syntax for the 'exit' command is: exit.");
+        System.out.println("Exits CLIAlgo using:");
+        System.out.println();
+        System.out.println("    `exit`");
+        System.out.println();
         System.out.println("Command should only contain one word (i.e. no extensions).");
         printDivider();
     }
@@ -422,6 +433,26 @@ public class Ui {
     }
     //@@author
 
+    //@@author ong-ck
+    /**
+     * Prints the CS2040CFiles from a provided ArrayList with the index continuing from a given serial number.
+     *
+     * @param cs2040cFiles An ArrayList containing the names and labels of all CS2040C files to be printed
+     * @param currentserialNumber The serial number of the note for the index to start printing from.
+     * @return The serial number of the last note printed.
+     */
+    public int printListOfCS2040CFilesWithGivenIndex(ArrayList<String> cs2040cFiles, int currentserialNumber) {
+        assert !cs2040cFiles.isEmpty();
+        assert currentserialNumber >= 1;
+        int serialNumber = currentserialNumber;
+        for (String cs2040cFile : cs2040cFiles) {
+            System.out.println(serialNumber + ". " + cs2040cFile);
+            serialNumber++;
+        }
+        return serialNumber;
+    }
+    //@@author
+
     public void printOpenFolderNotSupported () {
         printDivider();
         System.out.println("Your OS does not support `export` try opening the folder manually.");
@@ -444,6 +475,14 @@ public class Ui {
             System.out.println(corruptCount + " corrupted entries detected in " + name + ".txt .");
         }
         System.out.println("Note that the corrupted entries are discarded!");
+        printDivider();
+    }
+
+    /** Prints a message to the user if the keyword entered after the `k/` field is neither topic nor importance. */
+    public void printInvalidFilterKeyword() {
+        printDivider();
+        System.out.println("Invalid keyword! Only `topic` and `importance` are supported keywords.");
+        System.out.println("Type `help c/filter for more information.");
         printDivider();
     }
 }

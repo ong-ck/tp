@@ -43,7 +43,7 @@ public class FilterCommand extends Command {
         } else if (keyWord.equals("importance")) {
             new FilterByImportanceCommand(keyWord, topic).execute(topicManager, ui, fileManager, buffer);
         } else {
-            ui.printInvalidCommand();
+            ui.printInvalidFilterKeyword();
         }
     }
 

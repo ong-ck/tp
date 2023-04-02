@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 # User Guide
 
 ## Introduction
@@ -7,6 +9,23 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
 **note management** application and not a note taking application. Therefore, users are expected to already have the 
 required `.txt` or `.cpp` files **in the same folder** as the `.jar` file before starting the application. Features like
 note creation and editing are beyond the scope of this application.
+
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [Features](#features)
+    - [`help` - Viewing help](#help)
+    - [`add` - Adding a CS2040CFile](#add)
+    - [`remove` - Removing a CS2040CFile](#remove)
+    - [`list` - Listing CS2040CFiles](#list)
+    - [`filter` - Filtering CS2040CFiles](#filter)
+    - [`topo` - Topologically Sort CS2040CFiles](#topo)
+    - [`export` - Exporting files](#export)
+    - [`exit` - Exiting the program](#exit)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
+
+<div id="quick-start"></div>
 
 ## Quick Start
 
@@ -27,9 +46,13 @@ the help window. Some example commands you can try are:
 > 
 > If any of the files stored in the data files are corrupted, i.e. any of the fields within the data files are invalid
 > the application discards that file stored within the data file.
->
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="features"></div>
 
 ## Features
+
+<div id="help"></div>
 
 ### Viewing help `help`
 Shows a message explaining the format of supported commands in the application and their functions. If a valid command
@@ -48,12 +71,14 @@ Output:
 ```
 ======================================================
 The available COMMAND_TYPE(s) are:
+
 [add]: add CS2040CFile
 [remove]: remove CS2040CFile
 [list]: displays all CS2040CFiles
 [filter]: filters CS2040CFiles by topic
 [exit]: close the application
-For more help on a specific command, type `help c/COMMAND_TYPE`
+
+For more help on a specific command, type `help c/COMMAND_TYPE`.
 ======================================================
 ```
 Input:
@@ -63,17 +88,22 @@ help c/add
 Output:
 ```
 ======================================================
-This function adds a CS2040CFile and tags it to a topic.
-The syntax for the 'add' command is: add n/NAME t/TOPIC.
-NAME refers to the CS2040CFiles' file name.
-TOPIC refers to the topic that NAME will be tagged to.
-Case sensitive. NAME and TOPIC fields must be non-empty.
-Invalid NAME or TOPIC will cause an error.
+Add a CS2040CFile to a topic using:
+
+    `add n/NAME t/TOPIC [i/IMPORTANCE]`
+
+NAME: String name of the CS2040CFile file.
+TOPIC: String topic that NAME will be tagged to.
+IMPORTANCE: int level of importance on a scale of 1-10 (optional field).
+
 Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
 'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
 ======================================================
 ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="add"></div>
 
 ### Adding a CS2040CFile: `add`
 Adds a CS2040CFile that exists into our file manager. It could be either a note file or a code file. Requires a topic
@@ -81,17 +111,17 @@ tagged to it, and an optional importance level, a number from 1 to 10.
 
 #### Format:
 ```
-add n/CODE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
-add n/NOTE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
+add n/NAME t/TOPIC [i/IMPORTANCE_LEVEL]
 ```
 - **The corresponding file must be present in the same folder as `clialgo.jar` in order for the `CS2040CFile` to be
-added successfully**
-  - For example, you want to add `queue.txt` into `CLIAlgo`, `queue.txt` must be present in the same folder as the
+added successfully.**
+  - For example, if you want to add `queue.txt` into `CLIAlgo`, `queue.txt` must be present in the same folder as the
 `.jar` file.
 - Not following the syntax strictly would result in an invalid command message.
-- Only full words will be matched. E.g. `LINKED_LIST` will not match `Link List`.
+- Only full words will be matched. 
+  - For example, `LINKED_LIST` will not match `Link List`.
 - `n/` and `t/` fields must be non-empty.
-- `i/` field is optional.
+- `i/` field is optional. If this field is left empty, a note or code files' importance is set to 5 (default).
 
 #### Example of usage:
 Input:
@@ -109,13 +139,15 @@ Successfully added queue into LINKED_LIST.
 ======================================================
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="remove"></div>
+
 ### Removing a CS2040CFile: `remove`
 Removes a CS2040CFile that exists from our file manager.
 
 #### Format:
 ```
-remove n/CODE_NAME
-remove n/NOTE_NAME
+remove n/NAME
 ```
 
 - Not following the syntax strictly would result in an invalid command message.
@@ -133,6 +165,8 @@ Successfully removed queue.
 ======================================================
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="list"></div>
 
 ### Listing CS2040CFiles `list`
 List all CS2040CFiles (in any order) present in `CLIAlgo`.
@@ -162,6 +196,9 @@ Here are all your CS2040CFiles:
 ======================================================
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="filter"></div>
+
 ### Filtering CS2040CFiles `filter`
 Filters the CS2040CFiles by a user-specified keyword and prints a list of CS2040CFiles filtered based
 on the keyword.
@@ -179,7 +216,7 @@ filter k/KEYWORD [t/TOPIC_NAME]
 
 #### Example of usage:
 
-Filtering without providing `TOPIC_NAME`.
+Filtering by topic without providing `TOPIC_NAME`.
 
 Input:
 ```
@@ -198,7 +235,7 @@ Here are the filtered CS2040CFiles:
 ======================================================
 ```
 
-Filtering according to `TOPIC_NAME`.
+Filtering by topic according to `TOPIC_NAME`.
 
 Input:
 ```
@@ -215,8 +252,44 @@ Here are the filtered CS2040CFiles:
 ======================================================
 ```
 
+Filtering by importance without providing `TOPIC_NAME`.
+
+Input:
+```
+filter k/importance
+```
+Output:
+```
+======================================================
+Here are the filtered CS2040CFiles:
+======================================================
+1. [NOTE] bubble sort [6]
+2. [CODE] linked list code [5]
+3. [NOTE] linked list note [3]
+======================================================
+```
+
+Filtering by importance according to `TOPIC_NAME`.
+
+Input:
+```
+filter k/importance t/SORTING
+```
+Output:
+```
+Here are the filtered CS2040CFiles:
+======================================================
+[SORTING]
+1. [NOTE] bubble sort [6]
+======================================================
+```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="topo"></div>
+
 ### Topologically Sort CS2040CFiles `topo`
-Prints a topologically sorted list of CS2040CFiles before a user-specified note name.
+Prints a topologically sorted list of CS2040CFiles that comes before and within the topic of a user-specified note.
+This will allow the user to be able to revise all pre-requisite topics before revising the topic of the specified note.
 
 #### Format:
 ```
@@ -224,12 +297,21 @@ topo n/NOTE_NAME
 ```
 
 - The topological sort follows the following order (latest to earliest): "MINIMUM_SPANNING_TREE",
-  "SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES", "BINARY_SEARCH_TREE", "UNION_FIND_DS",
-  "HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING".
+"SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES", "BINARY_SEARCH_TREE", "UNION_FIND_DS",
+"HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING".
 - Only `NOTE_NAME` of notes that are **saved locally and added to CLIAlgo** can be used.
     - If no notes are saved locally and added to CLIAlgo, a feedback message will be printed instead.
 - Command and `NOTE_NAME` are **case-sensitive**.
 - Not following the syntax strictly would result in an invalid command message.
+
+> **Note:** Among all the notes added to CLIAlgo, **only** notes that come before and within the topic of the specified note will
+be printed.
+
+> **Example:**</br>
+> Notes of the following names, `bst`, `queue` and `sorting` of topics `BINARY_SEARCH_TREE`,
+> `LINKED_LIST` and `SORTING` respectively are added to CLIAlgo.</br>
+> The `topo n/queue` input will only print `queue` and `sorting` since `bst` is of the topic
+> `BINARY_SEARCH_TREE` that comes after the topic of `queue` which is `LINKED_LIST`.
 
 #### Example of usage:
 Input:
@@ -244,11 +326,14 @@ Here are the topologically sorted CS2040CFiles:
 [BINARY_SEARCH_TREE]
 1. [NOTE] bst
 [LINKED_LIST]
-1. [NOTE] queue
+2. [NOTE] queue
 [SORTING]
-1. [NOTE] sorting
+3. [NOTE] sorting
 ======================================================
 ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="export"></div>
 
 ### Exporting `Files`
 Whenever a `filter` or `topo` command is input by the user, the
@@ -295,6 +380,35 @@ export
 Here is `./export` opened after `export` is input.
 ![](images/export1.png)
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="exit"></div>
+
+### Exiting the program `exit`
+Exits `CLIAlgo`.
+
+#### Format:
+```
+exit
+```
+- Command is **case-sensitive**.
+- Command should only contain one word.
+- Not following the syntax strictly would result in an invalid command message.
+
+#### Example of usage:
+Input:
+```
+exit
+```
+Output:
+```
+======================================================
+Thank you for using CLIAlgo! Study hard!
+======================================================
+```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="FAQ"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -309,6 +423,8 @@ Here is `./export` opened after `export` is input.
 
 **A**: Ensure that all your CS2040CFiles are in the same directory as this `jar` file.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="command-summary"></div>
 
 ## Command Summary
 
@@ -322,3 +438,5 @@ Here is `./export` opened after `export` is input.
 | topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
 | export | `export`                                                                                          |
 | exit   | `exit`                                                                                            |
+
+<p align="right">(<a href="#top">back to top</a>)</p>
