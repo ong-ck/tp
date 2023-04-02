@@ -77,7 +77,7 @@ corresponding `Topic`'s  `.txt`
 - reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
-#### Help
+### Help
 [**API**](../src/main/java/seedu/clialgo/command/HelpCommand.java) : `HelpCommand.java`
 
 Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
@@ -88,7 +88,7 @@ The `HelpCommand` component
 - Provides the user with a list of valid commands in `CLIAlgo`.
 - Provides the user with the correct format for each command in `CLIAlgo`.
 
-#### Add
+### Add
 [**API**](../src/main/java/seedu/clialgo/command/AddCommand.java) : `AddCommand.java`
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
@@ -100,7 +100,7 @@ The `AddCommand` component
 - can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
 - can ensure that there are no files with repeated names such that all names of files added are unique
 
-#### List
+### List
 [**API**](../src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
 
 Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile` in `CLIAlgo`.
@@ -113,7 +113,7 @@ The `ListCommand` component
   - If the `CS2040CFile` is a `Note`, it would be labelled with `[NOTE]` before the name of the `CS2040CFile`.
   - If the `CS2040CFile` is a `Code`, it would be labelled with `[CODE]` before the name of the `CS2040CFile`.
 
-#### Filter
+### Filter
 [**API**](../src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
 
 Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
