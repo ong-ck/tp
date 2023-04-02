@@ -106,22 +106,24 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 <div id="add"></div>
 
 ### Adding a CS2040CFile: `add`
-Adds a CS2040CFile that exists into our file manager. It could be either a note file or a code file. Requires a topic
-tagged to it, and an optional importance level, a number from 1 to 10.
+Adds a CS2040CFile that currently already exists, into our file manager. It must **strictly** be either a `.txt` note 
+file or a `.cpp` C++ code file. Requires a topic tagged to it, and an optional importance level, a number from 1 to 10.
 
 #### Format:
 ```
 add n/NAME t/TOPIC [i/IMPORTANCE_LEVEL]
 ```
-- **The corresponding file must be present in the same folder as `clialgo.jar` in order for the `CS2040CFile` to be
+- **The corresponding file must already be present in the same folder as `clialgo.jar` in order for the `CS2040CFile` to be
 added successfully.**
   - For example, if you want to add `queue.txt` into `CLIAlgo`, `queue.txt` must be present in the same folder as the
 `.jar` file.
 - Not following the syntax strictly would result in an invalid command message.
+- `n/` and `t/` fields must be non-empty.
 - Only full words will be matched. 
   - For example, `LINKED_LIST` will not match `Link List`.
-- `n/` and `t/` fields must be non-empty.
-- `i/` field is optional. If this field is left empty, a note or code files' importance is set to 5 (default).
+- `/t` Topic field is **case-sensitive**. Enter `help c/add` to view list of valid topics and their case-sensitivities.
+  - For example, keying in `add n/queue t/sorting` is **not** valid. It should be `add n/queue t/SORTING` instead.
+- `i/` field is optional. **If this field is left empty, the note or code files' importance is set to 5 by default**.
 
 #### Example of usage:
 Input:
