@@ -56,13 +56,28 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
 The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=Ong%20Hee&sort=totalCommits%20dsc&sortWithin=totalCommits%20dsc&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=functional-code~docs~test-code~other&since=2023-02-17&tabOpen=true&zFR=false&tabType=authorship&tabAuthor=heejet&tabRepo=AY2223S2-CS2113-T15-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false).
 
 #### Documentation
+1. User Guide.
+   - Add documentation for `list`.
+   - Add documentation for `filter by topic`.
+
+
+2. Developer Guide.
+   - Add design and implementation for `list` feature.
+   - Add design and implementation for `filter by topic`  feature.
+   - Add design and implementation for `parser`.
+   - Add architecture diagram for `CLIAlgo`.
+   - Add user stories.
 
 #### Team-based tasks
-1. Created labels and milestones in the team's Github repository. 
+1. Created labels and milestones in the team's GitHub repository. 
 2. Organized weekly online meetings and discussions. 
 3. Created issues based on work assigned during team meetings. 
 4. Compiled and build final `.jar` files for releases. 
 5. Distributed workload among team members. 
 6. Set internal deadlines each iteration. 
 7. Review team members PR with non-trivial comments.
+8. Non-trivial bug fixes: [#124](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/124), 
+[#127](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/127), 
+[#138](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/138), 
+[#166](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/166),
    
