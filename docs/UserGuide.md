@@ -46,7 +46,6 @@ the help window. Some example commands you can try are:
 > 
 > If any of the files stored in the data files are corrupted, i.e. any of the fields within the data files are invalid
 > the application discards that file stored within the data file.
->
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="features"></div>
@@ -72,12 +71,14 @@ Output:
 ```
 ======================================================
 The available COMMAND_TYPE(s) are:
+
 [add]: add CS2040CFile
 [remove]: remove CS2040CFile
 [list]: displays all CS2040CFiles
 [filter]: filters CS2040CFiles by topic
 [exit]: close the application
-For more help on a specific command, type `help c/COMMAND_TYPE`
+
+For more help on a specific command, type `help c/COMMAND_TYPE`.
 ======================================================
 ```
 Input:
@@ -87,12 +88,14 @@ help c/add
 Output:
 ```
 ======================================================
-This function adds a CS2040CFile and tags it to a topic.
-The syntax for the 'add' command is: add n/NAME t/TOPIC.
-NAME refers to the CS2040CFiles' file name.
-TOPIC refers to the topic that NAME will be tagged to.
-Case sensitive. NAME and TOPIC fields must be non-empty.
-Invalid NAME or TOPIC will cause an error.
+Add a CS2040CFile to a topic using:
+
+    `add n/NAME t/TOPIC [i/IMPORTANCE]`
+
+NAME: String name of the CS2040CFile file.
+TOPIC: String topic that NAME will be tagged to.
+IMPORTANCE: int level of importance on a scale of 1-10 (optional field).
+
 Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
 'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
@@ -108,17 +111,17 @@ tagged to it, and an optional importance level, a number from 1 to 10.
 
 #### Format:
 ```
-add n/CODE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
-add n/NOTE_NAME t/TOPIC_NAME [i/IMPORTANCE_LEVEL]
+add n/NAME t/TOPIC [i/IMPORTANCE_LEVEL]
 ```
 - **The corresponding file must be present in the same folder as `clialgo.jar` in order for the `CS2040CFile` to be
-added successfully**
-  - For example, you want to add `queue.txt` into `CLIAlgo`, `queue.txt` must be present in the same folder as the
+added successfully.**
+  - For example, if you want to add `queue.txt` into `CLIAlgo`, `queue.txt` must be present in the same folder as the
 `.jar` file.
 - Not following the syntax strictly would result in an invalid command message.
-- Only full words will be matched. E.g. `LINKED_LIST` will not match `Link List`.
+- Only full words will be matched. 
+  - For example, `LINKED_LIST` will not match `Link List`.
 - `n/` and `t/` fields must be non-empty.
-- `i/` field is optional.
+- `i/` field is optional. If this field is left empty, a note or code files' importance is set to 5 (default).
 
 #### Example of usage:
 Input:
@@ -144,8 +147,7 @@ Removes a CS2040CFile that exists from our file manager.
 
 #### Format:
 ```
-remove n/CODE_NAME
-remove n/NOTE_NAME
+remove n/NAME
 ```
 
 - Not following the syntax strictly would result in an invalid command message.
@@ -214,7 +216,7 @@ filter k/KEYWORD [t/TOPIC_NAME]
 
 #### Example of usage:
 
-Filtering without providing `TOPIC_NAME`.
+Filtering by topic without providing `TOPIC_NAME`.
 
 Input:
 ```
@@ -233,7 +235,7 @@ Here are the filtered CS2040CFiles:
 ======================================================
 ```
 
-Filtering according to `TOPIC_NAME`.
+Filtering by topic according to `TOPIC_NAME`.
 
 Input:
 ```
@@ -247,6 +249,38 @@ Here are the filtered CS2040CFiles:
 [LINKED_LIST]
 1. linked list code
 2. linked list note
+======================================================
+```
+
+Filtering by importance without providing `TOPIC_NAME`.
+
+Input:
+```
+filter k/importance
+```
+Output:
+```
+======================================================
+Here are the filtered CS2040CFiles:
+======================================================
+1. [NOTE] bubble sort [6]
+2. [CODE] linked list code [5]
+3. [NOTE] linked list note [3]
+======================================================
+```
+
+Filtering by importance according to `TOPIC_NAME`.
+
+Input:
+```
+filter k/importance t/SORTING
+```
+Output:
+```
+Here are the filtered CS2040CFiles:
+======================================================
+[SORTING]
+1. [NOTE] bubble sort [6]
 ======================================================
 ```
 
