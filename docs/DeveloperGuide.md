@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 # Developer Guide
 
 ## Acknowledgements
@@ -5,7 +7,50 @@
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the 
 original source as well}
 
+## Table of Contents
+
+- [Design](#design)
+  - [Architecture](#design-architecture)
+  - [Ui](#design-ui)
+  - [Parser](#design-parser)
+  - [Storage](#design-storage)
+  - [Help](#design-help)
+  - [Add](#design-add)
+  - [List](#design-list)
+  - [Filter](#design-filter)
+  - [TopoSort](#design-toposort)
+  - [Export](#design-export)
+- [Implementation](#implementation)
+  - [Ui](#implementation-ui)
+  - [Parser](#implementation-parser)
+  - [Initializing previous saved data feature](#implementation-initialize)
+  - [Writing a CS2040CFile to data file](#implementation-write)
+  - [Help Feature](#implementation-help)
+  - [Add CS2040CFile feature](#implementation-add)
+  - [List feature](#implementation-list)
+  - [Filter by keyword feature](#implementation-filter)
+  - [TopoSort feature](#implementation-toposort)
+  - [Export feature](#implementation-export)
+- [Product scope](#product-scope)
+- [User Stories](#user-stories)
+- [Use Cases](#use-cases)
+- [Non-Functional Requirements](#non-functional-requirements)
+- [Glossary](#glossary)
+- [Instructions for manual testing](#instructions)
+  - [Initialisation](#instructions-initialisation)
+  - [Shutdown](#instructions-shutdown)
+  - [Adding a `Note`](#instructions-add)
+  - [Listing all `Files`](#instructions-list)
+  - [Deleting a `File`](#instructions-delete)
+  - [Filtering `Files`](#instructions-filter)
+  - [Exporting `Files`](#instructions-export)
+  - [Saving data](#instructions-save)
+
+<div id="design"></div>
+
 ## Design
+
+<div id="design-architecture"></div>
 
 ### Architecture
 
@@ -33,6 +78,9 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 
 ![](sequence-diagrams/diagrams/Architecture.png "Filter by Topic Sequence Diagram")
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-ui"></div>
+
 ### Ui
 [**API**](../src/main/java/seedu/clialgo/Ui.java) : `Ui.java`
 
@@ -44,6 +92,9 @@ The `Ui` component:
 - Reads in the full command keyed in by the user for the `Parser`.
 - Prints error messages when the user provides invalid inputs.
 - Prints confirmation message when a command have been executed successfully.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-parser"></div>
 
 ### Parser
 [**API**](../src/main/java/seedu/clialgo/Parser.java) : `Parser.java`
@@ -59,6 +110,9 @@ the `StringManipulation` interface.
 - Verify the validity of the user's input command.
 - Handle cases where the user keys in an invalid command.
 - Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-storage"></div>
 
 ### Storage
 [**API**](../src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
@@ -77,7 +131,10 @@ corresponding `Topic`'s  `.txt`
 - reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
-#### Help
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-help"></div>
+
+### Help
 [**API**](../src/main/java/seedu/clialgo/command/HelpCommand.java) : `HelpCommand.java`
 
 Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
@@ -88,7 +145,10 @@ The `HelpCommand` component
 - Provides the user with a list of valid commands in `CLIAlgo`.
 - Provides the user with the correct format for each command in `CLIAlgo`.
 
-#### Add
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-add"></div>
+
+### Add
 [**API**](../src/main/java/seedu/clialgo/command/AddCommand.java) : `AddCommand.java`
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
@@ -100,7 +160,10 @@ The `AddCommand` component
 - can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
 - can ensure that there are no files with repeated names such that all names of files added are unique
 
-#### List
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-list"></div>
+
+### List
 [**API**](../src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
 
 Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile` in `CLIAlgo`.
@@ -113,7 +176,10 @@ The `ListCommand` component
   - If the `CS2040CFile` is a `Note`, it would be labelled with `[NOTE]` before the name of the `CS2040CFile`.
   - If the `CS2040CFile` is a `Code`, it would be labelled with `[CODE]` before the name of the `CS2040CFile`.
 
-#### Filter
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-filter"></div>
+
+### Filter
 [**API**](../src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
 
 Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
@@ -129,6 +195,9 @@ The `FilterCommand` component
      `execute()` method.
 - The respective subclasses will print the `CS2040CFiles` filtered based on the `keyWord` provided.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-toposort"></div>
+
 ### TopoSort
 [**API**](../src/main/java/seedu/clialgo/command/TopoCommand.java) : `TopoCommand.java`
 
@@ -142,7 +211,57 @@ The `TopoCommand` component
 - can print out the list of topologically sorted `CS2040CFile` objects
 - can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-export"></div>
+
+### Export
+[**API**](../src/main/java/seedu/clialgo/Buffer.java) : `Buffer.java`
+
+Here is a class diagram of the `Buffer` which facilitates the storing of `CS2040CFiles`
+returned from `filter` and `topo` commands and the copying of `CS2040CFiles` stored within
+into `.\\export` and opening the folder subsequently if supported by the Operating System.
+
+![](class-diagrams/diagrams/ExportClass.png "Buffer Class Diagram")
+
+The `Buffer` component
+- can store `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
+- can update stored `CS2040CFiles`
+- can copy `CS2040CFiles` into `.\\export` folder
+- can delete `CS2040CFiles` in `.\\export` folder
+- can open `.\\export` folder automatically if supported by the Operating System
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation"></div>
+
 ## Implementation
+
+<div id="implementation-ui"></div>
+
+### Ui
+#### Current implementation
+
+All UI interactions are taken care of by the Ui class. It is responsible for taking in user inputs and giving text-ui
+outputs to provide guidance and a pleasant user experience overall. The Ui uses the `Scanner` class from `java.util` to
+take in input from the user and `System.out.println()` method from `java.lang` to output messages to the user.
+
+Given below is an example of how the `Ui` works when it is issued a list command.
+
+> **Step 1**: The user enters a command. The full command is read in by the `Ui` using the `getUserInput()` method. The
+> `Ui` uses the `nextLine()` method of the `Scanner` object to read in the user input.
+
+> **Step 2**: If it encounters a `NoSuchElementException` or `IllegalStateException`, it returns an `EXIT_COMMAND` which
+> safely closes the application. If no exception has occurred, the `Ui` returns the `String` to `CLIAlgo`.
+
+> **Step 3**: When the `ListCommand` is executed, it calls the `printListOfCS2040CFiles()` method of the `Ui`. The `Ui`
+> then iterates through the `ArrayList` provided by the `ListCommand` and prints the `CS2040CFile` label and name on a 
+> new line using the `println()` method from `System.out`.
+
+The following **_Sequence Diagram_** shows how the Ui object is used.
+
+![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-parser"></div>
 
 ### Parser
 #### Current Implementation
@@ -175,9 +294,12 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 > `prepareRemoveCommand()` returns an `InvalidCommand` object. If the `NAME` input field is valid, a `RemoveCommand` 
 > object is returned.
 
-The following sequence diagram shows how the Parser work.
+The following **_Sequence Diagram_** shows how the Parser work.
 
 ![](sequence-diagrams/diagrams/Parser.png "Parser Sequence Diagram")
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-initialize"></div>
 
 ### Initializing previous saved data feature
 #### Current implementation
@@ -190,28 +312,91 @@ which would then convert these raw data into `CS2040CFile` objects. The `CS2040F
 into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
 back to the `TopicManager`, completing the initialization process.
 
-The following sequence diagram shows how previously saved files are loaded into `CLIAlgo`.
+Given below is how the sequence of `initialize()` is run
+
+> **Step 1**: During the start-up of the application, a folder is created to store all the data files.
+
+> **Step 2**: For every `Topic`, create a `SingleFile` which containing the data file of those `Topics`
+> with the path `.\\data\\TOPIC_NAME.txt` where TOPIC_NAME is replaced with the name of the `Topic`.
+> This only occurs if the file did not exist prior to the running of the application.
+
+> **Step 3**: If the file already existed prior, readFile() is run. This creates a `Scanner` which would 
+> translate the data file line by line into `String`. Each line of `String` corresponds to a `CS2040CFile`.
+
+> **Step 4**: The `String` is then decoded using `decode()` and is converted into a `CS2040CFile`. If the
+> `String` is unable to be converted into a `CS2040CFile`, the `String` is deemed to be corrupted and is 
+> subsequently deleted from the data file.
+
+> **Step 5**: The translated `CS2040CFiles` are then stored within the `SingleFile`. `FileManager` then
+> invokes `decodeAll()` which retrieves all the `Topics` stored within each `SingleFile` which contains
+> all the `CS2040CFiles`. This is returned in the form of a `HashMap`.
+
+The following **_Sequence Diagram_** shows how previously saved files are loaded into `CLIAlgo`.
 
 ![](sequence-diagrams/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-write"></div>
+
+### Writing a `CS2040CFile` to data file
+#### Current Implementation
+
+The function for writing a `CS2040CFile` to a data file is facilitated by the `FileManager`. When the `addEntry`
+is called, an already created `CS2040CFile` and its name is passed to the `FileManager`. The `FileManager` then 
+passes the `CS2040CFile` to the `FileEncoder` which translates it into raw data. The raw data is then written into
+the data file using the `BufferedWriter`.
+
+Given below is how a single `CS2040CFile` is entered into the data file:
+
+> **Step 1**: When a valid `CS2040CFile` is added to the application, it is passed to the `FileManager` and 
+> addEntry() is invoked.
+
+> **Step 2**: The `CS2040CFile` is then passed to the `FileEncoder` and a `String` representing the 
+> `CS2040CFile` is returned to the `FileManger`.
+
+> **Step 3**: A `FileWriter` object is then created and a `BufferedWriter` object is also created containing
+> the `FileWriter`.
+
+> **Step 4**: The previously encoded `String` is then passed to the `BufferedWriter` and `write()` and 
+> `newLine()` is called. This writes the encoded `String` to the relevant data file and adds a new line
+> to the data file.
+
+> **Step 4**: `close()` is called for both the `BufferedWriter` and `FileWriter` to stop them from writing
+> to the data file further.
+
+The following **_Sequence Diagram_** shows how a `CS2040CFile` is encoded before being written to 
+the relevant data file.
+
+![](sequence-diagrams/diagrams/AddEntry.png "FileManager Add Entry Sequence Diagram")
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-help"></div>
 
 ### Help Feature
 #### Current Implementation
 
 The help mechanism is facilitated by "HelpCommand". It extends the abstract `Command` with an overridden `execute()`
 method. Within the `execute()` function, the input command after the `c/` delimiter is parsed and checked against the
-valid string commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
+valid commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
 
-> **Step 1**: The user enters the `help` command, which invokes `HelpCommand` and returns control back to parser. 
+Given below is an example usage of how the `help c/add` mechanism behaves at each step.
 
-> **Step 2**: `execute()` of `HelpCommand` is called by `CLIAlgo`.
+> **Step 1**: The user enters the `help` command, which is processed by the `Parser` which instantiates a `HelpCommand`
+> using the appropriate constructor and returns it to `CLIAlgo`. 
 
-> **Step 3**: 1 of 7 valid commands is called and its Ui method is invoked from the Ui class.
+> **Step 2**: The `execute()` method of `HelpCommand` is called by `CLIAlgo`.
 
-> **Step 4**: HelpCommand object is destroyed and control is handed back to the user.
+> **Step 3**: Since the command provided is `add`, the `HelpCommand` calls the `printHelpAdd()` method from the `Ui`.
+> This method prints out instructions on how the `add` command should be used in `CLIAlgo`.
 
-The following sequence diagram shows how the help operation works:
+> **Step 4**: HelpCommand object is destroyed and control is handed back to the `CLIAlgo`.
+
+The following **_Sequence Diagram_** shows how the help operation work.
 
 ![](sequence-diagrams/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-add"></div>
 
 ### Add CS2040CFile feature
 #### Current Implementation
@@ -223,6 +408,8 @@ CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a v
 and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile`, to ensure that no other files
 of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the
 CS2040CFile.
+
+Given below is an example usage of how the add feature behaves at each step.
 
 > **Step 1**: The user launches the application for the first time. Objects `CLIAlgo`, `Ui`, `Parser` , `TopicManager`,
 > `FileManager` are created.
@@ -254,6 +441,9 @@ The **_Sequence Diagram_** below shows the `AddCommand` works.
 
 ![](sequence-diagrams/diagrams/AddFeature.png "AddFeature Sequence Diagram")
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-list"></div>
+
 ### List feature
 #### Current implementation
 
@@ -280,6 +470,9 @@ Given below is an example usage scenario and how the list feature behaves at eac
 The following **_Sequence Diagram_** shows how the list operation work.
 
 ![](sequence-diagrams/diagrams/ListFeature.png "Filter by Topic Sequence Diagram")
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-filter"></div>
 
 ### Filter by keyword feature
 #### Current Implementation
@@ -326,6 +519,9 @@ The following **_Sequence Diagram_** shows how the filter by topic operation wor
 
 ![](sequence-diagrams/diagrams/FilterByTopic.png "Filter by Topic Sequence Diagram")
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-toposort"></div>
+
 ### TopoSort feature
 #### Current implementation
 
@@ -363,6 +559,9 @@ The following sequence diagram shows how the `TopoCommand` works.
 
 ![](sequence-diagrams/diagrams/TopoSort.png "TopoSort Sequence Diagram")
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-export"></div>
+
 ### Export feature
 #### Current implementation
 
@@ -387,18 +586,8 @@ The following sequence diagram shows how the export feature works.
 
 ![](sequence-diagrams/diagrams/Export.png "Export Sequence Diagram")
 
-### Ui
-#### Current implementation
-
-All UI interactions are taken care of by the Ui class. It is responsible for taking in user inputs and giving text-ui
-outputs to provide guidance and a pleasant user experience overall.
-
-The methods in the Ui class use the `Scanner` class from `java.util` to take in input and `System.out.println()` method 
-from `java.lang` to display output.
-
-The following sequence diagram is a small example of how the Ui object is used.
-
-![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="product-scope"></div>
 
 ## Product scope
 ### Target user profile
@@ -411,6 +600,9 @@ The following sequence diagram is a small example of how the Ui object is used.
 ### Value proposition
 
 Manage notes faster and more efficiently than a typical mouse/GUI driven application
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="user-stories"></div>
 
 ## User Stories
 
@@ -429,6 +621,9 @@ Manage notes faster and more efficiently than a typical mouse/GUI driven applica
 | v2.0    | As a CS2040C student with weekly programming assignments | be able to save my `.cpp` files                                             | refer to them in the future                                                  |
 | v2.0    | As a student in CS2040C                                  | be able to extract out relevant files into a folder                         | easily access them during revision                                           |
 | v2.0    | As an advanced user of CLIAlgo                           | be able to chain commands such that they will be executed one after another | use CLIAlgo more efficiently                                                 |
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="use-cases"></div>
 
 ## Use Cases
 
@@ -455,6 +650,9 @@ Use case ends.
 
 Use case ends.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="non-functional-requirements"></div>
+
 ## Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
@@ -466,6 +664,9 @@ Use case ends.
 7. Should be secure in terms of protecting sensitive data such as name and path of files and preventing unauthorised access to them.
 8. Should be able to execute user commands in no longer than 2 seconds.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="glossary"></div>
+
 ## Glossary
 
 * *notes* - A note file saved by the user as a `.txt` or `.cpp`
@@ -475,9 +676,14 @@ Use case ends.
 * *Visualgo* - A webpage developed by Professor Steven Halim for use in modules such as CS2040C
 * *topics* - One of the ten topics taught in CS2040C
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="instructions"></div>
+
 ## Instructions for manual testing
 
 Below are guidelines for testers to test the application
+
+<div id="instructions-initialisation"></div>
 
 ### Initialisation
 1. Download the jar file and copy into an empty folder
@@ -526,6 +732,9 @@ after opening the application.
 > The user _has_ to exit test mode or the test mode data would not be 
 > wiped correctly.
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="instructions-shutdown"></div>
+
 ### Shutdown
 1. After all the testing is done, type in the command: `exit`.
    1. If done correctly this is what the tester will see:
@@ -535,6 +744,9 @@ after opening the application.
    ======================================================
     ```
    2. The application would then close in the command-line interface.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="instructions-add"></div>
 
 ### Adding a `Note`
 1. Type the command: `add n/NOTE_NAME t/TOPIC_NAME` or `add n/CODE_NAME t/TOPIC_NAME`.
@@ -580,6 +792,8 @@ after opening the application.
 >
 > add n/name t/LINKED_LIST i/100
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="instructions-list"></div>
 
 ### Listing all `Files`
 1. Type the command: `list`.
@@ -589,6 +803,9 @@ after opening the application.
    2. **CASE 2 :** There are no `Files` stored.
       1. The application would print out a message indicating that no 
       notes have been stored.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="instructions-delete"></div>
 
 ### Deleting a `File`
 1. Type the command: `remove n/FILE_NAME`.
@@ -608,6 +825,9 @@ after opening the application.
 > Example :
 >
 > remove name
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="instructions-filter"></div>
 
 ### Filtering `Files`
 1. Type the command: `filter k/KEYWORD [t/TOPIC_NAME]`.
@@ -637,6 +857,9 @@ after opening the application.
 >
 > filter k/topic
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="instructions-export"></div>
+
 ### Exporting `Files`
 1. After a command for `filter` or `topo`, the `Files` that were listed would be stored in the `Buffer`.
 2. These `Files` would be copied to the `export` folder and given that it is supported by the Operating
@@ -647,6 +870,9 @@ System, the `export` folder would automatically be opened.
 file is located.
 4. If `filter` or `topo` is called again, the `export` folder would not be updated until `export` is inputted
 again.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="instructions-save"></div>
 
 ### Saving data
 1. `Notes` and `Codes` are represented as : 
@@ -681,3 +907,5 @@ application would recreate the file in its last state when running `add` or
 `remove` 
 6. If a file stored in the data file does not exist in the directory,
 it is considered to be a corrupted entry.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
