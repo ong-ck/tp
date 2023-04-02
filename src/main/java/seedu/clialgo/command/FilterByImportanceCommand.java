@@ -46,8 +46,14 @@ public class FilterByImportanceCommand extends FilterCommand {
             if (cs2040cFile instanceof Code) {
                 cs2040cFileType = "[CODE] ";
             }
-            System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
-                    cs2040cFile.getImportance() + "]");
+            if (cs2040cFile.getImportance() == 0) {
+                System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
+                        "no importance assigned to this CS2040CFile" + "]");
+                ++serialNumber;
+            } else {
+                System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
+                        cs2040cFile.getImportance() + "]");
+            }
             ++serialNumber;
         }
         ui.printDivider();
@@ -70,8 +76,14 @@ public class FilterByImportanceCommand extends FilterCommand {
             if (cs2040cFile instanceof Code) {
                 cs2040cFileType = "[CODE] ";
             }
-            System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
-                    cs2040cFile.getImportance() + "]");
+            if (cs2040cFile.getImportance() == 0) {
+                System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
+                        "no importance assigned to this CS2040CFile" + "]");
+                ++serialNumber;
+            } else {
+                System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
+                        cs2040cFile.getImportance() + "]");
+            }
             ++serialNumber;
         }
         ui.printDivider();
