@@ -255,6 +255,8 @@ Here are the filtered CS2040CFiles:
 
 ### Topologically Sort CS2040CFiles `topo`
 Prints a topologically sorted list of CS2040CFiles that comes before and within the topic of a user-specified note.
+This will allow the user to be able to revise all the pre-requisite topics before the revising the topic of the 
+specified note.
 
 #### Format:
 ```
