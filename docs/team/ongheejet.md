@@ -34,7 +34,10 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
    For example, if they want to study a specific chapter such was `SORTING`, they can use this command to extract out 
    relevant files to aid in their revision.
 
-   - **Highlights**: The implementation of this feature was challenging as 
+   - **Highlights**: The implementation of this feature was challenging as there are a total of 10 topics, each with
+   their own set of notes. To implement this feature elegantly and efficiently, the 'HashMap' data structure was used
+   to access the various `topics` in CS2040C in approximately O(1) time. The relevant `CS2040CFile`(s) can then be
+   extracted and printed to the user.
 
 #### Code Contributed
 The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=Ong%20Hee&sort=totalCommits%20dsc&sortWithin=totalCommits%20dsc&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=functional-code~docs~test-code~other&since=2023-02-17&tabOpen=true&zFR=false&tabType=authorship&tabAuthor=heejet&tabRepo=AY2223S2-CS2113-T15-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false).
