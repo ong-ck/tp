@@ -210,17 +210,19 @@ The following **_Sequence Diagram_** shows how previously saved files are loaded
 
 The help mechanism is facilitated by "HelpCommand". It extends the abstract `Command` with an overridden `execute()`
 method. Within the `execute()` function, the input command after the `c/` delimiter is parsed and checked against the
-valid string commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
+valid commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
 
-Given below is an example usage of how the filter by `topic` mechanism behaves at each step.
+Given below is an example usage of how the `help c/add` mechanism behaves at each step.
 
-> **Step 1**: The user enters the `help` command, which invokes `HelpCommand` and returns control back to `CLIAlgo`. 
+> **Step 1**: The user enters the `help` command, which is processed by the `Parser` which instantiates a `HelpCommand`
+> using the appropriate constructor and returns it to `CLIAlgo`. 
 
-> **Step 2**: `execute()` of `HelpCommand` is called by `CLIAlgo`.
+> **Step 2**: The `execute()` method of `HelpCommand` is called by `CLIAlgo`.
 
-> **Step 3**: 1 of 7 valid commands is called and its Ui method is invoked from the Ui class.
+> **Step 3**: Since the command provided is `add`, the `HelpCommand` calls the `printHelpAdd()` method from the `Ui`.
+> This method prints out instructions on how the `add` command should be used in `CLIAlgo`.
 
-> **Step 4**: HelpCommand object is destroyed and control is handed back to the user.
+> **Step 4**: HelpCommand object is destroyed and control is handed back to the `CLIAlgo`.
 
 The following **_Sequence Diagram_** shows how the help operation work.
 
