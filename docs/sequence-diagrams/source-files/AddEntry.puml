@@ -1,0 +1,43 @@
+@startuml
+
+participant ":FileManager" as fm
+participant ":FileEncoder" as fe
+participant ":SingleFile" as sf
+participant ":FileWriter" as fw
+participant ":BufferedWriter" as bw
+participant ":File" as f
+
+activate fm
+-> fm : addEntry
+fm -> fe : encode
+fe --> fm : encodedCS2040CFile: String
+fm -> sf : writeCS2040CFileToFile
+activate sf
+    opt file does not exist
+        sf -> sf : recreateFile()
+        activate sf
+        deactivate sf
+        sf -> sf : overwriteFile()
+        activate sf
+        sf -> f
+        activate f
+        deactivate f
+        deactivate sf
+    end
+sf -> fw **
+activate fw
+fw -> bw **
+activate bw
+bw -> f : write(encodedCS2040CFile: String)
+activate f
+bw -> f : newLine()
+deactivate f
+bw -> bw : close()
+activate bw
+deactivate bw
+destroy bw
+fw -> fw : close()
+activate fw
+deactivate fw
+destroy fw
+@enduml
