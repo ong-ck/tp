@@ -3,10 +3,13 @@ package seedu.clialgo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.file.Note;
+import seedu.clialgo.storage.FileManagerStub;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -280,4 +283,20 @@ class TopicManagerTest {
         assertEquals(expectedAllNotes, topicManagerTest.getAllCS2040CFiles());
     }
     //@@author
+
+    //@@author heejet
+    @Test
+    void getAllCS2040CFilesGroupedByTopicToPrint() {
+        TopicManager topicManager = new TopicManager();
+        FileManagerStub fileManagerStub = new FileManagerStub();
+        topicManager.initialize(fileManagerStub.decodeAll());
+        HashMap<String, ArrayList<String>> actualOutput = topicManager.getAllCS2040CFilesGroupedByTopicToPrint();
+
+        for (Map.Entry<String, ArrayList<String>> entry : actualOutput.entrySet()) {
+            ArrayList<String> currentCS2040CFiles = entry.getValue();
+            for (String cs2040cFileName: currentCS2040CFiles) {
+                assertTrue(fileManagerStub.isPresent(cs2040cFileName));
+            }
+        }
+    }
 }

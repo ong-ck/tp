@@ -139,7 +139,8 @@ public class TopicManager {
             if (currentTopic.isEmpty()) {
                 continue;
             }
-            toPrintCS2040CFiles.put(entry.getKey(), currentTopic.getAllCS2040CFilesInTopicToPrint());
+            ArrayList<String> currentTopicFiles = currentTopic.getAllCS2040CFilesInTopicToPrint();
+            toPrintCS2040CFiles.put(entry.getKey(), currentTopicFiles);
             assert toPrintCS2040CFiles.containsKey(currentTopic.getTopicName());
         }
         return toPrintCS2040CFiles;
