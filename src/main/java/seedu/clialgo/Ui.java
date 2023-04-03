@@ -13,8 +13,9 @@ public class Ui {
 
     private static final String DIVIDER = "======================================================";
     private static final String EXIT_COMMAND = "exit";
-    private static final String LEFT_SQUARE_BRACKET = " [";
+    private static final String LEFT_SQUARE_BRACKET = "[";
     private static final String RIGHT_SQUARE_BRACKET = "]";
+    private static final String WHITE_SPACE = " ";
     private static final String DOT_SPACE = ". ";
     private static final String NOTE_LABEL = "[NOTE] ";
     private static final String CODE_LABEL = "[CODE] ";
@@ -464,8 +465,8 @@ public class Ui {
             if (cs2040cFile instanceof Code) {
                 cs2040cFileType = CODE_LABEL;
             }
-            System.out.println(serialNumber + DOT_SPACE + cs2040cFileType + cs2040cFile.getName() + LEFT_SQUARE_BRACKET
-                    + cs2040cFile.getImportance() + RIGHT_SQUARE_BRACKET);
+            System.out.println(serialNumber + DOT_SPACE + cs2040cFileType + cs2040cFile.getName() + WHITE_SPACE
+                    + LEFT_SQUARE_BRACKET + cs2040cFile.getImportance() + RIGHT_SQUARE_BRACKET);
             ++serialNumber;
         }
         printDivider();
