@@ -1,4 +1,6 @@
 @startuml
+hide footbox
+
 participant ":ListCommand" as ListCommand
 participant "ui: Ui" as Ui
 participant "in: Scanner" as Scanner
