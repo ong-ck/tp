@@ -16,6 +16,13 @@ files into a separate folder.
    user. It also checks for corruption of the data file and discards corrupted entries. It also
    facilitates the creation of the data files and folders.
 
+   - **Justification**: As CLIAlgo would ideally be for users to quickly find all the files that 
+   they need, it would be a hassle to re-enter all the entries for each file whenever a CLIAlgo
+   is rebooted. Thus, the `FileManager` which acts as the storage for CLIAlgo would help users
+   "remember" files as long as those files are entered into CLIAlgo once. Furthermore, due to the particular
+   implementation of `FileManager`, corruption of entries are easier to deal with as the data files are stored
+   `Topic` by `Topic`, the user would then know which file in which `Topic` is corrupted if corruption occurs.
+
    - **Highlights**: The challenge for dealing with locally stored data is to think up of possible
    ways users could attempt to corrupt or break the data files and subsequently, crash the 
    application. Safeguards that are reasonable have to be added in such a way that does not
