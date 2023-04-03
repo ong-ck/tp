@@ -31,7 +31,10 @@ public class TopicManager {
     /** Data Structure to hold all the topics */
     private HashMap<String, Topic> topics;
 
+    /** A Data Structure to keep track of all the CS240CFile in CLIAlgo and the topic they are tagged to. */
     private HashMap<String, String> allCS2040CFilesOutsideTestMode;
+
+    /** Test mode */
     private HashMap<String, Topic> topicsOutsideTestMode;
     private boolean isTestModeOn;
 

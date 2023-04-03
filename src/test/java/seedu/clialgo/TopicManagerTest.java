@@ -97,6 +97,7 @@ class TopicManagerTest {
         assertFalse(topicManager.addCS2040CFile(noteName, topicName, note));
     }
 
+    //@@author heejet
     @Test
     void isValidTopic_validTopicInput_expectTrue() {
         ArrayList<String> validTopics = new ArrayList<>(
@@ -139,6 +140,7 @@ class TopicManagerTest {
             assertFalse(topicManager.isValidTopic(topic));
         }
     }
+    //@@author
 
     //@@author nicholas132000
     @Test
