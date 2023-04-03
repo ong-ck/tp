@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * The <code>Buffer</code> contains the <code>CS2040CFiles</code> that are returned after <code>FilterCommand</code>
@@ -63,9 +62,12 @@ public class Buffer {
      * Deletes all the files in <code>.\\export</code>.
      */
     public void deleteFiles() {
-        for (File file : Objects.requireNonNull(pathToBuffer.listFiles())) {
-            if (!file.delete()) {
-                ui.printFileDeleteFail();
+        File[] files = pathToBuffer.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (!file.delete()) {
+                    ui.printFileDeleteFail();
+                }
             }
         }
     }
