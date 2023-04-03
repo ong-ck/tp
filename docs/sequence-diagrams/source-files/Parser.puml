@@ -1,4 +1,6 @@
 @startuml
+hide footbox
+
 participant "parser: Parser" as Parser
 participant "<<interface>> \n StringManipulation" as StringManipulation
 participant ": InvalidCommand" as InvalidCommand

@@ -1,4 +1,6 @@
 @startuml
+hide footbox
+
 actor User
 participant "cliAlgo: CLIAlgo" as CLIAlgo
 participant "ui: Ui" as Ui

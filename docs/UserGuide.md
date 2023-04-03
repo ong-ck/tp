@@ -32,8 +32,8 @@ note creation and editing are beyond the scope of this application.
 1. Ensure that you have Java <code>11</code> or above installed.
 2. Down the latest version of `clialgo.jar` from [here](https://github.com/AY2223S2-CS2113-T15-1/tp/releases).
 3. Copy the file to the folder you want to use as the home folder for your CS2040C notes.
-4. Open a command terminal, ‘cd’ into the folder you put the .jar  file in, and use the `java -jar -clialgo` command to 
-run the application.
+4. Open a command terminal, ‘cd’ into the folder you put the .jar  file in, and use the `java -jar clialgo-v2.1.jar` 
+command to run the application.
 5. Ensure that all your `CS2040CFile`s with either `.cpp` or `.txt` as their extension are present in the same folder 
 as the `.jar` file.
 6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open 
@@ -41,6 +41,12 @@ the help window. Some example commands you can try are:
    - `add n/toposort t/SORTING`: add a 'toposort.txt' file as notes to the topic 'SORTING'
    - `list`: list all existing notes
    - `remove n/toposort`: remove the 'toposort.txt' note from the list
+
+> **IMPORTANT**
+>
+> **MAC USERS** need to append a `.\ ` to the **FRONT** of each `.txt` or `.cpp` file they want to perform commands on.
+> 
+> For example, if you have a `queue.txt` file, you need to **HIDE** it first by changing it to `.\queue.txt`.
 
 > **WARNING**
 > 

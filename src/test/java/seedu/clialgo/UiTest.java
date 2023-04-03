@@ -94,6 +94,8 @@ class UiTest {
                     "[remove]: remove CS2040CFile\r\n" +
                     "[list]: displays all CS2040CFiles\r\n" +
                     "[filter]: filters CS2040CFiles by topic\r\n" +
+                    "[topo]: displays all CS2040CFiles before the selected topic\r\n" +
+                    "[export]: places CS2040CFiles sorted by filter/topo in a file\r\n" +
                     "[exit]: close the application\r\n" +
                     "\r\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`.\r\n" +
@@ -106,6 +108,8 @@ class UiTest {
                     "[remove]: remove CS2040CFile\n" +
                     "[list]: displays all CS2040CFiles\n" +
                     "[filter]: filters CS2040CFiles by topic\n" +
+                    "[topo]: displays all CS2040CFiles before the selected topic\n" +
+                    "[export]: places CS2040CFiles sorted by filter/topo in a file\n" +
                     "[exit]: close the application\n" +
                     "\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`.\n" +
@@ -561,6 +565,37 @@ class UiTest {
                     "Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',\n" +
                     "'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',\n" +
                     "'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printHelpExport() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printHelpExport();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Export your filter/topo sorted files using:\r\n" +
+                    "\r\n" +
+                    "    `export`\r\n" +
+                    "\r\n" +
+                    "Command should only contain one word (i.e. no extensions).\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Export your filter/topo sorted files using:\n" +
+                    "\n" +
+                    "    `export`\n" +
+                    "\n" +
+                    "Command should only contain one word (i.e. no extensions).\n" +
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
@@ -1028,5 +1063,30 @@ class UiTest {
         }
         assertEquals(expectedOutput, actualOutput.toString());
         assertEquals(expectedSerialNumber, actualSerialNumber);
+    }
+
+    @Test
+    void printHelpPrompt() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printHelpPrompt();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "The extension entered after `c/` is not supported.\r\n" +
+                    "Type `help` for a list of supported help extensions.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "The extension entered after `c/` is not supported.\n" +
+                    "Type `help` for a list of supported help extensions.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 }

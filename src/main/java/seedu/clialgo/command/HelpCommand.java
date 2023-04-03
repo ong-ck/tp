@@ -57,14 +57,26 @@ public class HelpCommand extends Command {
         case "topo":
             ui.printHelpTopoSort();
             return;
+        case "export":
+            ui.printHelpExport();
+            return;
         case "list":
             ui.printHelpList();
             return;
-        default:
+        case "exit":
             ui.printHelpExit();
+            return;
+        default:
+            ui.printHelpPrompt();
         }
     }
 
+    /**
+     * An overridden method that checks for equality of <code>HelpCommand </code> objects.
+     *
+     * @param otherCommand The other <code>HelpCommand </code> object to be checked against.
+     * @return A boolean value to determine whether the <code>HelpCommand </code> objects are equal.
+     */
     @Override
     public boolean equals(Command otherCommand) {
         HelpCommand otherHelpCommand = (HelpCommand) otherCommand;
