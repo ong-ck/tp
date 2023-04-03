@@ -246,15 +246,15 @@ take in input from the user and `System.out.println()` method from `java.lang` t
 
 Given below is an example of how the `Ui` works when it is issued a list command.
 
-> **Step 1**: The user enters a command. The full command is read in by the `Ui` using the `getUserInput()` method. The
-> `Ui` uses the `nextLine()` method of the `Scanner` object to read in the user input.
+> **Step 1**: The user enters a command `list`. The full command is read in by the `Ui` using the `getUserInput()` 
+> method. The `Ui` uses the `nextLine()` method of the `Scanner` object to read in the user input.
 
 > **Step 2**: If it encounters a `NoSuchElementException` or `IllegalStateException`, it returns an `EXIT_COMMAND` which
 > safely closes the application. If no exception has occurred, the `Ui` returns the `String` to `CLIAlgo`.
 
-> **Step 3**: When the `ListCommand` is executed, it calls the `printListOfCS2040CFiles()` method of the `Ui`. The `Ui`
-> then iterates through the `ArrayList` provided by the `ListCommand` and prints the `CS2040CFile` label and name on a 
-> new line using the `println()` method from `System.out`.
+> **Step 3**: The successful case allows `CLIAlgo` to execute the `ListCommand`. When executed, it calls the 
+> `printListOfCS2040CFiles()` method of the `Ui`, which then iterates through the `ArrayList` provided by the 
+`ListCommand` and prints the `CS2040CFile` label and name on a newline using the `println()` method from `System.out`.
 
 The following **_Sequence Diagram_** shows how the Ui object is used.
 
