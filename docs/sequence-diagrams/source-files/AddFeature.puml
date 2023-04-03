@@ -4,7 +4,6 @@ hide footbox
 participant ": AddCommand" as a
 participant ": InvalidTopicCommand" as it
 participant ": AddNoteCommand" as an
-participant ": AddCodeCommand" as ac
 participant "fileManager: FileManager" as fm
 participant "topicManager: TopicManager" as tm
 participant ": InvalidCommand" as ic
@@ -16,8 +15,8 @@ activate a
         a -> ui : printFileDoesNotExist()
         activate ui
         return
+        <-- a
     end
-    <-- a
 
     opt topicName is not valid
         a -> it **
@@ -70,8 +69,7 @@ activate a
             return
             destroy an
             <-- a
-        else else
-        end
+    end
     a -> ui : printAddSuccess()
     activate ui
     return
