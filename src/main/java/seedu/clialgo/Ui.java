@@ -74,6 +74,8 @@ public class Ui {
         System.out.println("[remove]: remove CS2040CFile");
         System.out.println("[list]: displays all CS2040CFiles");
         System.out.println("[filter]: filters CS2040CFiles by topic");
+        System.out.println("[topo]: displays all CS2040CFiles before the selected topic");
+        System.out.println("[export]: places CS2040CFiles sorted by filter/topo in a file");
         System.out.println("[exit]: close the application");
         System.out.println();
         System.out.println("For more help on a specific command, type `help c/COMMAND_TYPE`.");
@@ -263,6 +265,20 @@ public class Ui {
         System.out.println("Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',");
         System.out.println("'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',");
         System.out.println("'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.");
+        printDivider();
+    }
+
+    /**
+     * Prints the requirements for using the 'filter' command.
+     * To be called when userInput.equals("help c/filter").
+     */
+    public void printHelpExport() {
+        printDivider();
+        System.out.println("Export your filter/topo sorted files using:");
+        System.out.println();
+        System.out.println("    `export`");
+        System.out.println();
+        System.out.println("Command should only contain one word (i.e. no extensions).");
         printDivider();
     }
 
@@ -478,6 +494,7 @@ public class Ui {
         printDivider();
     }
 
+    //@@author nikkiDEEE
     /** Prints a message to the user if the keyword entered after the `k/` field is neither topic nor importance. */
     public void printInvalidFilterKeyword() {
         printDivider();
@@ -485,4 +502,13 @@ public class Ui {
         System.out.println("Type `help c/filter for more information.");
         printDivider();
     }
+
+    /** Prints a message to the user if the keyword entered after the `c/` field is not a valid help extension. */
+    public void printHelpPrompt() {
+        printDivider();
+        System.out.println("The extension entered after `c/` is not supported.");
+        System.out.println("Type `help` for a list of supported help extensions.");
+        printDivider();
+    }
+    //@@author
 }
