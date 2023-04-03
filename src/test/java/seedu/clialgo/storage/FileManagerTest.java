@@ -7,7 +7,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,9 +18,12 @@ public class FileManagerTest {
      * @param pathToFolder The <code>File</code> representing the folder to delete.
      */
     public void deleteAll(File pathToFolder) {
-        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
-            if (!f.delete()) {
-                System.out.println("Delete failed");
+        File[] files = pathToFolder.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                if (!f.delete()) {
+                    System.out.println("Delete failed");
+                }
             }
         }
         if (!pathToFolder.delete()) {

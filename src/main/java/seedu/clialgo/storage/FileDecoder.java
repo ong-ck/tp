@@ -24,12 +24,12 @@ public class FileDecoder {
     }
 
     public FileType checkFileType() {
-        String pathInTxt = this.currentName + ".txt";
-        String pathInCpp = this.currentName + ".cpp";
+        String pathInTxt = ".\\" + this.currentName + ".txt";
+        String pathInCpp = ".\\" + this.currentName + ".cpp";
 
-        if (new java.io.File(".\\" + pathInTxt).isFile()) {
+        if (new java.io.File(pathInTxt).isFile()) {
             return FileType.TXT;
-        } else if (new java.io.File(".\\" + pathInCpp).isFile()) {
+        } else if (new java.io.File(pathInCpp).isFile()) {
             return FileType.CPP;
         } else {
             return FileType.DOESNOTEXIST;
@@ -46,17 +46,21 @@ public class FileDecoder {
      */
     public boolean decodeString (String encodedCS2040CFile, String topicName) {
         try {
-            String[] splitCS2040CFile = encodedCS2040CFile.split(separator, 4);
-            if (!splitCS2040CFile[2].equals(topicName)) {
+            int maxFields = 4;
+            String[] splitCS2040CFile = encodedCS2040CFile.split(separator, maxFields);
+            String pathToCS2040CFile = splitCS2040CFile[1];
+            String topicOfCS2040CFile = splitCS2040CFile[2];
+            int importanceOfCS2040CFile = Integer.parseInt(splitCS2040CFile[3]);
+            if (!topicOfCS2040CFile.equals(topicName)) {
                 return true;
             }
             this.currentName = splitCS2040CFile[0];
             if (checkFileType() == FileType.CPP) {
-                currentCS2040CFile = new Code(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2],
-                        Integer.parseInt(splitCS2040CFile[3]));
-            } else if (checkFileType() == FileType.TXT){
-                currentCS2040CFile = new Note(this.currentName, splitCS2040CFile[1], splitCS2040CFile[2],
-                        Integer.parseInt(splitCS2040CFile[3]));
+                currentCS2040CFile = new Code(this.currentName, pathToCS2040CFile, topicOfCS2040CFile,
+                        importanceOfCS2040CFile);
+            } else if (checkFileType() == FileType.TXT) {
+                currentCS2040CFile = new Note(this.currentName, pathToCS2040CFile, topicOfCS2040CFile,
+                        importanceOfCS2040CFile);
             } else {
                 return true;
             }
