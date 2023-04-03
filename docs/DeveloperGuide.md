@@ -76,7 +76,10 @@ in the correct sequence and connects them with each other during runtime.
 
 The **_Sequence Diagram_** below shows a high level overview of how the components interact with each other
 
-![](sequence-diagrams/diagrams/Architecture.png "Filter by Topic Sequence Diagram")
+![](sequence-diagrams/diagrams/Architecture.png)
+
+> **! Note**: The lifeline for `CLIAlgo`, `Ui`, `Parser` and `Command` should end at the destroy marker (X) but due to 
+> limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-ui"></div>
@@ -86,7 +89,7 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 
 Here is a class diagram of the `Ui` component which is responsible for handling all interaction with the User.
 
-![](class-diagrams/diagrams/UiClass.png "Parser Class Diagram")
+![](class-diagrams/diagrams/UiClass.png)
    
 The `Ui` component:
 - Reads in the full command keyed in by the user for the `Parser`.
@@ -101,7 +104,7 @@ The `Ui` component:
 Here is a class diagram of the `Parser` component which is responsible for processing commands
 and preparing the appropriate `Command` object.
 
-![](class-diagrams/diagrams/ParserClass.png "Parser Class Diagram")
+![](class-diagrams/diagrams/ParserClass.png)
 
 The `Parser` component:
 - Reads in the full command keyed in by the user through the `Ui` class.
@@ -120,7 +123,7 @@ the `StringManipulation` interface.
 Here is a class diagram of the `FileManager` which facilitates the storage
 function of the application.
 
-![](class-diagrams/diagrams/FileManagerClass.png "FileManager Class Diagram")
+![](class-diagrams/diagrams/FileManagerClass.png)
 
 The `FileManager` component
 - can save each `Topic`'s data as an individual `.txt` file
@@ -139,7 +142,7 @@ initializing the application
 
 Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
 
-![](class-diagrams/diagrams/HelpCommand.png "AddCommand Class Diagram")
+![](class-diagrams/diagrams/HelpCommand.png)
 
 The `HelpCommand` component
 - Provides the user with a list of valid commands in `CLIAlgo`.
@@ -153,7 +156,7 @@ The `HelpCommand` component
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
 
-![](class-diagrams/diagrams/AddClass.png "AddCommand Class Diagram")
+![](class-diagrams/diagrams/AddClass.png)
 
 The `AddCommand` component
 - can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
@@ -168,7 +171,7 @@ The `AddCommand` component
 
 Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile` in `CLIAlgo`.
 
-![](class-diagrams/diagrams/ListClass.png "ListCommand Class Diagram")
+![](class-diagrams/diagrams/ListClass.png)
 
 The `ListCommand` component
 - Prints out all `CS2040CFile` stored in `CLIAlgo` in **any** order.
@@ -185,7 +188,7 @@ The `ListCommand` component
 Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
 the user's specified `keyWord`.
 
-![](class-diagrams/diagrams/FilterClass.png "FilterCommand Class Diagram")
+![](class-diagrams/diagrams/FilterClass.png)
 
 The `FilterCommand` component
 - instantiate a subclass based on the `keyWord` used in its constructor.
@@ -204,7 +207,7 @@ The `FilterCommand` component
 Here is a class diagram of the `TopoCommand` which facilitates the storage
 function of the application.
 
-![](class-diagrams/diagrams/TopoCommandClass.png "TopoCommand Class Diagram")
+![](class-diagrams/diagrams/TopoCommandClass.png)
 
 The `TopoCommand` component
 - can topologically sort `CS2040CFile` objects in a specific `topic` order
@@ -221,7 +224,7 @@ Here is a class diagram of the `Buffer` which facilitates the storing of `CS2040
 returned from `filter` and `topo` commands and the copying of `CS2040CFiles` stored within
 into `.\\export` and opening the folder subsequently if supported by the Operating System.
 
-![](class-diagrams/diagrams/ExportClass.png "Buffer Class Diagram")
+![](class-diagrams/diagrams/ExportClass.png)
 
 The `Buffer` component
 - can store `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
@@ -258,7 +261,10 @@ Given below is an example of how the `Ui` works when it is issued a list command
 
 The following **_Sequence Diagram_** shows how the Ui object is used.
 
-![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
+![](sequence-diagrams/diagrams/Ui.png)
+
+> **! Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-parser"></div>
@@ -296,7 +302,7 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 
 The following **_Sequence Diagram_** shows how the Parser work.
 
-![](sequence-diagrams/diagrams/Parser.png "Parser Sequence Diagram")
+![](sequence-diagrams/diagrams/Parser.png)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-initialize"></div>
@@ -333,7 +339,10 @@ Given below is how the sequence of `initialize()` is run
 
 The following **_Sequence Diagram_** shows how previously saved files are loaded into `CLIAlgo`.
 
-![](sequence-diagrams/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
+![](sequence-diagrams/diagrams/InitializationFileManager.png)
+
+> **! Note**: The lifeline for `Scanner` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-write"></div>
@@ -367,7 +376,10 @@ Given below is how a single `CS2040CFile` is entered into the data file:
 The following **_Sequence Diagram_** shows how a `CS2040CFile` is encoded before being written to 
 the relevant data file.
 
-![](sequence-diagrams/diagrams/AddEntry.png "FileManager Add Entry Sequence Diagram")
+![](sequence-diagrams/diagrams/AddEntry.png)
+
+> **! Note**: The lifeline for `FileWriter` and `BufferedWriter` should end at the destroy marker (X) but due to 
+> limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-help"></div>
@@ -393,7 +405,10 @@ Given below is an example usage of how the `help c/add` mechanism behaves at eac
 
 The following **_Sequence Diagram_** shows how the help operation work.
 
-![](sequence-diagrams/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
+![](sequence-diagrams/diagrams/HelpFeature.png)
+
+> **! Note**: The lifeline for `HelpCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-add"></div>
@@ -439,7 +454,10 @@ Given below is an example usage of how the add feature behaves at each step.
 
 The **_Sequence Diagram_** below shows the `AddCommand` works.
 
-![](sequence-diagrams/diagrams/AddFeature.png "AddFeature Sequence Diagram")
+![](sequence-diagrams/diagrams/AddFeature.png)
+
+> **! Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end at 
+> the destroy marker (X) but due to limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-list"></div>
@@ -469,7 +487,10 @@ Given below is an example usage scenario and how the list feature behaves at eac
 
 The following **_Sequence Diagram_** shows how the list operation work.
 
-![](sequence-diagrams/diagrams/ListFeature.png "Filter by Topic Sequence Diagram")
+![](sequence-diagrams/diagrams/ListFeature.png)
+
+> **! Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-filter"></div>
@@ -517,7 +538,10 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
 
 The following **_Sequence Diagram_** shows how the filter by topic operation work.
 
-![](sequence-diagrams/diagrams/FilterByTopic.png "Filter by Topic Sequence Diagram")
+![](sequence-diagrams/diagrams/FilterByTopic.png)
+
+> **! Note**: The lifeline for `FilterCommand` and `FilterByTopicCommand` should end at the destroy marker (X) but due 
+> to limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-toposort"></div>
@@ -557,7 +581,10 @@ Given below is an example usage scenario and how the TopoSort mechanism behaves 
 
 The following sequence diagram shows how the `TopoCommand` works.
 
-![](sequence-diagrams/diagrams/TopoSort.png "TopoSort Sequence Diagram")
+![](sequence-diagrams/diagrams/TopoSort.png)
+
+> **! Note**: The lifeline for `TopoCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-export"></div>
@@ -584,7 +611,10 @@ the folder by using the default file explorer of the system.
 
 The following sequence diagram shows how the export feature works.
 
-![](sequence-diagrams/diagrams/Export.png "Export Sequence Diagram")
+![](sequence-diagrams/diagrams/Export.png)
+
+> **! Note**: The lifeline for `ExportCommand` and `EmptyBufferCommand` should end at the destroy marker (X) but due to 
+> limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="product-scope"></div>

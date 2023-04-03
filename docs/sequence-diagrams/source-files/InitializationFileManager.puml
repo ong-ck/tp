@@ -1,12 +1,12 @@
 @startuml
 hide footbox
 
-participant TopicManager as tm
-participant FileManager as fm
-participant SingleFile as sf
-participant File as f
-participant Scanner as s
-participant FileDecoder as fd
+participant "topicManager: TopicManager" as tm
+participant "fileManager: FileManager" as fm
+participant ": SingleFile" as sf
+participant ": File" as f
+participant ": Scanner" as s
+participant ": FileDecoder" as fd
 
 -> fm : initialize()
 activate fm
