@@ -245,7 +245,7 @@ public class TopicManager {
         }
 
         topics.get(topicName).removeCS2040CFile(cs2040cFileName);
-        allCS2040CFiles.remove(cs2040cFileName);
+        allCS2040CFiles.remove(cs2040cFileName.toLowerCase());
         return true;
     }
 

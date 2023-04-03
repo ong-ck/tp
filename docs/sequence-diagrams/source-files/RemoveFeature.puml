@@ -1,0 +1,64 @@
+@startuml
+hide footbox
+participant ": RemoveCommand" as r
+participant "topicManager: TopicManager" as tm
+participant "fileManager: FileManager" as fm
+participant "ui: Ui" as ui
+participant "buffer: Buffer" as b
+
+-> r : execute()
+activate r
+    opt topic manager is empty
+        r -> ui : printRemoveFail()
+        activate ui
+        return
+        <-- r
+    end
+
+    opt CS2040CFile is not inside topic manager
+        participant ": NameNotFoundCommand" as nn
+        r -> nn **
+        activate nn
+        return
+
+        r -> nn : execute()
+        activate nn
+        return
+        destroy nn
+        <-- r
+    end
+
+    r -> tm : removeCS2040CFile
+    activate tm
+    return
+
+    opt CS2040CFile NOT successfully removed from topic manager
+        r -> ui : printRemoveFail
+        activate ui
+        return
+        <-- r
+    end
+
+    r -> fm : recreateAll()
+    activate fm
+    return
+
+    r -> fm : deleteEntry()
+    activate fm
+    return
+
+    opt CS2040CFile NOT deleted from file manager
+        <-- r
+    end
+
+    r -> b : updateBuffer()
+    activate b
+    return
+
+    r -> ui : printRemoveSuccess()
+    activate ui
+    return
+    return
+    destroy r
+
+@enduml
