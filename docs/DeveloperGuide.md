@@ -260,6 +260,9 @@ The following **_Sequence Diagram_** shows how the Ui object is used.
 
 ![](sequence-diagrams/diagrams/Ui.png "Ui Sequence Diagram")
 
+> **! Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-parser"></div>
 
@@ -335,6 +338,9 @@ The following **_Sequence Diagram_** shows how previously saved files are loaded
 
 ![](sequence-diagrams/diagrams/InitializationFileManager.png "FileManager Initialization Sequence Diagram")
 
+> **! Note**: The lifeline for `Scanner` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-write"></div>
 
@@ -369,6 +375,9 @@ the relevant data file.
 
 ![](sequence-diagrams/diagrams/AddEntry.png "FileManager Add Entry Sequence Diagram")
 
+> **! Note**: The lifeline for `FileWriter` and `BufferedWriter` should end at the destroy marker (X) but due to 
+> limitation of PlantUML, the lifeline reaches the end of the diagram.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-help"></div>
 
@@ -394,6 +403,9 @@ Given below is an example usage of how the `help c/add` mechanism behaves at eac
 The following **_Sequence Diagram_** shows how the help operation work.
 
 ![](sequence-diagrams/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
+
+> **! Note**: The lifeline for `HelpCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-add"></div>
@@ -441,6 +453,9 @@ The **_Sequence Diagram_** below shows the `AddCommand` works.
 
 ![](sequence-diagrams/diagrams/AddFeature.png "AddFeature Sequence Diagram")
 
+> **! Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end at 
+> the destroy marker (X) but due to limitation of PlantUML, the lifeline reaches the end of the diagram.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-list"></div>
 
@@ -469,7 +484,10 @@ Given below is an example usage scenario and how the list feature behaves at eac
 
 The following **_Sequence Diagram_** shows how the list operation work.
 
-![](sequence-diagrams/diagrams/ListFeature.png "Filter by Topic Sequence Diagram")
+![](sequence-diagrams/diagrams/ListFeature.png "List Sequence Diagram")
+
+> **! Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-filter"></div>
@@ -519,6 +537,9 @@ The following **_Sequence Diagram_** shows how the filter by topic operation wor
 
 ![](sequence-diagrams/diagrams/FilterByTopic.png "Filter by Topic Sequence Diagram")
 
+> **! Note**: The lifeline for `FilterCommand` and `FilterByTopicCommand` should end at the destroy marker (X) but due 
+> to limitation of PlantUML, the lifeline reaches the end of the diagram.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-toposort"></div>
 
@@ -559,6 +580,9 @@ The following sequence diagram shows how the `TopoCommand` works.
 
 ![](sequence-diagrams/diagrams/TopoSort.png "TopoSort Sequence Diagram")
 
+> **! Note**: The lifeline for `TopoCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> the lifeline reaches the end of the diagram.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-export"></div>
 
@@ -585,6 +609,9 @@ the folder by using the default file explorer of the system.
 The following sequence diagram shows how the export feature works.
 
 ![](sequence-diagrams/diagrams/Export.png "Export Sequence Diagram")
+
+> **! Note**: The lifeline for `ExportCommand` and `EmptyBufferCommand` should end at the destroy marker (X) but due to 
+> limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="product-scope"></div>
