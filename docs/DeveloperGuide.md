@@ -462,13 +462,13 @@ Given below is an example usage of how the add feature behaves at each step.
 > **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the
 > `Topic Manager` object, which means that there are duplicates.
 
-> **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. If the file to be added
-> is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked. Otherwise, if the
-> file to be added is a `.cpp` file, a new `AddCodeCommand` object would then be created its `execute()` method invoked.
+> **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. Given that the file to 
+> be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked.
 
-> **Step 8**: The respective `execute()` methods of either the `AddCodeCommand` object or the `AddNoteCommand` object,
-> will then handle adding of the file into the `File Mnanager` object by calling the `addEntry()` method and adding the
->  file into the `Topic Manager` object using the  `addCS2040CFile` method.
+> **Step 8**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
+> adding of the file into the `File Mnanager` object by calling the `addEntry()` method. This updates `CLIAlgo` data
+> file to include this new CS2040CFile. Additionally, the CS2040CFile is added into the `Topic Manager` object using 
+> the `addCS2040CFile` method, to keep track of the names of the CS2040CFiles that the user has added. 
 
 The **_Sequence Diagram_** below shows how the `AddCommand` works.
 
@@ -506,7 +506,8 @@ Given below is an example usage of how the remove feature behaves at each step.
 > **Step 6**: If the CS2040CFile is unsuccessfully removed from the `Topic Manager` object, the `printRemoveFail()` 
 > method is invoked on the `Ui` object.
 
-> **Step 7**: The `deleteEntry()` method of `File Maneger` object is invoked.
+> **Step 7**: The `deleteEntry()` method of `File Maneger` object is invoked. This updates the `CLIAlgo` data file to
+> no longer contain the CS2040CFile that is being removed, and `CLIAlgo` stops tracking that CS2040CFile.
 
 > **Step 8**: If the CS2040CFile is not deleted successfully from `File Manager` object, the control is returned back to
 > `CLIAlgo` object.
