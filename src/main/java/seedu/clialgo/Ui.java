@@ -1,5 +1,8 @@
 package seedu.clialgo;
 
+import seedu.clialgo.file.CS2040CFile;
+import seedu.clialgo.file.Code;
+
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -10,6 +13,12 @@ public class Ui {
 
     private static final String DIVIDER = "======================================================";
     private static final String EXIT_COMMAND = "exit";
+    private static final String LEFT_SQUARE_BRACKET = " [";
+    private static final String RIGHT_SQUARE_BRACKET = "]";
+    private static final String DOT_SPACE = ". ";
+    private static final String NOTE_LABEL = "[NOTE] ";
+    private static final String CODE_LABEL = "[CODE] ";
+    private static final int SERIAL_NUMBER_START = 1;
     private final Scanner in;
 
     /** Ui constructor */
@@ -431,6 +440,36 @@ public class Ui {
         System.out.println(importance + " is not in the valid 1-10 range for importance.");
         printDivider();
     }
+
+    /** Prints a message to the user if the keyword entered after the `k/` field is neither topic nor importance. */
+    public void printInvalidFilterKeyword() {
+        printDivider();
+        System.out.println("Invalid keyword! Only `topic` and `importance` are supported keywords.");
+        System.out.println("Type `help c/filter for more information.");
+        printDivider();
+    }
+
+    /** Prints a message to the user if the keyword entered after the `c/` field is not a valid help extension. */
+    public void printHelpPrompt() {
+        printDivider();
+        System.out.println("The extension entered after `c/` is not supported.");
+        System.out.println("Type `help` for a list of supported help extensions.");
+        printDivider();
+    }
+
+    public void printAllFilesWithImportance(ArrayList<CS2040CFile> cs2040cFiles) {
+        int serialNumber = SERIAL_NUMBER_START;
+        for (CS2040CFile cs2040cFile : cs2040cFiles) {
+            String cs2040cFileType = NOTE_LABEL;
+            if (cs2040cFile instanceof Code) {
+                cs2040cFileType = CODE_LABEL;
+            }
+            System.out.println(serialNumber + DOT_SPACE + cs2040cFileType + cs2040cFile.getName() + LEFT_SQUARE_BRACKET
+                    + cs2040cFile.getImportance() + RIGHT_SQUARE_BRACKET);
+            ++serialNumber;
+        }
+        printDivider();
+    }
     //@@author
 
     //@@author heejet
@@ -441,16 +480,16 @@ public class Ui {
      */
     public void printListOfCS2040CFiles(ArrayList<String> cs2040cFiles) {
         assert !cs2040cFiles.isEmpty();
-        int serialNumber = 1;
+        int serialNumber = SERIAL_NUMBER_START;
         for (String cs2040cFile : cs2040cFiles) {
-            System.out.println(serialNumber + ". " + cs2040cFile);
+            System.out.println(serialNumber + DOT_SPACE + cs2040cFile);
             serialNumber++;
         }
     }
 
     /** Prints the topic name enclosed with brackets. */
     public void printWithBox(String topicName) {
-        System.out.println("[" + topicName + "]");
+        System.out.println(LEFT_SQUARE_BRACKET + topicName + RIGHT_SQUARE_BRACKET);
     }
     //@@author
 
@@ -459,15 +498,15 @@ public class Ui {
      * Prints the CS2040CFiles from a provided ArrayList with the index continuing from a given serial number.
      *
      * @param cs2040cFiles An ArrayList containing the names and labels of all CS2040C files to be printed
-     * @param currentserialNumber The serial number of the note for the index to start printing from.
+     * @param currentSerialNumber The serial number of the note for the index to start printing from.
      * @return The serial number of the last note printed.
      */
-    public int printListOfCS2040CFilesWithGivenIndex(ArrayList<String> cs2040cFiles, int currentserialNumber) {
+    public int printListOfCS2040CFilesWithGivenIndex(ArrayList<String> cs2040cFiles, int currentSerialNumber) {
         assert !cs2040cFiles.isEmpty();
-        assert currentserialNumber >= 1;
-        int serialNumber = currentserialNumber;
+        assert currentSerialNumber >= SERIAL_NUMBER_START;
+        int serialNumber = currentSerialNumber;
         for (String cs2040cFile : cs2040cFiles) {
-            System.out.println(serialNumber + ". " + cs2040cFile);
+            System.out.println(serialNumber + DOT_SPACE + cs2040cFile);
             serialNumber++;
         }
         return serialNumber;
@@ -498,22 +537,4 @@ public class Ui {
         System.out.println("Note that the corrupted entries are discarded!");
         printDivider();
     }
-
-    //@@author nikkiDEEE
-    /** Prints a message to the user if the keyword entered after the `k/` field is neither topic nor importance. */
-    public void printInvalidFilterKeyword() {
-        printDivider();
-        System.out.println("Invalid keyword! Only `topic` and `importance` are supported keywords.");
-        System.out.println("Type `help c/filter for more information.");
-        printDivider();
-    }
-
-    /** Prints a message to the user if the keyword entered after the `c/` field is not a valid help extension. */
-    public void printHelpPrompt() {
-        printDivider();
-        System.out.println("The extension entered after `c/` is not supported.");
-        System.out.println("Type `help` for a list of supported help extensions.");
-        printDivider();
-    }
-    //@@author
 }
