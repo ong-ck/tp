@@ -37,6 +37,8 @@ class HelpCommandTest {
                     "[remove]: remove CS2040CFile\r\n" +
                     "[list]: displays all CS2040CFiles\r\n" +
                     "[filter]: filters CS2040CFiles by topic\r\n" +
+                    "[topo]: displays all CS2040CFiles before the selected topic\r\n" +
+                    "[export]: places CS2040CFiles sorted by filter/topo in a file\r\n" +
                     "[exit]: close the application\r\n" +
                     "\r\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`.\r\n" +
@@ -49,6 +51,8 @@ class HelpCommandTest {
                     "[remove]: remove CS2040CFile\n" +
                     "[list]: displays all CS2040CFiles\n" +
                     "[filter]: filters CS2040CFiles by topic\n" +
+                    "[topo]: displays all CS2040CFiles before the selected topic\n" +
+                    "[export]: places CS2040CFiles sorted by filter/topo in a file\n" +
                     "[exit]: close the application\n" +
                     "\n" +
                     "For more help on a specific command, type `help c/COMMAND_TYPE`.\n" +
@@ -231,6 +235,82 @@ class HelpCommandTest {
         }
 
         new HelpCommand("list").execute(topicManager, ui, fileManager, buffer);
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
+    }
+
+    @Test
+    void execute_topoCommandInput_expectTopoHelpMessage() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Print all files before the user-defined filename using:\r\n" +
+                    "\r\n" +
+                    "    `topo n/NAME`\r\n" +
+                    "\r\n" +
+                    "NAME: String name of the CS2040CFile file.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Print all files before the user-defined filename using:\n" +
+                    "\n" +
+                    "    `topo n/NAME`\n" +
+                    "\n" +
+                    "NAME: String name of the CS2040CFile file.\n" +
+                    "======================================================\n";
+        }
+
+        new HelpCommand("topo").execute(topicManager, ui, fileManager, buffer);
+        assertEquals(expectedOutput, actualOutput.toString());
+        FileManager.deleteAll(new File(testDataPath));
+    }
+
+    @Test
+    void execute_exportCommandInput_expectExportHelpMessage() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        String testDataPath = ".\\testdata";
+        TopicManager topicManager = new TopicManager();
+        Ui ui = new Ui();
+        FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
+        fileManager.initialize();
+        Buffer buffer = Buffer.getInstance();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Export your filter/topo sorted files using:\r\n" +
+                    "\r\n" +
+                    "    `export`\r\n" +
+                    "\r\n" +
+                    "Command should only contain one word (i.e. no extensions).\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Export your filter/topo sorted files using:\n" +
+                    "\n" +
+                    "    `export`\n" +
+                    "\n" +
+                    "Command should only contain one word (i.e. no extensions).\n" +
+                    "======================================================\n";
+        }
+
+        new HelpCommand("export").execute(topicManager, ui, fileManager, buffer);
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
     }
