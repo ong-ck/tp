@@ -78,6 +78,9 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 
 ![](sequence-diagrams/diagrams/Architecture.png)
 
+> **! Note**: The lifeline for `CLIAlgo`, `Ui`, `Parser` and `Command` should end at the destroy marker (X) but due to 
+> limitation of PlantUML, the lifeline reaches the end of the diagram.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-ui"></div>
 
