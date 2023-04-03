@@ -34,7 +34,7 @@ public class FilterByTopicCommand extends FilterCommand {
         for (Map.Entry<String, ArrayList<String>> entry : cs2040cFiles.entrySet()) {
             ArrayList<String> currentTopicCS2040CFiles = entry.getValue();
             String topicName = entry.getKey();
-            System.out.println("[" + topicName + "]");
+            ui.printWithBox(topicName);
             ui.printListOfCS2040CFiles(currentTopicCS2040CFiles);
         }
         ui.printDivider();
@@ -49,7 +49,7 @@ public class FilterByTopicCommand extends FilterCommand {
     private void printSingleTopic(TopicManager topicManager, Ui ui) {
         ArrayList<String> toPrintCS2040CFiles = topicManager.getCS2040CFilesByTopicToPrint(this.topic);
         ui.printFilterSuccess();
-        System.out.println("[" + this.topic + "]");
+        ui.printWithBox(this.topic);
         ui.printListOfCS2040CFiles(toPrintCS2040CFiles);
         ui.printDivider();
     }

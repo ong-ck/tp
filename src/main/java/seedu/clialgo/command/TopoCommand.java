@@ -54,7 +54,7 @@ public class TopoCommand extends Command {
                 continue;
             }
 
-            System.out.println("[" + topicName + "]");
+            ui.printWithBox(topicName);
 
             currentSerialNumber = ui.printListOfCS2040CFilesWithGivenIndex(listOfFiles, currentSerialNumber);
             files.addAll(topicManager.getTopics().get(topicName).getCS2040CFilesAsArray());

@@ -1,5 +1,5 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+hide footbox
 
 participant ": TopoCommand" as TopoCommand
 participant "topicManager: TopicManager" as TopicManager

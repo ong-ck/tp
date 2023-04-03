@@ -447,6 +447,11 @@ public class Ui {
             serialNumber++;
         }
     }
+
+    /** Prints the topic name enclosed with brackets. */
+    public void printWithBox(String topicName) {
+        System.out.println("[" + topicName + "]");
+    }
     //@@author
 
     //@@author ong-ck
