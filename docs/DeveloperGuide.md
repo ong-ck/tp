@@ -517,7 +517,7 @@ Given below is an example usage of how the remove feature behaves at each step.
 
 The **_Sequence Diagram_** below shows how the `RemoveCommand` works.
 
-![](sequence-diagrams/diagrams/RemoveFeature.png "RemoveFeature Sequence Diagram")
+![](sequence-diagrams/diagrams/RemoveFeature.png)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-list"></div>
