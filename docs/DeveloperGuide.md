@@ -16,6 +16,7 @@ original source as well}
   - [Storage](#design-storage)
   - [Help](#design-help)
   - [Add](#design-add)
+  - [Remove](#design-remove)
   - [List](#design-list)
   - [Filter](#design-filter)
   - [TopoSort](#design-toposort)
@@ -25,6 +26,7 @@ original source as well}
   - [Initializing previous saved data feature](#implementation-initialize)
   - [Help Feature](#implementation-help)
   - [Add CS2040CFile feature](#implementation-add)
+  - [Remove CS2040CFile feature](#implementation-remove)
   - [List feature](#implementation-list)
   - [Filter by keyword feature](#implementation-filter)
   - [TopoSort feature](#implementation-toposort)
@@ -157,6 +159,22 @@ The `AddCommand` component
 - can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
 - can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
 - can ensure that there are no files with repeated names such that all names of files added are unique
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-remove"></div>
+
+### Remove
+[**API**](../src/main/java/seedu/clialgo/command/RemoveCommand.java) : `RemoveCommand.java`
+
+Here is a class diagram of the `RemoveCommand` which is responsible for removing either code files or note files
+
+![](class-diagrams/diagrams/RemoveClass.png "RemoveCommand Class Diagram")
+
+The `RemoveCommand` component
+- can check if any CS2040CFile currently exists inside topic manager
+- can if the CS2040CFile to be removed exists inside topic manager
+- can retrieve the topic name of the CS2040CFile to be removed
+- removes the CS2040CFile from our topic manager and file manager
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-list"></div>
@@ -363,9 +381,50 @@ Given below is an example usage of how the add feature behaves at each step.
 > will then handle adding of the file into the `File Mnanager` object by calling the `addEntry()` method and adding the
 >  file into the `Topic Manager` object using the  `addCS2040CFile` method.
 
-The **_Sequence Diagram_** below shows the `AddCommand` works.
+The **_Sequence Diagram_** below shows how the `AddCommand` works.
 
 ![](sequence-diagrams/diagrams/AddFeature.png "AddFeature Sequence Diagram")
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-remove"></div>
+
+### Remove CS2040CFile feature
+#### Current Implementation
+
+The add mechanism is facilitated by "RemoveCommand". It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` function, 
+
+Given below is an example usage of how the remove feature behaves at each step.
+
+> **Step 1**: The user enters the remove command, which invokes the `getUserInput()` method of `Ui` object and returns 
+> the user input to the `CLIAlgo` object which has been created before. After which, it invokes the `parse()` method of
+> the `Parser` object and determines that it is remove command and creates a new `RemoveCommand` object.
+
+> **Step 2**: The `CLIAlgo` object than invokes the `execute()` method of the `RemoveCommand` object.
+
+> **Step 3**: The `Topic Manager` object is checked, which invokes the `printRemoveFail()` method of the `Ui` object if
+> `Topic Manager` object is empty.
+
+> **Step 4**: The `Topic Manager` object is checked to see if the CS2040CFile to be removed exists inside the 
+> `Topic Manager` object. If it is not, a new NameNotFoundCommand object is created and executed.
+
+> **Step 5**: After steps 3 and 4 checks are done, the `removeCS2040CFile()` method is invoked on the `Topic Manager`
+> object.
+
+> **Step 6**: If the CS2040CFile is unsuccessfully removed from the `Topic Manager` object, the `printRemoveFail()` 
+> method is invoked on the `Ui` object.
+
+> **Step 7**: The `deleteEntry()` method of `File Maneger` object is invoked.
+
+> **Step 8**: If the CS2040CFile is not deleted successfully from `File Manager` object, the control is returned back to
+> `CLIAlgo` object.
+
+> **Step 9**: Otherwise, the `updateBuffer()` method of the `Buffer` object is invoked to clear the buffer, and the
+> `printRemoveSuccess()` method of the `Ui` object is invoked.
+
+The **_Sequence Diagram_** below shows how the `RemoveCommand` works.
+
+![](sequence-diagrams/diagrams/RemoveFeature.png "RemoveFeature Sequence Diagram")
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-list"></div>
