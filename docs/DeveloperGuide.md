@@ -391,7 +391,7 @@ Given below is an example usage of how the `help c/add` mechanism behaves at eac
 
 > **Step 4**: HelpCommand object is destroyed and control is handed back to the `CLIAlgo`.
 
-The following **_Sequence Diagram_** shows how the help operation work.
+The following **_Sequence Diagram_** shows how the help operation works.
 
 ![](sequence-diagrams/diagrams/HelpFeature.png "HelpCommand Sequence Diagram")
 
