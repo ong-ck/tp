@@ -35,6 +35,7 @@ activate ListCommand
         end
     return
 return
+
 destroy ListCommand
 
 @enduml
