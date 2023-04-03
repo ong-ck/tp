@@ -3,7 +3,6 @@ hide footbox
 participant ": AddCommand" as a
 participant ": InvalidTopicCommand" as it
 participant ": AddNoteCommand" as an
-participant ": AddCodeCommand" as ac
 participant "fileManager: FileManager" as fm
 participant "topicManager: TopicManager" as tm
 participant ": InvalidCommand" as ic
@@ -69,41 +68,6 @@ activate a
             return
             destroy an
             <-- a
-
-
-    else else if: CS2040CFile type is cpp
-         a -> ac **
-         activate ac
-         return
-
-         a -> ac : execute()
-         activate ac
-         ac -> fm : addEntry()
-         activate fm
-         return isAddedToFile: boolean
-
-         opt CS2040CFile is not added to fileManager
-             ac --> a
-             <-- a
-         end
-
-        ac -> tm : addCS2040CFile()
-        activate tm
-        return isAdded: boolean
-
-        opt CS2040CFile is not added to topicManager
-            ac -> ic **
-            activate ic
-        return
-
-        ac -> ic : execute()
-            activate ic
-            return
-            destroy ic
-        end
-        return
-        destroy ac
-        <-- a
     end
     a -> ui : printAddSuccess()
     activate ui
