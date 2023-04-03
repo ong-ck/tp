@@ -10,6 +10,17 @@ participant "System.out" as System
 activate Ui
     Ui -> Scanner: nextLine()
     activate Scanner
+
+    break NoSuchElementException
+    Ui <-- Scanner : printReadFail()
+    <-- Ui : fullCommand: EXIT_COMMAND
+    end
+
+    break IllegalStateException
+    Ui <-- Scanner : printReadFail()
+    <-- Ui : fullCommand: EXIT_COMMAND
+    end
+
     return :String
 return fullCommand: String
 
