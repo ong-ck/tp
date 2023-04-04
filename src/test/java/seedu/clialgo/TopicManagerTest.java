@@ -297,7 +297,7 @@ class TopicManagerTest {
         for (Map.Entry<String, ArrayList<String>> entry : actualOutput.entrySet()) {
             ArrayList<String> currentCS2040CFiles = entry.getValue();
             for (String cs2040cFileName: currentCS2040CFiles) {
-                assertTrue(fileManagerStub.isPresent(cs2040cFileName));
+                assertTrue(fileManagerStub.isLabelledFileNamePresent(cs2040cFileName));
             }
         }
     }
@@ -326,6 +326,19 @@ class TopicManagerTest {
                     assertTrue(fileManagerStub.isPartOfTopoOrder(topicName, fileName));
                 }
             }
+        }
+    }
+
+    @Test
+    void getAllFilesAsFiles() {
+        TopicManager topicManager = new TopicManager();
+        FileManagerStub fileManagerStub = new FileManagerStub();
+        topicManager.initialize(fileManagerStub.decodeAll());
+
+        ArrayList<CS2040CFile> actualOutput = topicManager.getAllFilesAsFiles();
+
+        for (CS2040CFile file: actualOutput) {
+            assertTrue(fileManagerStub.isFileNamePresent(file.getName()));
         }
     }
 }

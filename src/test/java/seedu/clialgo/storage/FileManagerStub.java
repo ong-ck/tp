@@ -15,6 +15,8 @@ public class FileManagerStub {
     private HashMap<String, Topic> topics;
     private HashSet<String> allLabelledCS2040CFileNames;
 
+    private HashSet<String> allCS2040CFileNames;
+
     private HashMap<String, HashSet<String>> topoOrderCS2040CFiles;
 
     public FileManagerStub() {
@@ -74,6 +76,13 @@ public class FileManagerStub {
                 )
         );
 
+        this.allCS2040CFileNames = new HashSet<>(
+                Arrays.asList(
+                        "Bubble Sort Note", "Merge Sort Code", "Quick Sort Note", "BST Note", "AVL Code",
+                        "Bellman Ford Note", "Dijkstra Code"
+                )
+        );
+
         topoOrderCS2040CFiles = new HashMap<>();
         topoOrderCS2040CFiles.put("SORTING", new HashSet<>(
                 Arrays.asList(
@@ -100,8 +109,12 @@ public class FileManagerStub {
         return this.topics;
     }
 
-    public boolean isPresent(String labelledCS2040CFileName) {
+    public boolean isLabelledFileNamePresent(String labelledCS2040CFileName) {
         return allLabelledCS2040CFileNames.contains(labelledCS2040CFileName);
+    }
+
+    public boolean isFileNamePresent(String cs2040cFileName) {
+        return allCS2040CFileNames.contains(cs2040cFileName);
     }
 
     public boolean isPartOfTopoOrder(String topicName, String cs2040cFileName) {
