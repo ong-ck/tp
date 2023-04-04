@@ -16,6 +16,7 @@ original source as well}
   - [Storage](#design-storage)
   - [Help](#design-help)
   - [Add](#design-add)
+  - [Remove](#design-remove)
   - [List](#design-list)
   - [Filter](#design-filter)
   - [TopoSort](#design-toposort)
@@ -27,6 +28,7 @@ original source as well}
   - [Writing a CS2040CFile to data file](#implementation-write)
   - [Help Feature](#implementation-help)
   - [Add CS2040CFile feature](#implementation-add)
+  - [Remove CS2040CFile feature](#implementation-remove)
   - [List feature](#implementation-list)
   - [Filter by keyword feature](#implementation-filter)
   - [TopoSort feature](#implementation-toposort)
@@ -164,6 +166,22 @@ The `AddCommand` component
 - can ensure that there are no files with repeated names such that all names of files added are unique
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-remove"></div>
+
+### Remove
+[**API**](../src/main/java/seedu/clialgo/command/RemoveCommand.java) : `RemoveCommand.java`
+
+Here is a class diagram of the `RemoveCommand` which is responsible for removing either code files or note files
+
+![](class-diagrams/diagrams/RemoveClass.png "RemoveCommand Class Diagram")
+
+The `RemoveCommand` component
+- can check if any CS2040CFile currently exists inside topic manager
+- can if the CS2040CFile to be removed exists inside topic manager
+- can retrieve the topic name of the CS2040CFile to be removed
+- removes the CS2040CFile from our topic manager and file manager
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-list"></div>
 
 ### List
@@ -249,15 +267,15 @@ take in input from the user and `System.out.println()` method from `java.lang` t
 
 Given below is an example of how the `Ui` works when it is issued a list command.
 
-> **Step 1**: The user enters a command. The full command is read in by the `Ui` using the `getUserInput()` method. The
-> `Ui` uses the `nextLine()` method of the `Scanner` object to read in the user input.
+> **Step 1**: The user enters a command `list`. The full command is read in by the `Ui` using the `getUserInput()` 
+> method. The `Ui` uses the `nextLine()` method of the `Scanner` object to read in the user input.
 
 > **Step 2**: If it encounters a `NoSuchElementException` or `IllegalStateException`, it returns an `EXIT_COMMAND` which
 > safely closes the application. If no exception has occurred, the `Ui` returns the `String` to `CLIAlgo`.
 
-> **Step 3**: When the `ListCommand` is executed, it calls the `printListOfCS2040CFiles()` method of the `Ui`. The `Ui`
-> then iterates through the `ArrayList` provided by the `ListCommand` and prints the `CS2040CFile` label and name on a 
-> new line using the `println()` method from `System.out`.
+> **Step 3**: The successful case allows `CLIAlgo` to execute the `ListCommand`. When executed, it calls the 
+> `printListOfCS2040CFiles()` method of the `Ui`, which then iterates through the `ArrayList` provided by the 
+`ListCommand` and prints the `CS2040CFile` label and name on a newline using the `println()` method from `System.out`.
 
 The following **_Sequence Diagram_** shows how the Ui object is used.
 
@@ -403,7 +421,7 @@ Given below is an example usage of how the `help c/add` mechanism behaves at eac
 
 > **Step 4**: HelpCommand object is destroyed and control is handed back to the `CLIAlgo`.
 
-The following **_Sequence Diagram_** shows how the help operation work.
+The following **_Sequence Diagram_** shows how the help operation works.
 
 ![](sequence-diagrams/diagrams/HelpFeature.png)
 
@@ -444,20 +462,62 @@ Given below is an example usage of how the add feature behaves at each step.
 > **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the
 > `Topic Manager` object, which means that there are duplicates.
 
-> **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. If the file to be added
-> is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked. Otherwise, if the
-> file to be added is a `.cpp` file, a new `AddCodeCommand` object would then be created its `execute()` method invoked.
+> **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. Given that the file to 
+> be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked.
 
-> **Step 8**: The respective `execute()` methods of either the `AddCodeCommand` object or the `AddNoteCommand` object,
-> will then handle adding of the file into the `File Mnanager` object by calling the `addEntry()` method and adding the
->  file into the `Topic Manager` object using the  `addCS2040CFile` method.
+> **Step 8**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
+> adding of the file into the `File Mnanager` object by calling the `addEntry()` method. This updates `CLIAlgo` data
+> file to include this new CS2040CFile. Additionally, the CS2040CFile is added into the `Topic Manager` object using 
+> the `addCS2040CFile` method, to keep track of the names of the CS2040CFiles that the user has added. 
 
-The **_Sequence Diagram_** below shows the `AddCommand` works.
+The **_Sequence Diagram_** below shows how the `AddCommand` works.
 
 ![](sequence-diagrams/diagrams/AddFeature.png)
 
 > **! Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end at 
 > the destroy marker (X) but due to limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-remove"></div>
+
+### Remove CS2040CFile feature
+#### Current Implementation
+
+The add mechanism is facilitated by "RemoveCommand". It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` function, 
+
+Given below is an example usage of how the remove feature behaves at each step.
+
+> **Step 1**: The user enters the remove command, which invokes the `getUserInput()` method of `Ui` object and returns 
+> the user input to the `CLIAlgo` object which has been created before. After which, it invokes the `parse()` method of
+> the `Parser` object and determines that it is remove command and creates a new `RemoveCommand` object.
+
+> **Step 2**: The `CLIAlgo` object than invokes the `execute()` method of the `RemoveCommand` object.
+
+> **Step 3**: The `Topic Manager` object is checked, which invokes the `printRemoveFail()` method of the `Ui` object if
+> `Topic Manager` object is empty.
+
+> **Step 4**: The `Topic Manager` object is checked to see if the CS2040CFile to be removed exists inside the 
+> `Topic Manager` object. If it is not, a new NameNotFoundCommand object is created and executed.
+
+> **Step 5**: After steps 3 and 4 checks are done, the `removeCS2040CFile()` method is invoked on the `Topic Manager`
+> object.
+
+> **Step 6**: If the CS2040CFile is unsuccessfully removed from the `Topic Manager` object, the `printRemoveFail()` 
+> method is invoked on the `Ui` object.
+
+> **Step 7**: The `deleteEntry()` method of `File Maneger` object is invoked. This updates the `CLIAlgo` data file to
+> no longer contain the CS2040CFile that is being removed, and `CLIAlgo` stops tracking that CS2040CFile.
+
+> **Step 8**: If the CS2040CFile is not deleted successfully from `File Manager` object, the control is returned back to
+> `CLIAlgo` object.
+
+> **Step 9**: Otherwise, the `updateBuffer()` method of the `Buffer` object is invoked to clear the buffer, and the
+> `printRemoveSuccess()` method of the `Ui` object is invoked.
+
+The **_Sequence Diagram_** below shows how the `RemoveCommand` works.
+
+![](sequence-diagrams/diagrams/RemoveFeature.png)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-list"></div>
