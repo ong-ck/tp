@@ -52,15 +52,11 @@ public class SingleFileTest {
 
     @Test
     void isCorruptedEntryDiscarded_expectTrue() {
-        if (!new File(path).mkdir()) {
-            System.out.println("ERROR 1");
-        }
+        assert new File(path).mkdir();
         String pathToTest = path + "\\test.txt";
         File file = new File(pathToTest);
         try {
-            if (!file.createNewFile()) {
-                System.out.println("ERROR 4");
-            }
+            assert file.createNewFile();
             SingleFile singleFile = new SingleFile(file, "test", fileDecoder);
             FileWriter fileWriter = new FileWriter(file);
             String corruptedString = "corrupted";
@@ -68,7 +64,7 @@ public class SingleFileTest {
             fileWriter.close();
             singleFile.readFile();
         } catch (IOException e) {
-            System.out.println("ERROR 3");
+            System.out.println("ERROR");
         }
 
         String os = System.getProperty("os.name");
