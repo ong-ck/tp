@@ -2,7 +2,7 @@ package seedu.clialgo;
 
 import seedu.clialgo.file.CS2040CFile;
 
-import java.awt.HeadlessException;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
