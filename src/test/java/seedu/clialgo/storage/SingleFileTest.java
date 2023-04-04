@@ -58,9 +58,7 @@ public class SingleFileTest {
         String pathToTest = path + "\\test.txt";
         File file = new File(pathToTest);
         try {
-            if (!file.createNewFile()) {
-                System.out.println("ERROR 2");
-            }
+            assert file.createNewFile();
             SingleFile singleFile = new SingleFile(file, "test", fileDecoder);
             FileWriter fileWriter = new FileWriter(file);
             String corruptedString = "corrupted";
