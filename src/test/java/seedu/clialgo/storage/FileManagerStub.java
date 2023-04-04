@@ -15,6 +15,8 @@ public class FileManagerStub {
     private HashMap<String, Topic> topics;
     private HashSet<String> allLabelledCS2040CFileNames;
 
+    private HashMap<String, HashSet<String>> topoOrderCS2040CFiles;
+
     public FileManagerStub() {
         HashMap<String, CS2040CFile> sortingCS2040CFiles = new HashMap<>(
                 Map.of(
@@ -28,15 +30,15 @@ public class FileManagerStub {
         );
         Topic sortingTopic = new Topic("SORTING", sortingCS2040CFiles);
 
-        HashMap<String, CS2040CFile> binaryHeapCS2040CFiles = new HashMap<>(
+        HashMap<String, CS2040CFile> binaryTreeCS2040CFiles = new HashMap<>(
                 Map.of(
                         "BST Note",
-                        new Note("BST Note", "BST Note.txt", "BINARY_HEAP", 5),
+                        new Note("BST Note", "BST Note.txt", "BINARY_SEARCH_TREE", 5),
                         "AVL Code",
-                        new Code("AVL Code", "AVL Code.cpp", "BINARY_HEAP", 8)
+                        new Code("AVL Code", "AVL Code.cpp", "BINARY_SEARCH_TREE", 8)
                 )
         );
-        Topic binaryHeapTopic = new Topic("BINARY_HEAP", binaryHeapCS2040CFiles);
+        Topic binaryTreeTopic = new Topic("BINARY_SEARCH_TREE", binaryTreeCS2040CFiles);
 
         HashMap<String, CS2040CFile> shortestPathCS2040CFiles = new HashMap<>(
                 Map.of(
@@ -51,8 +53,19 @@ public class FileManagerStub {
 
         this.topics = new HashMap<>();
         this.topics.put("SORTING", sortingTopic);
-        this.topics.put("BINARY_HEAP", binaryHeapTopic);
+        this.topics.put("BINARY_SEARCH_TREE", binaryTreeTopic);
         this.topics.put("SS_SHORTEST_PATH", shortestPathTopic);
+
+        // Empty Topics
+        ArrayList<String> emptyTopicNames = new ArrayList<>(
+                Arrays.asList(
+                        "LINKED_LIST", "GRAPH_STRUCTURES", "HASH_TABLE", "GRAPH_TRAVERSAL", "BINARY_HEAP",
+                        "UNION_FIND_DS", "MINIMUM_SPANNING_TREE"
+                )
+        );
+        for (String emptyTopicName: emptyTopicNames) {
+            this.topics.put(emptyTopicName, new Topic(emptyTopicName));
+        }
 
         this.allLabelledCS2040CFileNames = new HashSet<>(
                 Arrays.asList(
@@ -60,6 +73,27 @@ public class FileManagerStub {
                         "[NOTE] BST Note", "[CODE] AVL Code", "[NOTE] Bellman Ford Note", "[CODE] Dijkstra Code"
                 )
         );
+
+        topoOrderCS2040CFiles = new HashMap<>();
+        topoOrderCS2040CFiles.put("SORTING", new HashSet<>(
+                Arrays.asList(
+                        "[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note"
+                )
+        ));
+
+        topoOrderCS2040CFiles.put("BINARY_SEARCH_TREE", new HashSet<>(
+                Arrays.asList(
+                        "[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note",
+                        "[NOTE] BST Note", "[CODE] AVL Code"
+                )
+        ));
+
+        topoOrderCS2040CFiles.put("SS_SHORTEST_PATH", new HashSet<>(
+                Arrays.asList(
+                        "[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note",
+                        "[NOTE] BST Note", "[CODE] AVL Code", "[NOTE] Bellman Ford Note", "[CODE] Dijkstra Code"
+                )
+        ));
     }
 
     public HashMap<String, Topic> decodeAll() {
@@ -68,5 +102,9 @@ public class FileManagerStub {
 
     public boolean isPresent(String labelledCS2040CFileName) {
         return allLabelledCS2040CFileNames.contains(labelledCS2040CFileName);
+    }
+
+    public boolean isPartOfTopoOrder(String topicName, String cs2040cFileName) {
+        return topoOrderCS2040CFiles.get(topicName).contains(cs2040cFileName);
     }
 }
