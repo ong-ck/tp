@@ -194,7 +194,7 @@ public class TopicManager {
         this.topics = topics;
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic topic = entry.getValue();
-            if (topic == null) {
+            if (topic.isEmpty()) {
                 continue;
             }
             for (CS2040CFile fileName : topic.getC2040CFiles().values()) {
