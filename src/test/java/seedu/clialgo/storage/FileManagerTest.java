@@ -2,14 +2,13 @@ package seedu.clialgo.storage;
 
 import org.junit.jupiter.api.Test;
 import seedu.clialgo.Topic;
-//import seedu.clialgo.file.Code;
+import seedu.clialgo.file.Code;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-//import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -97,34 +96,34 @@ public class FileManagerTest {
         deleteAll(new File(path));
     }
 
-    //    @Test
-    //    void doesAddEntryReturnCorrectly_expectTrue() {
-    //        ArrayList<String> topics = new ArrayList<>();
-    //        String topic = "topic";
-    //        topics.add(topic);
-    //        FileManager fm = new FileManager(path, topics);
-    //        fm.initialize();
-    //        String name = "name";
-    //        String pathToFile = name + ".cpp";
-    //        Code file = new Code(name, pathToFile, topic);
-    //        deleteAll(new File(path));
-    //        boolean isSuccessful = fm.addEntry(name, file);
-    //        assertFalse(isSuccessful);
-    //    }
-    //
-    //    @Test
-    //    void doesDeleteEntryReturnCorrectly_expectTrue() {
-    //        ArrayList<String> topics = new ArrayList<>();
-    //        String topic = "topic";
-    //        topics.add(topic);
-    //        FileManager fm = new FileManager(path, topics);
-    //        fm.initialize();
-    //        String name = "name";
-    //        String pathToFile = name + ".cpp";
-    //        Code file = new Code(name, pathToFile, topic);
-    //        fm.addEntry(name, file);
-    //        deleteAll(new File(path));
-    //        boolean isSuccessful = fm.deleteEntry(name, topic);
-    //        assertFalse(isSuccessful);
-    //    }
+    @Test
+    void doesAddEntryReturnCorrectly_expectTrue() {
+        ArrayList<String> topics = new ArrayList<>();
+        String topic = "topic";
+        topics.add(topic);
+        FileManager fm = new FileManager(path, topics);
+        fm.initialize();
+        String name = "name";
+        String pathToFile = name + ".cpp";
+        Code file = new Code(name, pathToFile, topic);
+        boolean isSuccessful = fm.addEntry(name, file);
+        assertTrue(isSuccessful);
+        deleteAll(new File(path));
+    }
+
+    @Test
+    void doesDeleteEntryReturnCorrectly_expectTrue() {
+        ArrayList<String> topics = new ArrayList<>();
+        String topic = "topic";
+        topics.add(topic);
+        FileManager fm = new FileManager(path, topics);
+        fm.initialize();
+        String name = "name";
+        String pathToFile = name + ".cpp";
+        Code file = new Code(name, pathToFile, topic);
+        fm.addEntry(name, file);
+        boolean isSuccessful = fm.deleteEntry(name, topic);
+        assertTrue(isSuccessful);
+        deleteAll(new File(path));
+    }
 }
