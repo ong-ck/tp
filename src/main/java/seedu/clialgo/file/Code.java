@@ -1,7 +1,5 @@
 package seedu.clialgo.file;
 
-import java.util.Objects;
-
 public class Code extends CS2040CFile {
     /**
      * Constructor for <code>Code</code> object.

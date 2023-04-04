@@ -39,6 +39,9 @@ public class ExitTestModeCommandTest {
         outputStream.reset();
     }
 
+    /**
+     * Test if the error message for the check for test mode not being started prints correctly.
+     */
     @Test
     public void isNotStartedCheck_expectTrue() {
         String input = "exit-test-mode";
@@ -60,6 +63,9 @@ public class ExitTestModeCommandTest {
         assertEquals(expectedOutput, outputStream.toString());
     }
 
+    /**
+     * Check if all the messages indicating the successful run and exiting of test mode are printed correctly.
+     */
     @Test
     public void isRunSuccessfully_expectTrue() {
         String input = "start-test-mode";
