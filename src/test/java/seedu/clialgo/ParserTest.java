@@ -120,6 +120,7 @@ class ParserTest {
         );
     }
 
+    /** Test parse */
     @Test
     void parse_normalInput_expectCorrectCommandObject() {
         Parser parser = new Parser();
