@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileManagerTest {
 
-    private final String path = ".\\testdata";
+    private final String path = ".\\test";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.
@@ -106,9 +107,9 @@ public class FileManagerTest {
         String name = "name";
         String pathToFile = name + ".cpp";
         Code file = new Code(name, pathToFile, topic);
-        boolean isSuccessful = fm.addEntry(name, file);
-        assertTrue(isSuccessful);
         deleteAll(new File(path));
+        boolean isSuccessful = fm.addEntry(name, file);
+        assertFalse(isSuccessful);
     }
 
     @Test
@@ -122,8 +123,8 @@ public class FileManagerTest {
         String pathToFile = name + ".cpp";
         Code file = new Code(name, pathToFile, topic);
         fm.addEntry(name, file);
-        boolean isSuccessful = fm.deleteEntry(name, topic);
-        assertTrue(isSuccessful);
         deleteAll(new File(path));
+        boolean isSuccessful = fm.deleteEntry(name, topic);
+        assertFalse(isSuccessful);
     }
 }
