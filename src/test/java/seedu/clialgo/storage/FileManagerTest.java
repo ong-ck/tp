@@ -98,28 +98,33 @@ public class FileManagerTest {
     }
 
     @Test
-    void doesAddEntryThrowIOException_expectFalse() {
-        ArrayList<String> test = new ArrayList<>();
+    void doesAddEntryReturnCorrectly_expectTrue() {
+        ArrayList<String> topics = new ArrayList<>();
         String topic = "topic";
-        test.add(topic);
-        FileManager fm = new FileManager(path, test);
+        topics.add(topic);
+        FileManager fm = new FileManager(path, topics);
         fm.initialize();
+        String name = "name";
+        String pathToFile = name + ".cpp";
+        Code file = new Code(name, pathToFile, topic);
         deleteAll(new File(path));
-        Code file = new Code("name", "path", topic);
-        boolean isSuccessful = fm.addEntry("name", file);
+        boolean isSuccessful = fm.addEntry(name, file);
         assertFalse(isSuccessful);
     }
 
     @Test
-    void doesDeleteEntryThrowIOException_expectFalse() {
-        ArrayList<String> test = new ArrayList<>();
-        test.add("test");
-        FileManager fm = new FileManager(path, test);
+    void doesDeleteEntryReturnCorrectly_expectTrue() {
+        ArrayList<String> topics = new ArrayList<>();
+        String topic = "topic";
+        topics.add(topic);
+        FileManager fm = new FileManager(path, topics);
         fm.initialize();
-        Code file = new Code("name", "path", "test");
-        fm.addEntry("name", file);
+        String name = "name";
+        String pathToFile = name + ".cpp";
+        Code file = new Code(name, pathToFile, topic);
+        fm.addEntry(name, file);
         deleteAll(new File(path));
-        boolean isSuccessful = fm.deleteEntry("name", "test");
+        boolean isSuccessful = fm.deleteEntry(name, topic);
         assertFalse(isSuccessful);
     }
 }
