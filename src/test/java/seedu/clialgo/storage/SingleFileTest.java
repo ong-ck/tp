@@ -50,6 +50,7 @@ public class SingleFileTest {
         if (!new File(path).mkdirs()) {
             System.out.println("ERROR 1");
         }
+        deleteAll(new File(path));
     }
 
     @AfterEach

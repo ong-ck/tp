@@ -43,6 +43,7 @@ public class BufferTest {
         System.setOut(new PrintStream(outputStream));
         buffer = Buffer.getInstance();
         outputStream.reset();
+        deleteAll(new File(path));
     }
 
     @Test
