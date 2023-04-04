@@ -12,14 +12,15 @@ import java.util.HashSet;
 import java.util.Map;
 
 public class FileManagerStub {
-    private HashMap<String, Topic> topics;
-    private HashSet<String> allLabelledCS2040CFileNames;
+    private final HashMap<String, Topic> topics;
+    private final HashSet<String> allLabelledCS2040CFileNames;
 
-    private HashSet<String> allCS2040CFileNames;
+    private final HashSet<String> allCS2040CFileNames;
 
-    private HashMap<String, HashSet<String>> topoOrderCS2040CFiles;
+    private final HashMap<String, HashSet<String>> topoOrderCS2040CFiles;
 
     public FileManagerStub() {
+        // Add CS2040CFiles to some topics
         HashMap<String, CS2040CFile> sortingCS2040CFiles = new HashMap<>(
                 Map.of(
                         "Bubble Sort Note",
@@ -58,50 +59,38 @@ public class FileManagerStub {
         this.topics.put("BINARY_SEARCH_TREE", binaryTreeTopic);
         this.topics.put("SS_SHORTEST_PATH", shortestPathTopic);
 
-        // Empty Topics
+        // Initialize empty Topics
         ArrayList<String> emptyTopicNames = new ArrayList<>(
-                Arrays.asList(
-                        "LINKED_LIST", "GRAPH_STRUCTURES", "HASH_TABLE", "GRAPH_TRAVERSAL", "BINARY_HEAP",
-                        "UNION_FIND_DS", "MINIMUM_SPANNING_TREE"
-                )
+                Arrays.asList("LINKED_LIST", "GRAPH_STRUCTURES", "HASH_TABLE", "GRAPH_TRAVERSAL", "BINARY_HEAP",
+                        "UNION_FIND_DS", "MINIMUM_SPANNING_TREE")
         );
         for (String emptyTopicName: emptyTopicNames) {
             this.topics.put(emptyTopicName, new Topic(emptyTopicName));
         }
 
         this.allLabelledCS2040CFileNames = new HashSet<>(
-                Arrays.asList(
-                        "[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note",
-                        "[NOTE] BST Note", "[CODE] AVL Code", "[NOTE] Bellman Ford Note", "[CODE] Dijkstra Code"
-                )
+                Arrays.asList("[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note",
+                        "[NOTE] BST Note", "[CODE] AVL Code", "[NOTE] Bellman Ford Note", "[CODE] Dijkstra Code")
         );
 
         this.allCS2040CFileNames = new HashSet<>(
-                Arrays.asList(
-                        "Bubble Sort Note", "Merge Sort Code", "Quick Sort Note", "BST Note", "AVL Code",
-                        "Bellman Ford Note", "Dijkstra Code"
-                )
+                Arrays.asList("Bubble Sort Note", "Merge Sort Code", "Quick Sort Note", "BST Note", "AVL Code",
+                        "Bellman Ford Note", "Dijkstra Code")
         );
 
         topoOrderCS2040CFiles = new HashMap<>();
         topoOrderCS2040CFiles.put("SORTING", new HashSet<>(
-                Arrays.asList(
-                        "[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note"
-                )
+                Arrays.asList("[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note")
         ));
 
         topoOrderCS2040CFiles.put("BINARY_SEARCH_TREE", new HashSet<>(
-                Arrays.asList(
-                        "[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note",
-                        "[NOTE] BST Note", "[CODE] AVL Code"
-                )
+                Arrays.asList("[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note",
+                        "[NOTE] BST Note", "[CODE] AVL Code")
         ));
 
         topoOrderCS2040CFiles.put("SS_SHORTEST_PATH", new HashSet<>(
-                Arrays.asList(
-                        "[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note",
-                        "[NOTE] BST Note", "[CODE] AVL Code", "[NOTE] Bellman Ford Note", "[CODE] Dijkstra Code"
-                )
+                Arrays.asList("[NOTE] Bubble Sort Note", "[CODE] Merge Sort Code", "[NOTE] Quick Sort Note",
+                        "[NOTE] BST Note", "[CODE] AVL Code", "[NOTE] Bellman Ford Note", "[CODE] Dijkstra Code")
         ));
     }
 
