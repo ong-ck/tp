@@ -36,6 +36,7 @@ public class ExitTestModeCommandTest {
         ui = new Ui();
         fileManager = new FileManager(".\\testdata", new ArrayList<>());
         buffer = Buffer.getInstance();
+        outputStream.reset();
     }
 
     @Test
