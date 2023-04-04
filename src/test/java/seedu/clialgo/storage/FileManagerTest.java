@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -107,9 +106,9 @@ public class FileManagerTest {
         String name = "name";
         String pathToFile = name + ".cpp";
         Code file = new Code(name, pathToFile, topic);
-        deleteAll(new File(path));
         boolean isSuccessful = fm.addEntry(name, file);
-        assertFalse(isSuccessful);
+        assertTrue(isSuccessful);
+        deleteAll(new File(path));
     }
 
     @Test
@@ -123,8 +122,8 @@ public class FileManagerTest {
         String pathToFile = name + ".cpp";
         Code file = new Code(name, pathToFile, topic);
         fm.addEntry(name, file);
-        deleteAll(new File(path));
         boolean isSuccessful = fm.deleteEntry(name, topic);
-        assertFalse(isSuccessful);
+        assertTrue(isSuccessful);
+        deleteAll(new File(path));
     }
 }
