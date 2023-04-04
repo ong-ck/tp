@@ -1,5 +1,7 @@
 package seedu.clialgo.file;
 
+import java.util.Objects;
+
 public class Code extends CS2040CFile {
     /**
      * Constructor for <code>Code</code> object.
@@ -72,5 +74,20 @@ public class Code extends CS2040CFile {
 
     public int getImportance() {
         return this.importance;
+    }
+
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || this.getClass() != object.getClass()) {
+            return false;
+        }
+        Code checkedCode = (Code) object;
+        boolean sameName = this.getName().equals(checkedCode.getName());
+        boolean samePath = this.getPath().equals(checkedCode.getPath());
+        boolean sameTopic = this.getTopic().equals(checkedCode.getTopic());
+        boolean sameImportance = this.getImportance() == checkedCode.getImportance();
+        return sameName && samePath && sameTopic && sameImportance;
     }
 }

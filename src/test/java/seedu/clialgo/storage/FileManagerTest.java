@@ -2,16 +2,20 @@ package seedu.clialgo.storage;
 
 import org.junit.jupiter.api.Test;
 import seedu.clialgo.Topic;
+import seedu.clialgo.file.Code;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileManagerTest {
+
+    private final String path = ".\\testdata";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.
@@ -40,7 +44,6 @@ public class FileManagerTest {
     @Test
     void isFolderCorrectlyCreated_noInput_expectTrue() {
         ArrayList<String> test = new ArrayList<>();
-        String path = ".\\testdata";
         FileManager fm = new FileManager(path, test);
         fm.initialize();
         File file = new File(path);
@@ -56,7 +59,6 @@ public class FileManagerTest {
     void isOneFileCorrectlyCreated_oneInput_expectTrue() {
         ArrayList<String> test = new ArrayList<>();
         test.add("test");
-        String path = ".\\testdata";
         FileManager fm = new FileManager(path, test);
         fm.initialize();
         File file = new File(path + "\\test.txt");
@@ -71,7 +73,6 @@ public class FileManagerTest {
     @Test
     void areMultipleFilesCorrectlyCreated_multipleInputs_expectTrue() {
         ArrayList<String> test = new ArrayList<>(Arrays.asList("test1", "test2"));
-        String path = ".\\testdata";
         FileManager fm = new FileManager(path, test);
         fm.initialize();
         for (String s : test) {
@@ -85,7 +86,6 @@ public class FileManagerTest {
     @Test
     void areCorrectKeysWhenDecodeAll_multipleInputs_expectTrue() {
         ArrayList<String> test = new ArrayList<>(Arrays.asList("test1", "test2"));
-        String path = ".\\testdata";
         FileManager fm = new FileManager(path, test);
         fm.initialize();
         HashMap<String, Topic> testOutput = fm.decodeAll();
@@ -93,5 +93,30 @@ public class FileManagerTest {
             assertNotNull(testOutput.get(s));
         }
         deleteAll(new File(path));
+    }
+
+    @Test
+    void doesAddEntryThrowIOException_expectFalse() {
+        ArrayList<String> test = new ArrayList<>();
+        test.add("test");
+        FileManager fm = new FileManager(path, test);
+        fm.initialize();
+        deleteAll(new File(path));
+        Code file = new Code("name", "path", "test");
+        boolean isSuccessful = fm.addEntry("name", file);
+        assertFalse(isSuccessful);
+    }
+
+    @Test
+    void doesDeleteEntryThrowIOException_expectFalse() {
+        ArrayList<String> test = new ArrayList<>();
+        test.add("test");
+        FileManager fm = new FileManager(path, test);
+        fm.initialize();
+        Code file = new Code("name", "path", "test");
+        fm.addEntry("name", file);
+        deleteAll(new File(path));
+        boolean isSuccessful = fm.deleteEntry("name", "test");
+        assertFalse(isSuccessful);
     }
 }

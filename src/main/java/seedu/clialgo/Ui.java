@@ -491,9 +491,9 @@ public class Ui {
     public void printCorruptedFileDiscarded (int corruptCount, String name) {
         printDivider();
         if (corruptCount == 1) {
-            System.out.println(corruptCount + " corrupted save entry detected in " + name + ".txt .");
+            System.out.println(corruptCount + " corrupted save entry detected in " + name + ".txt.");
         } else {
-            System.out.println(corruptCount + " corrupted entries detected in " + name + ".txt .");
+            System.out.println(corruptCount + " corrupted entries detected in " + name + ".txt.");
         }
         System.out.println("Note that the corrupted entries are discarded!");
         printDivider();
