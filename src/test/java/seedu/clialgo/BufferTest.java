@@ -43,7 +43,6 @@ public class BufferTest {
         System.setOut(new PrintStream(outputStream));
         buffer = Buffer.getInstance();
         outputStream.reset();
-        deleteAll(new File(path));
     }
 
     @Test
@@ -53,12 +52,6 @@ public class BufferTest {
         files.add(file);
         buffer.updateBuffer(files);
         deleteAll(new File(path));
-        try {
-            buffer.exportBuffer();
-        } catch (HeadlessException e) {
-            assert true;
-        }
-
         String os = System.getProperty("os.name");
         String expectedOutput;
 
@@ -80,6 +73,20 @@ public class BufferTest {
                     "The export folder has been recreated.\n" +
                     "Try the `export` command again.\n" +
                     "======================================================\n";
+        }
+
+        try {
+            buffer.exportBuffer();
+        } catch (HeadlessException e) {
+            if (os.contains("Windows")) {
+                expectedOutput = "======================================================\r\n" +
+                        "File missing from root directory.\r\n" +
+                        "======================================================\r\n";
+            } else {
+                expectedOutput = "======================================================\n" +
+                        "File missing from root directory.\n" +
+                        "======================================================\n";
+            }
         }
         assertEquals(expectedOutput, outputStream.toString());
         deleteAll(new File(path));

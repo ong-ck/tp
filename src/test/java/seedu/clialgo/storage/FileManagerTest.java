@@ -105,6 +105,7 @@ public class FileManagerTest {
         Code file = new Code("name", "path", "test");
         boolean isSuccessful = fm.addEntry("name", file);
         assertFalse(isSuccessful);
+        deleteAll(new File(path));
     }
 
     @Test
@@ -118,5 +119,6 @@ public class FileManagerTest {
         deleteAll(new File(path));
         boolean isSuccessful = fm.deleteEntry("name", "test");
         assertFalse(isSuccessful);
+        deleteAll(new File(path));
     }
 }

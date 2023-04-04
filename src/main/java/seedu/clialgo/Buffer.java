@@ -2,7 +2,7 @@ package seedu.clialgo;
 
 import seedu.clialgo.file.CS2040CFile;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -112,11 +112,11 @@ public class Buffer {
         Desktop desktop = Desktop.getDesktop();
         try {
             desktop.open(this.pathToBuffer);
-        } catch (UnsupportedOperationException e) {
-            ui.printOpenFolderNotSupported();
         } catch (IOException | IllegalArgumentException e) {
             createFolder();
             ui.printFolderMissing();
+        } catch (UnsupportedOperationException e) {
+            ui.printOpenFolderNotSupported();
         }
     }
 }

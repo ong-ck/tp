@@ -47,15 +47,9 @@ public class SingleFileTest {
         System.setOut(new PrintStream(outputStream));
         String separator = "@&";
         fileDecoder = new FileDecoder(separator);
-        if (!new File(path).mkdirs()) {
+        if (!new File(path).mkdir()) {
             System.out.println("ERROR 1");
         }
-        deleteAll(new File(path));
-    }
-
-    @AfterEach
-    public void endTest() {
-        deleteAll(new File(path));
     }
 
     @Test
@@ -91,5 +85,6 @@ public class SingleFileTest {
                     "======================================================\n";
         }
         assertEquals(expectedOutput, outputStream.toString());
+        deleteAll(new File(path));
     }
 }
