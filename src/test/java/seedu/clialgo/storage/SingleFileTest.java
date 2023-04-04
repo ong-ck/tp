@@ -47,14 +47,14 @@ public class SingleFileTest {
         String separator = "@&";
         fileDecoder = new FileDecoder(separator);
         deleteAll(new File(path));
-        if (!new File(path).mkdir()) {
-            System.out.println("ERROR 1");
-        }
         outputStream.reset();
     }
 
     @Test
     void isCorruptedEntryDiscarded_expectTrue() {
+        if (!new File(path).mkdir()) {
+            System.out.println("ERROR 1");
+        }
         String pathToTest = path + "\\test.txt";
         File file = new File(pathToTest);
         try {
