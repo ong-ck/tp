@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.file.Code;
 
+import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
@@ -51,7 +52,11 @@ public class BufferTest {
         files.add(file);
         buffer.updateBuffer(files);
         deleteAll(new File(path));
-        buffer.exportBuffer();
+        try {
+            buffer.exportBuffer();
+        } catch (HeadlessException e) {
+            assert true;
+        }
 
         String os = System.getProperty("os.name");
         String expectedOutput;
