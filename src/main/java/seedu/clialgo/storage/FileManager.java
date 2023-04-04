@@ -12,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * Object containing all the raw data for the application, able to update each .txt file which stores the information
@@ -52,7 +51,8 @@ public class FileManager {
      * @return The SingleFile object created.
      */
     public SingleFile createSingleFile(String name) {
-        File file = new File(path + "\\" + name + ".txt");
+        String pathToFile = path + "\\" + name + ".txt";
+        File file = new File(pathToFile);
         SingleFile newFile = new SingleFile(file, name, decoder);
         try {
             if (file.createNewFile()) {
@@ -88,9 +88,12 @@ public class FileManager {
      * @param pathToFolder The <code>File</code> representing the folder to delete.
      */
     public static void deleteAll(File pathToFolder) {
-        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
-            if (!f.delete()) {
-                System.out.println("Delete failed");
+        File[] files = pathToFolder.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                if (!f.delete()) {
+                    System.out.println("Delete failed");
+                }
             }
         }
         if (!pathToFolder.delete()) {
@@ -201,9 +204,12 @@ public class FileManager {
      */
     public void deleteTestData() {
         File pathToFolder = new File(testModePath);
-        for (File f : Objects.requireNonNull(pathToFolder.listFiles())) {
-            if (!f.delete()) {
-                ui.printFileDeleteFail();
+        File[] files = pathToFolder.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                if (!f.delete()) {
+                    ui.printFileDeleteFail();
+                }
             }
         }
         if (!pathToFolder.delete()) {
