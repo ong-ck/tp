@@ -15,7 +15,7 @@ public class SingleFileTest {
 
     private FileDecoder fileDecoder;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private final String path = ".\\testdata";
+    private final String path = ".\\test";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.
@@ -52,9 +52,7 @@ public class SingleFileTest {
 
     @Test
     void isCorruptedEntryDiscarded_expectTrue() {
-        if (!new File(path).mkdir()) {
-            System.out.println("ERROR 1");
-        }
+        assert new File(path).mkdir();
         String pathToTest = path + "\\test.txt";
         File file = new File(pathToTest);
         try {
