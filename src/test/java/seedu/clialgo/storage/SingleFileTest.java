@@ -46,9 +46,11 @@ public class SingleFileTest {
         System.setOut(new PrintStream(outputStream));
         String separator = "@&";
         fileDecoder = new FileDecoder(separator);
+        deleteAll(new File(path));
         if (!new File(path).mkdir()) {
             System.out.println("ERROR 1");
         }
+        outputStream.reset();
     }
 
     @Test

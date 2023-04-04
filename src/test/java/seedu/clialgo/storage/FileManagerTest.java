@@ -27,6 +27,8 @@ public class FileManagerTest {
             for (File f : files) {
                 if (!f.delete()) {
                     System.out.println("Delete failed");
+                } else {
+                    System.out.println("Delete success");
                 }
             }
         }
