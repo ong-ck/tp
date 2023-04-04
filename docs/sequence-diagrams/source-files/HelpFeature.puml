@@ -1,7 +1,7 @@
 @startuml
 hide footbox
 
-participant ":HelpCommand" as hc
+participant ": HelpCommand" as hc
 participant "ui: Ui" as ui
 
  -> hc : execute()

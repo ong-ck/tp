@@ -64,7 +64,7 @@ public class FilterByImportanceCommand extends FilterCommand {
         ui.printFilterSuccess();
         cs2040cFiles.sort(importanceLevel);
         int serialNumber = 1;
-        System.out.println("[" + this.topic + "]");
+        ui.printWithBox(this.topic);
         for (CS2040CFile cs2040cFile : cs2040cFiles) {
             String cs2040cFileType = "[NOTE] ";
             if (cs2040cFile instanceof Code) {

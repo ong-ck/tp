@@ -116,7 +116,6 @@ public class AddCommand extends Command {
         assert this.topic != null;
         assert topicManager.isValidTopic(topic);
 
-        // Ui for successful adding
         ui.printAddSuccess(name, topic);
     }
 
@@ -130,7 +129,8 @@ public class AddCommand extends Command {
     public boolean equals(Command otherCommand) {
         AddCommand otherAddCommand = (AddCommand) otherCommand;
 
-        return Objects.equals(this.getName(), otherAddCommand.getName()) &&
-                Objects.equals(this.getTag(), otherAddCommand.getTag());
+        boolean isSameName = Objects.equals(this.getName(), otherAddCommand.getName());
+        boolean isSameTag = Objects.equals(this.getTag(), otherAddCommand.getTag());
+        return isSameName && isSameTag;
     }
 }

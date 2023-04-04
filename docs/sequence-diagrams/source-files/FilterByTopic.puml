@@ -1,4 +1,6 @@
 @startuml
+hide footbox
+
 participant ": FilterCommand" as FilterCommand
 participant ": FilterByTopicCommand" as FilterByTopicCommand
 participant "ui: Ui" as Ui
