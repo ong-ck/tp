@@ -15,7 +15,7 @@ public class SingleFileTest {
 
     private FileDecoder fileDecoder;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private final String path = ".\\test";
+    private final String path = ".\\testdata";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.
