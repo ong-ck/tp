@@ -13,10 +13,6 @@ public class Ui {
 
     private static final String DIVIDER = "======================================================";
     private static final String EXIT_COMMAND = "exit";
-    private static final String LEFT_SQUARE_BRACKET = "[";
-    private static final String RIGHT_SQUARE_BRACKET = "]";
-    private static final String WHITE_SPACE = " ";
-    private static final String DOT_SPACE = ". ";
     private static final String NOTE_LABEL = "[NOTE] ";
     private static final String CODE_LABEL = "[CODE] ";
     private static final int SERIAL_NUMBER_START = 1;
@@ -465,8 +461,8 @@ public class Ui {
             if (cs2040cFile instanceof Code) {
                 cs2040cFileType = CODE_LABEL;
             }
-            System.out.println(serialNumber + DOT_SPACE + cs2040cFileType + cs2040cFile.getName() + WHITE_SPACE
-                    + LEFT_SQUARE_BRACKET + cs2040cFile.getImportance() + RIGHT_SQUARE_BRACKET);
+            System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName()
+                    + " [" + cs2040cFile.getImportance() + "]");
             ++serialNumber;
         }
         printDivider();
@@ -483,14 +479,14 @@ public class Ui {
         assert !cs2040cFiles.isEmpty();
         int serialNumber = SERIAL_NUMBER_START;
         for (String cs2040cFile : cs2040cFiles) {
-            System.out.println(serialNumber + DOT_SPACE + cs2040cFile);
+            System.out.println(serialNumber + ". " + cs2040cFile);
             serialNumber++;
         }
     }
 
     /** Prints the topic name enclosed with brackets. */
     public void printWithBox(String topicName) {
-        System.out.println(LEFT_SQUARE_BRACKET + topicName + RIGHT_SQUARE_BRACKET);
+        System.out.println("[" + topicName + "]");
     }
     //@@author
 
@@ -507,7 +503,7 @@ public class Ui {
         assert currentSerialNumber >= SERIAL_NUMBER_START;
         int serialNumber = currentSerialNumber;
         for (String cs2040cFile : cs2040cFiles) {
-            System.out.println(serialNumber + DOT_SPACE + cs2040cFile);
+            System.out.println(serialNumber + ". " + cs2040cFile);
             serialNumber++;
         }
         return serialNumber;
