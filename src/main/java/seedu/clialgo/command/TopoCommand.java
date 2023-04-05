@@ -1,12 +1,14 @@
 package seedu.clialgo.command;
 
 import seedu.clialgo.Buffer;
+import seedu.clialgo.Topic;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -68,7 +70,11 @@ public class TopoCommand extends Command {
             ui.printWithBox(topicName);
 
             currentSerialNumber = ui.printListOfCS2040CFilesWithGivenIndex(listOfFiles, currentSerialNumber);
-            files.addAll(topicManager.getTopics().get(topicName).getCS2040CFilesAsArray());
+
+            HashMap<String, Topic> topics = topicManager.getTopics();
+            Topic currentTopic = topics.get(topicName);
+            ArrayList<CS2040CFile> cs2040cFiles = currentTopic.getCS2040CFilesAsArray();
+            files.addAll(cs2040cFiles);
         }
         ui.printDivider();
         return files;
