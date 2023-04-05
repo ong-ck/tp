@@ -81,4 +81,19 @@ public class Note extends CS2040CFile {
     public void setImportance(int importance) {
         this.importance = importance;
     }
+
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || this.getClass() != object.getClass()) {
+            return false;
+        }
+        Note checkedNote = (Note) object;
+        boolean isSameName = this.getName().equals(checkedNote.getName());
+        boolean isSamePath = this.getPath().equals(checkedNote.getPath());
+        boolean isSameTopic = this.getTopic().equals(checkedNote.getTopic());
+        boolean isSameImportance = this.getImportance() == checkedNote.getImportance();
+        return isSameName && isSamePath && isSameTopic && isSameImportance;
+    }
 }

@@ -145,7 +145,7 @@ public class TopicManager {
         }
         return toPrintCS2040CFiles;
     }
-    //@@author
+    //@@author ong-ck
 
     /**
      * Get a list of all topics stored in CLIAlgo that are before a specific target topic.
@@ -171,6 +171,7 @@ public class TopicManager {
         }
         return toPrintCS2040CFiles;
     }
+    //@@author
 
     public ArrayList<CS2040CFile> getAllFilesAsFiles() {
         ArrayList<CS2040CFile> files = new ArrayList<>();
@@ -203,6 +204,7 @@ public class TopicManager {
         }
     }
 
+    //@@author ong-ck
     /**
      * Adds a new CS2040CFile into the specific <code>Topic</code> object
      * while keeping track of the names of all CS2040CFiles added.
@@ -229,6 +231,7 @@ public class TopicManager {
 
         return true;
     }
+    //author
 
     /**
      * Removes a CS2040CFile from the specific <code>Topic</code> object while keeping track of the names of all

@@ -1,7 +1,7 @@
 @startuml
 hide footbox
 
-participant ":ListCommand" as ListCommand
+participant ": ListCommand" as ListCommand
 participant "ui: Ui" as Ui
 participant "in: Scanner" as Scanner
 participant "System.out" as System
