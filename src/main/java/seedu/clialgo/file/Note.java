@@ -89,11 +89,11 @@ public class Note extends CS2040CFile {
         if (object == null || this.getClass() != object.getClass()) {
             return false;
         }
-        Note checkedCode = (Note) object;
-        boolean sameName = this.getName().equals(checkedCode.getName());
-        boolean samePath = this.getPath().equals(checkedCode.getPath());
-        boolean sameTopic = this.getTopic().equals(checkedCode.getTopic());
-        boolean sameImportance = this.getImportance() == checkedCode.getImportance();
-        return sameName && samePath && sameTopic && sameImportance;
+        Note checkedNote = (Note) object;
+        boolean isSameName = this.getName().equals(checkedNote.getName());
+        boolean isSamePath = this.getPath().equals(checkedNote.getPath());
+        boolean isSameTopic = this.getTopic().equals(checkedNote.getTopic());
+        boolean isSameImportance = this.getImportance() == checkedNote.getImportance();
+        return isSameName && isSamePath && isSameTopic && isSameImportance;
     }
 }

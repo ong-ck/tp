@@ -82,10 +82,10 @@ public class Code extends CS2040CFile {
             return false;
         }
         Code checkedCode = (Code) object;
-        boolean sameName = this.getName().equals(checkedCode.getName());
-        boolean samePath = this.getPath().equals(checkedCode.getPath());
-        boolean sameTopic = this.getTopic().equals(checkedCode.getTopic());
-        boolean sameImportance = this.getImportance() == checkedCode.getImportance();
-        return sameName && samePath && sameTopic && sameImportance;
+        boolean isSameName = this.getName().equals(checkedCode.getName());
+        boolean isSamePath = this.getPath().equals(checkedCode.getPath());
+        boolean isSameTopic = this.getTopic().equals(checkedCode.getTopic());
+        boolean isSameImportance = this.getImportance() == checkedCode.getImportance();
+        return isSameName && isSamePath && isSameTopic && isSameImportance;
     }
 }

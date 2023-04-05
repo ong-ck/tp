@@ -12,29 +12,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FileDecoderTest {
     private FileDecoder fileDecoder;
-    private final String separator = "@&";
-    private final String name = "name";
-    private final String topic = "topic";
-    private final int importance = 1;
+    private final String SEPARATOR = "@&";
+    private final String NAME = "name";
+    private final String TOPIC = "topic";
+    private final int IMPORTANCE = 1;
 
     @BeforeEach
     public void setUp() {
-        fileDecoder = new FileDecoder(separator);
+        fileDecoder = new FileDecoder(SEPARATOR);
     }
 
     @Test
     void isCorrectNoteCreated_expectTrue() {
-        String path = name + ".txt";
+        String path = NAME + ".txt";
         String pathToFile = ".\\" + path;
         File file = new File(pathToFile);
         try {
             if (!file.createNewFile()) {
                 System.out.println("ERROR 1");
             }
-            Note note = new Note(name, path,topic, 1);
-            String encodedString = name + separator + path + separator + topic + separator + importance;
+            Note note = new Note(NAME, path,TOPIC, 1);
+            String encodedString = NAME + SEPARATOR + path + SEPARATOR + TOPIC + SEPARATOR + IMPORTANCE;
             System.out.println(encodedString);
-            fileDecoder.decodeString(encodedString, topic);
+            fileDecoder.decodeString(encodedString, TOPIC);
             assertEquals(note, fileDecoder.processedCS2040CFile());
             if (!file.delete()) {
                 System.out.println("ERROR 2");
@@ -46,17 +46,17 @@ public class FileDecoderTest {
 
     @Test
     void isCorrectCodeCreated_expectTrue() {
-        String path = name + ".cpp";
+        String path = NAME + ".cpp";
         String pathToFile = ".\\" + path;
         File file = new File(pathToFile);
         try {
             if (!file.createNewFile()) {
                 System.out.println("ERROR 1");
             }
-            Code code = new Code(name, path,topic, 1);
-            String encodedString = name + separator + path + separator + topic + separator + importance;
+            Code code = new Code(NAME, path,TOPIC, 1);
+            String encodedString = NAME + SEPARATOR + path + SEPARATOR + TOPIC + SEPARATOR + IMPORTANCE;
             System.out.println(encodedString);
-            fileDecoder.decodeString(encodedString, topic);
+            fileDecoder.decodeString(encodedString, TOPIC);
             assertEquals(code, fileDecoder.processedCS2040CFile());
             if (!file.delete()) {
                 System.out.println("ERROR 2");

@@ -15,7 +15,7 @@ public class SingleFileTest {
 
     private FileDecoder fileDecoder;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private final String path = ".\\test";
+    private final String PATH = ".\\test";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.
@@ -46,14 +46,14 @@ public class SingleFileTest {
         System.setOut(new PrintStream(outputStream));
         String separator = "@&";
         fileDecoder = new FileDecoder(separator);
-        deleteAll(new File(path));
+        deleteAll(new File(PATH));
         outputStream.reset();
     }
 
     @Test
     void isCorruptedEntryDiscarded_expectTrue() {
-        assert new File(path).mkdir();
-        String pathToTest = path + "\\test.txt";
+        assert new File(PATH).mkdir();
+        String pathToTest = PATH + "\\test.txt";
         File file = new File(pathToTest);
         try {
             assert file.createNewFile();
@@ -82,6 +82,6 @@ public class SingleFileTest {
                     "======================================================\n";
         }
         assertEquals(expectedOutput, outputStream.toString());
-        deleteAll(new File(path));
+        deleteAll(new File(PATH));
     }
 }

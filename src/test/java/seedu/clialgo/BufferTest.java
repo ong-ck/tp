@@ -18,7 +18,7 @@ public class BufferTest {
 
     private Buffer buffer;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private final String path = ".\\export";
+    private final String PATH = ".\\export";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.
@@ -51,7 +51,7 @@ public class BufferTest {
         CS2040CFile file = new Code("name", "path", "topic");
         files.add(file);
         buffer.updateBuffer(files);
-        deleteAll(new File(path));
+        deleteAll(new File(PATH));
         String os = System.getProperty("os.name");
         String expectedOutput;
 
@@ -89,7 +89,7 @@ public class BufferTest {
             }
         }
         assertEquals(expectedOutput, outputStream.toString());
-        deleteAll(new File(path));
+        deleteAll(new File(PATH));
     }
 
     @Test
@@ -98,6 +98,6 @@ public class BufferTest {
         buffer.updateBuffer(files);
         boolean isEmpty = buffer.isEmpty();
         assertTrue(isEmpty);
-        deleteAll(new File(path));
+        deleteAll(new File(PATH));
     }
 }
