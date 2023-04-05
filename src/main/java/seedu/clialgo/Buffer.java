@@ -65,6 +65,7 @@ public class Buffer {
         File[] files = pathToBuffer.listFiles();
         if (files != null) {
             for (File file : files) {
+                assert file.exists() : "This should be non-null";
                 if (!file.delete()) {
                     ui.printFileDeleteFail();
                 }
