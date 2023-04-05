@@ -6,6 +6,8 @@ import seedu.clialgo.Ui;
 import seedu.clialgo.file.Code;
 import seedu.clialgo.storage.FileManager;
 
+import java.util.Objects;
+
 public class AddCodeCommand extends AddCommand {
     /**
      * Constructor for command to add code file to topic list.
@@ -45,4 +47,17 @@ public class AddCodeCommand extends AddCommand {
             new InvalidCommand().execute(topicManager, ui, fileManager, buffer);
         }
     }
+
+    /**
+     * An overridden method that checks for equality of <code>AddCodeCommand</code> objects.
+     *
+     * @param otherCommand The other <code>AddCodeCommand</code> object to be checked against.
+     * @return A boolean value to determine whether the <code>AddCodeCommand</code> objects are equal.
+     */
+    @Override
+    public boolean equals(Command otherCommand) {
+        AddCodeCommand otherAddCodeCommand = (AddCodeCommand) otherCommand;
+        return Objects.equals(this.name, otherAddCodeCommand.name);
+    }
+
 }
