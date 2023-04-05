@@ -26,7 +26,7 @@ class AddCodeCommandTest {
     }
 
     @Test
-    void equals_checkUnqualAddCodeCommand_expectFalse() {
+    void equals_checkUnequalAddCodeCommand_expectFalse() {
         AddCodeCommand myObj = new AddCodeCommand("queue", "LINKED_LIST", 10);
         AddCodeCommand myOtherObj = new AddCodeCommand("bubble", "SORTING", 5);
         assertFalse(myObj.equals(myOtherObj));
@@ -69,7 +69,7 @@ class AddCodeCommandTest {
     }
 
     @Test
-    void execute_addCodeFileThatDoesExists_expectInvalidCommandPrinted() {
+    void execute_addCodeFileThatDoesExists_expectNoCommandPrinted() {
         TopicManager topicManager = new TopicManager();
 
         String testDataPath = ".\\testdata";
