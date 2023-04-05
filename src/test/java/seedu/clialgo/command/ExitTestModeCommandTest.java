@@ -23,6 +23,7 @@ public class ExitTestModeCommandTest {
     private Parser parser;
     private FileManager fileManager;
     private Buffer buffer;
+    private final String PATH = ".\\testdata";
 
     /**
      * Runs before each test, initializes  <code>Ui</code>, <code>TopicManager</code>, <code>Parser</code> and
@@ -34,7 +35,7 @@ public class ExitTestModeCommandTest {
         parser = new Parser();
         topicManager = new TopicManager();
         ui = new Ui();
-        fileManager = new FileManager(".\\testdata", new ArrayList<>());
+        fileManager = new FileManager(PATH, new ArrayList<>());
         buffer = Buffer.getInstance();
         outputStream.reset();
     }
@@ -72,7 +73,8 @@ public class ExitTestModeCommandTest {
         Command command = parser.parse(input, topicManager);
         command.execute(topicManager, ui, fileManager, buffer);
 
-        File test = new File(".\\testdata\\test.txt");
+        String pathToFile = "\\test.txt";
+        File test = new File(PATH + pathToFile);
         try {
             if (!test.createNewFile()) {
                 System.out.println("ERROR HERE");

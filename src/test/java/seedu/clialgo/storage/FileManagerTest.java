@@ -2,6 +2,7 @@ package seedu.clialgo.storage;
 
 import org.junit.jupiter.api.Test;
 import seedu.clialgo.Topic;
+import seedu.clialgo.Ui;
 import seedu.clialgo.file.Code;
 
 import java.io.File;
@@ -15,6 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FileManagerTest {
 
     private final String PATH = ".\\testdata";
+    private final String FILE_DIVIDER = "\\";
+    private final String CODE_FILE_EXTENSION = ".cpp";
+    private final String NOTE_FILE_EXTENSION = ".txt";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.
@@ -25,16 +29,16 @@ public class FileManagerTest {
         if (files != null) {
             for (File f : files) {
                 if (!f.delete()) {
-                    System.out.println("Delete failed");
+                    Ui.printDeleteFail();
                 } else {
-                    System.out.println("Delete success");
+                    Ui.printDeleteSuccess();
                 }
             }
         }
         if (!pathToFolder.delete()) {
-            System.out.println("Delete failed");
+            Ui.printDeleteFail();
         } else {
-            System.out.println("Delete successful");
+            Ui.printDeleteSuccess();
         }
     }
 
@@ -59,10 +63,11 @@ public class FileManagerTest {
     @Test
     void isOneFileCorrectlyCreated_oneInput_expectTrue() {
         ArrayList<String> test = new ArrayList<>();
-        test.add("test");
+        String topic = "test";
+        test.add(topic);
         FileManager fm = new FileManager(PATH, test);
         fm.initialize();
-        File file = new File(PATH + "\\test.txt");
+        File file = new File(PATH + FILE_DIVIDER + topic + NOTE_FILE_EXTENSION);
         assertTrue(file.exists());
         deleteAll(new File(PATH));
     }
@@ -77,7 +82,7 @@ public class FileManagerTest {
         FileManager fm = new FileManager(PATH, test);
         fm.initialize();
         for (String s : test) {
-            File file = new File(PATH + "\\" + s + ".txt");
+            File file = new File(PATH + FILE_DIVIDER + s + NOTE_FILE_EXTENSION);
             assertTrue(file.exists());
         }
         deleteAll(new File(PATH));
@@ -104,7 +109,7 @@ public class FileManagerTest {
         FileManager fm = new FileManager(PATH, topics);
         fm.initialize();
         String name = "name";
-        String pathToFile = name + ".cpp";
+        String pathToFile = name + CODE_FILE_EXTENSION;
         Code file = new Code(name, pathToFile, topic);
         boolean isSuccessful = fm.addEntry(name, file);
         assertTrue(isSuccessful);
@@ -119,7 +124,7 @@ public class FileManagerTest {
         FileManager fm = new FileManager(PATH, topics);
         fm.initialize();
         String name = "name";
-        String pathToFile = name + ".cpp";
+        String pathToFile = name + CODE_FILE_EXTENSION;
         Code file = new Code(name, pathToFile, topic);
         fm.addEntry(name, file);
         boolean isSuccessful = fm.deleteEntry(name, topic);
