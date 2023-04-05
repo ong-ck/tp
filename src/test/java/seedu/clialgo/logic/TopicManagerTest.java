@@ -10,8 +10,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.file.Note;
-import seedu.clialgo.logic.Topic;
-import seedu.clialgo.logic.TopicManager;
 import seedu.clialgo.storage.FileManagerStub;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
