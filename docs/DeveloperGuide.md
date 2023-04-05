@@ -130,7 +130,9 @@ the `StringManipulation` interface.
 ### Logic
 [**API**](../src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
 
-
+<p align="center">
+    <img src="class-diagrams/diagrams/TopicManagerClass.png" alt="TopicManager Class Diagram" width="75%"/>
+</p>
 
 The `TopicManager` component:
 - Stores the names and topic of every `CS2040CFile` tracked by `CLIAlgo`.
