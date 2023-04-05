@@ -1,4 +1,4 @@
-package seedu.clialgo;
+package seedu.clialgo.logic;
 
 import seedu.clialgo.file.CS2040CFile;
 

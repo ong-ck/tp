@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import seedu.clialgo.Buffer;
-import seedu.clialgo.TopicManager;
+import seedu.clialgo.logic.TopicManager;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.Ui;
 

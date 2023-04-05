@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.clialgo.Buffer;
 import seedu.clialgo.Parser;
-import seedu.clialgo.TopicManager;
+import seedu.clialgo.logic.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.Note;
 import seedu.clialgo.storage.FileManager;

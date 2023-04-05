@@ -17,6 +17,7 @@ import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.command.TopoCommand;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
+import seedu.clialgo.logic.TopicManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;

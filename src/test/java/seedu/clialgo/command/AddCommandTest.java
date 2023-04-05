@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import seedu.clialgo.Buffer;
-import seedu.clialgo.TopicManager;
+import seedu.clialgo.logic.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 
