@@ -3,10 +3,14 @@ package seedu.clialgo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.file.Note;
+import seedu.clialgo.storage.FileManagerStub;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -97,6 +101,7 @@ class TopicManagerTest {
         assertFalse(topicManager.addCS2040CFile(noteName, topicName, note));
     }
 
+    //@@author heejet
     @Test
     void isValidTopic_validTopicInput_expectTrue() {
         ArrayList<String> validTopics = new ArrayList<>(
@@ -139,6 +144,7 @@ class TopicManagerTest {
             assertFalse(topicManager.isValidTopic(topic));
         }
     }
+    //@@author
 
     //@@author nicholas132000
     @Test
@@ -278,4 +284,60 @@ class TopicManagerTest {
         assertEquals(expectedAllNotes, topicManagerTest.getAllCS2040CFiles());
     }
     //@@author
+
+    //@@author heejet
+    @Test
+    void getAllCS2040CFilesGroupedByTopicToPrint() {
+        TopicManager topicManager = new TopicManager();
+        FileManagerStub fileManagerStub = new FileManagerStub();
+        topicManager.initialize(fileManagerStub.decodeAll());
+        HashMap<String, ArrayList<String>> actualOutput = topicManager.getAllCS2040CFilesGroupedByTopicToPrint();
+
+        for (Map.Entry<String, ArrayList<String>> entry : actualOutput.entrySet()) {
+            ArrayList<String> currentCS2040CFiles = entry.getValue();
+            for (String cs2040cFileName: currentCS2040CFiles) {
+                assertTrue(fileManagerStub.isLabelledFileNamePresent(cs2040cFileName));
+            }
+        }
+    }
+
+    @Test
+    void getAllCS2040CFilesBeforeTopic() {
+        ArrayList<String> cs2040cFileNames = new ArrayList<>(
+                Arrays.asList(
+                        "Bubble Sort Note", "BST Note", "Dijkstra Code"
+                )
+        );
+        TopicManager topicManager = new TopicManager();
+        FileManagerStub fileManagerStub = new FileManagerStub();
+        topicManager.initialize(fileManagerStub.decodeAll());
+
+        for (String cs2040cFileName: cs2040cFileNames) {
+            LinkedHashMap<String, ArrayList<String>> actualTopoOrder = new LinkedHashMap<>();
+            actualTopoOrder = topicManager.getAllCS2040CFilesBeforeTopic(cs2040cFileName);
+
+            // Check each CS2040CFile in actualTopoOrder against the expected topo order in FileManagerStub
+            for (Map.Entry<String, ArrayList<String>> entry : actualTopoOrder.entrySet()) {
+                String topicName = entry.getKey();
+                ArrayList<String> currentTopicCS2040CFiles = entry.getValue();
+
+                for (String fileName: currentTopicCS2040CFiles) {
+                    assertTrue(fileManagerStub.isPartOfTopoOrder(topicName, fileName));
+                }
+            }
+        }
+    }
+
+    @Test
+    void getAllFilesAsFiles() {
+        TopicManager topicManager = new TopicManager();
+        FileManagerStub fileManagerStub = new FileManagerStub();
+        topicManager.initialize(fileManagerStub.decodeAll());
+
+        ArrayList<CS2040CFile> actualOutput = topicManager.getAllFilesAsFiles();
+
+        for (CS2040CFile file: actualOutput) {
+            assertTrue(fileManagerStub.isFileNamePresent(file.getName()));
+        }
+    }
 }

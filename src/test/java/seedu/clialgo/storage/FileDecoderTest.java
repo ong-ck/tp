@@ -11,12 +11,15 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FileDecoderTest {
+    public static final String NOTE_FILE_EXTENSION = ".txt";
+    public static final String CODE_FILE_EXTENSION = ".cpp";
+    private static final String SEPARATOR = "@&";
+    private static final String NAME = "name";
+    private static final String TOPIC = "topic";
+    private static final String CURRENT_DIRECTORY_PATH = ".\\";
+    private static final int IMPORTANCE = 1;
+
     private FileDecoder fileDecoder;
-    private final String SEPARATOR = "@&";
-    private final String NAME = "name";
-    private final String TOPIC = "topic";
-    private final String CURRENT_DIRECTORY_PATH = ".\\";
-    private final int IMPORTANCE = 1;
 
     @BeforeEach
     public void setUp() {
@@ -25,8 +28,7 @@ public class FileDecoderTest {
 
     @Test
     void isCorrectNoteCreated_expectTrue() {
-        String noteFileExtension = ".txt";
-        String path = NAME + noteFileExtension;
+        String path = NAME + NOTE_FILE_EXTENSION;
         String pathToFile = CURRENT_DIRECTORY_PATH + path;
         File file = new File(pathToFile);
         try {
@@ -48,8 +50,7 @@ public class FileDecoderTest {
 
     @Test
     void isCorrectCodeCreated_expectTrue() {
-        String codeFileExtension = ".cpp";
-        String path = NAME + codeFileExtension;
+        String path = NAME + CODE_FILE_EXTENSION;
         String pathToFile = CURRENT_DIRECTORY_PATH + path;
         File file = new File(pathToFile);
         try {
@@ -68,5 +69,4 @@ public class FileDecoderTest {
             System.out.println("ERROR 3");
         }
     }
-
 }

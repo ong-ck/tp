@@ -15,10 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BufferTest {
-
+    private static final String PATH = ".\\export";
     private Buffer buffer;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private final String PATH = ".\\export";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.

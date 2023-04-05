@@ -120,6 +120,7 @@ class ParserTest {
         );
     }
 
+    /** Test parse */
     @Test
     void parse_normalInput_expectCorrectCommandObject() {
         Parser parser = new Parser();
@@ -237,6 +238,15 @@ class ParserTest {
 
             Command actualWrongAddOutput = parser.parse(wrongAddInput, topics);
             assertTrue(expectedOutput.equals(actualWrongAddOutput));
+        }
+
+        ArrayList<String> invalidSingleCommands= new ArrayList<>(
+                Arrays.asList("list ....", "export ashds", "exit       . ")
+        );
+        for (String invalidSingleCommand: invalidSingleCommands) {
+
+            Command actualInvalidSingleCommandOutput = parser.parse(invalidSingleCommand, topics);
+            assertTrue(expectedOutput.equals(actualInvalidSingleCommandOutput));
         }
     }
 
