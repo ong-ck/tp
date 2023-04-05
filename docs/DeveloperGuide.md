@@ -13,6 +13,7 @@ original source as well}
   - [Architecture](#design-architecture)
   - [Ui](#design-ui)
   - [Parser](#design-parser)
+  - [Logic](#design-logic)
   - [Storage](#design-storage)
   - [Help](#design-help)
   - [Add](#design-add)
@@ -125,10 +126,13 @@ the `StringManipulation` interface.
 - Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-<div id="design-storage"></div>
+<div id="design-logic"></div>
 
 ### Logic
 [**API**](../src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
+
+Here is a class diagram of the `TopicManager` component which is responsible for handling all operations involving
+`CS2040CFiles` and `Topics`.
 
 <p align="center">
     <img src="class-diagrams/diagrams/TopicManagerClass.png" alt="TopicManager Class Diagram" width="75%"/>
@@ -145,7 +149,7 @@ to.
   - Sorting (by importance and topological order).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-<div id="design-logic"></div>
+<div id="design-storage"></div>
 
 ### Storage
 [**API**](../src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
