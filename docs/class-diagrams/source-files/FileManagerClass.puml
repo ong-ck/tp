@@ -7,26 +7,26 @@ class FileManager {
 -topicNames: Arraylist<String>
 +initialize()
 +createSingleFile()
-+addEntry(name: String, note: Note)
-+deleteEntry(noteName: String)
++addEntry(name: String, cs2040cFile: CS2040CFile)
++deleteEntry(cs2040cFileName: String)
 }
 
 class SingleFile {
 -storedRawData: HashMap<String, String>
--notes: HashMap<String, Note>
+-cs2040cFiles: HashMap<String, CS2040CFile>
 +readFile()
 +recreateFile()
-+writeNoteToFile(encodedNote: String)
++writeCS2040CFileToFile(fileName: String, encodedCS2040CFile: String, cs2040cFile: CS2040CFile)
 +deleteEntry(name: String)
 +convertFileToTopic(): Topic
 }
 
 class FileDecoder {
-+decodeString(encodedNote: String, topicName: String): boolean
++decodeString(encodedCS2040CFile: String, topicName: String): boolean
 }
 
 class FileEncoder {
-+encodeNote(name: String, note: Note): String
++encodeCS2040CFile(name: String, cs2040cFile: CS2040CFile): String
 }
 
 class File {
@@ -36,7 +36,7 @@ class File {
 class Topic {
 }
 
-class Note {
+class CS2040CFile {
 }
 
 class Scanner {
@@ -56,9 +56,9 @@ SingleFile .. FileWriter : passes string to >
 File .. FileWriter : writes to <
 SingleFile .. Scanner : updates storedRawData <
 File .. Scanner : passes string to >
-Note .. FileManager : gets reference from <
-Note .. FileEncoder : gets reference from <
-Topic *- "*" Note
+CS2040CFile .. FileManager : gets reference from <
+CS2040CFile .. FileEncoder : gets reference from <
+Topic *- "*" CS2040CFile
 
 hide circle
 @enduml
