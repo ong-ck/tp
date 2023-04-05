@@ -10,26 +10,37 @@ participant "ui: Ui" as ui
     hc -> ui : ui.printHelpPage()
     activate ui
     return
+
     else add
     hc -> ui : ui.printHelpAdd()
     activate ui
     return
+
     else remove
     hc -> ui : ui.printHelpRemove()
     activate ui
     return
+
     else filter
     hc -> ui : ui.printHelpFilter()
     activate ui
     return
+
     else topo
     hc -> ui : ui.printHelpTopo()
     activate ui
     return
+
     else list
     hc -> ui : ui.printHelpList()
     activate ui
     return
+
+    else export
+    hc -> ui : ui.printHelpExport()
+    activate ui
+    return
+
     else exit
     hc -> ui : ui.printHelpExit()
     activate ui

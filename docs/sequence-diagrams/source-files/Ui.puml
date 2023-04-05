@@ -1,17 +1,30 @@
 @startuml
 hide footbox
 
-participant ":ListCommand" as ListCommand
+participant ": ListCommand" as ListCommand
 participant "ui: Ui" as Ui
 participant "in: Scanner" as Scanner
 participant "System.out" as System
 
 -> Ui: getUserInput()
 activate Ui
+alt Successful case
     Ui -> Scanner: nextLine()
     activate Scanner
+    note right of Scanner : User Input: `list`
     return :String
-return fullCommand: String
+    <-- Ui : fullUserInput: String
+else NoSuchElementException
+    Ui -> Ui : printReadFail()
+    activate Ui
+    return
+    <-- Ui : EXIT_COMMAND: String
+else IllegalStateException
+    Ui -> Ui : printReadFail()
+    activate Ui
+    return
+    <-- Ui : EXIT_COMMAND: String
+end
 
 -> ListCommand: execute()
 activate ListCommand
@@ -24,6 +37,7 @@ activate ListCommand
         end
     return
 return
+
 destroy ListCommand
 
 @enduml
