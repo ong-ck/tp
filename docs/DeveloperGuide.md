@@ -84,7 +84,7 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
     <img src="sequence-diagrams/diagrams/Architecture.png" alt="Architecture Diagram" width="50%"/>
 </p>
 
-> **! Note**: The lifeline for `CLIAlgo`, `Ui`, `Parser` and `Command` should end at the destroy marker (X) but due to 
+> **Note**: The lifeline for `CLIAlgo`, `Ui`, `Parser` and `Command` should end at the destroy marker (X) but due to 
 > limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -307,7 +307,7 @@ The following **_Sequence Diagram_** shows how the Ui object is used.
     <img src="sequence-diagrams/diagrams/Ui.png" alt="Ui Sequence Diagram" width="50%"/>
 </p>
 
-> **! Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -390,7 +390,7 @@ The following **_Sequence Diagram_** shows how previously saved files are loaded
         alt="FileManager Initialization Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `Scanner` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `Scanner` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -429,7 +429,7 @@ the relevant data file.
     <img src="sequence-diagrams/diagrams/AddEntry.png" alt="Add Entry Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `FileWriter` and `BufferedWriter` should end at the destroy marker (X) but due to 
+> **Note**: The lifeline for `FileWriter` and `BufferedWriter` should end at the destroy marker (X) but due to 
 > limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -460,7 +460,7 @@ The following **_Sequence Diagram_** shows how the help operation works.
     <img src="sequence-diagrams/diagrams/HelpFeature.png" alt="Help Feature Sequence Diagram" width="30%"/>
 </p>
 
-> **! Note**: The lifeline for `HelpCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `HelpCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -511,7 +511,7 @@ The **_Sequence Diagram_** below shows how the `AddCommand` works.
     <img src="sequence-diagrams/diagrams/AddFeature.png" alt="Add Feature Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end at 
+> **Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end at 
 > the destroy marker (X) but due to limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -590,7 +590,7 @@ The following **_Sequence Diagram_** shows how the list operation work.
     <img src="sequence-diagrams/diagrams/ListFeature.png" alt="List Feature Sequence Diagram" width="50%"/>
 </p>
 
-> **! Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -643,7 +643,7 @@ The following **_Sequence Diagram_** shows how the filter by topic operation wor
     <img src="sequence-diagrams/diagrams/FilterByTopic.png" alt="Filter Feature Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `FilterCommand` and `FilterByTopicCommand` should end at the destroy marker (X) but due 
+> **Note**: The lifeline for `FilterCommand` and `FilterByTopicCommand` should end at the destroy marker (X) but due 
 > to limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -688,7 +688,7 @@ The following sequence diagram shows how the `TopoCommand` works.
     <img src="sequence-diagrams/diagrams/TopoSort.png" alt="TopoSort Feature Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `TopoCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `TopoCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -720,7 +720,7 @@ The following sequence diagram shows how the export feature works.
     <img src="sequence-diagrams/diagrams/Export.png" alt="Export Feature Sequence Diagram" width="50%"/>
 </p>
 
-> **! Note**: The lifeline for `ExportCommand` and `EmptyBufferCommand` should end at the destroy marker (X) but due to 
+> **Note**: The lifeline for `ExportCommand` and `EmptyBufferCommand` should end at the destroy marker (X) but due to 
 > limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
