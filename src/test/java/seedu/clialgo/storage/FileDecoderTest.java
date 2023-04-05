@@ -15,6 +15,7 @@ public class FileDecoderTest {
     private final String SEPARATOR = "@&";
     private final String NAME = "name";
     private final String TOPIC = "topic";
+    private final String CURRENT_DIRECTORY_PATH = ".\\";
     private final int IMPORTANCE = 1;
 
     @BeforeEach
@@ -24,8 +25,9 @@ public class FileDecoderTest {
 
     @Test
     void isCorrectNoteCreated_expectTrue() {
-        String path = NAME + ".txt";
-        String pathToFile = ".\\" + path;
+        String noteFileExtension = ".txt";
+        String path = NAME + noteFileExtension;
+        String pathToFile = CURRENT_DIRECTORY_PATH + path;
         File file = new File(pathToFile);
         try {
             if (!file.createNewFile()) {
@@ -46,8 +48,9 @@ public class FileDecoderTest {
 
     @Test
     void isCorrectCodeCreated_expectTrue() {
-        String path = NAME + ".cpp";
-        String pathToFile = ".\\" + path;
+        String codeFileExtension = ".cpp";
+        String path = NAME + codeFileExtension;
+        String pathToFile = CURRENT_DIRECTORY_PATH + path;
         File file = new File(pathToFile);
         try {
             if (!file.createNewFile()) {
@@ -65,6 +68,5 @@ public class FileDecoderTest {
             System.out.println("ERROR 3");
         }
     }
-
 
 }

@@ -10,9 +10,9 @@ import seedu.clialgo.file.Note;
  * information in the <code>String</code>.
  */
 public class FileDecoder {
-    protected CS2040CFile currentCS2040CFile;
-    protected String currentName;
-    protected final String separator;
+    private CS2040CFile currentCS2040CFile;
+    private String currentName;
+    private final String separator;
 
     /**
      * Constructor for the fileDecoder object
@@ -24,8 +24,11 @@ public class FileDecoder {
     }
 
     public FileType checkFileType() {
-        String pathInTxt = ".\\" + this.currentName + ".txt";
-        String pathInCpp = ".\\" + this.currentName + ".cpp";
+        String currentDirectory = ".\\";
+        String noteFileExtension = ".txt";
+        String codeFileExtension = ".cpp";
+        String pathInTxt =  currentDirectory + this.currentName + noteFileExtension;
+        String pathInCpp = currentDirectory + this.currentName + codeFileExtension;
 
         if (new java.io.File(pathInTxt).isFile()) {
             return FileType.TXT;

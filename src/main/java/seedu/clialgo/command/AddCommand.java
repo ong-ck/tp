@@ -14,6 +14,9 @@ import seedu.clialgo.Ui;
  * The <code>AddCommand</code> objects represents the user command to add new CS2040CFiles into CLIAlgo.
  */
 public class AddCommand extends Command {
+    public static final String NOTE_FILE_EXTENSION = ".txt";
+    public static final String CODE_FILE_EXTENSION = ".cpp";
+    public static final String CURRENT_DIRECTORY_PATH = ".\\";
     public static final int DEFAULT_IMPORTANCE = 5;
     protected final String name;
     protected final Ui ui;
@@ -65,12 +68,12 @@ public class AddCommand extends Command {
      * @return A <code>FileType</code> enum that determines whether the file DOESNOTEXIST, is a TXT or CPP file.
      */
     public FileType checkFileType() {
-        String pathInTxt = this.name + ".txt";
-        String pathInCpp = this.name + ".cpp";
+        String pathInTxt = this.name + NOTE_FILE_EXTENSION;
+        String pathInCpp = this.name + CODE_FILE_EXTENSION;
 
-        if (new File(".\\" + pathInTxt).isFile()) {
+        if (new File(CURRENT_DIRECTORY_PATH + pathInTxt).isFile()) {
             return FileType.TXT;
-        } else if (new File(".\\" + pathInCpp).isFile()) {
+        } else if (new File(CURRENT_DIRECTORY_PATH + pathInCpp).isFile()) {
             return FileType.CPP;
         } else {
             return FileType.DOESNOTEXIST;

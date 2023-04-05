@@ -51,7 +51,9 @@ public class FileManager {
      * @return The SingleFile object created.
      */
     public SingleFile createSingleFile(String name) {
-        String pathToFile = path + "\\" + name + ".txt";
+        String fileDivider = "\\";
+        String noteFileExtension = ".txt";
+        String pathToFile = path + fileDivider + name + noteFileExtension;
         File file = new File(pathToFile);
         SingleFile newFile = new SingleFile(file, name, decoder);
         try {
@@ -92,14 +94,14 @@ public class FileManager {
         if (files != null) {
             for (File f : files) {
                 if (!f.delete()) {
-                    System.out.println("Delete failed");
+                    Ui.printDeleteFail();
                 }
             }
         }
         if (!pathToFolder.delete()) {
-            System.out.println("Delete failed");
+            Ui.printDeleteFail();
         } else {
-            System.out.println("Delete successful");
+            Ui.printDeleteSuccess();
         }
     }
 
