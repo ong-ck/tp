@@ -534,4 +534,12 @@ public class Ui {
         System.out.println("Note that the corrupted entries are discarded!");
         printDivider();
     }
+
+    public static void printDeleteSuccess() {
+        System.out.println("Delete successful");
+    }
+
+    public static void printDeleteFail() {
+        System.out.println("Delete failed");
+    }
 }
