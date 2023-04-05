@@ -17,13 +17,13 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExitTestModeCommandTest {
+    private static final String PATH = ".\\testdata";
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private Ui ui;
     private TopicManager topicManager;
     private Parser parser;
     private FileManager fileManager;
     private Buffer buffer;
-    private final String PATH = ".\\testdata";
 
     /**
      * Runs before each test, initializes  <code>Ui</code>, <code>TopicManager</code>, <code>Parser</code> and

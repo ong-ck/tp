@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileManagerTest {
 
-    private final String PATH = ".\\testdata";
-    private final String FILE_DIVIDER = "\\";
-    private final String CODE_FILE_EXTENSION = ".cpp";
-    private final String NOTE_FILE_EXTENSION = ".txt";
+    private static final String PATH = ".\\testdata";
+    private static final String FILE_DIVIDER = "\\";
+    private static final String CODE_FILE_EXTENSION = ".cpp";
+    private static final String NOTE_FILE_EXTENSION = ".txt";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.

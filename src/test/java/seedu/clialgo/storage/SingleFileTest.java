@@ -13,10 +13,9 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SingleFileTest {
-
+    private static final String PATH = ".\\test";
     private FileDecoder fileDecoder;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    private final String PATH = ".\\test";
 
     /**
      * Deletes folder at <code>pathToFolder</code> and all the files within.
