@@ -30,7 +30,7 @@ public class SingleFile {
         this.storedRawData  = new HashMap<>();
         this.cs2040cFiles = new HashMap<>();
     }
-
+    //@@author lohjooh
     /**
      * Reads data from the .txt file and stores it in this object. If the file is corrupted, after reading in the
      * non-corrupted data, overwrites the data file with the non-corrupted data while purging the corrupted data.
