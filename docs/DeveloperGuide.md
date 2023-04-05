@@ -127,6 +127,24 @@ the `StringManipulation` interface.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-storage"></div>
 
+### Logic
+[**API**](../src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
+
+
+
+The `TopicManager` component:
+- Stores the names and topic of every `CS2040CFile` tracked by `CLIAlgo`.
+- Contains 10 `Topic` classes, each representing a topic in CS2040C.
+- Each `CS2040CFile` tracked by `CLIAlgo` is stored in the corresponding `Topic` object based on the topic it is tagged
+to.
+- Handles all operations involving `CS2040CFiles` such as
+  - Addition and removal operations.
+  - Filtering (by topic and importance).
+  - Sorting (by importance and topological order).
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-logic"></div>
+
 ### Storage
 [**API**](../src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
 
