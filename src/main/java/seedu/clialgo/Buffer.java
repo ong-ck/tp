@@ -108,6 +108,7 @@ public class Buffer {
      */
     public void exportBuffer() {
         deleteFiles();
+        assert pathToBuffer.listFiles() == null : "Folder should be empty";
         addFilesToBuffer();
         Desktop desktop = Desktop.getDesktop();
         try {
