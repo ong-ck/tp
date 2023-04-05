@@ -84,4 +84,6 @@ public abstract class CS2040CFile {
      * @param importance The importance of the file.
      */
     public abstract void setImportance(int importance);
+
+    public abstract boolean equals(Object object);
 }

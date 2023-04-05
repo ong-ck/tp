@@ -31,6 +31,17 @@ public class TopoCommand extends Command {
         this.name = name;
     }
 
+    /**
+     * Constructor that initializes a <code>TopoCommand</code> object with topoSortedCS2040CFiles stored in it.
+     *
+     * @param name Name of the CS2040CFile.
+     * @param topoSortedCS2040CFiles A LinkedHashMap of the topologically sorted CS2040CFiles.
+     */
+    public TopoCommand(String name, LinkedHashMap<String, ArrayList<String>> topoSortedCS2040CFiles) {
+        this.topoSortedCS2040CFiles = topoSortedCS2040CFiles;
+        this.name = name;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -121,7 +132,7 @@ public class TopoCommand extends Command {
             }
 
             // Check that number of CS2040CFiles in topic is equal -> topic is equal
-            if (otherTopoSortedCS2040CFiles.get(topic).size() == this.topoSortedCS2040CFiles.get(topic).size()) {
+            if (otherTopoSortedCS2040CFiles.get(topic).size() != this.topoSortedCS2040CFiles.get(topic).size()) {
                 return false;
             }
         }
