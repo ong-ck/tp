@@ -112,11 +112,11 @@ public class Buffer {
         Desktop desktop = Desktop.getDesktop();
         try {
             desktop.open(this.pathToBuffer);
-        } catch (IllegalArgumentException | IOException e) {
-            ui.printOpenFolderNotSupported();
-        } catch (NullPointerException e) {
+        } catch (IOException | IllegalArgumentException e) {
             createFolder();
             ui.printFolderMissing();
+        } catch (UnsupportedOperationException e) {
+            ui.printOpenFolderNotSupported();
         }
     }
 }

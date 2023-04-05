@@ -145,11 +145,12 @@ public class FileManager {
      * @return true if executed successfully and false if execution failed.
      */
     public boolean deleteEntry (String cs2040cFileName, String topicName) {
+        SingleFile singleFile = topicRawData.get(topicName);
         try {
-            topicRawData.get(topicName).deleteEntry(cs2040cFileName);
+            singleFile.deleteEntry(cs2040cFileName);
         } catch (IOException e) {
             ui.printFileWriteError();
-            topicRawData.get(topicName).recreateFile();
+            singleFile.recreateFile();
             return false;
         }
         return true;

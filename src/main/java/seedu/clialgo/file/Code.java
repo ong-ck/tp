@@ -73,4 +73,19 @@ public class Code extends CS2040CFile {
     public int getImportance() {
         return this.importance;
     }
+
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || this.getClass() != object.getClass()) {
+            return false;
+        }
+        Code checkedCode = (Code) object;
+        boolean isSameName = this.getName().equals(checkedCode.getName());
+        boolean isSamePath = this.getPath().equals(checkedCode.getPath());
+        boolean isSameTopic = this.getTopic().equals(checkedCode.getTopic());
+        boolean isSameImportance = this.getImportance() == checkedCode.getImportance();
+        return isSameName && isSamePath && isSameTopic && isSameImportance;
+    }
 }

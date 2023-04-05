@@ -77,7 +77,6 @@ public class SingleFile {
         try {
             if (!file.exists()) {
                 recreateFile();
-                overwriteFile();
             }
             FileWriter fileWriter = new FileWriter(file, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
