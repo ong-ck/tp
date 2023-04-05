@@ -32,7 +32,8 @@ public class FilterCommandTest {
         parser = new Parser();
         topicManager = new TopicManager();
         ui = new Ui();
-        fileManager = new FileManager(".\\testdata", new ArrayList<>());
+        String path = ".\\testdata";
+        fileManager = new FileManager(path, new ArrayList<>());
         buffer = Buffer.getInstance();
         outputStream.reset();
     }

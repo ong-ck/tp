@@ -2,6 +2,7 @@ package seedu.clialgo.storage;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.clialgo.Ui;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -26,14 +27,14 @@ public class SingleFileTest {
         if (files != null) {
             for (File f : files) {
                 if (!f.delete()) {
-                    System.out.println("Delete failed");
+                    Ui.printDeleteFail();
                 }
             }
         }
         if (!pathToFolder.delete()) {
-            System.out.println("Delete failed");
+            Ui.printDeleteFail();
         } else {
-            System.out.println("Delete successful");
+            Ui.printDeleteSuccess();
         }
     }
 
@@ -52,11 +53,16 @@ public class SingleFileTest {
 
     @Test
     void isCorruptedEntryDiscarded_expectTrue() {
-        assert new File(PATH).mkdir();
-        String pathToTest = PATH + "\\test.txt";
+        if (!new File(PATH).mkdir()) {
+            System.out.println("ERROR 1");
+        }
+        String fileName = "\\test.txt";
+        String pathToTest = PATH + fileName;
         File file = new File(pathToTest);
         try {
-            assert file.createNewFile();
+            if (!file.createNewFile()) {
+                System.out.println("ERROR 2");
+            }
             SingleFile singleFile = new SingleFile(file, "test", fileDecoder);
             FileWriter fileWriter = new FileWriter(file);
             String corruptedString = "corrupted";

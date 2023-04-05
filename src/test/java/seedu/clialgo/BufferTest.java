@@ -29,12 +29,12 @@ public class BufferTest {
         if (files != null) {
             for (File f : files) {
                 if (!f.delete()) {
-                    System.out.println("Delete failed");
+                    Ui.printDeleteFail();
                 }
             }
         }
         if (!pathToFolder.delete()) {
-            System.out.println("Delete failed");
+            Ui.printDeleteFail();
         }
     }
 
@@ -48,7 +48,10 @@ public class BufferTest {
     @Test
     public void isAddFileToBufferErrorMessagePrinted_expectTrue() {
         ArrayList<CS2040CFile> files = new ArrayList<>();
-        CS2040CFile file = new Code("name", "path", "topic");
+        String name = "name";
+        String path = "path";
+        String topic = "topic";
+        CS2040CFile file = new Code(name, path, topic);
         files.add(file);
         buffer.updateBuffer(files);
         deleteAll(new File(PATH));

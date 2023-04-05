@@ -22,6 +22,8 @@ public class Buffer {
     private final ArrayList<CS2040CFile> files;
     private final File pathToBuffer;
     private final Ui ui;
+    private final String CURRENT_DIRECTORY_PATH = ".\\";
+
 
     /**
      * This is a private constructor for a Singleton-type object as only one <code>Buffer</code> would be instantiated.
@@ -29,7 +31,8 @@ public class Buffer {
     private Buffer() {
         this.files = new ArrayList<>();
         this.ui = new Ui();
-        this.pathToBuffer = new File(".\\export");
+        String path = "export";
+        this.pathToBuffer = new File(CURRENT_DIRECTORY_PATH + path);
         createFolder();
     }
 
@@ -65,6 +68,7 @@ public class Buffer {
         File[] files = pathToBuffer.listFiles();
         if (files != null) {
             for (File file : files) {
+                assert file.exists() : "This should be non-null";
                 if (!file.delete()) {
                     ui.printFileDeleteFail();
                 }
@@ -90,9 +94,10 @@ public class Buffer {
      * if the copy fails.
      */
     public void addFilesToBuffer() {
+        String fileDivider = "\\";
         for (CS2040CFile file: this.files) {
-            Path source = Paths.get(".\\" + file.getPath());
-            Path target = Paths.get(this.pathToBuffer + "\\" + file.getPath());
+            Path source = Paths.get(CURRENT_DIRECTORY_PATH + file.getPath());
+            Path target = Paths.get(this.pathToBuffer + fileDivider + file.getPath());
             try {
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
