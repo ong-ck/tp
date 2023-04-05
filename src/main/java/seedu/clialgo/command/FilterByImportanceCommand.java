@@ -5,7 +5,6 @@ import seedu.clialgo.Topic;
 import seedu.clialgo.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.CS2040CFile;
-import seedu.clialgo.file.Code;
 import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
@@ -19,13 +18,19 @@ import java.util.Objects;
  */
 public class FilterByImportanceCommand extends FilterCommand {
 
+    /** Comparator to sort CS2040CFiles in decreasing order of importance */
     public Comparator<CS2040CFile> importanceLevel = (cs2040cFile1, cs2040cFile2) -> {
         int cs2040cFile1Importance = cs2040cFile1.getImportance();
         int cs2040cFile2Importance = cs2040cFile2.getImportance();
-        // From most important to the least important
         return cs2040cFile2Importance - cs2040cFile1Importance;
     };
 
+    /**
+     * Constructor for command to filter CS2040CFiles by importance.
+     *
+     * @param keyWord The keyword to filter by.
+     * @param topic The topic that this file is tagged to.
+     */
     public FilterByImportanceCommand(String keyWord, String topic) {
         super(keyWord, topic);
     }
@@ -40,17 +45,7 @@ public class FilterByImportanceCommand extends FilterCommand {
         ArrayList<CS2040CFile> cs2040cFiles = topicManager.getAllFilesAsFiles();
         ui.printFilterSuccess();
         cs2040cFiles.sort(importanceLevel);
-        int serialNumber = 1;
-        for (CS2040CFile cs2040cFile : cs2040cFiles) {
-            String cs2040cFileType = "[NOTE] ";
-            if (cs2040cFile instanceof Code) {
-                cs2040cFileType = "[CODE] ";
-            }
-            System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
-                    cs2040cFile.getImportance() + "]");
-            ++serialNumber;
-        }
-        ui.printDivider();
+        ui.printAllFilesWithImportance(cs2040cFiles);
     }
 
     /**
@@ -60,21 +55,12 @@ public class FilterByImportanceCommand extends FilterCommand {
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      */
     public void printSingleTopic(TopicManager topicManager, Ui ui) {
-        ArrayList<CS2040CFile> cs2040cFiles = topicManager.getOneTopic(this.topic).getCS2040CFilesAsArray();
+        Topic selectedTopic = topicManager.getOneTopic(this.topic);
+        ArrayList<CS2040CFile> cs2040cFiles = selectedTopic.getCS2040CFilesAsArray();
         ui.printFilterSuccess();
-        cs2040cFiles.sort(importanceLevel);
-        int serialNumber = 1;
         ui.printWithBox(this.topic);
-        for (CS2040CFile cs2040cFile : cs2040cFiles) {
-            String cs2040cFileType = "[NOTE] ";
-            if (cs2040cFile instanceof Code) {
-                cs2040cFileType = "[CODE] ";
-            }
-            System.out.println(serialNumber + ". " + cs2040cFileType + cs2040cFile.getName() + " [" +
-                    cs2040cFile.getImportance() + "]");
-            ++serialNumber;
-        }
-        ui.printDivider();
+        cs2040cFiles.sort(importanceLevel);
+        ui.printAllFilesWithImportance(cs2040cFiles);
     }
 
     /**
