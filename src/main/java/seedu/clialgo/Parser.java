@@ -245,7 +245,7 @@ public class Parser implements StringManipulation {
      * @return A <code>Command</code> object that list out the CS2040CFiles stored in CLIAlgo.
      */
     private Command prepareListCommand(String description) {
-        if (!(description == null || description.length() == 0)) {
+        if (description != null) {
             return new InvalidCommand();
         }
         return new ListCommand();
@@ -255,7 +255,7 @@ public class Parser implements StringManipulation {
      * @return A <code>Command</code> object that exits CLIAlgo.
      */
     private Command prepareExitCommand(String description) {
-        if (!(description == null || description.length() == 0)) {
+        if (description != null) {
             return new InvalidCommand();
         }
         return new ExitCommand();
@@ -279,7 +279,7 @@ public class Parser implements StringManipulation {
      * @return A <code>Command</code> object that exports all CS2040CFiles stored in the buffer.
      */
     private Command prepareExport(String description) {
-        if (!(description == null || description.length() == 0)) {
+        if (description != null) {
             return new InvalidCommand();
         }
         return new ExportCommand();

@@ -31,7 +31,10 @@ public class TopicManager {
     /** Data Structure to hold all the topics */
     private HashMap<String, Topic> topics;
 
+    /** A Data Structure to keep track of all the CS240CFile in CLIAlgo and the topic they are tagged to. */
     private HashMap<String, String> allCS2040CFilesOutsideTestMode;
+
+    /** Test mode */
     private HashMap<String, Topic> topicsOutsideTestMode;
     private boolean isTestModeOn;
 
@@ -136,7 +139,8 @@ public class TopicManager {
             if (currentTopic.isEmpty()) {
                 continue;
             }
-            toPrintCS2040CFiles.put(entry.getKey(), currentTopic.getAllCS2040CFilesInTopicToPrint());
+            ArrayList<String> currentTopicFiles = currentTopic.getAllCS2040CFilesInTopicToPrint();
+            toPrintCS2040CFiles.put(entry.getKey(), currentTopicFiles);
             assert toPrintCS2040CFiles.containsKey(currentTopic.getTopicName());
         }
         return toPrintCS2040CFiles;
@@ -191,7 +195,7 @@ public class TopicManager {
         this.topics = topics;
         for (Map.Entry<String, Topic> entry : topics.entrySet()) {
             Topic topic = entry.getValue();
-            if (topic == null) {
+            if (topic.isEmpty()) {
                 continue;
             }
             for (CS2040CFile fileName : topic.getC2040CFiles().values()) {
