@@ -471,9 +471,9 @@ The following **_Sequence Diagram_** shows how the help operation works.
 
 The add mechanism is facilitated by "AddCommand". It extends the abstract `Command` with an overridden `execute()`
 method. Within the `execute()` function, the path of the CS2040CFile, as specified by its name, is checked using
-`checkFileType`, to determine if the CS2040CFile exists within the directory of the program. The topic of the
-CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C,
-and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile`, to ensure that no other files
+`checkFileType()`, to determine if the CS2040CFile exists within the directory of the program. The topic of the
+CS2040CFile to be added is also checked using `isValidTopic()` to ensure it is a valid topic in CS2040C,
+and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile()`, to ensure that no other files
 of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the
 CS2040CFile.
 
@@ -497,13 +497,13 @@ Given below is an example usage of how the add feature behaves at each step.
 > **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the
 > `Topic Manager` object, which means that there are duplicates.
 
-> **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. Given that the file to 
-> be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked.
+> **Step 7**: The `checkFileType()` method is then used to check the type of the file to be added. Given that the file 
+> to be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked.
 
 > **Step 8**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
 > adding of the file into the `File Mnanager` object by calling the `addEntry()` method. This updates `CLIAlgo` data
 > file to include this new CS2040CFile. Additionally, the CS2040CFile is added into the `Topic Manager` object using 
-> the `addCS2040CFile` method, to keep track of the names of the CS2040CFiles that the user has added. 
+> the `addCS2040CFile()` method, to keep track of the names of the CS2040CFiles that the user has added. 
 
 The **_Sequence Diagram_** below shows how the `AddCommand` works.
 
@@ -520,14 +520,16 @@ The **_Sequence Diagram_** below shows how the `AddCommand` works.
 ### Remove CS2040CFile feature
 #### Current Implementation
 
-The add mechanism is facilitated by "RemoveCommand". It extends the abstract `Command` with an overridden `execute()`
-method. Within the `execute()` function, 
+The remove mechanism is facilitated by "RemoveCommand". It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` function, methods such as `isEmpty()` and `isRepeatedCS2040CFile()` from the `Topic Manager` 
+object are invoked, which checks that the CS2040CFile to be removed exists. The CS2040CFile is then removed from the 
+`Topic Manager` object and the `File Manager` object.
 
 Given below is an example usage of how the remove feature behaves at each step.
 
-> **Step 1**: The user enters the remove command, which invokes the `getUserInput()` method of `Ui` object and returns 
-> the user input to the `CLIAlgo` object which has been created before. After which, it invokes the `parse()` method of
-> the `Parser` object and determines that it is remove command and creates a new `RemoveCommand` object.
+> **Step 1**: The user enters the remove command, which invokes the `getUserInput()` method of the `Ui` object and 
+> returns the user input to the `CLIAlgo` object which has been created before. After which, it invokes the `parse()` 
+> method of the `Parser` object and determines that it is a remove command and creates a new `RemoveCommand` object.
 
 > **Step 2**: The `CLIAlgo` object than invokes the `execute()` method of the `RemoveCommand` object.
 
@@ -535,7 +537,7 @@ Given below is an example usage of how the remove feature behaves at each step.
 > `Topic Manager` object is empty.
 
 > **Step 4**: The `Topic Manager` object is checked to see if the CS2040CFile to be removed exists inside the 
-> `Topic Manager` object. If it is not, a new NameNotFoundCommand object is created and executed.
+> `Topic Manager` object. If it is not, a new `NameNotFoundCommand` object is created and executed.
 
 > **Step 5**: After steps 3 and 4 checks are done, the `removeCS2040CFile()` method is invoked on the `Topic Manager`
 > object.
@@ -543,11 +545,11 @@ Given below is an example usage of how the remove feature behaves at each step.
 > **Step 6**: If the CS2040CFile is unsuccessfully removed from the `Topic Manager` object, the `printRemoveFail()` 
 > method is invoked on the `Ui` object.
 
-> **Step 7**: The `deleteEntry()` method of `File Maneger` object is invoked. This updates the `CLIAlgo` data file to
+> **Step 7**: The `deleteEntry()` method of `File Manager` object is invoked. This updates the `CLIAlgo` data file to
 > no longer contain the CS2040CFile that is being removed, and `CLIAlgo` stops tracking that CS2040CFile.
 
-> **Step 8**: If the CS2040CFile is not deleted successfully from `File Manager` object, the control is returned back to
-> `CLIAlgo` object.
+> **Step 8**: If the CS2040CFile is not deleted successfully from the `File Manager` object, the control is returned 
+> back to the `CLIAlgo` object.
 
 > **Step 9**: Otherwise, the `updateBuffer()` method of the `Buffer` object is invoked to clear the buffer, and the
 > `printRemoveSuccess()` method of the `Ui` object is invoked.
