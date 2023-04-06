@@ -382,7 +382,7 @@ The following **_Sequence Diagram_** shows how the Parser work.
 #### Current Implementation
 
 All operations involving `CS2040CFiles` are handled by the `TopicManager`. The `TopicManager` class and `Topic` class 
-form a whole-part relationship where the `TopicManager` contains 10 instance of the `Topic` claass, each
+form a whole-part relationship where the `TopicManager` contains 10 instance of the `Topic` class, each
 representing the 10 topics in CS2040C. When relevant `Command` objects are executed, they invoke methods in the
 `TopicManager` which in turns invokes methods in the relevant `Topic` class. The `TopicManager` suppors the following 
 operations:
@@ -579,8 +579,8 @@ The **_Sequence Diagram_** below shows how the `AddCommand` works.
     <img src="sequence-diagrams/diagrams/AddFeature.png" alt="Add Feature Sequence Diagram" width="75%"/>
 </p>
 
-> **Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end at 
-> the destroy marker (X) but due to limitation of PlantUML, the lifeline reaches the end of the diagram.
+> **Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end 
+> at the destroy marker (X) but due to limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-remove"></div>
