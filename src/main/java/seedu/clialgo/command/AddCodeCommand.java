@@ -6,7 +6,11 @@ import seedu.clialgo.Ui;
 import seedu.clialgo.file.Code;
 import seedu.clialgo.storage.FileManager;
 
+import java.util.Objects;
+
 public class AddCodeCommand extends AddCommand {
+    private static final String CODE_FILE_EXTENSION = ".cpp";
+
     /**
      * Constructor for command to add code file to topic list.
      *
@@ -28,21 +32,35 @@ public class AddCodeCommand extends AddCommand {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
-        String codePath = name + ".cpp";
+        String codePath = name + CODE_FILE_EXTENSION;
         fileManager.recreateAll();
         Code newCode = new Code(name, codePath, topic, importance);
         boolean isAddedToFile = fileManager.addEntry(name, newCode);
 
-        //  Check if code file is successfully added to data file
         if (!isAddedToFile) {
             return;
         }
 
         boolean isAdded = topicManager.addCS2040CFile(name, topic, newCode);
 
-        // Check if added -> execute invalid command if code file is not added
         if (!isAdded) {
             new InvalidCommand().execute(topicManager, ui, fileManager, buffer);
         }
     }
+
+    /**
+     * An overridden method that checks for equality of <code>AddCodeCommand</code> objects.
+     *
+     * @param otherCommand The other <code>AddCodeCommand</code> object to be checked against.
+     * @return A boolean value to determine whether the <code>AddCodeCommand</code> objects are equal.
+     */
+    @Override
+    public boolean equals(Command otherCommand) {
+        AddCodeCommand otherAddCodeCommand = (AddCodeCommand) otherCommand;
+        boolean isNameEqual = Objects.equals(this.name, otherAddCodeCommand.name);
+        boolean isTopicEqual = Objects.equals(this.topic, otherAddCodeCommand.topic);
+        boolean isImportanceEqual = this.importance == otherAddCodeCommand.importance;
+        return isNameEqual && isTopicEqual && isImportanceEqual;
+    }
+
 }

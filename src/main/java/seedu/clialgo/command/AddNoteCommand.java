@@ -6,7 +6,10 @@ import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.file.Note;
 
+import java.util.Objects;
+
 public class AddNoteCommand extends AddCommand {
+    private static final String NOTE_FILE_EXTENSION = ".txt";
     /**
      * Constructor for command to add note file to topic list.
      *
@@ -28,7 +31,7 @@ public class AddNoteCommand extends AddCommand {
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
-        String notePath = name + ".txt";
+        String notePath = name + NOTE_FILE_EXTENSION;
         fileManager.recreateAll();
         Note newNote = new Note(name, notePath, topic, importance);
         boolean isAddedToFile = fileManager.addEntry(name, newNote);
@@ -44,5 +47,20 @@ public class AddNoteCommand extends AddCommand {
         if (!isAdded) {
             new InvalidCommand().execute(topicManager, ui, fileManager, buffer);
         }
+    }
+
+    /**
+     * An overridden method that checks for equality of <code>AddNoteCommand</code> objects.
+     *
+     * @param otherCommand The other <code>AddNoteCommand</code> object to be checked against.
+     * @return A boolean value to determine whether the <code>AddNoteCommand</code> objects are equal.
+     */
+    @Override
+    public boolean equals(Command otherCommand) {
+        AddNoteCommand otherAddNoteCommand = (AddNoteCommand) otherCommand;
+        boolean isNameEqual = Objects.equals(this.name, otherAddNoteCommand.name);
+        boolean isTopicEqual = Objects.equals(this.topic, otherAddNoteCommand.topic);
+        boolean isImportanceEqual = this.importance == otherAddNoteCommand.importance;
+        return isNameEqual && isTopicEqual && isImportanceEqual;
     }
 }
