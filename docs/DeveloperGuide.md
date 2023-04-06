@@ -628,7 +628,7 @@ The **_Sequence Diagram_** below shows how the `RemoveCommand` works.
 
 The list feature mechanism is facilitated by `ListCommand`. It extends `Command` with an
 overridden `execute()` method. It calls the `getAllCS2040CFiles()` method from the `TopicManager` to get all the
-`CS2040CFile` stored in `CLIAlgo`. It then prints them out to the user.
+`CS2040CFile`s stored in `CLIAlgo`. It then prints them out to the user.
 
 Given below is an example usage scenario and how the list feature behaves at each step.
 
@@ -668,11 +668,11 @@ depending on the `keyWord` provided. Both `FilterByTopicCommand` and `FilterByIm
 `FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
 
 - `FilterByTopicCommand`
-  - `printAllTopics()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is sorted by `topic`.
-  - `printSingleTopic()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is tagged to the given `topic`.
+  - `printAllTopics()` - Prints out all `CS2040CFile`s stored in CLIAlgo that is sorted by `topic`.
+  - `printSingleTopic()` - Prints out all `CS2040CFile`s stored in CLIAlgo that is tagged to the given `topic`.
 - `FilterByImportanceCommand`
-   - `printAllTopics()` - Prints out all `CS2040CFiles` stored in CLIAlgo sorted by `importance`.
-   - `printSingleTopic()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is tagged to the given `topic` sorted 
+   - `printAllTopics()` - Prints out all `CS2040CFile`s stored in CLIAlgo sorted by `importance`.
+   - `printSingleTopic()` - Prints out all `CS2040CFile`s stored in CLIAlgo that is tagged to the given `topic` sorted 
 by `importance`.
 
 The access modifiers of these methods are `private` can can only be accessed within `FilterCommand`.
@@ -715,34 +715,34 @@ The following **_Sequence Diagram_** shows how the filter by topic operation wor
 #### Current implementation
 
 The TopoSort mechanism is facilitated by `TopoCommand`. It extends `Command` with an 
-overridden `execute()` method, and stores internally the name of the note file and 
+overridden `execute()` method, and stores internally the name of the `CS2040CFile` and 
 topologically sorted notes as `name` and `topoSortedCS2040CFiles`.
 Additionally, it implements the following operations:
 
-- TopoCommand#printTopoSortedCS2040CFiles() - Prints all CS2040CFiles after a specific 
-target CS2040CFile in a topological manner. 
-- TopoCommand#printSingleTopic() - Prints all CS2040CFiles of a single specific topic.
+- `printTopoSortedCS2040CFiles()` - Prints all `CS2040CFile`s after a specific 
+target `CS2040CFile` in a topological order. 
+- `printSingleTopic()` - Prints all `CS2040CFile`s of a single specific topic.
 
 These operations are `private` and can only be accessed in `TopoCommand`.
 
 Given below is an example usage scenario and how the TopoSort mechanism behaves at each step.
 
 > **Step 1:** The user will input a command in the format `topo n\noteName`. The input will be read
-> by the `Ui` and processed by the `Parser`. The `Parser` will then call the `prepareTopoCommand`
+> by the `Ui` and processed by the `Parser`. The `Parser` will then call the `prepareTopoCommand()`
 > to create a new `TopoCommand` object.
 
-> **Step 2:** The `execute` method of the `TopoCommand` object will be executed, which will check
-> whether there are any saved notes (via the `isEmpty` method of `TopicManager`) and whether the `noteName` exists as a 
+> **Step 2:** The `execute()` method of the `TopoCommand` object will be executed, which will check
+> whether there are any saved notes (via the `isEmpty()` method of `TopicManager`) and whether the `noteName` exists as a 
 > note in the application
-> (via the `isRepeatedCS2040CFile` method of `TopicManager`).
+> (via the `isRepeatedCS2040CFile()` method of `TopicManager`).
 
-> **Step 3:** The `printTopoSortedCS2040CFiles` method is called to obtain the relevant note files in topological
-> order from `TopicManager` via the `getAllCS2040CFilesBeforeTopic` method. This will be stored internally in 
-> a LinkedHashMap called `topoSortedCS2040CFiles`.
+> **Step 3:** The `printTopoSortedCS2040CFiles()` method is called to obtain the relevant note files in topological
+> order from `TopicManager` via the `getAllCS2040CFilesBeforeTopic()` method. This will be stored internally in 
+> a `LinkedHashMap` called `topoSortedCS2040CFiles`.
 
-> **Step 4:** For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic` will be executed to print all
-> note names present in the specific topic. As the topics are saved in topological order, the printed note names
-> will be printed in the correct order.
+> **Step 4:** For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic()` will be executed to print all
+> note names present in the specific topic. As the topics are saved in topological order, the printed `CS2040CFile` 
+> names will be printed in the correct order.
 
 The following sequence diagram shows how the `TopoCommand` works.
 
