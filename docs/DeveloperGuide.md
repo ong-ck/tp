@@ -70,13 +70,12 @@ Given below is a quick overview of the main components and how they interact wit
 
 - `CLIAlgo`: consist of only 1 main method, and it is responsible for initializing the components
 in the correct sequence and connects them with each other during runtime.
-- `Ui`: Responsible for handling all interactions with the user.
-- `Parser`: Responsible for making sense of all commands entered by the user.
-- `Topic`: A class responsible for managing all files allocated to single topic in CS2040C.
-- `TopicManager`: A class responsible for handling operations involving all `Topic`.
-- `command`: A collection of `Command` objects which handles the different functionalities of `CLIAlgo`.
-- `file`: A collection of files used in CS2040C.
-- `storage`: A collection of classes responsible for reading, storing and writing data to the hard disk.
+- `Ui`: A class responsible for handling all interactions with the user.
+- `Parser`: A class responsible for making sense of all commands entered by the user.
+- `logic`: A package of classes responsible for managing all `CS2040CFile`s allocated in `CLIAlgo`.
+- `command`: A package of `Command` objects which handles the different functionalities of `CLIAlgo`.
+- `file`: A package of `CS2040CFile`s used in CS2040C.
+- `storage`: A package of classes responsible for reading, storing and writing data to the hard disk.
 
 #### How the architecture components interact with each other
 
