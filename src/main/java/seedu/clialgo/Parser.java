@@ -69,6 +69,7 @@ public class Parser implements StringManipulation {
         return KEYWORDS.contains(keyWord);
     }
 
+    //@@author nikkiDEEE
     /**
      * Checks if the input string is in the valid importance range (1-10).
      *
@@ -81,6 +82,7 @@ public class Parser implements StringManipulation {
         return importance >= 1 && importance <= 10;
     }
 
+    //@@author heejet
     /**
      * Checks if the correct marker is used by the user.
      *

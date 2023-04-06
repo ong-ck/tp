@@ -76,7 +76,6 @@ public class RemoveCommand extends Command {
     public String getName() {
         return name;
     }
-    //@@author
 
     /**
      * An overridden method that checks for equality of <code>RemoveCommand</code> objects.

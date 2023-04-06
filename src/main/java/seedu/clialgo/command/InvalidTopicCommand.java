@@ -8,7 +8,6 @@ import seedu.clialgo.storage.FileManager;
 import java.util.Objects;
 
 public class InvalidTopicCommand extends Command {
-
     private final String topic;
 
     /**
