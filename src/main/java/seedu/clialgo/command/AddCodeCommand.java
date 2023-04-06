@@ -57,7 +57,9 @@ public class AddCodeCommand extends AddCommand {
     @Override
     public boolean equals(Command otherCommand) {
         AddCodeCommand otherAddCodeCommand = (AddCodeCommand) otherCommand;
-        return Objects.equals(this.name, otherAddCodeCommand.name);
+        return Objects.equals(this.name, otherAddCodeCommand.name) &&
+                Objects.equals(this.topic, otherAddCodeCommand.topic)
+                && Objects.equals(this.importance, otherAddCodeCommand.importance);
     }
 
 }

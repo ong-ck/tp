@@ -26,9 +26,23 @@ class AddCodeCommandTest {
     }
 
     @Test
-    void equals_checkUnequalAddCodeCommand_expectFalse() {
+    void equals_checkUnequalNameAddCodeCommand_expectFalse() {
         AddCodeCommand myObj = new AddCodeCommand("queue", "LINKED_LIST", 10);
-        AddCodeCommand myOtherObj = new AddCodeCommand("bubble", "SORTING", 5);
+        AddCodeCommand myOtherObj = new AddCodeCommand("queue1", "LINKED_LIST", 10);
+        assertFalse(myObj.equals(myOtherObj));
+    }
+
+    @Test
+    void equals_checkUnequalTopicAddCodeCommand_expectFalse() {
+        AddCodeCommand myObj = new AddCodeCommand("queue", "LINKED_LIST", 10);
+        AddCodeCommand myOtherObj = new AddCodeCommand("queue", "SORTING", 10);
+        assertFalse(myObj.equals(myOtherObj));
+    }
+
+    @Test
+    void equals_checkUnequalImportanceAddCodeCommand_expectFalse() {
+        AddCodeCommand myObj = new AddCodeCommand("queue", "LINKED_LIST", 10);
+        AddCodeCommand myOtherObj = new AddCodeCommand("queue", "LINKED_LIST", 5);
         assertFalse(myObj.equals(myOtherObj));
     }
 
