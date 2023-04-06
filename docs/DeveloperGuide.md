@@ -312,7 +312,7 @@ All UI interactions are taken care of by the Ui class. It is responsible for tak
 outputs to provide guidance and a pleasant user experience overall. The Ui uses the `Scanner` class from `java.util` to
 take in input from the user and `System.out.println()` method from `java.lang` to output messages to the user.
 
-Given below is an example of how the `Ui` works when it is issued a list command.
+Given below is an example of how the `Ui` works when it is issued a `list` command.
 
 > **Step 1**: The user enters a command `list`. The full command is read in by the `Ui` using the `getUserInput()` 
 > method. The `Ui` uses the `nextLine()` method of the `Scanner` object to read in the user input.
@@ -419,8 +419,9 @@ The following **_Sequence Diagram_** shows how the Logic component work.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-initialize"></div>
 
-### Initializing previous saved data feature
+### Storage
 #### Current implementation
+##### Initializing previous saved data feature
 
 The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
 creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for
@@ -462,8 +463,7 @@ The following **_Sequence Diagram_** shows how previously saved files are loaded
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-write"></div>
 
-### Writing a `CS2040CFile` to data file
-#### Current Implementation
+##### Writing a `CS2040CFile` to data file
 
 The function for writing a `CS2040CFile` to a data file is facilitated by the `FileManager`. When the `addEntry`
 is called, an already created `CS2040CFile` and its name is passed to the `FileManager`. The `FileManager` then 
@@ -504,8 +504,8 @@ the relevant data file.
 ### Help Feature
 #### Current Implementation
 
-The help mechanism is facilitated by "HelpCommand". It extends the abstract `Command` with an overridden `execute()`
-method. Within the `execute()` function, the input command after the `c/` delimiter is parsed and checked against the
+The help mechanism is facilitated by `HelpCommand`. It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` method, the input command after the `c/` delimiter is parsed and checked against the
 valid commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
 
 Given below is an example usage of how the `help c/add` mechanism behaves at each step.
@@ -535,41 +535,38 @@ The following **_Sequence Diagram_** shows how the help operation works.
 ### Add CS2040CFile feature
 #### Current Implementation
 
-The add mechanism is facilitated by "AddCommand". It extends the abstract `Command` with an overridden `execute()`
-method. Within the `execute()` function, the path of the CS2040CFile, as specified by its name, is checked using
-`checkFileType`, to determine if the CS2040CFile exists within the directory of the program. The topic of the
-CS2040CFile to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C,
-and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile`, to ensure that no other files
+The add mechanism is facilitated by `AddCommand`. It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` method, the path of the `CS2040CFile`, as specified by its name, is checked using
+`checkFileType`, to determine if the `CS2040CFile` exists within the directory of the program. The topic of the
+`CS2040CFile` to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C,
+and also the name of the `CS2040CFile` is checked using `isRepeatedCS2040CFile`, to ensure that no other files
 of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the
-CS2040CFile.
+`CS2040CFile`.
 
 Given below is an example usage of how the add feature behaves at each step.
 
-> **Step 1**: The user launches the application for the first time. Objects `CLIAlgo`, `Ui`, `Parser` , `TopicManager`,
-> `FileManager` are created.
-
-> **Step 2**: The user enters the add command, which invokes the `getUserInput()` method of `Ui` object and returns the
+> **Step 1**: The user enters the add command, which invokes the `getUserInput()` method of `Ui` object and returns the
 > user input to the `CLIAlgo` object. After which, it invokes the `parse()` method of the `Parser` object and determines
 > that it is an add command and creates a new `AddCommand` object.
 
-> **Step 3**: The `CLIAlgo` object than invokes the `execute()` method of the `AddCommand` object.
+> **Step 2**: The `CLIAlgo` object than invokes the `execute()` method of the `AddCommand` object.
 
-> **Step 4**: The name of CS2040CFile is checked, to see if a file of that name exists within the directory. If it is
+> **Step 3**: The name of `CS2040CFile` is checked, to see if a file of that name exists within the directory. If it is
 > not, the `printFileDoesNotExist()` method of the `Ui` object is invoked
 
-> **Step 5**: The topic name of the CS2040CFile is checked, to see if it belongs to one of the topics in CS2040C. If it
+> **Step 4**: The topic name of the `CS2040CFile` is checked, to see if it belongs to one of the topics in CS2040C. If it
 > is, a new `InvalidTopicCommand` object is created and executed.
 
-> **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the
+> **Step 5**: The name of `CS2040CFile` is checked, to see if a file of that name already exists inside  the
 > `Topic Manager` object, which means that there are duplicates.
 
-> **Step 7**: The `checkFileType` method is then used to check the type of the file to be added. Given that the file to 
+> **Step 6**: The `checkFileType` method is then used to check the type of the file to be added. Given that the file to 
 > be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked.
 
-> **Step 8**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
+> **Step 7**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
 > adding of the file into the `File Mnanager` object by calling the `addEntry()` method. This updates `CLIAlgo` data
-> file to include this new CS2040CFile. Additionally, the CS2040CFile is added into the `Topic Manager` object using 
-> the `addCS2040CFile` method, to keep track of the names of the CS2040CFiles that the user has added. 
+> file to include this new `CS2040CFile`. Additionally, the `CS2040CFile` is added into the `Topic Manager` object using 
+> the `addCS2040CFile()` method, to keep track of the names of the CS2040CFiles that the user has added. 
 
 The **_Sequence Diagram_** below shows how the `AddCommand` works.
 
