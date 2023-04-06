@@ -17,13 +17,11 @@ import java.util.ArrayList;
  * through executing <code>ExportCommand</code>.
  */
 public class Buffer {
-
+    private static final String CURRENT_DIRECTORY_PATH = ".\\";
     private static Buffer buffer = null;
     private final ArrayList<CS2040CFile> files;
     private final File pathToBuffer;
     private final Ui ui;
-    private final String CURRENT_DIRECTORY_PATH = ".\\";
-
 
     /**
      * This is a private constructor for a Singleton-type object as only one <code>Buffer</code> would be instantiated.

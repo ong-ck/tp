@@ -99,8 +99,8 @@ public class TopicManager {
 
     //@@author heejet
     /** returns the topic of the given CS2040CFile */
-    public String getTopicOfCS2040CFile(String CS2040CFileName) {
-        return this.allCS2040CFiles.get(CS2040CFileName.toLowerCase());
+    public String getTopicOfCS2040CFile(String cs2040cFileName) {
+        return this.allCS2040CFiles.get(cs2040cFileName.toLowerCase());
     }
 
     /**
