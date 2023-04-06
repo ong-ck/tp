@@ -830,7 +830,7 @@ Use case ends.
 
 ## Glossary
 
-* *notes* - A note file saved by the user as a `.txt` or `.cpp`
+* *CS2040CFile* - A note file saved by the user as a `.txt` or `.cpp`
 * *desktop CLI* - The terminal in Windows, Linux or macOS
 * *mainstream OS* - Windows, Linux or macOS
 * *CS2040C* - The Data Structures and Algorithms module in NUS
