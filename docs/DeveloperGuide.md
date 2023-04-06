@@ -82,10 +82,10 @@ in the correct sequence and connects them with each other during runtime.
 The **_Sequence Diagram_** below shows a high level overview of how the components interact with each other
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/Architecture.png" alt="Architecture Diagram" width="50%"/>
+    <img src="sequence-diagrams/diagrams/Architecture.png" alt="Architecture Diagram" width="80%"/>
 </p>
 
-> **Note**: The lifeline for `CLIAlgo`, `Ui`, `Parser` and `Command` should end at the destroy marker (X) but due to 
+> **Note**: The lifeline for `Command` should end at the destroy marker (X) but due to 
 > limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -140,7 +140,7 @@ Here is a class diagram of the `TopicManager` component which is responsible for
 
 The `TopicManager` component:
 - Stores the names and topic of every `CS2040CFile` tracked by `CLIAlgo`.
-- Contains 10 `Topic` classes, each representing a topic in CS2040C.
+- Contains 10 `Topic` objects, each representing a topic in CS2040C.
 - Each `CS2040CFile` tracked by `CLIAlgo` is stored in the corresponding `Topic` object based on the topic it is tagged
 to.
 - Handles all operations involving `CS2040CFiles` such as
@@ -162,12 +162,12 @@ function of the application.
 </p>
 
 The `FileManager` component
-- can save each `Topic`'s data as an individual `.txt` file
-- can interpret `Note` and `Code` objects as a `String` and store it into its 
+- Saves each `Topic`'s data as an individual `.txt` file
+- Interprets `Note` and `Code` objects as a `String` and store it into its 
 corresponding `Topic`'s  `.txt`
-- updates the corresponding `Topic`'s  `.txt` whenever a `add` or
+- Updates the corresponding `Topic`'s  `.txt` whenever a `add` or
 `remove` command is called by the user
-- reads from each `Topic`'s  `.txt` and returns a `Topic` object when
+- Reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -199,9 +199,9 @@ Here is a class diagram of the `AddCommand` which is responsible for adding eith
 </p>
 
 The `AddCommand` component
-- can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
-- can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
-- can ensure that there are no files with repeated names such that all names of files added are unique
+- Checks if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
+- Checks for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
+- Ensures that there are no files with repeated names such that all names of files added are unique
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-remove"></div>
