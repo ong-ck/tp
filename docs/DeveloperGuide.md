@@ -4,8 +4,8 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the 
-original source as well}
+- Reference to [AB-3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
+- All UML diagrams were creates using [PlantUML](https://plantuml.com/)
 
 ## Table of Contents
 
@@ -13,6 +13,7 @@ original source as well}
   - [Architecture](#design-architecture)
   - [Ui](#design-ui)
   - [Parser](#design-parser)
+  - [Logic](#design-logic)
   - [Storage](#design-storage)
   - [Help](#design-help)
   - [Add](#design-add)
@@ -24,6 +25,7 @@ original source as well}
 - [Implementation](#implementation)
   - [Ui](#implementation-ui)
   - [Parser](#implementation-parser)
+  - [Logic](#implementation-logic)
   - [Initializing previous saved data feature](#implementation-initialize)
   - [Writing a CS2040CFile to data file](#implementation-write)
   - [Help Feature](#implementation-help)
@@ -68,23 +70,22 @@ Given below is a quick overview of the main components and how they interact wit
 
 - `CLIAlgo`: consist of only 1 main method, and it is responsible for initializing the components
 in the correct sequence and connects them with each other during runtime.
-- `Ui`: Responsible for handling all interactions with the user.
-- `Parser`: Responsible for making sense of all commands entered by the user.
-- `Topic`: A class responsible for managing all files allocated to single topic in CS2040C.
-- `TopicManager`: A class responsible for handling operations involving all `Topic`.
-- `command`: A collection of `Command` objects which handles the different functionalities of `CLIAlgo`.
-- `file`: A collection of files used in CS2040C.
-- `storage`: A collection of classes responsible for reading, storing and writing data to the hard disk.
+- `Ui`: A class responsible for handling all interactions with the user.
+- `Parser`: A class responsible for making sense of all commands entered by the user.
+- `logic`: A package of classes responsible for managing all `CS2040CFile`s allocated in `CLIAlgo`.
+- `command`: A package of `Command` objects which handles the different functionalities of `CLIAlgo`.
+- `file`: A package of `CS2040CFile`s used in CS2040C.
+- `storage`: A package of classes responsible for reading, storing and writing data to the hard disk.
 
 #### How the architecture components interact with each other
 
 The **_Sequence Diagram_** below shows a high level overview of how the components interact with each other
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/Architecture.png" alt="Architecture Diagram" width="50%"/>
+    <img src="sequence-diagrams/diagrams/Architecture.png" alt="Architecture Diagram" width="80%"/>
 </p>
 
-> **! Note**: The lifeline for `CLIAlgo`, `Ui`, `Parser` and `Command` should end at the destroy marker (X) but due to 
+> **Note**: The lifeline for `Command` should end at the destroy marker (X) but due to 
 > limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -125,6 +126,29 @@ the `StringManipulation` interface.
 - Returns the appropriate `Command` object that will be executed by `CLIAlgo`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+<div id="design-logic"></div>
+
+### Logic
+[**API**](../src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
+
+Here is a class diagram of the `TopicManager` component which is responsible for handling all operations involving
+`CS2040CFiles` and `Topics`.
+
+<p align="center">
+    <img src="class-diagrams/diagrams/TopicManagerClass.png" alt="TopicManager Class Diagram" width="75%"/>
+</p>
+
+The `TopicManager` component:
+- Stores the names and topic of every `CS2040CFile` tracked by `CLIAlgo`.
+- Contains 10 `Topic` objects, each representing a topic in CS2040C.
+- Each `CS2040CFile` tracked by `CLIAlgo` is stored in the corresponding `Topic` object based on the topic it is tagged
+to.
+- Handles all operations involving `CS2040CFiles` such as
+  - Addition and removal operations.
+  - Filtering (by topic and importance).
+  - Sorting (by importance and topological order).
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-storage"></div>
 
 ### Storage
@@ -138,12 +162,12 @@ function of the application.
 </p>
 
 The `FileManager` component
-- can save each `Topic`'s data as an individual `.txt` file
-- can interpret `Note` and `Code` objects as a `String` and store it into its 
+- Saves each `Topic`'s data as an individual `.txt` file
+- Interprets `Note` and `Code` objects as a `String` and store it into its 
 corresponding `Topic`'s  `.txt`
-- updates the corresponding `Topic`'s  `.txt` whenever a `add` or
+- Updates the corresponding `Topic`'s  `.txt` whenever a `add` or
 `remove` command is called by the user
-- reads from each `Topic`'s  `.txt` and returns a `Topic` object when
+- Reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -175,9 +199,10 @@ Here is a class diagram of the `AddCommand` which is responsible for adding eith
 </p>
 
 The `AddCommand` component
-- can check if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
-- can check for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
-- can ensure that there are no files with repeated names such that all names of files added are unique
+- Checks if the `CS2040CFile` to be added into our CLIAlgo exists within the same directory as the program
+- Checks for the type of `CS2040CFile`, whether it is `.txt` or `.cpp` based on the name of the `CS2040CFile`
+- Ensures that there are no files with repeated names such that all names of files added are unique.
+- Adds the `CS2040CFile` to the `TopicManager` and `FileManager`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-remove"></div>
@@ -192,10 +217,8 @@ Here is a class diagram of the `RemoveCommand` which is responsible for removing
 </p>
 
 The `RemoveCommand` component
-- can check if any CS2040CFile currently exists inside topic manager
-- can check if the CS2040CFile to be removed exists inside topic manager
-- can retrieve the topic name of the CS2040CFile to be removed
-- removes the CS2040CFile from our topic manager and file manager
+- Checks if any `CS2040CFile` currently exists inside `TopicManager` and `FileManager`.
+- Removes the `CS2040CFile` from the `TopicManager` and `FileManager`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-list"></div>
@@ -203,7 +226,7 @@ The `RemoveCommand` component
 ### List
 [**API**](../src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
 
-Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile` in `CLIAlgo`.
+Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile`s in `CLIAlgo`.
 
 <p align="center">
     <img src="class-diagrams/diagrams/ListClass.png" alt="ListCommand Class Diagram" width="75%"/>
@@ -250,9 +273,9 @@ function of the application.
 </p>
 
 The `TopoCommand` component
-- can topologically sort `CS2040CFile` objects in a specific `topic` order
-- can print out the list of topologically sorted `CS2040CFile` objects
-- can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
+- Topologically sort `CS2040CFile` objects in a specific `topic` order
+- Prints out the list of topologically sorted `CS2040CFile` objects
+- Checks whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-export"></div>
@@ -269,11 +292,11 @@ into `.\\export` and opening the folder subsequently if supported by the Operati
 </p>
 
 The `Buffer` component
-- can store `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
-- can update stored `CS2040CFiles`
-- can copy `CS2040CFiles` into `.\\export` folder
-- can delete `CS2040CFiles` in `.\\export` folder
-- can open `.\\export` folder automatically if supported by the Operating System
+- Stores `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
+- Updates stored `CS2040CFile`s
+- Copies `CS2040CFile`s into `.\\export` folder
+- Deletes `CS2040CFile`s in `.\\export` folder
+- Opens `.\\export` folder automatically if supported by the Operating System
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation"></div>
@@ -289,7 +312,7 @@ All UI interactions are taken care of by the Ui class. It is responsible for tak
 outputs to provide guidance and a pleasant user experience overall. The Ui uses the `Scanner` class from `java.util` to
 take in input from the user and `System.out.println()` method from `java.lang` to output messages to the user.
 
-Given below is an example of how the `Ui` works when it is issued a list command.
+Given below is an example of how the `Ui` works when it is issued a `list` command.
 
 > **Step 1**: The user enters a command `list`. The full command is read in by the `Ui` using the `getUserInput()` 
 > method. The `Ui` uses the `nextLine()` method of the `Scanner` object to read in the user input.
@@ -307,7 +330,7 @@ The following **_Sequence Diagram_** shows how the Ui object is used.
     <img src="sequence-diagrams/diagrams/Ui.png" alt="Ui Sequence Diagram" width="50%"/>
 </p>
 
-> **! Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -351,10 +374,54 @@ The following **_Sequence Diagram_** shows how the Parser work.
 </p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-logic"></div>
+
+### Logic
+#### Current Implementation
+
+All operations involving `CS2040CFiles` are handled by the `TopicManager`. The `TopicManager` class and `Topic` class 
+form a whole-part relationship where the `TopicManager` contains 10 instance of the `Topic` class, each
+representing the 10 topics in CS2040C. When relevant `Command` objects are executed, they invoke methods in the
+`TopicManager` which in turns invokes methods in the relevant `Topic` class. The `TopicManager` supports the following 
+operations:
+
+- `getTopicOfCS2040CFile()`: Returns the name of the topic the given `CS2040CFile` is tagged to.
+- `getAllCS2040CFilesGroupedByTopicToPrint()`: Returns a `HashMap<String, ArrayList<String>>` containing the names and
+labels of all `CS2040CFile`s tracked by `CLIAlgo`.
+- `getAllCS2040CFilesBeforeTopic()`: Returns a `LinkedHashMap<String, ArrayList<String>>` containing the names and 
+labels of all `CS2040CFiles` that come before the given `CS2040CFile` in topological order.
+- `addCS2040CFile()`: Adds the given `CS2040CFile` into the `Topic` class it is tagged to.
+- `removeCS2040CFile()`: Removes a `CS2040CFile` from the `Topic` class that it is tagged to.
+
+Given below is an example of how the `Logic` component works when a `TopoCommand` is executed.
+
+> **Step 1**: When the `TopoCommand` is executed, it calls the `getAllCS2040CFilesBeforeTopic()` method of the 
+> `TopicManager`. 
+
+> **Step 2**: The `TopicManager` then iterates through all the topics in topological order to check if the 
+> `CS2040CFileName` is present in that topic.
+
+> **Step 3**: Once a topic is found to contain the `CS2040CFileName`, the `TopicManager` self-invokes the 
+> `getCS2040CFilesByTopicToPrint()` method which calls the `getAllCS2040CFilesInTopicToPrint()` method of all `Topic` 
+> class from the current topic onwards. This method returns an `ArrayList<String>` containing the names and labels of 
+> all `CS2040CFile` stored inside the current `Topic`.
+
+> **Step 4**: After the `TopicManager` collates the list of `CS2040CFile` names in topological order, it stores them in 
+> a `LinkedHashMap<String, ArrayList<String>>` to preserve the topological order. It then returns it to the 
+> `TopoCommand` object.
+
+The following **_Sequence Diagram_** shows how the Logic component work.
+
+<p align="center">
+    <img src="sequence-diagrams/diagrams/TopicManager.png" alt="Logic Sequence Diagram" width="75%"/>
+</p>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-initialize"></div>
 
-### Initializing previous saved data feature
+### Storage
 #### Current implementation
+##### Initializing previous saved data feature
 
 The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
 creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for
@@ -390,14 +457,13 @@ The following **_Sequence Diagram_** shows how previously saved files are loaded
         alt="FileManager Initialization Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `Scanner` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `Scanner` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-write"></div>
 
-### Writing a `CS2040CFile` to data file
-#### Current Implementation
+##### Writing a `CS2040CFile` to data file
 
 The function for writing a `CS2040CFile` to a data file is facilitated by the `FileManager`. When the `addEntry`
 is called, an already created `CS2040CFile` and its name is passed to the `FileManager`. The `FileManager` then 
@@ -429,7 +495,7 @@ the relevant data file.
     <img src="sequence-diagrams/diagrams/AddEntry.png" alt="Add Entry Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `FileWriter` and `BufferedWriter` should end at the destroy marker (X) but due to 
+> **Note**: The lifeline for `FileWriter` and `BufferedWriter` should end at the destroy marker (X) but due to 
 > limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -438,8 +504,8 @@ the relevant data file.
 ### Help Feature
 #### Current Implementation
 
-The help mechanism is facilitated by "HelpCommand". It extends the abstract `Command` with an overridden `execute()`
-method. Within the `execute()` function, the input command after the `c/` delimiter is parsed and checked against the
+The help mechanism is facilitated by `HelpCommand`. It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` method, the input command after the `c/` delimiter is parsed and checked against the
 valid commands supported by `CLIAlgo`. The command to which it matches is invoked from the Ui class.
 
 Given below is an example usage of how the `help c/add` mechanism behaves at each step.
@@ -460,7 +526,7 @@ The following **_Sequence Diagram_** shows how the help operation works.
     <img src="sequence-diagrams/diagrams/HelpFeature.png" alt="Help Feature Sequence Diagram" width="30%"/>
 </p>
 
-> **! Note**: The lifeline for `HelpCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `HelpCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -469,40 +535,37 @@ The following **_Sequence Diagram_** shows how the help operation works.
 ### Add CS2040CFile feature
 #### Current Implementation
 
-The add mechanism is facilitated by "AddCommand". It extends the abstract `Command` with an overridden `execute()`
-method. Within the `execute()` function, the path of the CS2040CFile, as specified by its name, is checked using
-`checkFileType()`, to determine if the CS2040CFile exists within the directory of the program. The topic of the
-CS2040CFile to be added is also checked using `isValidTopic()` to ensure it is a valid topic in CS2040C,
-and also the name of the CS2040CFile is checked using `isRepeatedCS2040CFile()`, to ensure that no other files
+The add mechanism is facilitated by `AddCommand`. It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` method, the path of the `CS2040CFile`, as specified by its name, is checked using
+`checkFileType`, to determine if the `CS2040CFile` exists within the directory of the program. The topic of the
+`CS2040CFile` to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C,
+and also the name of the `CS2040CFile` is checked using `isRepeatedCS2040CFile`, to ensure that no other files
 of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the
-CS2040CFile.
+`CS2040CFile`.
 
 Given below is an example usage of how the add feature behaves at each step.
 
-> **Step 1**: The user launches the application for the first time. Objects `CLIAlgo`, `Ui`, `Parser` , `TopicManager`,
-> `FileManager` are created.
-
-> **Step 2**: The user enters the add command, which invokes the `getUserInput()` method of `Ui` object and returns the
+> **Step 1**: The user enters the add command, which invokes the `getUserInput()` method of `Ui` object and returns the
 > user input to the `CLIAlgo` object. After which, it invokes the `parse()` method of the `Parser` object and determines
 > that it is an add command and creates a new `AddCommand` object.
 
-> **Step 3**: The `CLIAlgo` object than invokes the `execute()` method of the `AddCommand` object.
+> **Step 2**: The `CLIAlgo` object than invokes the `execute()` method of the `AddCommand` object.
 
-> **Step 4**: The name of CS2040CFile is checked, to see if a file of that name exists within the directory. If it is
+> **Step 3**: The name of `CS2040CFile` is checked, to see if a file of that name exists within the directory. If it is
 > not, the `printFileDoesNotExist()` method of the `Ui` object is invoked
 
-> **Step 5**: The topic name of the CS2040CFile is checked, to see if it belongs to one of the topics in CS2040C. If it
+> **Step 4**: The topic name of the `CS2040CFile` is checked, to see if it belongs to one of the topics in CS2040C. If it
 > is, a new `InvalidTopicCommand` object is created and executed.
 
-> **Step 6**: The name of CS2040CFile is checked, to see if a file of that name already exists inside  the
+> **Step 5**: The name of `CS2040CFile` is checked, to see if a file of that name already exists inside  the
 > `Topic Manager` object, which means that there are duplicates.
 
-> **Step 7**: The `checkFileType()` method is then used to check the type of the file to be added. Given that the file 
-> to be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked.
+> **Step 6**: The `checkFileType` method is then used to check the type of the file to be added. Given that the file to 
+> be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked.
 
-> **Step 8**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
+> **Step 7**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
 > adding of the file into the `File Mnanager` object by calling the `addEntry()` method. This updates `CLIAlgo` data
-> file to include this new CS2040CFile. Additionally, the CS2040CFile is added into the `Topic Manager` object using 
+> file to include this new `CS2040CFile`. Additionally, the `CS2040CFile` is added into the `Topic Manager` object using
 > the `addCS2040CFile()` method, to keep track of the names of the CS2040CFiles that the user has added. 
 
 The **_Sequence Diagram_** below shows how the `AddCommand` works.
@@ -511,8 +574,8 @@ The **_Sequence Diagram_** below shows how the `AddCommand` works.
     <img src="sequence-diagrams/diagrams/AddFeature.png" alt="Add Feature Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end at 
-> the destroy marker (X) but due to limitation of PlantUML, the lifeline reaches the end of the diagram.
+> **Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end 
+> at the destroy marker (X) but due to limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-remove"></div>
@@ -520,36 +583,34 @@ The **_Sequence Diagram_** below shows how the `AddCommand` works.
 ### Remove CS2040CFile feature
 #### Current Implementation
 
-The remove mechanism is facilitated by "RemoveCommand". It extends the abstract `Command` with an overridden `execute()`
-method. Within the `execute()` function, methods such as `isEmpty()` and `isRepeatedCS2040CFile()` from the `Topic Manager` 
-object are invoked, which checks that the CS2040CFile to be removed exists. The CS2040CFile is then removed from the 
-`Topic Manager` object and the `File Manager` object.
+<<<<<<< HEAD
+The remove mechanism is facilitated by `RemoveCommand`. It extends the abstract `Command` with an overridden `execute()`
+method. Within the `execute()` function, 
 
 Given below is an example usage of how the remove feature behaves at each step.
 
-> **Step 1**: The user enters the remove command, which invokes the `getUserInput()` method of the `Ui` object and 
-> returns the user input to the `CLIAlgo` object which has been created before. After which, it invokes the `parse()` 
-> method of the `Parser` object and determines that it is a remove command and creates a new `RemoveCommand` object.
+> **Step 1**: The user enters the remove command, which is processed by the `Parser` using the `parse()` method.
+> The `Parser` determines that it is remove command and creates a new `RemoveCommand` object.
 
 > **Step 2**: The `CLIAlgo` object than invokes the `execute()` method of the `RemoveCommand` object.
 
-> **Step 3**: The `Topic Manager` object is checked, which invokes the `printRemoveFail()` method of the `Ui` object if
-> `Topic Manager` object is empty.
+> **Step 3**: The `TopicManager` object is checked, which invokes the `printRemoveFail()` method of the `Ui` object if
+> `TopicManager` object is empty.
 
-> **Step 4**: The `Topic Manager` object is checked to see if the CS2040CFile to be removed exists inside the 
+> **Step 4**: The `TopicManager` object is checked to see if the `CS2040CFile` to be removed exists inside the
 > `Topic Manager` object. If it is not, a new `NameNotFoundCommand` object is created and executed.
 
-> **Step 5**: After steps 3 and 4 checks are done, the `removeCS2040CFile()` method is invoked on the `Topic Manager`
+> **Step 5**: After steps 3 and 4 checks are done, the `removeCS2040CFile()` method is invoked on the `TopicManager`
 > object.
 
-> **Step 6**: If the CS2040CFile is unsuccessfully removed from the `Topic Manager` object, the `printRemoveFail()` 
+> **Step 6**: If the `CS2040CFile` is unsuccessfully removed from the `TopicManager` object, the `printRemoveFail()` 
 > method is invoked on the `Ui` object.
 
-> **Step 7**: The `deleteEntry()` method of `File Manager` object is invoked. This updates the `CLIAlgo` data file to
-> no longer contain the CS2040CFile that is being removed, and `CLIAlgo` stops tracking that CS2040CFile.
+> **Step 7**: The `deleteEntry()` method of `FileManager` object is invoked. This updates the data file to
+> no longer contain the `CS2040CFile` that is being removed, and `CLIAlgo` stops tracking that `CS2040CFile`.
 
-> **Step 8**: If the CS2040CFile is not deleted successfully from the `File Manager` object, the control is returned 
-> back to the `CLIAlgo` object.
+> **Step 8**: If the `CS2040CFile` is not deleted successfully from `FileManager` object, the control is returned back to
+> `CLIAlgo` object.
 
 > **Step 9**: Otherwise, the `updateBuffer()` method of the `Buffer` object is invoked to clear the buffer, and the
 > `printRemoveSuccess()` method of the `Ui` object is invoked.
@@ -568,7 +629,7 @@ The **_Sequence Diagram_** below shows how the `RemoveCommand` works.
 
 The list feature mechanism is facilitated by `ListCommand`. It extends `Command` with an
 overridden `execute()` method. It calls the `getAllCS2040CFiles()` method from the `TopicManager` to get all the
-`CS2040CFile` stored in `CLIAlgo`. It then prints them out to the user.
+`CS2040CFile`s stored in `CLIAlgo`. It then prints them out to the user.
 
 Given below is an example usage scenario and how the list feature behaves at each step.
 
@@ -592,7 +653,7 @@ The following **_Sequence Diagram_** shows how the list operation work.
     <img src="sequence-diagrams/diagrams/ListFeature.png" alt="List Feature Sequence Diagram" width="50%"/>
 </p>
 
-> **! Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -608,11 +669,11 @@ depending on the `keyWord` provided. Both `FilterByTopicCommand` and `FilterByIm
 `FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
 
 - `FilterByTopicCommand`
-  - `printAllTopics()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is sorted by `topic`.
-  - `printSingleTopic()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is tagged to the given `topic`.
+  - `printAllTopics()` - Prints out all `CS2040CFile`s stored in CLIAlgo that is sorted by `topic`.
+  - `printSingleTopic()` - Prints out all `CS2040CFile`s stored in CLIAlgo that is tagged to the given `topic`.
 - `FilterByImportanceCommand`
-   - `printAllTopics()` - Prints out all `CS2040CFiles` stored in CLIAlgo sorted by `importance`.
-   - `printSingleTopic()` - Prints out all `CS2040CFiles` stored in CLIAlgo that is tagged to the given `topic` sorted 
+   - `printAllTopics()` - Prints out all `CS2040CFile`s stored in CLIAlgo sorted by `importance`.
+   - `printSingleTopic()` - Prints out all `CS2040CFile`s stored in CLIAlgo that is tagged to the given `topic` sorted 
 by `importance`.
 
 The access modifiers of these methods are `private` can can only be accessed within `FilterCommand`.
@@ -645,7 +706,7 @@ The following **_Sequence Diagram_** shows how the filter by topic operation wor
     <img src="sequence-diagrams/diagrams/FilterByTopic.png" alt="Filter Feature Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `FilterCommand` and `FilterByTopicCommand` should end at the destroy marker (X) but due 
+> **Note**: The lifeline for `FilterCommand` and `FilterByTopicCommand` should end at the destroy marker (X) but due 
 > to limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -655,34 +716,34 @@ The following **_Sequence Diagram_** shows how the filter by topic operation wor
 #### Current implementation
 
 The TopoSort mechanism is facilitated by `TopoCommand`. It extends `Command` with an 
-overridden `execute()` method, and stores internally the name of the note file and 
+overridden `execute()` method, and stores internally the name of the `CS2040CFile` and 
 topologically sorted notes as `name` and `topoSortedCS2040CFiles`.
 Additionally, it implements the following operations:
 
-- TopoCommand#printTopoSortedCS2040CFiles() - Prints all CS2040CFiles after a specific 
-target CS2040CFile in a topological manner. 
-- TopoCommand#printSingleTopic() - Prints all CS2040CFiles of a single specific topic.
+- `printTopoSortedCS2040CFiles()` - Prints all `CS2040CFile`s after a specific 
+target `CS2040CFile` in a topological order. 
+- `printSingleTopic()` - Prints all `CS2040CFile`s of a single specific topic.
 
 These operations are `private` and can only be accessed in `TopoCommand`.
 
 Given below is an example usage scenario and how the TopoSort mechanism behaves at each step.
 
 > **Step 1:** The user will input a command in the format `topo n\noteName`. The input will be read
-> by the `Ui` and processed by the `Parser`. The `Parser` will then call the `prepareTopoCommand`
+> by the `Ui` and processed by the `Parser`. The `Parser` will then call the `prepareTopoCommand()`
 > to create a new `TopoCommand` object.
 
-> **Step 2:** The `execute` method of the `TopoCommand` object will be executed, which will check
-> whether there are any saved notes (via the `isEmpty` method of `TopicManager`) and whether the `noteName` exists as a 
+> **Step 2:** The `execute()` method of the `TopoCommand` object will be executed, which will check
+> whether there are any saved notes (via the `isEmpty()` method of `TopicManager`) and whether the `noteName` exists as a 
 > note in the application
-> (via the `isRepeatedCS2040CFile` method of `TopicManager`).
+> (via the `isRepeatedCS2040CFile()` method of `TopicManager`).
 
-> **Step 3:** The `printTopoSortedCS2040CFiles` method is called to obtain the relevant note files in topological
-> order from `TopicManager` via the `getAllCS2040CFilesBeforeTopic` method. This will be stored internally in 
-> a LinkedHashMap called `topoSortedCS2040CFiles`.
+> **Step 3:** The `printTopoSortedCS2040CFiles()` method is called to obtain the relevant note files in topological
+> order from `TopicManager` via the `getAllCS2040CFilesBeforeTopic()` method. This will be stored internally in 
+> a `LinkedHashMap` called `topoSortedCS2040CFiles`.
 
-> **Step 4:** For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic` will be executed to print all
-> note names present in the specific topic. As the topics are saved in topological order, the printed note names
-> will be printed in the correct order.
+> **Step 4:** For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic()` will be executed to print all
+> note names present in the specific topic. As the topics are saved in topological order, the printed `CS2040CFile` 
+> names will be printed in the correct order.
 
 The following sequence diagram shows how the `TopoCommand` works.
 
@@ -690,7 +751,7 @@ The following sequence diagram shows how the `TopoCommand` works.
     <img src="sequence-diagrams/diagrams/TopoSort.png" alt="TopoSort Feature Sequence Diagram" width="75%"/>
 </p>
 
-> **! Note**: The lifeline for `TopoCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
+> **Note**: The lifeline for `TopoCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
 > the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -701,7 +762,7 @@ The following sequence diagram shows how the `TopoCommand` works.
 
 The export function is supported by a singleton object, `Buffer`.
 Whenever a `filter` or `topo` command is called, the method
-within the `Buffer` object, `updateBuffer` would be called which
+within the `Buffer` object, `updateBuffer()` would be called which
 replaces the `CS2040CFile` objects stored within the buffer with the
 output `CS2040CFile` objects being output from the `filter`
 command.
@@ -709,7 +770,7 @@ command.
 When an `export` command is then called, a `ExportCommand`
 object is instantiated. The `ExportCommand` object extends
 `Command` with an overridden `execute()` method. When the
-`execute()` method is called, the `exportBuffer` method in the
+`execute()` method is called, the `exportBuffer()` method in the
 `Buffer` is called. This copies all the `CS2040CFile` stored in
 the buffer to the export folder stored at `.\\export` and opens
 the folder by using the default file explorer of the system.
@@ -722,7 +783,7 @@ The following sequence diagram shows how the export feature works.
     <img src="sequence-diagrams/diagrams/Export.png" alt="Export Feature Sequence Diagram" width="50%"/>
 </p>
 
-> **! Note**: The lifeline for `ExportCommand` and `EmptyBufferCommand` should end at the destroy marker (X) but due to 
+> **Note**: The lifeline for `ExportCommand` and `EmptyBufferCommand` should end at the destroy marker (X) but due to 
 > limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -766,7 +827,8 @@ Manage notes faster and more efficiently than a typical mouse/GUI driven applica
 
 ## Use Cases
 
-(For all use cases below, the **System** refers to the `CLIAlgo` Notes Manager and the **Actor** is the `user` unless specified otherwise)
+(For all use cases below, the **System** refers to the `CLIAlgo` Notes Manager and the **Actor** is the `user` unless 
+specified otherwise)
 
 **Use case: Delete a note**
 
@@ -796,11 +858,14 @@ Use case ends.
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 notes without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
+able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be able to handle situations where data files are corrupted (i.e. missing or altered fields)
 5. Should be easily reusable for other developers who wish to create a similar app.
-6. Should be easily maintainable and modifiable, by having private attributes and methods which reduces dependencies between different parts of the program
-7. Should be secure in terms of protecting sensitive data such as name and path of files and preventing unauthorised access to them.
+6. Should be easily maintainable and modifiable, by having private attributes and methods which reduces dependencies. 
+between different parts of the program.
+7. Should be secure in terms of protecting sensitive data such as name and path of files and preventing unauthorised 
+access to them.
 8. Should be able to execute user commands in no longer than 2 seconds.
 
 <p align="right">(<a href="#top">back to top</a>)</p>

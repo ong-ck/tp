@@ -15,6 +15,7 @@ import seedu.clialgo.command.ListCommand;
 import seedu.clialgo.command.RemoveCommand;
 import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.command.TopoCommand;
+import seedu.clialgo.logic.TopicManager;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;

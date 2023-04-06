@@ -6,6 +6,15 @@ participant "cliAlgo: CLIAlgo" as CLIAlgo
 participant "ui: Ui" as Ui
 participant "parser: Parser" as Parser
 participant ": Command" as Command
+box logic
+participant "topicManager: TopicManager" as TopicManager
+participant ": Topic" as Topic
+end box
+participant "buffer: Buffer" as Buffer
+box storage
+participant "fileManager: FileManager" as FileManager
+participant ": SingleFile" as SingleFile
+end box
 
 activate CLIAlgo
     loop fullCommand != "exit"
@@ -23,10 +32,24 @@ activate CLIAlgo
 
     CLIAlgo -> Command : execute()
     activate Command
+        Command -> TopicManager
+        activate TopicManager
+            TopicManager -> Topic
+            activate Topic
+            return
+        return
+
+        Command -> Buffer
+        activate Buffer
+        return
+
+        Command -> FileManager
+        activate FileManager
+            FileManager -> SingleFile
+            activate SingleFile
+            return
+        return
     return
     destroy Command
     end
-destroy CLIAlgo
-destroy Ui
-destroy Parser
 @enduml

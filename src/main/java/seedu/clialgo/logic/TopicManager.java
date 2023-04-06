@@ -1,4 +1,4 @@
-package seedu.clialgo;
+package seedu.clialgo.logic;
 
 import seedu.clialgo.file.CS2040CFile;
 
@@ -57,6 +57,7 @@ public class TopicManager {
         return this.isTestModeOn;
     }
 
+    //@@ author heejet
     /** Checks if there are any CS2040CFiles stored in CLIAlgo. */
     public boolean isEmpty() {
         return allCS2040CFiles.isEmpty();
@@ -71,6 +72,7 @@ public class TopicManager {
     public boolean isRepeatedCS2040CFile(String cs2040CFileName) {
         return this.allCS2040CFiles.containsKey(cs2040CFileName.toLowerCase());
     }
+    //@@author
 
     /** Checks if the input string is a valid topic. */
     public boolean isValidTopic(String topic) {
@@ -96,8 +98,9 @@ public class TopicManager {
     }
 
     //@@author heejet
-    public String getTopicOfCS2040CFile(String noteName) {
-        return this.allCS2040CFiles.get(noteName.toLowerCase());
+    /** returns the topic of the given CS2040CFile */
+    public String getTopicOfCS2040CFile(String cs2040cFileName) {
+        return this.allCS2040CFiles.get(cs2040cFileName.toLowerCase());
     }
 
     /**
@@ -114,7 +117,6 @@ public class TopicManager {
         }
         return toPrintCS2040CFiles;
     }
-    //@@author
 
     /**
      * Get a list of all CS2040CFiles stored in a specified topic.
@@ -123,10 +125,10 @@ public class TopicManager {
      * @return An ArrayList containing names of all the CS2040CFiles stored in the specified topic.
      */
     public ArrayList<String> getCS2040CFilesByTopicToPrint(String topic) {
-        return topics.get(topic).getAllCS2040CFilesInTopicToPrint();
+        Topic currentTopic = topics.get(topic);
+        return currentTopic.getAllCS2040CFilesInTopicToPrint();
     }
 
-    //@@author heejet
     /**
      * Get a list of all topics stored in CLIAlgo that are grouped by topics.
      *
@@ -145,8 +147,8 @@ public class TopicManager {
         }
         return toPrintCS2040CFiles;
     }
-    //@@author ong-ck
 
+    //@@author ong-ck
     /**
      * Get a list of all topics stored in CLIAlgo that are before a specific target topic.
      *
@@ -173,6 +175,7 @@ public class TopicManager {
     }
     //@@author
 
+    //@@author nicholas132000
     public ArrayList<CS2040CFile> getAllFilesAsFiles() {
         ArrayList<CS2040CFile> files = new ArrayList<>();
         for (Topic topic: topics.values()) {
@@ -185,6 +188,7 @@ public class TopicManager {
         return topics.get(topicName);
     }
 
+    //@@author lohjooh
     /**
      * Initializes the <code>topics</code> and <code>allCS2040CFile</code> of this object by taking in input from the
      * <code>FileManager</code> object.
@@ -232,8 +236,8 @@ public class TopicManager {
 
         return true;
     }
-    //author
 
+    //author nicholas132000
     /**
      * Removes a CS2040CFile from the specific <code>Topic</code> object while keeping track of the names of all
      * CS2040CFiles remaining.
@@ -264,6 +268,7 @@ public class TopicManager {
         return true;
     }
 
+    //@@author lohjooh
     /**
      * Resets <code>topics</code> and <code>allCS2040CFiles</code> when test mode starts. Stores the data outside of
      * test mode separately.

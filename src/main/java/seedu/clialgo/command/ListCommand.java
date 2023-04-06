@@ -1,12 +1,17 @@
 package seedu.clialgo.command;
 
 import seedu.clialgo.Buffer;
-import seedu.clialgo.TopicManager;
+import seedu.clialgo.logic.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 
 import java.util.ArrayList;
 
+//@@author heejet
+/**
+ * A <code>ListCommand</code> represents an executable command by the user. It is responsible for implementing the list
+ * feature of CLIAlgo which prints out a list all CS2040CFileNames and labels in any order.
+ */
 public class ListCommand extends Command {
     /**
      * This method prints all the CS2040CFiles stored in CLIAlgo.
