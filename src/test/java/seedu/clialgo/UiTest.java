@@ -2,7 +2,9 @@ package seedu.clialgo;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1088,5 +1090,274 @@ class UiTest {
                     "======================================================\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printReadFail() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printReadFail();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "It seems that there is an error reading in your input.\r\n" +
+                    "Please restart the application.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "It seems that there is an error reading in your input.\n" +
+                    "Please restart the application.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printTestModeEndFail() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printTestModeEndFail();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Unsuccessful, test mode has not been started.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Unsuccessful, test mode has not been started.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printExportSuccess() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printExportSuccess();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Successfully exported file(s).\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Successfully exported file(s).\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printWithBox() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        String topicName = "dummy topicName";
+        ui.printWithBox(topicName);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "[" + topicName + "]\r\n";
+        } else {
+            expectedOutput = "[" + topicName + "]\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printListOfCS2040CFiles() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        ArrayList<String> notes = new ArrayList<>(Arrays.asList("NotesA", "NotesB", "NotesC"));
+
+        Ui ui = new Ui();
+        ui.printListOfCS2040CFiles(notes);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "1. NotesA\r\n" +
+                    "2. NotesB\r\n" +
+                    "3. NotesC\r\n";
+        } else {
+            expectedOutput = "1. NotesA\n" +
+                    "2. NotesB\n" +
+                    "3. NotesC\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printOpenFolderNotSupported() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printOpenFolderNotSupported();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "Your OS does not support `export`.\r\n" +
+                    "Try opening the folder manually.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "Your OS does not support `export`.\n" +
+                    "Try opening the folder manually.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printFolderMissing() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printFolderMissing();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    "The export folder seems to be missing.\r\n" +
+                    "The export folder has been recreated.\r\n" +
+                    "Try the `export` command again.\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    "The export folder seems to be missing.\n" +
+                    "The export folder has been recreated.\n" +
+                    "Try the `export` command again.\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printCorruptedFileDiscarded() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        int corruptCount = 3;
+        String name = "dummy name";
+        ui.printCorruptedFileDiscarded(corruptCount, name);
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "======================================================\r\n" +
+                    corruptCount + " corrupted entries detected in " + name + ".txt.\r\n" +
+                    "Note that the corrupted entries are discarded!\r\n" +
+                    "======================================================\r\n";
+        } else {
+            expectedOutput = "======================================================\n" +
+                    corruptCount + " corrupted entries detected in " + name + ".txt.\n" +
+                    "Note that the corrupted entries are discarded!\n" +
+                    "======================================================\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printDeleteSuccess() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printDeleteSuccess();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "Delete successful.\r\n";
+        } else {
+            expectedOutput = "Delete successful.\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void printDeleteFail() {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.printDeleteFail();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "Delete failed.\r\n";
+        } else {
+            expectedOutput = "Delete failed.\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    @Test
+    void testGetUserInput_WithEmptyInput() {
+        String expected = "exit";
+        InputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+        Ui ui = new Ui();
+
+        String actual = ui.getUserInput();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testGetUserInput_WithValidInput() {
+        String expected = "Hello Duke!";
+        InputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+        Ui ui = new Ui();
+
+        String actual = ui.getUserInput();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testGetUserInput_WithException() {
+        String expected = "exit";
+        InputStream in = new ByteArrayInputStream("".getBytes());
+        System.setIn(in);
+        Ui ui = new Ui();
+
+        String actual = ui.getUserInput();
+
+        assertEquals(expected, actual);
     }
 }

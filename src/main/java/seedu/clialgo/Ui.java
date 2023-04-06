@@ -64,7 +64,7 @@ public class Ui {
     public void printReadFail() {
         printDivider();
         System.out.println("It seems that there is an error reading in your input.");
-        System.out.println("Please restart the application");
+        System.out.println("Please restart the application.");
         printDivider();
     }
 
@@ -512,7 +512,8 @@ public class Ui {
 
     public void printOpenFolderNotSupported () {
         printDivider();
-        System.out.println("Your OS does not support `export` try opening the folder manually.");
+        System.out.println("Your OS does not support `export`.");
+        System.out.println("Try opening the folder manually.");
         printDivider();
     }
 
@@ -524,7 +525,7 @@ public class Ui {
         printDivider();
     }
 
-    public void printCorruptedFileDiscarded (int corruptCount, String name) {
+    public void printCorruptedFileDiscarded(int corruptCount, String name) {
         printDivider();
         if (corruptCount == 1) {
             System.out.println(corruptCount + " corrupted save entry detected in " + name + ".txt.");
@@ -536,10 +537,10 @@ public class Ui {
     }
 
     public static void printDeleteSuccess() {
-        System.out.println("Delete successful");
+        System.out.println("Delete successful.");
     }
 
     public static void printDeleteFail() {
-        System.out.println("Delete failed");
+        System.out.println("Delete failed.");
     }
 }
