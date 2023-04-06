@@ -227,7 +227,8 @@ public class TopicManager {
         assert topics.get(topicName).isInsideTopic(cs2040cFileName);
 
         // Keep track of name of CS2040CFile added
-        allCS2040CFiles.put(cs2040cFileName.toLowerCase(), topicName);
+        String cs2040cFileNameLowerCase = cs2040cFileName.toLowerCase();
+        allCS2040CFiles.put(cs2040cFileNameLowerCase, topicName);
 
         return true;
     }
@@ -245,14 +246,21 @@ public class TopicManager {
             return false;
         }
 
-        boolean isInsideTopic = topics.get(topicName).isInsideTopic(cs2040cFileName);
+        Topic topic = topics.get(topicName);
+        boolean isInsideTopic = topic.isInsideTopic(cs2040cFileName);
 
         if (!isInsideTopic) {
             return false;
         }
 
+        // Removes CS2040CFile into topic hashmap
         topics.get(topicName).removeCS2040CFile(cs2040cFileName);
-        allCS2040CFiles.remove(cs2040cFileName.toLowerCase());
+
+        assert !topics.get(topicName).isInsideTopic(cs2040cFileName);
+
+        // Updates hashmap of CS2040CFiles present
+        String cs2040cFileNameLowerCase = cs2040cFileName.toLowerCase();
+        allCS2040CFiles.remove(cs2040cFileNameLowerCase);
         return true;
     }
 
