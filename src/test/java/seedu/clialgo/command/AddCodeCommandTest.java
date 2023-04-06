@@ -83,7 +83,7 @@ class AddCodeCommandTest {
     }
 
     @Test
-    void execute_addCodeFileThatDoesExists_expectNoCommandPrinted() {
+    void execute_addCodeFileThatDoesExists_expectCS2040CFileInsideTopicManager() {
         TopicManager topicManager = new TopicManager();
 
         String testDataPath = ".\\testdata";
@@ -92,21 +92,10 @@ class AddCodeCommandTest {
         fileManager.initialize();
         Buffer buffer = Buffer.getInstance();
 
-        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(actualOutput));
+        AddCodeCommand addCodeCommandObj = new AddCodeCommand("queue", "LINKED_LIST", 10);
+        addCodeCommandObj.execute(topicManager, ui, fileManager, buffer);
 
-        new AddCodeCommand("queue", "LINKED_LIST", 10).execute(topicManager, ui, fileManager, buffer);
-
-        String os = System.getProperty("os.name");
-        String expectedOutput = "";
-
-        if (os.contains("Windows")) {
-            expectedOutput = "";
-        } else {
-            expectedOutput = "";
-        }
-
-        assertEquals(expectedOutput, actualOutput.toString());
+        assertTrue(topicManager.getAllFilesAsFiles().contains(new Code("queue", "queue.cpp", "LINKED_LIST", 10)));
         FileManager.deleteAll(new File(testDataPath));
     }
 }

@@ -83,7 +83,7 @@ class AddNoteCommandTest {
     }
 
     @Test
-    void execute_addNoteFileThatDoesExists_expectNoCommandPrinted() {
+    void execute_addNoteFileThatDoesExists_expectCS2040CFileInsideTopicManager() {
         TopicManager topicManager = new TopicManager();
 
         String testDataPath = ".\\testdata";
@@ -92,21 +92,10 @@ class AddNoteCommandTest {
         fileManager.initialize();
         Buffer buffer = Buffer.getInstance();
 
-        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(actualOutput));
+        AddNoteCommand addNoteCommandObj = new AddNoteCommand("queue", "LINKED_LIST", 10);
+        addNoteCommandObj.execute(topicManager, ui, fileManager, buffer);
 
-        new AddNoteCommand("queue", "LINKED_LIST", 10).execute(topicManager, ui, fileManager, buffer);
-
-        String os = System.getProperty("os.name");
-        String expectedOutput = "";
-
-        if (os.contains("Windows")) {
-            expectedOutput = "";
-        } else {
-            expectedOutput = "";
-        }
-
-        assertEquals(expectedOutput, actualOutput.toString());
+        assertTrue(topicManager.getAllFilesAsFiles().contains(new Note("queue", "queue.txt", "LINKED_LIST", 10)));
         FileManager.deleteAll(new File(testDataPath));
     }
 }
