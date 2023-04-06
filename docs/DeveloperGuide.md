@@ -4,7 +4,6 @@
 
 ## Acknowledgements
 
-- Reference to [AB-3 User Guide](https://se-education.org/addressbook-level3/UserGuide.html)
 - Reference to [AB-3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 - All UML diagrams were creates using [PlantUML](https://plantuml.com/)
 
