@@ -25,6 +25,7 @@ original source as well}
 - [Implementation](#implementation)
   - [Ui](#implementation-ui)
   - [Parser](#implementation-parser)
+  - [Logic](#implementation-logic)
   - [Initializing previous saved data feature](#implementation-initialize)
   - [Writing a CS2040CFile to data file](#implementation-write)
   - [Help Feature](#implementation-help)
@@ -372,6 +373,49 @@ The following **_Sequence Diagram_** shows how the Parser work.
 
 <p align="center">
     <img src="sequence-diagrams/diagrams/Parser.png" alt="Parser Sequence Diagram" width="75%"/>
+</p>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+<div id="implementation-logic"></div>
+
+### Logic
+#### Current Implementation
+
+All operations involving `CS2040CFiles` are handled by the `TopicManager`. The `TopicManager` class and `Topic` class 
+form a whole-part relationship where the `TopicManager` contains 10 instance of the `Topic` claass, each
+representing the 10 topics in CS2040C. When relevant `Command` objects are executed, they invoke methods in the
+`TopicManager` which in turns invokes methods in the relevant `Topic` class. The `TopicManager` suppors the following 
+operations:
+
+- `getTopicOfCS2040CFile()`: Returns the name of the topic the given `CS2040CFile` is tagged to.
+- `getAllCS2040CFilesGroupedByTopicToPrint()`: Returns a `HashMap<String, ArrayList<String>>` containing the names and
+labels of all `CS2040CFile`s tracked by `CLIAlgo`.
+- `getAllCS2040CFilesBeforeTopic()`: Returns a `LinkedHashMap<String, ArrayList<String>>` containing the names and 
+labels of all `CS2040CFiles` that come before the given `CS2040CFile` in topological order.
+- `addCS2040CFile()`: Adds the given `CS2040CFile` into the `Topic` class it is tagged to.
+- `removeCS2040CFile()`: Removes a `CS2040CFile` from the `Topic` class that it is tagged to.
+
+Given below is an example of how the `Logic` component works when a `TopoCommand` is executed.
+
+> **Step 1**: When the `TopoCommand` is executed, it calls the `getAllCS2040CFilesBeforeTopic()` method of the 
+> `TopicManager`. 
+
+> **Step 2**: The `TopicManager` then iterates through all the topics in topological order to check if the 
+> `CS2040CFileName` is present in that topic.
+
+> **Step 3**: Once a topic is found to contain the `CS2040CFileName`, the `TopicManager` self-invokes the 
+> `getCS2040CFilesByTopicToPrint()` method which calls the `getAllCS2040CFilesInTopicToPrint()` method of all `Topic` 
+> class from the current topic onwards. This method returns an `ArrayList<String>` containing the names and labels of 
+> all `CS2040CFile` stored inside the current `Topic`.
+
+> **Step 4**: After the `TopicManager` collates the list of `CS2040CFile` names in topological order, it stores them in 
+> a `LinkedHashMap<String, ArrayList<String>>` to preserve the topological order. It then returns it to the 
+> `TopoCommand` object.
+
+The following **_Sequence Diagram_** shows how the Logic component work.
+
+<p align="center">
+    <img src="sequence-diagrams/diagrams/TopicManager.png" alt="Logic Sequence Diagram" width="75%"/>
 </p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
