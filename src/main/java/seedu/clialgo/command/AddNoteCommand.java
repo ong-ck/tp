@@ -6,6 +6,8 @@ import seedu.clialgo.Ui;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.file.Note;
 
+import java.util.Objects;
+
 public class AddNoteCommand extends AddCommand {
     private static final String NOTE_FILE_EXTENSION = ".txt";
     /**
@@ -45,5 +47,19 @@ public class AddNoteCommand extends AddCommand {
         if (!isAdded) {
             new InvalidCommand().execute(topicManager, ui, fileManager, buffer);
         }
+    }
+
+    /**
+     * An overridden method that checks for equality of <code>AddNoteCommand</code> objects.
+     *
+     * @param otherCommand The other <code>AddNoteCommand</code> object to be checked against.
+     * @return A boolean value to determine whether the <code>AddNoteCommand</code> objects are equal.
+     */
+    @Override
+    public boolean equals(Command otherCommand) {
+        AddNoteCommand otherAddNoteCommand = (AddNoteCommand) otherCommand;
+        return Objects.equals(this.name, otherAddNoteCommand.name) &&
+                Objects.equals(this.topic, otherAddNoteCommand.topic)
+                && Objects.equals(this.importance, otherAddNoteCommand.importance);
     }
 }
