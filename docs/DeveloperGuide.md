@@ -583,33 +583,32 @@ The **_Sequence Diagram_** below shows how the `AddCommand` works.
 ### Remove CS2040CFile feature
 #### Current Implementation
 
-The add mechanism is facilitated by "RemoveCommand". It extends the abstract `Command` with an overridden `execute()`
+The remove mechanism is facilitated by `RemoveCommand`. It extends the abstract `Command` with an overridden `execute()`
 method. Within the `execute()` function, 
 
 Given below is an example usage of how the remove feature behaves at each step.
 
-> **Step 1**: The user enters the remove command, which invokes the `getUserInput()` method of `Ui` object and returns 
-> the user input to the `CLIAlgo` object which has been created before. After which, it invokes the `parse()` method of
-> the `Parser` object and determines that it is remove command and creates a new `RemoveCommand` object.
+> **Step 1**: The user enters the remove command, which is processed by the `Parser` using the `parse()` method.
+> The `Parser` determines that it is remove command and creates a new `RemoveCommand` object.
 
 > **Step 2**: The `CLIAlgo` object than invokes the `execute()` method of the `RemoveCommand` object.
 
-> **Step 3**: The `Topic Manager` object is checked, which invokes the `printRemoveFail()` method of the `Ui` object if
-> `Topic Manager` object is empty.
+> **Step 3**: The `TopicManager` object is checked, which invokes the `printRemoveFail()` method of the `Ui` object if
+> `TopicManager` object is empty.
 
-> **Step 4**: The `Topic Manager` object is checked to see if the CS2040CFile to be removed exists inside the 
-> `Topic Manager` object. If it is not, a new NameNotFoundCommand object is created and executed.
+> **Step 4**: The `TopicManager` object is checked to see if the `CS2040CFile` to be removed exists inside the 
+> `Topic Manager` object. If it is not, a new `NameNotFoundCommand` object is created and executed.
 
-> **Step 5**: After steps 3 and 4 checks are done, the `removeCS2040CFile()` method is invoked on the `Topic Manager`
+> **Step 5**: After steps 3 and 4 checks are done, the `removeCS2040CFile()` method is invoked on the `TopicManager`
 > object.
 
-> **Step 6**: If the CS2040CFile is unsuccessfully removed from the `Topic Manager` object, the `printRemoveFail()` 
+> **Step 6**: If the `CS2040CFile` is unsuccessfully removed from the `TopicManager` object, the `printRemoveFail()` 
 > method is invoked on the `Ui` object.
 
-> **Step 7**: The `deleteEntry()` method of `File Maneger` object is invoked. This updates the `CLIAlgo` data file to
-> no longer contain the CS2040CFile that is being removed, and `CLIAlgo` stops tracking that CS2040CFile.
+> **Step 7**: The `deleteEntry()` method of `FileManager` object is invoked. This updates the data file to
+> no longer contain the `CS2040CFile` that is being removed, and `CLIAlgo` stops tracking that `CS2040CFile`.
 
-> **Step 8**: If the CS2040CFile is not deleted successfully from `File Manager` object, the control is returned back to
+> **Step 8**: If the `CS2040CFile` is not deleted successfully from `FileManager` object, the control is returned back to
 > `CLIAlgo` object.
 
 > **Step 9**: Otherwise, the `updateBuffer()` method of the `Buffer` object is invoked to clear the buffer, and the
