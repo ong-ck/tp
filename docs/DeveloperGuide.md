@@ -199,9 +199,10 @@ Here is a class diagram of the `AddCommand` which is responsible for adding eith
 </p>
 
 The `AddCommand` component
-- Checks if the CS2040CFile to be added into our CLIAlgo exists within the same directory as the program
-- Checks for the type of CS2040CFile, whether it is `.txt` or `.cpp` based on the name of the CS2040CFile
-- Ensures that there are no files with repeated names such that all names of files added are unique
+- Checks if the `CS2040CFile` to be added into our CLIAlgo exists within the same directory as the program
+- Checks for the type of `CS2040CFile`, whether it is `.txt` or `.cpp` based on the name of the `CS2040CFile`
+- Ensures that there are no files with repeated names such that all names of files added are unique.
+- Adds the `CS2040CFile` to the `TopicManager` and `FileManager`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-remove"></div>
@@ -216,10 +217,8 @@ Here is a class diagram of the `RemoveCommand` which is responsible for removing
 </p>
 
 The `RemoveCommand` component
-- can check if any CS2040CFile currently exists inside topic manager
-- can if the CS2040CFile to be removed exists inside topic manager
-- can retrieve the topic name of the CS2040CFile to be removed
-- removes the CS2040CFile from our topic manager and file manager
+- Checks if any `CS2040CFile` currently exists inside `TopicManager` and `FileManager`.
+- Removes the `CS2040CFile` from the `TopicManager` and `FileManager`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-list"></div>
