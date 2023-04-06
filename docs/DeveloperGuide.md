@@ -226,7 +226,7 @@ The `RemoveCommand` component
 ### List
 [**API**](../src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
 
-Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile` in `CLIAlgo`.
+Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile`s in `CLIAlgo`.
 
 <p align="center">
     <img src="class-diagrams/diagrams/ListClass.png" alt="ListCommand Class Diagram" width="75%"/>
@@ -273,9 +273,9 @@ function of the application.
 </p>
 
 The `TopoCommand` component
-- can topologically sort `CS2040CFile` objects in a specific `topic` order
-- can print out the list of topologically sorted `CS2040CFile` objects
-- can check whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
+- Topologically sort `CS2040CFile` objects in a specific `topic` order
+- Prints out the list of topologically sorted `CS2040CFile` objects
+- Checks whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-export"></div>
@@ -292,11 +292,11 @@ into `.\\export` and opening the folder subsequently if supported by the Operati
 </p>
 
 The `Buffer` component
-- can store `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
-- can update stored `CS2040CFiles`
-- can copy `CS2040CFiles` into `.\\export` folder
-- can delete `CS2040CFiles` in `.\\export` folder
-- can open `.\\export` folder automatically if supported by the Operating System
+- Stores `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
+- Updates stored `CS2040CFile`s
+- Copies `CS2040CFile`s into `.\\export` folder
+- Deletes `CS2040CFile`s in `.\\export` folder
+- Opens `.\\export` folder automatically if supported by the Operating System
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation"></div>
