@@ -382,7 +382,7 @@ The following **_Sequence Diagram_** shows how the Parser work.
 All operations involving `CS2040CFiles` are handled by the `TopicManager`. The `TopicManager` class and `Topic` class 
 form a whole-part relationship where the `TopicManager` contains 10 instance of the `Topic` class, each
 representing the 10 topics in CS2040C. When relevant `Command` objects are executed, they invoke methods in the
-`TopicManager` which in turns invokes methods in the relevant `Topic` class. The `TopicManager` suppors the following 
+`TopicManager` which in turns invokes methods in the relevant `Topic` class. The `TopicManager` supports the following 
 operations:
 
 - `getTopicOfCS2040CFile()`: Returns the name of the topic the given `CS2040CFile` is tagged to.
@@ -761,7 +761,7 @@ The following sequence diagram shows how the `TopoCommand` works.
 
 The export function is supported by a singleton object, `Buffer`.
 Whenever a `filter` or `topo` command is called, the method
-within the `Buffer` object, `updateBuffer` would be called which
+within the `Buffer` object, `updateBuffer()` would be called which
 replaces the `CS2040CFile` objects stored within the buffer with the
 output `CS2040CFile` objects being output from the `filter`
 command.
@@ -769,7 +769,7 @@ command.
 When an `export` command is then called, a `ExportCommand`
 object is instantiated. The `ExportCommand` object extends
 `Command` with an overridden `execute()` method. When the
-`execute()` method is called, the `exportBuffer` method in the
+`execute()` method is called, the `exportBuffer()` method in the
 `Buffer` is called. This copies all the `CS2040CFile` stored in
 the buffer to the export folder stored at `.\\export` and opens
 the folder by using the default file explorer of the system.
@@ -826,7 +826,8 @@ Manage notes faster and more efficiently than a typical mouse/GUI driven applica
 
 ## Use Cases
 
-(For all use cases below, the **System** refers to the `CLIAlgo` Notes Manager and the **Actor** is the `user` unless specified otherwise)
+(For all use cases below, the **System** refers to the `CLIAlgo` Notes Manager and the **Actor** is the `user` unless 
+specified otherwise)
 
 **Use case: Delete a note**
 
@@ -856,11 +857,14 @@ Use case ends.
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 notes without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
+able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be able to handle situations where data files are corrupted (i.e. missing or altered fields)
 5. Should be easily reusable for other developers who wish to create a similar app.
-6. Should be easily maintainable and modifiable, by having private attributes and methods which reduces dependencies between different parts of the program
-7. Should be secure in terms of protecting sensitive data such as name and path of files and preventing unauthorised access to them.
+6. Should be easily maintainable and modifiable, by having private attributes and methods which reduces dependencies. 
+between different parts of the program.
+7. Should be secure in terms of protecting sensitive data such as name and path of files and preventing unauthorised 
+access to them.
 8. Should be able to execute user commands in no longer than 2 seconds.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
