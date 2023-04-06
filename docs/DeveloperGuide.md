@@ -193,7 +193,7 @@ Here is a class diagram of the `RemoveCommand` which is responsible for removing
 
 The `RemoveCommand` component
 - can check if any CS2040CFile currently exists inside topic manager
-- can if the CS2040CFile to be removed exists inside topic manager
+- can check if the CS2040CFile to be removed exists inside topic manager
 - can retrieve the topic name of the CS2040CFile to be removed
 - removes the CS2040CFile from our topic manager and file manager
 
