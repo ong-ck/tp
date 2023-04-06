@@ -58,8 +58,9 @@ public class AddNoteCommand extends AddCommand {
     @Override
     public boolean equals(Command otherCommand) {
         AddNoteCommand otherAddNoteCommand = (AddNoteCommand) otherCommand;
-        return Objects.equals(this.name, otherAddNoteCommand.name) &&
-                Objects.equals(this.topic, otherAddNoteCommand.topic)
-                && Objects.equals(this.importance, otherAddNoteCommand.importance);
+        boolean isNameEqual = Objects.equals(this.name, otherAddNoteCommand.name);
+        boolean isTopicEqual = Objects.equals(this.topic, otherAddNoteCommand.topic);
+        boolean isImportanceEqual = this.importance == otherAddNoteCommand.importance;
+        return isNameEqual && isTopicEqual && isImportanceEqual;
     }
 }
