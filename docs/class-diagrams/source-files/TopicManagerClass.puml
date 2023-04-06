@@ -14,7 +14,7 @@ class TopicManager {
     -TOPO_ORDER: ArrayList<String>
     -allCS2040CFiles: HashMap<String, String>
     +getTopicOfCS2040CFile(CS2040CFileName: String): String
-    +getAlLCS2040CFiles(): ArrayList<String>
+    +getAllCS2040CFiles(): ArrayList<String>
     +getAllCS2040CFilesGroupedByTopicToPrint(): HashMap<String, ArrayList<String>>
     +getAllCS2040CFilesBeforeTopic(cs2040cFileName: String): LinkedHashMap<String, ArrayList<String>>
     +addCS2040CFile(cs2040cFileName: String, topicName: String, cs2040cFile: CS2040CFile): boolean
