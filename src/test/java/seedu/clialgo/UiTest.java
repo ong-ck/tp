@@ -1326,7 +1326,7 @@ class UiTest {
     }
 
     @Test
-    void getUserInput_WithEmptyInput() {
+    void getUserInput_withEmptyInput() {
         String expected = "exit";
         InputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
@@ -1338,7 +1338,7 @@ class UiTest {
     }
 
     @Test
-    void getUserInput_WithValidInput() {
+    void getUserInput_withValidInput() {
         String expected = "Hello Duke!";
         InputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
@@ -1350,7 +1350,7 @@ class UiTest {
     }
 
     @Test
-    void getUserInput_WithException() {
+    void getUserInput_withException() {
         String expected = "exit";
         InputStream in = new ByteArrayInputStream("".getBytes());
         System.setIn(in);
