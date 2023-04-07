@@ -1,12 +1,13 @@
 @startuml
+!include ../../style.iuml
 skinparam classAttributeIconSize 0
 hide circle
 
-abstract class Command {
+abstract class Command Command_STYLE {
     +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
-class AddCommand {
+class AddCommand AddCommand_STYLE {
     #name: String
     #ui: String
     #topic: String
@@ -16,24 +17,24 @@ class AddCommand {
     +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
-class AddCodeCommand {
+class AddCodeCommand AddCodeCommand_STYLE {
     +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
-class AddNoteCommand {
+class AddNoteCommand AddNoteCommand_STYLE {
     +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
-class TopicManager {
+class TopicManager TopicManager_STYLE {
 }
 
-class Ui {
+class Ui Ui_STYLE {
 }
 
-class Buffer {
+class Buffer Buffer_STYLE {
 }
 
-class FileManager {
+class FileManager FileManager_STYLE {
 }
 
 Command <|-- AddCommand
