@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileManagerTest {
 
-    private static final String PATH = ".\\testdata";
-    private static final String FILE_DIVIDER = "\\";
+    private static final String PATH = "./testdata";
+    private static final String FILE_DIVIDER = "/";
     private static final String CODE_FILE_EXTENSION = ".cpp";
     private static final String NOTE_FILE_EXTENSION = ".txt";
 

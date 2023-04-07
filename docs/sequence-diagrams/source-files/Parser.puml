@@ -1,24 +1,26 @@
 @startuml
+!include ../../style.iuml
+
 hide footbox
 
-participant "parser: Parser" as Parser
-participant "<<interface>> \n StringManipulation" as StringManipulation
-participant ": InvalidCommand" as InvalidCommand
-participant ": RemoveCommand" as RemoveCommand
+participant "parser: Parser" as Parser Parser_STYLE
+participant "<<interface>> \n StringManipulation" as StringManipulation StringManipulation_STYLE
+participant ": InvalidCommand" as InvalidCommand InvalidCommand_STYLE
+participant ": RemoveCommand" as RemoveCommand RemoveCommand_STYLE
 
 -> Parser : parse(fullCommand : String)
-activate Parser
+activate Parser Parser_STYLE
     Parser -> StringManipulation : getFirstWord(fullCommand : String)
-    activate StringManipulation
+    activate StringManipulation StringManipulation_STYLE
     return command : String
 
     alt !isValidCommand(command)
         Parser -> InvalidCommand **
-        activate InvalidCommand
+        activate InvalidCommand InvalidCommand_STYLE
         return
     else else
         Parser -> StringManipulation : removeFirstWord(fullCommand : String)
-        activate StringManipulation
+        activate StringManipulation StringManipulation_STYLE
         return description : String
 
         Parser -> Parser : prepareCommand(command : String, description : String, topics : TopicManager)
@@ -27,18 +29,18 @@ activate Parser
             else command == "add"
             else command == "remove"
                 Parser -> Parser : PrepareRemoveCommand (description : String, topics : TopicManager)
-                activate Parser
+                activate Parser Parser_STYLE
                     alt description == null || !isCorrectMarker(description)
                         Parser -> InvalidCommand **
-                        activate InvalidCommand
+                        activate InvalidCommand InvalidCommand_STYLE
                         return
                     else
                         Parser -> StringManipulation : RemoveMarker(description : String)
-                        activate StringManipulation
+                        activate StringManipulation StringManipulation_STYLE
                         return cs2040cFileName
 
                         Parser -> RemoveCommand **
-                        activate RemoveCommand
+                        activate RemoveCommand RemoveCommand_STYLE
                         return RemoveCommand
                     end
                 return

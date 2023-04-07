@@ -27,10 +27,12 @@
 !define Note_STYLE #D0BABA
 
 'Logic
+!define logic_STYLE #d2e5fa
 !define Topic_STYLE #8DC4FF
 !define TopicManager_STYLE #8D9AFF
 
 'Storage
+!define storage_STYLE #f1fcd9
 !define FileDecoder_STYLE #E7FFB7
 !define FileEncoder_STYLE #DCFF97
 !define FileManager_STYLE #D1FF75

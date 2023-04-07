@@ -92,7 +92,8 @@ public class TopoCommand extends Command {
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         if (topicManager.isEmpty()) {
-            buffer.updateBuffer(new ArrayList<>());
+            ArrayList<CS2040CFile> emptyBuffer = new ArrayList<>();
+            buffer.updateBuffer(emptyBuffer);
             ui.printNoCS2040CFilesSaved();
             return;
         }

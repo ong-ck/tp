@@ -13,7 +13,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SingleFileTest {
-    private static final String PATH = ".\\test";
+    private static final String PATH = "./test";
     private FileDecoder fileDecoder;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -55,7 +55,7 @@ public class SingleFileTest {
         if (!new File(PATH).mkdir()) {
             System.out.println("ERROR 1");
         }
-        String fileName = "\\test.txt";
+        String fileName = "/test.txt";
         String pathToTest = PATH + fileName;
         File file = new File(pathToTest);
         try {

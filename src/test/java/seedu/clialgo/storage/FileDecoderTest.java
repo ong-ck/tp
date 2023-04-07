@@ -16,7 +16,7 @@ public class FileDecoderTest {
     private static final String SEPARATOR = "@&";
     private static final String NAME = "name";
     private static final String TOPIC = "topic";
-    private static final String CURRENT_DIRECTORY_PATH = ".\\";
+    private static final String CURRENT_DIRECTORY_PATH = "./";
     private static final int IMPORTANCE = 1;
 
     private FileDecoder fileDecoder;

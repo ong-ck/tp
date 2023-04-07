@@ -23,7 +23,7 @@ public class FileManager {
     private final FileEncoder encoder;
     private final FileDecoder decoder;
     private final String initialPath;
-    private final String testModePath = ".\\testdata";
+    private final String testModePath = "./testdata";
     private final ArrayList<String> topicNames;
     private final Ui ui;
     private HashMap<String, SingleFile> topicRawData;
@@ -52,7 +52,7 @@ public class FileManager {
      * @return The SingleFile object created.
      */
     public SingleFile createSingleFile(String name) {
-        String fileDivider = "\\";
+        String fileDivider = "/";
         String noteFileExtension = ".txt";
         String pathToFile = path + fileDivider + name + noteFileExtension;
         File file = new File(pathToFile);
