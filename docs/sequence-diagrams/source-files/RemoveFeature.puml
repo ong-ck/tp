@@ -1,50 +1,52 @@
 @startuml
+!include ../../style.iuml
 hide footbox
-participant ": RemoveCommand" as r
-participant "topicManager: TopicManager" as tm
-participant "fileManager: FileManager" as fm
-participant "ui: Ui" as ui
-participant "buffer: Buffer" as b
+
+participant ": RemoveCommand" as r RemoveCommand_STYLE
+participant "topicManager: TopicManager" as tm TopicManager_STYLE
+participant "fileManager: FileManager" as fm FileManager_STYLE
+participant "ui: Ui" as ui Ui_STYLE
+participant "buffer: Buffer" as b Buffer_STYLE
 
 -> r : execute()
-activate r
+activate r RemoveCommand_STYLE
     opt topic manager is empty
         r -> ui : printRemoveFail()
-        activate ui
+        activate ui Ui_STYLE
         return
         <-- r
     end
 
     opt CS2040CFile is not inside topic manager
-        participant ": NameNotFoundCommand" as nn
+        participant ": NameNotFoundCommand" as nn NameNotFoundCommand_STYLE
         r -> nn **
-        activate nn
+        activate nn NameNotFoundCommand_STYLE
         return
 
         r -> nn : execute()
-        activate nn
+        activate nn NameNotFoundCommand_STYLE
         return
         destroy nn
         <-- r
     end
 
     r -> tm : removeCS2040CFile
-    activate tm
+    activate tm TopicManager_STYLE
     return
 
     opt CS2040CFile NOT successfully removed from topic manager
         r -> ui : printRemoveFail
-        activate ui
+        activate ui Ui_STYLE
         return
         <-- r
     end
 
     r -> fm : recreateAll()
-    activate fm
+    activate fm FileManager_STYLE
     return
 
     r -> fm : deleteEntry()
-    activate fm
+    activate fm FileManager_STYLE
     return
 
     opt CS2040CFile NOT deleted from file manager
@@ -52,11 +54,11 @@ activate r
     end
 
     r -> b : updateBuffer()
-    activate b
+    activate b Buffer_STYLE
     return
 
     r -> ui : printRemoveSuccess()
-    activate ui
+    activate ui Ui_STYLE
     return
     return
     destroy r

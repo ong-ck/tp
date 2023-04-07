@@ -34,5 +34,6 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
 
 #### Team-based tasks
 1. Attended weekly discussions.
+2. Do up plan for demo video.
 
 
