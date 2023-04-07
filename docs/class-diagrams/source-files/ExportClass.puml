@@ -1,7 +1,8 @@
 @startuml
 skinparam classAttributeIconSize 0
+!include ../../style.iuml
 
-class Buffer {
+class Buffer Buffer_STYLE {
 -buffer: Buffer = null
 -files: ArrayList<CS2040CFile>
 +getInstance()
@@ -12,10 +13,10 @@ class Buffer {
 class File {
 }
 
-class Ui {
+class Ui Ui_STYLE{
 }
 
-class CS2040CFile {
+class CS2040CFile CS2040CFile_STYLE{
 }
 
 class Desktop {

@@ -11,21 +11,32 @@ participant ":File" as File
 
 activate FileManager
 -> FileManager : addEntry
-FileManager -> FileEncoder : encode
+FileManager -> FileEncoder : encodeCS2040CFile
 FileEncoder --> FileManager : encodedCS2040CFile: String
 FileManager -> SingleFile : writeCS2040CFileToFile
 activate SingleFile
     opt file does not exist
-        SingleFile -> SingleFile : recreateFile()
-        activate SingleFile
-        deactivate SingleFile
-        SingleFile -> SingleFile : overwriteFile()
-        activate SingleFile
-        SingleFile -> File
-        activate File
-        deactivate File
-        deactivate SingleFile
-    end
+        FileManager -> SingleFile : recreateFile()
+        SingleFile --> FileManager
+        opt file created successfully
+            SingleFile -> SingleFile : overwriteFile()
+            activate SingleFile
+            SingleFile -> FileWriter **
+            activate FileWriter
+            FileWriter -> BufferedWriter **
+            activate BufferedWriter
+            loop for each String in storedRawData.values()
+                BufferedWriter -> File : write(string: String)
+                activate File
+                File --> SingleFile
+                deactivate File
+            end
+        end
+            deactivate SingleFile
+            destroy BufferedWriter
+            destroy FileWriter
+        end
+
 SingleFile -> FileWriter **
 activate FileWriter
 FileWriter -> BufferedWriter **
@@ -33,7 +44,6 @@ activate BufferedWriter
 BufferedWriter -> File : write(encodedCS2040CFile: String)
 activate File
 BufferedWriter -> File : newLine()
-deactivate File
 BufferedWriter -> BufferedWriter : close()
 activate BufferedWriter
 deactivate BufferedWriter
@@ -42,4 +52,8 @@ FileWriter -> FileWriter : close()
 activate FileWriter
 deactivate FileWriter
 destroy FileWriter
+File --> SingleFile
+deactivate File
+SingleFile --> FileManager
+deactivate SingleFile
 @enduml
