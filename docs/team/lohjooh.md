@@ -33,8 +33,8 @@ files into a separate folder.
 2. Buffer and Export
    - **What it does**: The `Buffer` updates the `CS2040CFiles` stored within it with the `CS2040CFiles`
    returned when the user inputs `filter` or `topo`. These files can then be output to a specific folder
-   `.\\export`, with all the contents copied exactly when the user inputs `export`. Furthermore, after
-   the files are copied into `.\\export`, the folder the files are copied into is opened up automatically
+   `./export`, with all the contents copied exactly when the user inputs `export`. Furthermore, after
+   the files are copied into `./export`, the folder the files are copied into is opened up automatically
    by CLIAlgo.
 
    - **Justification**: As the purpose for CLIAlgo is to make organising code files and note files relating

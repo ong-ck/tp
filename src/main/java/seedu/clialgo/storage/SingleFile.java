@@ -100,8 +100,8 @@ public class SingleFile {
         try {
             FileWriter fileWriter = new FileWriter(file, false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            for (String s : storedRawData.values()) {
-                bufferedWriter.write(s);
+            for (String string : storedRawData.values()) {
+                bufferedWriter.write(string);
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();

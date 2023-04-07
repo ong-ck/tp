@@ -237,7 +237,7 @@ public class TopicManager {
         return true;
     }
 
-    //author nicholas132000
+    //@@author nicholas132000
     /**
      * Removes a CS2040CFile from the specific <code>Topic</code> object while keeping track of the names of all
      * CS2040CFiles remaining.

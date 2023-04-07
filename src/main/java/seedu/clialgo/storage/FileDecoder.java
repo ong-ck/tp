@@ -24,7 +24,7 @@ public class FileDecoder {
     }
 
     public FileType checkFileType() {
-        String currentDirectory = ".\\";
+        String currentDirectory = "./";
         String noteFileExtension = ".txt";
         String codeFileExtension = ".cpp";
         String pathInTxt =  currentDirectory + this.currentName + noteFileExtension;

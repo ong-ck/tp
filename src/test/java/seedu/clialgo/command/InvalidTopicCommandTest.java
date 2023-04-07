@@ -53,7 +53,7 @@ class InvalidTopicCommandTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());

@@ -68,7 +68,8 @@ public class FilterByTopicCommand extends FilterCommand {
     public void execute (TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {
         if (topicManager.isEmpty()) {
             ui.printFilterAllTopicsEmpty();
-            buffer.updateBuffer(new ArrayList<>());
+            ArrayList<CS2040CFile> emptyBuffer = new ArrayList<>();
+            buffer.updateBuffer(emptyBuffer);
             return;
         }
         if (this.topic == null) {
@@ -95,7 +96,8 @@ public class FilterByTopicCommand extends FilterCommand {
     public boolean equals(Command otherCommand) {
         FilterByTopicCommand otherFilterCommand = (FilterByTopicCommand) otherCommand;
 
-        return Objects.equals(this.keyWord, otherFilterCommand.keyWord) &&
-                Objects.equals(this.topic, otherFilterCommand.topic);
+        boolean isSameKeyword = Objects.equals(this.keyWord, otherFilterCommand.keyWord);
+        boolean isSameTopic = Objects.equals(this.topic, otherFilterCommand.topic);
+        return isSameKeyword && isSameTopic;
     }
 }

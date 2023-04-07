@@ -17,12 +17,13 @@ import java.util.ArrayList;
  * through executing <code>ExportCommand</code>.
  */
 public class Buffer {
-    private static final String CURRENT_DIRECTORY_PATH = ".\\";
+    private static final String CURRENT_DIRECTORY_PATH = "./";
     private static Buffer buffer = null;
     private final ArrayList<CS2040CFile> files;
     private final File pathToBuffer;
     private final Ui ui;
 
+    //@@author lohjooh
     /**
      * This is a private constructor for a Singleton-type object as only one <code>Buffer</code> would be instantiated.
      */
@@ -55,10 +56,13 @@ public class Buffer {
         }
     }
 
+    //@@author heejet
+    /** Checks if the buffer is empty */
     public boolean isEmpty() {
         return this.files.isEmpty();
     }
 
+    //@@author lohjooh
     /**
      * Deletes all the files in <code>.\\export</code>.
      */
@@ -92,7 +96,7 @@ public class Buffer {
      * if the copy fails.
      */
     public void addFilesToBuffer() {
-        String fileDivider = "\\";
+        String fileDivider = "/";
         for (CS2040CFile file: this.files) {
             Path source = Paths.get(CURRENT_DIRECTORY_PATH + file.getPath());
             Path target = Paths.get(this.pathToBuffer + fileDivider + file.getPath());
