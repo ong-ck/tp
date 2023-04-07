@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BufferTest {
-    private static final String PATH = ".\\export";
+    private static final String PATH = "./export";
     private Buffer buffer;
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 

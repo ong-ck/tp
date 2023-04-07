@@ -1,25 +1,26 @@
 @startuml
+!include ../../style.iuml
 skinparam classAttributeIconSize 0
 hide circle
 
-abstract class Command {
+abstract class Command Command_STYLE{
     +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
-class ListCommand {
+class ListCommand ListCommand_STYLE{
     +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
-class TopicManager {
+class TopicManager TopicManager_STYLE{
 }
 
-class Ui {
+class Ui Ui_STYLE{
 }
 
-class Buffer {
+class Buffer Buffer_STYLE{
 }
 
-class FileManager {
+class FileManager FileManager_STYLE{
 }
 
 Command <|-- ListCommand

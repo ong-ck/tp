@@ -52,7 +52,7 @@ class AddNoteCommandTest {
         CS2040CFile cs2040CFile = new Note("queue", "dummypath", "LINKED_LIST", 10);
         topicManager.addCS2040CFile("queue", "LINKED_LIST", cs2040CFile);
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
@@ -86,7 +86,7 @@ class AddNoteCommandTest {
     void execute_addNoteFileThatDoesExists_expectCS2040CFileInsideTopicManager() {
         TopicManager topicManager = new TopicManager();
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();

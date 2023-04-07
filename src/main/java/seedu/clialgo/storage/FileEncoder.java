@@ -2,6 +2,7 @@ package seedu.clialgo.storage;
 
 import seedu.clialgo.file.CS2040CFile;
 
+//@@author lohjooh
 /**
  * Object that takes in a <code>CS2040CFile</code> object and converts it into a <code>String</code> which is then
  * written to the .txt file which the <code>CS2040CFile</code> has the <code>CS2040CFile.tag</code> of.

@@ -16,7 +16,7 @@ import seedu.clialgo.Ui;
 public class AddCommand extends Command {
     public static final String NOTE_FILE_EXTENSION = ".txt";
     public static final String CODE_FILE_EXTENSION = ".cpp";
-    public static final String CURRENT_DIRECTORY_PATH = ".\\";
+    public static final String CURRENT_DIRECTORY_PATH = "./";
     public static final int DEFAULT_IMPORTANCE = 5;
     protected final String name;
     protected final Ui ui;

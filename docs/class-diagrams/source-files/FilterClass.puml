@@ -1,28 +1,20 @@
 @startuml
+!include ../../style.iuml
 skinparam classAttributeIconSize 0
 hide circle
 
-abstract class Command {
+abstract class Command Command_STYLE {
     +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
-class FilterCommand {
+class FilterCommand FilterCommand_STYLE {
     #keyWord: String
     #topic: String
 
     +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
 }
 
-class FilterByTopicCommand {
-    #keyWord: String
-    #topic: String
-
-    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
-    -printAllTopics(topicManager : TopicManager, ui : Ui) : void
-    -printSingleTopic(topicManager : TopicManager, ui : Ui) : void
-}
-
-class FilterByImportanceCommand {
+class FilterByTopicCommand FilterByTopicCommand_STYLE {
     #keyWord: String
     #topic: String
 
@@ -31,16 +23,25 @@ class FilterByImportanceCommand {
     -printSingleTopic(topicManager : TopicManager, ui : Ui) : void
 }
 
-class TopicManager {
+class FilterByImportanceCommand FilterByImportanceCommand_STYLE {
+    #keyWord: String
+    #topic: String
+
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+    -printAllTopics(topicManager : TopicManager, ui : Ui) : void
+    -printSingleTopic(topicManager : TopicManager, ui : Ui) : void
 }
 
-class Ui {
+class TopicManager TopicManager_STYLE {
 }
 
-class FileManager {
+class Ui Ui_STYLE {
 }
 
-class Buffer {
+class FileManager FileManager_STYLE {
+}
+
+class Buffer Buffer_STYLE {
 }
 
 Command <|-- FilterCommand

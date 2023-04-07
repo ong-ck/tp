@@ -1,44 +1,59 @@
 @startuml
+!include ../../style.iuml
 hide footbox
 
-participant ":FileManager" as fm
-participant ":FileEncoder" as fe
-participant ":SingleFile" as sf
-participant ":FileWriter" as fw
-participant ":BufferedWriter" as bw
-participant ":File" as f
+participant ":FileManager" as FileManager FileManager_STYLE
+participant ":FileEncoder" as FileEncoder FileEncoder_STYLE
+participant ":SingleFile" as SingleFile SingleFile_STYLE
+participant ":FileWriter" as FileWriter
+participant ":BufferedWriter" as BufferedWriter
+participant ":File" as File
 
-activate fm
--> fm : addEntry
-fm -> fe : encode
-fe --> fm : encodedCS2040CFile: String
-fm -> sf : writeCS2040CFileToFile
-activate sf
+activate FileManager
+-> FileManager : addEntry
+FileManager -> FileEncoder : encodeCS2040CFile
+FileEncoder --> FileManager : encodedCS2040CFile: String
+FileManager -> SingleFile : writeCS2040CFileToFile
+activate SingleFile
     opt file does not exist
-        sf -> sf : recreateFile()
-        activate sf
-        deactivate sf
-        sf -> sf : overwriteFile()
-        activate sf
-        sf -> f
-        activate f
-        deactivate f
-        deactivate sf
-    end
-sf -> fw **
-activate fw
-fw -> bw **
-activate bw
-bw -> f : write(encodedCS2040CFile: String)
-activate f
-bw -> f : newLine()
-deactivate f
-bw -> bw : close()
-activate bw
-deactivate bw
-destroy bw
-fw -> fw : close()
-activate fw
-deactivate fw
-destroy fw
+        FileManager -> SingleFile : recreateFile()
+        SingleFile --> FileManager
+        opt file created successfully
+            SingleFile -> SingleFile : overwriteFile()
+            activate SingleFile
+            SingleFile -> FileWriter **
+            activate FileWriter
+            FileWriter -> BufferedWriter **
+            activate BufferedWriter
+            loop for each String in storedRawData.values()
+                BufferedWriter -> File : write(string: String)
+                activate File
+                File --> SingleFile
+                deactivate File
+            end
+        end
+            deactivate SingleFile
+            destroy BufferedWriter
+            destroy FileWriter
+        end
+
+SingleFile -> FileWriter **
+activate FileWriter
+FileWriter -> BufferedWriter **
+activate BufferedWriter
+BufferedWriter -> File : write(encodedCS2040CFile: String)
+activate File
+BufferedWriter -> File : newLine()
+BufferedWriter -> BufferedWriter : close()
+activate BufferedWriter
+deactivate BufferedWriter
+destroy BufferedWriter
+FileWriter -> FileWriter : close()
+activate FileWriter
+deactivate FileWriter
+destroy FileWriter
+File --> SingleFile
+deactivate File
+SingleFile --> FileManager
+deactivate SingleFile
 @enduml
