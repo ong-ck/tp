@@ -44,7 +44,7 @@ class FilterByImportanceCommandTest {
     void execute_topicManagerEmpty_expectPrintFilterAllTopicEmpty() {
         TopicManager topicManager = new TopicManager();
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
@@ -84,7 +84,7 @@ class FilterByImportanceCommandTest {
         topicManager.addCS2040CFile("queue", "LINKED_LIST", cs2040CFile1);
         topicManager.addCS2040CFile("bubble", "SORTING", cs2040CFile2);
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
@@ -126,7 +126,7 @@ class FilterByImportanceCommandTest {
         topicManager.addCS2040CFile("queue", "LINKED_LIST", cs2040CFile1);
         topicManager.addCS2040CFile("bubble", "SORTING", cs2040CFile2);
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
@@ -166,7 +166,7 @@ class FilterByImportanceCommandTest {
         CS2040CFile cs2040CFile1 = new Code("queue", "queue.cpp", "LINKED_LIST", 10);
         topicManager.addCS2040CFile("queue", "LINKED_LIST", cs2040CFile1);
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
@@ -203,7 +203,7 @@ class FilterByImportanceCommandTest {
         CS2040CFile cs2040CFile1 = new Code("queue", "queue.cpp", "LINKED_LIST", 10);
         topicManager.addCS2040CFile("queue", "LINKED_LIST", cs2040CFile1);
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
         fileManager.initialize();
