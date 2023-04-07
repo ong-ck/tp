@@ -37,7 +37,7 @@ public class NameNotFoundCommandTest {
         parser = new Parser();
         topicManager = new TopicManager();
         ui = new Ui();
-        fileManager = new FileManager(".\\testdata", new ArrayList<>());
+        fileManager = new FileManager("./testdata", new ArrayList<>());
         buffer = Buffer.getInstance();
     }
 

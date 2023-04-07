@@ -42,7 +42,7 @@ public class RemoveCommandTest {
 
     @Test
     void execute_properInput_expectRemoveSuccessfulMessage() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -86,8 +86,8 @@ public class RemoveCommandTest {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        String testDataPath = ".\\testdata";
-        File file = new File(".\\" + "queue" + ".txt");
+        String testDataPath = "./testdata";
+        File file = new File("./" + "queue" + ".txt");
         try {
             if (file.createNewFile()) {
                 System.out.println("File created");

@@ -28,7 +28,7 @@ class TopoCommandTest {
      */
     @Test
     void execute_properInput_expectTopoSortToBePrinted() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -77,7 +77,7 @@ class TopoCommandTest {
      */
     @Test
     void execute_noAddedFiles_expectPrintNoCS2040CFilesSaved() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -117,7 +117,7 @@ class TopoCommandTest {
      */
     @Test
     void execute_nonExistentFile_expectPrintFileDoesNotExist() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -177,7 +177,7 @@ class TopoCommandTest {
      */
     @Test
     void equals_checkEqualTopoCommandWithFilledHashMap_expectTrue() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -232,7 +232,7 @@ class TopoCommandTest {
      */
     @Test
     void equals_checkUnequalTopoCommandDueToDifferentTopic_expectFalse() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -273,7 +273,7 @@ class TopoCommandTest {
      */
     @Test
     void equals_checkUnequalTopoCommandDueToDifferentCS2040CFile_expectFalse() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -316,7 +316,7 @@ class TopoCommandTest {
      */
     @Test
     void equals_checkUnequalTopoCommandDueToUnequalNumberOfCS2040CFile_expectFalse() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
