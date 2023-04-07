@@ -1,19 +1,20 @@
 @startuml
+!include ../../style.iuml
 hide footbox
 
 actor User
-participant "cliAlgo: CLIAlgo" as CLIAlgo
-participant "ui: Ui" as Ui
-participant "parser: Parser" as Parser
-participant ": Command" as Command
+participant "cliAlgo: CLIAlgo" as CLIAlgo CLIAlgo_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
+participant "parser: Parser" as Parser Parser_STYLE
+participant ": Command" as Command Command_STYLE
 box logic
-participant "topicManager: TopicManager" as TopicManager
-participant ": Topic" as Topic
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant ": Topic" as Topic Topic_STYLE
 end box
-participant "buffer: Buffer" as Buffer
+participant "buffer: Buffer" as Buffer Buffer_STYLE
 box storage
-participant "fileManager: FileManager" as FileManager
-participant ": SingleFile" as SingleFile
+participant "fileManager: FileManager" as FileManager FileManager_STYLE
+participant ": SingleFile" as SingleFile SingleFile_STYLE
 end box
 
 activate CLIAlgo
