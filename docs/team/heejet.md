@@ -80,6 +80,7 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
 [#127](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/127), 
 [#138](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/138), 
 [#166](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/166),
+[#256](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/256).
 9. Designed the architecture of `CLIAlgo` and how `TopicManager` and `Topic` interact with each other
 to implement various features of `CLIAlgo` (`Filter`, `Add`, `Remove`, `List`, `Topo`).
 10. Participated in video demo.
