@@ -46,12 +46,6 @@ the help window. Some example commands you can try are:
    - `list`: list all existing notes
    - `remove n/toposort`: remove the 'toposort.txt' note from the list
 
-> **IMPORTANT**
->
-> **MAC USERS** need to append a `.\ ` to the **FRONT** of each `.txt` or `.cpp` file they want to perform commands on.
-> 
-> For example, if you have a `queue.txt` file, you need to **HIDE** it first by changing it to `.\queue.txt`.
-
 > **WARNING**
 > 
 > If any of the files stored in the data files are corrupted, i.e. any of the fields within the data files are invalid
