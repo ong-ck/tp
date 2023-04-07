@@ -53,6 +53,7 @@ activate AddCommand AddCommand_STYLE
                 <-- AddCommand
             end
 
+
             AddNoteCommand -> TopicManager : addCS2040CFile()
             activate TopicManager TopicManager_STYLE
             return isAdded: boolean
@@ -71,6 +72,7 @@ activate AddCommand AddCommand_STYLE
             destroy AddNoteCommand
             <-- AddCommand
     end
+
     AddCommand -> Ui : printAddSuccess()
     activate Ui Ui_STYLE
     return
