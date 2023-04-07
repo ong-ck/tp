@@ -1,9 +1,11 @@
 @startuml
+!include ../../style.iuml
+
 hide footbox
 
-participant ": ListCommand" as ListCommand
-participant "topicManager: TopicManager" as TopicManager
-participant "ui: Ui" as Ui
+participant ": ListCommand" as ListCommand ListCommand_STYLE
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
 
 -> ListCommand : execute()
 activate ListCommand
