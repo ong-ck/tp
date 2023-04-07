@@ -2,6 +2,10 @@
 
 # User Guide
 
+## Acknowledgements
+
+- Reference to [AB-3 User Guide](https://se-education.org/addressbook-level3/UserGuide.html)
+
 ## Introduction
 
 CLIAlgo is a desktop application for **managing your CS2040C notes and code**. It is optimized to be used via a Command 

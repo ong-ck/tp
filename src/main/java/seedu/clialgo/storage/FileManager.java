@@ -1,6 +1,6 @@
 package seedu.clialgo.storage;
 
-import seedu.clialgo.Topic;
+import seedu.clialgo.logic.Topic;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.CS2040CFile;
 
@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//@@author lohjooh
 /**
  * Object containing all the raw data for the application, able to update each .txt file which stores the information
  * of the <code>CS2040CFile</code> in each <code>Topic</code>, where the .txt files are named in the convention of

@@ -17,6 +17,7 @@ import seedu.clialgo.command.TestModeCommand;
 import seedu.clialgo.command.TopoCommand;
 import seedu.clialgo.exceptions.parser.EmptyFieldException;
 import seedu.clialgo.exceptions.parser.NullInputException;
+import seedu.clialgo.logic.TopicManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,6 +69,7 @@ public class Parser implements StringManipulation {
         return KEYWORDS.contains(keyWord);
     }
 
+    //@@author nikkiDEEE
     /**
      * Checks if the input string is in the valid importance range (1-10).
      *
@@ -80,6 +82,7 @@ public class Parser implements StringManipulation {
         return importance >= 1 && importance <= 10;
     }
 
+    //@@author heejet
     /**
      * Checks if the correct marker is used by the user.
      *

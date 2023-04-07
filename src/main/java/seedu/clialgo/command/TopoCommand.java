@@ -1,8 +1,8 @@
 package seedu.clialgo.command;
 
 import seedu.clialgo.Buffer;
-import seedu.clialgo.Topic;
-import seedu.clialgo.TopicManager;
+import seedu.clialgo.logic.Topic;
+import seedu.clialgo.logic.TopicManager;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.storage.FileManager;

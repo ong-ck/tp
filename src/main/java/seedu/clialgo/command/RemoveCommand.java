@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import seedu.clialgo.Buffer;
-import seedu.clialgo.TopicManager;
+import seedu.clialgo.logic.TopicManager;
 import seedu.clialgo.storage.FileManager;
 import seedu.clialgo.Ui;
 
@@ -76,7 +76,6 @@ public class RemoveCommand extends Command {
     public String getName() {
         return name;
     }
-    //@@author
 
     /**
      * An overridden method that checks for equality of <code>RemoveCommand</code> objects.

@@ -1,4 +1,4 @@
-package seedu.clialgo;
+package seedu.clialgo.logic;
 
 import org.junit.jupiter.api.Test;
 import seedu.clialgo.file.Note;

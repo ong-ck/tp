@@ -1,4 +1,4 @@
-package seedu.clialgo;
+package seedu.clialgo.logic;
 
 import seedu.clialgo.file.CS2040CFile;
 import seedu.clialgo.file.Code;
@@ -71,6 +71,7 @@ public class Topic {
         return this.topicName;
     }
 
+    //@@author heejet
     /**
      * Gets all CS2040CFiles stored in this specific topic and stores them in an ArrayList.
      *
@@ -90,6 +91,7 @@ public class Topic {
         }
         return topicCS2040CFiles;
     }
+    //@@author
 
     /**
      * Adds a CS2040CFile linked to a specific topic.
