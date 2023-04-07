@@ -1,6 +1,6 @@
 package seedu.clialgo.storage;
 
-import seedu.clialgo.Topic;
+import seedu.clialgo.logic.Topic;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.CS2040CFile;
 

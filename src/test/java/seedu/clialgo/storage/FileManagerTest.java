@@ -1,7 +1,7 @@
 package seedu.clialgo.storage;
 
 import org.junit.jupiter.api.Test;
-import seedu.clialgo.Topic;
+import seedu.clialgo.logic.Topic;
 import seedu.clialgo.Ui;
 import seedu.clialgo.file.Code;
 

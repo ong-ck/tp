@@ -488,7 +488,6 @@ public class Ui {
     public void printWithBox(String topicName) {
         System.out.println("[" + topicName + "]");
     }
-    //@@author
 
     //@@author ong-ck
     /**

@@ -1,6 +1,7 @@
 package seedu.clialgo;
 
 import seedu.clialgo.command.Command;
+import seedu.clialgo.logic.TopicManager;
 import seedu.clialgo.storage.FileManager;
 
 //@@author heejet

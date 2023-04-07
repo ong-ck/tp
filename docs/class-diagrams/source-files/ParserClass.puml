@@ -1,6 +1,9 @@
 @startuml
 skinparam classAttributeIconSize 0
 hide circle
+
+class "<<interface>> \n StringManipulation" as StringManipulation
+
 class Parser {
 -COMMANDS: Arraylist<String>
 -KEYWORDS: Arraylist<String>
@@ -43,6 +46,4 @@ Parser ..> Ui
 Parser ..> TopicManager
 Parser ..> command
 Parser ..> Buffer
-
-
 @enduml
