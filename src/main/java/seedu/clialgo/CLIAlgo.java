@@ -12,7 +12,7 @@ import seedu.clialgo.storage.FileManager;
  */
 public class CLIAlgo {
     /** The path of the folder used to store information in CLIAlgo. */
-    private static final String DATA_PATH = ".\\data";
+    private static final String DATA_PATH = "./data";
 
     /** An object to handle the user interaction. */
     private final Ui ui;

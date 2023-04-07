@@ -285,7 +285,7 @@ The `TopoCommand` component
 
 Here is a class diagram of the `Buffer` which facilitates the storing of `CS2040CFiles`
 returned from `filter` and `topo` commands and the copying of `CS2040CFiles` stored within
-into `.\\export` and opening the folder subsequently if supported by the Operating System.
+into `./export` and opening the folder subsequently if supported by the Operating System.
 
 <p align="center">
     <img src="class-diagrams/diagrams/ExportClass.png" alt="Buffer Class Diagram" width="75%"/>
@@ -294,9 +294,9 @@ into `.\\export` and opening the folder subsequently if supported by the Operati
 The `Buffer` component
 - Stores `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
 - Updates stored `CS2040CFile`s
-- Copies `CS2040CFile`s into `.\\export` folder
-- Deletes `CS2040CFile`s in `.\\export` folder
-- Opens `.\\export` folder automatically if supported by the Operating System
+- Copies `CS2040CFile`s into `./export` folder
+- Deletes `CS2040CFile`s in `./export` folder
+- Opens `./export` folder automatically if supported by the Operating System
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation"></div>
@@ -425,7 +425,7 @@ The following **_Sequence Diagram_** shows how the Logic component work.
 
 The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
 creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for
-in `TOPIC_NAME.txt` in the folder `.\\data`. If the files already exist, they are not created. Instead,
+in `TOPIC_NAME.txt` in the folder `./data`. If the files already exist, they are not created. Instead,
 the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder`
 which would then convert these raw data into `CS2040CFile` objects. The `CS2040File` objects are then passed
 into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
@@ -436,7 +436,7 @@ Given below is how the sequence of `initialize()` is run
 > **Step 1**: During the start-up of the application, a folder is created to store all the data files.
 
 > **Step 2**: For every `Topic`, create a `SingleFile` which containing the data file of those `Topics`
-> with the path `.\\data\\TOPIC_NAME.txt` where TOPIC_NAME is replaced with the name of the `Topic`.
+> with the path `./data/TOPIC_NAME.txt` where TOPIC_NAME is replaced with the name of the `Topic`.
 > This only occurs if the file did not exist prior to the running of the application.
 
 > **Step 3**: If the file already existed prior, readFile() is run. This creates a `Scanner` which would 
@@ -771,7 +771,7 @@ object is instantiated. The `ExportCommand` object extends
 `Command` with an overridden `execute()` method. When the
 `execute()` method is called, the `exportBuffer()` method in the
 `Buffer` is called. This copies all the `CS2040CFile` stored in
-the buffer to the export folder stored at `.\\export` and opens
+the buffer to the export folder stored at `./export` and opens
 the folder by using the default file explorer of the system.
 > Take note that this does not work for some Operating Systems
 > without a file explorer (e.g. some Linux-based systems)

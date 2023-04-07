@@ -58,7 +58,7 @@ class AddCommandTest {
      */
     @Test
     void execute_properInput_expectAddSuccessfulMessage() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -99,7 +99,7 @@ class AddCommandTest {
      */
     @Test
     void execute_invalidTopicInput_expectAddUnsuccessfulDueToInvalidTopicMessage() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -142,8 +142,8 @@ class AddCommandTest {
      */
     @Test
     void execute_repeatedInput_expectAddUnsuccessfulDueToInvalidCommandMessage() {
-        String testDataPath = ".\\testdata";
-        File file = new File(".\\" + "queue" + ".txt");
+        String testDataPath = "./testdata";
+        File file = new File("./" + "queue" + ".txt");
         try {
             if (file.createNewFile()) {
                 System.out.println("File created");
@@ -202,7 +202,7 @@ class AddCommandTest {
      */
     @Test
     void execute_fileDoesNotExist_expectPrintFileDoesNotExist() {
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -241,8 +241,8 @@ class AddCommandTest {
      */
     @Test
     void execute_fileDoesNotExist_expectPrintFileDoesExist() {
-        String testDataPath = ".\\testdata";
-        File file = new File(".\\" + "queue" + ".txt");
+        String testDataPath = "./testdata";
+        File file = new File("./" + "queue" + ".txt");
         try {
             if (file.createNewFile()) {
                 System.out.println("File created");

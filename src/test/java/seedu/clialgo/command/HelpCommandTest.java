@@ -18,7 +18,7 @@ class HelpCommandTest {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -70,7 +70,7 @@ class HelpCommandTest {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -120,7 +120,7 @@ class HelpCommandTest {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -158,7 +158,7 @@ class HelpCommandTest {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -206,7 +206,7 @@ class HelpCommandTest {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -244,7 +244,7 @@ class HelpCommandTest {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -282,7 +282,7 @@ class HelpCommandTest {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());
@@ -320,7 +320,7 @@ class HelpCommandTest {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        String testDataPath = ".\\testdata";
+        String testDataPath = "./testdata";
         TopicManager topicManager = new TopicManager();
         Ui ui = new Ui();
         FileManager fileManager = new FileManager(testDataPath, topicManager.getTopicNames());

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExitTestModeCommandTest {
-    private static final String PATH = ".\\testdata";
+    private static final String PATH = "./testdata";
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private Ui ui;
     private TopicManager topicManager;
@@ -73,7 +73,7 @@ public class ExitTestModeCommandTest {
         Command command = parser.parse(input, topicManager);
         command.execute(topicManager, ui, fileManager, buffer);
 
-        String pathToFile = "\\test.txt";
+        String pathToFile = "/test.txt";
         File test = new File(PATH + pathToFile);
         try {
             if (!test.createNewFile()) {
