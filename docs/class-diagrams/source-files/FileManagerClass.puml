@@ -1,7 +1,8 @@
 @startuml
 skinparam classAttributeIconSize 0
+!include ../../style.iuml
 
-class FileManager {
+class FileManager FileManager_STYLE {
 -path: String
 -topicRawData: HashMap<String, SingleFile>
 -topicNames: Arraylist<String>
@@ -11,7 +12,7 @@ class FileManager {
 +deleteEntry(cs2040cFileName: String)
 }
 
-class SingleFile {
+class SingleFile SingleFile_STYLE {
 -storedRawData: HashMap<String, String>
 -cs2040cFiles: HashMap<String, CS2040CFile>
 +readFile()
@@ -21,11 +22,11 @@ class SingleFile {
 +convertFileToTopic(): Topic
 }
 
-class FileDecoder {
+class FileDecoder FileDecoder_STYLE {
 +decodeString(encodedCS2040CFile: String, topicName: String): boolean
 }
 
-class FileEncoder {
+class FileEncoder FileEncoder_STYLE {
 +encodeCS2040CFile(name: String, cs2040cFile: CS2040CFile): String
 }
 
@@ -33,10 +34,10 @@ class File {
 +createNewFile()
 }
 
-class Topic {
+class Topic Topic_STYLE {
 }
 
-class CS2040CFile {
+class CS2040CFile CS2040CFile_STYLE {
 }
 
 class Scanner {
