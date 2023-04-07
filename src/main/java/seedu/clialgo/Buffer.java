@@ -23,6 +23,7 @@ public class Buffer {
     private final File pathToBuffer;
     private final Ui ui;
 
+    //@@author lohjooh
     /**
      * This is a private constructor for a Singleton-type object as only one <code>Buffer</code> would be instantiated.
      */
@@ -55,10 +56,13 @@ public class Buffer {
         }
     }
 
+    //@@author heejet
+    /** Checks if the buffer is empty */
     public boolean isEmpty() {
         return this.files.isEmpty();
     }
 
+    //@@author lohjooh
     /**
      * Deletes all the files in <code>.\\export</code>.
      */
