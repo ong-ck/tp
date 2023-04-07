@@ -8,26 +8,26 @@ participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
 participant "ui: Ui" as Ui Ui_STYLE
 
 -> ListCommand : execute()
-activate ListCommand
+activate ListCommand ListCommand_STYLE
     ListCommand -> TopicManager: isEmpty()
-    activate TopicManager
+    activate TopicManager TopicManager_STYLE
     return
 
     alt TopicManager is empty
         ListCommand -> Ui : printListFail()
-        activate Ui
+        activate Ui Ui_STYLE
         return
     else else
         ListCommand -> Ui : printListSuccess()
-        activate Ui
+        activate Ui Ui_STYLE
         return
 
         ListCommand -> TopicManager : getAllCS2040CFiles()
-        activate TopicManager
+        activate TopicManager TopicManager_STYLE
         return printedCS2040CFiles: ArrayList<String>
 
         ListCommand -> Ui : printListOfCS2040CFiles(printedCS2040CFiles: ArrayList<String>)
-        activate Ui
+        activate Ui Ui_STYLE
         return
     end
 return

@@ -1,15 +1,16 @@
 @startuml
+!include ../../style.iuml
 skinparam classAttributeIconSize 0
 hide circle
 
 together {
-    package command <<rectangle>> {
+    package command <<rectangle>> Command_STYLE {
     }
-    class CS2040CFile {
+    class CS2040CFile CS2040CFile_STYLE {
     }
 }
 
-class TopicManager {
+class TopicManager TopicManager_STYLE {
     -TOPIC_NAMES: ArrayList<String>
     -TOPO_ORDER: ArrayList<String>
     -allCS2040CFiles: HashMap<String, String>
@@ -21,7 +22,7 @@ class TopicManager {
     +removeCS2040CFile(cs2040cFileName: String, topicName: String): boolean
 }
 
-class Topic {
+class Topic Topic_STYLE {
     -topicName: String
     -cs2040cFiles: HashMap<String, CS2040CFile>
     +getC2040CFiles(): HashMap<String, CS2040CFile>

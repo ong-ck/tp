@@ -583,7 +583,6 @@ The **_Sequence Diagram_** below shows how the `AddCommand` works.
 ### Remove CS2040CFile feature
 #### Current Implementation
 
-<<<<<<< HEAD
 The remove mechanism is facilitated by `RemoveCommand`. It extends the abstract `Command` with an overridden `execute()`
 method. Within the `execute()` function, 
 
