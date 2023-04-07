@@ -1,79 +1,79 @@
 @startuml
 hide footbox
 
-participant ": AddCommand" as AddCommand
-participant ": InvalidTopicCommand" as InvalidTopicCommand
-participant ": AddNoteCommand" as AddNoteCommand
-participant "fileManager: FileManager" as FileManager
-participant "topicManager: TopicManager" as TopicManager
-participant ": InvalidCommand" as InvalidCommand
-participant "ui: Ui" as Ui
+participant ": AddCommand" as a
+participant ": InvalidTopicCommand" as it
+participant ": AddNoteCommand" as an
+participant "fileManager: FileManager" as fm
+participant "topicManager: TopicManager" as tm
+participant ": InvalidCommand" as ic
+participant "ui: Ui" as ui
 
--> AddCommand : execute()
-activate AddCommand
+-> a : execute()
+activate a
     opt CS2040CFile does not exist in directory
-        AddCommand -> Ui : printFileDoesNotExist()
-        activate Ui
+        a -> ui : printFileDoesNotExist()
+        activate ui
         return
-        <-- AddCommand
+        <-- a
     end
 
     opt topicName is not valid
-        AddCommand -> InvalidTopicCommand **
-        activate InvalidTopicCommand
+        a -> it **
+        activate it
         return
 
-        AddCommand -> InvalidTopicCommand: execute()
-        activate InvalidTopicCommand
+        a -> it: execute()
+        activate it
         return
-        destroy InvalidTopicCommand
-        <-- AddCommand
+        destroy it
+        <-- a
     end
 
     opt is CS2040CFile is repeated
-        AddCommand -> Ui : printCS2040CFileExists()
-        activate Ui
+        a -> ui : printCS2040CFileExists()
+        activate ui
         return
     end
 
     alt CS2040CFile type is txt
-        AddCommand -> AddNoteCommand **
-        activate AddNoteCommand
+        a -> an **
+        activate an
         return
 
-        AddCommand -> AddNoteCommand : execute()
-        activate AddNoteCommand
-            AddNoteCommand -> FileManager : addEntry()
-            activate FileManager
+        a -> an : execute()
+        activate an
+            an -> fm : addEntry()
+            activate fm
             return isAddedToFile: boolean
 
             opt CS2040CFile is not added to fileManager
-                AddNoteCommand --> AddCommand
-                <-- AddCommand
+                an --> a
+                <-- a
             end
 
-            AddNoteCommand -> TopicManager : addCS2040CFile()
-            activate TopicManager
+            an -> tm : addCS2040CFile()
+            activate tm
             return isAdded: boolean
 
             opt CS2040CFile is not added to topicManager
-                AddNoteCommand -> InvalidCommand **
-                activate InvalidCommand
+                an -> ic **
+                activate ic
                 return
 
-                AddNoteCommand -> InvalidCommand : execute()
-                activate InvalidCommand
+                an -> ic : execute()
+                activate ic
                 return
-                destroy InvalidCommand
+                destroy ic
             end
             return
-            destroy AddNoteCommand
-            <-- AddCommand
+            destroy an
+            <-- a
     end
-    AddCommand -> Ui : printAddSuccess()
-    activate Ui
+    a -> ui : printAddSuccess()
+    activate ui
     return
 return
-destroy AddCommand
+destroy a
 
 @enduml
