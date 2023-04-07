@@ -1,66 +1,67 @@
 @startuml
 hide footbox
+!include ../../style.iuml
 
-participant "topicManager: TopicManager" as tm
-participant "fileManager: FileManager" as fm
-participant ": SingleFile" as sf
-participant ": File" as f
-participant ": Scanner" as s
-participant ": FileDecoder" as fd
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant "fileManager: FileManager" as FileManager FileManager_STYLE
+participant ": SingleFile" as SingleFile SingleFile_STYLE
+participant ": File" as File
+participant ": Scanner" as Scanner
+participant ": FileDecoder" as FileDecoder FileDecoder_STYLE
 
--> fm : initialize()
-activate fm
+-> FileManager : initialize()
+activate FileManager
 loop topicNames
-    fm -> sf ** : createSingleFile(string : String)
-    activate sf
-    sf -> f ** : new File()
-    activate f
-    f -> f : createNewFile()
-    f -> sf : setFile(file : File)
-    activate sf
-    deactivate f
-    sf --> sf
-    deactivate sf
-    sf --> fm : newFile : SingleFile
-    deactivate sf
+    FileManager -> SingleFile ** : createSingleFile(string : String)
+    activate SingleFile
+    SingleFile -> File ** : new File()
+    activate File
+    File -> File : createNewFile()
+    File -> SingleFile : setFile(file : File)
+    activate SingleFile
+    deactivate File
+    SingleFile --> SingleFile
+    deactivate SingleFile
+    SingleFile --> FileManager : newFile : SingleFile
+    deactivate SingleFile
 end
-fm -> sf : readFile()
-activate sf
-sf -> s ** : new Scanner(file : File)
-activate s
-deactivate fm
+FileManager -> SingleFile : readFile()
+activate SingleFile
+SingleFile -> Scanner ** : new Scanner(file : File)
+activate Scanner
+deactivate FileManager
     loop hasNext()
-    s -> f
-    activate f
-    f --> s
-    deactivate f
-    s --> sf : nextLine()
-    sf -> fd : decodeString()
-    activate fd
-    fd --> sf : isCorrupted
+    Scanner -> File
+    activate File
+    File --> Scanner
+    deactivate File
+    Scanner --> SingleFile : nextLine()
+    SingleFile -> FileDecoder : decodeString()
+    activate FileDecoder
+    FileDecoder --> SingleFile : isCorrupted
         alt isCorrupted
-        sf --> sf : isFileCorrupted
-        deactivate sf
+        SingleFile --> SingleFile : isFileCorrupted
+        deactivate SingleFile
         else else
-        fd --> sf
-        activate sf
-        sf-->sf
-        deactivate sf
+        FileDecoder --> SingleFile
+        activate SingleFile
+        SingleFile-->SingleFile
+        deactivate SingleFile
         end
     end
-    destroy s
-    deactivate sf
-    deactivate fd
+    destroy Scanner
+    deactivate SingleFile
+    deactivate FileDecoder
     opt isFileCorrupted
-    sf -> sf : overwriteFile()
-    activate sf
-    sf --> sf
-    deactivate sf
+    SingleFile -> SingleFile : overwriteFile()
+    activate SingleFile
+    SingleFile --> SingleFile
+    deactivate SingleFile
     end
-tm -> fm : decodeAll()
-activate fm
-fm -> sf : convertFileToTopic()
-activate sf
+TopicManager -> FileManager : decodeAll()
+activate FileManager
+FileManager -> SingleFile : convertFileToTopic()
+activate SingleFile
 return
 return topics : HashMap<String, Topic>
 
