@@ -10,21 +10,32 @@ participant ":File" as f
 
 activate fm
 -> fm : addEntry
-fm -> fe : encode
+fm -> fe : encodeCS2040CFile
 fe --> fm : encodedCS2040CFile: String
 fm -> sf : writeCS2040CFileToFile
 activate sf
     opt file does not exist
-        sf -> sf : recreateFile()
-        activate sf
-        deactivate sf
-        sf -> sf : overwriteFile()
-        activate sf
-        sf -> f
-        activate f
-        deactivate f
-        deactivate sf
-    end
+        fm -> sf : recreateFile()
+        sf --> fm
+        opt file created successfully
+            sf -> sf : overwriteFile()
+            activate sf
+            sf -> fw **
+            activate fw
+            fw -> bw **
+            activate bw
+            loop for each String in storedRawData.values()
+                bw -> f : write(string: String)
+                activate f
+                f --> sf
+                deactivate f
+            end
+        end
+            deactivate sf
+            destroy bw
+            destroy fw
+        end
+
 sf -> fw **
 activate fw
 fw -> bw **
@@ -32,7 +43,6 @@ activate bw
 bw -> f : write(encodedCS2040CFile: String)
 activate f
 bw -> f : newLine()
-deactivate f
 bw -> bw : close()
 activate bw
 deactivate bw
@@ -41,4 +51,8 @@ fw -> fw : close()
 activate fw
 deactivate fw
 destroy fw
+f --> sf
+deactivate f
+sf --> fm
+deactivate sf
 @enduml
