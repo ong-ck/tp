@@ -1,64 +1,66 @@
 @startuml
+!include ../../style.iuml
 hide footbox
-participant ": RemoveCommand" as r
-participant "topicManager: TopicManager" as tm
-participant "fileManager: FileManager" as fm
-participant "ui: Ui" as ui
-participant "buffer: Buffer" as b
 
--> r : execute()
-activate r
+participant ": RemoveCommand" as RemoveCommand RemoveCommand_STYLE
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant "fileManager: FileManager" as FileManager FileManager_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
+participant "buffer: Buffer" as Buffer Buffer_STYLE
+
+-> RemoveCommand : execute()
+activate RemoveCommand RemoveCommand_STYLE
     opt topic manager is empty
-        r -> ui : printRemoveFail()
-        activate ui
+        RemoveCommand -> Ui : printRemoveFail()
+        activate Ui Ui_STYLE
         return
-        <-- r
+        <-- RemoveCommand
     end
 
     opt CS2040CFile is not inside topic manager
-        participant ": NameNotFoundCommand" as nn
-        r -> nn **
-        activate nn
+        participant ": NameNotFoundCommand" as nn NameNotFoundCommand_STYLE
+        RemoveCommand -> nn **
+        activate nn NameNotFoundCommand_STYLE
         return
 
-        r -> nn : execute()
-        activate nn
+        RemoveCommand -> nn : execute()
+        activate nn NameNotFoundCommand_STYLE
         return
         destroy nn
-        <-- r
+        <-- RemoveCommand
     end
 
-    r -> tm : removeCS2040CFile
-    activate tm
+    RemoveCommand -> TopicManager : removeCS2040CFile
+    activate TopicManager TopicManager_STYLE
     return
 
     opt CS2040CFile NOT successfully removed from topic manager
-        r -> ui : printRemoveFail
-        activate ui
+        RemoveCommand -> Ui : printRemoveFail
+        activate Ui Ui_STYLE
         return
-        <-- r
+        <-- RemoveCommand
     end
 
-    r -> fm : recreateAll()
-    activate fm
+    RemoveCommand -> FileManager : recreateAll()
+    activate FileManager FileManager_STYLE
     return
 
-    r -> fm : deleteEntry()
-    activate fm
+    RemoveCommand -> FileManager : deleteEntry()
+    activate FileManager FileManager_STYLE
     return
 
     opt CS2040CFile NOT deleted from file manager
-        <-- r
+        <-- RemoveCommand
     end
 
-    r -> b : updateBuffer()
-    activate b
+    RemoveCommand -> Buffer : updateBuffer()
+    activate Buffer Buffer_STYLE
     return
 
-    r -> ui : printRemoveSuccess()
-    activate ui
+    RemoveCommand -> Ui : printRemoveSuccess()
+    activate Ui Ui_STYLE
     return
     return
-    destroy r
+    destroy RemoveCommand
 
 @enduml
