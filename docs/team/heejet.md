@@ -60,8 +60,8 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
    - Add documentation for `list`.
    - Add documentation for `filter by topic`.
 
-
 2. Developer Guide.
+   - Add archuitecture diagrams and explanations.
    - Add design and implementation for `list` feature.
    - Add design and implementation for `filter by topic`  feature.
    - Add design and implementation for `parser`.
@@ -73,8 +73,8 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
 2. Organized weekly online meetings and discussions. 
 3. Created issues based on work assigned during team meetings. 
 4. Compiled and build final `.jar` files for releases. 
-5. Distributed workload among team members. 
-6. Set internal deadlines each iteration. 
+5. Distributed workload among team members using GitHub issue tracker. 
+6. Set internal deadlines each iteration using Milestones and GitHub Projects. 
 7. Review team members PR with non-trivial comments.
 8. Non-trivial bug fixes: [#124](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/124), 
 [#127](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/127), 
@@ -82,3 +82,4 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
 [#166](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/166),
 9. Designed the architecture of `CLIAlgo` and how `TopicManager` and `Topic` interact with each other
 to implement various features of `CLIAlgo` (`Filter`, `Add`, `Remove`, `List`, `Topo`).
+10. Participated in video demo.
