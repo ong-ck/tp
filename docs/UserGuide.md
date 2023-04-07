@@ -115,7 +115,7 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="add"></div>
 
-### Adding a CS2040CFile: `add`
+### Adding a CS2040CFile `add`
 Adds a CS2040CFile that currently already exists, into our file manager. It must **strictly** be either a `.txt` note 
 file or a `.cpp` C++ code file. Requires a topic tagged to it, and an optional importance level, a number from 1 to 10.
 
