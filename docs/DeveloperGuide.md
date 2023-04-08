@@ -92,7 +92,7 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 <div id="design-ui"></div>
 
 ### Ui
-[**API**](../src/main/java/seedu/clialgo/Ui.java) : `Ui.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Ui.java) : `Ui.java`
 
 Here is a class diagram of the `Ui` component which is responsible for handling all interaction with the User.
 
@@ -109,7 +109,7 @@ The `Ui` component:
 <div id="design-parser"></div>
 
 ### Parser
-[**API**](../src/main/java/seedu/clialgo/Parser.java) : `Parser.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Parser.java) : `Parser.java`
 Here is a class diagram of the `Parser` component which is responsible for processing commands
 and preparing the appropriate `Command` object.
 
@@ -129,7 +129,7 @@ the `StringManipulation` interface.
 <div id="design-logic"></div>
 
 ### Logic
-[**API**](../src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
 
 Here is a class diagram of the `TopicManager` component which is responsible for handling all operations involving
 `CS2040CFiles` and `Topics`.
@@ -152,7 +152,7 @@ to.
 <div id="design-storage"></div>
 
 ### Storage
-[**API**](../src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
 
 Here is a class diagram of the `FileManager` which facilitates the storage
 function of the application.
@@ -174,7 +174,7 @@ initializing the application
 <div id="design-help"></div>
 
 ### Help
-[**API**](../src/main/java/seedu/clialgo/command/HelpCommand.java) : `HelpCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/HelpCommand.java) : `HelpCommand.java`
 
 Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
 
@@ -190,7 +190,7 @@ The `HelpCommand` component
 <div id="design-add"></div>
 
 ### Add
-[**API**](../src/main/java/seedu/clialgo/command/AddCommand.java) : `AddCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/AddCommand.java) : `AddCommand.java`
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
 
@@ -208,7 +208,7 @@ The `AddCommand` component
 <div id="design-remove"></div>
 
 ### Remove
-[**API**](../src/main/java/seedu/clialgo/command/RemoveCommand.java) : `RemoveCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/RemoveCommand.java) : `RemoveCommand.java`
 
 Here is a class diagram of the `RemoveCommand` which is responsible for removing either code files or note files
 
@@ -224,7 +224,7 @@ The `RemoveCommand` component
 <div id="design-list"></div>
 
 ### List
-[**API**](../src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
 
 Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile`s in `CLIAlgo`.
 
@@ -242,7 +242,7 @@ The `ListCommand` component
 <div id="design-filter"></div>
 
 ### Filter
-[**API**](../src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
 
 Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
 the user's specified `keyWord`.
@@ -263,7 +263,7 @@ The `FilterCommand` component
 <div id="design-toposort"></div>
 
 ### TopoSort
-[**API**](../src/main/java/seedu/clialgo/command/TopoCommand.java) : `TopoCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/TopoCommand.java) : `TopoCommand.java`
 
 Here is a class diagram of the `TopoCommand` which facilitates the storage
 function of the application.
@@ -281,7 +281,7 @@ The `TopoCommand` component
 <div id="design-export"></div>
 
 ### Export
-[**API**](../src/main/java/seedu/clialgo/Buffer.java) : `Buffer.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Buffer.java) : `Buffer.java`
 
 Here is a class diagram of the `Buffer` which facilitates the storing of `CS2040CFiles`
 returned from `filter` and `topo` commands and the copying of `CS2040CFiles` stored within
