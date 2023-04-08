@@ -50,6 +50,8 @@
   - [Exporting `Files`](#instructions-export)
   - [Saving data](#instructions-save)
 
+<div style="page-break-after: always;"></div>
+
 <div id="design"></div>
 
 ## Design
@@ -91,6 +93,8 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-ui"></div>
 
+<div style="page-break-after: always;"></div>
+
 ### Ui
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Ui.java) : `Ui.java`
 
@@ -127,6 +131,8 @@ the `StringManipulation` interface.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-logic"></div>
+
+<div style="page-break-after: always;"></div>
 
 ### Logic
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
