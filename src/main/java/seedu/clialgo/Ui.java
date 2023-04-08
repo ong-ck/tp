@@ -542,4 +542,16 @@ public class Ui {
     public static void printDeleteFail() {
         System.out.println("Delete failed.");
     }
+
+    public void printSecurityDenied() {
+        printDivider();
+        System.out.println("Permissions denied by security manager!");
+        System.out.println("Check your security manager!");
+        printDivider();
+    }
+
+    public static void printStaticSecurityDenied() {
+        System.out.println("Permissions denied by security manager!");
+        System.out.println("Check your security manager!");
+    }
 }

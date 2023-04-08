@@ -5,17 +5,17 @@ hide footbox
 participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
 participant "fileManager: FileManager" as FileManager FileManager_STYLE
 participant ": SingleFile" as SingleFile SingleFile_STYLE
-participant ": File" as File
-participant ": Scanner" as Scanner
+participant ": File" as File File_STYLE
+participant ": Scanner" as Scanner Scanner_STYLE
 participant ": FileDecoder" as FileDecoder FileDecoder_STYLE
 
 -> FileManager : initialize()
-activate FileManager
+activate FileManager FileManager_STYLE
 loop topicNames
     FileManager -> SingleFile ** : createSingleFile(string : String)
-    activate SingleFile
+    activate SingleFile SingleFile_STYLE
     SingleFile -> File ** : new File()
-    activate File
+    activate File File_STYLE
     File -> File : createNewFile()
     File -> SingleFile : setFile(file : File)
     activate SingleFile
@@ -26,25 +26,25 @@ loop topicNames
     deactivate SingleFile
 end
 FileManager -> SingleFile : readFile()
-activate SingleFile
+activate SingleFile SingleFile_STYLE
 SingleFile -> Scanner ** : new Scanner(file : File)
-activate Scanner
+activate Scanner Scanner_STYLE
 deactivate FileManager
     loop hasNext()
     Scanner -> File
-    activate File
+    activate File File_STYLE
     File --> Scanner
     deactivate File
     Scanner --> SingleFile : nextLine()
     SingleFile -> FileDecoder : decodeString()
-    activate FileDecoder
+    activate FileDecoder FileDecoder_STYLE
     FileDecoder --> SingleFile : isCorrupted
         alt isCorrupted
         SingleFile --> SingleFile : isFileCorrupted
         deactivate SingleFile
         else else
         FileDecoder --> SingleFile
-        activate SingleFile
+        activate SingleFile SingleFile_STYLE
         SingleFile-->SingleFile
         deactivate SingleFile
         end
@@ -54,14 +54,14 @@ deactivate FileManager
     deactivate FileDecoder
     opt isFileCorrupted
     SingleFile -> SingleFile : overwriteFile()
-    activate SingleFile
+    activate SingleFile SingleFile_STYLE
     SingleFile --> SingleFile
     deactivate SingleFile
     end
 TopicManager -> FileManager : decodeAll()
-activate FileManager
+activate FileManager FileManager_STYLE
 FileManager -> SingleFile : convertFileToTopic()
-activate SingleFile
+activate SingleFile SingleFile_STYLE
 return
 return topics : HashMap<String, Topic>
 
