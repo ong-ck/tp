@@ -8,20 +8,20 @@ participant ": EmptyBufferCommand" as EmptyBufferCommand EmptyBufferCommand_STYL
 participant "ui: Ui" as Ui Ui_STYLE
 
 -> ExportCommand: execute()
-activate ExportCommand
+activate ExportCommand ExportCommand_STYLE
     ExportCommand -> Buffer: isEmpty()
-    activate Buffer
+    activate Buffer Buffer_STYLE
     return :boolean
 
     opt buffer is empty
         ExportCommand -> EmptyBufferCommand **
-        activate EmptyBufferCommand
+        activate EmptyBufferCommand EmptyBufferCommand_STYLE
         return
 
         ExportCommand -> EmptyBufferCommand: execute()
-        activate EmptyBufferCommand
+        activate EmptyBufferCommand EmptyBufferCommand_STYLE
             EmptyBufferCommand -> Ui: printBufferEmpty()
-            activate Ui
+            activate Ui Ui_STYLE
             return
         return
         destroy EmptyBufferCommand
@@ -29,10 +29,10 @@ activate ExportCommand
     end
 
     ExportCommand -> Ui: printExportSuccess()
-    activate Ui
+    activate Ui Ui_STYLE
     return
     ExportCommand -> Buffer: exportBuffer()
-    activate Buffer
+    activate Buffer Buffer_STYLE
     return
 return
 destroy ExportCommand

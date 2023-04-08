@@ -10,16 +10,16 @@ class Buffer Buffer_STYLE {
 +exportBuffer()
 }
 
-class File {
+class File File_STYLE {
 }
 
-class Ui Ui_STYLE{
+class Ui Ui_STYLE {
 }
 
-class CS2040CFile CS2040CFile_STYLE{
+class CS2040CFile CS2040CFile_STYLE {
 }
 
-class Desktop {
+class Desktop Desktop_STYLE {
 +getDesktop()
 +open()
 }

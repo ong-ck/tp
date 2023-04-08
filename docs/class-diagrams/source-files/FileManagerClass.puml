@@ -30,7 +30,7 @@ class FileEncoder FileEncoder_STYLE {
 +encodeCS2040CFile(name: String, cs2040cFile: CS2040CFile): String
 }
 
-class File {
+class File File_STYLE {
 +createNewFile()
 }
 
@@ -40,12 +40,16 @@ class Topic Topic_STYLE {
 class CS2040CFile CS2040CFile_STYLE {
 }
 
-class Scanner {
+class Scanner Scanner_STYLE {
 +nextLine()
 }
 
-class FileWriter {
+class FileWriter FileWriter_STYLE {
+}
+
+class BufferedWriter BufferedWriter_STYLE {
 +write()
++newLine()
 }
 
 FileManager --> "1" FileEncoder
@@ -54,7 +58,8 @@ SingleFile --> "1" FileDecoder
 SingleFile --> "1" File
 SingleFile -- Topic : creates >
 SingleFile .. FileWriter : passes string to >
-File .. FileWriter : writes to <
+FileWriter -> "1" BufferedWriter
+File .. BufferedWriter : writes to <
 SingleFile .. Scanner : updates storedRawData <
 File .. Scanner : passes string to >
 CS2040CFile .. FileManager : gets reference from <

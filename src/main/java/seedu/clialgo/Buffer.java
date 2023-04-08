@@ -48,11 +48,16 @@ public class Buffer {
         return buffer;
     }
 
+    /**
+     * Creates ./export folder.
+     */
     private void createFolder() {
         try {
             Files.createDirectories(pathToBuffer.toPath());
         } catch (IOException e) {
             ui.printFolderCreateError();
+        } catch (SecurityException e) {
+            ui.printSecurityDenied();
         }
     }
 
@@ -67,14 +72,18 @@ public class Buffer {
      * Deletes all the files in <code>.\\export</code>.
      */
     public void deleteFiles() {
-        File[] files = pathToBuffer.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                assert file.exists() : "This should be non-null";
-                if (!file.delete()) {
-                    ui.printFileDeleteFail();
+        try {
+            File[] files = pathToBuffer.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    assert file.exists() : "This should be non-null";
+                    if (!file.delete()) {
+                        ui.printFileDeleteFail();
+                    }
                 }
             }
+        } catch (SecurityException e) {
+            ui.printSecurityDenied();
         }
     }
 
@@ -104,6 +113,8 @@ public class Buffer {
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
                 ui.printFileMissing();
+            } catch (SecurityException e) {
+                ui.printSecurityDenied();
             }
         }
     }
@@ -124,6 +135,8 @@ public class Buffer {
             ui.printFolderMissing();
         } catch (UnsupportedOperationException e) {
             ui.printOpenFolderNotSupported();
+        } catch (SecurityException e) {
+            ui.printSecurityDenied();
         }
     }
 }

@@ -5,16 +5,16 @@ hide footbox
 participant ":FileManager" as FileManager FileManager_STYLE
 participant ":FileEncoder" as FileEncoder FileEncoder_STYLE
 participant ":SingleFile" as SingleFile SingleFile_STYLE
-participant ":FileWriter" as FileWriter
-participant ":BufferedWriter" as BufferedWriter
-participant ":File" as File
+participant ":FileWriter" as FileWriter FileWriter_STYLE
+participant ":BufferedWriter" as BufferedWriter BufferedWriter_STYLE
+participant ":File" as File File_STYLE
 
-activate FileManager
+activate FileManager FileManager_STYLE
 -> FileManager : addEntry
 FileManager -> FileEncoder : encodeCS2040CFile
 FileEncoder --> FileManager : encodedCS2040CFile: String
 FileManager -> SingleFile : writeCS2040CFileToFile
-activate SingleFile
+activate SingleFile SingleFile_STYLE
     opt file does not exist
         FileManager -> SingleFile : recreateFile()
         SingleFile --> FileManager
@@ -22,9 +22,9 @@ activate SingleFile
             SingleFile -> SingleFile : overwriteFile()
             activate SingleFile
             SingleFile -> FileWriter **
-            activate FileWriter
+            activate FileWriter FileWriter_STYLE
             FileWriter -> BufferedWriter **
-            activate BufferedWriter
+            activate BufferedWriter BufferedWriter_STYLE
             loop for each String in storedRawData.values()
                 BufferedWriter -> File : write(string: String)
                 activate File
@@ -38,11 +38,11 @@ activate SingleFile
         end
 
 SingleFile -> FileWriter **
-activate FileWriter
+activate FileWriter FileWriter_STYLE
 FileWriter -> BufferedWriter **
-activate BufferedWriter
+activate BufferedWriter BufferedWriter_STYLE
 BufferedWriter -> File : write(encodedCS2040CFile: String)
-activate File
+activate File File_STYLE
 BufferedWriter -> File : newLine()
 BufferedWriter -> BufferedWriter : close()
 activate BufferedWriter
