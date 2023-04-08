@@ -47,6 +47,8 @@
 
 'Java Library Classes
 !define FileWriter_STYLE #FF4BFF
-!define BufferedWrite_STYLE #FF61FF
+!define BufferedWriter_STYLE #FF61FF
 !define Scanner_STYLE #FF71FF
 !define System_STYLE #FF97FF
+!define File_STYLE #00D4FF
+!define Desktop_STYLE #BBFF00
