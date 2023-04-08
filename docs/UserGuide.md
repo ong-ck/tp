@@ -80,6 +80,8 @@ The available COMMAND_TYPE(s) are:
 [remove]: remove CS2040CFile
 [list]: displays all CS2040CFiles
 [filter]: filters CS2040CFiles by topic
+[topo]: displays all CS2040CFiles before the selected topic
+[export]: places CS2040CFiles sorted by filter/topo in a file
 [exit]: close the application
 
 For more help on a specific command, type `help c/COMMAND_TYPE`.
