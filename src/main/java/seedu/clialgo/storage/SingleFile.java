@@ -59,6 +59,8 @@ public class SingleFile {
                 ui.printCorruptedFileDiscarded(corruptCount, name);
             } catch (IOException e) {
                 ui.printFileWriteError();
+            } catch (SecurityException e) {
+                ui.printSecurityDenied();
             }
         }
     }
@@ -70,9 +72,10 @@ public class SingleFile {
      *
      * @param encodedCS2040CFile The <code>CS2040CFile</code> encoded as a <code>String</code>.
      * @throws IOException Throws an exception if the file write fails.
+     * @throws SecurityException Throws an exception if the security manager denies permission.
      */
     public void writeCS2040CFileToFile(String fileName, String encodedCS2040CFile, CS2040CFile cs2040cFile)
-            throws IOException {
+            throws IOException, SecurityException {
         assert encodedCS2040CFile != null : "Empty string";
         try {
             if (!file.exists()) {
@@ -88,6 +91,8 @@ public class SingleFile {
             this.cs2040cFiles.put(fileName, cs2040cFile);
         } catch (IOException e) {
             throw new IOException();
+        } catch (SecurityException e) {
+            throw new SecurityException();
         }
     }
 
@@ -95,8 +100,9 @@ public class SingleFile {
      * Writes all the stored raw data into the .txt file, overwriting all the existing data stored in the .txt file.
      *
      * @throws IOException Throws an exception if the file write fails.
+     * @throws SecurityException Throws an exception if the security manager denies permission.
      */
-    public void overwriteFile() throws IOException {
+    public void overwriteFile() throws IOException, SecurityException {
         try {
             FileWriter fileWriter = new FileWriter(file, false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -108,6 +114,8 @@ public class SingleFile {
             fileWriter.close();
         } catch (IOException e) {
             throw new IOException();
+        } catch (SecurityException e) {
+            throw new SecurityException();
         }
     }
 
@@ -117,8 +125,9 @@ public class SingleFile {
      *
      * @param name The name of the <code>CS2040CFile</code> being deleted.
      * @throws IOException Throws an exception if the file write fails.
+     * @throws SecurityException Throws an exception if the security manager denies permission.
      */
-    public void deleteEntry(String name) throws IOException{
+    public void deleteEntry(String name) throws IOException,SecurityException {
         if (!this.storedRawData.containsKey(name)) {
             return;
         }
@@ -130,6 +139,8 @@ public class SingleFile {
             overwriteFile();
         } catch (IOException e) {
             throw new IOException();
+        } catch (SecurityException e) {
+            throw new SecurityException();
         }
         cs2040cFiles.remove(name);
     }
@@ -144,6 +155,8 @@ public class SingleFile {
             }
         } catch (IOException e) {
             ui.printFileWriteError();
+        } catch (SecurityException e) {
+            ui.printSecurityDenied();
         }
     }
 

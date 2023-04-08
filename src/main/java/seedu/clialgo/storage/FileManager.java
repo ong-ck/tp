@@ -63,6 +63,8 @@ public class FileManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (SecurityException e) {
+            ui.printSecurityDenied();
         }
         return newFile;
     }
@@ -91,18 +93,22 @@ public class FileManager {
      * @param pathToFolder The <code>File</code> representing the folder to delete.
      */
     public static void deleteAll(File pathToFolder) {
-        File[] files = pathToFolder.listFiles();
-        if (files != null) {
-            for (File f : files) {
-                if (!f.delete()) {
-                    Ui.printDeleteFail();
+        try {
+            File[] files = pathToFolder.listFiles();
+            if (files != null) {
+                for (File f : files) {
+                    if (!f.delete()) {
+                        Ui.printDeleteFail();
+                    }
                 }
             }
-        }
-        if (!pathToFolder.delete()) {
-            Ui.printDeleteFail();
-        } else {
-            Ui.printDeleteSuccess();
+            if (!pathToFolder.delete()) {
+                Ui.printDeleteFail();
+            } else {
+                Ui.printDeleteSuccess();
+            }
+        } catch (SecurityException e) {
+            Ui.printStaticSecurityDenied();
         }
     }
 
@@ -115,6 +121,8 @@ public class FileManager {
             Files.createDirectories(directory);
         } catch (IOException e) {
             ui.printFolderCreateError();
+        } catch (SecurityException e) {
+            ui.printSecurityDenied();
         }
     }
 
@@ -136,6 +144,8 @@ public class FileManager {
             ui.printFileWriteError();
             singleFile.recreateFile();
             return false;
+        } catch (SecurityException e) {
+            ui.printSecurityDenied();
         }
         return true;
     }
@@ -155,6 +165,8 @@ public class FileManager {
             ui.printFileWriteError();
             singleFile.recreateFile();
             return false;
+        } catch (SecurityException e) {
+            ui.printSecurityDenied();
         }
         return true;
     }
@@ -208,21 +220,28 @@ public class FileManager {
      */
     public void deleteTestData() {
         File pathToFolder = new File(testModePath);
-        File[] files = pathToFolder.listFiles();
-        if (files != null) {
-            for (File f : files) {
-                if (!f.delete()) {
-                    ui.printFileDeleteFail();
+        try {
+            File[] files = pathToFolder.listFiles();
+            if (files != null) {
+                for (File f : files) {
+                    if (!f.delete()) {
+                        ui.printFileDeleteFail();
+                    }
                 }
             }
-        }
-        if (!pathToFolder.delete()) {
-            ui.printFileDeleteFail();
-        } else {
-            ui.printFileDeleteSuccess();
+            if (!pathToFolder.delete()) {
+                ui.printFileDeleteFail();
+            } else {
+                ui.printFileDeleteSuccess();
+            }
+        } catch (SecurityException e) {
+            ui.printSecurityDenied();
         }
     }
 
+    /**
+     * Recreates the data folder and all the files within for those which are missing.
+     */
     public void recreateAll() {
         if (!new File(path).exists()) {
             createFolder();
