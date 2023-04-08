@@ -82,7 +82,7 @@ in the correct sequence and connects them with each other during runtime.
 The **_Sequence Diagram_** below shows a high level overview of how the components interact with each other
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/Architecture.png" alt="Architecture Diagram" width="80%"/>
+    <img src="sequence-diagrams/diagrams/Architecture.png" alt="Architecture Diagram" width="100%"/>
 </p>
 
 > **Note**: The lifeline for `Command` should end at the destroy marker (X) but due to 
@@ -92,7 +92,7 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 <div id="design-ui"></div>
 
 ### Ui
-[**API**](../src/main/java/seedu/clialgo/Ui.java) : `Ui.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Ui.java) : `Ui.java`
 
 Here is a class diagram of the `Ui` component which is responsible for handling all interaction with the User.
 
@@ -109,12 +109,12 @@ The `Ui` component:
 <div id="design-parser"></div>
 
 ### Parser
-[**API**](../src/main/java/seedu/clialgo/Parser.java) : `Parser.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Parser.java) : `Parser.java`
 Here is a class diagram of the `Parser` component which is responsible for processing commands
 and preparing the appropriate `Command` object.
 
 <p align="center">
-    <img src="class-diagrams/diagrams/ParserClass.png" alt="Parser Class Diagram" width="75%"/>
+    <img src="class-diagrams/diagrams/ParserClass.png" alt="Parser Class Diagram" width="80%"/>
 </p>
 
 The `Parser` component:
@@ -129,13 +129,13 @@ the `StringManipulation` interface.
 <div id="design-logic"></div>
 
 ### Logic
-[**API**](../src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
 
 Here is a class diagram of the `TopicManager` component which is responsible for handling all operations involving
 `CS2040CFiles` and `Topics`.
 
 <p align="center">
-    <img src="class-diagrams/diagrams/TopicManagerClass.png" alt="TopicManager Class Diagram" width="75%"/>
+    <img src="class-diagrams/diagrams/TopicManagerClass.png" alt="TopicManager Class Diagram" width="80%"/>
 </p>
 
 The `TopicManager` component:
@@ -152,13 +152,13 @@ to.
 <div id="design-storage"></div>
 
 ### Storage
-[**API**](../src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
 
 Here is a class diagram of the `FileManager` which facilitates the storage
 function of the application.
 
 <p align="center">
-    <img src="class-diagrams/diagrams/FileManagerClass.png" alt="FileManager Class Diagram" width="75%"/>
+    <img src="class-diagrams/diagrams/FileManagerClass.png" alt="FileManager Class Diagram" width="100%"/>
 </p>
 
 The `FileManager` component
@@ -174,12 +174,12 @@ initializing the application
 <div id="design-help"></div>
 
 ### Help
-[**API**](../src/main/java/seedu/clialgo/command/HelpCommand.java) : `HelpCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/HelpCommand.java) : `HelpCommand.java`
 
 Here is a class diagram of the `HelpCommand` which is responsible for teaching the user how to use the commands.
 
 <p align="center">
-    <img src="class-diagrams/diagrams/HelpCommand.png" alt="HelpCommand Class Diagram" width="75%"/>
+    <img src="class-diagrams/diagrams/HelpCommand.png" alt="HelpCommand Class Diagram" width="90%"/>
 </p>
 
 The `HelpCommand` component
@@ -190,12 +190,12 @@ The `HelpCommand` component
 <div id="design-add"></div>
 
 ### Add
-[**API**](../src/main/java/seedu/clialgo/command/AddCommand.java) : `AddCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/AddCommand.java) : `AddCommand.java`
 
 Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
 
 <p align="center">
-    <img src="class-diagrams/diagrams/AddClass.png" alt="AddCommand Class Diagram" width="75%"/>
+    <img src="class-diagrams/diagrams/AddClass.png" alt="AddCommand Class Diagram" width="100%"/>
 </p>
 
 The `AddCommand` component
@@ -208,12 +208,12 @@ The `AddCommand` component
 <div id="design-remove"></div>
 
 ### Remove
-[**API**](../src/main/java/seedu/clialgo/command/RemoveCommand.java) : `RemoveCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/RemoveCommand.java) : `RemoveCommand.java`
 
 Here is a class diagram of the `RemoveCommand` which is responsible for removing either code files or note files
 
 <p align="center">
-    <img src="class-diagrams/diagrams/RemoveClass.png" alt="RemoveCommand Class Diagram" width="75%"/>
+    <img src="class-diagrams/diagrams/RemoveClass.png" alt="RemoveCommand Class Diagram" width="90%"/>
 </p>
 
 The `RemoveCommand` component
@@ -224,12 +224,12 @@ The `RemoveCommand` component
 <div id="design-list"></div>
 
 ### List
-[**API**](../src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
 
 Here is the class diagram of the `ListCommand` which is responsible for listing all `CS2040CFile`s in `CLIAlgo`.
 
 <p align="center">
-    <img src="class-diagrams/diagrams/ListClass.png" alt="ListCommand Class Diagram" width="75%"/>
+    <img src="class-diagrams/diagrams/ListClass.png" alt="ListCommand Class Diagram" width="90%"/>
 </p>
 
 The `ListCommand` component
@@ -242,13 +242,13 @@ The `ListCommand` component
 <div id="design-filter"></div>
 
 ### Filter
-[**API**](../src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
 
 Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
 the user's specified `keyWord`.
 
 <p align="center">
-    <img src="class-diagrams/diagrams/FilterClass.png" alt="FilterCommand Class Diagram" width="75%"/>
+    <img src="class-diagrams/diagrams/FilterClass.png" alt="FilterCommand Class Diagram" width="100%"/>
 </p>
 
 The `FilterCommand` component
@@ -263,7 +263,7 @@ The `FilterCommand` component
 <div id="design-toposort"></div>
 
 ### TopoSort
-[**API**](../src/main/java/seedu/clialgo/command/TopoCommand.java) : `TopoCommand.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/TopoCommand.java) : `TopoCommand.java`
 
 Here is a class diagram of the `TopoCommand` which facilitates the storage
 function of the application.
@@ -281,7 +281,7 @@ The `TopoCommand` component
 <div id="design-export"></div>
 
 ### Export
-[**API**](../src/main/java/seedu/clialgo/Buffer.java) : `Buffer.java`
+[**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Buffer.java) : `Buffer.java`
 
 Here is a class diagram of the `Buffer` which facilitates the storing of `CS2040CFiles`
 returned from `filter` and `topo` commands and the copying of `CS2040CFiles` stored within
@@ -370,7 +370,7 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 The following **_Sequence Diagram_** shows how the Parser work.
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/Parser.png" alt="Parser Sequence Diagram" width="75%"/>
+    <img src="sequence-diagrams/diagrams/Parser.png" alt="Parser Sequence Diagram" width="100%"/>
 </p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -413,7 +413,7 @@ Given below is an example of how the `Logic` component works when a `TopoCommand
 The following **_Sequence Diagram_** shows how the Logic component work.
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/TopicManager.png" alt="Logic Sequence Diagram" width="75%"/>
+    <img src="sequence-diagrams/diagrams/TopicManager.png" alt="Logic Sequence Diagram" width="100%"/>
 </p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -454,7 +454,7 @@ The following **_Sequence Diagram_** shows how previously saved files are loaded
 
 <p align="center">
     <img src="sequence-diagrams/diagrams/InitializationFileManager.png" 
-        alt="FileManager Initialization Sequence Diagram" width="75%"/>
+        alt="FileManager Initialization Sequence Diagram" width="90%"/>
 </p>
 
 > **Note**: The lifeline for `Scanner` should end at the destroy marker (X) but due to limitation of PlantUML,
@@ -492,7 +492,7 @@ The following **_Sequence Diagram_** shows how a `CS2040CFile` is encoded before
 the relevant data file.
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/AddEntry.png" alt="Add Entry Sequence Diagram" width="75%"/>
+    <img src="sequence-diagrams/diagrams/AddEntry.png" alt="Add Entry Sequence Diagram" width="90%"/>
 </p>
 
 > **Note**: The lifeline for `FileWriter` and `BufferedWriter` should end at the destroy marker (X) but due to 
@@ -571,7 +571,7 @@ Given below is an example usage of how the add feature behaves at each step.
 The **_Sequence Diagram_** below shows how the `AddCommand` works.
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/AddFeature.png" alt="Add Feature Sequence Diagram" width="75%"/>
+    <img src="sequence-diagrams/diagrams/AddFeature.png" alt="Add Feature Sequence Diagram" width="90%"/>
 </p>
 
 > **Note**: The lifeline for `AddCommand`, `InvalidTopicCommand`, `AddNoteCommand` and `InvalidCommand` should end 
@@ -617,7 +617,7 @@ Given below is an example usage of how the remove feature behaves at each step.
 The **_Sequence Diagram_** below shows how the `RemoveCommand` works.
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/RemoveFeature.png" alt="Remove Feature Sequence Diagram" width="75%"/>
+    <img src="sequence-diagrams/diagrams/RemoveFeature.png" alt="Remove Feature Sequence Diagram" width="90%"/>
 </p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -649,7 +649,7 @@ Given below is an example usage scenario and how the list feature behaves at eac
 The following **_Sequence Diagram_** shows how the list operation work.
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/ListFeature.png" alt="List Feature Sequence Diagram" width="50%"/>
+    <img src="sequence-diagrams/diagrams/ListFeature.png" alt="List Feature Sequence Diagram" width="60%"/>
 </p>
 
 > **Note**: The lifeline for `ListCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
@@ -702,7 +702,7 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
 The following **_Sequence Diagram_** shows how the filter by topic operation work.
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/FilterByTopic.png" alt="Filter Feature Sequence Diagram" width="75%"/>
+    <img src="sequence-diagrams/diagrams/FilterByTopic.png" alt="Filter Feature Sequence Diagram" width="90%"/>
 </p>
 
 > **Note**: The lifeline for `FilterCommand` and `FilterByTopicCommand` should end at the destroy marker (X) but due 
@@ -747,7 +747,7 @@ Given below is an example usage scenario and how the TopoSort mechanism behaves 
 The following sequence diagram shows how the `TopoCommand` works.
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/TopoSort.png" alt="TopoSort Feature Sequence Diagram" width="75%"/>
+    <img src="sequence-diagrams/diagrams/TopoSort.png" alt="TopoSort Feature Sequence Diagram" width="80%"/>
 </p>
 
 > **Note**: The lifeline for `TopoCommand` should end at the destroy marker (X) but due to limitation of PlantUML,
@@ -779,7 +779,7 @@ the folder by using the default file explorer of the system.
 The following sequence diagram shows how the export feature works.
 
 <p align="center">
-    <img src="sequence-diagrams/diagrams/Export.png" alt="Export Feature Sequence Diagram" width="50%"/>
+    <img src="sequence-diagrams/diagrams/Export.png" alt="Export Feature Sequence Diagram" width="60%"/>
 </p>
 
 > **Note**: The lifeline for `ExportCommand` and `EmptyBufferCommand` should end at the destroy marker (X) but due to 
