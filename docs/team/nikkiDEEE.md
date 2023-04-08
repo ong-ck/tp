@@ -48,10 +48,12 @@ The code contributed can be found on [RepoSense](https://nus-cs2113-ay2223s2.git
 2. Developer Guide
    - Add documentation for "Product Scope"
    - Add design and implementation for `Ui`
-   - Add implementation for `help`
+   - Add design and implementation for `help`
 
 #### Team-based tasks
 1. Attended and contributed to weekly discussions.
 2. Accommodated and accounted for team opinions in implementation.
 3. Review team members PR with non-trivial comments.
+4. Helped to test, report and debug the application.
+5. Styled the UG (Jekyll).
 

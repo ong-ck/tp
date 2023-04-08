@@ -1,8 +1,9 @@
 @startuml
+!include ../../style.iuml
 skinparam classAttributeIconSize 0
 hide circle
 
-class Ui {
+class Ui Ui_STYLE {
     -Divider: String
     +getUserInput(): void
     +printWelcomeMessage(): void
@@ -19,7 +20,19 @@ class Ui {
     +printTopoSortSuccess(): void
 }
 
-package Command <<Rectangle>> {
+class CLIAlgo CLIAlgo_STYLE {
+}
+
+class SingleFile SingleFile_STYLE {
+}
+
+class FileManager FileManager_STYLE {
+}
+
+package Command <<Rectangle>> Command_STYLE {
+}
+
+package Buffer <<Rectangle>> Buffer_STYLE {
 }
 
 CLIAlgo--> "1" Ui
@@ -29,5 +42,6 @@ FileManager *- "*" SingleFile
 SingleFile --> "1  " Ui
 
 Command ..> Ui
+Buffer ..> Ui
 
 @enduml
