@@ -14,6 +14,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilterCommandTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -209,5 +211,38 @@ public class FilterCommandTest {
 
         assertEquals(expectedOutput, actualOutput.toString());
         FileManager.deleteAll(new File(testDataPath));
+    }
+
+    @Test
+    void equals_checkEqualFilterCommand_expectTrue() {
+        String actualKeyword = "dummyKeyword";
+        String expectedKeyword = "dummyKeyword";
+        String actualTopic = "dummyTopic";
+        String expectedTopic = "dummyTopic";
+        FilterCommand actualFilterCommand = new FilterCommand(actualKeyword, actualTopic);
+        FilterCommand expectedFilterCommand = new FilterCommand(expectedKeyword, expectedTopic);
+        assertTrue(actualFilterCommand.equals(expectedFilterCommand));
+    }
+
+    @Test
+    void equals_checkUnequalKeywordInFilterCommand_expectFalse() {
+        String actualKeyword = "actualKeyword";
+        String expectedKeyword = "expectedKeyword";
+        String actualTopic = "dummyTopic";
+        String expectedTopic = "dummyTopic";
+        FilterCommand actualFilterCommand = new FilterCommand(actualKeyword, actualTopic);
+        FilterCommand expectedFilterCommand = new FilterCommand(expectedKeyword, expectedTopic);
+        assertFalse(actualFilterCommand.equals(expectedFilterCommand));
+    }
+
+    @Test
+    void equals_checkUnequalTopicInFilterCommand_expectFalse() {
+        String actualKeyword = "dummyKeyword";
+        String expectedKeyword = "dummyKeyword";
+        String actualTopic = "actualTopic";
+        String expectedTopic = "expectedTopic";
+        FilterCommand actualFilterCommand = new FilterCommand(actualKeyword, actualTopic);
+        FilterCommand expectedFilterCommand = new FilterCommand(expectedKeyword, expectedTopic);
+        assertFalse(actualFilterCommand.equals(expectedFilterCommand));
     }
 }
