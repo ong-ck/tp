@@ -64,7 +64,7 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
    - Add documentation for `filter by topic`.
 
 2. Developer Guide.
-   - Add archuitecture diagrams and explanations.
+   - Add architecture diagrams and explanations.
    - Add design and implementation for `list` feature.
    - Add design and implementation for `filter by topic`  feature.
    - Add design and implementation for `parser`.
