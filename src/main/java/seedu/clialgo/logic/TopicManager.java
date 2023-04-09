@@ -20,7 +20,7 @@ public class TopicManager {
     );
 
     /** List of topics in topological order */
-    private static final ArrayList<String> TOPIC_ORDER = new ArrayList<>(
+    private static final ArrayList<String> TOPO_ORDER = new ArrayList<>(
             Arrays.asList("MINIMUM_SPANNING_TREE", "SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES",
                     "BINARY_SEARCH_TREE", "UNION_FIND_DS", "HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING")
     );
@@ -159,7 +159,7 @@ public class TopicManager {
         LinkedHashMap<String, ArrayList<String>> toPrintCS2040CFiles = new LinkedHashMap<>();
         boolean isPartOfTopoOrder = false;
 
-        for (String topicName : TOPIC_ORDER) {
+        for (String topicName : TOPO_ORDER) {
             // Check which topic contains that particular CS2040CFile
             if ((topics.get(topicName).isInsideTopic(cs2040cFileName))) {
                 isPartOfTopoOrder = true;
