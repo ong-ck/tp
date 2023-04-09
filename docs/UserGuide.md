@@ -29,6 +29,8 @@ note creation and editing are beyond the scope of this application.
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
+<div style="page-break-after: always;"></div>
+
 <div id="quick-start"></div>
 
 ## Quick Start
@@ -47,8 +49,7 @@ the help window. Some example commands you can try are:
    - `remove n/toposort`: remove the 'toposort.txt' note from the list
 
 > **WARNING**
-> 
-> If any of the files stored in the data files are corrupted, i.e. any of the fields within the data files are invalid
+> If any of the files stored in the data files are corrupted, i.e. any of the fields within the data files are invalid 
 > the application discards that file stored within the data file.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -59,8 +60,7 @@ the help window. Some example commands you can try are:
 <div id="help"></div>
 
 ### Viewing help `help`
-Shows a message explaining the format of supported commands in the application and their functions. If a valid command
-is entered after ‘help’ using the `c/` delimiter, it shows the format and function of that specific command instead.
+Shows a message explaining the format of supported commands in the application and their functions. If a valid command is entered after ‘help’ using the `c/` delimiter, it shows the format and function of that specific command instead.
 
 #### Format:
 `help [c/COMMAND_TYPE]`
@@ -111,6 +111,8 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="add"></div>
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a CS2040CFile `add`
 Adds a CS2040CFile that currently already exists, into our file manager. It must **strictly** be either a `.txt` note 
 file or a `.cpp` C++ code file. Requires a topic tagged to it, and an optional importance level, a number from 1 to 10.
@@ -140,6 +142,9 @@ or
 ```
 add n/queue t/LINKED_LIST i/5
 ```
+
+<div style="page-break-after: always;"></div>
+
 Output:
 ```
 ======================================================
@@ -176,6 +181,8 @@ Successfully removed queue.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="list"></div>
 
+<div style="page-break-after: always;"></div>
+
 ### Listing CS2040CFiles `list`
 List all CS2040CFiles (in any order) present in `CLIAlgo`.
 
@@ -206,6 +213,8 @@ Here are all your CS2040CFiles:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="filter"></div>
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering CS2040CFiles `filter`
 Filters the CS2040CFiles by a user-specified keyword and prints a list of CS2040CFiles filtered based
@@ -294,6 +303,8 @@ Here are the filtered CS2040CFiles:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="topo"></div>
+
+<div style="page-break-after: always;"></div>
 
 ### Topologically Sort CS2040CFiles `topo`
 Prints a topologically sorted list of CS2040CFiles that comes before and within the topic of a user-specified note.
@@ -390,6 +401,8 @@ Here is `./export` opened after `export` is input.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="exit"></div>
+
+<div style="page-break-after: always;"></div>
 
 ### Exiting the program `exit`
 Exits `CLIAlgo`.

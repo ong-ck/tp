@@ -112,6 +112,8 @@ The `Ui` component:
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-parser"></div>
 
+<div style="page-break-after: always;"></div>
+
 ### Parser
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Parser.java) : `Parser.java`
 Here is a class diagram of the `Parser` component which is responsible for processing commands
