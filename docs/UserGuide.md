@@ -440,6 +440,9 @@ Input:
 ```
 exit
 ```
+
+<div style="page-break-after: always;"></div>
+
 Output:
 ```
 ======================================================
@@ -466,6 +469,8 @@ Thank you for using CLIAlgo! Study hard!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="command-summary"></div>
+
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
