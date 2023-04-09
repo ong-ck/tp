@@ -71,7 +71,7 @@ Shows a message explaining the format of supported commands in the application a
 
 #### Format:
 ```
-help [c/COMMAND_TYPE]`
+help [c/COMMAND_TYPE]
 ```
 - `COMMAND_TYPE` is **case-sensitive** and is an optional input
 
@@ -133,17 +133,19 @@ file or a `.cpp` C++ code file. Requires a topic tagged to it, and an optional i
 ```
 add n/NAME t/TOPIC [i/IMPORTANCE_LEVEL]
 ```
-- **The corresponding file must already be present in the same folder as `clialgo.jar` in order for the `CS2040CFile` to be
+- **The corresponding file must already be present in the same folder as the `.jar` in order for the `CS2040CFile` to be
 added successfully.**
   - For example, if you want to add `queue.txt` into `CLIAlgo`, `queue.txt` must be present in the same folder as the
 `.jar` file.
 - Not following the syntax strictly would result in an invalid command message.
-- `n/` and `t/` fields must be non-empty.
-- Only full words will be matched. 
-  - For example, `LINKED_LIST` will not match `Link List`.
-- `/t` Topic field is **case-sensitive**. Enter `help c/add` to view list of valid topics and their case-sensitivities.
+- `NAME` represents the name of the `CS2040CFile` to be added **without the file extension**.
+- `TOPIC` represents the topic which will be tagged to the `CS2040CFile` added.
+  - Only full words will be matched. 
+  - E.g `LINKED_LIST` will not match `Link List`.
+  - Topic field is **case-sensitive**. Enter `help c/add` to view list of valid topics and their case-sensitivities.
   - For example, keying in `add n/queue t/sorting` is **not** valid. It should be `add n/queue t/SORTING` instead.
-- `i/` field is optional. **If this field is left empty, the note or code files' importance is set to 5 by default**.
+- `IMPORTANCE_LEVEL` represents the importance level you want to asssign to the `CS2040CFile` added.
+  - This field is optional. **If this field is left empty, the note or code files' importance is set to 5 by default**.
 
 #### Example of usage:
 Input:
@@ -174,7 +176,7 @@ Removes a CS2040CFile that exists from our file manager.
 ```
 remove n/NAME
 ```
-
+- `NAME` represents the name of the `CS2040CFile` to be removed **without the file extension**.
 - Not following the syntax strictly would result in an invalid command message.
 
 #### Example of usage:
@@ -229,18 +231,19 @@ Here are all your CS2040CFiles:
 <div style="page-break-after: always;"></div>
 
 ### Filtering CS2040CFiles `filter`
-Filters the CS2040CFiles by a user-specified keyword and prints a list of CS2040CFiles filtered based
-on the keyword.
+Filters the CS2040CFiles by a user-specified `KEYWORD` and prints a list of `CS2040CFile`s filtered based
+on the `KEYWORD`.
 
 #### Format:
 ```
 filter k/KEYWORD [t/TOPIC_NAME]
 ```
-- Only specific `KEYWORD` can be used to filter.
+- `KEYWORD` represents the criteria to filter the `CS2040CFiles`.
     - Valid `KEYWORD` includes: `topic`, `importance`.
+- `TOPIC_NAME` represents the scope where the filter operation will be applied.
+  -   It is an optional input and leaving it blank would result set the scope to include all `CS2040CFile`
+  in `CLIAlgo`.
 - `KEYWORD` and `TOPIC_NAME` are **case-sensitive**.
-- `TOPIC_NAME` is an optional input and leaving it blank would result in `CLIAlgo` printing all
-  CS2040CFiles.
 - Not following the syntax strictly would result in an invalid command message.
 
 #### Example of usage:
@@ -321,20 +324,21 @@ Here are the filtered CS2040CFiles:
 <div id="topo"></div>
 
 ### Topologically Sort CS2040CFiles `topo`
-Prints a topologically sorted list of CS2040CFiles that comes before and within the topic of a user-specified note.
+Prints a topologically sorted list of `CS2040CFile`s that comes before and within the topic of a user-specified note.
 This will allow the user to be able to revise all pre-requisite topics before revising the topic of the specified note.
 
 #### Format:
 ```
-topo n/NOTE_NAME
+topo n/NAME
 ```
 
 - The topological sort follows the following order (latest to earliest): "MINIMUM_SPANNING_TREE",
 "SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES", "BINARY_SEARCH_TREE", "UNION_FIND_DS",
 "HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING".
-- Only `NOTE_NAME` of notes that are **saved locally and added to CLIAlgo** can be used.
-    - If no notes are saved locally and added to CLIAlgo, a feedback message will be printed instead.
-- Command and `NOTE_NAME` are **case-sensitive**.
+- `NAME` represents the name of the `CS2040CFile` where the user wants the topological sort to start from
+  - Only notes that are **saved locally and added to CLIAlgo** can be used.
+  - If no notes are saved locally and added to CLIAlgo, a feedback message will be printed instead.
+- Command and `NAME` are **case-sensitive**.
 - Not following the syntax strictly would result in an invalid command message.
 
 > **Note:** Among all the notes added to CLIAlgo, **only** notes that come before and within the topic of the specified note will
@@ -476,7 +480,7 @@ Thank you for using CLIAlgo! Study hard!
 
 **Q**: What if I am unable to add because the program tells me that my CS2040CFile does not exist?
 
-**A**: Ensure that all your CS2040CFiles are in the same directory as this `jar` file.
+**A**: Ensure that all your CS2040CFiles are in the same directory as the `.jar` file.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="command-summary"></div>
