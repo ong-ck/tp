@@ -54,6 +54,8 @@ The code contributed can be found on [RepoSense](https://nus-cs2113-ay2223s2.git
 1. Attended and contributed to weekly discussions.
 2. Accommodated and accounted for team opinions in implementation.
 3. Review team members PR with non-trivial comments.
-4. Helped to test, report and debug the application.
-5. Styled the UG (Jekyll).
-
+4. Fixed the following non-trivial bugs:
+   [#169](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/169)
+5. Helped to test, report and debug the application.
+6. Participated and edited the video demo.
+7. Styled the UG (Jekyll).
