@@ -31,8 +31,6 @@ note creation and editing are beyond the scope of this application.
 
 <div id="quick-start"></div>
 
-<div style="page-break-after: always;"></div>
-
 ## Quick Start
 
 1. Ensure that you have Java <code>11</code> or above installed.
