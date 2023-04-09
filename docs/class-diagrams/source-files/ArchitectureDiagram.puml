@@ -32,7 +32,7 @@ package clialgo <<rectangle>> {
     class CS2040CFile CS2040CFile_STYLE {
     }
 }
-package harddisk {
+package "hard disk" {
 }
 user --> Ui
 CLIAlgo --> Ui
@@ -42,7 +42,7 @@ CLIAlgo ..> storage
 Parser ..> Ui
 Parser ..> logic
 Parser ..> command
-storage ..> harddisk
+storage ..> "hard disk"
 storage --> CS2040CFile
 command ..> Ui
 command ..> logic
