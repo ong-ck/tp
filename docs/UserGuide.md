@@ -55,13 +55,21 @@ the help window. Some example commands you can try are:
 
 ## Features
 
+> **Notes about the command format:**
+> - Words in `UPPER_CASE` are parameters to be supplied by the user. 
+> E.g `remove n/NAME` where `NAME` is the parameter to be used as `remove n/bubble sort`.
+> - Items in square brackets are optional.
+> E.g `help [c/COMMAND_TYPE]` can be used as `help` or `help c/add`.
+
 <div id="help"></div>
 
 ### Viewing help `help`
 Shows a message explaining the format of supported commands in the application and their functions. If a valid command is entered after ‘help’ using the `c/` delimiter, it shows the format and function of that specific command instead.
 
 #### Format:
-`help [c/COMMAND_TYPE]`
+```
+help [c/COMMAND_TYPE]`
+```
 - `COMMAND_TYPE` is **case-sensitive** and is an optional input
 
 #### Example of usage:
@@ -340,6 +348,7 @@ Input:
 ```
 topo n/bst
 ```
+
 Output:
 ```
 ======================================================
@@ -406,6 +415,7 @@ Here are the filtered CS2040CFiles:
 ======================================================
 export
 ```
+
 Output
 ```
 ======================================================
