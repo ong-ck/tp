@@ -82,11 +82,13 @@ public class Topic {
         for (Map.Entry<String, CS2040CFile> entry : cs2040cFiles.entrySet()) {
             String cs2040cFileName = entry.getValue().getName();
             String cs2040cFileNameWithLabel;
+
             if (cs2040cFiles.get(cs2040cFileName) instanceof Code) {
                 cs2040cFileNameWithLabel = String.format("[CODE] " + cs2040cFileName);
             } else {
                 cs2040cFileNameWithLabel = String.format("[NOTE] " + cs2040cFileName);
             }
+
             topicCS2040CFiles.add(cs2040cFileNameWithLabel);
         }
         return topicCS2040CFiles;
@@ -124,7 +126,8 @@ public class Topic {
      * @return A boolean value to determine whether the <code>Topic</code> objects are equal.
      */
     public boolean equals(Topic otherTopic) {
-        return Objects.equals(this.topicName, otherTopic.topicName) &&
-                Objects.equals(this.cs2040cFiles, otherTopic.cs2040cFiles);
+        boolean isSameTopicName = Objects.equals(this.topicName, otherTopic.topicName);
+        boolean isSameCS2040CFile = Objects.equals(this.cs2040cFiles, otherTopic.cs2040cFiles);
+        return isSameTopicName && isSameCS2040CFile;
     }
 }

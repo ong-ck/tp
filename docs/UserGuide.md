@@ -66,7 +66,7 @@ the help window. Some example commands you can try are:
 
 <div id="help"></div>
 
-### Viewing help `help`
+### Viewing help: `help`
 Shows a message explaining the format of supported commands in the application and their functions. If a valid command is entered after ‘help’ using the `c/` delimiter, it shows the format and function of that specific command instead.
 
 #### Format:
@@ -125,7 +125,7 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 
 <div style="page-break-after: always;"></div>
 
-### Adding a CS2040CFile `add`
+### Adding a CS2040CFile: `add`
 Adds a `CS2040CFile` that currently already exists, into our file manager. It must **strictly** be either a `.txt` note 
 file or a `.cpp` C++ code file. Requires a topic tagged to it, and an optional importance level, a number from 1 to 10.
 
@@ -198,7 +198,7 @@ Successfully removed queue.
 
 <div style="page-break-after: always;"></div>
 
-### Listing CS2040CFiles `list`
+### Listing CS2040CFiles: `list`
 List all `CS2040CFile`s (in any order) present in `CLIAlgo`.
 
 #### Format:
@@ -231,7 +231,7 @@ Here are all your CS2040CFiles:
 
 <div style="page-break-after: always;"></div>
 
-### Filtering CS2040CFiles `filter`
+### Filtering CS2040CFiles: `filter`
 Filters the `CS2040CFile`s by a user-specified `KEYWORD` and prints a list of `CS2040CFile`s filtered based
 on the `KEYWORD`.
 
@@ -325,7 +325,7 @@ Here are the filtered CS2040CFiles:
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="topo"></div>
 
-### Topologically Sort CS2040CFiles `topo`
+### Topologically Sort CS2040CFiles: `topo`
 Prints a topologically sorted list of `CS2040CFile`s that comes before and within the topic of a user-specified note.
 This will allow the user to be able to revise all pre-requisite topics before revising the topic of the specified note.
 
@@ -346,9 +346,9 @@ topo n/NAME
 > **Note:** Among all the notes added to CLIAlgo, **only** notes that come before and within the topic of the specified note will
 be printed.
 
-> **Example:**</br>
+> **Example:**
 > Notes of the following names, `bst`, `queue` and `sorting` of topics `BINARY_SEARCH_TREE`,
-> `LINKED_LIST` and `SORTING` respectively are added to CLIAlgo.</br>
+> `LINKED_LIST` and `SORTING` respectively are added to CLIAlgo.
 > The `topo n/queue` input will only print `queue` and `sorting` since `bst` is of the topic
 > `BINARY_SEARCH_TREE` that comes after the topic of `queue` which is `LINKED_LIST`.
 
@@ -441,7 +441,7 @@ Here is `./export` opened after `export` is input.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="exit"></div>
 
-### Exiting the program `exit`
+### Exiting the program: `exit`
 Exits `CLIAlgo`.
 
 #### Format:

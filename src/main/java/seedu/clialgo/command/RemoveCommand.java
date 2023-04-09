@@ -31,10 +31,10 @@ public class RemoveCommand extends Command {
      * Overridden method that removes a CS2040CFile corresponding to <code>name</code> from the list. It then saves the
      * updated list.
      *
-     * @param topicManager A Topic object containing all the different topics available.
-     * @param ui A Ui object which handles outputs to the user.
-     * @param fileManager An object responsible for saving information.
-     * @param buffer The object responsible to export filtered files.
+     * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
+     * @param ui The <code>Ui</code> object which handles outputs to the user.
+     * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
+     * @param buffer The <code>Buffer</code> object responsible for exporting filtered files.
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {

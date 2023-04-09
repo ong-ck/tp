@@ -252,7 +252,7 @@ the user's specified `keyWord`.
 </p>
 
 The `FilterCommand` component
-- instantiate a subclass based on the `keyWord` used in its constructor.
+- Instantiate a subclass based on the `keyWord` used in its constructor.
    - If the `keyWord` is `topic` it creates and instance of its subclass `FilterByTopicCommand` and invoke the
      `execute()` method.
    - If the `keyWord` is `importance` it creates and instance of its subclass `FilterByImportanceCommand` and invoke the
@@ -728,7 +728,7 @@ These operations are `private` and can only be accessed in `TopoCommand`.
 
 Given below is an example usage scenario and how the TopoSort mechanism behaves at each step.
 
-> **Step 1:** The user will input a command in the format `topo n\noteName`. The input will be read
+> **Step 1:** The user will input a command in the format `topo n/noteName`. The input will be read
 > by the `Ui` and processed by the `Parser`. The `Parser` will then call the `prepareTopoCommand()`
 > to create a new `TopoCommand` object.
 
@@ -899,40 +899,6 @@ is the file name of the jar file.
 `data` folder created with some `.txt` files in the same directory as the 
 jar file. There also would be an `export` folder
 created.
-
-#### _Optional : Test Mode_
-1. If the tester does not want their data that they entered to be saved, they 
-can type the command: `start-test-mode` to start a debugging mode 
-after opening the application.
-    1. If done correctly this is what the tester will see:
-    ```
-    ======================================================
-     Starting test mode.
-    ======================================================
-    ```
-   2. There would be a `testdata` folder created with some `.txt` files
-   in the same directory as the jar file.
-   3. All the below testing will then reflect in the `.txt` files in 
-   the `testdata` folder.
-      1. If manually editing the data file, it has to be done in the data 
-      files within `testdata`.
-2. To exit test mode, type the command `exit-test-mode`.
-   1. If done correctly this is what the tester will see:
-    ```
-   ======================================================
-    Ending test mode.
-   ======================================================
-   ======================================================
-    Successfully deleted file.
-   ======================================================
-   ======================================================
-    ```
-3. The `testdata` folder should now be deleted.   
-
-> **WARNING**
-> 
-> The user _has_ to exit test mode or the test mode data would not be 
-> wiped correctly.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="instructions-shutdown"></div>

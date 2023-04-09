@@ -19,8 +19,10 @@ import java.util.Objects;
  * print the topologically sorted CS2040CFiles after a specific target CS2040CFile.
  */
 public class TopoCommand extends Command {
-
+    /** Store the names of CS2040CFiles in topological order. */
     private LinkedHashMap<String, ArrayList<String>> topoSortedCS2040CFiles;
+
+    /** Name of the input CS2040CFile. */
     private final String name;
 
     /**
@@ -87,7 +89,7 @@ public class TopoCommand extends Command {
      * @param topicManager The <code>TopicManager</code> object which handles all CS2040CFiles stored in CLIAlgo.
      * @param ui The <code>Ui</code> object which handles outputs to the user.
      * @param fileManager The <code>FileManager</code> object responsible for saving information in CLIAlgo.
-     * @param buffer The object responsible to export filtered files.
+     * @param buffer The <code>Buffer</code> object responsible for exporting filtered files.
      */
     @Override
     public void execute(TopicManager topicManager, Ui ui, FileManager fileManager, Buffer buffer) {

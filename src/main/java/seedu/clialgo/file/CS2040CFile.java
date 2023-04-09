@@ -36,9 +36,7 @@ public abstract class CS2040CFile {
         this.importance = DEFAULT_IMPORTANCE;
     }
 
-    /**
-     * Prints the name of the file.
-     */
+    /** Prints the name of the file. */
     public abstract void printFileName();
 
     public abstract String getName();
