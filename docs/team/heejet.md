@@ -18,7 +18,8 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
    `StringManipulation` interface. The `StringManipulation` interface handles all operations such as splitting the input
    string and throwing any `Exceptions` that occur during the operation and returns `null` when the string is
    empty.
-   
+
+<div style="page-break-after: always;"></div>
 
 2. List all `CS2040CFile`s.
    - **What it does**: Allows users of `CLIAlgo` to list all the `CS2040CFile`s that are tracked by `CLIAlgo`. Each 
@@ -84,3 +85,4 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
 9. Designed the architecture of `CLIAlgo` and how `TopicManager` and `Topic` interact with each other
 to implement various features of `CLIAlgo` (`Filter`, `Add`, `Remove`, `List`, `Topo`).
 10. Participated in video demo.
+11. Help to reformat UG and DG.
