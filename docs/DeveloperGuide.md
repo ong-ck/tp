@@ -165,7 +165,7 @@ The `FileManager` component
 - Saves each `Topic`'s data as an individual `.txt` file.
 - Interprets `Note` and `Code` objects as a `String` and store it into its
 corresponding `Topic`'s  `.txt`.
-- Updates the corresponding `Topic`'s  `.txt` whenever a `add` or
+- Updates the corresponding `Topic`'s  `.txt` whenever an `add` or
 `remove` command is called by the user.
 - Reads from each `Topic`'s  `.txt` and returns a `Topic` object when
 initializing the application.
@@ -233,7 +233,7 @@ Here is the class diagram of the `ListCommand` which is responsible for listing 
 </p>
 
 The `ListCommand` component
-- Prints out all `CS2040CFile` stored in `CLIAlgo` in **any** order.
+- Prints out all `CS2040CFile`s stored in `CLIAlgo` in **any** order.
 - Indicates if the `CS2040CFile` is a `Note` or `Code`.
   - If the `CS2040CFile` is a `Note`, it would be labelled with `[NOTE]` before the name of the `CS2040CFile`.
   - If the `CS2040CFile` is a `Code`, it would be labelled with `[CODE]` before the name of the `CS2040CFile`.
@@ -265,7 +265,7 @@ The `FilterCommand` component
 ### TopoSort
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/TopoCommand.java) : `TopoCommand.java`
 
-Here is a class diagram of the `TopoCommand` which facilitates the storage
+Here is a class diagram of the `TopoCommand` which facilitates the topological sort
 function of the application.
 
 <p align="center">
@@ -439,7 +439,7 @@ Given below is how the sequence of `initialize()` is run
 > with the path `./data/TOPIC_NAME.txt` where TOPIC_NAME is replaced with the name of the `Topic`.
 > This only occurs if the file did not exist prior to the running of the application.
 
-> **Step 3**: If the file already existed prior, readFile() is run. This creates a `Scanner` which would 
+> **Step 3**: If the file already existed prior, `readFile()` is run. This creates a `Scanner` which would 
 > translate the data file line by line into `String`. Each line of `String` corresponds to a `CS2040CFile`.
 
 > **Step 4**: The `String` is then decoded using `decode()` and is converted into a `CS2040CFile`. If the
@@ -557,7 +557,7 @@ Given below is an example usage of how the add feature behaves at each step.
 > **Step 4**: The topic name of the `CS2040CFile` is checked, to see if it belongs to one of the topics in CS2040C. If it
 > is not, a new `InvalidTopicCommand` object is created and executed.
 
-> **Step 5**: The name of `CS2040CFile` is checked, to see if a file of that name already exists inside  the
+> **Step 5**: The name of `CS2040CFile` is checked, to see if a file of that name already exists inside the
 > `TopicManager` object, which means that there are duplicates.
 
 > **Step 6**: The `checkFileType` method is then used to check the type of the `CS2040CFile` to be added. Given that the
@@ -565,7 +565,7 @@ Given below is an example usage of how the add feature behaves at each step.
 > invoked.
 
 > **Step 7**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
-> the adding of the file into the `FileMnanager` object by calling the `addEntry()` method. This updates `CLIAlgo`'s 
+> the adding of the file into the `FileManager` object by calling the `addEntry()` method. This updates `CLIAlgo`'s 
 > data file to include this new `CS2040CFile`. Additionally, the `CS2040CFile` is added into the `TopicManager` object 
 > using the `addCS2040CFile()` method, to keep track of the name of the `CS2040CFile` that the user has added. 
 
@@ -604,7 +604,7 @@ Given below is an example usage of how the remove feature behaves at each step.
 > object.
 
 > **Step 6**: If the `CS2040CFile` is unsuccessfully removed from the `TopicManager` object, the `printRemoveFail()` 
-> method is invoked on the `Ui` object.
+> method is invoked by the `Ui` object.
 
 > **Step 7**: The `deleteEntry()` method of `FileManager` object is invoked. This updates the data file to
 > no longer contain the `CS2040CFile` that is being removed, and `CLIAlgo` stops tracking that `CS2040CFile`.
@@ -720,8 +720,8 @@ overridden `execute()` method, and stores internally the name of the `CS2040CFil
 topologically sorted notes as `name` and `topoSortedCS2040CFiles`.
 Additionally, it implements the following operations:
 
-- `printTopoSortedCS2040CFiles()` - Prints all `CS2040CFile`s after a specific 
-target `CS2040CFile` in a topological order. 
+- `printTopoSortedCS2040CFiles()` - Prints all `CS2040CFile`s within and before a specific 
+target `CS2040CFile`'s topic in a topological order. 
 - `printSingleTopic()` - Prints all `CS2040CFile`s of a single specific topic.
 
 These operations are `private` and can only be accessed in `TopoCommand`.
@@ -733,17 +733,16 @@ Given below is an example usage scenario and how the TopoSort mechanism behaves 
 > to create a new `TopoCommand` object.
 
 > **Step 2:** The `execute()` method of the `TopoCommand` object will be executed, which will check
-> whether there are any saved notes (via the `isEmpty()` method of `TopicManager`) and whether the `noteName` exists as a 
-> note in the application
-> (via the `isRepeatedCS2040CFile()` method of `TopicManager`).
+> whether there are any saved notes (via the `isEmpty()` method of `TopicManager`) and whether the 
+> `noteName` exists as a note in the application (via the `isRepeatedCS2040CFile()` method of `TopicManager`).
 
 > **Step 3:** The `printTopoSortedCS2040CFiles()` method is called to obtain the relevant note files in topological
 > order from `TopicManager` via the `getAllCS2040CFilesBeforeTopic()` method. This will be stored internally in 
 > a `LinkedHashMap` called `topoSortedCS2040CFiles`.
 
-> **Step 4:** For all topics present in `topoSortedCS2040CFiles`, `printSingleTopic()` will be executed to print all
-> note names present in the specific topic. As the topics are saved in topological order, the printed `CS2040CFile` 
-> names will be printed in the correct order.
+> **Step 4:** For all topics present in `topoSortedCS2040CFiles`, `printTopoSortedCS2040CFiles()` will be executed 
+> to print all note names present in topological order by topic. As the topics are saved in topological order, 
+> the printed `CS2040CFile` names will be printed in the correct order.
 
 The following sequence diagram shows how the `TopoCommand` works.
 
@@ -806,21 +805,20 @@ Manage notes faster and more efficiently than a typical mouse/GUI driven applica
 
 ## User Stories
 
-| Version | As a(n) ...                                              | I want to ...                                                               | So that I can ...                                                            |
-|---------|----------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| v1.0    | user                                                     | be able to add notes                                                        | view them later                                                              |
-| v1.0    | user                                                     | be able to delete notes                                                     | replace existing notes with new ones                                         |
-| v1.0    | user                                                     | be able to save my notes                                                    | reuse the saved data after closing and reopening the application             |
-| v1.0    | user                                                     | list all my notes                                                           | see the amount of content I have to study                                    |
-| v1.0    | first time user                                          | to be able to know how to use the application                               | N/A                                                                          |
-| v1.0    | tutor teaching CS2040C                                   | organize my notes according to their topic                                  | easily find the relevant content                                             |
-| v1.0    | student in CS2040C                                       | be able to study CS2040C according to their topic linkages in Visualgo      | study the prerequisite topics for more advanced topics                       |
-| v1.0    | efficiency-obsessed student in CS2040C                   | be able to find relevant topic notes easily                                 | study the relevant topics efficiently                                        |
-| v2.0    | organized student in CS2040C                             | be able to sort my notes according to level of importance                   | identify which topics to study first when I am preparing for my exam         |
-| v2.0    | As a student in CS2040C                                  | be able to list my notes in topological sort order                          | study the prerequisite topics first before studying the more advanced topics | 
-| v2.0    | As a CS2040C student with weekly programming assignments | be able to save my `.cpp` files                                             | refer to them in the future                                                  |
-| v2.0    | As a student in CS2040C                                  | be able to extract out relevant files into a folder                         | easily access them during revision                                           |
-| v2.0    | As an advanced user of CLIAlgo                           | be able to chain commands such that they will be executed one after another | use CLIAlgo more efficiently                                                 |
+| Version | As a(n) ...                                         | I want to ...                                                               | So that I can ...                                                            |
+|---------|-----------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| v1.0    | user                                                | be able to add notes                                                        | view them later                                                              |
+| v1.0    | user                                                | be able to delete notes                                                     | replace existing notes with new ones                                         |
+| v1.0    | user                                                | be able to save my notes                                                    | reuse the saved data after closing and reopening the application             |
+| v1.0    | user                                                | list all my notes                                                           | see the amount of content I have to study                                    |
+| v1.0    | first time user                                     | to be able to know how to use the application                               | N/A                                                                          |
+| v1.0    | tutor teaching CS2040C                              | organize my notes according to their topic                                  | easily find the relevant content                                             |
+| v1.0    | student in CS2040C                                  | be able to study CS2040C according to their topic linkages in Visualgo      | study the prerequisite topics for more advanced topics                       |
+| v1.0    | efficiency-obsessed student in CS2040C              | be able to find relevant topic notes easily                                 | study the relevant topics efficiently                                        |
+| v2.0    | organized student in CS2040C                        | be able to sort my notes according to level of importance                   | identify which topics to study first when I am preparing for my exam         |
+| v2.0    | student in CS2040C                                  | be able to list my notes in topological sort order                          | study the prerequisite topics first before studying the more advanced topics |  
+| v2.0    | CS2040C student with weekly programming assignments | be able to save my `.cpp` files                                             | refer to them in the future                                                  |
+| v2.0    | student in CS2040C                                  | be able to extract out relevant files into a folder                         | easily access them during revision                                           |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="use-cases"></div>
@@ -1000,7 +998,7 @@ after opening the application.
 > add n/name t/LINKED_LIST i/5
 > ```
 
-5. Adding an importance number no within the range of 1 to 10 would cause and error message to be printed.
+5. Adding an importance number not within the range of 1 to 10 would cause and error message to be printed.
 > Example:
 > ```
 > add n/name t/LINKED_LIST i/100
@@ -1087,9 +1085,9 @@ after opening the application.
 System, the `export` folder would automatically be opened.
    1. If opening the folder is not supported, an invalid command error would be printed, but the `CS2040CFile`
    would still be copied into the `export` folder.
-3. The contents of the `CS2040CFile` copied would be identical to the `File` in the directory where the `.jar`
+3. The contents of the `CS2040CFile` copied would be identical to the `CS2040CFile` in the directory where the `.jar`
 file is located.
-4. If `filter` or `topo` is called again, the `export` folder would not be updated until `export` is inputted
+4. If `filter` or `topo` is called again, the `export` folder would not be updated until `export` is called
 again.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -1126,10 +1124,9 @@ subsequently
 > After running application:
 > ```
 > ```
-
-5. If a data file is deleted in the middle of the application running somehow the 
-application would recreate the file in its last state when running `add` or 
-`remove` 
+5. If any of the data files is/ are removed while the application is running, 
+CLIAlgo would recreate the data files using the most recent data during the 
+next `add` or `remove` operation.
 6. If a file stored in the data file does not exist in the directory,
 it is considered to be a corrupted entry.
 

@@ -8,7 +8,7 @@
 
 ## Introduction
 
-CLIAlgo is a desktop application for **managing your CS2040C notes and code**. It is optimized to be used via a Command 
+CLIAlgo is a desktop application for **managing your CS2040C notes and codes**. It is optimized to be used via a Command 
 Line Interface (CLI). If you can type fast, you can access and sort your notes faster than ever before. `CLIAlgo` is a 
 **note management** application and not a note-taking application. Therefore, users are expected to already have the 
 required `.txt` or `.cpp` files **in the same folder** as the `.jar` file before starting the application. Features like
@@ -34,9 +34,9 @@ note creation and editing are beyond the scope of this application.
 ## Quick Start
 
 1. Ensure that you have Java <code>11</code> or above installed.
-2. Down the latest version of `clialgo.jar` from [here](https://github.com/AY2223S2-CS2113-T15-1/tp/releases).
+2. Download the latest version of `clialgo.jar` from [here](https://github.com/AY2223S2-CS2113-T15-1/tp/releases).
 3. Copy the file to the folder you want to use as the home folder for your CS2040C notes.
-4. Open a command terminal, ‘cd’ into the folder you put the .jar  file in, and use the `java -jar clialgo-v2.1.jar` 
+4. Open a command terminal, ‘cd’ into the folder that you put the `.jar` file in, and use the `java -jar clialgo-v2.1.jar` 
 command to run the application.
 5. Ensure that all your `CS2040CFile`s with either `.cpp` or `.txt` as their extension are present in the same folder 
 as the `.jar` file.
@@ -126,7 +126,7 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 <div style="page-break-after: always;"></div>
 
 ### Adding a CS2040CFile `add`
-Adds a CS2040CFile that currently already exists, into our file manager. It must **strictly** be either a `.txt` note 
+Adds a `CS2040CFile` that currently already exists, into our file manager. It must **strictly** be either a `.txt` note 
 file or a `.cpp` C++ code file. Requires a topic tagged to it, and an optional importance level, a number from 1 to 10.
 
 #### Format:
@@ -170,13 +170,14 @@ Successfully added queue into LINKED_LIST.
 <div id="remove"></div>
 
 ### Removing a CS2040CFile: `remove`
-Removes a CS2040CFile that exists from our file manager.
+Removes a `CS2040CFile` that exists from our file manager.
 
 #### Format:
 ```
 remove n/NAME
 ```
 - `NAME` represents the name of the `CS2040CFile` to be removed **without the file extension**.
+- Only `CS2040CFile`s that have been added can be removed.
 - Not following the syntax strictly would result in an invalid command message.
 
 #### Example of usage:
@@ -198,7 +199,7 @@ Successfully removed queue.
 <div style="page-break-after: always;"></div>
 
 ### Listing CS2040CFiles `list`
-List all CS2040CFiles (in any order) present in `CLIAlgo`.
+List all `CS2040CFile`s (in any order) present in `CLIAlgo`.
 
 #### Format:
 ```
@@ -231,17 +232,18 @@ Here are all your CS2040CFiles:
 <div style="page-break-after: always;"></div>
 
 ### Filtering CS2040CFiles `filter`
-Filters the CS2040CFiles by a user-specified `KEYWORD` and prints a list of `CS2040CFile`s filtered based
+Filters the `CS2040CFile`s by a user-specified `KEYWORD` and prints a list of `CS2040CFile`s filtered based
 on the `KEYWORD`.
 
 #### Format:
 ```
 filter k/KEYWORD [t/TOPIC_NAME]
 ```
-- `KEYWORD` represents the criteria to filter the `CS2040CFiles`.
+- `KEYWORD` represents the criteria to filter the `CS2040CFile`s.
     - Valid `KEYWORD` includes: `topic`, `importance`.
+- Filtering by `importance` will result in a filtered list of `CS2040CFile`s in **non-increasing order**.
 - `TOPIC_NAME` represents the scope where the filter operation will be applied.
-  -   It is an optional input and leaving it blank would result set the scope to include all `CS2040CFile`
+  -   It is an optional input and leaving it blank would result in setting the scope to include all `CS2040CFile`
   in `CLIAlgo`.
 - `KEYWORD` and `TOPIC_NAME` are **case-sensitive**.
 - Not following the syntax strictly would result in an invalid command message.
@@ -335,7 +337,7 @@ topo n/NAME
 - The topological sort follows the following order (latest to earliest): "MINIMUM_SPANNING_TREE",
 "SS_SHORTEST_PATH", "GRAPH_TRAVERSAL", "GRAPH_STRUCTURES", "BINARY_SEARCH_TREE", "UNION_FIND_DS",
 "HASH_TABLE", "BINARY_HEAP", "LINKED_LIST", "SORTING".
-- `NAME` represents the name of the `CS2040CFile` where the user wants the topological sort to start from
+- `NAME` represents the name of the `CS2040CFile` where the user wants the topological sort to start from.
   - Only notes that are **saved locally and added to CLIAlgo** can be used.
   - If no notes are saved locally and added to CLIAlgo, a feedback message will be printed instead.
 - Command and `NAME` are **case-sensitive**.
@@ -399,13 +401,13 @@ export
 - Note that `export` **_ONLY_** works with `filter` and `topo` and **_not_** other functions such as `list`.
 - If the Operating System has a valid file explorer, `./export` 
 would be opened automatically.
-- If the buffer is empty when `export` is inputted, an error message
+- If the buffer is empty when `export` is called, an error message
 would be printed.
-- Every time `export` is called, the `Files` within `./export`
-are deleted before the `Files` are copied into `./export`
-- If a `File` stored in the `Buffer` does not exist for some reason 
-(i.e. if the user deleted the `File`) an error message would be
-printed for each `File` not found.
+- Every time `export` is called, the `CS2040CFile`s within `./export`
+are deleted before the `CS2040CFile`s are copied into `./export`
+- If a `CS2040CFile` stored in the `Buffer` does not exist for some reason 
+(i.e. if the user deleted the `CS2040CFile`) an error message would be
+printed for each `CS2040CFile` not found.
 - **Removing a file using the remove command empties the buffer!**
 
 #### Example of usage:
@@ -470,18 +472,24 @@ Thank you for using CLIAlgo! Study hard!
 
 ## FAQ
 
+---
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Copy all the `CS2040CFile`s as well as the data.txt file into the new Computer.
+**A**: Copy all the `CS2040CFile`s as well as the `data` folder into the new Computer.
+
+---
 
 **Q**: How do I gain easy access to all my filtered or topologically sorted `CS2040CFile`s?
 
-**A**: Enter the export command after filtering or topologically sorting your `CS2040CFile`s.
+**A**: Enter the `export` command after filtering or topologically sorting your `CS2040CFile`s.
+
+---
 
 **Q**: What if I am unable to add because the program tells me that my `CS2040CFile` does not exist?
 
 **A**: Ensure that all your `CS2040CFile`s are in the same directory as the `.jar` file.
 
+---
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="command-summary"></div>
 
@@ -489,15 +497,15 @@ Thank you for using CLIAlgo! Study hard!
 
 ## Command Summary
 
-| Action | Format, Examples                                                                                  |
-|--------|---------------------------------------------------------------------------------------------------|
-| help   | `help [c/COMMAND_TYPE]`<br/>e.g., `help`, `help c/add`                                            |
-| add    | `add n/NAME t/TOPIC [i/IMPORTANCE]`<br/>e.g., `add n/bst t/BST i/6`                               |
-| remove | `remove n/NAME`<br/>e.g., `remove n/bst`                                                          |
-| list   | `list`                                                                                            |
-| filter | `filter k/KEYWORD [t/TOPIC_NAME]`<br/>e.g., `filter k/topic`, <br/>`filter k/topic t/LINKED_LIST` |
-| topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
-| export | `export`                                                                                          |
-| exit   | `exit`                                                                                            |
+| Action | Format                              | Examples                                               |
+|--------|-------------------------------------|--------------------------------------------------------|
+| help   | `help [c/COMMAND_TYPE]`             | `help`, `help c/add`                                   | 
+| add    | `add n/NAME t/TOPIC [i/IMPORTANCE]` | `add n/bst t/BST i/6`                                  | 
+| remove | `remove n/NAME`                     | `remove n/bst`                                         | 
+| list   | `list`                              | `list`                                                 |
+| filter | `filter k/KEYWORD [t/TOPIC_NAME]`   | `filter k/topic`, <br/> `filter k/topic t/LINKED_LIST` |
+| topo   | `topo n/NAME`                       | `topo n/queue`                                         |
+| export | `export`                            | `export`                                               | 
+| exit   | `exit`                              | `exit`                                                 |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
