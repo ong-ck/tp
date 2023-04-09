@@ -39,7 +39,7 @@ public class FileDecoder {
         }
     }
 
-    //@@ lohjooh
+    //@@author lohjooh
     /**
      * Converts an encoded <code>CS2040CFile</code> from a <code>String</code> and stores the name of the
      * <code>CS2040CFile</code> and the <code>CS2040CFile</code> itself in this object. If there are any missing or
