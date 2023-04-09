@@ -375,7 +375,11 @@ CS2040CFile listed by the above commands would be stored in a
 > files within the application once and with filter, all the relevant
 > files would be retrieved and placed together.*
 
-Format: `export`
+#### Format:
+```
+export
+```
+
 - Note that `export` **_ONLY_** works with `filter` and `topo` and **_not_** other functions such as `list`.
 - If the Operating System has a valid file explorer, `./export` 
 would be opened automatically.
@@ -388,7 +392,8 @@ are deleted before the `Files` are copied into `./export`
 printed for each `File` not found.
 - **Removing a file using the remove command empties the buffer!**
 
-Example of usage:
+#### Example of usage:
+Input
 ```
 filter k/topic
 ======================================================
@@ -401,13 +406,19 @@ Here are the filtered CS2040CFiles:
 ======================================================
 export
 ```
+Output
+```
+======================================================
+Successfully exported file(s).
+======================================================
+```
+
 Here is `./export` opened after `export` is input.
+
 ![](images/export1.png)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="exit"></div>
-
-
 
 ### Exiting the program `exit`
 Exits `CLIAlgo`.
