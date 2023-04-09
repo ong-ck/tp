@@ -497,15 +497,15 @@ Thank you for using CLIAlgo! Study hard!
 
 ## Command Summary
 
-| Action | Format, Examples                                                                                  |
-|--------|---------------------------------------------------------------------------------------------------|
-| help   | `help [c/COMMAND_TYPE]`<br/>e.g., `help`, `help c/add`                                            |
-| add    | `add n/NAME t/TOPIC [i/IMPORTANCE]`<br/>e.g., `add n/bst t/BST i/6`                               |
-| remove | `remove n/NAME`<br/>e.g., `remove n/bst`                                                          |
-| list   | `list`                                                                                            |
-| filter | `filter k/KEYWORD [t/TOPIC_NAME]`<br/>e.g., `filter k/topic`, <br/>`filter k/topic t/LINKED_LIST` |
-| topo   | `topo n/NAME`<br/>e.g., `topo n/queue`                                                            |
-| export | `export`                                                                                          |
-| exit   | `exit`                                                                                            |
+| Action | Format                              | Examples                                               |
+|--------|-------------------------------------|--------------------------------------------------------|
+| help   | `help [c/COMMAND_TYPE]`             | `help`, `help c/add`                                   | 
+| add    | `add n/NAME t/TOPIC [i/IMPORTANCE]` | `add n/bst t/BST i/6`                                  | 
+| remove | `remove n/NAME`                     | `remove n/bst`                                         | 
+| list   | `list`                              | `list`                                                 |
+| filter | `filter k/KEYWORD [t/TOPIC_NAME]`   | `filter k/topic`, <br/> `filter k/topic t/LINKED_LIST` |
+| topo   | `topo n/NAME`                       | `topo n/queue`                                         |
+| export | `export`                            | `export`                                               | 
+| exit   | `exit`                              | `exit`                                                 |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
