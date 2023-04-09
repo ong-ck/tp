@@ -89,3 +89,4 @@ The code contributed can be found  on [RepoSense](https://nus-cs2113-ay2223s2.gi
 [#187](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/187)
 6. Wrote template code for certain `Command`s.
 7. Helped with integration of functions.
+8. Participated in the video demo.

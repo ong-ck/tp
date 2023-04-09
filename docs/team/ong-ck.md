@@ -80,3 +80,4 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
 4. Wrote the `Command` abstract class that other classes inherit from and certain `Command` subclasses.
 5. Helped implement the designs created by other team members.
 6. Implement a colour scheme via a `style.iuml` file for all UML Class and Sequence Diagrams. 
+7. Participated in video demo.
