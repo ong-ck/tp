@@ -346,9 +346,9 @@ topo n/NAME
 > **Note:** Among all the notes added to CLIAlgo, **only** notes that come before and within the topic of the specified note will
 be printed.
 
-> **Example:**</br>
+> **Example:**
 > Notes of the following names, `bst`, `queue` and `sorting` of topics `BINARY_SEARCH_TREE`,
-> `LINKED_LIST` and `SORTING` respectively are added to CLIAlgo.</br>
+> `LINKED_LIST` and `SORTING` respectively are added to CLIAlgo.
 > The `topo n/queue` input will only print `queue` and `sorting` since `bst` is of the topic
 > `BINARY_SEARCH_TREE` that comes after the topic of `queue` which is `LINKED_LIST`.
 
