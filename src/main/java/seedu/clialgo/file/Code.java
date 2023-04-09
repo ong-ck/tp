@@ -15,9 +15,8 @@ public class Code extends CS2040CFile {
     public Code(String name, String path, String topic) {
         super(name, path, topic);
     }
-    /**
-     * Prints the name of the code file.
-     */
+
+    /** Prints the name of the code file. */
     @Override
     public void printFileName() {
         System.out.println(name);

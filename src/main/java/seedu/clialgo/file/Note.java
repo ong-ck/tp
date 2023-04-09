@@ -19,9 +19,7 @@ public class Note extends CS2040CFile {
         super(name, path, topic, importance);
     }
 
-    /**
-     * Prints the name of the note file.
-     */
+    /** Prints the name of the note file. */
     @Override
     public void printFileName() {
         System.out.println(name);
