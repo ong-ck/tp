@@ -29,9 +29,9 @@ note creation and editing are beyond the scope of this application.
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
-<div style="page-break-after: always;"></div>
-
 <div id="quick-start"></div>
+
+<div style="page-break-after: always;"></div>
 
 ## Quick Start
 
