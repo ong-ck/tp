@@ -49,7 +49,7 @@ such as adding, removing, exporting, filtering and topological sorting.
     `CS2040CFile` name will allow users to be more aware of the content that needs to be studied.
 
     - **Highlights**: The implementation of this feature requires the checking of the topic that the specified
-    `CS2040CFile` comes from. Afterwards, following an order that is pre-defined as a constant in `TopicManager`
+    `CS2040CFile` comes from. Afterwards, following an order that is pre-defined as a constant in `TopicManager`,
     the `CS2040CFile`s within the topic and before will be printed. Thus, a LinkedHashMap had to be used to 
     maintain the order of the topics. The challenge thus comes from passing the list of topologically sorted 
     notes to be printed from the `TopicManager` to `TopoCommand` to handle the printing. Thus, a method 
