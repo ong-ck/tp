@@ -18,7 +18,8 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
    `StringManipulation` interface. The `StringManipulation` interface handles all operations such as splitting the input
    string and throwing any `Exceptions` that occur during the operation and returns `null` when the string is
    empty.
-   
+
+<div style="page-break-after: always;"></div>
 
 2. List all `CS2040CFile`s.
    - **What it does**: Allows users of `CLIAlgo` to list all the `CS2040CFile`s that are tracked by `CLIAlgo`. Each 
@@ -52,6 +53,8 @@ Line Interface (CLI). If you can type fast, you can access and sort your notes f
    to access the various `topics` in CS2040C in approximately O(1) time. The relevant `CS2040CFile`(s) can then be
    extracted and printed to the user.
 
+<div style="page-break-after: always;"></div>
+
 #### Code Contributed
 The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=Ong%20Hee&sort=totalCommits%20dsc&sortWithin=totalCommits%20dsc&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=functional-code~docs~test-code~other&since=2023-02-17&tabOpen=true&zFR=false&tabType=authorship&tabAuthor=heejet&tabRepo=AY2223S2-CS2113-T15-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false).
 
@@ -80,6 +83,8 @@ The code contributed by me can be found on [RepoSense](https://nus-cs2113-ay2223
 [#127](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/127), 
 [#138](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/138), 
 [#166](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/166),
+[#256](https://github.com/AY2223S2-CS2113-T15-1/tp/issues/256).
 9. Designed the architecture of `CLIAlgo` and how `TopicManager` and `Topic` interact with each other
 to implement various features of `CLIAlgo` (`Filter`, `Add`, `Remove`, `List`, `Topo`).
 10. Participated in video demo.
+11. Help to reformat UG and DG.

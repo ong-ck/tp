@@ -44,10 +44,10 @@
   - [Initialisation](#instructions-initialisation)
   - [Shutdown](#instructions-shutdown)
   - [Adding a `Note`](#instructions-add)
-  - [Listing all `Files`](#instructions-list)
+  - [Listing all `CS2040CFile`](#instructions-list)
   - [Deleting a `File`](#instructions-delete)
-  - [Filtering `Files`](#instructions-filter)
-  - [Exporting `Files`](#instructions-export)
+  - [Filtering `CS2040CFile`](#instructions-filter)
+  - [Exporting `CS2040CFile`](#instructions-export)
   - [Saving data](#instructions-save)
 
 <div id="design"></div>
@@ -68,7 +68,7 @@ Given below is a quick overview of the main components and how they interact wit
 
 #### Main components of the architecture
 
-- `CLIAlgo`: consist of only 1 main method, and it is responsible for initializing the components
+- `CLIAlgo`: Consist of only 1 main method, and it is responsible for initializing the components
 in the correct sequence and connects them with each other during runtime.
 - `Ui`: A class responsible for handling all interactions with the user.
 - `Parser`: A class responsible for making sense of all commands entered by the user.
@@ -132,7 +132,7 @@ the `StringManipulation` interface.
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
 
 Here is a class diagram of the `TopicManager` component which is responsible for handling all operations involving
-`CS2040CFiles` and `Topics`.
+`CS2040CFile`s and `Topics`.
 
 <p align="center">
     <img src="class-diagrams/diagrams/TopicManagerClass.png" alt="TopicManager Class Diagram" width="80%"/>
@@ -143,7 +143,7 @@ The `TopicManager` component:
 - Contains 10 `Topic` objects, each representing a topic in CS2040C.
 - Each `CS2040CFile` tracked by `CLIAlgo` is stored in the corresponding `Topic` object based on the topic it is tagged
 to.
-- Handles all operations involving `CS2040CFiles` such as
+- Handles all operations involving `CS2040CFile`s such as
   - Addition and removal operations.
   - Filtering (by topic and importance).
   - Sorting (by importance and topological order).
@@ -244,7 +244,7 @@ The `ListCommand` component
 ### Filter
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/FilterCommand.java) : `FilterCommand.java`
 
-Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFiles` according to
+Here is the class diagram of the `FilterCommand` which is responsible for sorting the `CS2040CFile`s according to
 the user's specified `keyWord`.
 
 <p align="center">
@@ -257,7 +257,7 @@ The `FilterCommand` component
      `execute()` method.
    - If the `keyWord` is `importance` it creates and instance of its subclass `FilterByImportanceCommand` and invoke the
      `execute()` method.
-- The respective subclasses will print the `CS2040CFiles` filtered based on the `keyWord` provided.
+- The respective subclasses will print the `CS2040CFile`s filtered based on the `keyWord` provided.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-toposort"></div>
@@ -283,8 +283,8 @@ The `TopoCommand` component
 ### Export
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Buffer.java) : `Buffer.java`
 
-Here is a class diagram of the `Buffer` which facilitates the storing of `CS2040CFiles`
-returned from `filter` and `topo` commands and the copying of `CS2040CFiles` stored within
+Here is a class diagram of the `Buffer` which facilitates the storing of `CS2040CFile`s
+returned from `filter` and `topo` commands and the copying of `CS2040CFile`s stored within
 into `./export` and opening the folder subsequently if supported by the Operating System.
 
 <p align="center">
@@ -292,7 +292,7 @@ into `./export` and opening the folder subsequently if supported by the Operatin
 </p>
 
 The `Buffer` component
-- Stores `CS2040CFiles` when `FilterCommand` and its derivatives or `TopoCommand` is executed
+- Stores `CS2040CFile`s when `FilterCommand` and its derivatives or `TopoCommand` is executed
 - Updates stored `CS2040CFile`s
 - Copies `CS2040CFile`s into `./export` folder
 - Deletes `CS2040CFile`s in `./export` folder
@@ -379,7 +379,7 @@ The following **_Sequence Diagram_** shows how the Parser work.
 ### Logic
 #### Current Implementation
 
-All operations involving `CS2040CFiles` are handled by the `TopicManager`. The `TopicManager` class and `Topic` class 
+All operations involving `CS2040CFile`s are handled by the `TopicManager`. The `TopicManager` class and `Topic` class 
 form a whole-part relationship where the `TopicManager` contains 10 instance of the `Topic` class, each
 representing the 10 topics in CS2040C. When relevant `Command` objects are executed, they invoke methods in the
 `TopicManager` which in turns invokes methods in the relevant `Topic` class. The `TopicManager` supports the following 
@@ -389,7 +389,7 @@ operations:
 - `getAllCS2040CFilesGroupedByTopicToPrint()`: Returns a `HashMap<String, ArrayList<String>>` containing the names and
 labels of all `CS2040CFile`s tracked by `CLIAlgo`.
 - `getAllCS2040CFilesBeforeTopic()`: Returns a `LinkedHashMap<String, ArrayList<String>>` containing the names and 
-labels of all `CS2040CFiles` that come before the given `CS2040CFile` in topological order.
+labels of all `CS2040CFile`s that come before the given `CS2040CFile` in topological order.
 - `addCS2040CFile()`: Adds the given `CS2040CFile` into the `Topic` class it is tagged to.
 - `removeCS2040CFile()`: Removes a `CS2040CFile` from the `Topic` class that it is tagged to.
 
@@ -446,9 +446,9 @@ Given below is how the sequence of `initialize()` is run
 > `String` is unable to be converted into a `CS2040CFile`, the `String` is deemed to be corrupted and is 
 > subsequently deleted from the data file.
 
-> **Step 5**: The translated `CS2040CFiles` are then stored within the `SingleFile`. `FileManager` then
+> **Step 5**: The translated `CS2040CFile`s are then stored within the `SingleFile`. `FileManager` then
 > invokes `decodeAll()` which retrieves all the `Topics` stored within each `SingleFile` which contains
-> all the `CS2040CFiles`. This is returned in the form of a `HashMap`.
+> all the `CS2040CFile`s. This is returned in the form of a `HashMap`.
 
 The following **_Sequence Diagram_** shows how previously saved files are loaded into `CLIAlgo`.
 
@@ -538,8 +538,8 @@ The following **_Sequence Diagram_** shows how the help operation works.
 The add mechanism is facilitated by `AddCommand`. It extends the abstract `Command` with an overridden `execute()`
 method. Within the `execute()` method, the path of the `CS2040CFile`, as specified by its name, is checked using
 `checkFileType`, to determine if the `CS2040CFile` exists within the directory of the program. The topic of the
-`CS2040CFile` to be added is also checked using `isValidTopic` to ensure it is a valid topic in CS2040C,
-and also the name of the `CS2040CFile` is checked using `isRepeatedCS2040CFile`, to ensure that no other files
+`CS2040CFile` to be added is also checked using `isValidTopic()` to ensure it is a valid topic in CS2040C,
+and also the name of the `CS2040CFile` is checked using `isRepeatedCS2040CFile()`, to ensure that no other files
 of the same name exists. Following which, 1 of 2 different other executions is called, depending on the type of the
 `CS2040CFile`.
 
@@ -558,15 +558,15 @@ Given below is an example usage of how the add feature behaves at each step.
 > is, a new `InvalidTopicCommand` object is created and executed.
 
 > **Step 5**: The name of `CS2040CFile` is checked, to see if a file of that name already exists inside  the
-> `Topic Manager` object, which means that there are duplicates.
+> `TopicManager` object, which means that there are duplicates.
 
 > **Step 6**: The `checkFileType` method is then used to check the type of the file to be added. Given that the file to 
 > be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked.
 
 > **Step 7**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
-> adding of the file into the `File Mnanager` object by calling the `addEntry()` method. This updates `CLIAlgo` data
+> adding of the file into the `FileMnanager` object by calling the `addEntry()` method. This updates `CLIAlgo` data
 > file to include this new `CS2040CFile`. Additionally, the `CS2040CFile` is added into the `Topic Manager` object using
-> the `addCS2040CFile()` method, to keep track of the names of the CS2040CFiles that the user has added. 
+> the `addCS2040CFile()` method, to keep track of the names of the CS2040CFile sthat the user has added. 
 
 The **_Sequence Diagram_** below shows how the `AddCommand` works.
 
@@ -696,7 +696,7 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
 > `printSingleTopic()` method which in turns calls `getCS2040CFilesByTopic` from the `TopicManager`.
 
 > **Step 5**: If `getAllCS2040CFilesGroupedByTopic()` is called, the TopicManager calls the 
-> `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFiles`
+> `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFile`s
 > to the user.
 
 The following **_Sequence Diagram_** shows how the filter by topic operation work.
@@ -766,7 +766,7 @@ replaces the `CS2040CFile` objects stored within the buffer with the
 output `CS2040CFile` objects being output from the `filter`
 command.
 
-When an `export` command is then called, a `ExportCommand`
+When an `export` command is entered, a `ExportCommand`
 object is instantiated. The `ExportCommand` object extends
 `Command` with an overridden `execute()` method. When the
 `execute()` method is called, the `exportBuffer()` method in the
@@ -966,44 +966,54 @@ after opening the application.
    3. `TOPIC_NAME` would represent the `Topic` the note is tagged to.
       1. **CASE 1 :** The `TOPIC_NAME` is valid.
       > Example : 
-      > 
+      > ```
       > add n/name t/LINKED_LIST
+      > ```
       2. **CASE 2 :** The `TOPIC_NAME` is invalid.
       > Example :
-      >
+      > ```
       > add n/name t/linkedlist
-      > 
+      > ```
+      > ```
       > add n/name t/SOMETHING
+      > ```
 2. Leaving any fields blank would cause an error message to be printed.
 > Example :
->
+> ```
 > add n/ t/
-> 
+> ```
+> ```
 > add n/name t/
+> ```
 3. Leaving out `n/` or `t/` would cause an error message to be printed.
 > Example :
->
+> ```
 > add name LINKED_LIST
-=======
+> ```
+> ```
 > add note LINKED_LIST
+> ```
 4. Optional to add an importance tag to the CS2040CFile, which is a number from 1 to 10
 > Example : 
-> 
+> ```
 > add n/name t/LINKED_LIST i/5
->5. Adding an importance number no within the range of 1 to 10 would cause and error message to be printed.
+> ```
+
+5. Adding an importance number no within the range of 1 to 10 would cause and error message to be printed.
 > Example:
->
+> ```
 > add n/name t/LINKED_LIST i/100
+> ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="instructions-list"></div>
 
-### Listing all `Files`
+### Listing all `CS2040CFile`
 1. Type the command: `list`.
-   1. **CASE 1 :** There are some `Files` stored.
-      1. The application would print out all the `Files` stored.
-      2. Note that `Files` include both `Notes` and `Codes`.
-   2. **CASE 2 :** There are no `Files` stored.
+   1. **CASE 1 :** There are some `CS2040CFile` stored.
+      1. The application would print out all the `CS2040CFile` stored.
+      2. Note that `CS2040CFile` include both `Notes` and `Codes`.
+   2. **CASE 2 :** There are no `CS2040CFile` stored.
       1. The application would print out a message indicating that no 
       notes have been stored.
 
@@ -1022,17 +1032,19 @@ after opening the application.
       that the note does not exist.
 2. Leaving any fields blank would cause an error message to be printed. 
 > Example :
->
+> ```
 > remove n/
+> ```
 3. Leaving out `n/` or `t/` would cause an error message to be printed.
 > Example :
->
+> ```
 > remove name
+> ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="instructions-filter"></div>
 
-### Filtering `Files`
+### Filtering `CS2040CFile`
 1. Type the command: `filter k/KEYWORD [t/TOPIC_NAME]`.
    1. `KEYWORD` would be `topic` representing filtering by 
    `Topic` or `importance` representing filtering by the 
@@ -1043,33 +1055,38 @@ after opening the application.
    3. `TOPIC_NAME` is an optional field
       1. **CASE 1 :** The `TOPIC_NAME` is valid.
       > Example :
-      >
+      > ```
       > filter k/topic t/LINKED_LIST
+      > ```
       2. **CASE 2 :** The `TOPIC_NAME` is invalid.
       > Example :
-      >
+      > ```
       > filter k/topic t/linkedlist
-      >
+      > ```
+      > ```
       > filter k/topic t/SOMETHING
+      > ```
 2. Leaving `k/` blank would cause an error message to be printed.
 > Example :
->
+> ```
 > filter k/
+> ```
 3. Leaving out `t/` is valid
 > Example :
->
+> ```
 > filter k/topic
+> ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="instructions-export"></div>
 
-### Exporting `Files`
-1. After a command for `filter` or `topo`, the `Files` that were listed would be stored in the `Buffer`.
-2. These `Files` would be copied to the `export` folder and given that it is supported by the Operating
+### Exporting `CS2040CFile`
+1. After a command for `filter` or `topo`, the `CS2040CFile` that were listed would be stored in the `Buffer`.
+2. These `CS2040CFile` would be copied to the `export` folder and given that it is supported by the Operating
 System, the `export` folder would automatically be opened.
-   1. If opening the folder is not supported, an invalid command error would be printed, but the `Files`
+   1. If opening the folder is not supported, an invalid command error would be printed, but the `CS2040CFile`
    would still be copied into the `export` folder.
-3. The contents of the `Files` copied would be identical to the `File` in the directory where the `.jar`
+3. The contents of the `CS2040CFile` copied would be identical to the `File` in the directory where the `.jar`
 file is located.
 4. If `filter` or `topo` is called again, the `export` folder would not be updated until `export` is inputted
 again.
@@ -1087,24 +1104,28 @@ subsequently
 > Example:
 > 
 > Initial .txt file:
-> 
+> ```
 > TEST1&@test1.txt&@wrr
 > 
 > TEST2&@test2.txt&@SORTING
-> 
+> ```
 > After running application:
-> 
+> ```
 > TEST2&@test2.txt&@SORTING
+> ```
 
 > Example:
 >
 > Initial .txt file:
->
+> ```
 > TEST1&@
 >
 > TEST2test2.txtSORTING
->
+> ```
 > After running application:
+> ```
+> ```
+
 5. If a data file is deleted in the middle of the application running somehow the 
 application would recreate the file in its last state when running `add` or 
 `remove` 
