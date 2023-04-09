@@ -375,6 +375,8 @@ CS2040CFile listed by the above commands would be stored in a
 > files within the application once and with filter, all the relevant
 > files would be retrieved and placed together.*
 
+<div style="page-break-after: always;"></div>
+
 #### Format:
 ```
 export
@@ -412,6 +414,8 @@ Output
 Successfully exported file(s).
 ======================================================
 ```
+
+<div style="page-break-after: always;"></div>
 
 Here is `./export` opened after `export` is input.
 
