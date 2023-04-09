@@ -187,10 +187,9 @@ public class Parser implements StringManipulation {
      * Returns <code>InvalidCommand</code> when the user does not follow the input format in the user guide.
      *
      * @param description String containing the information on the CS2040CFile to be removed.
-     * @param topics The topic manager class containing all topics in CLIAlgo.
      * @return a Command object that deletes a CS2040CFile from CLIAlgo when executed.
      */
-    private Command prepareRemoveCommand(String description, TopicManager topics) {
+    private Command prepareRemoveCommand(String description) {
         if (description == null) {
             return new InvalidCommand();
         }
@@ -299,6 +298,7 @@ public class Parser implements StringManipulation {
         if (description == null) {
             return new InvalidCommand();
         }
+
         String noteName;
         try {
             if (description.equals("") || !isCorrectMarker(description, NAME_MARKER)) {
@@ -328,7 +328,7 @@ public class Parser implements StringManipulation {
         case "add":
             return prepareAddCommand(description, topics);
         case "remove":
-            return prepareRemoveCommand(description, topics);
+            return prepareRemoveCommand(description);
         case "filter":
             return prepareFilterCommand(description, topics);
         case "list":
