@@ -375,8 +375,8 @@ Here are the topologically sorted CS2040CFiles:
 
 ### Exporting `Files`
 Whenever a `filter` or `topo` command is input by the user, the
-CS2040CFile listed by the above commands would be stored in a 
-`Buffer`. These stored CS2040CFile can then be copied into 
+`CS2040CFile` listed by the above commands would be stored in a 
+`Buffer`. These stored `CS2040CFile`s can then be copied into 
 `./export`.
 
 > *The `export` command is to further expand the functionality of commands such as `filter`
@@ -472,15 +472,15 @@ Thank you for using CLIAlgo! Study hard!
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: Copy all the CS2040CFiles as well as the data.txt file into the new Computer.
+**A**: Copy all the `CS2040CFile`s as well as the data.txt file into the new Computer.
 
-**Q**: How do I gain easy access to all my filtered or topologically sorted CS2040CFiles?
+**Q**: How do I gain easy access to all my filtered or topologically sorted `CS2040CFile`s?
 
-**A**: Enter the export command after filtering or topologically sorting your CS2040CFiles.
+**A**: Enter the export command after filtering or topologically sorting your `CS2040CFile`s.
 
-**Q**: What if I am unable to add because the program tells me that my CS2040CFile does not exist?
+**Q**: What if I am unable to add because the program tells me that my `CS2040CFile` does not exist?
 
-**A**: Ensure that all your CS2040CFiles are in the same directory as the `.jar` file.
+**A**: Ensure that all your `CS2040CFile`s are in the same directory as the `.jar` file.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="command-summary"></div>
