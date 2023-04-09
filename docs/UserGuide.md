@@ -10,7 +10,7 @@
 
 CLIAlgo is a desktop application for **managing your CS2040C notes and code**. It is optimized to be used via a Command 
 Line Interface (CLI). If you can type fast, you can access and sort your notes faster than ever before. `CLIAlgo` is a 
-**note management** application and not a note taking application. Therefore, users are expected to already have the 
+**note management** application and not a note-taking application. Therefore, users are expected to already have the 
 required `.txt` or `.cpp` files **in the same folder** as the `.jar` file before starting the application. Features like
 note creation and editing are beyond the scope of this application.
 
@@ -42,9 +42,9 @@ command to run the application.
 as the `.jar` file.
 6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open 
 the help window. Some example commands you can try are:
-   - `add n/toposort t/SORTING`: add a 'toposort.txt' file as notes to the topic 'SORTING'
+   - `add n/bubble sort t/SORTING`: add a 'bubble sort.txt' file as notes to the topic 'SORTING'
    - `list`: list all existing notes
-   - `remove n/toposort`: remove the 'toposort.txt' note from the list
+   - `remove n/bubble sort`: remove the 'bubble sort.txt' note from the list
 
 > **WARNING**
 > If any of the files stored in the data files are corrupted, i.e. any of the fields within the data files are invalid 
@@ -60,9 +60,9 @@ the help window. Some example commands you can try are:
 
 > **Notes about the command format:**
 > - Words in `UPPER_CASE` are parameters to be supplied by the user. 
-> E.g `remove n/NAME` where `NAME` is the parameter to be used as `remove n/bubble sort`.
+> E.g. `remove n/NAME` where `NAME` is the parameter to be used as `remove n/bubble sort`.
 > - Items in square brackets are optional.
-> E.g `help [c/COMMAND_TYPE]` can be used as `help` or `help c/add`.
+> E.g. `help [c/COMMAND_TYPE]` can be used as `help` or `help c/add`.
 
 <div id="help"></div>
 
@@ -141,10 +141,10 @@ added successfully.**
 - `NAME` represents the name of the `CS2040CFile` to be added **without the file extension**.
 - `TOPIC` represents the topic which will be tagged to the `CS2040CFile` added.
   - Only full words will be matched. 
-  - E.g `LINKED_LIST` will not match `Link List`.
+  - E.g. `LINKED_LIST` will not match `Link List`.
   - Topic field is **case-sensitive**. Enter `help c/add` to view list of valid topics and their case-sensitivities.
   - For example, keying in `add n/queue t/sorting` is **not** valid. It should be `add n/queue t/SORTING` instead.
-- `IMPORTANCE_LEVEL` represents the importance level you want to asssign to the `CS2040CFile` added.
+- `IMPORTANCE_LEVEL` represents the importance level you want to assign to the `CS2040CFile` added.
   - This field is optional. **If this field is left empty, the note or code files' importance is set to 5 by default**.
 
 #### Example of usage:
