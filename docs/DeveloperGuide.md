@@ -162,13 +162,13 @@ function of the application.
 </p>
 
 The `FileManager` component
-- Saves each `Topic`'s data as an individual `.txt` file
-- Interprets `Note` and `Code` objects as a `String` and store it into its 
-corresponding `Topic`'s  `.txt`
+- Saves each `Topic`'s data as an individual `.txt` file.
+- Interprets `Note` and `Code` objects as a `String` and store it into its
+corresponding `Topic`'s  `.txt`.
 - Updates the corresponding `Topic`'s  `.txt` whenever a `add` or
-`remove` command is called by the user
+`remove` command is called by the user.
 - Reads from each `Topic`'s  `.txt` and returns a `Topic` object when
-initializing the application
+initializing the application.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-help"></div>
@@ -192,15 +192,15 @@ The `HelpCommand` component
 ### Add
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/AddCommand.java) : `AddCommand.java`
 
-Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files
+Here is a class diagram of the `AddCommand` which is responsible for adding either code files or note files.
 
 <p align="center">
     <img src="class-diagrams/diagrams/AddClass.png" alt="AddCommand Class Diagram" width="100%"/>
 </p>
 
 The `AddCommand` component
-- Checks if the `CS2040CFile` to be added into our CLIAlgo exists within the same directory as the program
-- Checks for the type of `CS2040CFile`, whether it is `.txt` or `.cpp` based on the name of the `CS2040CFile`
+- Checks if the `CS2040CFile` to be added into our CLIAlgo exists within the same directory as the program.
+- Checks for the type of `CS2040CFile`, whether it is `.txt` or `.cpp` based on the name of the `CS2040CFile`.
 - Ensures that there are no files with repeated names such that all names of files added are unique.
 - Adds the `CS2040CFile` to the `TopicManager` and `FileManager`.
 
@@ -210,7 +210,7 @@ The `AddCommand` component
 ### Remove
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/RemoveCommand.java) : `RemoveCommand.java`
 
-Here is a class diagram of the `RemoveCommand` which is responsible for removing either code files or note files
+Here is a class diagram of the `RemoveCommand` which is responsible for removing either code files or note files.
 
 <p align="center">
     <img src="class-diagrams/diagrams/RemoveClass.png" alt="RemoveCommand Class Diagram" width="90%"/>
@@ -273,9 +273,9 @@ function of the application.
 </p>
 
 The `TopoCommand` component
-- Topologically sort `CS2040CFile` objects in a specific `topic` order
-- Prints out the list of topologically sorted `CS2040CFile` objects
-- Checks whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved
+- Topologically sort `CS2040CFile` objects in a specific `topic` order.
+- Prints out the list of topologically sorted `CS2040CFile` objects.
+- Checks whether there are `CS2040CFile` objects within `CLIAlgo` and inform user if no such objects are saved.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-export"></div>
@@ -292,11 +292,11 @@ into `./export` and opening the folder subsequently if supported by the Operatin
 </p>
 
 The `Buffer` component
-- Stores `CS2040CFile`s when `FilterCommand` and its derivatives or `TopoCommand` is executed
-- Updates stored `CS2040CFile`s
-- Copies `CS2040CFile`s into `./export` folder
-- Deletes `CS2040CFile`s in `./export` folder
-- Opens `./export` folder automatically if supported by the Operating System
+- Stores `CS2040CFile`s when `FilterCommand` and its derivatives or `TopoCommand` is executed.
+- Updates stored `CS2040CFile`s.
+- Copies `CS2040CFile`s into `./export` folder.
+- Deletes `CS2040CFile`s in `./export` folder.
+- Opens `./export` folder automatically if supported by the Operating System.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation"></div>
@@ -380,9 +380,9 @@ The following **_Sequence Diagram_** shows how the Parser work.
 #### Current Implementation
 
 All operations involving `CS2040CFile`s are handled by the `TopicManager`. The `TopicManager` class and `Topic` class 
-form a whole-part relationship where the `TopicManager` contains 10 instance of the `Topic` class, each
+form a whole-part relationship where the `TopicManager` contains 10 instances of the `Topic` class, each
 representing the 10 topics in CS2040C. When relevant `Command` objects are executed, they invoke methods in the
-`TopicManager` which in turns invokes methods in the relevant `Topic` class. The `TopicManager` supports the following 
+`TopicManager` which in turn invokes methods in the relevant `Topic` class. The `TopicManager` supports the following 
 operations:
 
 - `getTopicOfCS2040CFile()`: Returns the name of the topic the given `CS2040CFile` is tagged to.
@@ -404,7 +404,7 @@ Given below is an example of how the `Logic` component works when a `TopoCommand
 > **Step 3**: Once a topic is found to contain the `CS2040CFileName`, the `TopicManager` self-invokes the 
 > `getCS2040CFilesByTopicToPrint()` method which calls the `getAllCS2040CFilesInTopicToPrint()` method of all `Topic` 
 > class from the current topic onwards. This method returns an `ArrayList<String>` containing the names and labels of 
-> all `CS2040CFile` stored inside the current `Topic`.
+> all `CS2040CFile`s stored inside the current `Topic`.
 
 > **Step 4**: After the `TopicManager` collates the list of `CS2040CFile` names in topological order, it stores them in 
 > a `LinkedHashMap<String, ArrayList<String>>` to preserve the topological order. It then returns it to the 
@@ -424,12 +424,12 @@ The following **_Sequence Diagram_** shows how the Logic component work.
 ##### Initializing previous saved data feature
 
 The function for reading the previously saved data is facilitated by the `FileManager`. The `FileManager`
-creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those files in the for
-in `TOPIC_NAME.txt` in the folder `./data`. If the files already exist, they are not created. Instead,
-the contents of the file would be read line-by-line. The read data would then be passed to `FileDecoder`
-which would then convert these raw data into `CS2040CFile` objects. The `CS2040File` objects are then passed
-into a `HashMap` which represents the topic these `CS2040CFile` objects belong to. The `HashMap` is then passed
-back to the `TopicManager`, completing the initialization process.
+creates a `SingleFile` for each valid topic name and invokes `createNewFile` for those `TOPIC_NAME.txt` not in the 
+folder `./data`. If the files already exist, they are not created. Instead, the contents of the file would be read 
+line-by-line. The read data would then be passed to `FileDecoder` which would then convert these raw data into 
+`CS2040CFile` objects. The `CS2040File` objects are then passed into a `HashMap` which represents the topic 
+these `CS2040CFile` objects belong to. The `HashMap` is then passed back to the `TopicManager`, completing the 
+initialization process.
 
 Given below is how the sequence of `initialize()` is run
 
@@ -518,7 +518,7 @@ Given below is an example usage of how the `help c/add` mechanism behaves at eac
 > **Step 3**: Since the command provided is `add`, the `HelpCommand` calls the `printHelpAdd()` method from the `Ui`.
 > This method prints out instructions on how the `add` command should be used in `CLIAlgo`.
 
-> **Step 4**: HelpCommand object is destroyed and control is handed back to the `CLIAlgo`.
+> **Step 4**: The `HelpCommand` object is destroyed and control is handed back to the `CLIAlgo`.
 
 The following **_Sequence Diagram_** shows how the help operation works.
 
@@ -555,18 +555,19 @@ Given below is an example usage of how the add feature behaves at each step.
 > not, the `printFileDoesNotExist()` method of the `Ui` object is invoked
 
 > **Step 4**: The topic name of the `CS2040CFile` is checked, to see if it belongs to one of the topics in CS2040C. If it
-> is, a new `InvalidTopicCommand` object is created and executed.
+> is not, a new `InvalidTopicCommand` object is created and executed.
 
 > **Step 5**: The name of `CS2040CFile` is checked, to see if a file of that name already exists inside  the
 > `TopicManager` object, which means that there are duplicates.
 
-> **Step 6**: The `checkFileType` method is then used to check the type of the file to be added. Given that the file to 
-> be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method invoked.
+> **Step 6**: The `checkFileType` method is then used to check the type of the `CS2040CFile` to be added. Given that the
+> `CS2040CFile` to be added is a `.txt` file, a new `AddNoteCommand` object would be created and its `execute()` method 
+> invoked.
 
 > **Step 7**: The `execute()` method of the `AddNoteCommand` object will then be invoked, and it will then handle 
-> adding of the file into the `FileMnanager` object by calling the `addEntry()` method. This updates `CLIAlgo` data
-> file to include this new `CS2040CFile`. Additionally, the `CS2040CFile` is added into the `Topic Manager` object using
-> the `addCS2040CFile()` method, to keep track of the names of the CS2040CFile sthat the user has added. 
+> the adding of the file into the `FileMnanager` object by calling the `addEntry()` method. This updates `CLIAlgo`'s 
+> data file to include this new `CS2040CFile`. Additionally, the `CS2040CFile` is added into the `TopicManager` object 
+> using the `addCS2040CFile()` method, to keep track of the name of the `CS2040CFile` that the user has added. 
 
 The **_Sequence Diagram_** below shows how the `AddCommand` works.
 
@@ -584,7 +585,7 @@ The **_Sequence Diagram_** below shows how the `AddCommand` works.
 #### Current Implementation
 
 The remove mechanism is facilitated by `RemoveCommand`. It extends the abstract `Command` with an overridden `execute()`
-method. Within the `execute()` function, 
+method.
 
 Given below is an example usage of how the remove feature behaves at each step.
 
@@ -597,7 +598,7 @@ Given below is an example usage of how the remove feature behaves at each step.
 > `TopicManager` object is empty.
 
 > **Step 4**: The `TopicManager` object is checked to see if the `CS2040CFile` to be removed exists inside the
-> `Topic Manager` object. If it is not, a new `NameNotFoundCommand` object is created and executed.
+> `TopicManager` object. If it is not, a new `NameNotFoundCommand` object is created and executed.
 
 > **Step 5**: After steps 3 and 4 checks are done, the `removeCS2040CFile()` method is invoked on the `TopicManager`
 > object.
@@ -635,7 +636,7 @@ Given below is an example usage scenario and how the list feature behaves at eac
 > **Step 1:** The user will input a command in the format `list`. The input will be read by the `Ui` and processed by the
 > `Parser`. The `Parser` will then call the `prepareListCommand` to create a new `ListCommand` object.
 
-> **Step 2:** The `execute` method of the `ListCommand` object will be executed. `ListCommand` first checks if the
+> **Step 2:** The `execute()` method of the `ListCommand` object will be executed. `ListCommand` first checks if the
 > `TopicManager` is empty by calling the `isEmpty()` method of the `TopicManager`. If the `TopicManager` is empty, 
 > `ListCommand` will print out a message to inform the user that the `TopicManager` is empty.
 
@@ -662,10 +663,10 @@ The following **_Sequence Diagram_** shows how the list operation work.
 #### Current Implementation
 
 The filter mechanism is facilitated by `FilterCommand`. It extends `Command` with an overridden `execute()` method. The
-`FilterCommand` has 2 subclass `FilterByTopicCommand` and `FilterByImportanceCommand`. Each with their own overridden 
+`FilterCommand` has 2 subclasses `FilterByTopicCommand` and `FilterByImportanceCommand`. Each with their own overridden 
 `execute()` method. During execution, the `FilterCommand` decides which of its subclass to instantiate and execute 
-depending on the `keyWord` provided. Both `FilterByTopicCommand` and `FilterByImportanceCommad`
-`FilterCommand` object calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
+depending on the `keyWord` provided. Both `FilterByTopicCommand` and `FilterByImportanceCommand`
+objects calls either the `getNotesByTopic()` or the `getAllNotesByTopic()` methods in the `TopicManager`.
 
 - `FilterByTopicCommand`
   - `printAllTopics()` - Prints out all `CS2040CFile`s stored in CLIAlgo that is sorted by `topic`.
@@ -693,7 +694,7 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
  
 > **Step 4**: If `topic` is `null`, `FilterByTopicCommand` self-invokes `printAllTopics()` method which in turns calls 
 > `getAllCS2040CFilesGroupedByTopic()` from the `TopicManager`. If `topic` is not `null` and is valid, it self-invokes 
-> `printSingleTopic()` method which in turns calls `getCS2040CFilesByTopic` from the `TopicManager`.
+> `printSingleTopic()` method which in turns calls `getCS2040CFilesByTopic()` from the `TopicManager`.
 
 > **Step 5**: If `getAllCS2040CFilesGroupedByTopic()` is called, the TopicManager calls the 
 > `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFile`s
@@ -859,9 +860,9 @@ Use case ends.
 2. Should be able to hold up to 1000 notes without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
 able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be able to handle situations where data files are corrupted (i.e. missing or altered fields)
+4. Should be able to handle situations where data files are corrupted (i.e. missing or altered fields).
 5. Should be easily reusable for other developers who wish to create a similar app.
-6. Should be easily maintainable and modifiable, by having private attributes and methods which reduces dependencies. 
+6. Should be easily maintainable and modifiable, by having private attributes and methods which reduces dependencies 
 between different parts of the program.
 7. Should be secure in terms of protecting sensitive data such as name and path of files and preventing unauthorised 
 access to them.
@@ -889,7 +890,7 @@ Below are guidelines for testers to test the application
 <div id="instructions-initialisation"></div>
 
 ### Initialisation
-1. Download the jar file and copy into an empty folder
+1. Download the jar file and copy into an empty folder.
 2. Right click in the folder where the jar file is located and open the 
 command-line interface. 
 _**Example:**_ `` Open in Terminal``
