@@ -51,6 +51,9 @@ the help window. Some example commands you can try are:
 > the application discards that file stored within the data file.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+<div style="page-break-after: always;"></div>
+
 <div id="features"></div>
 
 ## Features
