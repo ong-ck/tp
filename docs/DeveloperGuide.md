@@ -50,8 +50,6 @@
   - [Exporting `Files`](#instructions-export)
   - [Saving data](#instructions-save)
 
-<div style="page-break-after: always;"></div>
-
 <div id="design"></div>
 
 ## Design
@@ -93,8 +91,6 @@ The **_Sequence Diagram_** below shows a high level overview of how the componen
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-ui"></div>
 
-<div style="page-break-after: always;"></div>
-
 ### Ui
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Ui.java) : `Ui.java`
 
@@ -111,8 +107,6 @@ The `Ui` component:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-parser"></div>
-
-<div style="page-break-after: always;"></div>
 
 ### Parser
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/Parser.java) : `Parser.java`
@@ -133,8 +127,6 @@ the `StringManipulation` interface.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-logic"></div>
-
-<div style="page-break-after: always;"></div>
 
 ### Logic
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/logic/TopicManager.java) : `TopicManager.java`
@@ -159,8 +151,6 @@ to.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-storage"></div>
 
-<div style="page-break-after: always;"></div>
-
 ### Storage
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/storage/FileManager.java) : `FileManager.java`
 
@@ -182,8 +172,6 @@ initializing the application
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-help"></div>
-
-<div style="page-break-after: always;"></div>
 
 ### Help
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/HelpCommand.java) : `HelpCommand.java`
@@ -210,8 +198,6 @@ Here is a class diagram of the `AddCommand` which is responsible for adding eith
     <img src="class-diagrams/diagrams/AddClass.png" alt="AddCommand Class Diagram" width="100%"/>
 </p>
 
-<div style="page-break-after: always;"></div>
-
 The `AddCommand` component
 - Checks if the `CS2040CFile` to be added into our CLIAlgo exists within the same directory as the program
 - Checks for the type of `CS2040CFile`, whether it is `.txt` or `.cpp` based on the name of the `CS2040CFile`
@@ -236,8 +222,6 @@ The `RemoveCommand` component
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="design-list"></div>
-
-<div style="page-break-after: always;"></div>
 
 ### List
 [**API**](https://github.com/AY2223S2-CS2113-T15-1/tp/blob/master/src/main/java/seedu/clialgo/command/ListCommand.java) : `ListCommand.java`
@@ -317,8 +301,6 @@ The `Buffer` component
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation"></div>
 
-<div style="page-break-after: always;"></div>
-
 ## Implementation
 
 <div id="implementation-ui"></div>
@@ -342,8 +324,6 @@ Given below is an example of how the `Ui` works when it is issued a `list` comma
 > `printListOfCS2040CFiles()` method of the `Ui`, which then iterates through the `ArrayList` provided by the 
 `ListCommand` and prints the `CS2040CFile` label and name on a newline using the `println()` method from `System.out`.
 
-<div style="page-break-after: always;"></div>
-
 The following **_Sequence Diagram_** shows how the Ui object is used.
 
 <p align="center">
@@ -355,8 +335,6 @@ The following **_Sequence Diagram_** shows how the Ui object is used.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-parser"></div>
-
-<div style="page-break-after: always;"></div>
 
 ### Parser
 #### Current Implementation
@@ -385,8 +363,6 @@ Given below is an example of how the `Parser` works when it is issued a remove c
 > **Step 3**: The `prepareCommand()` identifies the correct `Command` object to prepare based on the command keyword.
 > Since the command keyword provided is `remove`, `prepareCommand()` calls `prepareRemoveCommand()`.
 
-<div style="page-break-after: always;"></div>
-
 > **Step 4**: If the `NAME` field of the command is null or not labelled using the correct marker, 
 > `prepareRemoveCommand()` returns an `InvalidCommand` object. If the `NAME` input field is valid, a `RemoveCommand` 
 > object is returned.
@@ -399,8 +375,6 @@ The following **_Sequence Diagram_** shows how the Parser work.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-logic"></div>
-
-<div style="page-break-after: always;"></div>
 
 ### Logic
 #### Current Implementation
@@ -445,8 +419,6 @@ The following **_Sequence Diagram_** shows how the Logic component work.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-initialize"></div>
 
-<div style="page-break-after: always;"></div>
-
 ### Storage
 #### Current implementation
 ##### Initializing previous saved data feature
@@ -478,8 +450,6 @@ Given below is how the sequence of `initialize()` is run
 > invokes `decodeAll()` which retrieves all the `Topics` stored within each `SingleFile` which contains
 > all the `CS2040CFiles`. This is returned in the form of a `HashMap`.
 
-<div style="page-break-after: always;"></div>
-
 The following **_Sequence Diagram_** shows how previously saved files are loaded into `CLIAlgo`.
 
 <p align="center">
@@ -492,8 +462,6 @@ The following **_Sequence Diagram_** shows how previously saved files are loaded
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-write"></div>
-
-<div style="page-break-after: always;"></div>
 
 ##### Writing a `CS2040CFile` to data file
 
@@ -519,8 +487,6 @@ Given below is how a single `CS2040CFile` is entered into the data file:
 
 > **Step 4**: `close()` is called for both the `BufferedWriter` and `FileWriter` to stop them from writing
 > to the data file further.
-
-<div style="page-break-after: always;"></div>
 
 The following **_Sequence Diagram_** shows how a `CS2040CFile` is encoded before being written to 
 the relevant data file.
@@ -554,8 +520,6 @@ Given below is an example usage of how the `help c/add` mechanism behaves at eac
 
 > **Step 4**: HelpCommand object is destroyed and control is handed back to the `CLIAlgo`.
 
-<div style="page-break-after: always;"></div>
-
 The following **_Sequence Diagram_** shows how the help operation works.
 
 <p align="center">
@@ -567,8 +531,6 @@ The following **_Sequence Diagram_** shows how the help operation works.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-add"></div>
-
-<div style="page-break-after: always;"></div>
 
 ### Add CS2040CFile feature
 #### Current Implementation
@@ -684,8 +646,6 @@ Given below is an example usage scenario and how the list feature behaves at eac
 > **Step 4:** `ListCommand` iterates through the `ArrayList<String>` and prints the names of all the `CS2040CFile` 
 > stored in `CLIAlgo`.
 
-<div style="page-break-after: always;"></div>
-
 The following **_Sequence Diagram_** shows how the list operation work.
 
 <p align="center">
@@ -739,8 +699,6 @@ Given below is an example usage of how the filter by `topic` mechanism behaves a
 > `getAllCS2040CFilesInTopic()` for all non-empty `Topic`. The `FilterByTopicCommand` then prints out the `CS2040CFiles`
 > to the user.
 
-<div style="page-break-after: always;"></div>
-
 The following **_Sequence Diagram_** shows how the filter by topic operation work.
 
 <p align="center">
@@ -786,8 +744,6 @@ Given below is an example usage scenario and how the TopoSort mechanism behaves 
 > note names present in the specific topic. As the topics are saved in topological order, the printed `CS2040CFile` 
 > names will be printed in the correct order.
 
-<div style="page-break-after: always;"></div>
-
 The following sequence diagram shows how the `TopoCommand` works.
 
 <p align="center">
@@ -799,8 +755,6 @@ The following sequence diagram shows how the `TopoCommand` works.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="implementation-export"></div>
-
-<div style="page-break-after: always;"></div>
 
 ### Export feature
 #### Current implementation
@@ -833,8 +787,6 @@ The following sequence diagram shows how the export feature works.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="product-scope"></div>
-
-<div style="page-break-after: always;"></div>
 
 ## Product scope
 ### Target user profile

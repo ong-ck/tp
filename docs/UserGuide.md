@@ -29,7 +29,7 @@ note creation and editing are beyond the scope of this application.
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
-<div style="page-break-after: always;"></div>
+
 
 <div id="quick-start"></div>
 
@@ -111,7 +111,7 @@ Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="add"></div>
 
-<div style="page-break-after: always;"></div>
+
 
 ### Adding a CS2040CFile `add`
 Adds a CS2040CFile that currently already exists, into our file manager. It must **strictly** be either a `.txt` note 
@@ -143,7 +143,7 @@ or
 add n/queue t/LINKED_LIST i/5
 ```
 
-<div style="page-break-after: always;"></div>
+
 
 Output:
 ```
@@ -181,7 +181,7 @@ Successfully removed queue.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="list"></div>
 
-<div style="page-break-after: always;"></div>
+
 
 ### Listing CS2040CFiles `list`
 List all CS2040CFiles (in any order) present in `CLIAlgo`.
@@ -214,7 +214,7 @@ Here are all your CS2040CFiles:
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="filter"></div>
 
-<div style="page-break-after: always;"></div>
+
 
 ### Filtering CS2040CFiles `filter`
 Filters the CS2040CFiles by a user-specified keyword and prints a list of CS2040CFiles filtered based
@@ -304,7 +304,7 @@ Here are the filtered CS2040CFiles:
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="topo"></div>
 
-<div style="page-break-after: always;"></div>
+
 
 ### Topologically Sort CS2040CFiles `topo`
 Prints a topologically sorted list of CS2040CFiles that comes before and within the topic of a user-specified note.
@@ -402,7 +402,7 @@ Here is `./export` opened after `export` is input.
 <p align="right">(<a href="#top">back to top</a>)</p>
 <div id="exit"></div>
 
-<div style="page-break-after: always;"></div>
+
 
 ### Exiting the program `exit`
 Exits `CLIAlgo`.
